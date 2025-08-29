@@ -3,45 +3,38 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $users = [
+        // Admin
+        User::firstOrCreate(
+            ['email' => 'admin@bkk.com'], // kunci unik
             [
-                'name' => 'Admin',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('password123'),
-                'role' => 'admin',
-            ],
+                'name' => 'Admin BKK',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        // Perusahaan
+        User::firstOrCreate(
+            ['email' => 'perusahaan@bkk.com'],
+            [
+                'name' => 'Perusahaan',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        // Alumni
+        User::firstOrCreate(
+            ['email' => 'user@bkk.com'],
             [
                 'name' => 'User',
-                'email' => 'user@example.com',
-                'password' => Hash::make('password123'),
-                'role' => 'user',
-            ],
-            [
-                'name' => 'asep',
-                'email' => 'asep@example.com',
-                'password' => Hash::make('asep123'),
-                'role' => 'user',
-            ],
-            [
-                'name' => 'company',
-                'email' => 'company@example.com',
-                'password' => Hash::make('company'),
-                'role' => 'user',
-            ],
-        ];
-
-        foreach ($users as $user) {
-            User::updateOrCreate(
-                ['email' => $user['email']],
-                $user
-            );
-        }
+                'password' => Hash::make('password'),
+            ]
+        );
     }
 }

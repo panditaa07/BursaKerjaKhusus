@@ -1,32 +1,34 @@
 <?php
 
-// database/migrations/xxxx_xx_xx_create_job_posts_table.php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobPostsTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('job_posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
+            $table->foreignId('industries_id')->constrained('industries')->cascadeOnDelete();
+
+            // Detail lowongan
             $table->string('title');
             $table->text('description');
             $table->string('location')->nullable();
             $table->string('employment_type')->nullable(); // fulltime/parttime/intern
             $table->integer('vacancies')->nullable();
             $table->date('deadline')->nullable();
-            $table->timestamps();
 
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            // Status
+            $table->enum('status', ['active', 'closed'])->default('active');
+
+            $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('job_posts');
     }
-}
-
+};

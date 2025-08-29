@@ -6,26 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            // Identitas user
+            // Identitas dasar
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            // Role & relasi
+            // Tambahan data kontak
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+
+            // CV
+            $table->string('cv_path')->nullable();
+
+            // Role
             $table->string('role')->default('student')->index(); // admin, company, student, alumni, school
-            $table->foreignId('company_id')
-                  ->nullable()
-                  ->constrained('companies')
-                  ->onDelete('set null'); // bila user terkait company
+
+            // Jika nanti ada tabel companies, bisa ditambahkan ulang foreign key-nya
+            $table->unsignedBigInteger('company_id')->nullable();
 
             // Data tambahan untuk alumni
             $table->string('nisn')->nullable();
@@ -38,9 +41,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');
