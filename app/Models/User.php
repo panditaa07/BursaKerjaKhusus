@@ -8,46 +8,77 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
         'cv_path',
-        'role',
-        'company_id'
+        'company_id',
     ];
 
-    public function company() { return $this->hasOne(Company::class); }
-
-    public function applications() { return $this->hasMany(Application::class); }
-
-    public function isRole($role){
-        return $this->role === $role;
+    /**
+     * Relasi ke perusahaan
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * Relasi ke lamaran
      */
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    /**
+     * Relasi ke roles (pivot role_user)
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    /**
+     * Cek apakah user punya role tertentu
+     */
+    public function hasRole($roleName)
+    {
+        return $this->roles()->where('name', $roleName)->exists();
+    }
+
+    /**
+     * Tambah role ke user
+     */
+    public function assignRole($roleId)
+    {
+        return $this->roles()->attach($roleId);
+    }
+
+    /**
+     * Hapus role dari user
+     */
+    public function removeRole($roleId)
+    {
+        return $this->roles()->detach($roleId);
+    }
+
+    /**
+     * Sinkronisasi role (replace semua role lama)
+     */
+    public function syncRoles(array $roleIds)
+    {
+        return $this->roles()->sync($roleIds);
+    }
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [

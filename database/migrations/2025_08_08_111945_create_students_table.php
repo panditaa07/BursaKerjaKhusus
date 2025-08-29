@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('student_number')->unique(); // NIS
             $table->string('name');
-            $table->foreignId('class_id')->constrained('classes')->onDelete('cascade');
+            $table->unsignedBigInteger('class_id')->nullable();
             $table->foreignId('program_id')->constrained('programs')->onDelete('cascade');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

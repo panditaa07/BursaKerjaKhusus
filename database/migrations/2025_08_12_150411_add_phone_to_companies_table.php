@@ -10,11 +10,13 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::table('companies', function (Blueprint $table) {
+{
+    Schema::table('companies', function (Blueprint $table) {
+        if (!Schema::hasColumn('companies', 'phone')) {
             $table->string('phone')->nullable()->after('address');
-        });
-    }
+        }
+    });
+}
 
     /**
      * Reverse the migrations.
@@ -24,6 +26,5 @@ return new class extends Migration
         Schema::table('companies', function (Blueprint $table) {
             $table->dropColumn('phone');
         });
-
     }
 };
