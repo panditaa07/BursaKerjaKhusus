@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function login()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     public function authenticate(Request $request)
@@ -30,7 +30,7 @@ class HomeController extends Controller
             // Role-based redirection
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashboard.index');
             } else {
                 return redirect()->intended('/dashboard');
             }
@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     public function register()
     {
-        return view('register');
+        return view('auth.register');
     }
 
     public function store(Request $request)

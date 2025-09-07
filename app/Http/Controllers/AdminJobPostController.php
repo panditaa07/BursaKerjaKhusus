@@ -11,13 +11,13 @@ class AdminJobPostController extends Controller
     public function index()
     {
         $jobPosts = JobPost::with('company')->latest()->paginate(10);
-        return view('admin.job_posts.index', compact('jobPosts'));
+        return view('admin.jobs.index', compact('jobPosts'));
     }
 
     public function create()
     {
         $companies = Company::all();
-        return view('admin.job_posts.create', compact('companies'));
+        return view('admin.jobs.create', compact('companies'));
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class AdminJobPostController extends Controller
     public function edit(JobPost $jobPost)
     {
         $companies = Company::all();
-        return view('admin.job_posts.edit', compact('jobPost', 'companies'));
+        return view('admin.jobs.edit', compact('jobPost', 'companies'));
     }
 
     public function update(Request $request, JobPost $jobPost)

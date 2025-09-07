@@ -1,42 +1,46 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@yield('title', 'Dashboard') - BKK OPAT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+                ☰
+            </button>
+            <span class="navbar-brand mb-0 h1 d-lg-none">BKK OPAT</span>
+        </div>
+    </nav>
 
-@section('content')
-<div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Dashboard</h2>
-    </div>
+    <div class="d-flex">
+        <!-- Sidebar for large screens -->
+        <div class="d-none d-lg-block">
+            <x-sidebar />
+        </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Sidebar</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                                <i class="fas fa-tachometer-alt"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users') }}" class="nav-link">
-                                <i class="fas fa-users"></i> Users
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.job-posts.index') }}" class="nav-link">
-                                <i class="fas fa-briefcase"></i> Lowongan Kerja
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.companies.pending') }}" class="nav-link">
-                                <i class="fas fa-building"></i> Perusahaan
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <!-- Offcanvas Sidebar for small screens -->
+        <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-</div>
-</div>
-@endsection
+            <div class="offcanvas-body p-0">
+                <x-sidebar />
+            </div>
+        </div>
+
+        <main class="flex-grow-1 p-4">
+            @yield('content')
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

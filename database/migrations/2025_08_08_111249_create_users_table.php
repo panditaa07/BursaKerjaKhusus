@@ -21,19 +21,17 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
 
-            // CV
+            // CV (opsional, biasanya untuk user/pelamar)
             $table->string('cv_path')->nullable();
 
-            // Role
-            $table->string('role')->default('student')->index(); // admin, company, student, alumni, school
+            // Role (hanya admin, company, user)
+            $table->enum('role', ['admin', 'company', 'user'])->default('user')->index();
 
-            // Jika nanti ada tabel companies, bisa ditambahkan ulang foreign key-nya
+            // Company ID (optional untuk user yang terkait perusahaan)
             $table->unsignedBigInteger('company_id')->nullable();
 
-            // Data tambahan untuk alumni
-            $table->string('nisn')->nullable();
-            $table->year('graduation_year')->nullable();
-            $table->enum('status', ['bekerja', 'kuliah', 'wirausaha'])->nullable();
+            // NIK/NISN (untuk user pelamar saja, fleksibel)
+            $table->string('nik_nisn')->nullable()->unique();
 
             // Laravel defaults
             $table->rememberToken();

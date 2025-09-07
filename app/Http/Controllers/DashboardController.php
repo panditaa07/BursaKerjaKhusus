@@ -54,7 +54,7 @@ class DashboardController extends Controller
         $beritas = Berita::with('user')->latest()->take(3)->get();
         $jurusans = Jurusan::all();
         
-        return view('dashboard', compact('user', 'statistics', 'filter', 'beritas', 'jurusans'));
+        return view('user.dashboard.index', compact('user', 'statistics', 'filter', 'beritas', 'jurusans'));
     }
     
     private function applyTimeFilter($query, $filter, $column = 'created_at')

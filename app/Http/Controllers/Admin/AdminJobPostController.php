@@ -1,0 +1,132 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\JobPost;
+use App\Models\Company;
+use Illuminate\Http\Request;
+
+class AdminJobPostController extends Controller
+{
+    public function index(Request $request)
+    {
+        $query = JobPost::with('company')->latest();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        if ($request->has('status')) {
+            $status = $request->input('status');
+            if (in_array($status, ['active', 'closed'])) {
+                $query->where('status', $status);
+            }
+        }
+
+        $jobPosts = $query->paginate(10);
+        return view('admin.jobs.index', compact('jobPosts'));
+    }
+
+    public function show(JobPost $jobPost)
+    {
+        return view('admin.jobs.show', compact('jobPost'));
+    }
+
+    public function create()
+    {
+        $companies = Company::all();
+        return view('admin.jobs.create', compact('companies'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'company_id' => 'required|exists:companies,id',
+            'description' => 'required|string',
+            'requirements' => 'required|string',
+            'location' => 'required|string|max:255',
+            'type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'salary' => 'nullable|string|max:255',
+            'status' => 'required|in:active,closed',
+            'deadline' => 'nullable|date',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $validated;
+
+        if ($request->hasFile('company_logo')) {
+            $logoPath = $request->file('company_logo')->store('company_logos', 'public');
+            $data['company_logo'] = $logoPath;
+        }
+
+        JobPost::create($data);
+        return redirect()->route('admin.job-posts.all')->with('success', 'Lowongan berhasil ditambahkan');
+    }
+
+    public function edit(JobPost $jobPost)
+    {
+        $companies = Company::all();
+        return view('admin.jobs.edit', compact('jobPost', 'companies'));
+    }
+
+    public function update(Request $request, JobPost $jobPost)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'company_id' => 'required|exists:companies,id',
+            'description' => 'required|string',
+            'requirements' => 'required|string',
+            'location' => 'required|string|max:255',
+            'type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'salary' => 'nullable|string|max:255',
+            'status' => 'required|in:active,closed',
+            'deadline' => 'nullable|date',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $validated;
+
+        if ($request->hasFile('company_logo')) {
+            $logoPath = $request->file('company_logo')->store('company_logos', 'public');
+            $data['company_logo'] = $logoPath;
+        }
+
+        $jobPost->update($data);
+        return redirect()->route('admin.job-posts.all')->with('success', 'Lowongan berhasil diupdate');
+    }
+
+    public function active(Request $request)
+    {
+        $query = JobPost::with('company')->where('status', 'active')->latest();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        $jobPosts = $query->paginate(10);
+        return view('admin.job_posts.active', compact('jobPosts'));
+    }
+
+    public function closed(Request $request)
+    {
+        $query = JobPost::with('company')->where('status', 'closed')->latest();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        $jobPosts = $query->paginate(10);
+        return view('admin.job_posts.closed', compact('jobPosts'));
+    }
+
+    public function destroy(JobPost $jobPost)
+    {
+        $jobPost->delete();
+        return redirect()->route('admin.job-posts.all')->with('success', 'Lowongan berhasil dihapus');
+    }
+}

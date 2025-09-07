@@ -15,11 +15,21 @@ class ApplicationController extends Controller
     use AuthorizesRequests;
 
     /**
-     * Display a listing of applications for the company
+     * Display a listing of applications for the authenticated user
      */
     public function index()
     {
-        return $this->indexForCompany();
+        $user = Auth::user();
+        $applications = $user->applications()->with(['jobPost.company'])->latest()->paginate(10);
+
+        // Get notifications for the user (if notifications table exists)
+        try {
+            $notifications = $user->notifications()->latest()->take(5)->get();
+        } catch (\Exception $e) {
+            $notifications = collect(); // Empty collection if notifications not available
+        }
+
+        return view('user.applications.index', compact('applications', 'notifications'));
     }
 
     /**
@@ -27,13 +37,19 @@ class ApplicationController extends Controller
      */
     public function indexForCompany()
     {
-        $company = Auth::user()->company;
+        $user = Auth::user();
+        $company = $user->company;
+
+        if (!$company) {
+            // Redirect to a safe route to avoid redirect loop, e.g. logout or home
+            return redirect()->route('home')->with('error', 'Data perusahaan tidak ditemukan.');
+        }
 
         $applications = Application::whereHas('jobPost', function ($query) use ($company) {
             $query->where('company_id', $company->id);
         })->with(['user', 'jobPost'])->latest()->paginate(10);
 
-        return view('company.applications', compact('applications'));
+        return view('company.applications.index', compact('applications'));
     }
 
     /**
@@ -174,7 +190,7 @@ class ApplicationController extends Controller
 
         $applications = $job->applications()->with('user')->latest()->get();
 
-        return view('company.job-applications', compact('applications', 'job'));
+        return view('company.applications.show', compact('applications', 'job'));
     }
 
     /**
@@ -183,11 +199,14 @@ class ApplicationController extends Controller
     public function show(Application $application)
     {
         // Cek hak akses: pelamar bisa lihat aplikasinya sendiri, perusahaan bisa lihat aplikasinya
-        if (Auth::id() !== $application->user_id &&
-            Auth::user()->company_id !== $application->jobPost->company_id) {
+        $user = Auth::user();
+        $isOwner = $user->id === $application->user_id;
+        $isCompanyOwner = $user->company && $user->company->id === $application->jobPost->company_id;
+
+        if (!$isOwner && !$isCompanyOwner) {
             abort(403, 'Unauthorized action.');
         }
 
-        return view('applications.show', compact('application'));
+        return view('user.applications.show', compact('application'));
     }
 }

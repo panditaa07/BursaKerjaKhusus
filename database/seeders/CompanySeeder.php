@@ -10,10 +10,10 @@ class CompanySeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::where('email', 'perusahaan@bkk.com')->first();
+        $user = User::where('email', 'company@bkk.com')->first();
 
         if ($user) {
-            Company::firstOrCreate(
+            $company = Company::firstOrCreate(
                 ['user_id' => $user->id],
                 [
                     'name' => 'PT Maju Jaya',
@@ -23,6 +23,9 @@ class CompanySeeder extends Seeder
                     'logo' => 'logos/majujaya.png'
                 ]
             );
+
+            // Update user with company_id
+            $user->update(['company_id' => $company->id]);
         }
     }
 }

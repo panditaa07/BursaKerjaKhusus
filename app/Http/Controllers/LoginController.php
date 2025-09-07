@@ -10,7 +10,20 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('login');
+        return view('auth.login');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard.index');
+        } elseif ($user->role === 'company') {
+            return redirect()->route('company.dashboard.index');
+        } elseif (in_array($user->role, ['user', 'student', 'alumni'])) {
+            return redirect()->route('user.dashboard.index');
+        } else {
+            return redirect()->route('user.dashboard.index');
+        }
     }
 
     public function login(Request $request)
@@ -22,7 +35,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return $this->authenticated($request, Auth::user());
         }
 
         return back()->withErrors([

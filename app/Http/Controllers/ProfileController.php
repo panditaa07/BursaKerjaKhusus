@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        return view('profile.show', compact('user'));
+        return view('user.profile.show', compact('user'));
     }
 
     public function update(Request $request)
@@ -32,7 +32,7 @@ class ProfileController extends Controller
 
     public function showUploadForm()
     {
-        return view('profile.upload-cv');
+        return view('user.profile.upload-cv');
     }
 
     public function uploadCv(Request $request)

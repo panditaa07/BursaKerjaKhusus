@@ -10,12 +10,12 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::latest()->paginate(10);
-        return view('companies.index', compact('companies'));
+        return view('admin.companies.index', compact('companies'));
     }
 
     public function create()
     {
-        return view('companies.create');
+        return view('admin.companies.create');
     }
 
     public function store(Request $request)
@@ -36,12 +36,12 @@ class CompanyController extends Controller
 
         Company::create($data);
 
-        return redirect()->route('companies.index')->with('success', 'Company created successfully.');
+        return redirect()->route('admin.companies.index')->with('success', 'Company created successfully.');
     }
 
     public function edit(Company $company)
     {
-        return view('companies.edit', compact('company'));
+        return view('admin.companies.edit', compact('company'));
     }
 
     public function update(Request $request, Company $company)
@@ -62,7 +62,7 @@ class CompanyController extends Controller
 
         $company->update($data);
 
-        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
+        return redirect()->route('admin.companies.index')->with('success', 'Company updated successfully.');
     }
 
     public function destroy(Company $company)
@@ -73,7 +73,7 @@ class CompanyController extends Controller
 
         $company->delete();
 
-        return redirect()->route('companies.index')->with('success', 'Company deleted successfully.');
+        return redirect()->route('admin.companies.index')->with('success', 'Company deleted successfully.');
     }
 
     public function verify(Company $company) {

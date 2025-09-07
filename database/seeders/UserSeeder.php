@@ -16,15 +16,17 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin BKK',
                 'password' => Hash::make('password'),
+                'role' => 'admin',
             ]
         );
 
         // Perusahaan
         User::firstOrCreate(
-            ['email' => 'perusahaan@bkk.com'],
+            ['email' => 'company@bkk.com'],
             [
-                'name' => 'Perusahaan',
+                'name' => 'Company',
                 'password' => Hash::make('password'),
+                'role' => 'company',
             ]
         );
 
@@ -34,6 +36,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'User',
                 'password' => Hash::make('password'),
+                'role' => 'user',
             ]
         );
     }

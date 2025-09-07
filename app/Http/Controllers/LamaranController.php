@@ -10,12 +10,12 @@ class LamaranController extends Controller
     public function index()
     {
         $lamarans = Lamaran::latest()->get();
-        return view('dashboard.lamarans.index', compact('lamarans'));
+        return view('company.applications.index', compact('lamarans'));
     }
 
     public function create()
     {
-        return view('dashboard.lamarans.create');
+        return view('company.applications.create');
     }
 
     public function store(Request $request)
@@ -44,7 +44,7 @@ class LamaranController extends Controller
     public function show($id)
     {
         $lamaran = Lamaran::findOrFail($id);
-        return view('dashboard.lamarans.show', compact('lamaran'));
+        return view('company.applications.show', compact('lamaran'));
     }
 
     public function updateStatus(Request $request, $id)

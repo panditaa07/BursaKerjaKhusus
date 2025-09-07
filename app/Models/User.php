@@ -16,6 +16,7 @@ class User extends Authenticatable
         'password',
         'cv_path',
         'company_id',
+        'role',
     ];
 
     /**

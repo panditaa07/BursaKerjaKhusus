@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Detail Lamaran')
 
@@ -14,11 +14,11 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Nama</th>
-                    <td>{{ $application->user->name }}</td>
+                    <td>{{ $application->user ? $application->user->name : 'N/A' }}</td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td>{{ $application->user->email }}</td>
+                    <td>{{ $application->user ? $application->user->email : 'N/A' }}</td>
                 </tr>
                 <tr>
                     <th>CV</th>
@@ -39,11 +39,11 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Posisi</th>
-                    <td>{{ $application->jobPost->title }}</td>
+                    <td>{{ $application->jobPost ? $application->jobPost->title : 'N/A' }}</td>
                 </tr>
                 <tr>
                     <th>Perusahaan</th>
-                    <td>{{ $application->jobPost->company->name }}</td>
+                    <td>{{ $application->jobPost && $application->jobPost->company ? $application->jobPost->company->name : 'N/A' }}</td>
                 </tr>
                 <tr>
                     <th>Status Lamaran</th>

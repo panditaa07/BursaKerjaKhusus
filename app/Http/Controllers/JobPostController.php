@@ -13,7 +13,7 @@ class JobPostController extends Controller
     public function index()
     {
         $jobs = JobPost::with('company')->latest()->get();
-        return view('jobs.index', compact('jobs'));
+        return view('user.jobs.index', compact('jobs'));
     }
 
     /**
@@ -21,7 +21,14 @@ class JobPostController extends Controller
      */
     public function companyIndex()
     {
-        $company = auth()->user()->company;
+        $user = auth()->user();
+        $company = $user->company;
+
+        if (!$company) {
+            // Redirect to a safe route to avoid redirect loop, e.g. logout or home
+            return redirect()->route('home')->with('error', 'Data perusahaan tidak ditemukan.');
+        }
+
         $jobs = JobPost::where('company_id', $company->id)
                       ->with('company')
                       ->latest()
@@ -66,7 +73,7 @@ class JobPostController extends Controller
     public function show(JobPost $job)
     {
         $job->load('company');
-        return view('jobs.show', compact('job'));
+        return view('user.jobs.show', compact('job'));
     }
 
     /**

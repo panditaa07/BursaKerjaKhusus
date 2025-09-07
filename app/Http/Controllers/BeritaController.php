@@ -41,7 +41,13 @@ class BeritaController extends Controller
 
         Berita::create($data);
 
-        return redirect()->route('dashboard')->with('success', 'Berita berhasil ditambahkan!');
+        $dashboardRoute = match(auth()->user()->role ?? 'user') {
+            'admin' => 'admin.dashboard.index',
+            'company' => 'company.dashboard.index',
+            default => 'user.dashboard.index',
+        };
+
+        return redirect()->route($dashboardRoute)->with('success', 'Berita berhasil ditambahkan!');
     }
 
     public function show(Berita $berita)
