@@ -7,13 +7,13 @@
     <div class="max-w-2xl mx-auto">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Tambah Lowongan Kerja</h1>
-            <a href="{{ route('company.admin.job-posts.all') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            <a href="{{ route('admin.job-posts.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                 Kembali
             </a>
         </div>
 
         <div class="bg-white rounded-lg shadow-md p-6">
-            <form method="POST" action="{{ route('company.admin.job-posts.store') }}">
+            <form method="POST" action="{{ route('admin.job-posts.store') }}">
                 @csrf
 
                 <div class="mb-4">
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="flex justify-end space-x-4">
-                    <a href="{{ route('company.admin.job-posts.all') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="{{ route('admin.job-posts.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                         Batal
                     </a>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

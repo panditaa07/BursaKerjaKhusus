@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\Jurusan;
 use App\Models\JobPost;
 use App\Models\Application;
+use App\Models\Loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,11 +51,33 @@ class DashboardController extends Controller
             'pending_applicants' => (clone $applicationsQuery)->where('status', 'pending')->count(),
         ];
         
+        // Ambil data lowongan ditutup
+        $lowonganDitutup = (clone $jobPostsQuery)
+            ->where('status', 'closed')
+            ->with('company') // pastikan relasi JobPost -> Company ada
+            ->get();
+        
         // Get berita and jurusan data
         $beritas = Berita::with('user')->latest()->take(3)->get();
         $jurusans = Jurusan::all();
         
-        return view('user.dashboard.index', compact('user', 'statistics', 'filter', 'beritas', 'jurusans'));
+        return view('user.dashboard.index', compact(
+            'user',
+            'statistics',
+            'filter',
+            'beritas',
+            'jurusans',
+            'lowonganDitutup' // kirim ke blade
+        ));
+    }
+
+    public function lokerTidakAktif()
+    {
+        $lokers = Loker::with('company')
+                    ->where('status', 'tidak_aktif')
+                    ->get();
+
+        return view('dashboard.lokers.tidak_aktif', compact('lokers'));
     }
     
     private function applyTimeFilter($query, $filter, $column = 'created_at')

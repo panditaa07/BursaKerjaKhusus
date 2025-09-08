@@ -11,12 +11,14 @@ use App\Http\Controllers\CompanyDashboardController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\AdminJobPostController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\LamaranController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\Admin\AdminJobPostController;
+use App\Http\Controllers\AdminPelam;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -64,14 +66,15 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('role:admin');
 
     // ===== Admin: User Management =====
-    Route::prefix('admin')->middleware('role:admin')->group(function () {
-        Route::get('/users', [AdminDashboardController::class, 'users'])->name('admin.users');
-        Route::get('/users/create', [AdminDashboardController::class, 'createUser'])->name('admin.users.create');
-        Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('admin.users.store');
-        Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('admin.users.edit');
-        Route::put('/users/{user}', [AdminDashboardController::class, 'updateUser'])->name('admin.users.update');
-        Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
+        Route::get('/users', [AdminDashboardController::class, 'users'])->name('users.index');
+        Route::get('/users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
+        Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
+        Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('users.edit');
+        Route::put('/users/{user}', [AdminDashboardController::class, 'updateUser'])->name('users.update');
+        Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('users.destroy');
     });
+
 
     // ===== Job Posts Management for Admin =====
     Route::resource('job-posts', AdminJobPostController::class)->names([
@@ -147,6 +150,23 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{lowongan}', [LowonganController::class, 'update'])->name('update')->middleware('role:company');
         Route::delete('/{lowongan}', [LowonganController::class, 'destroy'])->name('destroy')->middleware('role:company');
     });
+
+    Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function () {
+        Route::resource('job-posts', AdminJobPostController::class);
+    });
+
+    // Route::prefix('admin')->middleware('role:admin')->group(function () {
+    //     Route::get('/dashboard', [AdminDashboardController::class, 'index1'])->name('dashboard.index');
+    // });
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index1'])
+     ->name('admin.dashboard.index');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('pelamar',[AdminDashboardController::class, 'index1'])
+        ->name('pelamar.index');
+});
+
+
 
 
 });

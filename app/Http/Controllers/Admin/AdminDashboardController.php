@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\JobPost;
 use App\Models\Company;
 use App\Models\Application;
+use App\Models\Loker;
+use App\Models\Lamaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,10 +66,33 @@ class AdminDashboardController extends Controller
      */
     public function users()
     {
-        $users = User::all();
-        return view('admin.users', compact('users'));
+    
+    return view('admin.users.index', compact('users'));
+
     }
 
+    public function index1()
+    {
+        // ambil loker yang aktif (terbaru)
+        $activeLokers = Loker::with('company')
+            ->where('status', 'aktif')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // ambil loker yang tidak aktif
+        $inactiveLokers = Loker::with('company')
+            ->where('status', 'tidak_aktif')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // pelamar terbaru
+        $pelamars = Lamaran::with(['user', 'loker.company'])
+            ->latest()
+            ->paginate(2); // hanya ambil 2 terakhir untuk dashboard
+
+        // pastikan variabel dikirim ke view
+        return view('admin.dashboard.index', compact('activeLokers', 'inactiveLokers', 'pelamars'));
+    }
     /**
      * Form create user
      */

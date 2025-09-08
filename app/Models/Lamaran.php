@@ -9,10 +9,27 @@ class Lamaran extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_pelamar', 'lowongan', 'cv', 'status'];
+    protected $fillable = [
+        'nama_pelamar',
+        'email',
+        'no_hp',
+        'perusahaan',
+        'lowongan',
+        'cv',
+        'status',
+    ];
 
-    public function lowongan()
+    public $timestamps = true;
+
+    // Relasi ke User (pelamar)
+    public function user()
     {
-        return $this->belongsTo(Lowongan::class);
+        return $this->belongsTo(User::class);
+    }
+
+    // Relasi ke Loker (lowongan kerja)
+    public function loker()
+    {
+        return $this->belongsTo(Loker::class);
     }
 }
