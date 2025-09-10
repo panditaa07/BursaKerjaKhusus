@@ -9,6 +9,9 @@ use App\Models\Company;
 use App\Models\Application;
 use App\Models\Loker;
 use App\Models\Lamaran;
+use App\Models\Pelamar;
+use App\Models\LowonganAktif;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,6 +96,34 @@ class AdminDashboardController extends Controller
         // pastikan variabel dikirim ke view
         return view('admin.dashboard.index', compact('activeLokers', 'inactiveLokers', 'pelamars'));
     }
+
+    public function Pelamar() {
+    {
+        $pelamar = Pelamar::all();
+        return view('admin.dashboard.pelamar', compact('pelamar'));
+    }
+    }
+
+    public function pelamarBulanIni() {
+    $bulanIni = Carbon::now()->month;
+    $tahunIni = Carbon::now()->year;
+        $pelamar = Pelamar::whereMonth('created_at', $bulanIni)
+                ->whereYear('created_at', $tahunIni)
+                ->get();
+        return view('admin.dashboard.pelamar_bulan_ini', compact('pelamar'));
+    }
+
+    public function lowonganAktif() {
+        $lowongan = LowonganAktif::where('status', 'Aktif')->get();
+        return view('admin.dashboard.lowongan-aktif', compact('lowongan'));
+    }
+
+    public function lowonganNonaktif() {
+        $inactiveLokers = Loker::where('status', 'tidak aktif')->get();
+        return view('dashboard.loker_nonaktif', compact('inactiveLokers'));
+    }
+
+
     /**
      * Form create user
      */

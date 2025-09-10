@@ -3,81 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BKK SMKN 4 Bandung</title>
+    <title>Bursa Kerja Khusus</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 <body>
-<header>
-    <nav>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-    </nav>
-</header>
-    
-<!-- Hero Section -->
-<section class="hero" style="background-image: url('{{ asset('images/depansmkn4.jpeg') }}');">  
-  <div class="logo-container">
-      <img src="{{ asset('images/logo-smk.png') }}" alt="Logo SMK" />
-      <img src="{{ asset('images/disdik.png') }}" alt="Logo Disdik" />
-      <img src="{{ asset('images/jabar.png') }}" alt="Logo Jabar" />
-      <img src="{{ asset('images/smkn4.png') }}" alt="Logo SMKN 4" />
-    </div>
-  <div class="hero-content">
-    <h1>BURSA KERJA KHUSUS SMKN 4 BANDUNG</h1>
-    <p>
-      Bursa Kerja Khusus (BKK) SMKN 4 Bandung merupakan layanan resmi sekolah 
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+             <div class="logo">
+            <span>BKK Opat</span>
+          </div>
+
+            <div class="auth-buttons">
+                <a href="{{ route('login') }}" class="btn btn-login" id="loginBtn">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-register" id="registerBtn">Register</a>
+            </div>
+
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Bursa Kerja Khusus</h1>
+            <p>Bursa Kerja Khusus (BKK) SMKN 4 Bandung merupakan layanan resmi sekolah 
       yang berfungsi sebagai jembatan antara dunia pendidikan dan dunia kerja. 
       Dalam website ini menyediakan informasi terkini seputar lowongan pekerjaan, 
-      magang, rekrutmen, serta pelatihan karir yang ditujukan bagi siswa dan alumni.
-    </p>
-    <div class="sosmed-hero">
-      <a href="https://instagram.com/smknegeri4bandung"><img src="{{ asset('images/instagram.png') }}" alt="Instagram">@smknegeri4bandung</a>
-      <a href="https://youtube.com/@SMKN4BANDUNGOfficial"><img src="{{ asset('images/youtube.png') }}" alt="YouTube">SMKN 4 BANDUNG OFFICIAL</a>
-      <a href="https://smkn4bdg.sch.id/"><img src="{{ asset('images/smkn4.png') }}" alt="Website">SMKN 4 BANDUNG</a>
-    </div>
-  </div>
-</section>
+      magang, rekrutmen, serta pelatihan karir yang ditujukan bagi siswa dan alumni.</p>
+        </div>
+    </section>
 
-<!-- Tim BKK -->
-<section class="tim-bkk">
-  <h2>Tim BKK</h2>
-  <div class="tim-container">
-    <div class="card">
-      <div class="foto">
-        <img src="{{ asset('images/foto-default.jpg') }}" alt="Default">
-      </div>
-      <h3>Nama Staff</h3>
-      <p>Staff BKK</p>
-    </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2>Tim BKK</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="foto">
+                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    </div>
+                    <h3>Nama Staff</h3>
+                    <p>Staff BKK</p>
+                </div>
+                <div class="feature-card">
+                    <div class="foto">
+                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    </div>
+                    <h3>Nama Staff</h3>
+                    <p>Staff BKK</p>
+                </div>
+                <div class="feature-card">
+                  <div class="foto">
+                    <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                </div>
+                <h3>Nama Staff</h3>
+                <p>Staff BKK</p>
+                </div>
+                <div class="feature-card">
+                    <div class="foto">
+                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    </div>
+                    <h3>Nama Staff</h3>
+                    <p>Staff BKK</p>
+                </div>
+                <div class="feature-card">
+                    <div class="foto">
+                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    </div>
+                    <h3>Nama Staff</h3>
+                    <p>Staff BKK</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-      <div class="foto">
-        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
-      </div>
-      <h3>Nama Staff</h3>
-      <p>Staff BKK</p>
-    </div>
-
-    <div class="card">
-      <div class="foto">
-        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
-      </div>
-      <h3>Nama Staff</h3>
-      <p>Staff BKK</p>
-    </div>
-
-    <div class="card">
-      <div class="foto">
-        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
-      </div>
-      <h3>Nama Staff</h3>
-      <p>Staff BKK</p>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
+    <!-- Stats Section -->
+    <footer>
   <div class="footer-info">
     <!-- Kiri -->
     <div class="alamat">
@@ -118,5 +127,6 @@
   </div>
 </footer>
 
+         <script src="{{ asset('js/home.js') }}"></script>
 </body>
 </html>

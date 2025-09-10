@@ -166,6 +166,14 @@ Route::middleware(['auth'])->group(function () {
         ->name('pelamar.index');
 });
 
+    Route::get('/dashboard/pelamar', [AdminDashboardController::class, 'Pelamar'])
+        ->name('dashboard.pelamar');
+    Route::get('/dashboard/pelamar-bulan-ini', [AdminDashboardController::class, 'PelamarBulanIni'])
+        ->name('dashboard.pelamar.bulanini');
+    Route::get('/dashboard/lowongan-aktif', [AdminDashboardController::class, 'LowonganAktif'])
+        ->name('dashboard.lowongan-aktif');
+    Route::get('/dashboard/loker-nonaktif', [AdminDashboardController::class, 'lowonganNonaktif'])
+        ->name('dashboard.lowongan.Nonaktif');
 
 
 
