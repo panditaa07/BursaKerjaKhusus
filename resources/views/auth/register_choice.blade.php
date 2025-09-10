@@ -1,12 +1,45 @@
+{{-- Updated Blade Template --}}
 @extends('layouts.guest')
 
+@push('styles')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+@endpush
+
 @section('content')
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Register as</h2>
-    <div class="d-flex justify-content-center gap-3">
-        <a href="{{ url('/register/admin') }}" class="btn btn-primary btn-lg">Admin</a>
-        <a href="{{ url('/register/company') }}" class="btn btn-success btn-lg">Company</a>
-        <a href="{{ url('/register/user') }}" class="btn btn-info btn-lg">User</a>
+<!-- Animated background particles -->
+<div class="particles" id="particles"></div>
+
+<div class="register-container">
+    <div class="container">
+        <div class="register-card mx-auto">
+            <h1 class="main-title">Choose Your Role</h1>
+            <p class="subtitle">Select the type of account you'd like to create</p>
+            
+            <div class="role-buttons">
+                <a href="{{ url('/register/admin') }}" class="role-btn admin-btn" data-role="admin">
+                    <i class="fas fa-user-shield role-icon"></i>
+                    <div class="role-title">Admin</div>
+                    <div class="role-description">Manage system settings and user accounts</div>
+                </a>
+                
+                <a href="{{ url('/register/company') }}" class="role-btn company-btn" data-role="company">
+                    <i class="fas fa-building role-icon"></i>
+                    <div class="role-title">Company</div>
+                    <div class="role-description">Create and manage business profiles</div>
+                </a>
+                
+                <a href="{{ url('/register/user') }}" class="role-btn user-btn" data-role="user">
+                    <i class="fas fa-user role-icon"></i>
+                    <div class="role-title">User</div>
+                    <div class="role-description">Access services and features</div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/register.js') }}"></script>
+@endpush
