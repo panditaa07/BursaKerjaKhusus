@@ -172,8 +172,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('dashboard.pelamar.bulanini');
     Route::get('/dashboard/lowongan-aktif', [AdminDashboardController::class, 'LowonganAktif'])
         ->name('dashboard.lowongan-aktif');
-    Route::get('/dashboard/loker-nonaktif', [AdminDashboardController::class, 'lowonganNonaktif'])
-        ->name('dashboard.lowongan.Nonaktif');
+    Route::get('/dashboard/lowongan-tidak-aktif', [AdminDashboardController::class, 'lowonganTidakAktif'])
+        ->name('dashboard.lowongan-tidak-aktif');
 
 
 

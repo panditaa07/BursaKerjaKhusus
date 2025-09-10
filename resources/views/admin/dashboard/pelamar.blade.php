@@ -35,7 +35,7 @@
                     @foreach($pelamar as $index => $p)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
-                            <td>{{ $p->nama }}</td>
+                            <td>{{ $p->nama_pelamar }}</td>
                             <td>{{ $p->email }}</td>
                             <td>{{ $p->no_hp }}</td>
                             <td>{{ $p->perusahaan }}</td>

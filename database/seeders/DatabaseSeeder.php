@@ -12,6 +12,13 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             CompanySeeder::class,
+            LokerSeeder::class,
+            LamaranSeeder::class,
+            LowonganSeeder::class,
+            TotalPelamarSeeder::class,
+            PelamarBulanIniSeeder::class,
+            LowonganAktifSeeder::class,
+            LowonganDitutupSeeder::class,
             // BeritaSeeder::class, dll
         ]);
     }

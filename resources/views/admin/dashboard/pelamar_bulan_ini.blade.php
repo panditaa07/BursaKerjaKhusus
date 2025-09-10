@@ -35,7 +35,7 @@
                     @forelse($pelamar as $index => $p)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
-                            <td>{{ $p->nama }}</td>
+                            <td>{{ $p->nama_pelamar }}</td>
                             <td>{{ $p->email }}</td>
                             <td>{{ $p->no_hp }}</td>
                             <td>{{ $p->perusahaan }}</td>
@@ -46,10 +46,10 @@
                                     <span class="badge bg-danger">Ditolak</span>
                                 @elseif($p->status == 'Wawancara')
                                     <span class="badge bg-warning text-dark">Wawancara</span>
-                                @elseif($p->status == 'Menunggu')
-                                    <span class="badge bg-secondary">Menunggu</span>
+                                @elseif($p->status == 'Proses')
+                                    <span class="badge bg-info">Proses</span>
                                 @else
-                                    <span class="badge bg-info">Tes</span>
+                                    <span class="badge bg-secondary">{{ $p->status }}</span>
                                 @endif
                             </td>
                             <td class="text-center">

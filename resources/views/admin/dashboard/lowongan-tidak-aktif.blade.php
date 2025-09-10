@@ -1,16 +1,16 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Lowongan Aktif')
+@section('title', 'Lowongan Tidak Aktif')
 
 @section('content')
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3><strong>Loker Tidak Aktif</strong></h3>
-        <div>Total Loker Ditutup: {{ $total }}</div>
+   <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold text-primary">LOWONGAN TIDAK AKTIF</h4>
+        <div class="input-group" style="width: 300px;">
+            <input type="text" class="form-control" placeholder="Cari Lowongan">
+            <span class="input-group-text">Total : {{ $lowongan->count() }}</span>
+        </div>
     </div>
-
-    <input type="text" class="form-control mb-3" placeholder="Cari Lowongan">
-
     <div class="card">
         <div class="card-header bg-primary text-white">
             <i class="fas fa-circle text-danger"></i> Daftar Lowongan Tidak Aktif
@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($lowongans as $index => $lowongan)
+                    @forelse ($lowongan as $index => $lowongan)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $lowongan->perusahaan }}</td>
@@ -37,10 +37,10 @@
                             <td>
                                 <span class="badge bg-danger">Tidak Aktif</span>
                             </td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                                <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
+                                <a href="#" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                                <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                     @empty

@@ -3,29 +3,29 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Company;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class CompanySeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        $user = User::where('email', 'company@bkk.com')->first();
-
-        if ($user) {
-            $company = Company::firstOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'name' => 'PT Maju Jaya',
-                    'address' => 'Jl. Merdeka No. 45, Bandung',
-                    'website' => 'https://www.majujaya.com',
-                    'description' => 'Perusahaan teknologi informasi',
-                    'logo' => 'logos/majujaya.png'
-                ]
-            );
-
-            // Update user with company_id
-            $user->update(['company_id' => $company->id]);
-        }
+        DB::table('companies')->insert([
+            [
+                'user_id' => 1, // Assuming user with ID 1 exists
+                'name' => 'PT Maju Jaya',
+                'address' => 'Jl. Merdeka No. 1',
+                'phone' => '08123456789',
+                'website' => 'https://majujaya.com',
+                'description' => 'Perusahaan yang bergerak di bidang teknologi dan inovasi.',
+            ],
+            [
+                'user_id' => 2, // Assuming user with ID 2 exists
+                'name' => 'CV Sukses Selalu',
+                'address' => 'Jl. Sudirman No. 5',
+                'phone' => '08198765432',
+                'website' => 'https://suksesselalu.com',
+                'description' => 'CV yang fokus pada pengembangan sumber daya manusia.',
+            ],
+        ]);
     }
 }
