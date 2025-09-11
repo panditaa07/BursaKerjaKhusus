@@ -8,11 +8,15 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" />
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="{{ asset('js/sidebar.js') }}" defer></script>
+=======
+    <link rel="stylesheet" href="{{ asset('css/dashboardadmin.css') }}" />
+>>>>>>> 6d79d435aad86d51d9a2cec90ba49c23071edb50
 </head>
 <body>
     <div class="d-flex">
@@ -35,6 +39,11 @@
             </main>
         </div>
     </div>
+<<<<<<< HEAD
     @stack('scripts')
+=======
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/dashboardadmin.js') }}"></script>
+>>>>>>> 6d79d435aad86d51d9a2cec90ba49c23071edb50
 </body>
 </html>
