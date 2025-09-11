@@ -18,6 +18,15 @@ class Application extends Model
         return $this->belongsTo(JobPost::class);
     }
 
-
-
+    public function setStatusAttribute($value)
+    {
+        $validStatuses = ['submitted', 'test1', 'test2', 'interview', 'accepted', 'rejected'];
+        if (!in_array($value, $validStatuses)) {
+            // Log the invalid value and set to default
+            \Log::warning("Invalid status value attempted: {$value}. Setting to 'submitted'.");
+            $this->attributes['status'] = 'submitted';
+        } else {
+            $this->attributes['status'] = $value;
+        }
+    }
 }

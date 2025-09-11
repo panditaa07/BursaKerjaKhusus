@@ -33,13 +33,16 @@ class AdminDashboardController extends Controller
                                                    ->whereYear('created_at', now()->year)
                                                    ->count(),
             'lowongan_aktif'        => JobPost::where('status', 'active')->count(),
-            'lowongan_tidak_aktif'  => JobPost::where('status', 'closed')->count(),
+            'lowongan_tidak_aktif'  => JobPost::where('status', 'inactive')->count(),
         ];
 
         // Data untuk tabel
         $daftar_pelamar_terbaru = Application::with('user', 'jobPost.company')->latest()->take(5)->get();
+
+        // Eager load user phone to avoid N+1 and ensure phone is accessible
+        $daftar_pelamar_terbaru->load('user');
         $loker_terbaru          = JobPost::where('status', 'active')->latest()->take(5)->get();
-        $loker_tidak_aktif      = JobPost::where('status', 'closed')->latest()->take(5)->get();
+        $loker_tidak_aktif      = JobPost::where('status', 'inactive')->latest()->take(5)->get();
 
         return view('admin.dashboard.index', compact(
             'user',
@@ -77,21 +80,24 @@ class AdminDashboardController extends Controller
 
     public function Pelamar()
     {
-        $pelamar = Pelamar::all();
+        $pelamar = Application::with('user', 'jobPost.company')->get();
         return view('admin.dashboard.pelamar', compact('pelamar'));
     }
 
     public function pelamarBulanIni() {
-        $pelamar = PelamarBulanIni::all();
+        $pelamar = Application::with('user', 'jobPost.company')
+                            ->whereMonth('created_at', now()->month)
+                            ->whereYear('created_at', now()->year)
+                            ->get();
         return view('admin.dashboard.pelamar_bulan_ini', compact('pelamar'));
     }
 
     public function lowonganAktif() {
-        $lowongan = LowonganAktif::all();
+        $lowongan = JobPost::with('company')->where('status', 'active')->get();
         return view('admin.dashboard.lowongan-aktif', compact('lowongan'));
     }
     public function lowonganTidakAktif() {
-        $lowongan = LowonganTidakAktif::all();
+        $lowongan = JobPost::with('company')->where('status', 'inactive')->get();
         return view('admin.dashboard.lowongan-tidak-aktif', compact('lowongan'));
     }
 

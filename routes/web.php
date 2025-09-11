@@ -58,14 +58,23 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('users.destroy');
 
         // Job Posts (Admin)
-        Route::resource('job-posts', AdminJobPostController::class)->names([
+        Route::resource('admin-jobs', AdminJobPostController::class)->parameters(['admin-jobs' => 'jobPost'])->names([
             'index'   => 'job-posts.index',
             'create'  => 'job-posts.create',
             'store'   => 'job-posts.store',
+            'show'    => 'job-posts.show',
             'edit'    => 'job-posts.edit',
             'update'  => 'job-posts.update',
             'destroy' => 'job-posts.destroy',
         ]);
+
+        // Applications Management
+        Route::get('applications/all', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'all'])->name('applications.all');
+        Route::get('applications/month', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'month'])->name('applications.month');
+        Route::get('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'show'])->name('applications.show');
+        Route::get('applications/{application}/edit', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'edit'])->name('applications.edit');
+        Route::patch('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'update'])->name('applications.update');
+        Route::delete('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'destroy'])->name('applications.destroy');
     });
 
     // ===== Company Routes =====
@@ -77,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jobs/create', [JobPostController::class, 'create'])->name('jobs.create');
         Route::post('/jobs', [JobPostController::class, 'store'])->name('jobs.store');
         Route::get('/jobs/{job}/edit', [JobPostController::class, 'edit'])->name('jobs.edit');
+        Route::get('/jobs/{job}', [JobPostController::class, 'show'])->name('jobs.show');
         Route::put('/jobs/{job}', [JobPostController::class, 'update'])->name('jobs.update');
         Route::delete('/jobs/{job}', [JobPostController::class, 'destroy'])->name('jobs.destroy');
 
@@ -91,6 +101,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('user')->middleware(['auth', 'role:user'])->name('user.')->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+        Route::get('/applications/{application}', [ApplicationController::class, 'show'])->name('applications.show');
     });
 
     // ===== Jobs (umum) =====
@@ -109,6 +120,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileController::class, 'show'])->name('index');
         Route::get('/show', [ProfileController::class, 'show'])->name('show');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
         Route::put('/', [ProfileController::class, 'update'])->name('update');
         Route::get('/upload-cv', [ProfileController::class, 'showUploadForm'])->name('upload-cv');
         Route::post('/upload-cv', [ProfileController::class, 'uploadCv'])->name('upload-cv.post');

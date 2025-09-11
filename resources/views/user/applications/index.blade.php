@@ -3,12 +3,11 @@
 @section('title', 'Lamaran Saya - BKK OPAT')
 
 @section('content')
-@if(auth()->user()->role === 'user')
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
         <!-- Search Bar -->
         <div class="mb-4">
-            <form method="GET" action="{{ route('user.applications.index') }}" class="w-100">
+            <form method="GET" action="{{ url('/user/applications') }}" class="w-100">
                 <div class="position-relative">
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan perusahaan atau posisi..." class="form-control form-control-lg rounded-pill shadow-sm border-0 ps-5">
                     <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
@@ -111,23 +110,4 @@
         </div>
     </div>
 </div>
-@else
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">
-                            <i class="fas fa-file-alt"></i>
-                            Lamaran Saya
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <p>Halaman ini hanya untuk role USER.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
 @endsection

@@ -10,7 +10,9 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('company.jobs.store') }}">
+<form method="POST" action="{{ route('company.company-jobs.store') }}">
+...
+                            <a href="{{ route('company.company-jobs.index') }}" class="btn btn-secondary">
                         @csrf
 
                         <div class="form-group mb-3">

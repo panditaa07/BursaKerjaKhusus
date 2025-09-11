@@ -126,7 +126,7 @@ class ApplicationController extends Controller
             'job_post_id' => $request->job_post_id,
             'cv_path' => $cvPath,
             'cover_letter' => $request->cover_letter,
-            'status' => 'pending',
+            'status' => 'submitted',
         ]);
 
         // Null safety checks for email notification
@@ -156,7 +156,7 @@ class ApplicationController extends Controller
     public function updateStatus(Request $request, Application $application)
     {
         $request->validate([
-            'status' => 'required|in:accepted,rejected',
+            'status' => 'required|in:submitted,reviewed,accepted,rejected',
         ]);
 
         // Pastikan hanya perusahaan pemilik job yang bisa update

@@ -70,13 +70,8 @@ class AdminApplicationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
-            'nisn' => 'nullable|string|max:20',
-            'birth_date' => 'nullable|date',
+            'nik_nisn' => 'nullable|string|max:20',
             'address' => 'nullable|string',
-            'short_profile' => 'nullable|string',
-            'social_media_link' => 'nullable|url',
-            'cv_path' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
-            'application_letter_path' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
             'description' => 'nullable|string',
         ]);
 
@@ -85,11 +80,8 @@ class AdminApplicationController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'] ?? null,
-            'nisn' => $validated['nisn'] ?? null,
-            'birth_date' => $validated['birth_date'] ?? null,
+            'nik_nisn' => $validated['nik_nisn'] ?? null,
             'address' => $validated['address'] ?? null,
-            'short_profile' => $validated['short_profile'] ?? null,
-            'social_media_link' => $validated['social_media_link'] ?? null,
         ];
 
         if ($application->user) {

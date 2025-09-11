@@ -25,10 +25,13 @@ class AdminJobPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'company_id' => 'required|exists:companies,id',
+            'industry_id' => 'required|exists:industries,id',
             'description' => 'required|string',
             'requirements' => 'required|string',
             'location' => 'required|string|max:255',
-            'type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'employment_type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'vacancies' => 'required|integer|min:1',
+            'deadline' => 'required|date|after:today',
             'salary' => 'nullable|string|max:255',
             'status' => 'required|in:active,inactive',
         ]);
@@ -37,10 +40,16 @@ class AdminJobPostController extends Controller
         return redirect()->route('admin.job-posts.index')->with('success', 'Lowongan berhasil ditambahkan');
     }
 
+    public function show(JobPost $jobPost)
+    {
+        return view('admin.jobs.show', compact('jobPost'));
+    }
+
     public function edit(JobPost $jobPost)
     {
         $companies = Company::all();
-        return view('admin.jobs.edit', compact('jobPost', 'companies'));
+        $industries = \App\Models\Industry::all();
+        return view('admin.jobs.edit', compact('jobPost', 'companies', 'industries'));
     }
 
     public function update(Request $request, JobPost $jobPost)
@@ -48,13 +57,23 @@ class AdminJobPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'company_id' => 'required|exists:companies,id',
+            'industry_id' => 'required|exists:industries,id',
             'description' => 'required|string',
             'requirements' => 'required|string',
             'location' => 'required|string|max:255',
-            'type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'employment_type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'vacancies' => 'required|integer|min:1',
+            'deadline' => 'required|date',
             'salary' => 'nullable|string|max:255',
             'status' => 'required|in:active,inactive',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Handle file upload for company logo
+        if ($request->hasFile('company_logo')) {
+            $logoPath = $request->file('company_logo')->store('company_logos', 'public');
+            $validated['company_logo'] = $logoPath;
+        }
 
         $jobPost->update($validated);
         return redirect()->route('admin.job-posts.index')->with('success', 'Lowongan berhasil diupdate');

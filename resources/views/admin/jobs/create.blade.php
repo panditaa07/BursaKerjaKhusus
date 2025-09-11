@@ -13,7 +13,7 @@
         </div>
 
         <div class="bg-white rounded-lg shadow-md p-6">
-            <form method="POST" action="{{ route('admin.job-posts.store') }}">
+            <form method="POST" action="{{ route('admin.job-posts.store') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-4">
@@ -21,6 +21,32 @@
                     <input type="text" id="title" name="title" value="{{ old('title') }}"
                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('title') border-red-500 @enderror" required>
                     @error('title')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="company_id" class="block text-gray-700 text-sm font-bold mb-2">Perusahaan *</label>
+                    <select id="company_id" name="company_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('company_id') border-red-500 @enderror" required>
+                        <option value="">Pilih Perusahaan</option>
+                        @foreach(\App\Models\Company::all() as $company)
+                            <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('company_id')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="industry_id" class="block text-gray-700 text-sm font-bold mb-2">Industri *</label>
+                    <select id="industry_id" name="industry_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('industry_id') border-red-500 @enderror" required>
+                        <option value="">Pilih Industri</option>
+                        @foreach(\App\Models\Industry::all() as $industry)
+                            <option value="{{ $industry->id }}" {{ old('industry_id') == $industry->id ? 'selected' : '' }}>{{ $industry->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('industry_id')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
@@ -54,16 +80,33 @@
                     </div>
 
                     <div>
-                        <label for="type" class="block text-gray-700 text-sm font-bold mb-2">Tipe Pekerjaan *</label>
-                        <select id="type" name="type"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('type') border-red-500 @enderror" required>
+                        <label for="employment_type" class="block text-gray-700 text-sm font-bold mb-2">Tipe Pekerjaan *</label>
+                        <select id="employment_type" name="employment_type"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('employment_type') border-red-500 @enderror" required>
                             <option value="">Pilih Tipe</option>
-                            <option value="Full-time" {{ old('type') == 'Full-time' ? 'selected' : '' }}>Full-time</option>
-                            <option value="Part-time" {{ old('type') == 'Part-time' ? 'selected' : '' }}>Part-time</option>
-                            <option value="Contract" {{ old('type') == 'Contract' ? 'selected' : '' }}>Contract</option>
-                            <option value="Internship" {{ old('type') == 'Internship' ? 'selected' : '' }}>Internship</option>
+                            <option value="Full-time" {{ old('employment_type') == 'Full-time' ? 'selected' : '' }}>Full-time</option>
+                            <option value="Part-time" {{ old('employment_type') == 'Part-time' ? 'selected' : '' }}>Part-time</option>
+                            <option value="Contract" {{ old('employment_type') == 'Contract' ? 'selected' : '' }}>Contract</option>
+                            <option value="Internship" {{ old('employment_type') == 'Internship' ? 'selected' : '' }}>Internship</option>
                         </select>
-                        @error('type')
+                        @error('employment_type')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="vacancies" class="block text-gray-700 text-sm font-bold mb-2">Jumlah Lowongan *</label>
+                        <input type="number" id="vacancies" name="vacancies" value="{{ old('vacancies') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('vacancies') border-red-500 @enderror" required min="1">
+                        @error('vacancies')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="deadline" class="block text-gray-700 text-sm font-bold mb-2">Deadline *</label>
+                        <input type="date" id="deadline" name="deadline" value="{{ old('deadline') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('deadline') border-red-500 @enderror" required>
+                        @error('deadline')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
@@ -83,13 +126,21 @@
                         <label for="status" class="block text-gray-700 text-sm font-bold mb-2">Status *</label>
                         <select id="status" name="status"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('status') border-red-500 @enderror" required>
-                            <option value="active" {{ old('status', 'active') == 'active' ? 'selected' : '' }}>Aktif</option>
-                            <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Tidak Aktif</option>
+                            <option value="active" {{ old('status', 'active') == 'active' ? 'selected' : '' }}>Active</option>
+                            <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                         </select>
                         @error('status')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="company_logo" class="block text-gray-700 text-sm font-bold mb-2">Logo Perusahaan</label>
+                    <input type="file" id="company_logo" name="company_logo" accept="image/*" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('company_logo') border-red-500 @enderror">
+                    @error('company_logo')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="flex justify-end space-x-4">

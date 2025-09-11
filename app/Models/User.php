@@ -17,6 +17,10 @@ class User extends Authenticatable
         'cv_path',
         'company_id',
         'role_id',
+        'phone',
+        'address',
+        'nik_nisn',
+        'company_name',
     ];
 
     /**

@@ -21,9 +21,13 @@ class CompanyDashboardController extends Controller
         $statistics = [
             'total_jobs' => JobPost::where('company_id', $company->id)->count(),
             'active_jobs' => JobPost::where('company_id', $company->id)->where('status', 'active')->count(),
+            'inactive_jobs' => JobPost::where('company_id', $company->id)->where('status', 'inactive')->count(),
             'total_applications' => Application::whereHas('jobPost', function($q) use ($company) {
                 $q->where('company_id', $company->id);
             })->count(),
+            'applications_this_month' => Application::whereHas('jobPost', function($q) use ($company) {
+                $q->where('company_id', $company->id);
+            })->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count(),
         ];
 
         $recentJobs = JobPost::where('company_id', $company->id)->latest()->take(5)->get();

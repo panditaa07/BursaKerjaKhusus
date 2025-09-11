@@ -16,48 +16,25 @@
     </div>
 
     <div class="row">
-        <!-- Sample Lowongan Cards -->
+        @foreach($latestJobs as $job)
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card shadow h-100">
-                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="PT Kaizen Jaya Abadi" style="height: 200px; object-fit: cover;">
+                @if($job->company_logo)
+                <img src="{{ asset('storage/' . $job->company_logo) }}" class="card-img-top" alt="{{ $job->company->name }}" style="height: 200px; object-fit: cover;">
+                @else
+                <img src="https://via.placeholder.com/1000x200?text=No+Image" class="card-img-top" alt="{{ $job->company->name }}" style="height: 200px; object-fit: cover;">
+                @endif
                 <div class="card-body">
-                    <h5 class="card-title">Operator Produksi</h5>
-                    <p class="card-text text-muted">PT Kaizen Jaya Abadi</p>
-                    <p class="text-muted small">📍 Kabupaten - Sukabumi</p>
-                    <p class="text-muted small">💰 Rp 3.500.000 - Rp 4.000.000</p>
-                    <p class="text-muted small">👥 25 orang, lulusan semua jurusan SMK</p>
-                    <a href="#" class="btn btn-primary btn-sm">Lihat Detail</a>
+                    <h5 class="card-title">{{ $job->title }}</h5>
+                    <p class="card-text text-muted">{{ $job->company->name }}</p>
+                    <p class="text-muted small">📍 {{ $job->location }}</p>
+                    <p class="text-muted small">💰 {{ $job->salary }}</p>
+                    <p class="text-muted small">👥 {{ $job->vacancies }} orang, lulusan semua jurusan SMK</p>
+                    <a href="{{ route('jobs.show', $job->id) }}" class="btn btn-primary btn-sm">Lihat Detail</a>
                 </div>
             </div>
         </div>
-
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card shadow h-100">
-                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="PT Kaizen Jaya Abadi" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Staff Administrasi</h5>
-                    <p class="card-text text-muted">PT Kaizen Jaya Abadi</p>
-                    <p class="text-muted small">📍 Kabupaten - Sukabumi</p>
-                    <p class="text-muted small">💰 Rp 4.000.000 - Rp 4.500.000</p>
-                    <p class="text-muted small">👥 5 orang, lulusan OTKP/AKL</p>
-                    <a href="#" class="btn btn-primary btn-sm">Lihat Detail</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card shadow h-100">
-                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="PT Kaizen Jaya Abadi" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Teknisi Mesin</h5>
-                    <p class="card-text text-muted">PT Kaizen Jaya Abadi</p>
-                    <p class="text-muted small">📍 Kabupaten - Sukabumi</p>
-                    <p class="text-muted small">💰 Rp 4.500.000 - Rp 5.000.000</p>
-                    <p class="text-muted small">👥 10 orang, lulusan TMI/TKJ</p>
-                    <a href="#" class="btn btn-primary btn-sm">Lihat Detail</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection

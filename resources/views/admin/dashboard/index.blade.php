@@ -1,34 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/dashboardadmin.css') }}">
-
-{{-- === Sidebar + Overlay === --}}
-<div id="sidebar" class="sidebar">
-    <div class="sidebar-header">
-        <div class="logo">BKK</div>
-        <h4>Admin</h4>
-    </div>
-    <ul class="sidebar-menu">
-       <li><a href="{{ route('admin.dashboard.index') }}"><i class="fas fa-home"></i> Halaman Utama</a></li>
-       <li><a href="{{ route('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
-    </ul>
-</div>
-<div id="overlay" class="overlay"></div>
-
-{{-- === Main Content === --}}
-<div id="mainContent" class="main-content">
-
-    {{-- Header dengan tombol garis tiga --}}
-    <div class="top-header">
-        <button id="menuToggle" class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="welcome-text">
-            <h1>Welcome Admin</h1>
-        </div>
-    </div>
-
     {{-- === Statistics Cards === --}}
     <div class="row">
 
@@ -39,8 +11,7 @@
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Pelamar</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number" 
-                                 data-value="{{ $statistics['total_pelamar'] ?? 0 }}">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number">{{ $statistics['total_pelamar'] ?? 0 }}</div>
                         </div>
                         <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div>
@@ -55,8 +26,7 @@
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pelamar Bulan Ini</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number" 
-                                 data-value="{{ $statistics['pelamar_bulan_ini'] ?? 0 }}">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number">{{ $statistics['pelamar_bulan_ini'] ?? 0 }}</div>
                         </div>
                         <i class="fas fa-user-plus fa-2x text-gray-300"></i>
                     </div>
@@ -71,8 +41,7 @@
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Lowongan Aktif</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number" 
-                                 data-value="{{ $statistics['lowongan_aktif'] ?? 0 }}">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number">{{ $statistics['lowongan_aktif'] ?? 0 }}</div>
                         </div>
                         <i class="fas fa-briefcase fa-2x text-gray-300"></i>
                     </div>
@@ -87,8 +56,7 @@
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Lowongan Tidak Aktif</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number" 
-                                 data-value="{{ $statistics['lowongan_tidak_aktif'] ?? 0 }}">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 stat-number">{{ $statistics['lowongan_tidak_aktif'] ?? 0 }}</div>
                         </div>
                         <i class="fas fa-pause-circle fa-2x text-gray-300"></i>
                     </div>
@@ -113,14 +81,18 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $app->user->name ?? '-' }}</td>
                         <td>{{ $app->user->email ?? '-' }}</td>
-                        <td>-</td>
+                        <td>{{ $app->user->phone ?? '-' }}</td>
                         <td>{{ $app->jobPost->company->name ?? '-' }}</td>
                         <td>{{ $app->jobPost->title ?? '-' }}</td>
                         <td>{{ $app->status ?? '-' }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary action-btn">👁</a>
-                            <a href="#" class="btn btn-sm btn-danger action-btn">🗑</a>
-                            <a href="#" class="btn btn-sm btn-warning action-btn">✏️</a>
+                            <a href="{{ route('admin.applications.show', $app->id) }}" class="btn btn-sm btn-primary action-btn">👁</a>
+                            <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this application?')">🗑</button>
+                            </form>
+                            <a href="{{ route('admin.applications.edit', $app->id) }}" class="btn btn-sm btn-warning action-btn">✏️</a>
                         </td>
                     </tr>
                 @empty
@@ -148,9 +120,13 @@
                         <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
                         <td><span class="badge bg-success">Aktif</span></td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary action-btn">👁</a>
-                            <a href="#" class="btn btn-sm btn-danger action-btn">🗑</a>
-                            <a href="#" class="btn btn-sm btn-warning action-btn">✏️</a>
+                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-sm btn-primary action-btn">👁</a>
+                            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this job post?')">🗑</button>
+                            </form>
+                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-sm btn-warning action-btn">✏️</a>
                         </td>
                     </tr>
                 @empty
@@ -178,9 +154,13 @@
                         <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
                         <td><span class="badge bg-danger">Tidak Aktif</span></td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary action-btn">👁</a>
-                            <a href="#" class="btn btn-sm btn-danger action-btn">🗑</a>
-                            <a href="#" class="btn btn-sm btn-warning action-btn">✏️</a>
+                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-sm btn-primary action-btn">👁</a>
+                            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this job post?')">🗑</button>
+                            </form>
+                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-sm btn-warning action-btn">✏️</a>
                         </td>
                     </tr>
                 @empty
@@ -189,8 +169,32 @@
             </tbody>
         </table>
     </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('js/dashboardadmin.js') }}"></script>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(number => {
+                const finalNumber = parseInt(number.textContent, 10);
+                if (isNaN(finalNumber)) return;
+
+                let currentNumber = 0;
+                const increment = Math.max(1, Math.ceil(finalNumber / 100)); // Animate over ~100 frames
+
+                const timer = setInterval(() => {
+                    currentNumber += increment;
+                    if (currentNumber >= finalNumber) {
+                        currentNumber = finalNumber;
+                        clearInterval(timer);
+                    }
+                    number.textContent = currentNumber;
+                }, 20); // Update every 20ms
+            });
+        }
+
+        animateNumbers();
+    });
+</script>
+@endpush

@@ -20,7 +20,7 @@ class AdminJobPostController extends Controller
 
         if ($request->has('status')) {
             $status = $request->input('status');
-            if (in_array($status, ['active', 'closed'])) {
+            if (in_array($status, ['active', 'inactive'])) {
                 $query->where('status', $status);
             }
         }
@@ -45,13 +45,15 @@ class AdminJobPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'company_id' => 'required|exists:companies,id',
+            'industry_id' => 'required|exists:industries,id',
             'description' => 'required|string',
             'requirements' => 'required|string',
             'location' => 'required|string|max:255',
-            'type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'employment_type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'vacancies' => 'required|integer|min:1',
             'salary' => 'nullable|string|max:255',
-            'status' => 'required|in:active,closed',
-            'deadline' => 'nullable|date',
+            'status' => 'required|in:active,inactive',
+            'deadline' => 'required|date|after:today',
             'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -62,14 +64,15 @@ class AdminJobPostController extends Controller
             $data['company_logo'] = $logoPath;
         }
 
-        JobPost::create($data);
-        return redirect()->route('admin.job-posts.all')->with('success', 'Lowongan berhasil ditambahkan');
+        $jobPost = JobPost::create($data);
+        return redirect()->route('admin.job-posts.show', $jobPost)->with('success', 'Lowongan berhasil ditambahkan');
     }
 
     public function edit(JobPost $jobPost)
     {
         $companies = Company::all();
-        return view('admin.jobs.edit', compact('jobPost', 'companies'));
+        $industries = \App\Models\Industry::all();
+        return view('admin.jobs.edit', compact('jobPost', 'companies', 'industries'));
     }
 
     public function update(Request $request, JobPost $jobPost)
@@ -77,13 +80,15 @@ class AdminJobPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'company_id' => 'required|exists:companies,id',
+            'industry_id' => 'required|exists:industries,id',
             'description' => 'required|string',
             'requirements' => 'required|string',
             'location' => 'required|string|max:255',
-            'type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'employment_type' => 'required|in:Full-time,Part-time,Contract,Internship',
+            'vacancies' => 'required|integer|min:1',
             'salary' => 'nullable|string|max:255',
-            'status' => 'required|in:active,closed',
-            'deadline' => 'nullable|date',
+            'status' => 'required|in:active,inactive',
+            'deadline' => 'required|date',
             'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -95,7 +100,7 @@ class AdminJobPostController extends Controller
         }
 
         $jobPost->update($data);
-        return redirect()->route('admin.job-posts.all')->with('success', 'Lowongan berhasil diupdate');
+        return redirect()->route('admin.job-posts.show', $jobPost)->with('success', 'Lowongan berhasil diupdate');
     }
 
     public function active(Request $request)
@@ -113,7 +118,7 @@ class AdminJobPostController extends Controller
 
     public function closed(Request $request)
     {
-        $query = JobPost::with('company')->where('status', 'closed')->latest();
+        $query = JobPost::with('company')->where('status', 'inactive')->latest();
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -124,9 +129,10 @@ class AdminJobPostController extends Controller
         return view('admin.job_posts.closed', compact('jobPosts'));
     }
 
-    public function destroy(JobPost $jobPost)
+    public function destroy(JobPost $jobPost, Request $request)
     {
         $jobPost->delete();
-        return redirect()->route('admin.job-posts.all')->with('success', 'Lowongan berhasil dihapus');
+        $redirectTo = $request->input('_redirect_to', url()->previous());
+        return redirect($redirectTo)->with('success', 'Lowongan berhasil dihapus');
     }
 }

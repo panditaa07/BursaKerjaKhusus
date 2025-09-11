@@ -1,3 +1,4 @@
+<!-- Test comment -->
 @extends('layouts.dashboard')
 
 @section('title', 'Lowongan Aktif')
@@ -34,16 +35,21 @@
                     @forelse($lowongan as $index => $l)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
-                            <td>{{ $l->perusahaan }}</td>
-                            <td>{{ $l->no_hrd }}</td>
-                            <td>{{ $l->alamat }}</td>
+                            <td>{{ $l->company->name ?? 'N/A' }}</td>
+                            <td>{{ 'N/A' }}</td>
+                            <td>{{ $l->location ?? 'N/A' }}</td>
                             <td class="text-center">
                                 <span class="badge bg-success">Aktif</span>
                             </td>
                             <td class="text-center">
-                                <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
-                                <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                                <a href="{{ route('admin.job-posts.show', $l->id) }}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                                <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @empty

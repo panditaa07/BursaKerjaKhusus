@@ -38,17 +38,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="nisn" class="form-label">NIK/NISN</label>
-                    <input type="text" name="nisn" id="nisn" class="form-control" value="{{ $application->user ? $application->user->nisn : '' }}">
-                    @error('nisn')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="birth_date" class="form-label">Tanggal Lahir</label>
-                    <input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $application->user ? $application->user->birth_date : '' }}">
-                    @error('birth_date')
+                    <label for="nik_nisn" class="form-label">NIK/NISN</label>
+                    <input type="text" name="nik_nisn" id="nik_nisn" class="form-control" value="{{ $application->user ? $application->user->nik_nisn : '' }}">
+                    @error('nik_nisn')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
@@ -57,22 +49,6 @@
                     <label for="address" class="form-label">Alamat</label>
                     <textarea name="address" id="address" class="form-control" rows="3">{{ $application->user ? $application->user->address : '' }}</textarea>
                     @error('address')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="short_profile" class="form-label">Profil Singkat</label>
-                    <textarea name="short_profile" id="short_profile" class="form-control" rows="3">{{ $application->user ? $application->user->short_profile : '' }}</textarea>
-                    @error('short_profile')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="social_media_link" class="form-label">Link Sosial Media</label>
-                    <input type="url" name="social_media_link" id="social_media_link" class="form-control" value="{{ $application->user ? $application->user->social_media_link : '' }}">
-                    @error('social_media_link')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>

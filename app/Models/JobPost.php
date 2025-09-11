@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobPost extends Model
 {
-    protected $fillable = ['industry_id','company_id','title','description','location','employment_type','vacancies','deadline','status'];
+    protected $fillable = ['industry_id','company_id','title','description','location','employment_type','vacancies','deadline','status','requirements','salary','company_logo'];
+
+    protected $dates = ['deadline'];
 
     public function company()
     {

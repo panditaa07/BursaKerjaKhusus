@@ -60,14 +60,18 @@ class DashboardController extends Controller
         // Get berita and jurusan data
         $beritas = Berita::with('user')->latest()->take(3)->get();
         $jurusans = Jurusan::all();
-        
+
+        // Get latest active job postings
+        $latestJobs = JobPost::where('status', 'active')->with('company')->latest()->take(3)->get();
+
         return view('user.dashboard.index', compact(
             'user',
             'statistics',
             'filter',
             'beritas',
             'jurusans',
-            'lowonganDitutup' // kirim ke blade
+            'lowonganDitutup', // kirim ke blade
+            'latestJobs'
         ));
     }
 

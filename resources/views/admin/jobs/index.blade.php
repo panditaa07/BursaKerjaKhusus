@@ -4,9 +4,7 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Kelola Data Lowongan Kerja</h2>
-        <a href="{{ route('admin.job-posts.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Tambah Lowongan
-        </a>
+        <a href="{{ route('admin.job-posts.create') }}" class="btn btn-primary">Tambah Lowongan</a>
     </div>
 
     <div class="card">
@@ -31,10 +29,10 @@
                                 <td>{{ $job->title }}</td>
                                 <td>{{ $job->company->name ?? '-' }}</td>
                                 <td>{{ $job->location }}</td>
-                                <td>{{ $job->type }}</td>
+                                <td>{{ $job->employment_type }}</td>
                                 <td>
                                     <span class="badge badge-{{ $job->status == 'active' ? 'success' : 'secondary' }}">
-                                        {{ $job->status }}
+                                        {{ $job->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}
                                     </span>
                                 </td>
                                 <td>
@@ -42,6 +40,7 @@
                                     <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
+                                        <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
                                     </form>
                                 </td>

@@ -18,6 +18,9 @@ class UserDashboardController extends Controller
             'total_applications' => Application::count(),
         ];
 
-        return view('user.dashboard.index', compact('statistics'));
+        // Get latest active job postings
+        $latestJobs = JobPost::where('status', 'active')->with('company')->latest()->take(3)->get();
+
+        return view('user.dashboard.index', compact('statistics', 'latestJobs'));
     }
 }

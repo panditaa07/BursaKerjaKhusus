@@ -28,19 +28,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($lowongan as $index => $lowongan)
+                    @forelse ($lowongan as $index => $l)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $lowongan->perusahaan }}</td>
-                            <td>{{ $lowongan->no_hrd }}</td>
-                            <td>{{ $lowongan->alamat }}</td>
+                            <td>{{ $l->company->name ?? 'N/A' }}</td>
+                            <td>{{ 'N/A' }}</td>
+                            <td>{{ $l->location ?? 'N/A' }}</td>
                             <td>
                                 <span class="badge bg-danger">Tidak Aktif</span>
                             </td>
                             <td class="text-center">
-                                <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
-                                <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                                <a href="{{ route('admin.job-posts.show', $l->id) }}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                                <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @empty

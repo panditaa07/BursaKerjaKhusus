@@ -7,8 +7,11 @@
     <h1>Profil Saya</h1>
     
     <div class="card">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h3>Informasi Profil</h3>
+            <a href="{{ route('profile.edit') }}" class="btn btn-primary">
+                <i class="fas fa-pencil-alt me-1"></i> Edit
+            </a>
         </div>
         <div class="card-body">
             <div class="row">
