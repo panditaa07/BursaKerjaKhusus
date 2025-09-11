@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lowongan_aktifs', function (Blueprint $table) {
+        Schema::create('pelamar_bulan_inis', function (Blueprint $table) {
             $table->id();
-            $table->string('perusahaan');   // Nama perusahaan
-            $table->string('no_hrd');       // Nomor HRD
-            $table->string('alamat');       // Alamat perusahaan
-            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif'); // Status loker
+            $table->string('nama_pelamar');
+            $table->string('email')->unique();
+            $table->string('no_hp');
+            $table->string('perusahaan')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lowongan_aktifs');
+        Schema::dropIfExists('pelamar_bulan_inis');
     }
 };

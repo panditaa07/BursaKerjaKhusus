@@ -7,17 +7,10 @@ use App\Models\Role;
 
 class RoleSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        $roles = [
-            'admin',
-            'industry',
-            'user',
-            'superadmin',
-        ];
-
-        foreach ($roles as $role) {
-            Role::firstOrCreate(['name' => $role]);
-        }
+        Role::updateOrCreate(['name' => 'admin']);
+        Role::updateOrCreate(['name' => 'company']);
+        Role::updateOrCreate(['name' => 'user']);
     }
 }

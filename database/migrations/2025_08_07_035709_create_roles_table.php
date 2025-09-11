@@ -8,18 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('jurusans', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('icon');
-            $table->text('deskripsi');
-            $table->string('slug')->unique();
+            $table->string('name')->unique(); // contoh: admin, alumni, perusahaan, siswa
+            $table->string('description')->nullable(); 
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('jurusans');
+        Schema::dropIfExists('roles');
     }
 };

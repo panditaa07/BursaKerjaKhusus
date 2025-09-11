@@ -8,18 +8,21 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([
-            RoleSeeder::class,
-            UserSeeder::class,
-            CompanySeeder::class,
-            LokerSeeder::class,
-            LamaranSeeder::class,
-            LowonganSeeder::class,
-            TotalPelamarSeeder::class,
-            PelamarBulanIniSeeder::class,
-            LowonganAktifSeeder::class,
-            LowonganDitutupSeeder::class,
-            // BeritaSeeder::class, dll
-        ]);
+        $this->command->info('🔹 Menjalankan RoleSeeder...');
+        $this->call(RoleSeeder::class);
+
+        $this->command->info('🔹 Menjalankan UserSeeder...');
+        $this->call(UserSeeder::class);
+
+        $this->command->info('🔹 Menjalankan CompanySeeder...');
+        $this->call(CompanySeeder::class);
+
+        $this->command->info('🔹 Menjalankan JobPostSeeder...');
+        $this->call(JobPostSeeder::class);
+
+        $this->command->info('🔹 Menjalankan ApplicationSeeder...');
+        $this->call(ApplicationSeeder::class);
+
+        $this->command->info('✅ Semua seeder selesai dijalankan!');
     }
 }

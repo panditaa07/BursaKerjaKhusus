@@ -16,7 +16,7 @@ class User extends Authenticatable
         'password',
         'cv_path',
         'company_id',
-        'role',
+        'role_id',
     ];
 
     /**
@@ -36,43 +36,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Relasi ke roles (pivot role_user)
+     * Relasi ke role (belongsTo)
      */
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
-    }
-
-    /**
-     * Cek apakah user punya role tertentu
-     */
-    public function hasRole($roleName)
-    {
-        return $this->roles()->where('name', $roleName)->exists();
-    }
-
-    /**
-     * Tambah role ke user
-     */
-    public function assignRole($roleId)
-    {
-        return $this->roles()->attach($roleId);
-    }
-
-    /**
-     * Hapus role dari user
-     */
-    public function removeRole($roleId)
-    {
-        return $this->roles()->detach($roleId);
-    }
-
-    /**
-     * Sinkronisasi role (replace semua role lama)
-     */
-    public function syncRoles(array $roleIds)
-    {
-        return $this->roles()->sync($roleIds);
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
     protected $hidden = [

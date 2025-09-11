@@ -26,34 +26,27 @@ class AdminDashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Statistik utama
+        // Statistik utama untuk card
         $statistics = [
-            'total_users'            => User::count(),
-            'total_companies'        => Company::count(),
-            'total_jobs'             => JobPost::count(),
-            'total_applications'     => Application::count(),
-            'pending_companies'      => Company::where('is_verified', false)->count(),
-            'active_jobs'            => JobPost::where('status', 'active')->count(),
-            'closed_jobs'            => JobPost::where('status', 'closed')->count(),
-            'pending_applications'   => Application::where('status', 'pending')->count(),
-            'applications_this_month'=> Application::whereMonth('created_at', now()->month)
+            'total_pelamar'         => Application::count(),
+            'pelamar_bulan_ini'     => Application::whereMonth('created_at', now()->month)
                                                    ->whereYear('created_at', now()->year)
                                                    ->count(),
+            'lowongan_aktif'        => JobPost::where('status', 'active')->count(),
+            'lowongan_tidak_aktif'  => JobPost::where('status', 'closed')->count(),
         ];
 
-        // Data terbaru
-        $recentUsers        = User::latest()->take(5)->get();
-        $recentCompanies    = Company::latest()->take(5)->get();
-        $recentJobs         = JobPost::latest()->take(5)->get();
-        $recentApplications = Application::latest()->take(5)->get();
+        // Data untuk tabel
+        $daftar_pelamar_terbaru = Application::with('user', 'jobPost.company')->latest()->take(5)->get();
+        $loker_terbaru          = JobPost::where('status', 'active')->latest()->take(5)->get();
+        $loker_tidak_aktif      = JobPost::where('status', 'closed')->latest()->take(5)->get();
 
         return view('admin.dashboard.index', compact(
             'user',
             'statistics',
-            'recentUsers',
-            'recentCompanies',
-            'recentJobs',
-            'recentApplications'
+            'daftar_pelamar_terbaru',
+            'loker_terbaru',
+            'loker_tidak_aktif'
         ));
     }
 
@@ -71,39 +64,21 @@ class AdminDashboardController extends Controller
      */
     public function users()
     {
-    
-    return view('admin.users.index', compact('users'));
-
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 
     public function index1()
     {
-        // ambil loker yang aktif (terbaru)
-        $activeLokers = Loker::with('company')
-            ->where('status', 'aktif')
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        // ambil loker yang tidak aktif
-        $inactiveLokers = Loker::with('company')
-            ->where('status', 'tidak_aktif')
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        // pelamar terbaru
-        $pelamars = Lamaran::with(['user', 'loker.company'])
-            ->latest()
-            ->paginate(2); // hanya ambil 2 terakhir untuk dashboard
-
-        // pastikan variabel dikirim ke view
-        return view('admin.dashboard.index', compact('activeLokers', 'inactiveLokers', 'pelamars'));
+        return $this->index();
     }
 
-    public function Pelamar() {
+
+
+    public function Pelamar()
     {
         $pelamar = Pelamar::all();
         return view('admin.dashboard.pelamar', compact('pelamar'));
-    }
     }
 
     public function pelamarBulanIni() {

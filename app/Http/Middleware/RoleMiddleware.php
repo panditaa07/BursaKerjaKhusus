@@ -14,7 +14,7 @@ class RoleMiddleware
         }
 
         $user = Auth::user();
-        $userRole = $user->role ?? null;
+        $userRole = $user->role->name ?? null;
 
         // support multi-role: role1|role2
         $allowedRoles = [];
@@ -36,9 +36,10 @@ class RoleMiddleware
             return 'admin.dashboard.index';
         } elseif ($role === 'company') {
             return 'company.dashboard.index';
-        } else {
-            // user, student, alumni
+        } elseif ($role === 'user') {
             return 'user.dashboard.index';
+        } else {
+            return null;
         }
     }
 }

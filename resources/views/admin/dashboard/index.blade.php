@@ -11,7 +11,7 @@
     <!-- Statistics Cards -->
     <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
-    <a href="{{ route('dashboard.pelamar') }}" style="text-decoration: none;">
+    <a href="{{ route('admin.dashboard.pelamar') }}" style="text-decoration: none;">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -20,7 +20,7 @@
                             Total Pelamar
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            {{ $statistics['total_users'] ?? 0 }}
+                            {{ $statistics['total_pelamar'] ?? 0 }}
                         </div>
                     </div>
                     <div class="col-auto">
@@ -32,7 +32,7 @@
     </a>
 </div>
         <div class="col-xl-3 col-md-6 mb-4">
-    <a href="{{ route('dashboard.pelamar.bulanini') }}" style="text-decoration: none;">
+    <a href="{{ route('admin.dashboard.pelamar.bulanini') }}" style="text-decoration: none;">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -41,7 +41,7 @@
                             Pelamar Bulan Ini
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            {{ $statistics['total_month'] ?? 0 }}
+                            {{ $statistics['pelamar_bulan_ini'] ?? 0 }}
                         </div>
                     </div>
                     <div class="col-auto">
@@ -54,7 +54,7 @@
 </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-    <a href="{{ route('dashboard.lowongan-aktif') }}" style="text-decoration: none;">
+    <a href="{{ route('admin.dashboard.lowongan-aktif') }}" style="text-decoration: none;">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -63,7 +63,7 @@
                             Lowongan Aktif
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            {{ $statistics['total_active'] ?? 0 }}
+                            {{ $statistics['lowongan_aktif'] ?? 0 }}
                         </div>
                     </div>
                     <div class="col-auto">
@@ -76,7 +76,7 @@
 </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-    <a href="{{ route('dashboard.lowongan-tidak-aktif') }}" style="text-decoration: none;">
+    <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" style="text-decoration: none;">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -85,7 +85,7 @@
                             Lowongan Tidak Aktif
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            {{ $statistics['total_notactive'] ?? 0 }}
+                            {{ $statistics['lowongan_tidak_aktif'] ?? 0 }}
                         </div>
                     </div>
                     <div class="col-auto">
@@ -114,15 +114,15 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($pelamars as $index => $pelamar)
+                @forelse($daftar_pelamar_terbaru as $index => $app)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $pelamar->nama_pelamar ?? '-' }}</td>
-                        <td>{{ $pelamar->email ?? '-' }}</td>
-                        <td>{{ $pelamar->no_hp ?? '-' }}</td>
-                        <td>{{ $pelamar->perusahaan ?? '-' }}</td>
-                        <td>{{ $pelamar->lowongan ?? '-' }}</td>
-                        <td>{{ $pelamar->status ?? '-' }}</td>
+                        <td>{{ $app->user->name ?? '-' }}</td>
+                        <td>{{ $app->user->email ?? '-' }}</td>
+                        <td>-</td>
+                        <td>{{ $app->jobPost->company->name ?? '-' }}</td>
+                        <td>{{ $app->jobPost->title ?? '-' }}</td>
+                        <td>{{ $app->status ?? '-' }}</td>
                         <td>
                             <a href="#" class="btn btn-sm btn-primary">👁</a>
                             <a href="#" class="btn btn-sm btn-danger">🗑</a>
@@ -155,12 +155,12 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($activeLokers as $index => $loker)
+                @forelse($loker_terbaru as $index => $job)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $loker->company->name ?? '-' }}</td>
-                        <td>{{ $loker->no_hrd ?? '-' }}</td>
-                        <td>{{ $loker->alamat ?? '-' }}</td>
+                        <td>{{ $job->company->name ?? '-' }}</td>
+                        <td>-</td>
+                        <td>{{ $job->location ?? '-' }}</td>
                         <td>
                             <span class="badge bg-success">Aktif</span>
                         </td>
@@ -196,12 +196,12 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($inactiveLokers as $index => $loker)
+                @forelse($loker_tidak_aktif as $index => $job)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $loker->company->name ?? '-' }}</td>
-                        <td>{{ $loker->no_hrd ?? '-' }}</td>
-                        <td>{{ $loker->alamat ?? '-' }}</td>
+                        <td>{{ $job->company->name ?? '-' }}</td>
+                        <td>-</td>
+                        <td>{{ $job->location ?? '-' }}</td>
                         <td>
                             <span class="badge bg-danger">Tidak Aktif</span>
                         </td>

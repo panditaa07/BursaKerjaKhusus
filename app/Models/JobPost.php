@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobPost extends Model
 {
-    protected $fillable = ['company_id','title','description','location','employment_type','vacancies','deadline','status'];
+    protected $fillable = ['industry_id','company_id','title','description','location','employment_type','vacancies','deadline','status'];
 
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class);
     }
 
     public function applications()

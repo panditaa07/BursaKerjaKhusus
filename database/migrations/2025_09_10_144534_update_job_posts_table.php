@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programs', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // contoh: Rekayasa Perangkat Lunak
-            $table->timestamps();
+        Schema::table('job_posts', function (Blueprint $table) {
+            //
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('programs');
+        Schema::table('job_posts', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Artisan;
 
 class RegisteredUserController extends Controller
 {
@@ -78,13 +80,26 @@ class RegisteredUserController extends Controller
         // Auto-login after registration
         auth()->login($user);
 
+        // Clear cached route, config, and views to prevent redirection issues
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+
+        // Remove any stale intended url to avoid fallback to /home
+        session()->forget('url.intended');
+
         // Role-based redirect after login
-        if ($user->role === 'admin') {
+        $roleName = $user->role->name ?? null;
+
+        if ($roleName === 'admin') {
             return redirect()->route('admin.dashboard.index');
-        } elseif ($user->role === 'company') {
+        } elseif ($roleName === 'company') {
             return redirect()->route('company.dashboard.index');
-        } else {
+        } elseif ($roleName === 'user') {
             return redirect()->route('user.dashboard.index');
+        } else {
+            auth()->logout();
+            return redirect('/login')->withErrors(['role' => 'Role tidak valid.']);
         }
     }
 }

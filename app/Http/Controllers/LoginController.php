@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 
 class LoginController extends Controller
 {
@@ -15,15 +16,10 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard.index');
-        } elseif ($user->role === 'company') {
-            return redirect()->route('company.dashboard.index');
-        } elseif (in_array($user->role, ['user', 'student', 'alumni'])) {
-            return redirect()->route('user.dashboard.index');
-        } else {
-            return redirect()->route('user.dashboard.index');
-        }
+        $roleName = $user->role->name ?? null;
+
+        // arahkan sesuai role
+        return redirect()->route(\App\Providers\RouteServiceProvider::dashboardRouteForRole($roleName));
     }
 
     public function login(Request $request)
@@ -35,6 +31,15 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
+
+            // clear cache biar ga ada redirection lama
+            Artisan::call('route:clear');
+            Artisan::call('config:clear');
+            Artisan::call('view:clear');
+
+            // buang url intended lama
+            $request->session()->forget('url.intended');
+
             return $this->authenticated($request, Auth::user());
         }
 
@@ -46,8 +51,14 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/login');
     }
 }
