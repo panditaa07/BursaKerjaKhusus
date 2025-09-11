@@ -47,8 +47,8 @@
             </form>
 
             <div class="register-link">
-                <p>Belum punya akun? 
-                    <a href="{{ route('register') }}">Daftar sebagai Student</a>
+                <p>Don't have an account yet? 
+                    <a href="{{ route('register') }}">Register Here</a>
                 </p>
             </div>
 

@@ -75,6 +75,11 @@ body::before {
     padding: 30px 30px 20px;
     text-align: center;
     position: relative;
+
+    /* Tambahan agar teks besar */
+    font-size: 24px;       /* Ukuran font lebih besar */
+    font-weight: 600;      /* Tebal seperti gambar ke-2 */
+    color: #4f46e5;        /* Warna ungu kebiruan */
 }
 
 .card-header::after {

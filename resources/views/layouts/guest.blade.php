@@ -16,7 +16,9 @@
     @yield('css')
     @stack('styles')
 </head>
-<body>
+<body class="bg-light">
+
+    {{-- Konten halaman --}}
     @yield('content')
 
     {{-- JS Bootstrap --}}
@@ -28,5 +30,6 @@
     {{-- JS tambahan per halaman --}}
     @yield('js')
     @stack('scripts')
+
 </body>
 </html>
