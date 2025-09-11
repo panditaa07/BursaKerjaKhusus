@@ -18,8 +18,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\AdminJobPostController;
 use App\Http\Controllers\AdminPelam;
-
-
 use Illuminate\Support\Facades\Auth;
 
 // ================== PUBLIC ROUTES ==================
@@ -35,8 +33,6 @@ Route::get('/register', [RegisteredUserController::class, 'create'])->name('regi
 Route::get('/register/{role}', [RegisteredUserController::class, 'create'])->name('register.role');
 Route::post('/register/{role}', [RegisteredUserController::class, 'store'])->name('register.store');
 
-
-
 // Temporary route to check authentication
 Route::get('/check-auth', function () {
     return Auth::check() ? 'User is authenticated' : 'User is not authenticated';
@@ -47,65 +43,36 @@ Route::middleware(['auth'])->group(function () {
     // ===== Admin Routes =====
     Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
-    });
+        Route::get('/dashboard/pelamar', [AdminDashboardController::class, 'Pelamar'])->name('dashboard.pelamar');
+        Route::get('/dashboard/pelamar/bulanini', [AdminDashboardController::class, 'pelamarBulanIni'])->name('dashboard.pelamar.bulanini');
+        Route::get('/dashboard/lowongan-aktif', [AdminDashboardController::class, 'lowonganAktif'])->name('dashboard.lowongan-aktif');
+        Route::get('/dashboard/lowongan-tidak-aktif', [AdminDashboardController::class, 'lowonganTidakAktif'])->name('dashboard.lowongan-tidak-aktif');
+        Route::get('/companies/pending', [AdminDashboardController::class, 'pendingCompanies'])->name('companies.pending');
 
-    // ===== Company Routes =====
-    Route::prefix('company')->middleware(['auth', 'role:company'])->name('company.')->group(function () {
-        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard.index');
-    });
-
-    // ===== User Routes =====
-    Route::prefix('user')->middleware(['auth', 'role:user|student|alumni'])->name('user.')->group(function () {
-        Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.index');
-        Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
-    });
-
-    // ===== Admin: Companies Management =====
-    Route::get('/admin/companies/pending', [AdminDashboardController::class, 'pendingCompanies'])
-        ->name('admin.companies.pending')
-        ->middleware('role:admin');
-
-    // ===== Admin: User Management =====
-    Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
+        // User Management
         Route::get('/users', [AdminDashboardController::class, 'users'])->name('users.index');
         Route::get('/users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
         Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
         Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('users.edit');
         Route::put('/users/{user}', [AdminDashboardController::class, 'updateUser'])->name('users.update');
         Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('users.destroy');
-    });
 
-
-    // ===== Job Posts Management for Admin =====
-    Route::resource('job-posts', AdminJobPostController::class)->names([
-        'index'   => 'admin.job-posts.index',
-        'create'  => 'admin.job-posts.create',
-        'store'   => 'admin.job-posts.store',
-        'edit'    => 'admin.job-posts.edit',
-        'update'  => 'admin.job-posts.update',
-        'destroy' => 'admin.job-posts.destroy',
-    ])->middleware('role:admin');
-
-
-
-    // ===== Job Routes (untuk pelamar) =====
-    Route::prefix('jobs')->name('jobs.')->group(function () {
-        Route::get('/', [JobPostController::class, 'index'])->name('index');
-        Route::get('/{job}', [JobPostController::class, 'show'])->name('show');
-    });
-
-    // ===== Application Routes =====
-    Route::prefix('applications')->name('applications.')->group(function () {
-        Route::post('/', [ApplicationController::class, 'store'])
-            ->name('store')
-            ->middleware('role:student|alumni|user'); // izinkan semua jenis pelamar
-        Route::get('/{application}', [ApplicationController::class, 'show'])
-            ->name('show')
-            ->middleware('role:student|alumni|user|company|admin');
+        // Job Posts (Admin)
+        Route::resource('job-posts', AdminJobPostController::class)->names([
+            'index'   => 'job-posts.index',
+            'create'  => 'job-posts.create',
+            'store'   => 'job-posts.store',
+            'edit'    => 'job-posts.edit',
+            'update'  => 'job-posts.update',
+            'destroy' => 'job-posts.destroy',
+        ]);
     });
 
     // ===== Company Routes =====
-    Route::prefix('company')->middleware('role:company')->name('company.')->group(function () {
+    Route::prefix('company')->middleware(['auth','role:company'])->name('company.')->group(function () {
+        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard.index');
+
+        // Job management
         Route::get('/jobs', [JobPostController::class, 'companyIndex'])->name('jobs.index');
         Route::get('/jobs/create', [JobPostController::class, 'create'])->name('jobs.create');
         Route::post('/jobs', [JobPostController::class, 'store'])->name('jobs.store');
@@ -113,13 +80,32 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/jobs/{job}', [JobPostController::class, 'update'])->name('jobs.update');
         Route::delete('/jobs/{job}', [JobPostController::class, 'destroy'])->name('jobs.destroy');
 
+        // Applications
         Route::get('/applications', [ApplicationController::class, 'indexForCompany'])->name('applications.index');
         Route::get('/applications/{application}/preview', [ApplicationController::class, 'previewPdf'])->name('applications.preview');
         Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadPdf'])->name('applications.download');
         Route::put('/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
     });
 
-    // ===== Profile Routes =====
+    // ===== User Routes =====
+    Route::prefix('user')->middleware(['auth', 'role:user'])->name('user.')->group(function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+    });
+
+    // ===== Jobs (umum) =====
+    Route::prefix('jobs')->name('jobs.')->group(function () {
+        Route::get('/', [JobPostController::class, 'index'])->name('index');
+        Route::get('/{job}', [JobPostController::class, 'show'])->name('show');
+    });
+
+    // ===== Applications (pelamar) =====
+    Route::prefix('applications')->name('applications.')->group(function () {
+        Route::post('/', [ApplicationController::class, 'store'])->name('store')->middleware('role:user');
+        Route::get('/{application}', [ApplicationController::class, 'show'])->name('show')->middleware('role:user|company|admin');
+    });
+
+    // ===== Profile =====
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileController::class, 'show'])->name('index');
         Route::get('/show', [ProfileController::class, 'show'])->name('show');
@@ -150,31 +136,4 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{lowongan}', [LowonganController::class, 'update'])->name('update')->middleware('role:company');
         Route::delete('/{lowongan}', [LowonganController::class, 'destroy'])->name('destroy')->middleware('role:company');
     });
-
-    Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function () {
-        Route::resource('job-posts', AdminJobPostController::class);
-    });
-
-    // Route::prefix('admin')->middleware('role:admin')->group(function () {
-    //     Route::get('/dashboard', [AdminDashboardController::class, 'index1'])->name('dashboard.index');
-    // });
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index1'])
-     ->name('admin.dashboard.index');
-
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('pelamar',[AdminDashboardController::class, 'index1'])
-        ->name('pelamar.index');
-});
-
-    Route::get('/dashboard/pelamar', [AdminDashboardController::class, 'Pelamar'])
-        ->name('dashboard.pelamar');
-    Route::get('/dashboard/pelamar-bulan-ini', [AdminDashboardController::class, 'PelamarBulanIni'])
-        ->name('dashboard.pelamar.bulanini');
-    Route::get('/dashboard/lowongan-aktif', [AdminDashboardController::class, 'LowonganAktif'])
-        ->name('dashboard.lowongan-aktif');
-    Route::get('/dashboard/lowongan-tidak-aktif', [AdminDashboardController::class, 'lowonganTidakAktif'])
-        ->name('dashboard.lowongan-tidak-aktif');
-
-
-
 });

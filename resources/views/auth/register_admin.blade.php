@@ -1,5 +1,10 @@
 @extends('layouts.guest')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/register-admin.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -7,29 +12,109 @@
             <div class="card">
                 <div class="card-header">Register as Admin</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/register/admin') }}">
+                    @if ($errors->any())
+                        <div class="alert alert-danger mb-3">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ url('/register/admin') }}" id="registerForm">
                         @csrf
                         <div class="mb-3">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" required>
+                            <label for="name">Full Name</label>
+                            <input type="text" 
+                                   name="name" 
+                                   id="name"
+                                   class="form-control @error('name') is-invalid @enderror" 
+                                   value="{{ old('name') }}"
+                                   required>
+                            @error('name')
+                                <div class="error-message show">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label for="email">Email Address</label>
+                            <input type="email" 
+                                   name="email" 
+                                   id="email"
+                                   class="form-control @error('email') is-invalid @enderror" 
+                                   value="{{ old('email') }}"
+                                   required>
+                            @error('email')
+                                <div class="error-message show">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="mb-3">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
+                            <label for="password">Password</label>
+                            <input type="password" 
+                                   name="password" 
+                                   id="password"
+                                   class="form-control @error('password') is-invalid @enderror" 
+                                   required>
+                            @error('password')
+                                <div class="error-message show">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="mb-3">
-                            <label>Confirm Password</label>
-                            <input type="password" name="password_confirmation" class="form-control" required>
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" 
+                                   name="password_confirmation" 
+                                   id="password_confirmation"
+                                   class="form-control" 
+                                   required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Register
+                        </button>
                     </form>
+
+                    <div class="text-center mt-3">
+                        <small class="text-muted">
+                            Already have an account? 
+                            <a href="{{ url('/login') }}" class="text-decoration-none">Sign in here</a>
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/register-admin.js') }}"></script>
+
+@if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            if (window.RegisterAdmin) {
+                window.RegisterAdmin.showSuccess();
+            }
+        }, 500);
+    });
+</script>
+@endif
+
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mark fields with server-side errors as invalid
+        @foreach ($errors->keys() as $field)
+            const field_{{ $loop->index }} = document.getElementById('{{ $field }}');
+            if (field_{{ $loop->index }}) {
+                field_{{ $loop->index }}.classList.add('invalid');
+            }
+        @endforeach
+    });
+</script>
+@endif
 @endsection

@@ -3,29 +3,34 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Company;
+use App\Models\User;
 
 class CompanySeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        DB::table('companies')->insert([
-            [
-                'user_id' => 1, // Assuming user with ID 1 exists
-                'name' => 'PT Maju Jaya',
-                'address' => 'Jl. Merdeka No. 1',
-                'phone' => '08123456789',
-                'website' => 'https://majujaya.com',
-                'description' => 'Perusahaan yang bergerak di bidang teknologi dan inovasi.',
-            ],
-            [
-                'user_id' => 2, // Assuming user with ID 2 exists
-                'name' => 'CV Sukses Selalu',
-                'address' => 'Jl. Sudirman No. 5',
-                'phone' => '08198765432',
-                'website' => 'https://suksesselalu.com',
-                'description' => 'CV yang fokus pada pengembangan sumber daya manusia.',
-            ],
-        ]);
+        // Ambil semua user dengan role company
+        $companyUsers = User::whereHas('role', function ($q) {
+            $q->where('name', 'company');
+        })->get();
+
+        foreach ($companyUsers as $user) {
+            $company = Company::updateOrCreate(
+                ['user_id' => $user->id], // pastikan unik per user
+                [
+                    'name' => $user->company_name ?? 'Perusahaan ' . $user->name,
+                    'address' => $user->address ?? 'Alamat default',
+                    'phone' => $user->phone ?? '0800000000',
+                    'website' => 'https://example.com/' . strtolower(str_replace(' ', '', $user->name)),
+                    'description' => 'Perusahaan milik ' . $user->name,
+                    'is_verified' => true,
+                ]
+            );
+
+            // Update user's company_id to link to the company
+            $user->company_id = $company->id;
+            $user->save();
+        }
     }
 }

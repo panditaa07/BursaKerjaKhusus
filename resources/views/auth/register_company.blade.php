@@ -1,39 +1,83 @@
 @extends('layouts.guest')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/register-company.css') }}">
+@endsection
+
 @section('content')
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Register as Company</div>
-                <div class="card-body">
-                    <form method="POST" action="{{ url('/register/company') }}">
-                        @csrf
-                        <div class="mb-3">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Company Name</label>
-                            <input type="text" name="company_name" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Confirm Password</label>
-                            <input type="password" name="password_confirmation" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Register</button>
-                    </form>
+<div class="registration-wrapper">
+    <div class="registration-container">
+        <div class="form-header">
+            <h2>Create Company Account</h2>
+            <p>Join us and start your business journey</p>
+        </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    @foreach ($errors->all() as $error)
+                        <li style="margin-bottom: 5px;">• {{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ url('/register/company') }}" id="registrationForm">
+            @csrf
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company_name">Company Name</label>
+                <input type="text" id="company_name" name="company_name" value="{{ old('company_name') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <span class="password-toggle">
+                    <i class="bi bi-eye"></i>
+                </span>
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="strengthBar"></div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" required>
+                <span class="password-toggle">
+                    <i class="bi bi-eye"></i>
+                </span>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-text">Create Account</span>
+                <div class="loading-spinner"></div>
+            </button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="{{ route('login') }}">Sign in here</a>
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/register-company.js') }}"></script>
 @endsection

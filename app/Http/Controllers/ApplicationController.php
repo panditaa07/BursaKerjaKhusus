@@ -42,7 +42,7 @@ class ApplicationController extends Controller
 
         if (!$company) {
             // Redirect to a safe route to avoid redirect loop, e.g. logout or home
-            return redirect()->route('home')->with('error', 'Data perusahaan tidak ditemukan.');
+            return redirect()->route('user.dashboard.index')->with('error', 'Data perusahaan tidak ditemukan.');
         }
 
         $applications = Application::whereHas('jobPost', function ($query) use ($company) {

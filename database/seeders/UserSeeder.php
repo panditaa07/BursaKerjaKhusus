@@ -4,39 +4,43 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        // Admin
-        User::firstOrCreate(
-            ['email' => 'admin@bkk.com'], // kunci unik
+        // Buat Admin
+        $adminRole = Role::where('name', 'admin')->first();
+        User::updateOrCreate(
+            ['email' => 'admin@bkk.com'],
             [
-                'name' => 'Admin BKK',
+                'name' => 'Super Admin',
                 'password' => Hash::make('password'),
-                'role' => 'admin',
+                'role_id' => $adminRole->id,
             ]
         );
 
-        // Perusahaan
-        User::firstOrCreate(
+        // Buat Company
+        $companyRole = Role::where('name', 'company')->first();
+        User::updateOrCreate(
             ['email' => 'company@bkk.com'],
             [
-                'name' => 'Company',
+                'name' => 'PT Contoh Company',
                 'password' => Hash::make('password'),
-                'role' => 'company',
+                'role_id' => $companyRole->id,
             ]
         );
 
-        // Alumni
-        User::firstOrCreate(
+        // Buat User / Pelamar
+        $userRole = Role::where('name', 'user')->first();
+        User::updateOrCreate(
             ['email' => 'user@bkk.com'],
             [
-                'name' => 'User',
+                'name' => 'Pelamar Contoh',
                 'password' => Hash::make('password'),
-                'role' => 'user',
+                'role_id' => $userRole->id,
             ]
         );
     }

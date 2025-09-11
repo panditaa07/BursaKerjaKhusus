@@ -24,11 +24,11 @@ return new class extends Migration
             // CV (opsional, biasanya untuk user/pelamar)
             $table->string('cv_path')->nullable();
 
-            // Role (hanya admin, company, user)
-            $table->enum('role', ['admin', 'company', 'user'])->default('user')->index();
-
             // Company ID (optional untuk user yang terkait perusahaan)
             $table->unsignedBigInteger('company_id')->nullable();
+
+            // Role ID foreign key
+            $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
 
             // NIK/NISN (untuk user pelamar saja, fleksibel)
             $table->string('nik_nisn')->nullable()->unique();

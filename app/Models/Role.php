@@ -12,18 +12,10 @@ class Role extends Model
     protected $fillable = ['name', 'description'];
 
     /**
-     * Relasi ke users (pivot role_user)
+     * Relasi ke users (hasMany)
      */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'role_user');
-    }
-
-    /**
-     * Tambah user ke role
-     */
-    public function assignUser($userId)
-    {
-        return $this->users()->attach($userId);
+        return $this->hasMany(User::class);
     }
 }
