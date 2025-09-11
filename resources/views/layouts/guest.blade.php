@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
     {{-- CSS tambahan per halaman --}}
+    @yield('css')
     @stack('styles')
 </head>
 <body>
@@ -25,6 +26,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     {{-- JS tambahan per halaman --}}
+    @yield('js')
     @stack('scripts')
 </body>
 </html>
