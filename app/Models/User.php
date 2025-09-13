@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
+
+/**
+ * @method \Illuminate\Database\Eloquent\Relations\MorphMany notifications()
+ */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -56,6 +59,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id');
     }
 
+    /**
+     * Relasi ke notifications (morphMany)
+     */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -68,4 +75,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function notifications()
+{
+    return $this->hasMany(UserNotification::class);
+}
+
 }

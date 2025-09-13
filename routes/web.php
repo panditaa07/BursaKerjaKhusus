@@ -17,6 +17,7 @@ use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\AdminJobPostController;
+use App\Http\Controllers\NotifikasiUser;
 use App\Http\Controllers\AdminPelam;
 use Illuminate\Support\Facades\Auth;
 
@@ -149,4 +150,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{lowongan}', [LowonganController::class, 'update'])->name('update')->middleware('role:company');
         Route::delete('/{lowongan}', [LowonganController::class, 'destroy'])->name('destroy')->middleware('role:company');
     });
+
+    Route::middleware(['auth'])->group(function () {
+    Route::get('/notifications', [NotifikasiUser::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/{id}/read', [NotifikasiUser::class, 'markAsRead'])->name('notifications.read');
+});
+
 });

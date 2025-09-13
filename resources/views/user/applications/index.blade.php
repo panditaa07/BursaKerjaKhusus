@@ -96,13 +96,28 @@
                             @if($notifications->count() > 0)
                                 @foreach($notifications as $notification)
                                     <div class="border border-secondary-subtle rounded-lg p-3 mb-3 shadow-sm">
-                                        <p class="mb-1 small">{{ $notification->data['message'] ?? 'New notification' }}</p>
-                                        <p class="text-muted small mb-0">{{ $notification->created_at->diffForHumans() }}</p>
+                                        <p class="mb-1 small">
+                                            {{ $notification->data['message'] ?? 'New notification' }}
+                                        </p>
+                                        <p class="text-muted small mb-2">
+                                            {{ optional($notification->created_at)->diffForHumans() }}
+                                        </p>
+
+                                        @if(is_null($notification->read_at))
+                                            <a href="{{ route('notifications.read', $notification->id) }}" 
+                                            class="btn btn-sm btn-primary">
+                                            Tandai Sudah Dibaca
+                                            </a>
+                                        @endif
                                     </div>
                                 @endforeach
                             @else
                                 <p class="text-muted small">Tidak ada notifikasi baru.</p>
                             @endif
+                                <div class="text-center mt-2">
+                                    <a href="{{ route('notifications.index') }}" class="btn btn-link small">
+                                    Lihat Semua Notifikasi</a>
+                                </div>
                         </div>
                     </div>
                 </div>

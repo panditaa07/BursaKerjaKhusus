@@ -13,12 +13,32 @@ use App\Models\Pelamar;
 use App\Models\PelamarBulanIni;
 use App\Models\LowonganAktif;
 use App\Models\LowonganTidakAktif;
+use App\Models\UserNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardController extends Controller
 {
+
+        // Method baru khusus notifikasi
+    public function notifications()
+    {
+        $notifications = UserNotification::where('user_id', auth()->id())
+                        ->latest()
+                        ->get();
+        return view('user.notifications.index', compact('notifications'));
+    }
+
+    public function markAsRead($id)
+    {
+        $notification = UserNotification::where('user_id', auth()->id())
+                        ->findOrFail($id);
+        $notification->update(['is_read' => true]);
+
+        return back()->with('success', 'Notifikasi ditandai sudah dibaca.');
+    }
+
     /**
      * Tampilkan halaman dashboard admin
      */
@@ -76,6 +96,7 @@ class AdminDashboardController extends Controller
         return $this->index();
     }
 
+    
 
 
     public function Pelamar(Request $request)
