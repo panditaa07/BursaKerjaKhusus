@@ -8,7 +8,7 @@ use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyDashboardController;
-use App\Http\Controllers\BeritaController;
+# Removed unused BeritaController import to fix errors
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\RegisteredUserController;
@@ -114,6 +114,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('applications')->name('applications.')->group(function () {
         Route::post('/', [ApplicationController::class, 'store'])->name('store')->middleware('role:user');
         Route::get('/{application}', [ApplicationController::class, 'show'])->name('show')->middleware('role:user|company|admin');
+        Route::put('/{application}/repair-status', [ApplicationController::class, 'updateRepairStatus'])->name('updateRepairStatus')->middleware('role:admin');
     });
 
     // ===== Profile =====

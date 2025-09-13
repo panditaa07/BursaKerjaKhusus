@@ -19,8 +19,17 @@ class User extends Authenticatable
         'role_id',
         'phone',
         'address',
-        'nik_nisn',
+        'nisn',
         'company_name',
+        'birth_date',
+        'short_profile',
+        'social_media_link',
+        'facebook',
+        'instagram',
+        'linkedin',
+        'twitter',
+        'tiktok',
+        'profile_photo_path',
     ];
 
     /**

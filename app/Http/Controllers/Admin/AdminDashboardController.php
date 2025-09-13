@@ -78,17 +78,36 @@ class AdminDashboardController extends Controller
 
 
 
-    public function Pelamar()
+    public function Pelamar(Request $request)
     {
-        $pelamar = Application::with('user', 'jobPost.company')->get();
+        $query = Application::with('user', 'jobPost.company');
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $pelamar = $query->paginate(10);
         return view('admin.dashboard.pelamar', compact('pelamar'));
     }
 
-    public function pelamarBulanIni() {
-        $pelamar = Application::with('user', 'jobPost.company')
+    public function pelamarBulanIni(Request $request) {
+        $query = Application::with('user', 'jobPost.company')
                             ->whereMonth('created_at', now()->month)
-                            ->whereYear('created_at', now()->year)
-                            ->get();
+                            ->whereYear('created_at', now()->year);
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $pelamar = $query->paginate(10);
         return view('admin.dashboard.pelamar_bulan_ini', compact('pelamar'));
     }
 

@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        \DB::statement("ALTER TABLE applications MODIFY COLUMN status ENUM('submitted', 'test1', 'test2', 'interview', 'accepted', 'rejected') DEFAULT 'submitted'");
+        Schema::table('applications', function (Blueprint $table) {
+            $table->text('description')->nullable()->after('cover_letter')->comment('Application description');
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        \DB::statement("ALTER TABLE applications MODIFY COLUMN status ENUM('submitted', 'reviewed', 'accepted', 'rejected') DEFAULT 'submitted'");
+        Schema::table('applications', function (Blueprint $table) {
+            $table->dropColumn('description');
+        });
     }
 };

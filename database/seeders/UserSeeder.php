@@ -6,42 +6,112 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Buat Admin
+        $faker = Faker::create('id_ID'); // Use Indonesian locale for names
+
+        // Get roles
         $adminRole = Role::where('name', 'admin')->first();
+        $companyRole = Role::where('name', 'company')->first();
+        $userRole = Role::where('name', 'user')->first();
+
+        // Create fixed admin account to ensure login works
         User::updateOrCreate(
             ['email' => 'admin@bkk.com'],
             [
                 'name' => 'Super Admin',
                 'password' => Hash::make('password'),
                 'role_id' => $adminRole->id,
+                'phone' => '081234567890',
+                'address' => 'Jl. Admin No.1',
+                'birth_date' => '1990-01-01',
+                'short_profile' => 'Default admin account',
             ]
         );
 
-        // Buat Company
-        $companyRole = Role::where('name', 'company')->first();
+        // Create fixed company account for login
         User::updateOrCreate(
             ['email' => 'company@bkk.com'],
             [
-                'name' => 'PT Contoh Company',
+                'name' => 'Contoh Company',
                 'password' => Hash::make('password'),
                 'role_id' => $companyRole->id,
+                'company_name' => 'PT Contoh Company',
+                'phone' => '081234567891',
+                'address' => 'Jl. Company No.1',
+                'birth_date' => '1985-01-01',
+                'short_profile' => 'Default company account',
             ]
         );
 
-        // Buat User / Pelamar
-        $userRole = Role::where('name', 'user')->first();
+        // Create fixed user/pelamar account for login
         User::updateOrCreate(
             ['email' => 'user@bkk.com'],
             [
                 'name' => 'Pelamar Contoh',
                 'password' => Hash::make('password'),
                 'role_id' => $userRole->id,
+                'phone' => '081234567892',
+                'address' => 'Jl. User No.1',
+                'birth_date' => '1995-01-01',
+                'short_profile' => 'Default user account',
+                'cv_path' => 'cv_user1.pdf',
             ]
         );
+
+        // Create Admins (3 unique admins)
+        for ($i = 1; $i <= 3; $i++) {
+            User::updateOrCreate(
+                ['email' => "admin{$i}@bkk.com"],
+                [
+                    'name' => $faker->name,
+                    'password' => Hash::make('password'),
+                    'role_id' => $adminRole->id,
+                    'phone' => $faker->phoneNumber,
+                    'address' => $faker->address,
+                    'birth_date' => $faker->date('Y-m-d', '-25 years'),
+                    'short_profile' => $faker->sentence,
+                ]
+            );
+        }
+
+        // Create Companies (5 unique companies)
+        for ($i = 1; $i <= 5; $i++) {
+            User::updateOrCreate(
+                ['email' => "company{$i}@bkk.com"],
+                [
+                    'name' => $faker->name,
+                    'password' => Hash::make('password'),
+                    'role_id' => $companyRole->id,
+                    'company_name' => 'PT ' . $faker->company,
+                    'phone' => $faker->phoneNumber,
+                    'address' => $faker->address,
+                    'birth_date' => $faker->date('Y-m-d', '-30 years'),
+                    'short_profile' => $faker->sentence,
+                ]
+            );
+        }
+
+        // Create Users / Pelamar (10 unique users)
+        for ($i = 1; $i <= 10; $i++) {
+            User::updateOrCreate(
+                ['email' => "user{$i}@bkk.com"],
+                [
+                    'name' => $faker->name,
+                    'password' => Hash::make('password'),
+                    'role_id' => $userRole->id,
+                    'phone' => $faker->phoneNumber,
+                    'address' => $faker->address,
+                    'nisn' => $faker->numerify('##########'),
+                    'birth_date' => $faker->date('Y-m-d', '-20 years'),
+                    'short_profile' => $faker->sentence,
+                    'cv_path' => "cv_user{$i}.pdf",
+                ]
+            );
+        }
     }
 }
