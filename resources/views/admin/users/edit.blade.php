@@ -98,9 +98,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save"></i> Update User
                             </button>
-                            <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Back to Users
-                            </a>
+                            @include('components.back-button')
                         </div>
                     </form>
                 </div>

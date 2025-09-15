@@ -7,9 +7,7 @@
     <div class="max-w-2xl mx-auto">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Edit Lowongan Kerja</h1>
-            <a href="{{ url()->previous() }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
+            @include('components.back-button')
         </div>
 
         @if ($errors->any())
@@ -223,13 +221,6 @@
                     <button type="submit" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
                         Simpan Perubahan
                     </button>
-                </div>
-
-                <!-- Button Kembali di bawah -->
-                <div class="text-center mt-6">
-                    <a href="{{ url()->previous() }}" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-                        Kembali
-                    </a>
                 </div>
             </form>
         </div>

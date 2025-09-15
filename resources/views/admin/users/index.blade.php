@@ -6,16 +6,14 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0">Kelola Pengguna</h1>
-        <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Tambah Pengguna
-        </a>
     </div>
+    @include('components.back-button')
 
     <form method="GET" action="{{ route('admin.users.index') }}" class="row g-3 mb-4">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <input type="text" name="search" class="form-control" placeholder="Cari nama atau email" value="{{ request('search') }}">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <select name="role" class="form-select">
                 <option value="">Semua Role</option>
                 <option value="company" {{ request('role') == 'company' ? 'selected' : '' }}>Company</option>
@@ -23,15 +21,6 @@
             </select>
         </div>
         <div class="col-md-3">
-            <select name="kategori" class="form-select">
-                <option value="">Semua Kategori</option>
-                <option value="company_with_jobs" {{ request('kategori') == 'company_with_jobs' ? 'selected' : '' }}>Company - Sudah Buat Lowongan</option>
-                <option value="company_without_jobs" {{ request('kategori') == 'company_without_jobs' ? 'selected' : '' }}>Company - Belum Buat Lowongan</option>
-                <option value="user_with_applications" {{ request('kategori') == 'user_with_applications' ? 'selected' : '' }}>User - Sudah Melamar</option>
-                <option value="user_without_applications" {{ request('kategori') == 'user_without_applications' ? 'selected' : '' }}>User - Belum Melamar</option>
-            </select>
-        </div>
-        <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">Filter</button>
         </div>
     </form>

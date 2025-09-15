@@ -147,11 +147,16 @@ class AdminDashboardController extends Controller
      */
     public function users(Request $request)
     {
-        $query = User::whereHas('role', function ($q) {
+        $query = User::withTrashed()
+            ->whereHas('role', function ($q) {
                 $q->where('name', '!=', 'admin');
             })
             ->with('role')
-            ->withCount(['jobPosts', 'applications']);
+            ->withCount(['applications'])
+            ->withCount(['jobPosts' => function ($q) {
+                // Include job posts regardless of company is_verified status
+                $q->withoutGlobalScopes();
+            }]);
 
         // Search by name or email
         if ($request->has('search') && !empty($request->search)) {
@@ -169,27 +174,7 @@ class AdminDashboardController extends Controller
             });
         }
 
-        // Filter by kategori
-        if ($request->has('kategori') && !empty($request->kategori)) {
-            $kategori = $request->kategori;
-            if ($kategori === 'company_with_jobs') {
-                $query->whereHas('role', function ($q) {
-                    $q->where('name', 'company');
-                })->having('job_posts_count', '>', 0);
-            } elseif ($kategori === 'company_without_jobs') {
-                $query->whereHas('role', function ($q) {
-                    $q->where('name', 'company');
-                })->having('job_posts_count', '=', 0);
-            } elseif ($kategori === 'user_with_applications') {
-                $query->whereHas('role', function ($q) {
-                    $q->where('name', 'user');
-                })->having('applications_count', '>', 0);
-            } elseif ($kategori === 'user_without_applications') {
-                $query->whereHas('role', function ($q) {
-                    $q->where('name', 'user');
-                })->having('applications_count', '=', 0);
-            }
-        }
+
 
         $users = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->query());
         return view('admin.users.index', compact('users'));
@@ -198,21 +183,25 @@ class AdminDashboardController extends Controller
     /**
      * Form create user
      */
-    public function createUser()
-    {
-        return view('admin.users.create');
-    }
+    // public function createUser()
+    // {
+    //     return view('admin.users.create');
+    // }
 
     /**
      * Tampilkan detail user
      */
-    public function showUser(User $user)
+    public function showUser($user)
     {
-        // Load relationships based on role
+        $user = User::withTrashed()->findOrFail($user);
+
+        // For company role, load jobPosts including soft deleted companies
         if ($user->role->name === 'company') {
             $user->load(['jobPosts' => function($query) {
-                $query->latest()->take(5);
+                $query->withoutGlobalScopes()->latest()->take(5);
             }]);
+            // Also load company relation
+            $user->load('company');
         } elseif ($user->role->name === 'user') {
             $user->load(['applications' => function($query) {
                 $query->with('jobPost.company')->latest()->take(10);
@@ -225,38 +214,41 @@ class AdminDashboardController extends Controller
     /**
      * Simpan user baru
      */
-    public function storeUser(Request $request)
-    {
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role'     => 'required|string|in:admin,company,user',
-        ]);
+    // public function storeUser(Request $request)
+    // {
+    //     $request->validate([
+    //         'name'     => 'required|string|max:255',
+    //         'email'    => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:8|confirmed',
+    //         'role'     => 'required|string|in:admin,company,user',
+    //     ]);
 
-        User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => bcrypt($request->password),
-            'role'     => $request->role,
-        ]);
+    //     User::create([
+    //         'name'     => $request->name,
+    //         'email'    => $request->email,
+    //         'password' => bcrypt($request->password),
+    //         'role'     => $request->role,
+    //     ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan.');
-    }
+    //     return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan.');
+    // }
 
     /**
      * Form edit user
      */
-    public function editUser(User $user)
+    public function editUser($user_id)
     {
+        $user = User::withTrashed()->findOrFail($user_id);
         return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update data user
      */
-    public function updateUser(Request $request, User $user)
+    public function updateUser(Request $request, $user_id)
     {
+        $user = User::withTrashed()->findOrFail($user_id);
+
         $request->validate([
             'name'      => 'required|string|max:255',
             'email'     => 'required|string|email|max:255|unique:users,email,' . $user->id,

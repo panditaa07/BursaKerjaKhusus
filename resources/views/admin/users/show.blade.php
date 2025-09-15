@@ -5,8 +5,7 @@
 @section('content')
 <div class="container">
     <h1>Detail Pengguna</h1>
-
-    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary mb-3">Kembali ke Daftar Pengguna</a>
+    @include('components.back-button')
 
     <div class="card mb-4">
         <div class="card-header">

@@ -136,16 +136,29 @@ class AdminApplicationController extends Controller
         return redirect()->route('admin.applications.show', $application->id)->with('success', 'Pelamar berhasil diupdate.');
     }
 
-    public function destroy(Request $request, Application $application)
+    public function destroy(Request $request, $id)
     {
-        $application->delete();
+        try {
+            $application = Application::findOrFail($id);
+            $application->delete();
 
-        // Redirect based on origin page
-        $redirectTo = $request->input('_redirect_to');
-        if ($redirectTo && str_contains($redirectTo, 'pelamar/bulanini')) {
-            return redirect()->route('admin.dashboard.pelamar.bulanini')->with('success', 'Pelamar berhasil dihapus.');
-        } else {
-            return redirect()->route('admin.dashboard.pelamar')->with('success', 'Pelamar berhasil dihapus.');
+            if ($request->ajax()) {
+                return response()->json(['success' => true]);
+            }
+
+            // Redirect based on origin page
+            $redirectTo = $request->input('_redirect_to');
+            if ($redirectTo && str_contains($redirectTo, 'pelamar/bulanini')) {
+                return redirect()->route('admin.dashboard.pelamar.bulanini')->with('success', 'Pelamar berhasil dihapus.')->setStatusCode(303);
+            } else {
+                return redirect()->route('admin.dashboard.pelamar')->with('success', 'Pelamar berhasil dihapus.')->setStatusCode(303);
+            }
+        } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return response()->json(['success' => false], 500);
+            }
+
+            return back()->with('error', 'Data pelamar gagal dihapus.');
         }
     }
 }

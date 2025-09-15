@@ -13,11 +13,9 @@
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Detail Lowongan Kerja</h1>
             <div class="space-x-4">
+                @include('components.back-button')
                 <a href="{{ route('admin.job-posts.edit', $jobPost) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Edit Lowongan
-                </a>
-                <a href="{{ url()->previous() }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                    Kembali
                 </a>
             </div>
         </div>
@@ -205,13 +203,6 @@
                 @endif
             </div>
 
-        </div>
-
-        <!-- Tombol Kembali di bawah -->
-        <div class="text-center mt-6">
-            <a href="{{ url()->previous() }}" class="bg-gray-500 hover:bg-gray-700 text-black font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
         </div>
     </div>
 </div>

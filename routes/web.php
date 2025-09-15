@@ -48,8 +48,8 @@ Route::middleware(['auth'])->group(function () {
         // User Management
         Route::get('/users', [AdminDashboardController::class, 'users'])->name('users.index');
         Route::get('/users/{user}', [AdminDashboardController::class, 'showUser'])->name('users.show');
-        Route::get('/users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
-        Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
+        // Route::get('/users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
+        // Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
         Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('users.edit');
         Route::put('/users/{user}', [AdminDashboardController::class, 'updateUser'])->name('users.update');
         Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('users.destroy');
@@ -71,7 +71,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'show'])->name('applications.show');
         Route::get('applications/{application}/edit', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'edit'])->name('applications.edit');
         Route::patch('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'update'])->name('applications.update');
-        Route::delete('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'destroy'])->name('applications.destroy');
+        Route::delete('applications/{id}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'destroy'])->name('applications.destroy');
     });
 
     // ===== Company Routes =====

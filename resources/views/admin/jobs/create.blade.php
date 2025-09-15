@@ -7,9 +7,7 @@
     <div class="max-w-2xl mx-auto">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Tambah Lowongan Kerja</h1>
-            <a href="{{ route('admin.job-posts.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
+            @include('components.back-button')
         </div>
 
         <div class="bg-white rounded-lg shadow-md p-6">

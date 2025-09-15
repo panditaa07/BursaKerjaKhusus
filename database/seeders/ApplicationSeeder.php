@@ -12,17 +12,16 @@ class ApplicationSeeder extends Seeder
 {
     public function run(): void
     {
-        // Ambil hanya 5 user pertama dengan role 'user' (users with applications)
-        $users = User::whereHas('role', fn($q) => $q->where('name', 'user'))
+        // Ambil semua user dengan role 'user'
+        $allUsers = User::whereHas('role', fn($q) => $q->where('name', 'user'))
             ->orderBy('id')
-            ->limit(5)
             ->pluck('id')
             ->toArray();
 
         // Ambil semua job post
         $jobPosts = JobPost::pluck('id')->toArray();
 
-        if (empty($users) || empty($jobPosts)) {
+        if (empty($allUsers) || empty($jobPosts)) {
             $this->command->warn('Seeder Application dilewati: tidak ada user/job post.');
             return;
         }
@@ -33,12 +32,15 @@ class ApplicationSeeder extends Seeder
         $applications = [];
         $usedCombinations = [];
 
+        // Create applications for a subset of users (e.g., first 5 users)
+        $usersWithApplications = array_slice($allUsers, 0, 5);
+
         // Create applications for each user-job combination (up to 15 total)
-        $maxApplications = min(15, count($users) * count($jobPosts));
+        $maxApplications = min(15, count($usersWithApplications) * count($jobPosts));
 
         for ($i = 0; $i < $maxApplications; $i++) {
             do {
-                $userId = $users[array_rand($users)];
+                $userId = $usersWithApplications[array_rand($usersWithApplications)];
                 $jobPostId = $jobPosts[array_rand($jobPosts)];
                 $combination = $userId . '-' . $jobPostId;
             } while (in_array($combination, $usedCombinations));

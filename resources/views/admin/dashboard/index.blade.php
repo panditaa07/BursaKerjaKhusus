@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
     {{-- === Statistics Cards === --}}
     <div class="row">
 
@@ -166,3 +167,44 @@
     });
 </script>
 @endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle delete button clicks with AJAX
+        const deleteForms = document.querySelectorAll('form.delete-application-form');
+
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                if (!confirm('Are you sure you want to delete this application?')) {
+                    return;
+                }
+
+                const url = form.action;
+                const token = form.querySelector('input[name="_token"]').value;
+
+                fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': token,
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove the row from the table
+                        const row = form.closest('tr');
+                        row.parentNode.removeChild(row);
+                    }
+                })
+                .catch(() => {
+                    // Do nothing on failure
+                });
+            });
+        });
+    });
+</script>

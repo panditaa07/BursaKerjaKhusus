@@ -31,31 +31,16 @@ class JobPostSeeder extends Seeder
             ['description' => 'Industri logistik dan distribusi.']
         );
 
-        // Ambil semua user dengan role company
-        $companyUsers = User::whereHas('role', fn($q) => $q->where('name', 'company'))->get();
+        // Ambil semua companies yang terkait dengan user role company
+        $companies = Company::whereHas('user', function ($q) {
+            $q->whereHas('role', function ($r) {
+                $r->where('name', 'company');
+            });
+        })->get();
 
-        if ($companyUsers->isEmpty()) {
-            $this->command->warn('Tidak ada user dengan role company. Seeder JobPost dilewati.');
+        if ($companies->isEmpty()) {
+            $this->command->warn('Tidak ada company terkait user role company. Seeder JobPost dilewati.');
             return;
-        }
-
-        // Create companies for each company user if not exists
-        $companies = [];
-        foreach ($companyUsers as $index => $user) {
-            $companyName = 'PT ' . $faker->unique()->company . ' ' . ($index + 1);
-            $company = Company::firstOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'name' => $companyName,
-                    'description' => $faker->sentence,
-                    'address' => $faker->address,
-                    'phone' => $faker->phoneNumber,
-                    'email' => $faker->unique()->companyEmail,
-                    'logo' => 'company_logos/logo_' . ($index + 1) . '.png',
-                    'is_verified' => true,
-                ]
-            );
-            $companies[] = $company;
         }
 
         // Create unique job titles
@@ -84,14 +69,12 @@ class JobPostSeeder extends Seeder
 
         $statuses = ['active', 'inactive'];
 
-        // Create job posts for first 3 companies only (companies with job posts)
-        $companiesWithPosts = array_slice($companies, 0, 3);
-
+        // Create job posts for all companies
         $totalPosts = 0;
-        foreach ($companiesWithPosts as $companyIndex => $company) {
+        foreach ($companies as $company) {
             $industry = $faker->randomElement([$industry1, $industry2, $industry3]);
             $numPosts = rand(2, 4); // Each company gets 2-4 job posts
-            for ($i = 0; $i < $numPosts && $totalPosts < 15; $i++) {
+            for ($i = 0; $i < $numPosts; $i++) {
                 $title = $faker->unique()->randomElement($jobTitles);
                 // Check if job post with same title and company already exists
                 $existingJob = JobPost::where('title', $title)->where('company_id', $company->id)->first();

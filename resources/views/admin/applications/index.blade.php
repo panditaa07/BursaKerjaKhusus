@@ -4,6 +4,7 @@
 @section('content')
 <div class="container-fluid">
     <h1 class="h3 mb-4">Daftar Pelamar</h1>
+    @include('components.back-button')
 
     <form method="GET" action="{{ route('admin.applications.all') }}" class="mb-3">
         <div class="input-group">

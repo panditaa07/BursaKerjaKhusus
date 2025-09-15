@@ -9,6 +9,7 @@
             <a href="{{ route('admin.job-posts.create') }}" class="btn btn-primary">Tambah Lowongan</a>
         </div>
     </div>
+    @include('components.back-button')
 
     <!-- Search Bar -->
     <div class="mb-4">
