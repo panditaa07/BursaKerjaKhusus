@@ -35,7 +35,7 @@
                     @forelse($lowongan as $index => $l)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
-                            <td>{{ $l->company->name ?? 'N/A' }}</td>
+                            <td>{{ $l->company?->name ?? 'N/A' }}</td>
                             <td>{{ 'N/A' }}</td>
                             <td>{{ $l->location ?? 'N/A' }}</td>
                             <td class="text-center">

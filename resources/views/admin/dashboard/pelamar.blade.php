@@ -37,7 +37,7 @@
                 <td>{{ $p->user->name }}</td>
                 <td>{{ $p->user->email }}</td>
                 <td>{{ $p->user->phone ?? '-' }}</td>
-                <td>{{ $p->jobPost->company->name }}</td>
+                <td>{{ $p->jobPost->company?->name ?? '-' }}</td>
                 <td class="text-center">
                     @if($p->status == 'accepted')
                         <span class="badge bg-success">Terima</span>

@@ -65,7 +65,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> Create User
                             </button>
-                            <a href="{{ route('admin.users') }}" class="btn btn-secondary">
+                            <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Back to Users
                             </a>
                         </div>

@@ -93,7 +93,7 @@
     <h1>{{ $job->title }}</h1>
     <p>{{ $job->description }}</p>
     @if($job->company)
-        <small>Perusahaan: {{ $job->company->name }}</small>
+        <small>Perusahaan: {{ $job->company?->name ?? 'N/A' }}</small>
     @endif
 
     @auth

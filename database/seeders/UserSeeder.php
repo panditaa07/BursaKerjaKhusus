@@ -63,31 +63,14 @@ class UserSeeder extends Seeder
             ]
         );
 
-        // Create Admins (3 unique admins)
+        // Create Admins (3 unique admins) - Note: Admin role users are excluded from admin user management
         for ($i = 1; $i <= 3; $i++) {
             User::updateOrCreate(
                 ['email' => "admin{$i}@bkk.com"],
                 [
-                    'name' => $faker->name,
+                    'name' => $faker->unique()->name,
                     'password' => Hash::make('password'),
                     'role_id' => $adminRole->id,
-                    'phone' => $faker->phoneNumber,
-                    'address' => $faker->address,
-                    'birth_date' => $faker->date('Y-m-d', '-25 years'),
-                    'short_profile' => $faker->sentence,
-                ]
-            );
-        }
-
-        // Create Companies (5 unique companies)
-        for ($i = 1; $i <= 5; $i++) {
-            User::updateOrCreate(
-                ['email' => "company{$i}@bkk.com"],
-                [
-                    'name' => $faker->name,
-                    'password' => Hash::make('password'),
-                    'role_id' => $companyRole->id,
-                    'company_name' => 'PT ' . $faker->company,
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
                     'birth_date' => $faker->date('Y-m-d', '-30 years'),
@@ -96,17 +79,69 @@ class UserSeeder extends Seeder
             );
         }
 
-        // Create Users / Pelamar (10 unique users)
-        for ($i = 1; $i <= 10; $i++) {
+        // Companies with job posts (3 companies)
+        for ($i = 1; $i <= 3; $i++) {
+            User::updateOrCreate(
+                ['email' => "company{$i}@bkk.com"],
+                [
+                    'name' => $faker->unique()->name,
+                    'password' => Hash::make('password'),
+                    'role_id' => $companyRole->id,
+                    'company_name' => 'PT ' . $faker->unique()->company,
+                    'phone' => $faker->phoneNumber,
+                    'address' => $faker->address,
+                    'birth_date' => $faker->date('Y-m-d', '-30 years'),
+                    'short_profile' => $faker->sentence,
+                ]
+            );
+        }
+
+        // Companies without job posts (2 companies)
+        for ($i = 4; $i <= 5; $i++) {
+            User::updateOrCreate(
+                ['email' => "company{$i}@bkk.com"],
+                [
+                    'name' => $faker->unique()->name,
+                    'password' => Hash::make('password'),
+                    'role_id' => $companyRole->id,
+                    'company_name' => 'PT ' . $faker->unique()->company,
+                    'phone' => $faker->phoneNumber,
+                    'address' => $faker->address,
+                    'birth_date' => $faker->date('Y-m-d', '-30 years'),
+                    'short_profile' => $faker->sentence,
+                ]
+            );
+        }
+
+        // Users with applications (5 users)
+        for ($i = 1; $i <= 5; $i++) {
             User::updateOrCreate(
                 ['email' => "user{$i}@bkk.com"],
                 [
-                    'name' => $faker->name,
+                    'name' => $faker->unique()->name,
                     'password' => Hash::make('password'),
                     'role_id' => $userRole->id,
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
-                    'nisn' => $faker->numerify('##########'),
+                    'nisn' => $faker->unique()->numerify('##########'),
+                    'birth_date' => $faker->date('Y-m-d', '-20 years'),
+                    'short_profile' => $faker->sentence,
+                    'cv_path' => "cv_user{$i}.pdf",
+                ]
+            );
+        }
+
+        // Users without applications (5 users)
+        for ($i = 6; $i <= 10; $i++) {
+            User::updateOrCreate(
+                ['email' => "user{$i}@bkk.com"],
+                [
+                    'name' => $faker->unique()->name,
+                    'password' => Hash::make('password'),
+                    'role_id' => $userRole->id,
+                    'phone' => $faker->phoneNumber,
+                    'address' => $faker->address,
+                    'nisn' => $faker->unique()->numerify('##########'),
                     'birth_date' => $faker->date('Y-m-d', '-20 years'),
                     'short_profile' => $faker->sentence,
                     'cv_path' => "cv_user{$i}.pdf",

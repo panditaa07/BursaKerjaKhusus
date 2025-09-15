@@ -1,63 +1,83 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Edit Biodata - BKK OPAT')
+@section('title', 'Edit Profil Saya')
 
 @section('content')
-<div class="bg-light min-vh-100 py-4">
-    <div class="container-fluid px-4">
-        <div class="card shadow-sm border-0 rounded-lg">
-            <div class="card-header bg-white border-0">
-                <h4 class="card-title mb-0 text-primary">
-                    <i class="fas fa-user-edit"></i>
-                    Edit Biodata
-                </h4>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="{{ route('profile.update') }}">
-                    @csrf
-                    @method('PUT')
+<div class="container">
+    <h1>Edit Profil Saya</h1>
 
-                    <div class="mb-3">
-                        <label for="name" class="form-label fw-bold">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $user->name) }}" required>
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+    <div class="card">
+        <div class="card-header">
+            <h3>Informasi Profil</h3>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', Auth::user()->email) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">No. HP</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', Auth::user()->phone) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Alamat</label>
+                            <textarea class="form-control" id="address" name="address" rows="3">{{ old('address', Auth::user()->address) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nisn" class="form-label">NIK/NISN</label>
+                            <input type="text" class="form-control" id="nisn" name="nisn" value="{{ old('nisn', Auth::user()->nisn) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="birth_date" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ old('birth_date', Auth::user()->birth_date) }}">
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-bold">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $user->email) }}" required>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="short_profile" class="form-label">Profil Singkat</label>
+                            <textarea class="form-control" id="short_profile" name="short_profile" rows="5">{{ old('short_profile', Auth::user()->short_profile) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profile_photo" class="form-label">Foto Profil</label>
+                            <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/png, image/jpeg">
+                            @if(Auth::user()->profile_photo_path)
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Foto Profil" style="max-width: 100px;">
+                                    <p class="text-muted">Foto saat ini</p>
+                                </div>
+                            @endif
+                        </div>
+                <div class="mb-3">
+                    <label for="cv" class="form-label">CV (PDF/DOCX max 2MB)</label>
+                    <input type="file" class="form-control" id="cv" name="cv" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                    @if(Auth::user()->cv_path)
+                        <p><a href="{{ asset('storage/' . Auth::user()->cv_path) }}" target="_blank">Lihat CV saat ini</a></p>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="cover_letter" class="form-label">Surat Lamaran (PDF max 2MB)</label>
+                    <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept="application/pdf">
+                </div>
                     </div>
+                </div>
 
-                    <div class="mb-3">
-                        <label for="phone" class="form-label fw-bold">Telepon</label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone', $user->phone) }}">
-                        @error('phone')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="address" class="form-label fw-bold">Alamat</label>
-                        <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3">{{ old('address', $user->address) }}</textarea>
-                        @error('address')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 fw-bold">
-                        Simpan Perubahan
-                    </button>
-                    <a href="{{ route('profile.index') }}" class="btn btn-secondary rounded-pill px-4 py-2 fw-bold ms-2">
-                        Batal
-                    </a>
-                </form>
-            </div>
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('profile.show') }}" class="btn btn-secondary">Batal</a>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 @endsection
+</create_file>

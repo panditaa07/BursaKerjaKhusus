@@ -12,8 +12,10 @@ class ApplicationSeeder extends Seeder
 {
     public function run(): void
     {
-        // Ambil semua user dengan role 'user' lewat relasi role
+        // Ambil hanya 5 user pertama dengan role 'user' (users with applications)
         $users = User::whereHas('role', fn($q) => $q->where('name', 'user'))
+            ->orderBy('id')
+            ->limit(5)
             ->pluck('id')
             ->toArray();
 
@@ -31,8 +33,8 @@ class ApplicationSeeder extends Seeder
         $applications = [];
         $usedCombinations = [];
 
-        // Batas maksimal seed
-        $maxApplications = min(10, count($users) * count($jobPosts));
+        // Create applications for each user-job combination (up to 15 total)
+        $maxApplications = min(15, count($users) * count($jobPosts));
 
         for ($i = 0; $i < $maxApplications; $i++) {
             do {

@@ -12,8 +12,8 @@ class AdminApplicationController extends Controller
 {
     public function index(Request $request)
     {
-        // Deprecated: Remove this method or redirect to all()
-        return redirect()->route('admin.applications.all');
+        // Deprecated: Redirect to main pelamar page
+        return redirect()->route('admin.dashboard.pelamar');
     }
 
     // Removed duplicate all() and month() methods to fix redeclaration error
@@ -136,9 +136,16 @@ class AdminApplicationController extends Controller
         return redirect()->route('admin.applications.show', $application->id)->with('success', 'Pelamar berhasil diupdate.');
     }
 
-    public function destroy(Application $application)
+    public function destroy(Request $request, Application $application)
     {
         $application->delete();
-        return redirect()->route('admin.applications.all')->with('success', 'Application deleted successfully.');
+
+        // Redirect based on origin page
+        $redirectTo = $request->input('_redirect_to');
+        if ($redirectTo && str_contains($redirectTo, 'pelamar/bulanini')) {
+            return redirect()->route('admin.dashboard.pelamar.bulanini')->with('success', 'Pelamar berhasil dihapus.');
+        } else {
+            return redirect()->route('admin.dashboard.pelamar')->with('success', 'Pelamar berhasil dihapus.');
+        }
     }
 }

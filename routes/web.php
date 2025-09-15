@@ -3,13 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyDashboardController;
-# Removed unused BeritaController import to fix errors
-use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\LamaranController;
@@ -18,7 +14,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\AdminJobPostController;
 use App\Http\Controllers\NotifikasiUser;
-use App\Http\Controllers\AdminPelam;
 use Illuminate\Support\Facades\Auth;
 
 // ================== PUBLIC ROUTES ==================
@@ -52,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
         // User Management
         Route::get('/users', [AdminDashboardController::class, 'users'])->name('users.index');
+        Route::get('/users/{user}', [AdminDashboardController::class, 'showUser'])->name('users.show');
         Route::get('/users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
         Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
         Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('users.edit');
@@ -70,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Applications Management
-        Route::get('applications/all', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'all'])->name('applications.all');
+        // Removed applications/all route as it's duplicate of /admin/dashboard/pelamar
         Route::get('applications/month', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'month'])->name('applications.month');
         Route::get('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'show'])->name('applications.show');
         Route::get('applications/{application}/edit', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'edit'])->name('applications.edit');

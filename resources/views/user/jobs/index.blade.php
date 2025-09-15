@@ -84,7 +84,7 @@
             <div class="job-card">
                 <h3>{{ $job->title }}</h3>
                 <p>{{ Str::limit($job->description, 100) }}</p>
-                <small>Perusahaan: {{ $job->company->name }}</small>
+                <small>Perusahaan: {{ $job->company?->name ?? 'N/A' }}</small>
                 <a href="{{ route('jobs.show', $job->id) }}">Lihat Detail</a>
             </div>
         @endforeach
