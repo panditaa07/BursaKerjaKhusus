@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bursa Kerja Khusus</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <!-- Lottie Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
 </head>
-<body>
-    <!-- Header -->
+<body class="overflow-hidden">
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div id="lottie-logo"></div>
+        <p>Memuat halaman...</p>
+    </div>
+
     <header class="header">
         <nav class="nav">
              <div class="logo">
@@ -19,10 +28,10 @@
                 <a href="{{ route('register') }}" class="btn btn-register" id="registerBtn">Register</a>
             </div>
 
-
-            </div>
         </nav>
     </header>
+
+    <div id="main-content" style="opacity: 0; transform: translateY(50px); transition: opacity 1s ease-out, transform 1s ease-out;">
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -32,7 +41,7 @@
             <div class="floating-element"></div>
             <div class="floating-element"></div>
         </div>
-        <div class="hero-content">
+        <div class="hero-content" id="hero-content">
             <h1>Bursa Kerja Khusus</h1>
             <p>Bursa Kerja Khusus (BKK) SMKN 4 Bandung merupakan layanan resmi sekolah 
       yang berfungsi sebagai jembatan antara dunia pendidikan dan dunia kerja. 
@@ -127,6 +136,46 @@
   </div>
 </footer>
 
+</div>
+
          <script src="{{ asset('js/home.js') }}"></script>
+
+<!-- LOADING SCRIPT -->
+<script>
+  // Load Lottie Animation
+  lottie.loadAnimation({
+    container: document.getElementById('lottie-logo'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: "{{ asset('animations/bkk-loading.json') }}"  // ganti dengan lokasi file animasi logo kamu
+  });
+
+  function hideLoader() {
+    const loader = document.getElementById("loading-screen");
+    loader.classList.add("opacity-0");
+    setTimeout(() => {
+      loader.remove();
+      document.body.classList.remove("overflow-hidden");
+    }, 500);
+  }
+
+  // Minimal delay 5s
+  const minDelay = 5000;
+
+  window.addEventListener("load", function () {
+    setTimeout(hideLoader, minDelay);
+    // Add animation to main-content after loading screen hides
+    setTimeout(() => {
+      const mainContent = document.getElementById('main-content');
+      if (mainContent) {
+        mainContent.style.opacity = '1';
+        mainContent.style.transform = 'translateY(0)';
+      }
+   // Hapus overflow-hidden setelah animasi main-content selesai
+    document.body.classList.remove("overflow-hidden");
+   }, minDelay + 1500);
+  });
+</script>
 </body>
 </html>
