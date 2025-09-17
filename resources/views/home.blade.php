@@ -14,7 +14,6 @@
     <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div id="lottie-logo"></div>
-        <p>Memuat halaman...</p>
     </div>
 
     <header class="header">
@@ -160,8 +159,8 @@
     }, 500);
   }
 
-  // Minimal delay 5s
-  const minDelay = 5000;
+  // Minimal delay 3s
+  const minDelay = 3000;
 
   window.addEventListener("load", function () {
     setTimeout(hideLoader, minDelay);
@@ -174,7 +173,7 @@
       }
    // Hapus overflow-hidden setelah animasi main-content selesai
     document.body.classList.remove("overflow-hidden");
-   }, minDelay + 1500);
+   }, minDelay + 300);
   });
 </script>
 </body>
