@@ -27,30 +27,14 @@ function createParticles() {
 // Add click effects and loading states
 document.addEventListener('DOMContentLoaded', function() {
     createParticles();
-    
+
     const roleButtons = document.querySelectorAll('.role-btn');
-    
+
+    // Remove loading effect and directly redirect on click
     roleButtons.forEach(button => {
         button.addEventListener('click', function(e) {
-            // Add loading state
-            const roleTitle = this.querySelector('.role-title').textContent;
-            
-            // Create loading content
-            const loadingContent = `
-                ${this.querySelector('.role-icon').outerHTML}
-                <div class="role-title">${roleTitle}<span class="loading"></span></div>
-                <div class="role-description">Redirecting...</div>
-            `;
-            
-            this.innerHTML = loadingContent;
-            this.style.pointerEvents = 'none';
-            
-            // Add some delay for the loading effect
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 800);
-            
             e.preventDefault();
+            window.location.href = this.href;
         });
     });
 });

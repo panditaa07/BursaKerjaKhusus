@@ -361,6 +361,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
         });
+
+        // Add error handling for form submission failure (example with fetch)
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (submitBtn) {
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+            }
+
+            // Simulate form submission with fetch or AJAX
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle success, redirect or show message
+                window.location.href = data.redirect_url || '/';
+            })
+            .catch(error => {
+                // Remove loading state on error
+                if (submitBtn) {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                }
+                alert('Registration failed. Please try again.');
+                console.error('Registration error:', error);
+            });
+        });
     }
     
     // Auto-dismiss alerts
