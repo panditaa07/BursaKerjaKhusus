@@ -5,33 +5,141 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Company;
 
 class ProfileController extends Controller
 {
     public function show()
     {
         $user = Auth::user();
-        return view('user.profile.show', compact('user'));
+
+        if ($user->role === 'company') {
+            $user->load('company');
+            return view('company.profile.show', compact('user'));
+        } else {
+            return view('user.profile.show', compact('user'));
+        }
     }
 
     public function edit()
     {
         $user = Auth::user();
-        return view('user.profile.edit', compact('user'));
+
+        if ($user->role === 'company') {
+            $user->load('company');
+            return view('company.profile.edit', compact('user'));
+        } else {
+            return view('user.profile.edit', compact('user'));
+        }
     }
 
     public function update(Request $request)
     {
         $user = Auth::user();
-        
+
+        if ($user->role === 'company') {
+            return $this->updateCompanyProfile($request, $user);
+        } else {
+            return $this->updateUserProfile($request, $user);
+        }
+    }
+
+    private function updateCompanyProfile(Request $request, $user)
+    {
         $request->validate([
-            'name'    => 'required|string|max:255',
-            'email'   => 'required|email|max:255|unique:users,email,' . $user->id,
-            'phone'   => 'nullable|string|max:20',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
+            'nisn' => 'nullable|string|max:20',
+            'birth_date' => 'nullable|date',
+            'short_profile' => 'nullable|string|max:500',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
+            'company_name' => 'required|string|max:255',
+            'company_email' => 'nullable|email|max:255',
+            'company_phone' => 'nullable|string|max:20',
+            'company_address' => 'nullable|string|max:500',
+            'industry_id' => 'nullable|exists:industries,id',
+            'description' => 'nullable|string|max:1000',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $user->update($request->only(['name', 'email', 'phone', 'address']));
+        // Update user data
+        $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile']);
+
+        // Handle profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
+                Storage::disk('public')->delete($user->profile_photo_path);
+            }
+            $userData['profile_photo_path'] = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
+
+        // Handle CV upload
+        if ($request->hasFile('cv')) {
+            if ($user->cv_path && Storage::disk('public')->exists($user->cv_path)) {
+                Storage::disk('public')->delete($user->cv_path);
+            }
+            $userData['cv_path'] = $request->file('cv')->store('cv_files', 'public');
+        }
+
+        $user->update($userData);
+
+        // Update or create company data
+        $companyData = $request->only(['company_name', 'company_email', 'company_phone', 'company_address', 'industry_id', 'description']);
+
+        if ($request->hasFile('logo')) {
+            // Hapus logo lama jika ada
+            if ($user->company && $user->company->logo && Storage::disk('public')->exists($user->company->logo)) {
+                Storage::disk('public')->delete($user->company->logo);
+            }
+            $companyData['logo'] = $request->file('logo')->store('company_logos', 'public');
+        }
+
+        if ($user->company) {
+            $user->company->update($companyData);
+        } else {
+            $companyData['user_id'] = $user->id;
+            Company::create($companyData);
+        }
+
+        return redirect()->route('profile.show')->with('success', 'Profil perusahaan berhasil diperbarui!');
+    }
+
+    private function updateUserProfile(Request $request, $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:500',
+            'nisn' => 'nullable|string|max:20',
+            'birth_date' => 'nullable|date',
+            'short_profile' => 'nullable|string|max:500',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
+        ]);
+
+        $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile']);
+
+        // Handle profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
+                Storage::disk('public')->delete($user->profile_photo_path);
+            }
+            $userData['profile_photo_path'] = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
+
+        // Handle CV upload
+        if ($request->hasFile('cv')) {
+            if ($user->cv_path && Storage::disk('public')->exists($user->cv_path)) {
+                Storage::disk('public')->delete($user->cv_path);
+            }
+            $userData['cv_path'] = $request->file('cv')->store('cv_files', 'public');
+        }
+
+        $user->update($userData);
 
         return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui!');
     }
@@ -44,7 +152,7 @@ class ProfileController extends Controller
     public function uploadCv(Request $request)
     {
         $request->validate([
-            'cv' => 'required|file|mimes:pdf|max:2048',
+            'cv' => 'required|file|mimes:pdf,docx|max:2048',
         ]);
 
         $user = Auth::user();
@@ -56,7 +164,7 @@ class ProfileController extends Controller
 
         // Simpan file baru
         $path = $request->file('cv')->store('cv_files', 'public');
-        
+
         $user->update([
             'cv_path' => $path
         ]);

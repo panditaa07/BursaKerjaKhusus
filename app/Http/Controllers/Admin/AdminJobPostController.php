@@ -26,7 +26,8 @@ class AdminJobPostController extends Controller
         }
 
         $jobPosts = $query->paginate(10);
-        return view('admin.jobs.index', compact('jobPosts'));
+        $totalLoker = JobPost::count(); // Global count regardless of filters
+        return view('admin.jobs.index', compact('jobPosts', 'totalLoker'));
     }
 
     public function show(JobPost $jobPost)

@@ -1,10 +1,7 @@
-# TODO: Fix Dummy Data Duplication
+# TODO: Fix Dummy Data Consistency
 
 ## Tasks
-- [x] Update UserSeeder to generate multiple unique users per role with unique emails, names, phones, etc.
-- [x] Update CompanySeeder to create unique companies per company user with unique names, phones, addresses.
-- [x] Update JobPostSeeder to create multiple unique job posts with unique titles and companies.
-- [x] Ensure ApplicationSeeder maintains unique user-job post combinations.
-- [x] Add validation for unique email in user creation (e.g., in RegisterRequest or ProfileRequest).
-- [x] Test that edit/delete operations affect only one record.
-- [x] Run migrations and seeders to verify uniqueness.
+- [x] Modify JobPostSeeder.php: Remove duplicate company creation, generate job posts for all company users with active/inactive statuses.
+- [x] Modify ApplicationSeeder.php: Generate applications for a subset of user users to random job posts.
+- [x] Test seeders to ensure data consistency.
+- [x] Verify pages show consistent data: Kelola Pengguna (users except admin), Kelola Lowongan (all job posts), Daftar Pelamar (all applicants from applications).

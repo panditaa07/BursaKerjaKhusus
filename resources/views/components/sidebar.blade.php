@@ -20,6 +20,10 @@
                 <i class="icon bi bi-house-door"></i>
                 <span>Halaman Utama</span>
             </a></li>
+            <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link">
+                <i class="icon bi bi-people"></i>
+                <span>Kelola Pengguna</span>
+            </a></li>
             <li class="nav-item"><a href="{{ route('admin.job-posts.index') }}" class="nav-link">
                 <i class="icon bi bi-briefcase"></i>
                 <span>Kelola Lowongan Kerja</span>

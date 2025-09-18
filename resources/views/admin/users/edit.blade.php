@@ -36,13 +36,60 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="phone" class="form-label">No HP</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                   id="phone" name="phone" value="{{ old('phone', $user->phone) }}">
+                            @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Alamat</label>
+                            <textarea class="form-control @error('address') is-invalid @enderror"
+                                      id="address" name="address" rows="3">{{ old('address', $user->address) }}</textarea>
+                            @error('address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nisn" class="form-label">NIK/NISN</label>
+                            <input type="text" class="form-control @error('nisn') is-invalid @enderror"
+                                   id="nisn" name="nisn" value="{{ old('nisn', $user->nisn) }}">
+                            @error('nisn')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="birth_date" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control @error('birth_date') is-invalid @enderror"
+                                   id="birth_date" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}">
+                            @error('birth_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" required>
-                                <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
-                                <option value="company" {{ old('role', $user->role) == 'company' ? 'selected' : '' }}>Company</option>
-                                <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user" {{ old('role', $user->role->name) == 'user' ? 'selected' : '' }}>User</option>
+                                <option value="company" {{ old('role', $user->role->name) == 'company' ? 'selected' : '' }}>Company</option>
+                                <option value="admin" {{ old('role', $user->role->name) == 'admin' ? 'selected' : '' }}>Admin</option>
                             </select>
                             @error('role')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" required>
+                                <option value="active" {{ old('status', !$user->deleted_at ? 'active' : 'inactive') == 'active' ? 'selected' : '' }}>Aktif</option>
+                                <option value="inactive" {{ old('status', !$user->deleted_at ? 'active' : 'inactive') == 'inactive' ? 'selected' : '' }}>Nonaktif</option>
+                            </select>
+                            @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -51,9 +98,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save"></i> Update User
                             </button>
-                            <a href="{{ route('admin.users') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Back to Users
-                            </a>
+                            @include('components.back-button')
                         </div>
                     </form>
                 </div>

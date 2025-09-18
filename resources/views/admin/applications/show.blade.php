@@ -89,6 +89,6 @@
         </div>
     </div>
 
-    <a href="{{ url('/admin/dashboard/pelamar') }}" class="btn btn-secondary">Kembali ke Daftar Pelamar</a>
+    @include('components.back-button')
 </div>
 @endsection

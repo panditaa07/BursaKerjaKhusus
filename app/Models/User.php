@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\JobPost;
 
 
 /**
@@ -11,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -49,6 +51,14 @@ class User extends Authenticatable
     public function applications()
     {
         return $this->hasMany(Application::class);
+    }
+
+    /**
+     * Relasi ke job posts melalui company (untuk user dengan role company)
+     */
+    public function jobPosts()
+    {
+        return $this->hasManyThrough(JobPost::class, Company::class, 'id', 'company_id', 'company_id', 'id');
     }
 
     /**

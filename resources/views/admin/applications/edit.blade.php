@@ -4,6 +4,7 @@
 @section('content')
 <div class="container-fluid">
     <h1 class="h3 mb-4">Edit Pelamar</h1>
+    @include('components.back-button')
 
     <form action="{{ route('admin.applications.update', $application->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
