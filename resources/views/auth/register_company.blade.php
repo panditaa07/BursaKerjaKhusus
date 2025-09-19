@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/register-company.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -49,8 +50,8 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
-                <span class="password-toggle">
-                    <i class="bi bi-eye"></i>
+                <span class="password-toggle" title="Show password">
+                    <i class="fas fa-eye-slash"></i>
                 </span>
                 <div class="password-strength">
                     <div class="password-strength-bar" id="strengthBar"></div>
@@ -60,8 +61,8 @@
             <div class="form-group">
                 <label for="password_confirmation">Confirm Password</label>
                 <input type="password" id="password_confirmation" name="password_confirmation" required>
-                <span class="password-toggle">
-                    <i class="bi bi-eye"></i>
+                <span class="password-toggle" title="Show password">
+                    <i class="fas fa-eye-slash"></i>
                 </span>
             </div>
 

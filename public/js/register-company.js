@@ -1,287 +1,368 @@
 // Register Company JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    // Elements
-    const form = document.getElementById('registrationForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('password_confirmation');
-    const strengthBar = document.getElementById('strengthBar');
-    const passwordToggles = document.querySelectorAll('.password-toggle');
-    
-    // Password strength checker
-    function checkPasswordStrength(password) {
-        let strength = 0;
-        let strengthText = '';
-        
-        // Length check
-        if (password.length >= 8) strength++;
-        if (password.length >= 12) strength++;
-        
-        // Character variety checks
-        if (/[a-z]/.test(password)) strength++;
-        if (/[A-Z]/.test(password)) strength++;
-        if (/[0-9]/.test(password)) strength++;
-        if (/[^A-Za-z0-9]/.test(password)) strength++;
-        
-        // Determine strength level
-        if (strength < 3) {
-            strengthText = 'weak';
-        } else if (strength < 5) {
-            strengthText = 'medium';
-        } else {
-            strengthText = 'strong';
-        }
-        
-        return {
-            score: strength,
-            level: strengthText
-        };
-    }
-    
-    // Update password strength indicator
-    function updatePasswordStrength() {
-        const password = passwordInput.value;
-        
-        if (password.length === 0) {
-            strengthBar.className = 'password-strength-bar';
-            return;
-        }
-        
-        const strength = checkPasswordStrength(password);
-        strengthBar.className = `password-strength-bar ${strength.level}`;
-    }
-    
-    // Password toggle functionality
-    passwordToggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const passwordField = this.previousElementSibling;
-            const icon = this.querySelector('i');
-            
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                icon.classList.remove('bi-eye');
-                icon.classList.add('bi-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                icon.classList.remove('bi-eye-slash');
-                icon.classList.add('bi-eye');
-            }
-        });
+(function() {
+    'use strict';
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeForm();
     });
-    
-    // Real-time validation
-    function validateField(field, validationFunction) {
-        const formGroup = field.closest('.form-group');
-        
-        field.addEventListener('blur', function() {
-            const isValid = validationFunction(this.value);
-            
-            formGroup.classList.remove('error', 'success');
-            
-            if (this.value.length > 0) {
-                if (isValid) {
-                    formGroup.classList.add('success');
-                } else {
-                    formGroup.classList.add('error');
-                }
-            }
-        });
-        
-        field.addEventListener('input', function() {
-            if (formGroup.classList.contains('error')) {
-                const isValid = validationFunction(this.value);
-                if (isValid) {
-                    formGroup.classList.remove('error');
-                    formGroup.classList.add('success');
-                }
-            }
-        });
-    }
-    
-    // Validation functions
-    const validations = {
-        name: (value) => value.trim().length >= 2,
-        email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
-        company_name: (value) => value.trim().length >= 2,
-        password: (value) => {
-            const strength = checkPasswordStrength(value);
-            return strength.score >= 3;
-        },
-        password_confirmation: (value) => value === passwordInput.value && value.length > 0
-    };
-    
-    // Apply validation to fields
-    Object.keys(validations).forEach(fieldName => {
-        const field = document.getElementById(fieldName);
-        if (field) {
-            validateField(field, validations[fieldName]);
-        }
-    });
-    
-    // Password strength indicator
-    if (passwordInput) {
-        passwordInput.addEventListener('input', updatePasswordStrength);
-    }
-    
-    // Confirm password validation
-    if (confirmPasswordInput) {
-        confirmPasswordInput.addEventListener('input', function() {
-            const formGroup = this.closest('.form-group');
-            
-            formGroup.classList.remove('error', 'success');
-            
-            if (this.value.length > 0) {
-                if (this.value === passwordInput.value) {
-                    formGroup.classList.add('success');
-                } else {
-                    formGroup.classList.add('error');
-                }
-            }
-        });
-    }
-    
-    // Form submission with loading state
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            // Show loading state
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            // Validate all fields before submission
-            let isFormValid = true;
-            const requiredFields = ['name', 'email', 'company_name', 'password', 'password_confirmation'];
-            
-            requiredFields.forEach(fieldName => {
-                const field = document.getElementById(fieldName);
-                const formGroup = field?.closest('.form-group');
+
+    function initializeForm() {
+        const form = document.getElementById('registrationForm');
+        const inputs = form.querySelectorAll('input');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Add animation to form elements
+        addFormAnimations();
+
+        // Password toggle functionality
+        initializePasswordToggle();
+
+        // Password strength indicator
+        initializePasswordStrength();
+
+        // Real-time validation
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                validateField(this);
                 
-                if (field && validations[fieldName]) {
-                    const isValid = validations[fieldName](field.value);
-                    
-                    if (!isValid) {
-                        isFormValid = false;
-                        formGroup?.classList.add('error');
-                        formGroup?.classList.remove('success');
-                    }
+                // Update password strength if password field
+                if (this.id === 'password') {
+                    updatePasswordStrength(this.value);
                 }
             });
-            
-            // If form is not valid, prevent submission and remove loading state
-            if (!isFormValid) {
-                e.preventDefault();
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-                
-                // Scroll to first error
-                const firstError = document.querySelector('.form-group.error');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    const input = firstError.querySelector('input');
-                    if (input) input.focus();
-                }
-                
-                return false;
-            }
-            
-            // Form is valid, allow submission
-            // Loading state will be removed when page reloads or redirects
+
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+
+            input.addEventListener('focus', function() {
+                clearFieldError(this);
+            });
         });
-    }
-    
-    // Auto-dismiss alerts after 5 seconds
-    const alerts = document.querySelectorAll('.alert');
-    alerts.forEach(alert => {
-        setTimeout(() => {
-            alert.style.opacity = '0';
-            alert.style.transform = 'translateY(-10px)';
-            setTimeout(() => {
-                alert.remove();
-            }, 300);
-        }, 5000);
-    });
-    
-    // Smooth animations for form groups
-    const formGroups = document.querySelectorAll('.form-group');
-    formGroups.forEach((group, index) => {
-        group.style.opacity = '0';
-        group.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            group.style.transition = 'all 0.5s ease';
-            group.style.opacity = '1';
-            group.style.transform = 'translateY(0)';
-        }, 100 * index);
-    });
-    
-    // Prevent multiple form submissions
-    let isSubmitting = false;
-    
-    if (form) {
+
+        // Form submission
         form.addEventListener('submit', function(e) {
-            if (isSubmitting) {
-                e.preventDefault();
-                return false;
-            }
-            isSubmitting = true;
-        });
-    }
-    
-    // Enhanced accessibility
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        // Add ARIA labels for better accessibility
-        const label = input.closest('.form-group')?.querySelector('label');
-        if (label) {
-            input.setAttribute('aria-labelledby', label.id || `label-${input.id}`);
-            if (!label.id) {
-                label.id = `label-${input.id}`;
-            }
-        }
-        
-        // Add input event for better UX
-        input.addEventListener('input', function() {
-            this.setAttribute('aria-invalid', 'false');
-        });
-        
-        input.addEventListener('invalid', function() {
-            this.setAttribute('aria-invalid', 'true');
-        });
-    });
-    
-    // Keyboard navigation enhancement
-    document.addEventListener('keydown', function(e) {
-        // Enter key on input fields should move to next field or submit
-        if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
-            const inputs = Array.from(document.querySelectorAll('input:not([type="hidden"])'));
-            const currentIndex = inputs.indexOf(e.target);
+            e.preventDefault();
             
-            if (currentIndex < inputs.length - 1) {
-                e.preventDefault();
-                inputs[currentIndex + 1].focus();
-            } else if (e.target.type !== 'submit') {
-                e.preventDefault();
-                submitBtn.click();
+            if (validateForm()) {
+                showLoadingState(submitBtn);
+                // Submit form after short delay to show loading animation
+                setTimeout(() => {
+                    form.submit();
+                }, 500);
+            }
+        });
+
+        // Password confirmation validation
+        const password = document.getElementById('password');
+        const passwordConfirm = document.getElementById('password_confirmation');
+
+        if (password && passwordConfirm) {
+            passwordConfirm.addEventListener('input', function() {
+                validatePasswordConfirmation(password.value, this.value, this);
+            });
+        }
+    }
+
+    function addFormAnimations() {
+        const container = document.querySelector('.registration-container');
+        const formGroups = document.querySelectorAll('.form-group');
+        
+        // Add entrance animation to container
+        container.classList.add('fadeIn');
+        
+        // Stagger form group animations
+        formGroups.forEach((group, index) => {
+            setTimeout(() => {
+                group.classList.add('slideUp');
+            }, index * 100);
+        });
+    }
+
+    function initializePasswordToggle() {
+        const passwordToggles = document.querySelectorAll('.password-toggle');
+        
+        // If no existing toggles, create them
+        if (passwordToggles.length === 0) {
+            const passwordFields = document.querySelectorAll('input[type="password"]');
+            
+            passwordFields.forEach(field => {
+                // Wrap password field in container if not already wrapped
+                if (!field.parentElement.classList.contains('form-group')) {
+                    return; // Skip if not in proper form group structure
+                }
+
+                // Create toggle icon - mata tertutup untuk password tersembunyi
+                const toggleIcon = document.createElement('span');
+                toggleIcon.className = 'password-toggle';
+                toggleIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                toggleIcon.setAttribute('title', 'Show password');
+                
+                // Add click event
+                toggleIcon.addEventListener('click', function() {
+                    togglePasswordVisibility(field, this);
+                });
+                
+                // Insert toggle icon in the form group
+                field.parentElement.appendChild(toggleIcon);
+            });
+        } else {
+            // Use existing toggles
+            passwordToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const passwordInput = this.parentElement.querySelector('input[type="password"], input[type="text"]');
+                    togglePasswordVisibility(passwordInput, this);
+                });
+            });
+        }
+    }
+
+    function togglePasswordVisibility(passwordInput, toggleElement) {
+        const icon = toggleElement.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            // Password disembunyikan -> ubah jadi terlihat
+            passwordInput.type = 'text';
+            icon.className = 'fas fa-eye'; // mata terbuka = password terlihat
+            toggleElement.setAttribute('title', 'Hide password');
+        } else {
+            // Password terlihat -> ubah jadi tersembunyi
+            passwordInput.type = 'password';
+            icon.className = 'fas fa-eye-slash'; // mata tertutup = password tersembunyi
+            toggleElement.setAttribute('title', 'Show password');
+        }
+    }
+
+    function initializePasswordStrength() {
+        const passwordInput = document.getElementById('password');
+        if (passwordInput) {
+            passwordInput.addEventListener('input', function() {
+                updatePasswordStrength(this.value);
+            });
+        }
+    }
+
+    function updatePasswordStrength(password) {
+        const strengthBar = document.getElementById('strengthBar');
+        if (!strengthBar) return;
+
+        const strength = calculatePasswordStrength(password);
+        
+        // Remove existing classes
+        strengthBar.classList.remove('weak', 'medium', 'strong');
+        
+        if (strength.score === 0) {
+            strengthBar.style.width = '0%';
+        } else if (strength.score <= 2) {
+            strengthBar.classList.add('weak');
+        } else if (strength.score <= 3) {
+            strengthBar.classList.add('medium');
+        } else {
+            strengthBar.classList.add('strong');
+        }
+    }
+
+    function calculatePasswordStrength(password) {
+        let score = 0;
+        const checks = {
+            length: password.length >= 8,
+            lowercase: /[a-z]/.test(password),
+            uppercase: /[A-Z]/.test(password),
+            numbers: /\d/.test(password),
+            symbols: /[^A-Za-z0-9]/.test(password)
+        };
+
+        // Calculate score
+        Object.values(checks).forEach(check => {
+            if (check) score++;
+        });
+
+        return {
+            score: score,
+            checks: checks
+        };
+    }
+
+    function validateField(field) {
+        const value = field.value.trim();
+        const fieldName = field.getAttribute('name');
+        let isValid = true;
+        let errorMessage = '';
+
+        // Clear previous errors
+        clearFieldError(field);
+
+        // Required field validation
+        if (!value) {
+            errorMessage = `${getFieldLabel(fieldName)} is required`;
+            isValid = false;
+        } else {
+            // Specific field validations
+            switch (fieldName) {
+                case 'name':
+                    if (value.length < 2) {
+                        errorMessage = 'Name must be at least 2 characters';
+                        isValid = false;
+                    }
+                    break;
+                
+                case 'email':
+                    if (!isValidEmail(value)) {
+                        errorMessage = 'Please enter a valid email address';
+                        isValid = false;
+                    }
+                    break;
+                
+                case 'company_name':
+                    if (value.length < 2) {
+                        errorMessage = 'Company name must be at least 2 characters';
+                        isValid = false;
+                    }
+                    break;
+                
+                case 'password':
+                    const strength = calculatePasswordStrength(value);
+                    if (value.length < 8) {
+                        errorMessage = 'Password must be at least 8 characters';
+                        isValid = false;
+                    } else if (strength.score < 3) {
+                        errorMessage = 'Password should include uppercase, lowercase, numbers, and symbols';
+                        isValid = false;
+                    }
+                    break;
             }
         }
-    });
-    
-    // Focus management for better UX
-    const firstInput = document.querySelector('input[type="text"], input[type="email"]');
-    if (firstInput) {
-        // Focus first input after a short delay for better UX
-        setTimeout(() => {
-            firstInput.focus();
-        }, 500);
+
+        if (!isValid) {
+            showFieldError(field, errorMessage);
+        }
+
+        return isValid;
     }
-    
-    // Add visual feedback for form interaction
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.closest('.form-group')?.classList.add('focused');
-        });
+
+    function validatePasswordConfirmation(password, confirmation, field) {
+        clearFieldError(field);
         
-        input.addEventListener('blur', function() {
-            this.closest('.form-group')?.classList.remove('focused');
+        if (confirmation && password !== confirmation) {
+            showFieldError(field, 'Passwords do not match');
+            return false;
+        }
+        
+        return true;
+    }
+
+    function validateForm() {
+        const inputs = document.querySelectorAll('#registrationForm input[required]');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
         });
-    });
-});
+
+        // Additional password confirmation check
+        const password = document.getElementById('password');
+        const passwordConfirm = document.getElementById('password_confirmation');
+        
+        if (password && passwordConfirm) {
+            if (!validatePasswordConfirmation(password.value, passwordConfirm.value, passwordConfirm)) {
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    function showFieldError(field, message) {
+        field.classList.add('invalid');
+        
+        // Remove existing error message
+        const existingError = field.parentElement.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        // Create and show new error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        field.parentElement.appendChild(errorDiv);
+        
+        // Animate error message
+        setTimeout(() => {
+            errorDiv.classList.add('show');
+        }, 10);
+    }
+
+    function clearFieldError(field) {
+        field.classList.remove('invalid');
+        const errorMessage = field.parentElement.querySelector('.error-message');
+        if (errorMessage) {
+            errorMessage.classList.remove('show');
+            setTimeout(() => {
+                errorMessage.remove();
+            }, 300);
+        }
+    }
+
+    function showLoadingState(button) {
+        button.classList.add('loading');
+        button.disabled = true;
+        
+        const btnText = button.querySelector('.btn-text');
+        const spinner = button.querySelector('.loading-spinner');
+        
+        if (btnText) btnText.textContent = 'Creating Account...';
+        if (spinner) spinner.style.display = 'inline-block';
+    }
+
+    function hideLoadingState(button) {
+        button.classList.remove('loading');
+        button.disabled = false;
+        
+        const btnText = button.querySelector('.btn-text');
+        const spinner = button.querySelector('.loading-spinner');
+        
+        if (btnText) btnText.textContent = 'Create Account';
+        if (spinner) spinner.style.display = 'none';
+    }
+
+    function showSuccess() {
+        const container = document.querySelector('.registration-container');
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+        successDiv.innerHTML = '<i class="bi bi-check-circle"></i> Registration successful! Welcome to our platform!';
+        
+        container.insertBefore(successDiv, container.firstChild);
+        
+        setTimeout(() => {
+            successDiv.classList.add('show');
+        }, 10);
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function getFieldLabel(fieldName) {
+        const labels = {
+            'name': 'Full Name',
+            'email': 'Email Address',
+            'company_name': 'Company Name',
+            'password': 'Password',
+            'password_confirmation': 'Confirm Password'
+        };
+        return labels[fieldName] || fieldName;
+    }
+
+    // Expose functions to global scope for Laravel integration
+    window.RegisterCompany = {
+        showSuccess: showSuccess,
+        validateForm: validateForm,
+        hideLoadingState: hideLoadingState
+    };
+
+})();
