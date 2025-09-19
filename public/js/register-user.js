@@ -1,489 +1,336 @@
 // Register User JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    // Elements
-    const form = document.querySelector('form');
-    const submitBtn = document.querySelector('.btn-info');
-    const passwordInput = document.querySelector('input[name="password"]');
-    const confirmPasswordInput = document.querySelector('input[name="password_confirmation"]');
-    const nikNisnInput = document.querySelector('input[name="nik_nisn"]');
-    
-    // Add necessary elements for enhanced functionality
-    setupEnhancedForm();
-    
-    // Setup enhanced form elements
-    function setupEnhancedForm() {
-        // Add password toggles
-        const passwordFields = document.querySelectorAll('input[type="password"]');
-        passwordFields.forEach(field => {
-            const container = field.closest('.mb-3');
-            if (!container.querySelector('.password-toggle')) {
-                const toggle = document.createElement('span');
-                toggle.className = 'password-toggle';
-                toggle.innerHTML = '<i class="bi bi-eye"></i>';
-                container.appendChild(toggle);
-                
-                // Add password toggle functionality
-                toggle.addEventListener('click', function() {
-                    const icon = this.querySelector('i');
-                    
-                    if (field.type === 'password') {
-                        field.type = 'text';
-                        icon.classList.remove('bi-eye');
-                        icon.classList.add('bi-eye-slash');
-                    } else {
-                        field.type = 'password';
-                        icon.classList.remove('bi-eye-slash');
-                        icon.classList.add('bi-eye');
-                    }
-                });
-            }
-        });
-        
-        // Add password strength indicator for main password
-        if (passwordInput && !passwordInput.nextElementSibling?.classList.contains('password-strength')) {
-            const strengthContainer = document.createElement('div');
-            strengthContainer.className = 'password-strength';
-            const strengthBar = document.createElement('div');
-            strengthBar.className = 'password-strength-bar';
-            strengthBar.id = 'strengthBar';
-            strengthContainer.appendChild(strengthBar);
-            
-            const passwordContainer = passwordInput.closest('.mb-3');
-            const toggle = passwordContainer.querySelector('.password-toggle');
-            if (toggle) {
-                toggle.parentNode.insertBefore(strengthContainer, toggle.nextSibling);
-            } else {
-                passwordContainer.appendChild(strengthContainer);
-            }
-        }
-        
-        // Add validation messages containers
-        const inputs = document.querySelectorAll('.form-control');
-        inputs.forEach(input => {
-            const container = input.closest('.mb-3');
-            if (!container.querySelector('.validation-message')) {
-                const validationMsg = document.createElement('div');
-                validationMsg.className = 'validation-message';
-                container.appendChild(validationMsg);
-            }
-        });
-        
-        // Add loading spinner to button
-        if (submitBtn && !submitBtn.querySelector('.loading-spinner')) {
-            const spinner = document.createElement('div');
-            spinner.className = 'loading-spinner';
-            const btnText = document.createElement('span');
-            btnText.className = 'btn-text';
-            btnText.textContent = submitBtn.textContent;
-            submitBtn.innerHTML = '';
-            submitBtn.appendChild(btnText);
-            submitBtn.appendChild(spinner);
-        }
-        
-        // Add NIK validation info
-        if (nikNisnInput && !nikNisnInput.nextElementSibling?.classList.contains('nik-validation')) {
-            const nikInfo = document.createElement('div');
-            nikInfo.className = 'nik-validation';
-            nikInfo.textContent = 'NIK harus 16 digit, NISN harus 10 digit';
-            nikNisnInput.parentNode.insertBefore(nikInfo, nikNisnInput.nextSibling);
-        }
-    }
-    
-    // Password strength checker
-    function checkPasswordStrength(password) {
-        let strength = 0;
-        let strengthText = '';
-        
-        // Length check
-        if (password.length >= 8) strength++;
-        if (password.length >= 12) strength++;
-        
-        // Character variety checks
-        if (/[a-z]/.test(password)) strength++;
-        if (/[A-Z]/.test(password)) strength++;
-        if (/[0-9]/.test(password)) strength++;
-        if (/[^A-Za-z0-9]/.test(password)) strength++;
-        
-        // Determine strength level
-        if (strength < 3) {
-            strengthText = 'weak';
-        } else if (strength < 5) {
-            strengthText = 'medium';
-        } else {
-            strengthText = 'strong';
-        }
-        
-        return {
-            score: strength,
-            level: strengthText
-        };
-    }
-    
-    // Update password strength indicator
-    function updatePasswordStrength() {
-        const password = passwordInput.value;
-        const strengthBar = document.getElementById('strengthBar');
-        
-        if (!strengthBar) return;
-        
-        if (password.length === 0) {
-            strengthBar.className = 'password-strength-bar';
-            return;
-        }
-        
-        const strength = checkPasswordStrength(password);
-        strengthBar.className = `password-strength-bar ${strength.level}`;
-    }
-    
-    // Validation functions
-    const validations = {
-        name: {
-            validate: (value) => value.trim().length >= 2,
-            message: 'Name must be at least 2 characters long'
-        },
-        email: {
-            validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
-            message: 'Please enter a valid email address'
-        },
-        nik_nisn: {
-            validate: (value) => {
-                const cleanValue = value.replace(/\D/g, '');
-                return cleanValue.length === 16 || cleanValue.length === 10;
-            },
-            message: 'NIK must be 16 digits or NISN must be 10 digits'
-        },
-        password: {
-            validate: (value) => {
-                const strength = checkPasswordStrength(value);
-                return strength.score >= 3 && value.length >= 8;
-            },
-            message: 'Password must be at least 8 characters with mixed case, numbers, and symbols'
-        },
-        password_confirmation: {
-            validate: (value) => value === passwordInput?.value && value.length > 0,
-            message: 'Passwords do not match'
-        }
-    };
-    
-    // Real-time validation
-    function validateField(field, validation) {
-        const container = field.closest('.mb-3');
-        const validationMsg = container.querySelector('.validation-message');
-        
-        field.addEventListener('blur', function() {
-            const isValid = validation.validate(this.value);
-            
-            container.classList.remove('error', 'success');
-            
-            if (this.value.length > 0) {
-                if (isValid) {
-                    container.classList.add('success');
-                    if (validationMsg) {
-                        validationMsg.textContent = '✓ Valid';
-                        validationMsg.className = 'validation-message success';
-                    }
-                } else {
-                    container.classList.add('error');
-                    if (validationMsg) {
-                        validationMsg.textContent = validation.message;
-                        validationMsg.className = 'validation-message error';
-                    }
-                }
-            } else {
-                if (validationMsg) {
-                    validationMsg.className = 'validation-message';
-                }
-            }
-        });
-        
-        field.addEventListener('input', function() {
-            if (container.classList.contains('error')) {
-                const isValid = validation.validate(this.value);
-                if (isValid) {
-                    container.classList.remove('error');
-                    container.classList.add('success');
-                    if (validationMsg) {
-                        validationMsg.textContent = '✓ Valid';
-                        validationMsg.className = 'validation-message success';
-                    }
-                }
-            }
-        });
-    }
-    
-    // Apply validation to all fields
-    Object.keys(validations).forEach(fieldName => {
-        const field = document.querySelector(`input[name="${fieldName}"]`);
-        if (field) {
-            validateField(field, validations[fieldName]);
-        }
+(function() {
+    'use strict';
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeForm();
     });
-    
-    // Special handling for NIK/NISN formatting
-    if (nikNisnInput) {
-        nikNisnInput.addEventListener('input', function(e) {
-            // Remove non-numeric characters
-            let value = e.target.value.replace(/\D/g, '');
-            
-            // Limit length based on type (NIK: 16, NISN: 10)
-            if (value.length > 16) {
-                value = value.substr(0, 16);
-            }
-            
-            e.target.value = value;
-            
-            // Update validation info
-            const nikInfo = e.target.parentNode.querySelector('.nik-validation');
-            if (nikInfo) {
-                const length = value.length;
-                if (length === 0) {
-                    nikInfo.textContent = 'NIK harus 16 digit, NISN harus 10 digit';
-                    nikInfo.style.color = '#6b7280';
-                } else if (length === 10) {
-                    nikInfo.textContent = '✓ Valid NISN format';
-                    nikInfo.style.color = '#16a34a';
-                } else if (length === 16) {
-                    nikInfo.textContent = '✓ Valid NIK format';
-                    nikInfo.style.color = '#16a34a';
-                } else {
-                    nikInfo.textContent = `${length} digits - Need ${10 - length > 0 ? 10 - length + ' more for NISN or ' : ''}${16 - length} more for NIK`;
-                    nikInfo.style.color = '#f59e0b';
-                }
-            }
-        });
-        
-        // Prevent non-numeric input
-        nikNisnInput.addEventListener('keypress', function(e) {
-            if (!/[\d]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Escape', 'Enter'].includes(e.key)) {
-                e.preventDefault();
-            }
-        });
-    }
-    
-    // Password strength indicator
-    if (passwordInput) {
-        passwordInput.addEventListener('input', updatePasswordStrength);
-    }
-    
-    // Confirm password real-time validation
-    if (confirmPasswordInput) {
-        confirmPasswordInput.addEventListener('input', function() {
-            const container = this.closest('.mb-3');
-            const validationMsg = container.querySelector('.validation-message');
-            
-            container.classList.remove('error', 'success');
-            
-            if (this.value.length > 0) {
-                if (this.value === passwordInput.value) {
-                    container.classList.add('success');
-                    if (validationMsg) {
-                        validationMsg.textContent = '✓ Passwords match';
-                        validationMsg.className = 'validation-message success';
-                    }
-                } else {
-                    container.classList.add('error');
-                    if (validationMsg) {
-                        validationMsg.textContent = 'Passwords do not match';
-                        validationMsg.className = 'validation-message error';
-                    }
-                }
-            } else {
-                if (validationMsg) {
-                    validationMsg.className = 'validation-message';
-                }
-            }
-        });
-    }
-    
-    // Form submission with validation
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            // Show loading state
-            if (submitBtn) {
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
-            }
-            
-            // Validate all fields
-            let isFormValid = true;
-            const requiredFields = ['name', 'email', 'nik_nisn', 'password', 'password_confirmation'];
-            
-            requiredFields.forEach(fieldName => {
-                const field = document.querySelector(`input[name="${fieldName}"]`);
-                const container = field?.closest('.mb-3');
-                const validationMsg = container?.querySelector('.validation-message');
+
+    function initializeForm() {
+        const form = document.getElementById('registrationForm');
+        const inputs = form.querySelectorAll('input');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        // Add animation to form elements
+        addFormAnimations();
+
+        // Initialize password toggle functionality
+        initializePasswordToggle();
+
+        // Real-time validation
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                validateField(this);
                 
-                if (field && validations[fieldName]) {
-                    const isValid = validations[fieldName].validate(field.value);
-                    
-                    if (!isValid || field.value.trim() === '') {
-                        isFormValid = false;
-                        container?.classList.add('error');
-                        container?.classList.remove('success');
-                        
-                        if (validationMsg) {
-                            validationMsg.textContent = field.value.trim() === '' ? 
-                                'This field is required' : 
-                                validations[fieldName].message;
-                            validationMsg.className = 'validation-message error';
-                        }
-                    }
+                // Format NIK/NISN as user types
+                if (this.id === 'nik_nisn') {
+                    formatNikNisn(this);
                 }
             });
-            
-            // If form is not valid, prevent submission and remove loading state
-            if (!isFormValid) {
-                e.preventDefault();
-                if (submitBtn) {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                }
-                
-                // Scroll to first error
-                const firstError = document.querySelector('.mb-3.error');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    const input = firstError.querySelector('.form-control');
-                    if (input) {
-                        setTimeout(() => input.focus(), 100);
-                    }
-                }
-                
-                // Shake animation for errors
-                const errors = document.querySelectorAll('.mb-3.error');
-                errors.forEach(error => {
-                    error.style.animation = 'shake 0.5s ease-in-out';
-                    setTimeout(() => {
-                        error.style.animation = '';
-                    }, 500);
-                });
-                
-                return false;
-            }
+
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+
+            input.addEventListener('focus', function() {
+                clearFieldError(this);
+            });
         });
 
-        // Add error handling for form submission failure (example with fetch)
+        // Form submission
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (submitBtn) {
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
-            }
-
-            // Simulate form submission with fetch or AJAX
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form),
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Handle success, redirect or show message
-                window.location.href = data.redirect_url || '/';
-            })
-            .catch(error => {
-                // Remove loading state on error
-                if (submitBtn) {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                }
-                alert('Registration failed. Please try again.');
-                console.error('Registration error:', error);
-            });
-        });
-    }
-    
-    // Auto-dismiss alerts
-    const alerts = document.querySelectorAll('.alert');
-    alerts.forEach(alert => {
-        setTimeout(() => {
-            alert.style.opacity = '0';
-            alert.style.transform = 'translateY(-10px)';
-            setTimeout(() => {
-                alert.remove();
-            }, 300);
-        }, 5000);
-    });
-    
-    // Enhanced accessibility
-    const inputs = document.querySelectorAll('.form-control');
-    inputs.forEach(input => {
-        const label = input.closest('.mb-3')?.querySelector('label');
-        if (label) {
-            const labelId = `label-${input.name || Math.random().toString(36).substr(2, 9)}`;
-            label.id = labelId;
-            input.setAttribute('aria-labelledby', labelId);
-        }
-        
-        input.addEventListener('input', function() {
-            this.setAttribute('aria-invalid', 'false');
-        });
-        
-        input.addEventListener('invalid', function() {
-            this.setAttribute('aria-invalid', 'true');
-        });
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
-            const inputs = Array.from(document.querySelectorAll('.form-control'));
-            const currentIndex = inputs.indexOf(e.target);
             
-            if (currentIndex < inputs.length - 1) {
-                e.preventDefault();
-                inputs[currentIndex + 1].focus();
+            if (validateForm()) {
+                showLoadingState(submitBtn);
+                // Submit form after short delay to show loading animation
+                setTimeout(() => {
+                    form.submit();
+                }, 500);
             }
-        }
-    });
-    
-    // Focus management
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.closest('.mb-3')?.classList.add('focused');
         });
-        
-        input.addEventListener('blur', function() {
-            this.closest('.mb-3')?.classList.remove('focused');
-        });
-    });
-    
-    // Focus first input after page load
-    setTimeout(() => {
-        const firstInput = document.querySelector('.form-control');
-        if (firstInput) {
-            firstInput.focus();
-        }
-    }, 300);
-    
-    // Prevent multiple submissions
-    let isSubmitting = false;
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            if (isSubmitting) {
-                e.preventDefault();
-                return false;
-            }
-            isSubmitting = true;
-        });
-    }
-});
 
-// Add shake animation for error feedback
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-        20%, 40%, 60%, 80% { transform: translateX(5px); }
+        // Password confirmation validation
+        const password = document.getElementById('password');
+        const passwordConfirm = document.getElementById('password_confirmation');
+
+        if (password && passwordConfirm) {
+            passwordConfirm.addEventListener('input', function() {
+                validatePasswordConfirmation(password.value, this.value, this);
+            });
+        }
     }
-`;
-document.head.appendChild(style);
+
+    function addFormAnimations() {
+        const card = document.querySelector('.card');
+        const formGroups = document.querySelectorAll('.mb-3');
+        
+        // Add entrance animation to card
+        card.classList.add('fadeIn');
+        
+        // Stagger form group animations
+        formGroups.forEach((group, index) => {
+            setTimeout(() => {
+                group.classList.add('slideUp');
+            }, index * 100);
+        });
+    }
+
+    function initializePasswordToggle() {
+        // Add password toggle icons to password fields
+        const passwordFields = document.querySelectorAll('input[type="password"]');
+        
+        passwordFields.forEach(field => {
+            // Wrap password field in container if not already wrapped
+            if (!field.parentElement.classList.contains('password-field')) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'password-field';
+                field.parentNode.insertBefore(wrapper, field);
+                wrapper.appendChild(field);
+            }
+
+            // Create toggle icon - mata tertutup untuk password tersembunyi
+            const toggleIcon = document.createElement('span');
+            toggleIcon.className = 'password-toggle';
+            toggleIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            toggleIcon.setAttribute('title', 'Show password');
+            
+            // Add click event
+            toggleIcon.addEventListener('click', function() {
+                togglePasswordVisibility(field, this);
+            });
+            
+            // Insert toggle icon after the input field
+            field.parentElement.appendChild(toggleIcon);
+        });
+    }
+
+    function togglePasswordVisibility(passwordInput, toggleElement) {
+        const icon = toggleElement.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            // Password disembunyikan -> ubah jadi terlihat
+            passwordInput.type = 'text';
+            icon.className = 'fas fa-eye'; // mata terbuka = password terlihat
+            toggleElement.setAttribute('title', 'Hide password');
+        } else {
+            // Password terlihat -> ubah jadi tersembunyi
+            passwordInput.type = 'password';
+            icon.className = 'fas fa-eye-slash'; // mata tertutup = password tersembunyi
+            toggleElement.setAttribute('title', 'Show password');
+        }
+    }
+
+    function formatNikNisn(input) {
+        // Remove all non-numeric characters
+        let value = input.value.replace(/\D/g, '');
+        
+        // Limit to 16 digits for NIK or 10 digits for NISN
+        if (value.length > 16) {
+            value = value.substring(0, 16);
+        }
+        
+        // Format with spaces for readability (NIK format: XXXX XXXX XXXX XXXX)
+        if (value.length > 12) {
+            value = value.replace(/(\d{4})(\d{4})(\d{4})(\d{0,4})/, '$1 $2 $3 $4').trim();
+        } else if (value.length > 8) {
+            value = value.replace(/(\d{4})(\d{4})(\d{0,4})/, '$1 $2 $3').trim();
+        } else if (value.length > 4) {
+            value = value.replace(/(\d{4})(\d{0,4})/, '$1 $2').trim();
+        }
+        
+        input.value = value;
+    }
+
+    function validateField(field) {
+        const value = field.value.trim();
+        const fieldName = field.getAttribute('name');
+        let isValid = true;
+        let errorMessage = '';
+
+        // Clear previous errors
+        clearFieldError(field);
+
+        // Required field validation
+        if (!value) {
+            errorMessage = `${getFieldLabel(fieldName)} is required`;
+            isValid = false;
+        } else {
+            // Specific field validations
+            switch (fieldName) {
+                case 'name':
+                    if (value.length < 2) {
+                        errorMessage = 'Name must be at least 2 characters';
+                        isValid = false;
+                    } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+                        errorMessage = 'Name should only contain letters and spaces';
+                        isValid = false;
+                    }
+                    break;
+                
+                case 'email':
+                    if (!isValidEmail(value)) {
+                        errorMessage = 'Please enter a valid email address';
+                        isValid = false;
+                    }
+                    break;
+                
+                case 'nik_nisn':
+                    const cleanValue = value.replace(/\s/g, ''); // Remove spaces
+                    if (!/^\d+$/.test(cleanValue)) {
+                        errorMessage = 'NIK/NISN should only contain numbers';
+                        isValid = false;
+                    } else if (cleanValue.length < 10) {
+                        errorMessage = 'NIK/NISN must be at least 10 digits';
+                        isValid = false;
+                    } else if (cleanValue.length > 16) {
+                        errorMessage = 'NIK/NISN must not exceed 16 digits';
+                        isValid = false;
+                    }
+                    break;
+                
+                case 'password':
+                    if (value.length < 8) {
+                        errorMessage = 'Password must be at least 8 characters';
+                        isValid = false;
+                    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(value)) {
+                        errorMessage = 'Password must contain at least one uppercase letter, lowercase letter, and number';
+                        isValid = false;
+                    }
+                    break;
+            }
+        }
+
+        if (!isValid) {
+            showFieldError(field, errorMessage);
+        }
+
+        return isValid;
+    }
+
+    function validatePasswordConfirmation(password, confirmation, field) {
+        clearFieldError(field);
+        
+        if (confirmation && password !== confirmation) {
+            showFieldError(field, 'Passwords do not match');
+            return false;
+        }
+        
+        return true;
+    }
+
+    function validateForm() {
+        const inputs = document.querySelectorAll('#registrationForm input[required]');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        // Additional password confirmation check
+        const password = document.getElementById('password');
+        const passwordConfirm = document.getElementById('password_confirmation');
+        
+        if (password && passwordConfirm) {
+            if (!validatePasswordConfirmation(password.value, passwordConfirm.value, passwordConfirm)) {
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    function showFieldError(field, message) {
+        field.classList.add('invalid');
+        
+        // Remove existing error message
+        const existingError = field.parentElement.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        // Create and show new error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        field.parentElement.appendChild(errorDiv);
+        
+        // Animate error message
+        setTimeout(() => {
+            errorDiv.classList.add('show');
+        }, 10);
+    }
+
+    function clearFieldError(field) {
+        field.classList.remove('invalid');
+        const errorMessage = field.parentElement.querySelector('.error-message');
+        if (errorMessage) {
+            errorMessage.classList.remove('show');
+            setTimeout(() => {
+                errorMessage.remove();
+            }, 300);
+        }
+    }
+
+    function showLoadingState(button) {
+        button.classList.add('loading');
+        button.disabled = true;
+        
+        const btnText = button.querySelector('.btn-text');
+        const spinner = button.querySelector('.loading-spinner');
+        
+        if (btnText) btnText.textContent = 'Registering...';
+        if (spinner) spinner.style.display = 'inline-block';
+    }
+
+    function hideLoadingState(button) {
+        button.classList.remove('loading');
+        button.disabled = false;
+        
+        const btnText = button.querySelector('.btn-text');
+        const spinner = button.querySelector('.loading-spinner');
+        
+        if (btnText) btnText.textContent = 'Register';
+        if (spinner) spinner.style.display = 'none';
+    }
+
+    function showSuccess() {
+        const cardBody = document.querySelector('.card-body');
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+        successDiv.innerHTML = '<i class="bi bi-check-circle"></i> Registration successful! Welcome!';
+        
+        cardBody.insertBefore(successDiv, cardBody.firstChild);
+        
+        setTimeout(() => {
+            successDiv.classList.add('show');
+        }, 10);
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function getFieldLabel(fieldName) {
+        const labels = {
+            'name': 'Full Name',
+            'email': 'Email Address',
+            'nik_nisn': 'NIK/NISN',
+            'password': 'Password',
+            'password_confirmation': 'Confirm Password'
+        };
+        return labels[fieldName] || fieldName;
+    }
+
+    // Expose functions to global scope for Laravel integration
+    window.RegisterUser = {
+        showSuccess: showSuccess,
+        validateForm: validateForm,
+        hideLoadingState: hideLoadingState
+    };
+
+})();
