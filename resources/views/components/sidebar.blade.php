@@ -7,7 +7,7 @@
 
 <!-- Logo Section -->
 <div class="sidebar-header">
-    <img src="{{ asset('images/logo-smk.png') }}" alt="BKK OPAT Logo" class="mx-auto mb-2 rounded-circle" style="width: 64px; height: 64px;">
+    <img src="{{ asset('images/smkn4.png') }}" alt="BKK OPAT Logo" class="mx-auto mb-2 rounded-circle" style="width: 64px; height: 64px;">
     <h5 class="fw-bold mb-0">BKK OPAT</h5>
 </div>
 
