@@ -3,12 +3,14 @@
 @section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Kelola Lowongan Kerja</h2>
+        <h2>Semua Lowongan</h2>
         <div class="d-flex align-items-center">
             <span class="mr-3">Total Lowongan: {{ $jobs->total() }}</span>
             <a href="{{ route('company.jobs.create') }}?from=all" class="btn btn-primary">Tambah Lowongan</a>
         </div>
     </div>
+
+
 
     <!-- Search Bar -->
     <div class="mb-4">

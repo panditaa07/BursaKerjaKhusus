@@ -1,105 +1,193 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="mb-0">Edit Lowongan Pekerjaan</h4>
+        <div class="col-lg-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Lowongan Pekerjaan
+                    </h4>
                 </div>
 
                 <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Terjadi kesalahan:</strong>
+                            <ul class="mb-0 mt-2">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('company.jobs.update', $job) }}">
                         @csrf
                         @method('PUT')
+                        <input type="hidden" name="from" value="{{ request('from', 'all') }}">
 
-                        <div class="form-group mb-3">
-                            <label for="title" class="form-label">Judul Pekerjaan <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" 
-                                   id="title" name="title" value="{{ old('title', $job->title) }}" required>
-                            @error('title')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="description" class="form-label">Deskripsi Pekerjaan <span class="text-danger">*</span></label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" 
-                                      id="description" name="description" rows="4" required>{{ old('description', $job->description) }}</textarea>
-                            @error('description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="requirements" class="form-label">Persyaratan</label>
-                            <textarea class="form-control @error('requirements') is-invalid @enderror" 
-                                      id="requirements" name="requirements" rows="3">{{ old('requirements', $job->requirements) }}</textarea>
-                            @error('requirements')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="location" class="form-label">Lokasi</label>
-                                    <input type="text" class="form-control @error('location') is-invalid @enderror" 
-                                           id="location" name="location" value="{{ old('location', $job->location) }}">
-                                    @error('location')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                        <!-- Job Info Header -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    <strong>Info:</strong> Mengedit lowongan kerja "{{ $job->title }}"
+                                    <span class="badge bg-primary ms-2">{{ $job->applications->count() }} pelamar</span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="type" class="form-label">Tipe Pekerjaan</label>
-                                    <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
-                                        <option value="">Pilih Tipe</option>
-                                        <option value="full-time" {{ old('type', $job->type) == 'full-time' ? 'selected' : '' }}>Full-time</option>
-                                        <option value="part-time" {{ old('type', $job->type) == 'part-time' ? 'selected' : '' }}>Part-time</option>
-                                        <option value="contract" {{ old('type', $job->type) == 'contract' ? 'selected' : '' }}>Contract</option>
-                                        <option value="internship" {{ old('type', $job->type) == 'internship' ? 'selected' : '' }}>Internship</option>
-                                    </select>
-                                    @error('type')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                        </div>
+
+                        <!-- Basic Information Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="border-bottom pb-2 mb-3">
+                                    <i class="fas fa-info-circle text-primary me-2"></i>Informasi Dasar
+                                </h5>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="salary" class="form-label">Gaji</label>
-                                    <input type="text" class="form-control @error('salary') is-invalid @enderror" 
-                                           id="salary" name="salary" value="{{ old('salary', $job->salary) }}" 
-                                           placeholder="Contoh: Rp 5.000.000 - Rp 7.000.000">
-                                    @error('salary')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="deadline" class="form-label">Deadline Lamaran</label>
-                                    <input type="date" class="form-control @error('deadline') is-invalid @enderror" 
-                                           id="deadline" name="deadline" value="{{ old('deadline', $job->deadline) }}">
-                                    @error('deadline')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="title" class="form-label fw-bold">
+                                    Judul Pekerjaan <span class="text-danger">*</span>
+                                </label>
+                                <input type="text"
+                                       class="form-control @error('title') is-invalid @enderror"
+                                       id="title"
+                                       name="title"
+                                       value="{{ old('title', $job->title) }}"
+                                       placeholder="Contoh: Software Engineer, Marketing Manager, dll"
+                                       required>
+                                @error('title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
-                        <div class="form-group mb-0">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Simpan Perubahan
-                            </button>
-                            <a href="{{ route('company.jobs.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Kembali
-                            </a>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="location" class="form-label fw-bold">Lokasi Kerja</label>
+                                <input type="text"
+                                       class="form-control @error('location') is-invalid @enderror"
+                                       id="location"
+                                       name="location"
+                                       value="{{ old('location', $job->location) }}"
+                                       placeholder="Contoh: Jakarta, Bandung, Remote">
+                                @error('location')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="type" class="form-label fw-bold">Tipe Pekerjaan</label>
+                                <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
+                                    <option value="">Pilih Tipe Pekerjaan</option>
+                                    <option value="full-time" {{ old('type', $job->type) == 'full-time' ? 'selected' : '' }}>Full-time</option>
+                                    <option value="part-time" {{ old('type', $job->type) == 'part-time' ? 'selected' : '' }}>Part-time</option>
+                                    <option value="contract" {{ old('type', $job->type) == 'contract' ? 'selected' : '' }}>Contract</option>
+                                    <option value="internship" {{ old('type', $job->type) == 'internship' ? 'selected' : '' }}>Internship</option>
+                                    <option value="freelance" {{ old('type', $job->type) == 'freelance' ? 'selected' : '' }}>Freelance</option>
+                                </select>
+                                @error('type')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="salary" class="form-label fw-bold">Rentang Gaji</label>
+                                <input type="text"
+                                       class="form-control @error('salary') is-invalid @enderror"
+                                       id="salary"
+                                       name="salary"
+                                       value="{{ old('salary', $job->salary) }}"
+                                       placeholder="Contoh: Rp 5.000.000 - Rp 7.000.000">
+                                @error('salary')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Opsional. Kosongkan jika tidak ingin menampilkan informasi gaji.</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="deadline" class="form-label fw-bold">Deadline Lamaran</label>
+                                <input type="date"
+                                       class="form-control @error('deadline') is-invalid @enderror"
+                                       id="deadline"
+                                       name="deadline"
+                                       value="{{ old('deadline', $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('Y-m-d') : '') }}">
+                                @error('deadline')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Opsional. Kosongkan jika tidak ada batas waktu.</div>
+                            </div>
+                        </div>
+
+                        <!-- Job Description Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="border-bottom pb-2 mb-3">
+                                    <i class="fas fa-file-alt text-primary me-2"></i>Deskripsi Pekerjaan
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="description" class="form-label fw-bold">
+                                    Deskripsi Pekerjaan <span class="text-danger">*</span>
+                                </label>
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                          id="description"
+                                          name="description"
+                                          rows="6"
+                                          placeholder="Jelaskan secara detail tentang pekerjaan ini, tanggung jawab, dan ekspektasi..."
+                                          required>{{ old('description', $job->description) }}</textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Deskripsikan secara detail tentang posisi ini, tanggung jawab, dan apa yang diharapkan dari kandidat.</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="requirements" class="form-label fw-bold">Persyaratan & Kualifikasi</label>
+                                <textarea class="form-control @error('requirements') is-invalid @enderror"
+                                          id="requirements"
+                                          name="requirements"
+                                          rows="4"
+                                          placeholder="• Pendidikan minimal S1 Teknik Informatika&#10;• Pengalaman minimal 2 tahun&#10;• Menguasai PHP dan Laravel&#10;• Memiliki kemampuan komunikasi yang baik">{{ old('requirements', $job->requirements) }}</textarea>
+                                @error('requirements')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Opsional. Cantumkan persyaratan dan kualifikasi yang dibutuhkan untuk posisi ini.</div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row">
+                            <div class="col-12">
+                                <hr class="my-4">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left me-2"></i>Kembali
+                                    </a>
+                                    <button type="submit" class="btn btn-warning btn-lg">
+                                        <i class="fas fa-save me-2"></i>Simpan Perubahan
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -113,10 +201,22 @@
 <script>
     // Set minimum date for deadline to tomorrow
     document.addEventListener('DOMContentLoaded', function() {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowStr = tomorrow.toISOString().split('T')[0];
-        document.getElementById('deadline').setAttribute('min', tomorrowStr);
+        const deadlineInput = document.getElementById('deadline');
+        if (deadlineInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            deadlineInput.setAttribute('min', tomorrowStr);
+        }
+
+        // Auto-resize textarea
+        const textareas = document.querySelectorAll('textarea');
+        textareas.forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        });
     });
 </script>
 @endpush

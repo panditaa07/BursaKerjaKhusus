@@ -70,6 +70,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's role name
+     */
+    public function getRoleNameAttribute()
+    {
+        return $this->role ? $this->role->name : null;
+    }
+
+    /**
+     * Check if user has a specific role
+     */
+    public function hasRole($role)
+    {
+        return $this->role && $this->role->name === $role;
+    }
+
+    /**
      * Relasi ke notifications (morphMany)
      */
 

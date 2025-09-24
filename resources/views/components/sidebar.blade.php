@@ -38,7 +38,7 @@
                 <i class="icon bi bi-people"></i>
                 <span>Kelola Pelamar</span>
             </a></li>
-            <li class="nav-item"><a href="{{ route('company.jobs.index') }}" class="nav-link">
+            <li class="nav-item"><a href="{{ route('company.jobs.all') }}" class="nav-link">
                 <i class="icon bi bi-briefcase"></i>
                 <span>Kelola Lowongan Kerja</span>
             </a></li>

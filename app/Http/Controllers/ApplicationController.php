@@ -20,6 +20,10 @@ class ApplicationController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
         $applications = $user->applications()->with(['jobPost.company'])->latest()->paginate(10);
 
         // Get notifications for the user (if notifications table exists)
@@ -38,6 +42,10 @@ class ApplicationController extends Controller
     public function indexForCompany()
     {
         $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
         $company = $user->company;
 
         if (!$company) {
@@ -59,14 +67,18 @@ class ApplicationController extends Controller
     {
         // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
         $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
         $company = $user->company;
-        
+
         if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
         $filePath = storage_path('app/public/' . $application->cv_path);
-        
+
         if (!file_exists($filePath)) {
             abort(404, 'File not found.');
         }
@@ -81,14 +93,18 @@ class ApplicationController extends Controller
     {
         // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
         $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
         $company = $user->company;
-        
+
         if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
         $filePath = storage_path('app/public/' . $application->cv_path);
-        
+
         if (!file_exists($filePath)) {
             abort(404, 'File not found.');
         }
@@ -108,6 +124,10 @@ class ApplicationController extends Controller
         ]);
 
         $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
         $job = JobPost::findOrFail($request->job_post_id);
 
         // Prevent duplicate applications
@@ -156,12 +176,17 @@ class ApplicationController extends Controller
     public function updateStatus(Request $request, Application $application)
     {
         $request->validate([
-            'status' => 'required|in:submitted,reviewed,accepted,rejected',
+            'status' => 'required|in:submitted,reviewed,accepted,rejected,interview,test1,test2',
         ]);
 
         // Pastikan hanya perusahaan pemilik job yang bisa update
-        $company = Auth::user()->company;
-        if ($application->jobPost->company_id !== $company->id) {
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+        if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -186,6 +211,11 @@ class ApplicationController extends Controller
      */
     public function indexForJob(JobPost $job)
     {
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
         $this->authorize('view', $job);
 
         $applications = $job->applications()->with('user')->latest()->get();
@@ -194,19 +224,131 @@ class ApplicationController extends Controller
     }
 
     /**
+     * Delete an application
+     */
+    public function destroy(Application $application)
+    {
+        // Pastikan hanya perusahaan pemilik job yang bisa hapus
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+        if (!$company || $application->jobPost->company_id !== $company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Hapus file CV jika ada
+        if ($application->cv_path && file_exists(storage_path('app/public/' . $application->cv_path))) {
+            unlink(storage_path('app/public/' . $application->cv_path));
+        }
+
+        // Hapus aplikasi
+        $application->delete();
+
+        return redirect()->route('company.applications.index')
+            ->with('success', 'Lamaran berhasil dihapus.');
+    }
+
+    /**
+     * Show a specific application for company
+     */
+    public function showForCompany($applicationId)
+    {
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        // Debug information
+        \Log::info('Company Application Access Debug', [
+            'user_id' => $user->id,
+            'user_role' => $user->role->name ?? null,
+            'user_company_id' => $user->company_id,
+            'user_company_name' => $user->company->name ?? null,
+            'requested_application_id' => $applicationId,
+            'middleware_passed' => true
+        ]);
+
+        // Find the application manually to avoid model binding issues
+        $application = Application::findOrFail($applicationId);
+
+        \Log::info('Application found', [
+            'application_id' => $application->id,
+            'application_job_post_id' => $application->job_post_id,
+            'application_job_post_company_id' => $application->jobPost->company_id ?? null
+        ]);
+
+        $company = $user->company;
+
+        // Check if user has company
+        if (!$company) {
+            \Log::warning('User does not have associated company', [
+                'user_id' => $user->id,
+                'user_company_id' => $user->company_id
+            ]);
+            abort(403, 'Anda tidak memiliki data perusahaan yang terkait. Silakan hubungi administrator.');
+        }
+
+        // Check if application belongs to company's job post
+        if (!$application->jobPost || $application->jobPost->company_id !== $company->id) {
+            \Log::warning('Application does not belong to user company', [
+                'user_company_id' => $company->id,
+                'application_job_post_company_id' => $application->jobPost->company_id ?? null,
+                'application_id' => $application->id
+            ]);
+            abort(403, 'Anda tidak memiliki akses untuk melihat lamaran ini.');
+        }
+
+        // Load relationships
+        $application->load(['user', 'jobPost']);
+
+        return view('company.applications.show', compact('application'));
+    }
+
+    /**
+     * Debug method to test role and company access
+     */
+    public function debugAccess()
+    {
+        $user = Auth::user();
+        $user->load(['role', 'company']);
+
+        return response()->json([
+            'user_id' => $user->id,
+            'user_role' => $user->role->name ?? null,
+            'user_company' => $user->company->name ?? null,
+            'has_company' => $user->company !== null,
+            'can_access_company_routes' => $user->role && $user->role->name === 'company' && $user->company !== null,
+            'route_middleware_should_pass' => $user->role && $user->role->name === 'company'
+        ]);
+    }
+
+    /**
      * Show a specific application (for link in email)
      */
     public function show(Application $application)
     {
-        // Cek hak akses: pelamar bisa lihat aplikasinya sendiri, perusahaan bisa lihat aplikasinya
         $user = Auth::user();
-        $isOwner = $user->id === $application->user_id;
-        $isCompanyOwner = $user->company && $user->company->id === $application->jobPost->company_id;
 
-        if (!$isOwner && !$isCompanyOwner) {
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        // Only allow USER role to access this page
+        if ($user->role->name !== 'user') {
+            abort(403, 'Halaman ini hanya untuk role USER.');
+        }
+
+        // Cek hak akses: pelamar bisa lihat aplikasinya sendiri
+        $isOwner = $user->id === $application->user_id;
+
+        if (!$isOwner) {
             abort(403, 'Unauthorized action.');
         }
 
         return view('user.applications.show', compact('application'));
     }
+
+
 }

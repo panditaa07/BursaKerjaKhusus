@@ -36,7 +36,7 @@
 
         {{-- Lowongan Aktif --}}
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ route('company.jobs.index') }}" class="stat-link">
+            <a href="{{ route('company.jobs.active') }}" class="stat-link">
                 <div class="card stat-card border-left-info shadow h-100 py-2">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
@@ -51,7 +51,7 @@
 
         {{-- Lowongan Tidak Aktif --}}
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ route('company.jobs.index') }}" class="stat-link">
+            <a href="{{ route('company.jobs.inactive') }}" class="stat-link">
                 <div class="card stat-card border-left-warning shadow h-100 py-2">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>

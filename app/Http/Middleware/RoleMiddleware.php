@@ -14,6 +14,21 @@ class RoleMiddleware
         }
 
         $user = Auth::user();
+
+        // Load role relationship if not already loaded
+        if (!$user->relationLoaded('role')) {
+            $user->load('role');
+        }
+
+        // Debug logging
+        \Log::info('RoleMiddleware Debug', [
+            'user_id' => $user->id,
+            'user_role_id' => $user->role_id,
+            'user_role_name' => $user->role->name ?? null,
+            'required_roles' => $roles,
+            'request_path' => $request->path()
+        ]);
+
         $userRole = $user->role->name ?? null;
 
         // support multi-role: role1|role2
@@ -23,8 +38,12 @@ class RoleMiddleware
         }
 
         if (!in_array($userRole, $allowedRoles)) {
-            // Instead of redirecting, abort with 403 Unauthorized
-            abort(403, 'Unauthorized access');
+            \Log::warning('RoleMiddleware: User role not allowed', [
+                'user_id' => $user->id,
+                'user_role' => $userRole,
+                'allowed_roles' => $allowedRoles
+            ]);
+            abort(403, 'Unauthorized access - Role not allowed');
         }
 
         return $next($request);

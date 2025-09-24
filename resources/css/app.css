@@ -71,3 +71,191 @@ body {
 .table {
     font-size: 0.9rem;
 }
+
+/* Company Applications Table Styles */
+.company-applications-table {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.company-applications-table .table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: #495057;
+    padding: 1rem 0.75rem;
+}
+
+.company-applications-table .table td {
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.company-applications-table .table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.company-applications-table .btn-group .btn {
+    margin-right: 0.25rem;
+    border-radius: 6px !important;
+}
+
+.company-applications-table .btn-group .btn:last-child {
+    margin-right: 0;
+}
+
+.company-applications-table .dropdown-toggle::after {
+    display: none;
+}
+
+/* Ensure dropdowns are clickable and visible */
+.company-applications-table .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.company-applications-table .dropdown-menu {
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    z-index: 1050;
+}
+
+.company-applications-table .dropdown-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.company-applications-table .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.company-applications-table .dropdown-toggle {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.company-applications-table .dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    outline: none;
+}
+
+.company-applications-table .dropdown-toggle:active {
+    transform: translateY(1px);
+}
+
+.company-applications-table .dropdown-toggle {
+    z-index: 1;
+    position: relative;
+}
+
+.company-applications-table .avatar-wrapper {
+    position: relative;
+}
+
+.company-applications-table .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 0.5rem 0.75rem;
+}
+
+.company-applications-table .text-muted i {
+    opacity: 0.6;
+}
+
+/* Status badge colors */
+.status-accepted {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+    border: 1px solid #a3cfbb;
+}
+
+.status-rejected {
+    background-color: #f8d7da !important;
+    color: #721c24 !important;
+    border: 1px solid #f1aeb5;
+}
+
+.status-interview {
+    background-color: #cce7ff !important;
+    color: #0066cc !important;
+    border: 1px solid #99d6ff;
+}
+
+.status-test {
+    background-color: #e2e3e5 !important;
+    color: #41464b !important;
+    border: 1px solid #c6c8ca;
+}
+
+.status-pending {
+    background-color: #fff3cd !important;
+    color: #664d03 !important;
+    border: 1px solid #ffecb5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .company-applications-table .table th,
+    .company-applications-table .table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+    }
+
+    .company-applications-table .btn-group {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .company-applications-table .btn-group .btn {
+        margin-right: 0;
+        border-radius: 4px !important;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Loading animation for table */
+.table-loading {
+    position: relative;
+}
+
+.table-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Custom scrollbar for table container */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

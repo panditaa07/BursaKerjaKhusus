@@ -79,7 +79,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard.index');
 
         // Job management
-        Route::get('/jobs', [JobPostController::class, 'companyIndex'])->name('jobs.index');
+        Route::get('/jobs', [JobPostController::class, 'allJobs'])->name('jobs.all'); // This will use index.blade.php for "Kelola Lowongan Kerja"
+        Route::get('/jobs/manage', [JobPostController::class, 'allJobs'])->name('jobs.manage'); // Alternative route for manage page
+        Route::get('/jobs/active', [JobPostController::class, 'activeJobs'])->name('jobs.active');
+        Route::get('/jobs/inactive', [JobPostController::class, 'inactiveJobs'])->name('jobs.inactive');
         Route::get('/jobs/create', [JobPostController::class, 'create'])->name('jobs.create');
         Route::post('/jobs', [JobPostController::class, 'store'])->name('jobs.store');
         Route::get('/jobs/{job}/edit', [JobPostController::class, 'edit'])->name('jobs.edit');
@@ -89,9 +92,28 @@ Route::middleware(['auth'])->group(function () {
 
         // Applications
         Route::get('/applications', [ApplicationController::class, 'indexForCompany'])->name('applications.index');
+        Route::get('/applications/{applicationId}', [ApplicationController::class, 'showForCompany'])->name('applications.show.company');
         Route::get('/applications/{application}/preview', [ApplicationController::class, 'previewPdf'])->name('applications.preview');
         Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadPdf'])->name('applications.download');
         Route::put('/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
+        Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
+
+        // Debug routes for testing
+        Route::get('/debug-role', function () {
+            $user = Auth::user();
+            $user->load(['role', 'company']);
+            return response()->json([
+                'user_id' => $user->id,
+                'user_role_id' => $user->role_id,
+                'user_role_name' => $user->role->name ?? null,
+                'user_company_id' => $user->company_id,
+                'user_company_name' => $user->company->name ?? null,
+                'is_authenticated' => Auth::check(),
+                'middleware_should_pass' => $user->role && $user->role->name === 'company'
+            ]);
+        })->name('debug.role');
+
+        Route::get('/debug-access', [ApplicationController::class, 'debugAccess'])->name('debug.access');
     });
 
     // ===== User Routes =====
@@ -110,7 +132,6 @@ Route::middleware(['auth'])->group(function () {
     // ===== Applications (pelamar) =====
     Route::prefix('applications')->name('applications.')->group(function () {
         Route::post('/', [ApplicationController::class, 'store'])->name('store')->middleware('role:user');
-        Route::get('/{application}', [ApplicationController::class, 'show'])->name('show')->middleware('role:user|company|admin');
         Route::put('/{application}/repair-status', [ApplicationController::class, 'updateRepairStatus'])->name('updateRepairStatus')->middleware('role:admin');
     });
 

@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->command->info('🔹 Menjalankan ApplicationSeeder...');
         $this->call(ApplicationSeeder::class);
 
+        $this->command->info('🔹 Menjalankan CompanyApplicationSeeder...');
+        $this->call(CompanyApplicationSeeder::class);
+
         $this->command->info('✅ Semua seeder selesai dijalankan!');
     }
 }

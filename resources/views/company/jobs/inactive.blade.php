@@ -3,16 +3,18 @@
 @section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Kelola Lowongan Kerja</h2>
+        <h2>Lowongan Tidak Aktif</h2>
         <div class="d-flex align-items-center">
             <span class="mr-3">Total Lowongan: {{ $jobs->total() }}</span>
-            <a href="{{ route('company.jobs.create') }}?from=all" class="btn btn-primary">Tambah Lowongan</a>
+            <a href="{{ route('company.jobs.create') }}?from=inactive" class="btn btn-primary">Tambah Lowongan</a>
         </div>
     </div>
 
+
+
     <!-- Search Bar -->
     <div class="mb-4">
-        <form method="GET" action="{{ route('company.jobs.all') }}" class="d-flex">
+        <form method="GET" action="{{ route('company.jobs.inactive') }}" class="d-flex">
             <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
             <button type="submit" class="btn btn-secondary ml-2">Cari</button>
         </form>
@@ -35,7 +37,7 @@
             <tbody>
                 @forelse($jobs as $job)
                 <tr>
-                    <td class="text-center text-muted fw-bold">{{ $loop->iteration + ($jobs instanceof \Illuminate\Pagination\LengthAwarePaginator ? ($jobs->currentPage() - 1) * $jobs->perPage() : 0) }}</td>
+                    <td class="text-center text-muted fw-bold">{{ $loop->iteration + ($jobs->currentPage() - 1) * $jobs->perPage() }}</td>
                     <td>
                         <div class="fw-bold">{{ $job->title }}</div>
                         <small class="text-muted">{{ Str::limit($job->description, 50) }}</small>
@@ -70,13 +72,13 @@
                             <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-sm btn-info" title="Lihat Detail">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" class="btn btn-sm btn-warning" title="Edit">
+                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=inactive" class="btn btn-sm btn-warning" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="from" value="all">
+                                <input type="hidden" name="from" value="inactive">
                                 <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -89,10 +91,10 @@
                     <td colspan="8" class="text-center py-5">
                         <div class="text-muted">
                             <i class="fas fa-briefcase fa-3x mb-3"></i>
-                            <p class="mb-0">Belum ada lowongan kerja</p>
+                            <p class="mb-0">Belum ada lowongan tidak aktif</p>
                             <p class="mb-0">
-                                <a href="{{ route('company.jobs.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> Buat Lowongan Pertama
+                                <a href="{{ route('company.jobs.create') }}?from=inactive" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-plus"></i> Buat Lowongan Baru
                                 </a>
                             </p>
                         </div>
@@ -104,7 +106,7 @@
     </div>
 
     <!-- Pagination -->
-    @if($jobs instanceof \Illuminate\Pagination\LengthAwarePaginator && $jobs->hasPages())
+    @if($jobs->hasPages())
         <div class="d-flex justify-content-center mt-4">
             {{ $jobs->links() }}
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JobPost;
+use Illuminate\Support\Facades\DB;
 
 class JobPostController extends Controller
 {
@@ -17,24 +18,98 @@ class JobPostController extends Controller
     }
 
     /**
-     * Display a listing of jobs for the authenticated company.
+     * Display a listing of all jobs for the authenticated company.
      */
-    public function companyIndex()
+    public function allJobs(Request $request)
     {
         $user = auth()->user();
         $company = $user->company;
 
         if (!$company) {
-            // Redirect to a safe route to avoid redirect loop, e.g. logout or home
             return redirect()->route('home')->with('error', 'Data perusahaan tidak ditemukan.');
         }
 
-        $jobs = JobPost::where('company_id', $company->id)
-                      ->with('company')
-                      ->latest()
-                      ->get();
-        
-        return view('company.jobs.index', compact('jobs'));
+        $query = JobPost::where('company_id', $company->id)
+                        ->with('company')
+                        ->latest();
+
+        // Add search functionality
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%");
+            });
+        }
+
+        $jobs = $query->paginate(10);
+
+        return view('company.jobs.all', compact('jobs'));
+    }
+
+    /**
+     * Display a listing of active jobs for the authenticated company.
+     */
+    public function activeJobs(Request $request)
+    {
+        $user = auth()->user();
+        $company = $user->company;
+
+        if (!$company) {
+            return redirect()->route('home')->with('error', 'Data perusahaan tidak ditemukan.');
+        }
+
+        $query = JobPost::where('company_id', $company->id)
+                        ->where('status', 'active')
+                        ->with('company')
+                        ->latest();
+
+        // Add search functionality
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%");
+            });
+        }
+
+        $jobs = $query->paginate(10);
+
+        return view('company.jobs.active', compact('jobs'));
+    }
+
+    /**
+     * Display a listing of inactive jobs for the authenticated company.
+     */
+    public function inactiveJobs(Request $request)
+    {
+        $user = auth()->user();
+        $company = $user->company;
+
+        if (!$company) {
+            return redirect()->route('home')->with('error', 'Data perusahaan tidak ditemukan.');
+        }
+
+        $query = JobPost::where('company_id', $company->id)
+                        ->where('status', 'inactive')
+                        ->with('company')
+                        ->latest();
+
+        // Add search functionality
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%");
+            });
+        }
+
+        $jobs = $query->paginate(10);
+
+        return view('company.jobs.inactive', compact('jobs'));
     }
 
     /**
@@ -61,9 +136,13 @@ class JobPostController extends Controller
         ]);
 
         $company = auth()->user()->company;
-        $company->jobPosts()->create($request->all());
+        $job = $company->jobPosts()->create($request->all());
 
-        return redirect()->route('company.jobs.index')
+        // Determine redirect based on 'from' parameter
+        $from = $request->input('from', 'all');
+        $redirectRoute = $this->getRedirectRoute($from);
+
+        return redirect()->route($redirectRoute)
             ->with('success', 'Job created successfully.');
     }
 
@@ -97,7 +176,7 @@ class JobPostController extends Controller
         if ($job->company_id !== auth()->user()->company->id) {
             abort(403, 'Unauthorized action.');
         }
-        
+
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -110,23 +189,46 @@ class JobPostController extends Controller
 
         $job->update($request->all());
 
-        return redirect()->route('company.jobs.index')
+        // Determine redirect based on 'from' parameter
+        $from = $request->input('from', 'all');
+        $redirectRoute = $this->getRedirectRoute($from);
+
+        return redirect()->route($redirectRoute)
             ->with('success', 'Job updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobPost $job)
+    public function destroy(Request $request, JobPost $job)
     {
         // Ensure the job belongs to the authenticated company
         if ($job->company_id !== auth()->user()->company->id) {
             abort(403, 'Unauthorized action.');
         }
-        
+
         $job->delete();
 
-        return redirect()->route('company.jobs.index')
+        // Determine redirect based on 'from' parameter
+        $from = $request->input('from', 'all');
+        $redirectRoute = $this->getRedirectRoute($from);
+
+        return redirect()->route($redirectRoute)
             ->with('success', 'Job deleted successfully.');
+    }
+
+    /**
+     * Helper method to determine redirect route based on source page.
+     */
+    private function getRedirectRoute($from)
+    {
+        switch ($from) {
+            case 'active':
+                return 'company.jobs.active';
+            case 'inactive':
+                return 'company.jobs.inactive';
+            default:
+                return 'company.jobs.all';
+        }
     }
 }

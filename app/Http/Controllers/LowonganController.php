@@ -11,6 +11,6 @@ class LowonganController extends Controller
     public function index()
     {
         $lowongans = Lowongan::latest()->get();
-        return view('company.jobs.index', compact('lowongans'));
+        return view('dashboard.lowongan.index', compact('lowongans'));
     }
 }
