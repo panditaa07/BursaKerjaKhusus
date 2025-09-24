@@ -13,6 +13,9 @@
     <div class="login-wrapper">
         <!-- FORM LOGIN -->
         <div class="form-box">
+            <div class="logo-box">
+            <img src="{{ asset('images/smkn4.png') }}" alt="logo">
+            </div>
             @if ($errors->any())
                 <div class="alert-error">
                     <ul>

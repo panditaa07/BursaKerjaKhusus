@@ -36,13 +36,20 @@ body {
 
 .logo {
     display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
 }
 
 @keyframes logoGlow {
@@ -553,8 +560,8 @@ body {
     pointer-events: none;
 }
 #lottie-logo {
-    width: 450px;
-    height: 450px;
+    width: 250px;
+    height: 250px;
 }
 #loading-screen p {
     position: absolute;

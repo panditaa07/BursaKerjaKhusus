@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/register-user.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -47,12 +48,22 @@
                         
                         <div class="mb-3">
                             <label for="password">Password</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <div class="password-field">
+                                <input type="password" id="password" name="password" class="form-control" required>
+                                <span class="password-toggle" title="Show password">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
                         </div>
                         
                         <div class="mb-3">
                             <label for="password_confirmation">Confirm Password</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                            <div class="password-field">
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                                <span class="password-toggle" title="Show password">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="btn btn-info">

@@ -1,44 +1,357 @@
-/* Modern Register Admin Styles */
+/* Register Admin CSS */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
     min-height: 100vh;
-    position: relative;
-}
-
-/* Floating background shapes */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 120, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.3) 0%, transparent 50%);
-    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-    position: relative;
-    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
+
+/* Gradient warna untuk teks judul */
+.gradient-text {
+    background: linear-gradient(45deg, #3b82f6); /* warna gradasi */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
 
 .card {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: none;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: none;
+    color: inherit;
+    text-align: center;
+    font-size: 24px;
+    padding: 25px 30px;
+    font-weight: 600;
+}
+
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.6s;
+}
+
+.card-header:hover::before {
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+.card-body {
+    padding: 40px 30px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+}
+
+.alert ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.alert li {
+    margin-bottom: 5px;
+}
+
+.alert li:before {
+    content: '• ';
+    margin-right: 5px;
+}
+
+.mb-3 {
+    margin-bottom: 25px;
     position: relative;
-    animation: slideUp 0.6s ease-out;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: #40c057;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-control:hover {
+    border-color: #dee2e6;
+    transform: translateY(-1px);
+}
+
+.form-control.is-invalid,
+.form-control.invalid {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.05);
+}
+
+/* Password field container */
+.password-field {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    z-index: 10;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.password-toggle:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+}
+
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 20px;
+}
+
+.login-link {
+    position: relative;
+    z-index: 10;           /* pastikan di atas elemen lain */
+    pointer-events: auto;  /* pastikan bisa diklik */
+    text-align: center;    /* opsional untuk merapikan */
+    margin-top: 10px;      /* beri jarak dari tombol di atasnya */
+}
+
+.login-link a {
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn.loading .btn-text {
+    opacity: 0.7;
+}
+
+.btn.loading .loading-spinner {
+    display: inline-block;
+}
+
+/* Success message styling */
+.success-message {
+    background: linear-gradient(135deg, #51cf66, #40c057);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease;
+}
+
+.success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .card-body {
+        padding: 30px 20px;
+    }
+    
+    .card-header {
+        padding: 20px;
+        font-size: 20px;
+    }
+    
+    .form-control {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+}
+
+/* Animation classes */
+.fadeIn {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.slideUp {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes slideUp {
@@ -50,292 +363,4 @@ body::before {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-    background-size: 200% 100%;
-    animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-    0%, 100% { background-position: 200% 0; }
-    50% { background-position: -200% 0; }
-}
-
-.card-header {
-    background: transparent;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 30px 30px 20px;
-    text-align: center;
-    position: relative;
-
-    /* Tambahan agar teks besar */
-    font-size: 24px;       /* Ukuran font lebih besar */
-    font-weight: 600;      /* Tebal seperti gambar ke-2 */
-    color: #4f46e5;        /* Warna ungu kebiruan */
-}
-
-.card-header::after {
-    content: 'Create your admin account to get started';
-    display: block;
-    font-size: 14px;
-    color: #666;
-    font-weight: normal;
-    margin-top: 8px;
-}
-
-.card-body {
-    padding: 20px 30px 30px;
-}
-
-.mb-3 {
-    position: relative;
-    margin-bottom: 25px;
-}
-
-.mb-3 label {
-    display: block;
-    color: #555;
-    font-weight: 500;
-    margin-bottom: 8px;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.form-control {
-    width: 100%;
-    padding: 15px 50px 15px 20px;
-    border: 2px solid #e1e5e9;
-    border-radius: 12px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background: #fff;
-    outline: none;
-    position: relative;
-}
-
-.form-control:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    transform: translateY(-2px);
-}
-
-.form-control.valid {
-    border-color: #28a745;
-    background-color: #f8fff9;
-}
-
-.form-control.invalid {
-    border-color: #dc3545;
-    background-color: #fff8f8;
-}
-
-/* Password toggle icons */
-.password-toggle {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #999;
-    transition: color 0.3s ease;
-    z-index: 2;
-}
-
-.password-toggle:hover {
-    color: #667eea;
-}
-
-/* Password strength meter */
-.strength-meter {
-    height: 4px;
-    background: #e1e5e9;
-    border-radius: 2px;
-    margin-top: 8px;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.strength-meter.active {
-    opacity: 1;
-}
-
-.strength-bar {
-    height: 100%;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    background: linear-gradient(90deg, #ff4757, #ffa502, #2ed573);
-}
-
-/* Error messages */
-.error-message {
-    color: #dc3545;
-    font-size: 12px;
-    margin-top: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.error-message.show {
-    opacity: 1;
-}
-
-/* Button styling */
-.btn-primary {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-}
-
-.btn-primary.loading {
-    pointer-events: none;
-}
-
-.btn-loader {
-    display: none;
-    margin-right: 10px;
-    animation: spin 1s linear infinite;
-}
-
-.btn-primary.loading .btn-loader {
-    display: inline-block;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Success animation overlay */
-.success-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.success-animation {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    animation: popIn 0.5s ease-out;
-}
-
-@keyframes popIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.checkmark {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #28a745;
-    position: relative;
-    margin: 0 auto 20px;
-    animation: checkmarkScale 0.3s ease-in-out 0.5s both;
-}
-
-@keyframes checkmarkScale {
-    from { transform: scale(0); }
-    to { transform: scale(1); }
-}
-
-.checkmark::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%) rotate(45deg);
-    width: 25px;
-    height: 40px;
-    border: solid white;
-    border-width: 0 4px 4px 0;
-    border-radius: 2px;
-    animation: checkmarkDraw 0.3s ease-in-out 0.8s both;
-}
-
-@keyframes checkmarkDraw {
-    from { 
-        width: 0;
-        height: 0;
-    }
-    to { 
-        width: 25px;
-        height: 40px;
-    }
-}
-
-/* Input focus effects */
-.mb-3:focus-within {
-    transform: scale(1.01);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .card {
-        margin: 10px;
-        border-radius: 15px;
-    }
-    
-    .card-header,
-    .card-body {
-        padding: 20px;
-    }
-    
-    .form-control {
-        padding: 12px 45px 12px 15px;
-        font-size: 14px;
-    }
-}
-
-/* Loading state for form */
-.form-loading {
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-.form-loading .form-control {
-    background-color: #f8f9fa;
 }

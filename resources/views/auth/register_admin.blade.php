@@ -10,7 +10,9 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Register as Admin</div>
+                <div class="card-header">
+                    <span class="gradient-text">Register as Admin</span>
+                </div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger mb-3">
@@ -52,11 +54,16 @@
 
                         <div class="mb-3">
                             <label for="password">Password</label>
-                            <input type="password" 
-                                   name="password" 
-                                   id="password"
-                                   class="form-control @error('password') is-invalid @enderror" 
-                                   required>
+                            <div class="password-field">
+                                <input type="password" 
+                                       name="password" 
+                                       id="password"
+                                       class="form-control @error('password') is-invalid @enderror" 
+                                       required>
+                                <span class="password-toggle" title="Show password">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
                             @error('password')
                                 <div class="error-message show">{{ $message }}</div>
                             @enderror
@@ -64,23 +71,26 @@
 
                         <div class="mb-3">
                             <label for="password_confirmation">Confirm Password</label>
-                            <input type="password" 
-                                   name="password_confirmation" 
-                                   id="password_confirmation"
-                                   class="form-control" 
-                                   required>
+                            <div class="password-field">
+                                <input type="password" 
+                                       name="password_confirmation" 
+                                       id="password_confirmation"
+                                       class="form-control" 
+                                       required>
+                                <span class="password-toggle" title="Show password">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary">
-                            Register
+                            <span class="btn-text">Register</span>
+                            <div class="loading-spinner"></div>
                         </button>
                     </form>
 
-                    <div class="text-center mt-3">
-                        <small class="text-muted">
-                            Already have an account? 
-                            <a href="{{ url('/login') }}" class="text-decoration-none">Sign in here</a>
-                        </small>
+                    <div class="login-link">
+                        Already have an account? <a href="{{ route('login') }}">Sign in here</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +117,6 @@
 @if ($errors->any())
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mark fields with server-side errors as invalid
         @foreach ($errors->keys() as $field)
             const field_{{ $loop->index }} = document.getElementById('{{ $field }}');
             if (field_{{ $loop->index }}) {

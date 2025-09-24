@@ -16,7 +16,7 @@
 <body>
     <div class="d-flex">
         <!-- Unified Sidebar -->
-        <div id="sidebar" class="sidebar bg-dark text-white">
+        <div id="sidebar" class="sidebar text-white">
             <x-sidebar />
         </div>
 
