@@ -30,7 +30,6 @@ body {
     background: linear-gradient(135deg, #3b82f6, #9333ea);
     color: var(--text-color);
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
-    justify-content: space-between;
 }
 
 .sidebar.collapsed {
@@ -136,6 +135,7 @@ body {
     justify-content: center;
     transition: transform var(--transition-speed);
     color: #fff;
+    margin-top: 200px;
 }
 .sidebar .bottom-list .btn:hover {
     transform: scale(1.05);
