@@ -100,7 +100,7 @@ class CompanyApplicationSeeder extends Seeder
                     'phone' => $dummyPhone,
                     'role_id' => 3, // Assuming 3 is user role ID
                     'email_verified_at' => now(),
-                    'created_at' => Carbon::now()->subDays(rand(1, 30)),
+                    'created_at' => Carbon::now()->subDays(rand(0, 30)), // Include current month
                     'updated_at' => now(),
                 ]);
 

@@ -37,9 +37,9 @@ class ApplicationController extends Controller
     }
 
     /**
-     * Display a listing of applications for the company
+     * Display a listing of all applications for the company
      */
-    public function indexForCompany()
+    public function indexAllApplicants()
     {
         $user = Auth::user();
 
@@ -57,7 +57,36 @@ class ApplicationController extends Controller
             $query->where('company_id', $company->id);
         })->with(['user', 'jobPost'])->latest()->paginate(10);
 
-        return view('company.applications.index', compact('applications'));
+        return view('company.applications.all', compact('applications'));
+    }
+
+    /**
+     * Display a listing of applications for the current month for the company
+     */
+    public function indexThisMonthApplicants()
+    {
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+
+        if (!$company) {
+            // Redirect to a safe route to avoid redirect loop, e.g. logout or home
+            return redirect()->route('user.dashboard.index')->with('error', 'Data perusahaan tidak ditemukan.');
+        }
+
+        $applications = Application::whereHas('jobPost', function ($query) use ($company) {
+            $query->where('company_id', $company->id);
+        })
+        ->whereMonth('created_at', now()->month)
+        ->whereYear('created_at', now()->year)
+        ->with(['user', 'jobPost'])
+        ->latest()
+        ->paginate(10);
+
+        return view('company.applications.this_month', compact('applications'));
     }
 
     /**
@@ -202,7 +231,7 @@ class ApplicationController extends Controller
             route('applications.show', $application->id)
         ));
 
-        return redirect()->route('company.applications.index')
+        return redirect()->back()
             ->with('success', 'Application status updated successfully & email notification sent.');
     }
 
@@ -247,7 +276,7 @@ class ApplicationController extends Controller
         // Hapus aplikasi
         $application->delete();
 
-        return redirect()->route('company.applications.index')
+        return redirect()->back()
             ->with('success', 'Lamaran berhasil dihapus.');
     }
 
@@ -305,6 +334,31 @@ class ApplicationController extends Controller
         $application->load(['user', 'jobPost']);
 
         return view('company.applications.show', compact('application'));
+    }
+
+    /**
+     * Edit a specific application for company
+     */
+    public function edit(Application $application)
+    {
+        // Pastikan hanya perusahaan pemilik job yang bisa edit
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+        if (!$company || $application->jobPost->company_id !== $company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Load relationships
+        $application->load(['user', 'jobPost']);
+
+        // Pass as $lamaran to match the view expectation
+        $lamaran = $application;
+
+        return view('company.applications.edit', compact('lamaran'));
     }
 
     /**

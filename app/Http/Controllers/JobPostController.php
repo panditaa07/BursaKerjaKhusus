@@ -151,8 +151,13 @@ class JobPostController extends Controller
      */
     public function show(JobPost $job)
     {
-        $job->load('company');
-        return view('user.jobs.show', compact('job'));
+        // Ensure the job belongs to the authenticated company
+        if ($job->company_id !== auth()->user()->company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $job->load(['company', 'applications', 'industry']);
+        return view('company.jobs.show', compact('job'));
     }
 
     /**
@@ -215,6 +220,24 @@ class JobPostController extends Controller
 
         return redirect()->route($redirectRoute)
             ->with('success', 'Job deleted successfully.');
+    }
+
+    /**
+     * Toggle the status of a job post (active/inactive).
+     */
+    public function toggleStatus(JobPost $job)
+    {
+        // Ensure the job belongs to the authenticated company
+        if ($job->company_id !== auth()->user()->company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $job->update([
+            'status' => $job->status === 'active' ? 'inactive' : 'active'
+        ]);
+
+        $status = $job->status === 'active' ? 'diaktifkan' : 'dinonaktifkan';
+        return redirect()->back()->with('success', "Lowongan berhasil {$status}.");
     }
 
     /**

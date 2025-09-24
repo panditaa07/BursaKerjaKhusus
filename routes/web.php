@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyDashboardController;
+use App\Http\Controllers\CompanyPelamarController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\LamaranController;
@@ -88,15 +89,23 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jobs/{job}/edit', [JobPostController::class, 'edit'])->name('jobs.edit');
         Route::get('/jobs/{job}', [JobPostController::class, 'show'])->name('jobs.show');
         Route::put('/jobs/{job}', [JobPostController::class, 'update'])->name('jobs.update');
+        Route::patch('/jobs/{job}/toggle-status', [JobPostController::class, 'toggleStatus'])->name('jobs.toggle-status');
         Route::delete('/jobs/{job}', [JobPostController::class, 'destroy'])->name('jobs.destroy');
 
         // Applications
-        Route::get('/applications', [ApplicationController::class, 'indexForCompany'])->name('applications.index');
+        Route::get('/pelamar', [CompanyPelamarController::class, 'indexAll'])->name('pelamar.all');
+        Route::get('/pelamar/bulan-ini', [CompanyPelamarController::class, 'indexThisMonth'])->name('pelamar.month');
         Route::get('/applications/{applicationId}', [ApplicationController::class, 'showForCompany'])->name('applications.show.company');
         Route::get('/applications/{application}/preview', [ApplicationController::class, 'previewPdf'])->name('applications.preview');
         Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadPdf'])->name('applications.download');
+        Route::get('/applications/{application}/edit', [ApplicationController::class, 'edit'])->name('applications.edit');
         Route::put('/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
         Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
+
+        // Alias routes for applicants (as specified in requirements)
+        Route::get('/applicants/{application}', [ApplicationController::class, 'showForCompany'])->name('applicants.show');
+        Route::get('/applicants/{application}/edit', [ApplicationController::class, 'edit'])->name('applicants.edit');
+        Route::delete('/applicants/{application}', [ApplicationController::class, 'destroy'])->name('applicants.destroy');
 
         // Debug routes for testing
         Route::get('/debug-role', function () {

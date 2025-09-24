@@ -3,10 +3,15 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="h4 mb-0">Daftar Lamaran</h2>
-            <div class="text-muted">
-                <i class="fas fa-users me-2"></i>
-                Total Pelamar: <strong>{{ $applications->total() }}</strong>
+            <h2 class="h4 mb-0">Pelamar Bulan Ini</h2>
+            <div class="d-flex align-items-center">
+                <a href="{{ route('company.pelamar.all') }}" class="btn btn-secondary me-2">
+                    <i class="fas fa-list me-2"></i>Lihat Semua Pelamar
+                </a>
+                <div class="text-muted">
+                    <i class="fas fa-users me-2"></i>
+                    Total Pelamar: <strong>{{ $applications->total() }}</strong>
+                </div>
             </div>
         </div>
 
@@ -28,7 +33,7 @@
                                 <th class="border-0 fw-bold">Nama</th>
                                 <th class="border-0 fw-bold">Email</th>
                                 <th class="border-0 fw-bold">No. Hp</th>
-                                <th class="border-0 fw-bold">Perusahaan</th>
+                                <th class="border-0 fw-bold">Lowongan yang dilamar</th>
                                 <th class="border-0 fw-bold text-center" width="120">Status</th>
                                 <th class="border-0 fw-bold text-center" width="150">Aksi</th>
                             </tr>
@@ -65,8 +70,8 @@
                                         {{ $application->user->phone ?? '-' }}
                                     </td>
                                     <td>
-                                        <i class="fas fa-building text-muted me-2"></i>
-                                        {{ $application->jobPost->company->name ?? 'N/A' }}
+                                        <i class="fas fa-briefcase text-muted me-2"></i>
+                                        {{ $application->jobPost->title ?? 'N/A' }}
                                     </td>
                                     <td class="text-center">
                                         @php
@@ -168,7 +173,7 @@
                                     <td colspan="7" class="text-center py-5">
                                         <div class="text-muted">
                                             <i class="fas fa-inbox fa-3x mb-3"></i>
-                                            <p class="mb-0">Belum ada lamaran</p>
+                                            <p class="mb-0">Belum ada lamaran bulan ini</p>
                                         </div>
                                     </td>
                                 </tr>

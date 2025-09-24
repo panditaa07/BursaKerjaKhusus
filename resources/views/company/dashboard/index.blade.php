@@ -6,7 +6,7 @@
 
         {{-- Total Pelamar --}}
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ route('company.applications.index') }}" class="stat-link">
+            <a href="{{ route('company.pelamar.all') }}" class="stat-link">
                 <div class="card stat-card border-left-primary shadow h-100 py-2">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
@@ -21,7 +21,7 @@
 
         {{-- Pelamar Bulan Ini --}}
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ route('company.applications.index') }}" class="stat-link">
+            <a href="{{ route('company.pelamar.month') }}" class="stat-link">
                 <div class="card stat-card border-left-success shadow h-100 py-2">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
@@ -86,8 +86,29 @@
                         <td>{{ $app->status ?? '-' }}</td>
                         <td>{{ $app->created_at->format('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ route('company.applications.preview', $app->id) }}" class="btn btn-sm btn-primary action-btn">👁</a>
-                            <a href="{{ route('company.applications.download', $app->id) }}" class="btn btn-sm btn-success action-btn">📄</a>
+                            <!-- Detail -->
+                            <a href="{{ route('company.applicants.show', $app->id) }}"
+                               class="btn btn-sm btn-primary" title="Lihat Detail">
+                                <i class="fa fa-eye"></i>
+                            </a>
+
+                            <!-- Edit -->
+                            <a href="{{ route('company.applicants.edit', $app->id) }}"
+                               class="btn btn-sm btn-warning" title="Edit Pelamar">
+                                <i class="fa fa-edit"></i>
+                            </a>
+
+                            <!-- Hapus -->
+                            <form action="{{ route('company.applicants.destroy', $app->id) }}"
+                                  method="POST" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Yakin ingin menghapus pelamar ini?')"
+                                        title="Hapus Pelamar">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty

@@ -34,7 +34,7 @@
                 <i class="icon bi bi-house-door"></i>
                 <span>Halaman Utama</span>
             </a></li>
-            <li class="nav-item"><a href="{{ route('company.applications.index') }}" class="nav-link">
+            <li class="nav-item"><a href="{{ route('company.pelamar.all') }}" class="nav-link">
                 <i class="icon bi bi-people"></i>
                 <span>Kelola Pelamar</span>
             </a></li>
