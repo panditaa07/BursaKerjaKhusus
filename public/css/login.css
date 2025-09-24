@@ -109,7 +109,7 @@ h2 {
 button[type="submit"] {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
     color: white;
     border: none;
     border-radius: 10px;
@@ -133,7 +133,7 @@ button[type="submit"]:hover {
 }
 
 .register-link a {
-    color: #667eea;
+    color: #3b82f6;
     text-decoration: none;
     font-weight: 600;
 }
@@ -142,6 +142,16 @@ button[type="submit"]:hover {
     text-decoration: underline;
 }
 
+.logo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-box img {
+    width: 70px;
+    height: auto;
+    border-radius: 50%;
+}
 
 /* Responsif */
 @media (max-width: 768px) {

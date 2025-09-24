@@ -47,7 +47,7 @@ body {
     text-align: center;
     margin-bottom: 40px;
     padding: 25px 0;
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    background: transparent; /* Hapus background card */
     margin: -40px -30px 40px -30px;
     position: relative;
     overflow: hidden;
@@ -70,18 +70,27 @@ body {
 }
 
 .form-header h2 {
-    color: white;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 24px; /* tetap sama */
+    font-weight: 750;
     margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px; /* lebih kecil biar mirip */
+    background: linear-gradient(135deg, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 .form-header p {
-    color: rgba(255, 255, 255, 0.9);
     font-size: 14px;
     font-weight: 400;
+
+    /* Gradient text (lebih soft) */
+    background: linear-gradient(135deg, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 .alert {
@@ -173,7 +182,6 @@ input.invalid {
 }
 
 .password-toggle:hover {
-    color: #4CAF50;
     background: rgba(76, 175, 80, 0.1);
 }
 
@@ -221,7 +229,7 @@ input.invalid {
     letter-spacing: 1px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
     color: white;
     display: flex;
     align-items: center;

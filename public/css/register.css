@@ -1,5 +1,5 @@
 :root {
-    --primary-gradient: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+    --primary-gradient: linear-gradient(135deg, #3b82f6);
     --admin-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
     --company-gradient: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
     --user-gradient: linear-gradient(135deg, #45b7d1 0%, #96c93d 100%);

@@ -18,7 +18,8 @@
 
     <header class="header">
         <nav class="nav">
-             <div class="logo">
+            <div class="logo">
+            <img src="{{ asset('images/smkn4.png') }}" class="logo-img">
             <span>BKK Opat</span>
           </div>
 
