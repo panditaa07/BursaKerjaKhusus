@@ -3,12 +3,16 @@
 @section('title', 'Kelola Pengguna')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/kelolapengguna.css') }}">
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0">Kelola Pengguna</h1>
     </div>
+
+    {{-- Tombol Kembali --}}
     @include('components.back-button')
 
+    {{-- Form Filter --}}
     <form method="GET" action="{{ route('admin.users.index') }}" class="row g-3 mb-4">
         <div class="col-md-5">
             <input type="text" name="search" class="form-control" placeholder="Cari nama atau email" value="{{ request('search') }}">
@@ -25,6 +29,7 @@
         </div>
     </form>
 
+    {{-- Flash Message --}}
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -39,6 +44,7 @@
         </div>
     @endif
 
+    {{-- Data Users --}}
     @if($users->isEmpty())
         <div class="alert alert-info">Tidak ada pengguna untuk ditampilkan.</div>
     @else
@@ -57,57 +63,58 @@
                 </thead>
                 <tbody>
                     @foreach($users as $index => $user)
-                    <tr>
-                        <td>{{ $users->firstItem() + $index }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            <span class="badge bg-{{ $user->role->name == 'company' ? 'warning' : 'info' }}">
-                                {{ ucfirst($user->role->name) }}
-                            </span>
-                        </td>
-                        <td>
-                            @if($user->role->name == 'company')
-                                @if($user->job_posts_count > 0)
-                                    Sudah Membuat Lowongan
+                        <tr>
+                            <td>{{ $users->firstItem() + $index }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                <span class="badge bg-{{ $user->role->name == 'company' ? 'warning' : 'info' }}">
+                                    {{ ucfirst($user->role->name) }}
+                                </span>
+                            </td>
+                            <td>
+                                @if($user->role->name == 'company')
+                                    @if($user->job_posts_count > 0)
+                                        Sudah Membuat Lowongan
+                                    @else
+                                        Belum Membuat Lowongan
+                                    @endif
+                                @elseif($user->role->name == 'user')
+                                    @if($user->applications_count > 0)
+                                        Sudah Melamar
+                                    @else
+                                        Belum Melamar
+                                    @endif
                                 @else
-                                    Belum Membuat Lowongan
+                                    -
                                 @endif
-                            @elseif($user->role->name == 'user')
-                                @if($user->applications_count > 0)
-                                    Sudah Melamar
-                                @else
-                                    Belum Melamar
-                                @endif
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td>{{ $user->created_at->format('d-m-Y') }}</td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-info">
-                                    <i class="fas fa-info-circle"></i> Detail
-                                </a>
-                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline" 
-                                      onsubmit="return confirm('Yakin ingin menghapus pengguna ini? Aksi ini tidak dapat dibatalkan.');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i> Hapus
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-info">
+                                        <i class="fas fa-info-circle"></i> Detail
+                                    </a>
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
+                                          onsubmit="return confirm('Yakin ingin menghapus pengguna ini? Aksi ini tidak dapat dibatalkan.');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
+        {{-- Pagination --}}
         <div class="d-flex justify-content-center mt-4">
             {{ $users->links() }}
         </div>
