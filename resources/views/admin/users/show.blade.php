@@ -3,6 +3,7 @@
 @section('title', 'Detail Pengguna')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/edituser.css') }}">
 <div class="container">
     <h1>Detail Pengguna</h1>
     @include('components.back-button')
@@ -137,4 +138,5 @@
     </div>
     @endif
 </div>
+<script src="{{ asset('js/detail.js') }}"></script>
 @endsection
