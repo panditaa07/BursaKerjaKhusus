@@ -1,0 +1,841 @@
+/* ================================================
+   MODERN DASHBOARD ADMIN BKK STYLES
+   ================================================ */
+
+:root {
+    --primary: #667eea;
+    --primary-dark: #5a67d8;
+    --success: #48bb78;
+    --info: #4299e1;
+    --warning: #ed8936;
+    --danger: #f56565;
+    --dark: #2d3748;
+    --light: #f7fafc;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f7fafc;
+    --gray-200: #edf2f7;
+    --gray-300: #e2e8f0;
+    --gray-400: #cbd5e0;
+    --gray-500: #a0aec0;
+    --gray-600: #718096;
+    --gray-700: #4a5568;
+    --gray-800: #2d3748;
+    --gray-900: #1a202c;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    --transition: 0.3s ease;
+}
+
+/* ================================================
+   GLOBAL STYLES
+   ================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+/* EDIT BAGIAN SCROLL */
+html, body {
+    overflow-x: hidden; /* hilangkan scroll horizontal global */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--gray-300);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: var(--gray-700);
+}
+
+#mainContent .container-fluid {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+    #mainContent .container-fluid {
+        padding: 1rem;
+    }
+}
+
+
+/* ================================================
+   DASHBOARD HEADER
+   ================================================ */
+
+.dashboard-header {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    font-weight: 400;
+}
+
+.header-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='rgba(255,255,255,0.1)'%3E%3C/path%3E%3C/svg%3E") repeat-x;
+    background-size: 1200px 120px;
+    animation: wave 10s linear infinite;
+}
+
+@keyframes wave {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 1200px; }
+}
+
+/* ================================================
+   STATISTICS CARDS
+   ================================================ */
+
+.stat-link {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.stat-link:hover {
+    transform: translateY(-6px);
+    text-decoration: none;
+}
+
+.stat-card {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    overflow: hidden;
+    min-height: 180px;
+    will-change: transform, box-shadow;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background: linear-gradient(45deg, #1e3a8a, #1e40af);
+}
+
+.stat-card.card-primary::before {  background: linear-gradient(45deg, #1e3a8a, #1e40af); }
+.stat-card.card-success::before { background: linear-gradient(45deg, var(--success), #38a169); }
+.stat-card.card-info::before    { background: linear-gradient(45deg, var(--info), #3182ce); }
+.stat-card.card-warning::before { background: linear-gradient(45deg, var(--warning), #d69e2e); }
+
+.stat-card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-6px) scale(1.02);
+}
+
+.stat-card-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--gray-800);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-trend {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--success);
+    font-weight: 500;
+}
+
+.stat-trend i {
+    margin-right: 0.25rem;
+    font-size: 0.625rem;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.card-success .stat-icon { background: rgba(72, 187, 120, 0.1); color: var(--success); }
+.card-info .stat-icon    { background: rgba(66, 153, 225, 0.1); color: var(--info); }
+.card-warning .stat-icon { background: rgba(237, 137, 54, 0.1); color: var(--warning); }
+
+/* ================================================
+   TABLE STYLING FIXED (rapi + hover interaktif)
+   ================================================ */
+
+.table-section {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+
+    /* EDIT BAGIAN SCROLL */
+    overflow-x: auto; /* scroll muncul otomatis jika konten terlalu lebar */
+    -webkit-overflow-scrolling: touch; /* smooth scroll di mobile */
+
+    transition: var(--transition);
+}
+
+.table-section:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+}
+
+.table-section h3 {
+    color: white;
+    background: linear-gradient(90deg, #2196f3, #1e88e5); /* gradasi biru */
+    font-weight: 700;
+    margin: -2rem -2rem 2rem -2rem; /* biar full lebar, nyatu sama card */
+    padding: 1rem 0 1.5rem 0; /* tambahin padding bawah */
+    font-size: 1.5rem;
+    text-align: center;
+    position: relative;
+    border-top-left-radius: var(--border-radius-lg);
+    border-top-right-radius: var(--border-radius-lg);
+}
+
+.table-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+
+
+.modern-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.modern-table thead {
+    background: var(--gray-100);
+}
+
+.modern-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--gray-700);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.modern-table td {
+    padding: 1rem;
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-800);
+    font-size: 0.95rem;
+    vertical-align: middle;
+    transition: var(--transition);
+}
+
+.modern-table tbody tr {
+    transition: var(--transition);
+}
+
+.modern-table tbody tr:hover td {
+    background: var(--gray-100);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-md);
+}
+
+.modern-table td:last-child {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ================================================
+   LOGOUT BUTTON
+   ================================================ */
+
+.logout-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--danger), #e53e3e);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    will-change: transform, box-shadow, background;
+    animation: pulse 2s infinite; /* tombol "bernafas" */
+}
+
+.logout-btn i {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px rgba(255, 80, 80, 0.7);
+    background: linear-gradient(135deg, #ff6b6b, #e63946);
+}
+
+.logout-btn:hover i {
+    transform: translateX(6px);
+}
+
+.logout-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(229, 62, 62, 0.4);
+}
+
+@keyframes pulse {
+    0%   { transform: scale(1);   box-shadow: 0 4px 8px rgba(229,62,62,0.3); }
+    50%  { transform: scale(1.05); box-shadow: 0 8px 16px rgba(229,62,62,0.5); }
+    100% { transform: scale(1);   box-shadow: 0 4px 8px rgba(229,62,62,0.3); }
+}
+
+/* ================================================
+   ACTION BUTTONS, BADGES, RESPONSIVE, ANIMATIONS
+   ================================================ */
+
+/* === Action Buttons dalam tabel (override Bootstrap) === */
+.action-btn {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    margin: 0 2px;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* warna spesifik */
+.btn-primary.action-btn {
+    background: var(--primary);
+    border: none;
+}
+
+.btn-primary.action-btn:hover {
+    background: var(--primary-dark);
+}
+
+.btn-warning.action-btn {
+    background: #facc15;
+    color: #1f2937;
+    border: none;
+}
+
+.btn-warning.action-btn:hover {
+    background: #eab308;
+}
+
+.btn-danger.action-btn {
+    background: #ef4444;
+    border: none;
+}
+
+.btn-danger.action-btn:hover {
+    background: #dc2626;
+}
+
+/* ================================================
+   STATUS BADGES (Tabel Pelamar & Loker)
+   ================================================ */
+
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    min-width: 90px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+}
+
+/* Pelamar status */
+.status-badge.accepted {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: #fff;
+}
+
+.status-badge.accepted:hover {
+    box-shadow: 0 4px 8px rgba(22,163,74,0.4);
+    transform: translateY(-2px);
+}
+
+.status-badge.rejected {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: #fff;
+}
+
+.status-badge.rejected:hover {
+    box-shadow: 0 4px 8px rgba(220,38,38,0.4);
+    transform: translateY(-2px);
+}
+
+.status-badge.submitted {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+}
+
+.status-badge.submitted:hover {
+    box-shadow: 0 4px 8px rgba(59,130,246,0.4);
+    transform: translateY(-2px);
+}
+
+/* Loker status */
+.status-badge.active {
+    background: linear-gradient(135deg, #16a34a, #4ade80);
+    color: #fff;
+}
+
+.status-badge.active:hover {
+    box-shadow: 0 4px 8px rgba(34,197,94,0.4);
+    transform: scale(1.05);
+}
+
+.status-badge.inactive {
+    background: linear-gradient(135deg, #ca8a04, #facc15);
+    color: #fff;
+}
+
+.status-badge.inactive:hover {
+    box-shadow: 0 4px 8px rgba(202,138,4,0.4);
+    transform: scale(1.05);
+}
+
+/* ================================================
+   ACTION BUTTONS (lebih hidup + icon baru)
+   ================================================ */
+
+.table-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.25s ease;
+    margin: 0 3px;
+    box-shadow: var(--shadow);
+}
+
+/* View */
+.table-btn.view {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.table-btn.view:hover {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    transform: scale(1.1);
+}
+
+/* Edit */
+.table-btn.edit {
+    background: linear-gradient(135deg, #facc15, #eab308);
+    color: #1f2937;
+}
+
+.table-btn.edit:hover {
+    background: linear-gradient(135deg, #ca8a04, #eab308);
+    transform: scale(1.1);
+}
+
+/* Delete */
+.table-btn.delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;          /* hapus border hitam */
+    outline: none;         /* hapus outline bawaan */
+}
+
+.table-btn.delete:focus {
+    box-shadow: none;      /* biar ga ada garis glow default */
+}
+
+.table-btn.delete:hover {
+    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    transform: scale(1.1);
+}
+
+/* === Status Badges === */
+.badge {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.25s ease;
+    animation: badgePop 0.5s ease forwards; /* <-- animasi muncul */
+}
+
+/* === Variasi warna status === */
+.badge-success {
+    background: linear-gradient(135deg, #28a745, #45c76e);
+    color: #fff;
+}
+.badge-danger {
+    background: linear-gradient(135deg, #dc3545, #f55b6a);
+    color: #fff;
+}
+.badge-warning {
+    background: linear-gradient(135deg, #ffc107, #ffda5c);
+    color: #212529;
+}
+.badge-secondary {
+    background: linear-gradient(135deg, #6c757d, #8a9099);
+    color: #fff;
+}
+
+/* === Animasi badge pop === */
+@keyframes badgePop {
+    0% { transform: scale(0.3); opacity: 0; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+
+@media (max-width: 1200px) {
+    .container-fluid {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-card-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stat-icon {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-title {
+        font-size: 2rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1rem;
+    }
+
+    .modern-table th, .modern-table td {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+}
+
+/* ================== CENTER TEXT DI SELURUH TABEL ================== */
+.modern-table th,
+.modern-table td {
+    text-align: center;
+    vertical-align: middle; /* tetap rapih secara vertikal */
+}
+
+/* Judul halaman */
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e40af; /* biru tua */
+}
+
+/* Tombol tambah lowongan */
+.btn-add-job {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff !important;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-add-job:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+    box-shadow: 0 6px 14px rgba(30, 64, 175, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ====== Search Box Daftar Pelamar ====== */
+.daftar-pelamar .search-box .input-group {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.daftar-pelamar .search-box .input-group:hover {
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    transform: scale(1.02);
+}
+
+.daftar-pelamar .search-box .input-group-text {
+    border: none;
+    font-weight: 600;
+}
+
+.daftar-pelamar .search-box .input-group-text.bg-gradient {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+}
+
+.daftar-pelamar .search-box input {
+    border: none;
+    outline: none;
+    padding: 0.7rem 1rem;
+}
+
+.daftar-pelamar .search-box input:focus {
+    box-shadow: none;
+}
+
+.daftar-pelamar .search-box .total-box {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ====== Modern Table (samain kayak Kelola Lowongan) ====== */
+.modern-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.modern-table thead {
+    background: var(--gray-100);
+}
+
+.modern-table th {
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.modern-table td {
+    padding: 1rem;
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    transition: var(--transition);
+}
+
+.modern-table tbody tr:hover td {
+    background: var(--gray-100);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-md);
+}
+
+/* ====== Status Badge (modern) ====== */
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    min-width: 80px;
+    box-shadow: var(--shadow-sm);
+    color: #fff;
+}
+
+.status-badge.accepted { background: linear-gradient(135deg, #16a34a, #22c55e); }
+.status-badge.rejected { background: linear-gradient(135deg, #dc2626, #ef4444); }
+.status-badge.submitted { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.status-badge.inactive { background: linear-gradient(135deg, #ca8a04, #facc15); }
+
+/* ====== Action Buttons (samain kayak Kelola Lowongan) ====== */
+.table-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #fff;
+    margin: 0 2px;
+    transition: all 0.25s ease;
+}
+
+.table-btn.view { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.table-btn.edit { background: linear-gradient(135deg, #facc15, #eab308); color: #1f2937; }
+.table-btn.delete { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+.table-btn:hover { transform: scale(1.1); }
+
+/* Samain status badge biar tanpa animasi/hover */
+.status-badge {
+    transition: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.status-badge:hover {
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Ikon Search Box */
+.search-icon {
+    background: linear-gradient(135deg, #1e40af, #2563eb); /* gradasi biru */
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Box Total biar lebih keren */
+.total-box {
+    background: linear-gradient(135deg, #16a34a, #22c55e); /* hijau gradasi */
+    color: #fff;
+    border: none;
+    font-weight: bold;
+}
+
+/* Hilangin efek biru Bootstrap di input saat focus */
+input:focus, 
+.form-control:focus {
+    box-shadow: none !important;
+    border-color: #ced4da !important; /* bisa ganti warna border kalau mau */
+}
+
+/* Perbaikan tabel dengan garis jelas */
+.modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #9ca3af; /* abu lebih gelap */
+        font-size: 0.95rem;
+    }
+
+    .modern-table th,
+    .modern-table td {
+        border: 1.5px solid #9ca3af; /* garis antar sel lebih tegas */
+        padding: 0.9rem;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .modern-table thead th {
+        background: #1e3a8a; /* biru navy */
+        color: #ffffff; /* teks putih */
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    /* Baris striped */
+    .modern-table tbody tr:nth-child(even) {
+        background: #f1f5f9; /* abu muda */
+    }
+
+    .modern-table tbody tr:nth-child(odd) {
+        background: #ffffff; /* putih */
+    }
+
+    /* Hover */
+    .modern-table tbody tr:hover {
+        background: #bfdbfe; /* biru terang pas hover */
+        transition: background 0.2s ease;
+    }
+
+/* ========================= END ========================= */

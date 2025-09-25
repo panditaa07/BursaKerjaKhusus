@@ -1,10 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
     {{-- === Statistics Cards === --}}
     <div class="row">
-
         {{-- Total Pelamar --}}
         <div class="col-xl-3 col-md-6 mb-4">
             <a href="{{ route('admin.dashboard.pelamar') }}" class="stat-link">
@@ -83,17 +81,33 @@
                         <td>{{ $app->user->name ?? '-' }}</td>
                         <td>{{ $app->user->email ?? '-' }}</td>
                         <td>{{ $app->user->phone ?? '-' }}</td>
-                        <td>{{ $app->jobPost->company?->name ?? '-' }}</td>
+                        <td>{{ $app->jobPost->company->name ?? '-' }}</td>
                         <td>{{ $app->jobPost->title ?? '-' }}</td>
-                        <td>{{ $app->status ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('admin.applications.show', $app->id) }}" class="btn btn-sm btn-primary action-btn">👁</a>
+                            @if($app->status === 'accepted')
+                                <span class="badge bg-success">Accepted</span>
+                            @elseif($app->status === 'rejected')
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif($app->status === 'submitted')
+                                <span class="badge bg-warning text-dark">Submitted</span>
+                            @else
+                                <span class="badge bg-secondary">{{ ucfirst($app->status ?? '-') }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.applications.show', $app->id) }}" class="table-btn view">
+                                <i class="fas fa-eye"></i>
+                            </a>
                             <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this application?')">🗑</button>
+                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus pelamar ini?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
-                            <a href="{{ route('admin.applications.edit', $app->id) }}" class="btn btn-sm btn-warning action-btn">✏️</a>
+                            <a href="{{ route('admin.applications.edit', $app->id) }}" class="table-btn edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
                         </td>
                     </tr>
                 @empty
@@ -116,18 +130,24 @@
                 @forelse($loker_terbaru as $index => $job)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $job->company?->name ?? '-' }}</td>
+                        <td>{{ $job->company->name ?? '-' }}</td>
                         <td>{{ $job->no_hrd ?? '-' }}</td>
                         <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
                         <td><span class="badge bg-success">Aktif</span></td>
                         <td>
-                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-sm btn-primary action-btn">👁</a>
+                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
+                                <i class="fas fa-eye"></i>
+                            </a>
                             <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this job post?')">🗑</button>
+                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
-                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-sm btn-warning action-btn">✏️</a>
+                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
                         </td>
                     </tr>
                 @empty
@@ -137,7 +157,45 @@
         </table>
     </div>
 
-
+    {{-- === Tabel Loker Tidak Aktif === --}}
+    <div class="container table-section">
+        <h3 class="mb-3">Loker Tidak Aktif</h3>
+        <table class="table table-hover modern-table">
+            <thead>
+                <tr>
+                    <th>No</th><th>Perusahaan</th><th>No HRD</th><th>Alamat</th><th>Status</th><th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($loker_tidak_aktif as $index => $job)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $job->company->name ?? '-' }}</td>
+                        <td>{{ $job->no_hrd ?? '-' }}</td>
+                        <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
+                        <td><span class="badge bg-danger">Tidak Aktif</span></td>
+                        <td>
+                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="6" class="text-center text-muted">Belum ada loker tidak aktif</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection
 
 @push('scripts')
@@ -150,7 +208,7 @@
                 if (isNaN(finalNumber)) return;
 
                 let currentNumber = 0;
-                const increment = Math.max(1, Math.ceil(finalNumber / 100)); // Animate over ~100 frames
+                const increment = Math.max(1, Math.ceil(finalNumber / 100));
 
                 const timer = setInterval(() => {
                     currentNumber += increment;
@@ -159,52 +217,10 @@
                         clearInterval(timer);
                     }
                     number.textContent = currentNumber;
-                }, 20); // Update every 20ms
+                }, 20);
             });
         }
-
         animateNumbers();
     });
 </script>
 @endpush
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Handle delete button clicks with AJAX
-        const deleteForms = document.querySelectorAll('form.delete-application-form');
-
-        deleteForms.forEach(form => {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                if (!confirm('Are you sure you want to delete this application?')) {
-                    return;
-                }
-
-                const url = form.action;
-                const token = form.querySelector('input[name="_token"]').value;
-
-                fetch(url, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': token,
-                        'Accept': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Remove the row from the table
-                        const row = form.closest('tr');
-                        row.parentNode.removeChild(row);
-                    }
-                })
-                .catch(() => {
-                    // Do nothing on failure
-                });
-            });
-        });
-    });
-</script>

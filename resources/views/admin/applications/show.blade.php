@@ -2,93 +2,172 @@
 @section('title', 'Detail Pelamar')
 
 @section('content')
-<div class="container-fluid">
-    <h1 class="h3 mb-4">Detail Pelamar</h1>
+<link rel="stylesheet" href="{{ asset('css/show.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loader"></div>
+</div>
 
-    <!-- Profile Photo Section -->
-    <div class="mb-4 text-center">
-        <img src="{{ $application->user && $application->user->profile_photo_path ? asset('storage/' . $application->user->profile_photo_path) : asset('images/default-avatar.png') }}"
-             alt="Foto Profil"
-             class="rounded-circle"
-             style="width: 100px; height: 100px; object-fit: cover;">
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Detail Pelamar</h1>
     </div>
 
-    <div class="card shadow mb-4">
+    <!-- Profile Photo Section -->
+    <div class="profile-section">
+        <div class="profile-photo-container">
+            <img src="{{ $application->user && $application->user->profile_photo_path ? asset('storage/' . $application->user->profile_photo_path) : asset('images/default-avatar.png') }}" 
+                 alt="Foto Profil" 
+                 class="profile-photo">
+        </div>
+    </div>
+
+    <div class="modern-card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
-                    <h6>Informasi Pribadi</h6>
-                    <p><strong>NIK/NISN:</strong> {{ $application->user ? $application->user->nisn : '-' }}</p>
-                    <p><strong>Nama Lengkap:</strong> {{ $application->user ? $application->user->name : '-' }}</p>
-                    <p><strong>Email:</strong> {{ $application->user ? $application->user->email : '-' }}</p>
-                    <p><strong>Tanggal Lahir:</strong> {{ $application->user && $application->user->birth_date ? \Carbon\Carbon::parse($application->user->birth_date)->format('d M Y') : '-' }}</p>
-                    <p><strong>No. HP:</strong> {{ $application->user ? $application->user->phone : '-' }}</p>
-                    <p><strong>Alamat:</strong> {{ $application->user ? $application->user->address : '-' }}</p>
-                    <p><strong>Profil Singkat:</strong> {{ $application->user ? $application->user->short_profile : '-' }}</p>
-                    <p><strong>Link Sosial Media:</strong></p>
-                    <p>
-                        @if($application->user)
-                            @if($application->user->facebook)
-                                <a href="{{ $application->user->facebook }}" target="_blank" class="btn btn-sm btn-outline-primary me-1" title="Facebook">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                            @endif
-                            @if($application->user->instagram)
-                                <a href="{{ $application->user->instagram }}" target="_blank" class="btn btn-sm btn-outline-danger me-1" title="Instagram">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            @endif
-                            @if($application->user->linkedin)
-                                <a href="{{ $application->user->linkedin }}" target="_blank" class="btn btn-sm btn-outline-primary me-1" title="LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            @endif
-                            @if($application->user->twitter)
-                                <a href="{{ $application->user->twitter }}" target="_blank" class="btn btn-sm btn-outline-info me-1" title="Twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            @endif
-                            @if($application->user->tiktok)
-                                <a href="{{ $application->user->tiktok }}" target="_blank" class="btn btn-sm btn-outline-dark me-1" title="TikTok">
-                                    <i class="fab fa-tiktok"></i>
-                                </a>
-                            @endif
-                        @else
-                            -
-                        @endif
-                    </p>
-                </div>
+                <!-- Informasi Pribadi -->
                 <div class="col-md-6">
-                    <h6>Informasi Lamaran</h6>
-                    <p><strong>Lowongan:</strong> {{ $application->jobPost->title ?? '-' }}</p>
-                    <p><strong>Status:</strong>
-                        <span class="badge text-dark badge-{{ $application->status == 'pending' ? 'warning' : ($application->status == 'approved' ? 'success' : 'danger') }}">
+                    <h6 class="section-header">
+                        <i class="fas fa-user me-2"></i>
+                        Informasi Pribadi
+                    </h6>
+
+                    <div class="info-item">
+                        <span class="info-label">NIK/NISN:</span>
+                        <span class="info-value">{{ $application->user ? $application->user->nisn : '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Nama Lengkap:</span>
+                        <span class="info-value">{{ $application->user ? $application->user->name : '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value">{{ $application->user ? $application->user->email : '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Tanggal Lahir:</span>
+                        <span class="info-value">
+                            {{ $application->user && $application->user->birth_date ? \Carbon\Carbon::parse($application->user->birth_date)->format('d M Y') : '-' }}
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">No. HP:</span>
+                        <span class="info-value">{{ $application->user ? $application->user->phone : '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Alamat:</span>
+                        <span class="info-value">{{ $application->user ? $application->user->address : '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Profil Singkat:</span>
+                        <span class="info-value">{{ $application->user ? $application->user->short_profile : '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Sosial Media:</span>
+                        <div class="social-buttons">
+                            @if($application->user)
+                                @if($application->user->facebook)
+                                    <a href="{{ $application->user->facebook }}" class="social-btn social-btn-facebook" target="_blank" title="Facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                @endif
+                                @if($application->user->instagram)
+                                    <a href="{{ $application->user->instagram }}" class="social-btn social-btn-instagram" target="_blank" title="Instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                @endif
+                                @if($application->user->linkedin)
+                                    <a href="{{ $application->user->linkedin }}" class="social-btn social-btn-linkedin" target="_blank" title="LinkedIn">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                @endif
+                                @if($application->user->twitter)
+                                    <a href="{{ $application->user->twitter }}" class="social-btn social-btn-twitter" target="_blank" title="Twitter">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                @endif
+                                @if($application->user->tiktok)
+                                    <a href="{{ $application->user->tiktok }}" class="social-btn social-btn-tiktok" target="_blank" title="TikTok">
+                                        <i class="fab fa-tiktok"></i>
+                                    </a>
+                                @endif
+                            @else
+                                -
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informasi Lamaran -->
+                <div class="col-md-6">
+                    <h6 class="section-header">
+                        <i class="fas fa-briefcase me-2"></i>
+                        Informasi Lamaran
+                    </h6>
+
+                    <div class="info-item">
+                        <span class="info-label">Lowongan:</span>
+                        <span class="info-value">{{ $application->jobPost->title ?? '-' }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Status:</span>
+                        <span class="status-badge 
+                            {{ $application->status == 'pending' ? 'status-pending' : ($application->status == 'approved' ? 'status-success' : 'status-danger') }}">
                             {{ ucfirst($application->status) }}
                         </span>
-                    </p>
-                    <p><strong>Tanggal Melamar:</strong> 
-                        @php
-                            $appliedAt = $application->applied_at;
-                            if (is_string($appliedAt)) {
-                                $appliedAt = \Carbon\Carbon::parse($appliedAt);
-                            }
-                        @endphp
-                        {{ $appliedAt ? $appliedAt->format('d M Y') : $application->created_at->format('d M Y') }}
-                    </p>
-                    <p><strong>Deskripsi Lamaran:</strong> {{ $application->description ?? 'Tidak ada deskripsi' }}</p>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Tanggal Melamar:</span>
+                        <span class="info-value">
+                            @php
+                                $appliedAt = $application->applied_at;
+                                if (is_string($appliedAt)) {
+                                    $appliedAt = \Carbon\Carbon::parse($appliedAt);
+                                }
+                            @endphp
+                            {{ $appliedAt ? $appliedAt->format('d M Y') : $application->created_at->format('d M Y') }}
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Deskripsi:</span>
+                        <span class="info-value">{{ $application->description ?? 'Tidak ada deskripsi' }}</span>
+                    </div>
 
                     @if($application->cv_path)
-                        <p><strong>CV:</strong> <a href="{{ asset('storage/' . $application->cv_path) }}" target="_blank">Download CV</a></p>
+                        <div class="info-item">
+                            <span class="info-label">CV:</span>
+                            <a href="{{ asset('storage/' . $application->cv_path) }}" target="_blank" class="download-link">
+                                <i class="fas fa-download"></i> Download CV
+                            </a>
+                        </div>
                     @endif
 
                     @if($application->cover_letter)
-                        <p><strong>Surat Lamaran:</strong> <a href="{{ asset('storage/' . $application->cover_letter) }}" target="_blank">Download Surat Lamaran</a></p>
+                        <div class="info-item">
+                            <span class="info-label">Surat Lamaran:</span>
+                            <a href="{{ asset('storage/' . $application->cover_letter) }}" target="_blank" class="download-link">
+                                <i class="fas fa-download"></i> Download Surat Lamaran
+                            </a>
+                        </div>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 
-    @include('components.back-button')
+    <a href="{{ url('/admin/dashboard/pelamar') }}" class="back-button">
+        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pelamar
+    </a>
 </div>
+<script src="{{ asset('js/show.js') }}"></script>
 @endsection
