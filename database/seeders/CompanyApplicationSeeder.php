@@ -89,13 +89,12 @@ class CompanyApplicationSeeder extends Seeder
 
                 // Generate dummy applicant data
                 $dummyName = $faker->name;
-                $dummyEmail = $faker->unique()->email;
                 $dummyPhone = $faker->phoneNumber;
 
                 // Create dummy user for this application
                 $dummyUser = User::create([
                     'name' => $dummyName,
-                    'email' => $dummyEmail,
+                    'email' => $faker->email . '.' . $applicationCount,
                     'password' => bcrypt('password123'), // Default password for testing
                     'phone' => $dummyPhone,
                     'role_id' => 3, // Assuming 3 is user role ID
@@ -139,11 +138,12 @@ class CompanyApplicationSeeder extends Seeder
 
     private function createDummyUsers($faker, $dummyCompanies)
     {
+        $emailCounter = 0;
         foreach ($dummyCompanies as $companyName) {
             // Create dummy company user
             $companyUser = User::create([
                 'name' => 'Admin ' . $companyName,
-                'email' => $faker->unique()->companyEmail,
+                'email' => $faker->companyEmail . '.' . $emailCounter++,
                 'password' => bcrypt('password123'),
                 'phone' => $faker->phoneNumber,
                 'company_name' => $companyName,

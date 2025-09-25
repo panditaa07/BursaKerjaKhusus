@@ -71,11 +71,18 @@ class JobPostSeeder extends Seeder
 
         // Create job posts for all companies
         $totalPosts = 0;
+        $shuffledTitles = $jobTitles; // Copy the array
+        shuffle($shuffledTitles); // Shuffle to randomize order
+        $titleIndex = 0; // Index to pick titles sequentially from shuffled array
+
         foreach ($companies as $company) {
             $industry = $faker->randomElement([$industry1, $industry2, $industry3]);
             $numPosts = rand(2, 4); // Each company gets 2-4 job posts
             for ($i = 0; $i < $numPosts; $i++) {
-                $title = $faker->unique()->randomElement($jobTitles);
+                // Use shuffled titles sequentially, wrap around if needed
+                $title = $shuffledTitles[$titleIndex % count($shuffledTitles)];
+                $titleIndex++;
+
                 // Check if job post with same title and company already exists
                 $existingJob = JobPost::where('title', $title)->where('company_id', $company->id)->first();
                 if (!$existingJob) {

@@ -19,6 +19,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        \DB::statement("ALTER TABLE applications MODIFY COLUMN status ENUM('submitted', 'reviewed', 'accepted', 'rejected') DEFAULT 'submitted'");
+        Schema::table('applications', function (Blueprint $table) {
+            //
+        });
     }
 };

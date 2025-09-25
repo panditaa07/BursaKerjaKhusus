@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => "admin{$i}@bkk.com"],
                 [
-                    'name' => $faker->unique()->name,
+                    'name' => $faker->name . " Admin {$i}",
                     'password' => Hash::make('password'),
                     'role_id' => $adminRole->id,
                     'phone' => $faker->phoneNumber,
@@ -84,10 +84,10 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => "company{$i}@bkk.com"],
                 [
-                    'name' => $faker->unique()->name,
+                    'name' => $faker->name . " Company {$i}",
                     'password' => Hash::make('password'),
                     'role_id' => $companyRole->id,
-                    'company_name' => 'PT ' . $faker->unique()->company,
+                    'company_name' => 'PT ' . $faker->company . " {$i}",
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
                     'birth_date' => $faker->date('Y-m-d', '-30 years'),
@@ -101,10 +101,10 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => "company{$i}@bkk.com"],
                 [
-                    'name' => $faker->unique()->name,
+                    'name' => $faker->name . " Company {$i}",
                     'password' => Hash::make('password'),
                     'role_id' => $companyRole->id,
-                    'company_name' => 'PT ' . $faker->unique()->company,
+                    'company_name' => 'PT ' . $faker->company . " {$i}",
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
                     'birth_date' => $faker->date('Y-m-d', '-30 years'),
@@ -118,12 +118,12 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => "user{$i}@bkk.com"],
                 [
-                    'name' => $faker->unique()->name,
+                    'name' => $faker->name . " User {$i}",
                     'password' => Hash::make('password'),
                     'role_id' => $userRole->id,
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
-                    'nisn' => $faker->unique()->numerify('##########'),
+                    'nisn' => $faker->numerify('##########') . $i,
                     'birth_date' => $faker->date('Y-m-d', '-20 years'),
                     'short_profile' => $faker->sentence,
                     'cv_path' => "cv_user{$i}.pdf",
@@ -136,12 +136,12 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => "user{$i}@bkk.com"],
                 [
-                    'name' => $faker->unique()->name,
+                    'name' => $faker->name . " User {$i}",
                     'password' => Hash::make('password'),
                     'role_id' => $userRole->id,
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
-                    'nisn' => $faker->unique()->numerify('##########'),
+                    'nisn' => $faker->numerify('##########') . $i,
                     'birth_date' => $faker->date('Y-m-d', '-20 years'),
                     'short_profile' => $faker->sentence,
                     'cv_path' => "cv_user{$i}.pdf",
