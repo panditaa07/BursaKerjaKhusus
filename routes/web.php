@@ -6,11 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyDashboardController;
-use App\Http\Controllers\CompanyPelamarController;
+
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\RegisteredUserController;
-use App\Http\Controllers\LamaranController;
-use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\AdminJobPostController;
@@ -93,8 +91,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/jobs/{job}', [JobPostController::class, 'destroy'])->name('jobs.destroy');
 
         // Applications
-        Route::get('/pelamar', [CompanyPelamarController::class, 'indexAll'])->name('pelamar.all');
-        Route::get('/pelamar/bulan-ini', [CompanyPelamarController::class, 'indexThisMonth'])->name('pelamar.month');
+        Route::get('/pelamar', [ApplicationController::class, 'indexAllApplicants'])->name('pelamar.all');
+        Route::get('/pelamar/bulan-ini', [ApplicationController::class, 'indexThisMonthApplicants'])->name('pelamar.month');
         Route::get('/applications/{applicationId}', [ApplicationController::class, 'showForCompany'])->name('applications.show.company');
         Route::get('/applications/{application}/preview', [ApplicationController::class, 'previewPdf'])->name('applications.preview');
         Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadPdf'])->name('applications.download');
@@ -154,28 +152,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/upload-cv', [ProfileController::class, 'uploadCv'])->name('upload-cv.post');
     });
 
-    // ===== Lamaran Routes =====
-    Route::prefix('lamarans')->middleware('role:student|alumni|user')->name('lamarans.')->group(function () {
-        Route::get('/', [LamaranController::class, 'index'])->name('index');
-        Route::get('/create', [LamaranController::class, 'create'])->name('create');
-        Route::post('/', [LamaranController::class, 'store'])->name('store');
-        Route::get('/{lamaran}', [LamaranController::class, 'show'])->name('show');
-        Route::get('/{lamaran}/edit', [LamaranController::class, 'edit'])->name('edit');
-        Route::put('/{lamaran}', [LamaranController::class, 'update'])->name('update');
-        Route::delete('/{lamaran}', [LamaranController::class, 'destroy'])->name('destroy');
-        Route::post('/{id}/status', [LamaranController::class, 'updateStatus'])->name('updateStatus');
-    });
 
-    // ===== Lowongan Routes =====
-    Route::prefix('lowongans')->name('lowongans.')->group(function () {
-        Route::get('/', [LowonganController::class, 'index'])->name('index');
-        Route::get('/create', [LowonganController::class, 'create'])->name('create')->middleware('role:company');
-        Route::post('/', [LowonganController::class, 'store'])->name('store')->middleware('role:company');
-        Route::get('/{lowongan}', [LowonganController::class, 'show'])->name('show');
-        Route::get('/{lowongan}/edit', [LowonganController::class, 'edit'])->name('edit')->middleware('role:company');
-        Route::put('/{lowongan}', [LowonganController::class, 'update'])->name('update')->middleware('role:company');
-        Route::delete('/{lowongan}', [LowonganController::class, 'destroy'])->name('destroy')->middleware('role:company');
-    });
 
     Route::middleware(['auth'])->group(function () {
     Route::get('/notifications', [NotifikasiUser::class, 'index'])->name('notifications.index');
