@@ -285,7 +285,12 @@ class AdminDashboardController extends Controller
         }
 
         $user->forceDelete();
-        return redirect()->route('admin.users.index')->with('success', 'User berhasil dihapus secara permanen.');
+
+        // Set message based on user role
+        $message = $user->role->name === 'company'
+            ? 'company berhasil dihapus secara permanen.'
+            : 'User berhasil dihapus secara permanen.';
+
+        return redirect()->route('admin.users.index')->with('success', $message);
     }
 }
-
