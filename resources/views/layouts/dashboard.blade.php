@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/dashboardadmin.css') }}" />
+
+    {{-- CSS tambahan untuk setiap halaman --}}
+    @yield('css')
 </head>
 <body>
     <div class="d-flex">
@@ -40,6 +43,7 @@
     <script src="{{ asset('js/sidebar.js') }}" defer></script>
     <script src="{{ asset('js/dashboardadmin.js') }}" defer></script>
 
+    {{-- Script tambahan untuk setiap halaman --}}
     @stack('scripts')
 </body>
 </html>

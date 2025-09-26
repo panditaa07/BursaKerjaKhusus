@@ -2,6 +2,11 @@
 
 @section('title', 'Detail Lowongan Kerja')
 
+{{-- Panggil CSS --}}
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/detaillowongankerja.css') }}">
+@endsection
+
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <div class="max-w-4xl mx-auto">
@@ -122,4 +127,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+{{-- Panggil JS --}}
+@section('scripts')
+<script src="{{ asset('js/detaillowongankerja.js') }}"></script>
 @endsection
