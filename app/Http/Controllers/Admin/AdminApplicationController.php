@@ -20,7 +20,12 @@ class AdminApplicationController extends Controller
 
     public function all(Request $request)
     {
-        $query = Application::with(['user', 'jobPost'])->latest();
+        $query = Application::with([
+            'user' => function($q) {
+                $q->withTrashed();
+            },
+            'jobPost'
+        ])->latest();
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -36,7 +41,12 @@ class AdminApplicationController extends Controller
 
     public function month(Request $request)
     {
-        $query = Application::with(['user', 'jobPost'])->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->latest();
+        $query = Application::with([
+            'user' => function($q) {
+                $q->withTrashed();
+            },
+            'jobPost'
+        ])->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->latest();
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -69,9 +79,9 @@ class AdminApplicationController extends Controller
         $validated = $request->validate([
             'status' => 'required|in:submitted,test1,test2,interview,accepted,rejected',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $application->user->id,
             'phone' => 'nullable|string|max:20',
-            'nisn' => 'nullable|string|max:20',
+            'nisn' => 'nullable|string|max:20|unique:users,nisn,' . $application->user->id,
             'birth_date' => 'nullable|date',
             'address' => 'nullable|string',
             'short_profile' => 'nullable|string',

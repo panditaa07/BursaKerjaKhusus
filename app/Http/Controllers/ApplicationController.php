@@ -362,6 +362,52 @@ class ApplicationController extends Controller
     }
 
     /**
+     * Update a specific application for company
+     */
+    public function update(Request $request, Application $application)
+    {
+        // Pastikan hanya perusahaan pemilik job yang bisa update
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+        if (!$company || $application->jobPost->company_id !== $company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $request->validate([
+            'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'nama_pelamar' => 'nullable|string|max:255',
+            'lowongan' => 'nullable|string|max:255',
+        ]);
+
+        $data = [];
+
+        if ($request->hasFile('cv')) {
+            // Hapus CV lama jika ada
+            if ($application->cv_path && file_exists(storage_path('app/public/' . $application->cv_path))) {
+                unlink(storage_path('app/public/' . $application->cv_path));
+            }
+
+            $data['cv_path'] = $request->file('cv')->store('cvs', 'public');
+        }
+
+        // Update description with nama_pelamar if provided
+        if ($request->filled('nama_pelamar')) {
+            $data['description'] = $request->nama_pelamar;
+        }
+
+        if (!empty($data)) {
+            $application->update($data);
+        }
+
+        return redirect()->route('company.applications.show.company', $application->id)
+            ->with('success', 'Lamaran berhasil diupdate.');
+    }
+
+    /**
      * Debug method to test role and company access
      */
     public function debugAccess()

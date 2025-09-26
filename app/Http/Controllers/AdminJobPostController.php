@@ -78,6 +78,15 @@ class AdminJobPostController extends Controller
 
     public function show(JobPost $jobPost)
     {
+        $jobPost->load([
+            'applications' => function($query) {
+                $query->with(['user' => function($q) {
+                    $q->withTrashed();
+                }]);
+            },
+            'company',
+            'industry'
+        ]);
         return view('admin.jobs.show', compact('jobPost'));
     }
 

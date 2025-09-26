@@ -92,11 +92,12 @@ Route::middleware(['auth'])->group(function () {
 
         // Applications
         Route::get('/pelamar', [ApplicationController::class, 'indexAllApplicants'])->name('pelamar.all');
-        Route::get('/pelamar/bulan-ini', [ApplicationController::class, 'indexThisMonthApplicants'])->name('pelamar.month');
+        Route::get('/pelamar/bulan-ini', [ApplicationController::class, 'indexThisMonthApplicants'])->name('applications.this_month');
         Route::get('/applications/{applicationId}', [ApplicationController::class, 'showForCompany'])->name('applications.show.company');
         Route::get('/applications/{application}/preview', [ApplicationController::class, 'previewPdf'])->name('applications.preview');
         Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadPdf'])->name('applications.download');
         Route::get('/applications/{application}/edit', [ApplicationController::class, 'edit'])->name('applications.edit');
+        Route::put('/applications/{application}', [ApplicationController::class, 'update'])->name('lamarans.update');
         Route::put('/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
         Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
 

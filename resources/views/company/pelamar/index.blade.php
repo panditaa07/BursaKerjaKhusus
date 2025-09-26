@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="h4 mb-0">Semua Pelamar</h2>
             <div class="d-flex align-items-center">
-                <a href="{{ route('company.pelamar.month') }}" class="btn btn-primary">
+                <a href="{{ route('company.applications.this_month') }}" class="btn btn-primary">
                     <i class="fa fa-calendar"></i> Lihat Pelamar Bulan Ini
                 </a>
                 <div class="text-muted">

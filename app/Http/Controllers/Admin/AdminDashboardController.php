@@ -52,10 +52,19 @@ class AdminDashboardController extends Controller
         ];
 
         // Data untuk tabel
-        $daftar_pelamar_terbaru = Application::with('user', 'jobPost.company')->latest()->take(5)->get();
+        $daftar_pelamar_terbaru = Application::with([
+            'user' => function($q) {
+                $q->withTrashed();
+            },
+            'jobPost.company'
+        ])->latest()->take(5)->get();
 
         // Eager load user phone to avoid N+1 and ensure phone is accessible
-        $daftar_pelamar_terbaru->load('user');
+        $daftar_pelamar_terbaru->load([
+            'user' => function($q) {
+                $q->withTrashed();
+            }
+        ]);
         $loker_terbaru          = JobPost::where('status', 'active')->latest()->take(5)->get();
         $loker_tidak_aktif      = JobPost::where('status', 'inactive')->latest()->take(5)->get();
 
@@ -73,7 +82,12 @@ class AdminDashboardController extends Controller
      */
     public function Pelamar(Request $request)
     {
-        $query = Application::with('user', 'jobPost.company');
+        $query = Application::with([
+            'user' => function($q) {
+                $q->withTrashed();
+            },
+            'jobPost.company'
+        ]);
 
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
@@ -93,7 +107,12 @@ class AdminDashboardController extends Controller
      */
     public function pelamarBulanIni(Request $request)
     {
-        $query = Application::with('user', 'jobPost.company')
+        $query = Application::with([
+            'user' => function($q) {
+                $q->withTrashed();
+            },
+            'jobPost.company'
+        ])
             ->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year);
 
@@ -249,7 +268,7 @@ class AdminDashboardController extends Controller
             'email'     => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'phone'     => 'nullable|string|max:20',
             'address'   => 'nullable|string|max:500',
-            'nisn'      => 'nullable|string|max:20',
+            'nisn'      => 'nullable|string|max:20|unique:users,nisn,' . $user->id,
             'birth_date' => 'nullable|date',
             'role'      => 'required|string|in:admin,company,user',
             'status'    => 'required|in:active,inactive',

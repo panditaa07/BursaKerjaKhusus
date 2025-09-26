@@ -43,10 +43,10 @@
                     @foreach($pelamar as $p)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->user->name }}</td>
-                            <td>{{ $p->user->email }}</td>
+                            <td>{{ $p->user->name ?? 'N/A' }}</td>
+                            <td>{{ $p->user->email ?? 'N/A' }}</td>
                             <td>{{ $p->user->phone ?? '-' }}</td>
-                            <td>{{ $p->jobPost->company->name }}</td>
+                            <td>{{ $p->jobPost->company->name ?? 'N/A' }}</td>
                             <td>
                                 @if($p->status == 'accepted')
                                     <span class="badge bg-success">Terima</span>

@@ -104,8 +104,8 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach($jobPost->applications as $application)
                                     <tr>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">{{ $application->user->name }}</td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">{{ $application->user->email }}</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">{{ $application->user->name ?? 'N/A' }}</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">{{ $application->user->email ?? 'N/A' }}</td>
                                         <td class="px-4 py-2 whitespace-nowrap">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                                 @if($application->status == 'pending') bg-yellow-100 text-yellow-800

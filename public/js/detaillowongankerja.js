@@ -479,10 +479,10 @@ function updateApplicantsTable(applications) {
     applications.forEach((application, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${application.user.name}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">${application.user.email}</td>
+            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${application.user ? application.user.name : 'N/A'}</td>
+            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">${application.user ? application.user.email : 'N/A'}</td>
             <td class="px-4 py-2 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                     ${getStatusClasses(application.status)}">
                     ${capitalizeFirst(application.status)}
                 </span>

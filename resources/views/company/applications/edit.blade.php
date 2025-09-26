@@ -14,31 +14,31 @@
         </div>
     @endif
 
-    <form action="{{ route('lamarans.update', $lamaran->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('company.lamarans.update', $lamaran->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
         <div>
             <label for="nama_pelamar">Nama Pelamar</label><br>
-            <input type="text" name="nama_pelamar" id="nama_pelamar" 
-                   value="{{ old('nama_pelamar', $lamaran->nama_pelamar) }}" required>
+            <input type="text" name="nama_pelamar" id="nama_pelamar"
+                   value="{{ old('nama_pelamar', $lamaran->user->name) }}" readonly>
         </div>
 
         <div>
             <label for="lowongan">Lowongan</label><br>
-            <input type="text" name="lowongan" id="lowongan" 
-                   value="{{ old('lowongan', $lamaran->lowongan) }}" required>
+            <input type="text" name="lowongan" id="lowongan"
+                   value="{{ old('lowongan', $lamaran->jobPost->title) }}" readonly>
         </div>
 
         <div>
-            <label for="cv">Upload CV (PDF/DOC/DOCX)</label><br>
-            <input type="file" name="cv" id="cv">
-            @if($lamaran->cv)
-                <p>CV sekarang: <a href="{{ asset('storage/'.$lamaran->cv) }}" target="_blank">Lihat CV</a></p>
+            <label for="cv">Upload CV Baru (PDF/DOC/DOCX)</label><br>
+            <input type="file" name="cv" id="cv" accept=".pdf,.doc,.docx">
+            @if($lamaran->cv_path)
+                <p>CV sekarang: <a href="{{ asset('storage/'.$lamaran->cv_path) }}" target="_blank">Lihat CV</a></p>
             @endif
         </div>
 
         <button type="submit">Update Lamaran</button>
-        <a href="{{ route('lamarans.index') }}">Batal</a>
+        <a href="{{ route('company.pelamar.all') }}">Batal</a>
     </form>
 @endsection
