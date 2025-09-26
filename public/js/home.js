@@ -84,29 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (loginBtn) {
         loginBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Add loading state
-            this.innerHTML = '<span class="spinner"></span> Loading...';
-            this.disabled = true;
-
-            // Redirect after a short delay
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 500);
+            // Direct redirect without loading
+            window.location.href = this.href;
         });
     }
 
     if (registerBtn) {
         registerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Add loading state
-            this.innerHTML = '<span class="spinner"></span> Loading...';
-            this.disabled = true;
-
-            // Redirect after a short delay
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 500);
+            // Direct redirect without loading
+            window.location.href = this.href;
         });
     }
 });

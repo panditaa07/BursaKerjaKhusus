@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bursa Kerja Khusus</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="icon" href="images/smkn4.png" type="image/png">
     <!-- Lottie Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 

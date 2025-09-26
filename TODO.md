@@ -1,0 +1,3 @@
+- [x] Add favicon link to resources/views/layouts/app.blade.php
+- [x] Add favicon link to resources/views/layouts/dashboard.blade.php
+- [x] Add favicon link to resources/views/layouts/guest.blade.php
