@@ -238,7 +238,56 @@ body {
     margin-bottom: 2rem;
     opacity: 0.9;
     text-align: left;
+    max-width: 700px; /* batas lebar paragraf */
+    line-height: 1.6;
+    padding-top: 5px;
 }
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 50px 20px; 
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-animation {
+    flex: 1;
+    max-width: 300px;
+    height: 300px;
+    gap: 5rem;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    gap: 3rem; /* tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column; /* teks di atas, animasi di bawah */
+    text-align: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-animation {
+    max-width: 250px;
+    height: 220px;
+    margin: 0 auto;
+  }
+}
+
 
 /* Search Box */
 .search-container {

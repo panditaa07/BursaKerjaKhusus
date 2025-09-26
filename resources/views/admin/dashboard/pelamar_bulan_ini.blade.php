@@ -6,7 +6,7 @@
 <div class="container daftar-pelamar">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="fw-bold text-primary">DAFTAR PELAMAR BULAN INI</h4>
+        <h4 class="fw-bold">DAFTAR PELAMAR BULAN INI</h4>
         <div class="input-group" style="width: 300px;">
             <span class="input-group-text">
                 <i class="bi bi-search"></i>
@@ -24,12 +24,6 @@
         </div>
     </div>
 
-    <!-- Table -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <strong>Daftar Pelamar Bulan Ini</strong>
-        </div>
-        <div class="card-body p-0">
             <table class="table modern-table mb-0 text-center">
                 <thead>
                     <tr>

@@ -6,7 +6,7 @@
 <div class="container">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="fw-bold text-primary">LOWONGAN TIDAK AKTIF</h4>
+        <h4 class="fw-bold">LOWONGAN TIDAK AKTIF</h4>
         <div class="input-group" style="width: 300px;">
             <span class="input-group-text">
                 <i class="bi bi-search"></i>
@@ -23,13 +23,6 @@
             </span>
         </div>
     </div>
-
-    <!-- Table -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <i class="bi bi-x-circle-fill text-danger"></i> <strong>Daftar Lowongan Tidak Aktif</strong>
-        </div>
-        <div class="card-body p-0">
             <table class="table modern-table mb-0 text-center">
                 <thead>
                     <tr>

@@ -6,7 +6,7 @@
 <div class="container">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="fw-bold text-primary">LOWONGAN AKTIF</h4>
+        <h4 class="fw-bold">LOWONGAN AKTIF</h4>
         <div class="search-box">
             <div class="input-group shadow-sm">
                 <span class="input-group-text bg-light text-muted">
@@ -19,13 +19,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Table -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <strong>Daftar Lowongan Aktif</strong>
-        </div>
-        <div class="card-body p-0">
             <table class="table modern-table mb-0 text-center">
                 <thead>
                     <tr>

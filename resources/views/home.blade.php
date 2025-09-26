@@ -49,6 +49,9 @@
       Dalam website ini menyediakan informasi terkini seputar lowongan pekerjaan, 
       magang, rekrutmen, serta pelatihan karir yang ditujukan bagi siswa dan alumni.</p>
         </div>
+
+                <div class="hero-animation" id="hero-animation"></div>
+    </div>
     </section>
 
     <!-- Features Section -->
@@ -176,6 +179,16 @@
    // Hapus overflow-hidden setelah animasi main-content selesai
     document.body.classList.remove("overflow-hidden");
    }, minDelay + 300);
+  });
+</script>
+<script>
+  // Lottie Hero Animation
+  lottie.loadAnimation({
+    container: document.getElementById('hero-animation'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: "https://lottie.host/45d7b582-ea44-449c-81ce-ff502ee221e2/S4SS7hEn40.json"
   });
 </script>
 </body>

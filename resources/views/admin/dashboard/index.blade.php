@@ -157,45 +157,6 @@
         </table>
     </div>
 
-    {{-- === Tabel Loker Tidak Aktif === --}}
-    <div class="container table-section">
-        <h3 class="mb-3">Loker Tidak Aktif</h3>
-        <table class="table table-hover modern-table">
-            <thead>
-                <tr>
-                    <th>No</th><th>Perusahaan</th><th>No HRD</th><th>Alamat</th><th>Status</th><th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($loker_tidak_aktif as $index => $job)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $job->company->name ?? '-' }}</td>
-                        <td>{{ $job->no_hrd ?? '-' }}</td>
-                        <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
-                        <td><span class="badge bg-danger">Tidak Aktif</span></td>
-                        <td>
-                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr><td colspan="6" class="text-center text-muted">Belum ada loker tidak aktif</td></tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
 @endsection
 
 @push('scripts')
