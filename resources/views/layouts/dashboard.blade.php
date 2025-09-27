@@ -24,14 +24,39 @@
             <x-sidebar />
         </div>
 
+        <!-- Mobile Backdrop -->
+        <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
         <!-- Main Content -->
         <div id="mainContent" class="main-content flex-grow-1">
             <header class="top-header">
-                <button id="menuToggle" class="btn btn-light">
+                <button id="menuToggle" class="btn btn-light d-lg-none">
                     <i class="bi bi-list"></i>
                 </button>
                 <!-- You can add other header content here, like user dropdown -->
             </header>
+
+            {{-- Role-based Page Title - Only on Dashboard Index Pages --}}
+            @php
+                $user = Auth::user();
+                $role = $user ? ($user->role->name ?? 'user') : 'guest';
+                $pageTitles = [
+                    'admin' => 'Dashboard Admin',
+                    'company' => 'Dashboard Perusahaan',
+                    'user' => 'Dashboard Pengguna'
+                ];
+                $pageTitle = $pageTitles[$role] ?? 'Dashboard';
+                $isDashboardPage = request()->routeIs('admin.dashboard.index') || 
+                                   request()->routeIs('company.dashboard.index') || 
+                                   request()->routeIs('user.dashboard.index');
+            @endphp
+            @if($isDashboardPage)
+            <div class="page-title-section">
+                <div class="container-fluid">
+                    <h1 class="page-title">{{ $pageTitle }}</h1>
+                </div>
+            </div>
+            @endif
             
             <main>
                 @yield('content')
@@ -41,6 +66,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/sidebar.js') }}" defer></script>
     <script src="{{ asset('js/dashboardadmin.js') }}" defer></script>
 

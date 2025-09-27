@@ -64,6 +64,45 @@
         </div>
     </div>
 
+    {{-- === Charts Section === --}}
+    <div class="row mb-4">
+        {{-- Line Chart: Pelamar Bulan Ini --}}
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card chart-card shadow h-100">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Pelamar Bulan Ini</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="pelamarChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+
+        {{-- Bar Chart: Lowongan Aktif --}}
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card chart-card shadow h-100">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">Lowongan Aktif</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="lowonganChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+
+        {{-- Pie Chart: Status Lamaran --}}
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card chart-card shadow h-100">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-success">Status Lamaran</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="statusChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- === Tabel Pelamar === --}}
     <div class="container table-section">
         <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
@@ -182,6 +221,74 @@
             });
         }
         animateNumbers();
+
+        // Sample data - replace with real data from controller
+        const pelamarData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Pelamar',
+                data: [12, 19, 3, 5, 2, 3, {{ $statistics['pelamar_bulan_ini'] ?? 0 }}],
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.1
+            }]
+        };
+
+        const lowonganData = {
+            labels: ['Aktif', 'Tidak Aktif'],
+            datasets: [{
+                label: 'Lowongan',
+                data: [{{ $statistics['lowongan_aktif'] ?? 0 }}, {{ $statistics['lowongan_tidak_aktif'] ?? 0 }}],
+                backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)']
+            }]
+        };
+
+        const statusData = {
+            labels: ['Submitted', 'Accepted', 'Rejected'],
+            datasets: [{
+                data: [{{ $statistics['submitted'] ?? 10 }}, {{ $statistics['accepted'] ?? 5 }}, {{ $statistics['rejected'] ?? 3 }}],
+                backgroundColor: ['rgba(255, 206, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)']
+            }]
+        };
+
+        // Pelamar Line Chart
+        const pelamarCtx = document.getElementById('pelamarChart').getContext('2d');
+        new Chart(pelamarCtx, {
+            type: 'line',
+            data: pelamarData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Lowongan Bar Chart
+        const lowonganCtx = document.getElementById('lowonganChart').getContext('2d');
+        new Chart(lowonganCtx, {
+            type: 'bar',
+            data: lowonganData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Status Pie Chart
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        new Chart(statusCtx, {
+            type: 'pie',
+            data: statusData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
     });
 </script>
 @endpush

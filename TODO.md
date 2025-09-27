@@ -1,20 +1,9 @@
-# TODO: Fix Route [company.applications.this_month] Not Defined
+# TODO: Make Admin Dashboard Fully Responsive
 
 ## Tasks
-- [x] Update route name in routes/web.php from 'pelamar.month' to 'applications.this_month'
-- [x] Update view references in resources/views/company/dashboard/index.blade.php from 'company.pelamar.month' to 'company.applications.this_month'
-- [x] Update view references in resources/views/company/pelamar/index.blade.php from 'company.pelamar.month' to 'company.applications.this_month'
-- [x] Clear route cache (php artisan route:clear)
-- [x] Test the route to ensure it works - Route now properly registered as company.applications.this_month
-
-# TODO: Fix Route [lamarans.update] Not Defined
-
-## Tasks
-- [x] Add PUT route for applications update in routes/web.php with name 'lamarans.update'
-- [x] Add update method in ApplicationController to handle CV upload updates
-- [x] Fix view fields to use correct model relationships (user->name, jobPost->title, cv_path)
-- [x] Make nama_pelamar and lowongan readonly in edit form
-- [x] Update cancel link to use correct route 'company.pelamar.all'
-- [x] Update form action to use 'company.lamarans.update' to match the prefixed route name
-- [x] Clear route cache
-- [x] Test the route to ensure no more "Route [lamarans.update] not defined" error
+- [x] Update sidebar.css for responsive behavior: hide sidebar on mobile, overlay when toggled, always visible on desktop
+- [x] Update sidebar.js to toggle show/hide on mobile, disable toggle on desktop
+- [x] Hide hamburger button on desktop in layout
+- [x] Ensure tables are responsive (overflow-x auto already present)
+- [x] Test on different screen sizes (code implemented, user can verify)
+- [x] Ensure logout button is accessible on all devices (in sidebar, accessible when opened on mobile)

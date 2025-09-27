@@ -70,6 +70,35 @@ body {
 
 
 /* ================================================
+   PAGE TITLE SECTION
+   ================================================ */
+
+.page-title-section {
+    padding: 0.1rem 0;
+    margin-bottom: 0.1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.page-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+    color: #1f2937;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.75rem;
+        padding: 0 1rem;
+    }
+    
+    .page-title-section {
+        padding: 1rem 0;
+    }
+}
+
+/* ================================================
    DASHBOARD HEADER
    ================================================ */
 
@@ -225,6 +254,43 @@ body {
 .card-success .stat-icon { background: rgba(72, 187, 120, 0.1); color: var(--success); }
 .card-info .stat-icon    { background: rgba(66, 153, 225, 0.1); color: var(--info); }
 .card-warning .stat-icon { background: rgba(237, 137, 54, 0.1); color: var(--warning); }
+
+/* ================================================
+   CHART CARDS
+   ================================================ */
+
+.chart-card {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.chart-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.chart-card .card-header {
+    background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 1.5rem;
+}
+
+.chart-card .card-header h6 {
+    color: var(--gray-800);
+    font-weight: 600;
+    margin: 0;
+}
+
+.chart-card .card-body {
+    padding: 1.5rem;
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* ================================================
    TABLE STYLING FIXED (rapi + hover interaktif)
