@@ -8,7 +8,12 @@ class JobPost extends Model
 {
     protected $fillable = ['industry_id','company_id','title','description','location','employment_type','vacancies','deadline','status','requirements','salary','company_logo','min_salary','max_salary','berkas_lamaran'];
 
-    protected $dates = ['deadline'];
+    protected $casts = [
+        'deadline' => 'date',
+    ];
+
+
+
 
     public function company()
     {

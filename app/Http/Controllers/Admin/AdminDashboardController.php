@@ -65,7 +65,7 @@ class AdminDashboardController extends Controller
                 $q->withTrashed();
             }
         ]);
-        $loker_terbaru          = JobPost::where('status', 'active')->latest()->take(5)->get();
+        $loker_terbaru          = JobPost::with('company')->latest()->take(5)->get();
         $loker_tidak_aktif      = JobPost::where('status', 'inactive')->latest()->take(5)->get();
 
         return view('admin.dashboard.index', compact(
@@ -132,18 +132,43 @@ class AdminDashboardController extends Controller
     /**
      * Daftar lowongan aktif
      */
-    public function lowonganAktif()
+    public function lowonganAktif(Request $request)
     {
-        $lowongan = JobPost::with('company')->where('status', 'active')->get();
+        $query = JobPost::with('company')->where('status', 'active');
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%")
+                  ->orWhereHas('company', function ($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        $lowongan = $query->latest()->get();
         return view('admin.dashboard.lowongan-aktif', compact('lowongan'));
     }
 
     /**
      * Daftar lowongan tidak aktif
      */
-    public function lowonganTidakAktif()
+    public function lowonganTidakAktif(Request $request)
     {
-        $lowongan = JobPost::with('company')->where('status', 'inactive')->get();
+        $query = JobPost::with('company')->where('status', 'inactive');
+
+        if ($request->has('keyword') && !empty($request->keyword)) {
+            $keyword = $request->keyword;
+            $query->where(function ($q) use ($keyword) {
+                $q->where('title', 'like', "%{$keyword}%")
+                  ->orWhereHas('company', function ($q) use ($keyword) {
+                      $q->where('name', 'like', "%{$keyword}%");
+                  });
+            });
+        }
+
+        $lowongan = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->query());
         return view('admin.dashboard.lowongan-tidak-aktif', compact('lowongan'));
     }
 

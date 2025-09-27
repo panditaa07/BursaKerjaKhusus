@@ -498,21 +498,4 @@
             opacity: 1;
         }
 
-        /* Trik: bikin icon bawaan transparan supaya tidak terlihat tapi tetap bisa diklik */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    position: absolute;
-    right: 16px;   /* sejajarkan dengan custom icon */
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
 
-input[type="date"]::-moz-calendar-picker-indicator {
-    opacity: 0;
-    position: absolute;
-    right: 16px;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}

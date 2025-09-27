@@ -140,6 +140,7 @@
                             <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
+                                <input type="hidden" name="_from" value="dashboard">
                                 <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus pelamar ini?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -172,7 +173,13 @@
                         <td>{{ $job->company->name ?? '-' }}</td>
                         <td>{{ $job->no_hrd ?? '-' }}</td>
                         <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
-                        <td><span class="badge bg-success">Aktif</span></td>
+                        <td>
+                            @if($job->status === 'active')
+                                <span class="badge bg-success">Aktif</span>
+                            @else
+                                <span class="badge bg-secondary">Tidak Aktif</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
                                 <i class="fas fa-eye"></i>

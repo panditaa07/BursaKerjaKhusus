@@ -7,6 +7,34 @@
         <a href="{{ route('admin.job-posts.create') }}" class="btn btn-add-job">+ Tambah Lowongan</a>
     </div>
 
+    <!-- Search and Filter -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="search-box">
+            <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-light text-muted">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </form>
+        </div>
+        <div class="filter-box">
+            <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-light text-muted">Status</span>
+                    <select name="status" class="form-select">
+                        <option value="">Semua</option>
+                        <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Aktif</option>
+                        <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Tidak Aktif</option>
+                    </select>
+                    <button type="submit" class="btn btn-secondary">Filter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -25,7 +53,7 @@
                     <tbody>
                         @forelse($jobPosts as $index => $job)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $jobPosts->firstItem() + $index }}</td>
                                 <td>{{ $job->title }}</td>
                                 <td>{{ $job->company->name ?? '-' }}</td>
                                 <td>{{ $job->location }}</td>
@@ -61,6 +89,10 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-3">
+                {{ $jobPosts->appends(request()->query())->links() }}
             </div>
         </div>
     </div>

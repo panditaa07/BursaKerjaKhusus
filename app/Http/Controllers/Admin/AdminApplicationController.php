@@ -156,6 +156,12 @@ class AdminApplicationController extends Controller
                 return response()->json(['success' => true]);
             }
 
+            // Check if from dashboard
+            $from = $request->input('_from');
+            if ($from === 'dashboard') {
+                return redirect()->route('admin.dashboard.index')->with('success', 'Pelamar berhasil dihapus.')->setStatusCode(303);
+            }
+
             // Redirect based on origin page
             $redirectTo = $request->input('_redirect_to');
             if ($redirectTo && str_contains($redirectTo, 'pelamar/bulanini')) {
@@ -170,5 +176,21 @@ class AdminApplicationController extends Controller
 
             return back()->with('error', 'Data pelamar gagal dihapus.');
         }
+    }
+
+    public function serveFile($path)
+    {
+        // Ensure user is admin
+        if (!auth()->check() || !auth()->user()->hasRole('admin')) {
+            abort(403, 'Unauthorized access to file.');
+        }
+
+        $fullPath = storage_path('app/public/' . $path);
+
+        if (!file_exists($fullPath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->file($fullPath);
     }
 }

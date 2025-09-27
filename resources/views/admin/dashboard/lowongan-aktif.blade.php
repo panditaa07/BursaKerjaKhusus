@@ -8,15 +8,18 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="fw-bold">LOWONGAN AKTIF</h4>
         <div class="search-box">
-            <div class="input-group shadow-sm">
-                <span class="input-group-text bg-light text-muted">
-                    <i class="bi bi-search"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Cari Lowongan">
-                <span class="input-group-text total-box fw-bold bg-success text-white">
-                    Total : {{ $lowongan->count() }}
-                </span>
-            </div>
+            <form method="GET" action="{{ route('admin.dashboard.lowongan-aktif') }}" class="d-inline">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-light text-muted">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                    <span class="input-group-text total-box fw-bold bg-success text-white">
+                        Total : {{ $lowongan->count() }}
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
             <table class="table modern-table mb-0 text-center">

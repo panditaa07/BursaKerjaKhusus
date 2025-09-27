@@ -13,9 +13,15 @@ class AdminJobPostController extends Controller
     {
         $query = JobPost::with('company')->latest();
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('title', 'like', "%{$search}%");
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%")
+                  ->orWhereHas('company', function ($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%");
+                  });
+            });
         }
 
         if ($request->has('status')) {
@@ -25,7 +31,7 @@ class AdminJobPostController extends Controller
             }
         }
 
-        $jobPosts = $query->paginate(10);
+        $jobPosts = $query->paginate(10)->appends($request->query());
         $totalLoker = JobPost::count(); // Global count regardless of filters
         return view('admin.jobs.index', compact('jobPosts', 'totalLoker'));
     }
@@ -100,8 +106,12 @@ class AdminJobPostController extends Controller
             $data['company_logo'] = $logoPath;
         }
 
-        $jobPost->update($data);
-        return redirect()->route('admin.job-posts.show', $jobPost)->with('success', 'Lowongan berhasil diupdate');
+        try {
+            $jobPost->update($data);
+            return redirect()->route('admin.job-posts.show', $jobPost)->with('success', 'Lowongan berhasil diupdate');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.job-posts.edit', $jobPost)->withErrors('Perubahan gagal disimpan')->withInput();
+        }
     }
 
     public function active(Request $request)

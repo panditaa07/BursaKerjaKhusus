@@ -114,7 +114,6 @@
                         <label for="deadline">Deadline <span class="required">*</span></label>
                         <div class="input-wrapper">
                             <input type="date" id="deadline" name="deadline" value="{{ old('deadline', $jobPost->deadline ? \Carbon\Carbon::parse($jobPost->deadline)->format('Y-m-d') : '') }}" required>
-                            <i class="fas fa-calendar input-icon"></i>
                         </div>
                         @error('deadline')
                             <div class="error-message text-red-500 text-xs italic">{{ $message }}</div>

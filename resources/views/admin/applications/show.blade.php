@@ -13,8 +13,8 @@
     <!-- Profile Photo Section -->
     <div class="profile-section">
         <div class="profile-photo-container">
-            <img src="{{ $application->user && $application->user->profile_photo_path ? asset('storage/' . $application->user->profile_photo_path) : asset('images/default-avatar.png') }}" 
-                 alt="Foto Profil" 
+            <img src="{{ $application->user && $application->user->profile_photo_path ? asset('storage/' . $application->user->profile_photo_path) : asset('images/default-avatar.png') }}"
+                 alt="Foto Profil"
                  class="profile-photo">
         </div>
     </div>

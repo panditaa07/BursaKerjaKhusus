@@ -7,20 +7,19 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="fw-bold">LOWONGAN TIDAK AKTIF</h4>
-        <div class="input-group" style="width: 300px;">
-            <span class="input-group-text">
-                <i class="bi bi-search"></i>
-            </span>
-            <input 
-                type="text" 
-                id="search" 
-                class="form-control" 
-                placeholder="Cari Lowongan..."
-                value="{{ request('search') }}"
-            >
-            <span class="input-group-text bg-success text-white fw-bold">
-                Total : {{ $lowongan->count() }}
-            </span>
+        <div class="search-box">
+            <form method="GET" action="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="d-inline">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-light text-muted">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" name="keyword" class="form-control" placeholder="Cari Lowongan" value="{{ request('keyword') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                    <span class="input-group-text total-box fw-bold bg-success text-white">
+                        Total : {{ $lowongan->total() }}
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
             <table class="table modern-table mb-0 text-center">
@@ -64,18 +63,14 @@
                     @endforelse
                 </tbody>
             </table>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $lowongan->links() }}
+            </div>
         </div>
     </div>
 </div>
 
-<script>
-    document.getElementById('search').addEventListener('keyup', function(e) {
-        if (e.key === 'Enter') {
-            const query = e.target.value;
-            const url = new URL(window.location.href);
-            url.searchParams.set('search', query);
-            window.location.href = url.toString();
-        }
-    });
-</script>
+
 @endsection

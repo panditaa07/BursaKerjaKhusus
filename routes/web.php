@@ -71,6 +71,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('applications/{application}/edit', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'edit'])->name('applications.edit');
         Route::patch('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'update'])->name('applications.update');
         Route::delete('applications/{id}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'destroy'])->name('applications.destroy');
+
+        // File serving for secure access
+        Route::get('files/{path}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'serveFile'])->name('files')->where('path', '.*');
     });
 
     // ===== Company Routes =====
