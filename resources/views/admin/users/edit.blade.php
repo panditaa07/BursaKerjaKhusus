@@ -4,7 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/edituser.css') }}">
-<div class="container-fluid">
+<div>
     <h1 class="h3 mb-4">Edit User</h1>
 
     <div class="row">

@@ -40,12 +40,13 @@
 }
 
 .h3 {
-    color: var(--text-primary);
+    color: black;
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 2rem;
     position: relative;
     animation: slideInFromTop 0.8s ease-out;
+    text-align: center;
 }
 
 .h3::after {
@@ -58,6 +59,7 @@
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     border-radius: 2px;
     animation: expandWidth 1s ease-out 0.5s both;
+    transform: translateX(850%);    
 }
 
 /* Card Styles */
@@ -77,7 +79,7 @@
 }
 
 .card-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: #1e3a8a;
     color: white;
     padding: 1.5rem;
     position: relative;
@@ -192,7 +194,7 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: #1e3a8a;
     color: white;
     box-shadow: var(--shadow-md);
 }
@@ -366,10 +368,6 @@
         --text-muted: #a0aec0;
         
         --border-color: #4a5568;
-    }
-    
-    .container-fluid {
-        background: linear-gradient(135deg, var(--bg-primary) 0%, #2a4365 100%);
     }
 }
 

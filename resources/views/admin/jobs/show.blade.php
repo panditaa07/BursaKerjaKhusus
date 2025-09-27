@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6">
+        <div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Informasi Lowongan</h2>
