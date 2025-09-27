@@ -78,7 +78,7 @@
         }
 
      .btn-primary {
-    background: linear-gradient(135deg, rgb(30, 58, 138), #6366f1);
+    background: rgb(30, 58, 138);
     color: white;
     box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
 }
@@ -89,13 +89,13 @@
 }
 
         .btn-cancel {
-            background: rgba(107, 114, 128, 0.8);
+            background: rgb(30, 58, 138);
             color: white;
             backdrop-filter: blur(10px);
         }
 
         .btn-cancel:hover {
-            background: rgba(75, 85, 99, 0.9);
+            background: rgb(30, 58, 138);
             transform: translateY(-2px);
         }
 

@@ -285,6 +285,10 @@ h1::after {
     background: rgb(30, 58, 138);
 }
 
+.detail-pengguna-page .btn-secondary {
+    background: rgb(30, 58, 138);
+}
+
 
 /* Table Styling */
 .table {

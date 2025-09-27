@@ -156,23 +156,23 @@ h1.h3 {
 .btn-primary {
     background: #1e3a8a;;
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 8px 25px rgb(30, 58, 138);
 }
 
 .btn-info {
     background: var(--info-gradient);
     color: white;
-    box-shadow: 0 4px 15px rgba(54, 209, 220, 0.4);
+    box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
 
 .btn-info:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(54, 209, 220, 0.6);
+    box-shadow: 0 8px 25px rgb(30, 58, 138);
 }
 
 .btn-danger {
@@ -190,6 +190,11 @@ h1.h3 {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
     border-radius: 8px;
+}
+
+.btn-secondary {
+    background: rgb(30, 58, 138);
+    box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
 
 /* Modern Table Styles */
