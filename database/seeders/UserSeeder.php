@@ -79,25 +79,8 @@ class UserSeeder extends Seeder
             );
         }
 
-        // Companies with job posts (3 companies)
-        for ($i = 1; $i <= 3; $i++) {
-            User::updateOrCreate(
-                ['email' => "company{$i}@bkk.com"],
-                [
-                    'name' => $faker->name . " Company {$i}",
-                    'password' => Hash::make('password'),
-                    'role_id' => $companyRole->id,
-                    'company_name' => 'PT ' . $faker->company . " {$i}",
-                    'phone' => $faker->phoneNumber,
-                    'address' => $faker->address,
-                    'birth_date' => $faker->date('Y-m-d', '-30 years'),
-                    'short_profile' => $faker->sentence,
-                ]
-            );
-        }
-
-        // Companies without job posts (2 companies)
-        for ($i = 4; $i <= 5; $i++) {
+        // Companies (50 companies total)
+        for ($i = 1; $i <= 50; $i++) {
             User::updateOrCreate(
                 ['email' => "company{$i}@bkk.com"],
                 [

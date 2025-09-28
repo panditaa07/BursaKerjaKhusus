@@ -7,16 +7,14 @@ use App\Models\Application;
 use App\Models\User;
 use App\Models\JobPost;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationSeeder extends Seeder
 {
     public function run(): void
     {
         // Ambil semua user dengan role 'user'
-        $allUsers = User::whereHas('role', fn($q) => $q->where('name', 'user'))
-            ->orderBy('id')
-            ->pluck('id')
-            ->toArray();
+        $allUsers = User::whereHas('role', fn($q) => $q->where('name', 'user'))->pluck('id')->toArray();
 
         // Ambil semua job post
         $jobPosts = JobPost::pluck('id')->toArray();
@@ -26,46 +24,27 @@ class ApplicationSeeder extends Seeder
             return;
         }
 
-        // Status lamaran yang mungkin
-        $statuses = ['submitted', 'reviewed', 'accepted', 'rejected'];
+        // Generate unique combinations
+        $combinations = [];
+        $attempts = 0;
+        $maxAttempts = 1000; // Prevent infinite loop
 
-        $applications = [];
-        $usedCombinations = [];
+        while (count($combinations) < 500 && $attempts < $maxAttempts) {
+            $userId = $allUsers[array_rand($allUsers)];
+            $jobPostId = $jobPosts[array_rand($jobPosts)];
+            $key = $userId . '-' . $jobPostId;
 
-        // Create applications for a subset of users (e.g., first 5 users)
-        $usersWithApplications = array_slice($allUsers, 0, 5);
-
-        // Create applications for each user-job combination (up to 15 total)
-        $maxApplications = min(15, count($usersWithApplications) * count($jobPosts));
-
-        for ($i = 0; $i < $maxApplications; $i++) {
-            do {
-                $userId = $usersWithApplications[array_rand($usersWithApplications)];
-                $jobPostId = $jobPosts[array_rand($jobPosts)];
-                $combination = $userId . '-' . $jobPostId;
-            } while (in_array($combination, $usedCombinations));
-
-            $usedCombinations[] = $combination;
-
-            $applications[] = [
-                'user_id' => $userId,
-                'job_post_id' => $jobPostId,
-                'cv_path' => "cv_{$userId}_{$jobPostId}.pdf",
-                'cover_letter' => 'Saya tertarik dengan posisi ini dan memiliki kualifikasi yang sesuai.',
-                'status' => $statuses[array_rand($statuses)],
-                'created_at' => Carbon::now()->subDays(rand(1, 60)),
-                'updated_at' => Carbon::now(),
-            ];
+            if (!isset($combinations[$key])) {
+                $combinations[$key] = ['user_id' => $userId, 'job_post_id' => $jobPostId];
+            }
+            $attempts++;
         }
 
-        foreach ($applications as $application) {
-            Application::updateOrCreate(
-                [
-                    'user_id' => $application['user_id'],
-                    'job_post_id' => $application['job_post_id']
-                ],
-                $application
-            );
+        $uniqueCombinations = array_values($combinations);
+        $this->command->info("Membuat " . count($uniqueCombinations) . " aplikasi unik.");
+
+        foreach ($uniqueCombinations as $combo) {
+            Application::factory()->create($combo);
         }
     }
 }

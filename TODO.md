@@ -1,20 +1,18 @@
-# TODO: Fix Search on Lowongan Tidak Aktif Page
+# TODO: Fix delete button in Lowongan Terbaru cards on company dashboard
 
-## Plan Overview
-- Focus: Only admin role. Do not touch company or user logic.
-- Issue: Search button ("Cari") not working; no results filtering on keyword input.
-- Solution: Add proper form in view, handle search in controller with Eloquent query and pagination.
+## Information Gathered
+- Delete button in dashboard cards submits to `company.jobs.destroy` route (correct, as 'company.lowongan.destroy' doesn't exist).
+- Form uses POST + @method('DELETE'), but lacks 'd-inline' class, uses English confirm, and no 'from' param to stay on dashboard.
+- Controller redirects to 'company.jobs.all' by default; needs 'dashboard' case for redirect back.
+- Success message in English; update to Indonesian.
 
-## Steps Completed
-- [x] Update AdminDashboardController::lowonganTidakAktif to accept Request, add search logic for 'title' and 'company.name' using 'keyword' parameter, apply orderBy and paginate(10).
-- [x] Update view lowongan-tidak-aktif.blade.php: Replace input with form (GET, action to route), input name="keyword", add "Cari" button, use $lowongan->total() for count.
-- [x] Remove obsolete JavaScript for Enter key handling.
+## Plan
+1. Update dashboard view form: Add `class="d-inline"`, change confirm to Indonesian, add hidden `name="from" value="dashboard"`.
+2. Update controller: Change success message to Indonesian, add 'dashboard' case in `getRedirectRoute()` to return 'company.dashboard.index'.
 
-## Pending Steps
-- [ ] Add pagination links to the view after the table to handle multiple pages.
-- [ ] Update controller to append query parameters to paginator for preserving search across pages.
-- [ ] Test: Verify search filters inactive jobs by title or company, pagination works, no errors.
+## Dependent Files to be edited
+- `resources/views/company/dashboard/index.blade.php` (form updates).
+- `app/Http/Controllers/JobPostController.php` (message and redirect logic).
 
-## Follow-up
-- Run `php artisan route:clear` if needed.
-- Test in browser: Navigate to admin lowongan tidak aktif, search by keyword, check results and pagination.
+## Followup steps
+- Test deletion from dashboard: Confirm stays on page, shows success message, and recent jobs update.

@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('users.edit');
         Route::put('/users/{user}', [AdminDashboardController::class, 'updateUser'])->name('users.update');
         Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('users.destroy');
+        Route::delete('/company/{company}', [AdminDashboardController::class, 'destroyCompany'])->name('company.destroy');
 
         // Job Posts (Admin)
         Route::resource('admin-jobs', AdminJobPostController::class)->parameters(['admin-jobs' => 'jobPost'])->names([

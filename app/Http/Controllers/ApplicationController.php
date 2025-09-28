@@ -39,7 +39,7 @@ class ApplicationController extends Controller
     /**
      * Display a listing of all applications for the company
      */
-    public function indexAllApplicants()
+    public function indexAllApplicants(Request $request)
     {
         $user = Auth::user();
 
@@ -53,9 +53,21 @@ class ApplicationController extends Controller
             return redirect()->route('user.dashboard.index')->with('error', 'Data perusahaan tidak ditemukan.');
         }
 
+        $search = $request->input('search');
+
         $applications = Application::whereHas('jobPost', function ($query) use ($company) {
             $query->where('company_id', $company->id);
-        })->with(['user', 'jobPost'])->latest()->paginate(10);
+        })
+        ->when($search, function ($q) use ($search) {
+            $q->whereHas('user', function ($u) use ($search) {
+                $u->where('name', 'like', "%{$search}%");
+            })->orWhereHas('jobPost', function ($l) use ($search) {
+                $l->where('title', 'like', "%{$search}%");
+            })->orWhere('status', 'like', "%{$search}%");
+        })
+        ->with(['user', 'jobPost'])
+        ->latest()
+        ->paginate(10);
 
         return view('company.applications.all', compact('applications'));
     }
@@ -63,7 +75,7 @@ class ApplicationController extends Controller
     /**
      * Display a listing of applications for the current month for the company
      */
-    public function indexThisMonthApplicants()
+    public function indexThisMonthApplicants(Request $request)
     {
         $user = Auth::user();
 
@@ -77,11 +89,20 @@ class ApplicationController extends Controller
             return redirect()->route('user.dashboard.index')->with('error', 'Data perusahaan tidak ditemukan.');
         }
 
+        $search = $request->input('search');
+
         $applications = Application::whereHas('jobPost', function ($query) use ($company) {
             $query->where('company_id', $company->id);
         })
         ->whereMonth('created_at', now()->month)
         ->whereYear('created_at', now()->year)
+        ->when($search, function ($q) use ($search) {
+            $q->whereHas('user', function ($u) use ($search) {
+                $u->where('name', 'like', "%{$search}%");
+            })->orWhereHas('jobPost', function ($l) use ($search) {
+                $l->where('title', 'like', "%{$search}%");
+            })->orWhere('status', 'like', "%{$search}%");
+        })
         ->with(['user', 'jobPost'])
         ->latest()
         ->paginate(10);
@@ -189,7 +210,7 @@ class ApplicationController extends Controller
                 $jobTitle,
                 $companyName,
                 'apply',
-                route('applications.show', $application->id)
+                route('user.applications.show', $application->id)
             ));
         } catch (\Exception $e) {
             // Log error but don't break the application
@@ -228,7 +249,7 @@ class ApplicationController extends Controller
             $application->jobPost->title,
             $application->jobPost->company->name,
             $application->status,
-            route('applications.show', $application->id)
+            route('user.applications.show', $application->id)
         ));
 
         return redirect()->back()

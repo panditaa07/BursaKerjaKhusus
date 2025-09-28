@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class JobPost extends Model
 {
-    protected $fillable = ['industry_id','company_id','title','description','location','employment_type','vacancies','deadline','status','requirements','salary','company_logo','min_salary','max_salary','berkas_lamaran'];
+    use HasFactory;
+
+    protected $fillable = ['industry_id','company_id','title','description','location','employment_type','vacancies','deadline','status','requirements','salary','company_logo','min_salary','max_salary','berkas_lamaran','total_pelamar','created_at'];
 
     protected $casts = [
         'deadline' => 'date',

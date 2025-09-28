@@ -33,6 +33,12 @@
                         </div>
                     @endif
 
+                    <!-- Company Logo Preview -->
+                    <div class="text-center mb-3">
+                        <img id="logoPreview" src="{{ asset('storage/' . $job->company->logo) }}" alt="Logo Perusahaan" width="80" height="80" class="rounded shadow-sm mb-2">
+                        <input type="file" name="logo" class="form-control" onchange="previewLogo(event)">
+                    </div>
+
                     <form method="POST" action="{{ route('company.jobs.update', $job) }}">
                         @csrf
                         @method('PUT')
@@ -45,6 +51,51 @@
                                     <i class="fas fa-info-circle me-2"></i>
                                     <strong>Info:</strong> Mengedit lowongan kerja "{{ $job->title }}"
                                     <span class="badge bg-primary ms-2">{{ $job->applications->count() }} pelamar</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Info Card -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-info-circle me-2"></i>Informasi Tambahan
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3 mb-3">
+                                                <label class="form-label fw-bold">Nama Perusahaan</label>
+                                                <input type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" value="{{ old('company_name', $job->company->name) }}">
+                                                @error('company_name')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label class="form-label fw-bold">Alamat Perusahaan</label>
+                                                <input type="text" class="form-control @error('company_address') is-invalid @enderror" name="company_address" value="{{ old('company_address', $job->company->address ?? '') }}">
+                                                @error('company_address')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label class="form-label fw-bold">Tanggal Dibuat</label>
+                                                <input type="datetime-local" class="form-control @error('created_at') is-invalid @enderror" name="created_at" value="{{ old('created_at', $job->created_at ? $job->created_at->format('Y-m-d\TH:i') : '') }}">
+                                                @error('created_at')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label class="form-label fw-bold">Total Pelamar</label>
+                                                <input type="number" class="form-control @error('total_pelamar') is-invalid @enderror" name="total_pelamar" value="{{ old('total_pelamar', $job->total_pelamar ?? $job->applications->count()) }}" min="0">
+                                                @error('total_pelamar')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -78,28 +129,29 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="location" class="form-label fw-bold">Lokasi Kerja</label>
+                                <label for="location" class="form-label fw-bold">Lokasi Kerja <span class="text-danger">*</span></label>
                                 <input type="text"
                                        class="form-control @error('location') is-invalid @enderror"
                                        id="location"
                                        name="location"
                                        value="{{ old('location', $job->location) }}"
-                                       placeholder="Contoh: Jakarta, Bandung, Remote">
+                                       placeholder="Contoh: Jakarta, Bandung, Remote"
+                                       required>
                                 @error('location')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="type" class="form-label fw-bold">Tipe Pekerjaan</label>
-                                <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
-                                    <option value="">Pilih Tipe Pekerjaan</option>
-                                    <option value="full-time" {{ old('type', $job->type) == 'full-time' ? 'selected' : '' }}>Full-time</option>
-                                    <option value="part-time" {{ old('type', $job->type) == 'part-time' ? 'selected' : '' }}>Part-time</option>
-                                    <option value="contract" {{ old('type', $job->type) == 'contract' ? 'selected' : '' }}>Contract</option>
-                                    <option value="internship" {{ old('type', $job->type) == 'internship' ? 'selected' : '' }}>Internship</option>
-                                    <option value="freelance" {{ old('type', $job->type) == 'freelance' ? 'selected' : '' }}>Freelance</option>
+                                <label for="employment_type" class="form-label fw-bold">Jenis Pekerjaan <span class="text-danger">*</span></label>
+                                <select class="form-select @error('employment_type') is-invalid @enderror" id="employment_type" name="employment_type" required>
+                                    <option value="">Pilih Jenis Pekerjaan</option>
+                                    <option value="full-time" {{ old('employment_type', $job->employment_type) == 'full-time' ? 'selected' : '' }}>Full-time</option>
+                                    <option value="part-time" {{ old('employment_type', $job->employment_type) == 'part-time' ? 'selected' : '' }}>Part-time</option>
+                                    <option value="contract" {{ old('employment_type', $job->employment_type) == 'contract' ? 'selected' : '' }}>Contract</option>
+                                    <option value="internship" {{ old('employment_type', $job->employment_type) == 'internship' ? 'selected' : '' }}>Internship</option>
+                                    <option value="freelance" {{ old('employment_type', $job->employment_type) == 'freelance' ? 'selected' : '' }}>Freelance</option>
                                 </select>
-                                @error('type')
+                                @error('employment_type')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -107,29 +159,85 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="salary" class="form-label fw-bold">Rentang Gaji</label>
-                                <input type="text"
-                                       class="form-control @error('salary') is-invalid @enderror"
-                                       id="salary"
-                                       name="salary"
-                                       value="{{ old('salary', $job->salary) }}"
-                                       placeholder="Contoh: Rp 5.000.000 - Rp 7.000.000">
-                                @error('salary')
+                                <label for="vacancies" class="form-label fw-bold">Jumlah Lowongan <span class="text-danger">*</span></label>
+                                <input type="number"
+                                       class="form-control @error('vacancies') is-invalid @enderror"
+                                       id="vacancies"
+                                       name="vacancies"
+                                       value="{{ old('vacancies', $job->vacancies) }}"
+                                       min="1"
+                                       placeholder="Contoh: 1-10"
+                                       required>
+                                @error('vacancies')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                                <div class="form-text">Opsional. Kosongkan jika tidak ingin menampilkan informasi gaji.</div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="deadline" class="form-label fw-bold">Deadline Lamaran</label>
+                                <label for="industry_id" class="form-label fw-bold">Kategori/Bidang Kerja <span class="text-danger">*</span></label>
+                                <select class="form-select @error('industry_id') is-invalid @enderror" id="industry_id" name="industry_id" required>
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach($industries as $industry)
+                                        <option value="{{ $industry->id }}" {{ old('industry_id', $job->industry_id) == $industry->id ? 'selected' : '' }}>{{ $industry->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('industry_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="min_salary" class="form-label fw-bold">Gaji Minimum</label>
+                                <input type="number"
+                                       class="form-control gaji-input @error('min_salary') is-invalid @enderror"
+                                       id="min_salary"
+                                       name="min_salary"
+                                       value="{{ old('min_salary', $job->min_salary) }}"
+                                       min="0"
+                                       placeholder="Contoh: 5000000"
+                                       step="1">
+                                @error('min_salary')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="max_salary" class="form-label fw-bold">Gaji Maksimum</label>
+                                <input type="number"
+                                       class="form-control gaji-input @error('max_salary') is-invalid @enderror"
+                                       id="max_salary"
+                                       name="max_salary"
+                                       value="{{ old('max_salary', $job->max_salary) }}"
+                                       min="0"
+                                       placeholder="Contoh: 7000000"
+                                       step="1">
+                                @error('max_salary')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="deadline" class="form-label fw-bold">Deadline Lamaran <span class="text-danger">*</span></label>
                                 <input type="date"
                                        class="form-control @error('deadline') is-invalid @enderror"
                                        id="deadline"
                                        name="deadline"
-                                       value="{{ old('deadline', $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('Y-m-d') : '') }}">
+                                       value="{{ old('deadline', $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('Y-m-d') : '') }}"
+                                       required>
                                 @error('deadline')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <div class="form-text">Opsional. Kosongkan jika tidak ada batas waktu.</div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="status" class="form-label fw-bold">Status <span class="text-danger">*</span></label>
+                                <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" required>
+                                    <option value="">Pilih Status</option>
+                                    <option value="active" {{ old('status', $job->status) == 'active' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="inactive" {{ old('status', $job->status) == 'inactive' ? 'selected' : '' }}>Nonaktif</option>
+                                </select>
+                                @error('status')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -162,7 +270,7 @@
 
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label for="requirements" class="form-label fw-bold">Persyaratan & Kualifikasi</label>
+                                <label for="requirements" class="form-label fw-bold">Kualifikasi/Persyaratan</label>
                                 <textarea class="form-control @error('requirements') is-invalid @enderror"
                                           id="requirements"
                                           name="requirements"
@@ -172,6 +280,30 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <div class="form-text">Opsional. Cantumkan persyaratan dan kualifikasi yang dibutuhkan untuk posisi ini.</div>
+                            </div>
+                        </div>
+
+                        <!-- Berkas Lamaran Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="border-bottom pb-2 mb-3">
+                                    <i class="fas fa-file-alt text-primary me-2"></i>Berkas Lamaran
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="berkas_lamaran" class="form-label fw-bold">Berkas yang Diperlukan</label>
+                                <textarea class="form-control @error('berkas_lamaran') is-invalid @enderror"
+                                          id="berkas_lamaran"
+                                          name="berkas_lamaran"
+                                          rows="3"
+                                          placeholder="Contoh: CV, Surat Lamaran, Portofolio, Sertifikat">{{ old('berkas_lamaran', $job->berkas_lamaran) }}</textarea>
+                                @error('berkas_lamaran')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Opsional. Sebutkan berkas-berkas yang harus diserahkan oleh pelamar.</div>
                             </div>
                         </div>
 

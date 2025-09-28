@@ -98,14 +98,25 @@
                                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
-                                          onsubmit="return confirm('Yakin ingin menghapus pengguna ini? Aksi ini tidak dapat dibatalkan.');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i> Hapus
-                                        </button>
-                                    </form>
+                                    @if($user->role->name == 'company' && $user->company)
+                                        <form action="{{ route('admin.company.destroy', $user->company) }}" method="POST" class="d-inline"
+                                              onsubmit="return confirm('Yakin ingin menghapus data company ini? Aksi ini tidak dapat dibatalkan.');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
+                                              onsubmit="return confirm('Yakin ingin menghapus pengguna ini? Aksi ini tidak dapat dibatalkan.');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

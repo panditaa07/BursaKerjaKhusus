@@ -9,6 +9,7 @@ use App\Models\JobPost;
 use App\Models\Company;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CompanyApplicationSeeder extends Seeder
 {
@@ -124,13 +125,7 @@ class CompanyApplicationSeeder extends Seeder
 
         // Insert all applications
         foreach ($applications as $applicationData) {
-            Application::updateOrCreate(
-                [
-                    'user_id' => $applicationData['user_id'],
-                    'job_post_id' => $applicationData['job_post_id']
-                ],
-                $applicationData
-            );
+            Application::create($applicationData);
         }
 
         $this->command->info("✅ CompanyApplicationSeeder selesai: {$applicationCount} dummy applications dibuat untuk testing company role.");

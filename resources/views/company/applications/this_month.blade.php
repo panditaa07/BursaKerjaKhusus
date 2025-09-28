@@ -15,6 +15,25 @@
             </div>
         </div>
 
+        <!-- Search Form -->
+        <form method="GET" action="{{ route('company.applications.this_month') }}" class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..." value="{{ request('search') }}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                        @if(request('search'))
+                            <a href="{{ route('company.applications.this_month') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times"></i> Reset
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </form>
+
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="fas fa-check-circle me-2"></i>

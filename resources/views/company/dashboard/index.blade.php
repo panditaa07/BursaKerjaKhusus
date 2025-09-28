@@ -92,11 +92,60 @@
                                 <i class="fa fa-eye"></i>
                             </a>
 
-                            <!-- Edit -->
-                            <a href="{{ route('company.applicants.edit', $app->id) }}"
-                               class="btn btn-sm btn-warning" title="Edit Pelamar">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            <!-- Edit Status -->
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-warning dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton{{ $app->id }}"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                        title="Edit Pelamar">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end"
+                                    aria-labelledby="dropdownMenuButton{{ $app->id }}">
+                                    <li>
+                                        <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="accepted">
+                                            <button type="submit" class="dropdown-item text-success">
+                                                <i class="fas fa-check-circle me-2"></i>Terima
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="rejected">
+                                            <button type="submit" class="dropdown-item text-danger">
+                                                <i class="fas fa-times-circle me-2"></i>Tolak
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="interview">
+                                            <button type="submit" class="dropdown-item text-primary">
+                                                <i class="fas fa-user-tie me-2"></i>Wawancara
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="test1">
+                                            <button type="submit" class="dropdown-item text-secondary">
+                                                <i class="fas fa-clipboard-list me-2"></i>Test
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
 
                             <!-- Hapus -->
                             <form action="{{ route('company.applicants.destroy', $app->id) }}"
@@ -131,11 +180,12 @@
                             <p class="card-text text-muted">{{ $job->salary ?? 'Gaji tidak tersedia' }}</p>
                             <p class="card-text"><small class="text-muted">Skrg waktu {{ $job->created_at->diffForHumans(null, true) }}</small></p>
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('company.jobs.edit', $job->id) }}" class="btn btn-info btn-sm">Info</a>
+                                <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-info btn-sm">Info</a>
                                 <a href="{{ route('company.jobs.edit', $job->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this job post?');">
+                                <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                                     @csrf
                                     @method('DELETE')
+                                    <input type="hidden" name="from" value="dashboard">
                                     <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                 </form>
                             </div>

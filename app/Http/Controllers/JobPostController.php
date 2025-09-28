@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JobPost;
+use App\Models\Industry;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class JobPostController extends Controller
 {
@@ -169,7 +171,10 @@ class JobPostController extends Controller
         if ($job->company_id !== auth()->user()->company->id) {
             abort(403, 'Unauthorized action.');
         }
-        return view('company.jobs.edit', compact('job'));
+
+        $industries = Industry::all();
+
+        return view('company.jobs.edit', compact('job', 'industries'));
     }
 
     /**
@@ -186,20 +191,60 @@ class JobPostController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'requirements' => 'nullable|string',
-            'salary' => 'nullable|string',
             'location' => 'nullable|string|max:255',
-            'type' => 'nullable|string|in:full-time,part-time,contract,internship',
-            'deadline' => 'nullable|date|after:today',
+            'employment_type' => 'required|string|in:full-time,part-time,contract,internship,freelance',
+            'vacancies' => 'required|integer|min:1',
+            'deadline' => 'nullable|date|after_or_equal:today',
+            'status' => 'required|in:active,inactive',
+            'industry_id' => 'required|exists:industries,id',
+            'min_salary' => 'nullable|numeric|min:0',
+            'max_salary' => 'nullable|numeric|min:0|gte:min_salary',
+            'berkas_lamaran' => 'nullable|string',
+            'company_name' => 'nullable|string|max:255',
+            'company_address' => 'nullable|string|max:500',
+            'logo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'created_at' => 'nullable|date_format:Y-m-d\TH:i',
+            'total_pelamar' => 'nullable|integer|min:0',
         ]);
 
-        $job->update($request->all());
+        DB::transaction(function () use ($request, $job) {
+            // Update company fields if provided
+            $companyUpdates = [];
+            if ($request->filled('company_name')) {
+                $companyUpdates['name'] = $request->company_name;
+            }
+            if ($request->filled('company_address')) {
+                $companyUpdates['address'] = $request->company_address;
+            }
+            if ($request->hasFile('logo')) {
+                // Delete old logo if exists
+                if ($job->company->logo && Storage::disk('public')->exists($job->company->logo)) {
+                    Storage::disk('public')->delete($job->company->logo);
+                }
+                // Store new logo
+                $logoPath = $request->file('logo')->store('logo_perusahaan', 'public');
+                $companyUpdates['logo'] = $logoPath;
+            }
+            if (!empty($companyUpdates)) {
+                $job->company->update($companyUpdates);
+            }
 
-        // Determine redirect based on 'from' parameter
-        $from = $request->input('from', 'all');
-        $redirectRoute = $this->getRedirectRoute($from);
+            // Update job fields
+            $jobUpdates = $request->only([
+                'title', 'description', 'requirements', 'location', 'employment_type',
+                'vacancies', 'deadline', 'status', 'industry_id', 'min_salary', 'max_salary', 'berkas_lamaran'
+            ]);
+            if ($request->filled('created_at')) {
+                $jobUpdates['created_at'] = \Carbon\Carbon::createFromFormat('Y-m-d\TH:i', $request->created_at)->toDateTimeString();
+            }
+            if ($request->has('total_pelamar')) {
+                $jobUpdates['total_pelamar'] = $request->total_pelamar;
+            }
+            $job->update($jobUpdates);
+        });
 
-        return redirect()->route($redirectRoute)
-            ->with('success', 'Job updated successfully.');
+        return redirect()->route('company.jobs.show', $job)
+            ->with('success', 'Data lowongan berhasil diperbarui.');
     }
 
     /**
@@ -219,7 +264,7 @@ class JobPostController extends Controller
         $redirectRoute = $this->getRedirectRoute($from);
 
         return redirect()->route($redirectRoute)
-            ->with('success', 'Job deleted successfully.');
+            ->with('success', 'Lowongan berhasil dihapus.');
     }
 
     /**
@@ -246,6 +291,8 @@ class JobPostController extends Controller
     private function getRedirectRoute($from)
     {
         switch ($from) {
+            case 'dashboard':
+                return 'company.dashboard.index';
             case 'active':
                 return 'company.jobs.active';
             case 'inactive':

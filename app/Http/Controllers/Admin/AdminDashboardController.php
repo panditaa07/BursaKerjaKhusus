@@ -187,10 +187,15 @@ class AdminDashboardController extends Controller
     public function users(Request $request)
     {
         $query = User::withTrashed()
-            ->whereHas('role', function ($q) {
-                $q->where('name', '!=', 'admin');
+            ->where(function($q) {
+                $q->whereHas('role', function($r) { $r->where('name', 'user'); })
+                  ->orWhere(function($r) {
+                      $r->whereHas('role', function($s) { $s->where('name', 'company'); })
+                        ->whereHas('company');
+                  });
             })
             ->with('role')
+            ->with('company')
             ->withCount(['applications'])
             ->withCount(['jobPosts' => function ($q) {
                 // Include job posts regardless of company is_verified status
@@ -336,5 +341,14 @@ class AdminDashboardController extends Controller
             : 'User berhasil dihapus secara permanen.';
 
         return redirect()->route('admin.users.index')->with('success', $message);
+    }
+
+    /**
+     * Hapus company
+     */
+    public function destroyCompany(Company $company)
+    {
+        $company->delete();
+        return redirect()->route('admin.users.index')->with('success', 'Data company berhasil dihapus');
     }
 }
