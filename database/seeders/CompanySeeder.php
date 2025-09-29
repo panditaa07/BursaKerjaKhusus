@@ -13,7 +13,7 @@ class CompanySeeder extends Seeder
 {
     public function run(): void
     {
-        // Create 10 dummy companies using factory
-        Company::factory(10)->create();
+        // Create 50 dummy companies using factory to match company users
+        Company::factory(50)->create();
     }
 }

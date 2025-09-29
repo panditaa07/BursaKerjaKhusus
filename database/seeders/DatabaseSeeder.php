@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         DB::table('applications')->truncate();
         DB::table('job_posts')->truncate();
         DB::table('companies')->truncate();
+        DB::table('industries')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->command->info('🔹 Menjalankan RoleSeeder...');
@@ -23,8 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info('🔹 Menjalankan UserSeeder...');
         $this->call(UserSeeder::class);
 
-        $this->command->info('🔹 Menjalankan CompanySeeder...');
-        $this->call(CompanySeeder::class);
+        $this->command->info('🔹 Menjalankan IndustrySeeder...');
+        $this->call(IndustrySeeder::class);
+
+
 
         $this->command->info('🔹 Menjalankan JobPostSeeder...');
         $this->call(JobPostSeeder::class);

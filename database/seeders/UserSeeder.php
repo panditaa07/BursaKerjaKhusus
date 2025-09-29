@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 
@@ -34,19 +35,32 @@ class UserSeeder extends Seeder
         );
 
         // Create fixed company account for login
-        User::updateOrCreate(
+        $user = User::updateOrCreate(
             ['email' => 'company@bkk.com'],
             [
                 'name' => 'Contoh Company',
                 'password' => Hash::make('password'),
                 'role_id' => $companyRole->id,
-                'company_name' => 'PT Contoh Company',
                 'phone' => '081234567891',
                 'address' => 'Jl. Company No.1',
                 'birth_date' => '1985-01-01',
                 'short_profile' => 'Default company account',
             ]
         );
+
+        $company = Company::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'name' => 'PT Contoh Company',
+                'description' => 'Perusahaan contoh untuk testing',
+                'address' => $user->address,
+                'phone' => $user->phone,
+                'is_verified' => true,
+                'logo' => 'company_logos/logo_1.png',
+            ]
+        );
+
+        $user->update(['company_id' => $company->id]);
 
         // Create fixed user/pelamar account for login
         User::updateOrCreate(
@@ -81,19 +95,32 @@ class UserSeeder extends Seeder
 
         // Companies (50 companies total)
         for ($i = 1; $i <= 50; $i++) {
-            User::updateOrCreate(
+            $user = User::updateOrCreate(
                 ['email' => "company{$i}@bkk.com"],
                 [
                     'name' => $faker->name . " Company {$i}",
                     'password' => Hash::make('password'),
                     'role_id' => $companyRole->id,
-                    'company_name' => 'PT ' . $faker->company . " {$i}",
                     'phone' => $faker->phoneNumber,
                     'address' => $faker->address,
                     'birth_date' => $faker->date('Y-m-d', '-30 years'),
                     'short_profile' => $faker->sentence,
                 ]
             );
+
+            $company = Company::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'name' => 'PT ' . $faker->company . " {$i}",
+                    'description' => $faker->sentence,
+                    'address' => $user->address,
+                    'phone' => $user->phone,
+                    'is_verified' => true,
+                    'logo' => 'company_logos/logo_' . rand(1,10) . '.png',
+                ]
+            );
+
+            $user->update(['company_id' => $company->id]);
         }
 
         // Users with applications (5 users)

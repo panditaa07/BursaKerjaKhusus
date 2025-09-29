@@ -29,7 +29,7 @@ class ApplicationSeeder extends Seeder
         $attempts = 0;
         $maxAttempts = 1000; // Prevent infinite loop
 
-        while (count($combinations) < 500 && $attempts < $maxAttempts) {
+        while (count($combinations) < 300 && $attempts < $maxAttempts) {
             $userId = $allUsers[array_rand($allUsers)];
             $jobPostId = $jobPosts[array_rand($jobPosts)];
             $key = $userId . '-' . $jobPostId;
