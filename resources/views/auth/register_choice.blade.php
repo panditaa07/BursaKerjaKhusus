@@ -17,11 +17,7 @@
             <p class="subtitle">Select the type of account you'd like to create</p>
             
             <div class="role-buttons">
-                <a href="{{ url('/register/admin') }}" class="role-btn admin-btn" data-role="admin">
-                    <i class="fas fa-user-shield role-icon"></i>
-                    <div class="role-title">Admin</div>
-                    <div class="role-description">Manage system settings and user accounts</div>
-                </a>
+
                 
                 <a href="{{ url('/register/company') }}" class="role-btn company-btn" data-role="company">
                     <i class="fas fa-building role-icon"></i>

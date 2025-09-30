@@ -19,7 +19,7 @@ class RegisteredUserController extends Controller
             return view('auth.register_choice');
         }
 
-        $validRoles = ['admin', 'company', 'user'];
+        $validRoles = ['company', 'user'];
         if (!in_array($role, $validRoles)) {
             abort(404);
         }
@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request, $role)
     {
-        $validRoles = ['admin', 'company', 'user'];
+        $validRoles = ['company', 'user'];
         if (!in_array($role, $validRoles)) {
             abort(404);
         }
