@@ -21,20 +21,15 @@
 }
 
 body {
-    background: rgb(217, 234, 240);
-    min-height: 100vh;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text-primary);
+    background: #f1f5f9;
+    font-family: 'Inter', sans-serif;
 }
 
 .container-fluid {
-    background: whitesmoke;               /* Putih solid, lebih clean */
-    border-radius: 24px;
-    border: 1px solid #e5e7eb;         /* Abu muda netral */
-    box-shadow: var(--shadow);
-    padding: 2rem;
-    margin: 1rem;
-    animation: slideInUp 0.6s ease-out;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 @keyframes slideInUp {
@@ -55,6 +50,12 @@ body {
     align-items: center;
     margin-bottom: 2rem;
     animation: fadeInDown 0.8s ease-out;
+}
+
+.page-title {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: rgb(30, 64, 175); /* Biru tua */
 }
 
 @keyframes fadeInDown {
@@ -151,6 +152,16 @@ h1.h3 {
 
 .btn:hover::before {
     left: 100%;
+}
+
+.btn-filter {
+    background-color: #1e3a8a;
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 16px;
+}
+.btn-filter:hover {
+    background-color: #1d4ed8; /* Biru lebih terang */
 }
 
 .btn-primary {
@@ -441,4 +452,159 @@ h1.h3 {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-gradient);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Header tabel warna biru tua */
+.modern-table thead {
+    background-color: #1e3a8a;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.modern-table th,
+.modern-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Badge Role */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+}
+.status-info { background: #3b82f6; }   /* Biru */
+.status-warning { background: #f59e0b; } /* Kuning */
+
+/* Tombol Aksi bulat */
+.table-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 2px;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.table-btn.view { background: #3b82f6; }   /* Biru */
+.table-btn.edit { background: #facc15; color: #000; } /* Kuning */
+.table-btn.delete { background: #ef4444; } /* Merah */
+
+.table-btn:hover { transform: scale(1.1); }
+
+/* Pagination */
+.pagination {
+    margin: 0;
+}
+
+/* === Custom Style untuk Filter & Search === */
+
+/* Tombol utama */
+.btn-primary, .btn-secondary {
+    background-color: rgb(30, 64, 175); /* biru sama kaya User */
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover & Active biar kontras */
+.btn-primary:hover, .btn-secondary:hover,
+.btn-primary:active, .btn-secondary:active {
+    background-color: #3367D6; /* biru lebih gelap */
+    color: #fff;
+}
+
+/* Tombol kembali */
+.btn-back {
+    background-color: rgb(30, 64, 175);
+    border: none;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back:hover, .btn-back:active {
+    background-color: #3367D6;
+    color: #fff !important;
+}
+
+/* Search input biar lebih jelas */
+.input-group .form-control {
+    border: 1px solid #d1d5db; /* abu muda */
+    border-left: none;
+    box-shadow: none;
+    transition: 0.2s;
+}
+
+.input-group .form-control:focus {
+    border-color: rgb(30, 64, 175); /* border biru saat fokus */
+    box-shadow: 0 0 4px rgba(66, 133, 244, 0.4);
+}
+
+.input-group-text {
+    border: 1px solid #d1d5db;
+    border-right: none;
+    background-color: #fff;
+    color: #6b7280;
+}
+
+.input-group .form-select {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+.back-button {
+    background-color: rgb(30, 58, 138);   /* sama kayak filter */
+    border: none;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.back-button:hover {
+    background-color: #3367D6;   /* hover biar kontras */
+    transform: translateY(-1px);
+}
+
+.back-button i {
+    font-size: 14px;
 }

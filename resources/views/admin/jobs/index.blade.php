@@ -2,41 +2,41 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="page-title">Kelola Data Lowongan Kerja</h2>
-        <a href="{{ route('admin.job-posts.create') }}" class="btn btn-add-job">+ Tambah Lowongan</a>
-    </div>
-
-    <!-- Search and Filter -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="search-box">
-            <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
-                <div class="input-group shadow-sm">
-                    <span class="input-group-text bg-light text-muted">
-                        <i class="bi bi-search"></i>
-                    </span>
-                    <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
-                    <button type="submit" class="btn btn-primary">Cari</button>
-                </div>
-            </form>
-        </div>
-        <div class="filter-box">
-            <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
-                <div class="input-group shadow-sm">
-                    <span class="input-group-text bg-light text-muted">Status</span>
-                    <select name="status" class="form-select">
-                        <option value="">Semua</option>
-                        <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Aktif</option>
-                        <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Tidak Aktif</option>
-                    </select>
-                    <button type="submit" class="btn btn-secondary">Filter</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="card">
+     <div class="card shadow-lg border-0">
         <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="page-title">Kelola Data Lowongan Kerja</h2>
+                <a href="{{ route('admin.job-posts.create') }}" class="btn btn-add-job">+ Tambah Lowongan</a>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="search-box">
+                    <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
+                        <div class="input-group shadow-sm">
+                            <span class="input-group-text bg-light text-muted">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
+                            <button type="submit" class="btn btn-primary">Cari</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="filter-box">
+                    <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
+                        <div class="input-group shadow-sm">
+                            <span class="input-group-text bg-light text-muted">Status</span>
+                            <select name="status" class="form-select">
+                                <option value="">Semua</option>
+                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Aktif</option>
+                                <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Tidak Aktif</option>
+                            </select>
+                            <button type="submit" class="btn btn-secondary">Filter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div class="table-responsive">
                 <table class="table modern-table">
                     <thead>
@@ -67,8 +67,8 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
-        <i class="bi bi-eye"></i>
-    </a>
+                                        <i class="bi bi-eye"></i>
+                                    </a>
                                     <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
@@ -90,10 +90,38 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Pagination -->
+
+            <!-- Pagination Custom -->
             <div class="d-flex justify-content-center mt-3">
-                {{ $jobPosts->appends(request()->query())->links() }}
+                <nav>
+                    <ul class="pagination">
+
+                        {{-- Tombol Previous --}}
+                        @if ($jobPosts->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link bg-primary text-white" href="{{ $jobPosts->previousPageUrl() }}" rel="prev">Previous</a>
+                            </li>
+                        @endif
+
+                        {{-- Tombol Next --}}
+                        @if ($jobPosts->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link bg-primary text-white" href="{{ $jobPosts->nextPageUrl() }}" rel="next">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        @endif
+
+                    </ul>
+                </nav>
             </div>
+
         </div>
     </div>
 </div>

@@ -4,131 +4,132 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/kelolapengguna.css') }}">
+
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">Kelola Pengguna</h1>
+        <h2 class="page-title">Kelola Pengguna</h2>
+        <a href="{{ url('/admin/dashboard') }}" class="back-button">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+
     </div>
 
-    {{-- Tombol Kembali --}}
-    @include('components.back-button')
+    {{-- Form Filter & Search --}}
+    <form method="GET" action="{{ route('admin.users.index') }}" 
+          class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
 
-    {{-- Form Filter --}}
-    <form method="GET" action="{{ route('admin.users.index') }}" class="row g-3 mb-4">
-        <div class="col-md-5">
-            <input type="text" name="search" class="form-control" placeholder="Cari nama atau email" value="{{ request('search') }}">
+        <!-- Search box -->
+        <div class="input-group" style="max-width: 400px;">
+            <span class="input-group-text bg-white">
+                <i class="fas fa-search"></i>
+            </span>
+            <input type="text" name="search" class="form-control" 
+                   placeholder="Cari nama atau email" value="{{ request('search') }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
         </div>
-        <div class="col-md-4">
+
+        <!-- Role filter -->
+        <div class="input-group" style="max-width: 300px;">
+            <span class="input-group-text bg-white">Role</span>
             <select name="role" class="form-select">
                 <option value="">Semua Role</option>
                 <option value="company" {{ request('role') == 'company' ? 'selected' : '' }}>Company</option>
                 <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>User</option>
             </select>
-        </div>
-        <div class="col-md-3">
-            <button type="submit" class="btn btn-primary w-100">Filter</button>
+            <button type="submit" class="btn btn-secondary">Filter</button>
         </div>
     </form>
 
     {{-- Flash Message --}}
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+        <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
     {{-- Data Users --}}
     @if($users->isEmpty())
         <div class="alert alert-info">Tidak ada pengguna untuk ditampilkan.</div>
     @else
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Kategori</th>
-                        <th>Tanggal Daftar</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $index => $user)
-                        <tr>
-                            <td>{{ $users->firstItem() + $index }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                <span class="badge bg-{{ $user->role->name == 'company' ? 'warning' : 'info' }}">
-                                    {{ ucfirst($user->role->name) }}
-                                </span>
-                            </td>
-                            <td>
-                                @if($user->role->name == 'company')
-                                    @if($user->job_posts_count > 0)
-                                        Sudah Membuat Lowongan
-                                    @else
-                                        Belum Membuat Lowongan
-                                    @endif
-                                @elseif($user->role->name == 'user')
-                                    @if($user->applications_count > 0)
-                                        Sudah Melamar
-                                    @else
-                                        Belum Melamar
-                                    @endif
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td>{{ $user->created_at->format('d-m-Y') }}</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-info">
-                                        <i class="fas fa-info-circle"></i> Detail
-                                    </a>
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    @if($user->role->name == 'company' && $user->company)
-                                        <form action="{{ route('admin.company.destroy', $user->company) }}" method="POST" class="d-inline"
-                                              onsubmit="return confirm('Yakin ingin menghapus data company ini? Aksi ini tidak dapat dibatalkan.');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i> Hapus
-                                            </button>
-                                        </form>
-                                    @else
-                                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
-                                              onsubmit="return confirm('Yakin ingin menghapus pengguna ini? Aksi ini tidak dapat dibatalkan.');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i> Hapus
-                                            </button>
-                                        </form>
-                                    @endif
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+    <div class="table-container">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Kategori</th>
+                    <th>Tanggal Daftar</th>
+                    <th class="text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $index => $user)
+                <tr>
+                    <td>{{ $users->firstItem() + $index }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        <span class="status-badge {{ $user->role->name == 'company' ? 'status-warning' : 'status-info' }}">
+                            {{ ucfirst($user->role->name) }}
+                        </span>
+                    </td>
+                    <td>
+                        @if($user->role->name == 'company')
+                            {{ $user->job_posts_count > 0 ? 'Sudah Membuat Lowongan' : 'Belum Membuat Lowongan' }}
+                        @elseif($user->role->name == 'user')
+                            {{ $user->applications_count > 0 ? 'Sudah Melamar' : 'Belum Melamar' }}
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                    <td class="text-center">
+                        <a href="{{ route('admin.users.show', $user) }}" class="table-btn view"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit"><i class="fas fa-pen"></i></a>
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
+                              onsubmit="return confirm('Yakin ingin menghapus pengguna ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="table-btn delete"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-        {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-4">
-            {{ $users->links() }}
-        </div>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-center mt-3">
+        <nav>
+            <ul class="pagination">
+                {{-- Tombol Previous --}}
+                @if ($users->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link bg-primary text-white" href="{{ $users->previousPageUrl() }}" rel="prev">Previous</a>
+                    </li>
+                @endif
+
+                {{-- Tombol Next --}}
+                @if ($users->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link bg-primary text-white" href="{{ $users->nextPageUrl() }}" rel="next">Next</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+    </div>
     @endif
 </div>
 @endsection

@@ -903,4 +903,47 @@ input:focus,
         transition: background 0.2s ease;
     }
 
+    /* Card utama */
+.card {
+    border-radius: 16px; /* lengkung */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* shadow */
+    overflow: hidden; /* biar sudut tabel ikut lengkung */
+    border: none;
+    background: var(--white);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Table modern dengan sudut lembut */
+.modern-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Sudut header biar lengkung */
+.modern-table thead tr:first-child th:first-child {
+    border-top-left-radius: 12px;
+}
+.modern-table thead tr:first-child th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Sudut bawah tabel */
+.modern-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+.modern-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+.btn-secondary {
+    background: #2563eb;
+}
 /* ========================= END ========================= */
