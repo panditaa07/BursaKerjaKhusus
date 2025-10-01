@@ -6,12 +6,14 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="page-title">Kelola Data Lowongan Kerja</h2>
-                <a href="{{ route('admin.job-posts.create') }}" class="btn btn-add-job">+ Tambah Lowongan</a>
+                <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary rounded">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </a>
             </div>
 
             <!-- Search and Filter -->
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="search-box">
+                <div class="search-box w-25">
                     <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
                         <div class="input-group shadow-sm">
                             <span class="input-group-text bg-light text-muted">
@@ -21,6 +23,7 @@
                             <button type="submit" class="btn btn-primary">Cari</button>
                         </div>
                     </form>
+                    <a href="{{ route('admin.job-posts.create') }}" class="btn btn-add-job mt-2">+ Tambah Lowongan</a>
                 </div>
                 <div class="filter-box">
                     <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
