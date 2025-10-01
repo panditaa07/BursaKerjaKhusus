@@ -4,8 +4,10 @@
 @section('content')
 <div class="container-fluid">
     <h1 class="h3 mb-4">Daftar Pelamar</h1>
+    
 
     <form method="GET" action="{{ route('admin.applications.all') }}" class="mb-3">
+        <div class="mb-3">
         <div class="input-group">
             <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama atau email pelamar...">
             <button class="btn btn-primary" type="submit">Cari</button>

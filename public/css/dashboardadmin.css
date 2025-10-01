@@ -947,4 +947,59 @@ input:focus,
     background: #2563eb;
 }
 
+/* Tambahan khusus tombol kembali */
+.btn-back {
+    background: linear-gradient(135deg, #4e73df, #224abe);
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+.btn-back:hover {
+    background: linear-gradient(135deg, #224abe, #1a2f6e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* Tambahan khusus tombol cari */
+.btn-search {
+    background: linear-gradient(135deg, #1cc88a, #13855c);
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+.btn-search:hover {
+    background: linear-gradient(135deg, #13855c, #0e5e42);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.pagination-custom {
+    display: flex;
+    justify-content: center; /* posisi tengah */
+    margin-top: 15px;
+}
+
+.input-group .form-control {
+    border-right: none;
+}
+
+.input-group .btn-success {
+    border-radius: 0 4px 4px 0;
+    margin-right: 20px; /* 🔥 kasih jarak antara tombol Cari dan Total */
+}
+
+.input-group-text.bg-success {
+    border-radius: 4px;
+}
 /* ========================= END ========================= */

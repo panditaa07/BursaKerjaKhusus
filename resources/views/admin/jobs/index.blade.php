@@ -98,7 +98,6 @@
             <div class="d-flex justify-content-center mt-3">
                 <nav>
                     <ul class="pagination">
-
                         {{-- Tombol Previous --}}
                         @if ($jobPosts->onFirstPage())
                             <li class="page-item disabled">
@@ -120,7 +119,6 @@
                                 <span class="page-link">Next</span>
                             </li>
                         @endif
-
                     </ul>
                 </nav>
             </div>
