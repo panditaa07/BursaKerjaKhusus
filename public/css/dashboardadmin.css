@@ -341,52 +341,7 @@ body {
 }
 
 
-.modern-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 8px;
-}
 
-.modern-table thead {
-    background: var(--gray-100);
-}
-
-.modern-table th {
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-    color: var(--gray-700);
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid var(--gray-200);
-}
-
-.modern-table td {
-    padding: 1rem;
-    background: var(--white);
-    border-top: 1px solid var(--gray-200);
-    border-bottom: 1px solid var(--gray-200);
-    color: var(--gray-800);
-    font-size: 0.95rem;
-    vertical-align: middle;
-    transition: var(--transition);
-}
-
-.modern-table tbody tr {
-    transition: var(--transition);
-}
-
-.modern-table tbody tr:hover td {
-    background: var(--gray-100);
-    transform: scale(1.01);
-    box-shadow: var(--shadow-md);
-}
-
-.modern-table td:last-child {
-    text-align: center;
-    white-space: nowrap;
-}
 
 /* ================================================
    LOGOUT BUTTON
@@ -685,11 +640,105 @@ body {
     }
 }
 
-/* ================== CENTER TEXT DI SELURUH TABEL ================== */
-.modern-table th,
-.modern-table td {
+/* ================== MODERN TABLE STYLES ================== */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.modern-table thead {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+}
+
+.modern-table th {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.modern-table th:first-child {
+    border-top-left-radius: 16px;
+    padding-left: 2rem;
+}
+
+.modern-table th:last-child {
+    border-top-right-radius: 16px;
     text-align: center;
-    vertical-align: middle; /* tetap rapih secara vertikal */
+    padding-right: 2rem;
+}
+
+.modern-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.modern-table td:first-child {
+    padding-left: 2rem;
+}
+
+.modern-table td:last-child {
+    padding-right: 2rem;
+    text-align: center;
+}
+
+.modern-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.modern-table tbody tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #e0f2fe;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.modern-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 16px;
+}
+
+.modern-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 16px;
+}
+
+/* Action Buttons Horizontal */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-buttons .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Judul halaman */
@@ -755,39 +804,7 @@ body {
     font-weight: 700;
 }
 
-/* ====== Modern Table (samain kayak Kelola Lowongan) ====== */
-.modern-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 8px;
-}
 
-.modern-table thead {
-    background: var(--gray-100);
-}
-
-.modern-table th {
-    padding: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    color: var(--gray-700);
-    border-bottom: 2px solid var(--gray-200);
-}
-
-.modern-table td {
-    padding: 1rem;
-    background: var(--white);
-    border-top: 1px solid var(--gray-200);
-    border-bottom: 1px solid var(--gray-200);
-    transition: var(--transition);
-}
-
-.modern-table tbody tr:hover td {
-    background: var(--gray-100);
-    transform: scale(1.01);
-    box-shadow: var(--shadow-md);
-}
 
 /* ====== Status Badge (modern) ====== */
 .status-badge {
@@ -864,44 +881,7 @@ input:focus,
     border-color: #ced4da !important; /* bisa ganti warna border kalau mau */
 }
 
-/* Perbaikan tabel dengan garis jelas */
-.modern-table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 2px solid #9ca3af; /* abu lebih gelap */
-        font-size: 0.95rem;
-    }
 
-    .modern-table th,
-    .modern-table td {
-        border: 1.5px solid #9ca3af; /* garis antar sel lebih tegas */
-        padding: 0.9rem;
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    .modern-table thead th {
-        background: #1e3a8a; /* biru navy */
-        color: #ffffff; /* teks putih */
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-    }
-
-    /* Baris striped */
-    .modern-table tbody tr:nth-child(even) {
-        background: #f1f5f9; /* abu muda */
-    }
-
-    .modern-table tbody tr:nth-child(odd) {
-        background: #ffffff; /* putih */
-    }
-
-    /* Hover */
-    .modern-table tbody tr:hover {
-        background: #bfdbfe; /* biru terang pas hover */
-        transition: background 0.2s ease;
-    }
 
     /* Card utama */
 .card {
@@ -918,30 +898,7 @@ input:focus,
     transform: translateY(-2px);
 }
 
-/* Table modern dengan sudut lembut */
-.modern-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-}
 
-/* Sudut header biar lengkung */
-.modern-table thead tr:first-child th:first-child {
-    border-top-left-radius: 12px;
-}
-.modern-table thead tr:first-child th:last-child {
-    border-top-right-radius: 12px;
-}
-
-/* Sudut bawah tabel */
-.modern-table tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
-}
-.modern-table tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 12px;
-}
 
 .btn-secondary {
     background: #2563eb;

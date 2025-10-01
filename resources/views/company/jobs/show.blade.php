@@ -72,8 +72,8 @@
                             Informasi Perusahaan
                         </h4>
                         <div class="d-flex align-items-center">
-                            @if($job->company_logo)
-                                <img src="{{ asset('storage/' . $job->company_logo) }}" alt="Logo Perusahaan" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            @if($job->company && $job->company->logo)
+                                <img src="{{ asset('storage/' . $job->company->logo) }}" alt="Logo Perusahaan" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
                             @else
                                 <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                                     <i class="fas fa-building text-muted fa-2x"></i>
@@ -94,6 +94,25 @@
                                     {{ $job->company->phone ?? 'N/A' }}
                                 </p>
                             </div>
+                        </div>
+
+                        <!-- Company Profile Photo -->
+                        <div class="mt-3 text-center">
+                            <h6 class="mb-2">
+                                <i class="fas fa-user-circle text-primary"></i>
+                                Foto Profil Perusahaan
+                            </h6>
+                            @if($job->company && $job->company->user && $job->company->user->profile_photo_path)
+                                <img src="{{ asset('storage/' . $job->company->user->profile_photo_path) }}"
+                                     alt="Foto Profil {{ $job->company->name }}"
+                                     class="rounded-circle border"
+                                     style="width: 100px; height: 100px; object-fit: cover; border-width: 3px !important; border-color: #dee2e6 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            @else
+                                <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center"
+                                     style="width: 100px; height: 100px; border-width: 3px !important; border-color: #dee2e6 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <i class="fas fa-user text-muted fa-2x"></i>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

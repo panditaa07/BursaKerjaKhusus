@@ -6,7 +6,7 @@
             <h2 class="h4 mb-0">Semua Pelamar</h2>
             <div class="d-flex align-items-center">
                 <a href="{{ route('company.applications.this_month') }}" class="btn btn-primary me-2">
-                    <i class="fas fa-calendar-alt me-2"></i>Lihat Pelamar Bulan Ini
+                    <i class="fas fa-calendar-alt me-2"></i>
                 </a>
                 <div class="text-muted">
                     <i class="fas fa-users me-2"></i>
@@ -33,6 +33,24 @@
                 </div>
             </div>
         </form>
+
+        <!-- Filter Buttons -->
+        <div class="mb-4">
+            <div class="d-flex flex-wrap gap-2">
+                <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'new'])) }}"
+                   class="btn {{ request('filter') === 'new' ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="fas fa-user-plus me-2"></i>Pelamar Baru
+                </a>
+                <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'process'])) }}"
+                   class="btn {{ request('filter') === 'process' ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="fas fa-cogs me-2"></i>Pelamar Dalam Proses
+                </a>
+                <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'all'])) }}"
+                   class="btn {{ !request('filter') || request('filter') === 'all' ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="fas fa-users me-2"></i>Total Pelamar
+                </a>
+            </div>
+        </div>
 
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -99,8 +117,8 @@
                                                 'accepted' => ['label' => 'Terima', 'class' => 'status-accepted'],
                                                 'rejected' => ['label' => 'Tolak', 'class' => 'status-rejected'],
                                                 'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-                                                'test1' => ['label' => 'Test', 'class' => 'status-test'],
-                                                'test2' => ['label' => 'Test', 'class' => 'status-test'],
+                                                'test1' => ['label' => 'Test 1', 'class' => 'status-test'],
+                                                'test2' => ['label' => 'Test 2', 'class' => 'status-test'],
                                                 'submitted' => ['label' => 'Menunggu', 'class' => 'status-pending'],
                                                 'reviewed' => ['label' => 'Menunggu', 'class' => 'status-pending'],
                                             ];
@@ -136,6 +154,46 @@
                                                         <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('PUT')
+                                                            <input type="hidden" name="status" value="submitted">
+                                                            <button type="submit" class="dropdown-item">
+                                                                Submitted
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="test1">
+                                                            <button type="submit" class="dropdown-item">
+                                                                Test 1
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="test2">
+                                                            <button type="submit" class="dropdown-item">
+                                                                Test 2
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="interview">
+                                                            <button type="submit" class="dropdown-item">
+                                                                Interview
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
                                                             <input type="hidden" name="status" value="accepted">
                                                             <button type="submit" class="dropdown-item text-success">
                                                                 <i class="fas fa-check-circle me-2"></i>Terima
@@ -149,26 +207,6 @@
                                                             <input type="hidden" name="status" value="rejected">
                                                             <button type="submit" class="dropdown-item text-danger">
                                                                 <i class="fas fa-times-circle me-2"></i>Tolak
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="interview">
-                                                            <button type="submit" class="dropdown-item text-primary">
-                                                                <i class="fas fa-user-tie me-2"></i>Wawancara
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="test1">
-                                                            <button type="submit" class="dropdown-item text-secondary">
-                                                                <i class="fas fa-clipboard-list me-2"></i>Test
                                                             </button>
                                                         </form>
                                                     </li>

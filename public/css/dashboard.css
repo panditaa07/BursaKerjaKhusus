@@ -706,3 +706,211 @@ body {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
     background-size: 400% 100%;
 }
+
+/* Modern Table Styles */
+.table-section {
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.modern-table thead {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+}
+
+.modern-table th {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modern-table th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.modern-table th:last-child {
+    border-top-right-radius: 12px;
+    text-align: center;
+}
+
+.modern-table td {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+.modern-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.modern-table tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #eff6ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.modern-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.modern-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* Status Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-accepted {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.status-rejected {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.status-interview {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.status-test {
+    background-color: #e0f2fe;
+    color: #0c4a6e;
+    border: 1px solid #bae6fd;
+}
+
+.status-pending {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+/* Action Buttons */
+.modern-table .btn {
+    margin: 0 0.125rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.modern-table .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table .btn-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.modern-table .btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.modern-table .btn-warning {
+    background-color: #f59e0b;
+    border-color: #f59e0b;
+    color: white;
+}
+
+.modern-table .btn-warning:hover {
+    background-color: #d97706;
+    border-color: #d97706;
+}
+
+.modern-table .btn-danger {
+    background-color: #ef4444;
+    border-color: #ef4444;
+}
+
+.modern-table .btn-danger:hover {
+    background-color: #dc2626;
+    border-color: #dc2626;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-section {
+        padding: 0;
+        overflow-x: auto;
+    }
+
+    .modern-table {
+        min-width: 600px;
+        font-size: 0.8rem;
+    }
+
+    .modern-table th,
+    .modern-table td {
+        padding: 0.75rem 0.5rem;
+        white-space: nowrap;
+    }
+
+    .modern-table .btn {
+        padding: 0.25rem 0.375rem;
+        font-size: 0.7rem;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+}

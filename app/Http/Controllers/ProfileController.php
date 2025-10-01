@@ -12,9 +12,9 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
+        $user->load('company');
 
         if ($user->role === 'company') {
-            $user->load('company');
             return view('company.profile.show', compact('user'));
         } else {
             return view('user.profile.show', compact('user'));
@@ -24,9 +24,9 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
+        $user->load('company');
 
         if ($user->role === 'company') {
-            $user->load('company');
             return view('company.profile.edit', compact('user'));
         } else {
             return view('user.profile.edit', compact('user'));
@@ -119,6 +119,7 @@ class ProfileController extends Controller
             'short_profile' => 'nullable|string|max:500',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile']);
@@ -137,6 +138,14 @@ class ProfileController extends Controller
                 Storage::disk('public')->delete($user->cv_path);
             }
             $userData['cv_path'] = $request->file('cv')->store('cv_files', 'public');
+        }
+
+        // Handle company logo upload if user has company
+        if ($request->hasFile('logo') && $user->company) {
+            if ($user->company->logo && Storage::disk('public')->exists($user->company->logo)) {
+                Storage::disk('public')->delete($user->company->logo);
+            }
+            $user->company->update(['logo' => $request->file('logo')->store('company_logos', 'public')]);
         }
 
         $user->update($userData);

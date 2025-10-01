@@ -34,6 +34,19 @@
                             <label for="address" class="form-label">Alamat PIC</label>
                             <textarea class="form-control" id="address" name="address" rows="3">{{ old('address', Auth::user()->address) }}</textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="profile_photo" class="form-label">Foto Profil PIC</label>
+                            <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/*">
+                            <small class="form-text text-muted">Format: JPG, PNG, GIF. Maksimal 2MB.</small>
+                            @if(Auth::user()->profile_photo_path)
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Foto Profil" style="max-width: 100px; border-radius: 50%;">
+                                    <p class="text-muted">Foto profil saat ini</p>
+                                </div>
+                            @else
+                                <p class="text-muted">Belum ada foto profil yang diunggah.</p>
+                            @endif
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h5>Data Perusahaan</h5>
@@ -77,6 +90,8 @@
                                     <img src="{{ asset('storage/' . Auth::user()->company->logo) }}" alt="Logo" style="max-width: 100px;">
                                     <p class="text-muted">Logo saat ini</p>
                                 </div>
+                            @else
+                                <p class="text-muted">Belum ada logo perusahaan yang diunggah.</p>
                             @endif
                         </div>
                     </div>

@@ -57,17 +57,19 @@
                                 </div>
                             @endif
                         </div>
-                <div class="mb-3">
-                    <label for="cv" class="form-label">CV (PDF/DOCX max 2MB)</label>
-                    <input type="file" class="form-control" id="cv" name="cv" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                    @if(Auth::user()->cv_path)
-                        <p><a href="{{ asset('storage/' . Auth::user()->cv_path) }}" target="_blank">Lihat CV saat ini</a></p>
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="cover_letter" class="form-label">Surat Lamaran (PDF max 2MB)</label>
-                    <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept="application/pdf">
-                </div>
+                        <div class="mb-3">
+                            <label for="logo" class="form-label">Logo Perusahaan</label>
+                            <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+                            @if(Auth::user()->company && Auth::user()->company->logo)
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/' . Auth::user()->company->logo) }}" alt="Logo Perusahaan" style="max-width: 100px;">
+                                    <p class="text-muted">Logo saat ini</p>
+                                </div>
+                            @else
+                                <p class="text-muted">Belum ada logo perusahaan yang diunggah.</p>
+                            @endif
+                        </div>
+
                     </div>
                 </div>
 

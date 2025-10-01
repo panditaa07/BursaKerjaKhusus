@@ -32,6 +32,13 @@
                             -
                         @endif
                     </p>
+                    <p><strong>Logo Perusahaan:</strong><br>
+                        @if(Auth::user()->company && Auth::user()->company->logo)
+                            <img src="{{ asset('storage/' . Auth::user()->company->logo) }}" alt="Logo Perusahaan" style="max-width: 100px;">
+                        @else
+                            <span class="text-muted">Belum ada logo perusahaan yang diunggah.</span>
+                        @endif
+                    </p>
                     <p><strong>CV:</strong>
                         @if(Auth::user()->cv_path)
                             <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank">Lihat CV</a>

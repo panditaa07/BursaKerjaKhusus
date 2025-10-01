@@ -54,6 +54,7 @@ class ApplicationController extends Controller
         }
 
         $search = $request->input('search');
+        $filter = $request->input('filter');
 
         $applications = Application::whereHas('jobPost', function ($query) use ($company) {
             $query->where('company_id', $company->id);
@@ -64,6 +65,12 @@ class ApplicationController extends Controller
             })->orWhereHas('jobPost', function ($l) use ($search) {
                 $l->where('title', 'like', "%{$search}%");
             })->orWhere('status', 'like', "%{$search}%");
+        })
+        ->when($filter === 'new', function ($q) {
+            $q->whereIn('status', ['submitted', 'reviewed']);
+        })
+        ->when($filter === 'process', function ($q) {
+            $q->whereIn('status', ['interview', 'test1', 'test2']);
         })
         ->with(['user', 'jobPost'])
         ->latest()

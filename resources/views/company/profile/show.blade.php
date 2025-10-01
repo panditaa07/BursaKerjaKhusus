@@ -14,6 +14,25 @@
             </a>
         </div>
         <div class="card-body">
+            <!-- Profile Photo Section -->
+            <div class="text-center mb-4">
+                <h5 class="mb-3">
+                    <i class="fas fa-user-circle text-primary"></i>
+                    Foto Profil PIC
+                </h5>
+                @if(Auth::user()->profile_photo_path)
+                    <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                         alt="Foto Profil {{ Auth::user()->name }}"
+                         class="rounded-circle border"
+                         style="width: 120px; height: 120px; object-fit: cover; border-width: 4px !important; border-color: #dee2e6 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                @else
+                    <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center"
+                         style="width: 120px; height: 120px; border-width: 4px !important; border-color: #dee2e6 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                        <i class="fas fa-user text-muted fa-3x"></i>
+                    </div>
+                @endif
+            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <p><strong>Nama PIC:</strong> {{ Auth::user()->name }}</p>
@@ -36,7 +55,7 @@
                     @if(Auth::user()->company && Auth::user()->company->logo)
                         <img src="{{ asset('storage/' . Auth::user()->company->logo) }}" alt="Logo" style="max-width: 150px;">
                     @else
-                        -
+                        <span class="text-muted">Belum ada logo perusahaan yang diunggah.</span>
                     @endif
                 </p>
             </div>

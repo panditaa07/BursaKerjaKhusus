@@ -158,7 +158,7 @@ class JobPostController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $job->load(['company', 'applications', 'industry']);
+        $job->load(['company.user', 'applications', 'industry']);
         return view('company.jobs.show', compact('job'));
     }
 
