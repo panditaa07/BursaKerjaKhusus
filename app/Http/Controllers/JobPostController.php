@@ -15,7 +15,7 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        $jobs = JobPost::with('company')->latest()->get();
+        $jobs = JobPost::active()->with('company')->latest()->paginate(10);
         return view('user.jobs.index', compact('jobs'));
     }
 
@@ -153,13 +153,32 @@ class JobPostController extends Controller
      */
     public function show(JobPost $job)
     {
-        // Ensure the job belongs to the authenticated company
-        if ($job->company_id !== auth()->user()->company->id) {
-            abort(403, 'Unauthorized action.');
+        $user = auth()->user();
+
+        // Check user role and permissions
+        if ($user->role->name === 'company') {
+            // Company users can only view their own jobs
+            if ($job->company_id !== $user->company->id) {
+                abort(403, 'Unauthorized action.');
+            }
+            $view = 'company.jobs.show';
+        } elseif ($user->role->name === 'user') {
+            // Regular users can view active jobs
+            if ($job->status !== 'active') {
+                // Instead of aborting, show all active jobs
+                $jobs = JobPost::where('status', 'active')->with('company')->latest()->paginate(10);
+                return view('user.jobs.index', compact('jobs'))->with('error', 'Job is not available. Showing all active jobs.');
+            }
+            $view = 'user.jobs.show'; // Assuming there's a user view for jobs
+        } elseif ($user->role->name === 'admin') {
+            // Admins can view all jobs
+            $view = 'admin.jobs.show';
+        } else {
+            abort(403, 'Unauthorized access.');
         }
 
         $job->load(['company.user', 'applications', 'industry']);
-        return view('company.jobs.show', compact('job'));
+        return view($view, compact('job'));
     }
 
     /**

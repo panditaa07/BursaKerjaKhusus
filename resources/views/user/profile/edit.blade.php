@@ -33,6 +33,7 @@
                             <label for="address" class="form-label">Alamat</label>
                             <textarea class="form-control" id="address" name="address" rows="3">{{ old('address', Auth::user()->address) }}</textarea>
                         </div>
+                        @if(Auth::user()->role->name !== 'company')
                         <div class="mb-3">
                             <label for="nisn" class="form-label">NIK/NISN</label>
                             <input type="text" class="form-control" id="nisn" name="nisn" value="{{ old('nisn', Auth::user()->nisn) }}">
@@ -41,12 +42,38 @@
                             <label for="birth_date" class="form-label">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ old('birth_date', Auth::user()->birth_date) }}">
                         </div>
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="short_profile" class="form-label">Profil Singkat</label>
                             <textarea class="form-control" id="short_profile" name="short_profile" rows="5">{{ old('short_profile', Auth::user()->short_profile) }}</textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="portfolio_link" class="form-label">Portfolio Link</label>
+                            <input type="url" class="form-control" id="portfolio_link" name="portfolio_link" value="{{ old('portfolio_link', Auth::user()->portfolio_link) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="linkedin" class="form-label">LinkedIn</label>
+                            <input type="url" class="form-control" id="linkedin" name="linkedin" value="{{ old('linkedin', Auth::user()->linkedin) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="instagram" class="form-label">Instagram</label>
+                            <input type="url" class="form-control" id="instagram" name="instagram" value="{{ old('instagram', Auth::user()->instagram) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="facebook" class="form-label">Facebook</label>
+                            <input type="url" class="form-control" id="facebook" name="facebook" value="{{ old('facebook', Auth::user()->facebook) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="twitter" class="form-label">Twitter</label>
+                            <input type="url" class="form-control" id="twitter" name="twitter" value="{{ old('twitter', Auth::user()->twitter) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tiktok" class="form-label">TikTok</label>
+                            <input type="url" class="form-control" id="tiktok" name="tiktok" value="{{ old('tiktok', Auth::user()->tiktok) }}">
+                        </div>
+                        @if(Auth::user()->role->name !== 'company')
                         <div class="mb-3">
                             <label for="profile_photo" class="form-label">Foto Profil</label>
                             <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/png, image/jpeg">
@@ -58,17 +85,18 @@
                             @endif
                         </div>
                         <div class="mb-3">
-                            <label for="logo" class="form-label">Logo Perusahaan</label>
-                            <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
-                            @if(Auth::user()->company && Auth::user()->company->logo)
+                            <label for="cv" class="form-label">CV</label>
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                            <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
+                            @if(Auth::user()->cv_path)
                                 <div class="mt-2">
-                                    <img src="{{ asset('storage/' . Auth::user()->company->logo) }}" alt="Logo Perusahaan" style="max-width: 100px;">
-                                    <p class="text-muted">Logo saat ini</p>
+                                    <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank">Lihat CV saat ini</a>
                                 </div>
                             @else
-                                <p class="text-muted">Belum ada logo perusahaan yang diunggah.</p>
+                                <p class="text-muted">Belum ada CV yang diunggah.</p>
                             @endif
                         </div>
+                        @endif
 
                     </div>
                 </div>

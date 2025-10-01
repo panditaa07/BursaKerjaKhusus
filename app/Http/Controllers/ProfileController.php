@@ -66,7 +66,7 @@ class ProfileController extends Controller
         ]);
 
         // Update user data
-        $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile']);
+        $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile', 'portfolio_link', 'linkedin', 'instagram', 'facebook', 'twitter', 'tiktok']);
 
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
@@ -120,9 +120,15 @@ class ProfileController extends Controller
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'portfolio_link' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'instagram' => 'nullable|url',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'tiktok' => 'nullable|url',
         ]);
 
-        $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile']);
+        $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile', 'portfolio_link', 'linkedin', 'instagram', 'facebook', 'twitter', 'tiktok']);
 
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {

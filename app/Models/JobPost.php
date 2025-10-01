@@ -32,4 +32,9 @@ class JobPost extends Model
     {
         return $this->hasMany(Application::class, 'job_post_id');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
 }

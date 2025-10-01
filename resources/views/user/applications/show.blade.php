@@ -3,7 +3,7 @@
 @section('title', 'Detail Lamaran - BKK OPAT')
 
 @section('content')
-@if(auth()->user()->role === 'user')
+@if(auth()->user()->role && auth()->user()->role->name === 'user')
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
         <div class="row justify-content-center">

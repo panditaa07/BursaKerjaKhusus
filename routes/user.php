@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserJobPostController;
-use App\Http\Controllers\User\UserApplicationController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\User\UserProfileController;
 
 // User routes with role middleware
@@ -14,15 +14,15 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
 
     // Job Posts
     Route::prefix('job-posts')->name('job-posts.')->group(function () {
-        Route::get('/', [UserJobPostController::class, 'index'])->name('index');
-        Route::get('/{job}', [UserJobPostController::class, 'show'])->name('show');
+        Route::get('/', [JobPostController::class, 'index'])->name('index');
+        Route::get('/{job}', [JobPostController::class, 'show'])->name('show');
     });
 
     // Applications
     Route::prefix('applications')->name('applications.')->group(function () {
-        Route::get('/', [UserApplicationController::class, 'index'])->name('index');
-        Route::post('/', [UserApplicationController::class, 'store'])->name('store');
-        Route::get('/{application}', [UserApplicationController::class, 'show'])->name('show');
+        Route::get('/', [ApplicationController::class, 'index'])->name('index');
+        Route::post('/', [ApplicationController::class, 'store'])->name('store');
+        Route::get('/{application}', [ApplicationController::class, 'show'])->name('show');
     });
 
     // Profile

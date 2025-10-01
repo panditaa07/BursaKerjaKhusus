@@ -24,6 +24,11 @@ class ProfileRequest extends FormRequest
             'email' => 'required|email|unique:users,email,' . $this->user()->id,
             'cv_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'portfolio_link' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'instagram' => 'nullable|url',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'tiktok' => 'nullable|url',
         ];
     }
 }

@@ -176,7 +176,7 @@ class ApplicationController extends Controller
     {
         $request->validate([
             'job_post_id' => 'required|exists:job_posts,id',
-            'cv' => 'nullable|mimes:pdf|max:2048',
+            'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
             'cover_letter' => 'nullable|string|max:2000',
         ]);
 
