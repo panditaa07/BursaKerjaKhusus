@@ -40,7 +40,7 @@
     </div>
 
     {{-- Tabel --}}
-    <table class="table modern-table mb-0 text-center">
+    <table class="modern-table mb-0 text-center">
         <thead>
             <tr>
                 <th>No</th>

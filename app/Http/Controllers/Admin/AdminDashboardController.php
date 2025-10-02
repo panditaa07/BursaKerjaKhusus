@@ -147,7 +147,7 @@ class AdminDashboardController extends Controller
             });
         }
 
-        $lowongan = $query->latest()->get();
+        $lowongan = $query->latest()->paginate(10)->appends($request->query());
         return view('admin.dashboard.lowongan-aktif', compact('lowongan'));
     }
 

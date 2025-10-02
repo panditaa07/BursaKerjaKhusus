@@ -39,7 +39,7 @@
     <!-- Table -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
-            <table class="table modern-table mb-0 text-center">
+            <table class="modern-table mb-0 text-center">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -86,8 +86,9 @@
                     @endforeach
                 </tbody>
             </table>
-
-           {{-- Pagination Next & Previous --}}
+        </div>
+    </div>
+               {{-- Pagination Next & Previous --}}
 <div class="d-flex justify-content-center mt-3">
     <div class="btn-group" role="group" aria-label="Pagination">
         {{-- Tombol Previous --}}
@@ -105,8 +106,5 @@
         @endif
     </div>
 </div>
-
-        </div>
-    </div>
 </div>
 @endsection
