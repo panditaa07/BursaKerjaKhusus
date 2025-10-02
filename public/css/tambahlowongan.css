@@ -1,0 +1,174 @@
+/* ==============================
+   Container Utama
+============================== */
+.job-form-container {
+    background: #ffffff !important;
+    border-top: 5px solid rgb(30, 58, 138) !important;
+    border-radius: 16px !important;
+    padding: 32px !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important; /* jarak antar field seragam */
+    caret-color: transparent !important; /* fix caret nyasar di luar input */
+    user-select: none !important;
+
+    /* Animasi masuk form */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease-in-out;
+}
+.job-form-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==============================
+   Judul Form
+============================== */
+.page-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(30, 58, 138);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;          /* jarak icon dan teks */
+    position: relative;
+    margin: 0 auto 30px; /* jarak ke bawah card */
+    padding-bottom: 10px; /* jarak teks dengan garis */
+
+    /* Animasi masuk judul */
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.6s ease-out;
+}
+.page-title.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Garis bawah */
+.page-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;          
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 60%;
+    height: 4px;
+    background: rgb(30, 58, 138);
+    border-radius: 3px;
+}
+
+/* Ikon judul hover */
+.page-title i {
+    transition: transform 0.3s ease;
+}
+.page-title i:hover {
+    transform: rotate(-10deg) scale(1.2);
+}
+
+/* ==============================
+   Label
+============================== */
+.job-form-container label {
+    display: block !important;
+    margin-bottom: 6px !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+}
+
+/* ==============================
+   Input, Select, Textarea
+============================== */
+.job-form-container input,
+.job-form-container select,
+.job-form-container textarea {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    border: 2px solid #d1d5db !important;
+    border-radius: 8px !important;
+    background: #f9fafb !important;
+    transition: all 0.3s ease-in-out !important;
+    margin-bottom: 10px !important;
+    caret-color: auto !important;
+    user-select: text !important;
+}
+
+.job-form-container input:focus,
+.job-form-container select:focus,
+.job-form-container textarea:focus {
+    border-color: #3b82f6 !important;
+    background: #fff !important;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.5) !important;
+    outline: none !important;
+
+    /* Animasi fokus */
+    transform: scale(1.03);
+}
+
+.job-form-container input:hover,
+.job-form-container select:hover,
+.job-form-container textarea:hover {
+    transform: scale(1.02);
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59,130,246,0.2);
+}
+
+/* ==============================
+   Wrapper Tombol (Simpan & Kembali)
+============================== */
+.form-actions {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: 24px !important;
+}
+
+/* ==============================
+   Tombol Submit (Simpan)
+============================== */
+.job-form-container button[type="submit"] {
+    background: rgb(30, 58, 138) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+}
+.job-form-container button[type="submit"]:hover {
+    background: rgb(30, 58, 138) !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* ==============================
+   Tombol Kembali
+============================== */
+.btn-back {
+    background: rgb(30, 58, 138)!important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+.btn-back:hover {
+    background: rgb(30, 58, 138) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
