@@ -161,10 +161,17 @@
             </div>
         </div>
     </div>
-
-    <a href="{{ url('/admin/dashboard/pelamar') }}" class="back-button">
+<div class="d-flex gap-2 mt-4">
+    <!-- Tombol kembali ke daftar -->
+    <a href="{{ url('/admin/dashboard/pelamar') }}" class="btn-custom back">
         <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pelamar
     </a>
+
+    <!-- Tombol edit pelamar -->
+    <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn-custom edit">
+        <i class="fas fa-edit"></i> Edit Pelamar
+    </a>
 </div>
+
 <script src="{{ asset('js/show.js') }}"></script>
 @endsection

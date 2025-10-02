@@ -959,4 +959,133 @@ input:focus,
 .input-group-text.bg-success {
     border-radius: 4px;
 }
+
+.btn-primary {
+    background: linear-gradient(45deg, #1e3a8a, #1e40af);
+}
 /* ========================= END ========================= */
+
+/* Modern Table Styles - unified with pengguna table style */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    margin: 0;
+    border: 1px solid #4070f4;
+    text-align: center;
+}
+
+.modern-table thead {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+}
+
+.modern-table th {
+    padding: 1.2rem 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    border: 1px solid #4070f4;
+}
+
+.modern-table th:first-child {
+    border-top-left-radius: 16px;
+    padding-left: 2rem;
+}
+
+.modern-table th:last-child {
+    border-top-right-radius: 16px;
+    padding-right: 2rem;
+}
+
+.modern-table td {
+    padding: 1.2rem 1rem;
+    border: 1px solid #4070f4;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.modern-table td:first-child {
+    padding-left: 2rem;
+}
+
+.modern-table td:last-child {
+    padding-right: 2rem;
+}
+
+.modern-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.modern-table tbody tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #e0f2fe;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.modern-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 16px;
+}
+
+.modern-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 16px;
+}
+
+/* Action Buttons Horizontal */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-buttons .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Judul halaman */
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e40af; /* biru tua */
+}
+
+/* Tombol tambah lowongan */
+.btn-add-job {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff !important;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-add-job:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+    box-shadow: 0 6px 14px rgba(30, 64, 175, 0.4);
+    transform: translateY(-2px);
+}

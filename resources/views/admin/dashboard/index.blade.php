@@ -106,7 +106,7 @@
     {{-- === Tabel Pelamar === --}}
     <div class="container table-section">
         <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
-        <table class="table table-hover modern-table">
+        <table class="modern-table mb-0 text-center">
             <thead>
                 <tr>
                     <th>No</th><th>Nama</th><th>Email</th><th>No Hp</th>
@@ -160,7 +160,7 @@
     {{-- === Tabel Loker Aktif === --}}
     <div class="container table-section">
         <h3 class="mb-3">Loker Terbaru</h3>
-        <table class="table table-hover modern-table">
+        <table class="modern-table mb-0 text-center">
             <thead>
                 <tr>
                     <th>No</th><th>Perusahaan</th><th>No HRD</th><th>Alamat</th><th>Status</th><th>Aksi</th>

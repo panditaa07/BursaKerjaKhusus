@@ -14,7 +14,7 @@
             </a>
         </div>
         <form method="GET" action="{{ route('admin.dashboard.pelamar') }}">
-    <div class="input-group search-box" style="width: 380px;">
+    <div class="input-group search-box" style="width: 380px;" align-items="right">
         <span class="input-group-text">
             <i class="bi bi-search"></i>
         </span>
@@ -33,7 +33,7 @@
 </form>
     </div>
 
-            <table class="table modern-table mb-0 text-center">
+            <table class="modern-table mb-0 text-center">
                 <thead>
                     <tr>
                         <th>No</th>

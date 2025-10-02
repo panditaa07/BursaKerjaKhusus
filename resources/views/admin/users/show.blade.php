@@ -7,7 +7,19 @@
 
 <div class="detail-pengguna-page">
     <h1>Detail Pengguna</h1>
-    @include('components.back-button')
+    <div class="d-flex gap-2 mb-3">
+    <!-- Tombol Kembali -->
+    <a href="{{ url('/admin/dashboard') }}" class="btn btn-custom back">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+
+    <!-- Tombol Edit Pengguna -->
+    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-custom edit">
+        <i class="fas fa-edit"></i> Edit Pengguna
+    </a>
+</div>
+
+
 
     <div class="card mb-4">
         <div class="card-header">
