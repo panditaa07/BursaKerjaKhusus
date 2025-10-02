@@ -66,7 +66,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <i class="fas fa-industry input-icon"></i>
+                        <i class="fa-solid fa-gears input-icon"></i>
                     </div>
                     @error('industry_id')
                         <div class="error-message text-red-500 text-xs italic">{{ $message }}</div>

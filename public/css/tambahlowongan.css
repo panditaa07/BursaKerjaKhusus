@@ -10,7 +10,7 @@
 
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px !important; /* jarak antar field seragam */
+    gap: 12px !important; /* jarak antar field seragam */
     caret-color: transparent !important; /* fix caret nyasar di luar input */
     user-select: none !important;
 
@@ -28,16 +28,16 @@
    Judul Form
 ============================== */
 .page-title {
-    font-size: 40px;
+   font-size: 40px;
     font-weight: 700;
     color: rgb(30, 58, 138);
     display: inline-flex;
     align-items: center;
-    gap: 12px;          /* jarak icon dan teks */
+    gap: 12px;
     position: relative;
-    margin: 0 auto 30px; /* jarak ke bawah card */
-    padding-bottom: 10px; /* jarak teks dengan garis */
-
+    margin: 0 auto;
+    margin-bottom: 48px !important;  /* perbesar jarak ke form */
+    padding-bottom: 14px;
     /* Animasi masuk judul */
     opacity: 0;
     transform: translateY(-30px);
@@ -52,7 +52,7 @@
 .page-title::after {
     content: "";
     position: absolute;
-    bottom: 0;          
+    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
@@ -75,7 +75,8 @@
 ============================== */
 .job-form-container label {
     display: block !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 4px !important;
+    margin-top: 12px !important; /* bikin jarak dari judul */
     font-weight: 600 !important;
     color: #374151 !important;
 }
@@ -93,7 +94,7 @@
     border-radius: 8px !important;
     background: #f9fafb !important;
     transition: all 0.3s ease-in-out !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 6px !important;
     caret-color: auto !important;
     user-select: text !important;
 }
@@ -172,3 +173,4 @@
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
+

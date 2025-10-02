@@ -8,7 +8,7 @@
 
 
 @section('content')
-<div style="text-align: center;">
+<div class="title-wrapper text-center mb-8">
     <h2 class="page-title">
         <i class="fas fa-briefcase"></i> Tambah Lowongan Kerja
     </h2>
@@ -54,7 +54,7 @@
                 {{-- Industri --}}
                 <div class="mb-4">
                     <label for="industry_id" class="block text-gray-700 text-sm font-bold mb-2 flex items-center">
-                        <i class="fa-solid fa-industry mr-2 text-blue-500"></i> Industri 
+                        <i class="fa-solid fa-gears mr-2 text-blue-500"></i> Industri 
                     </label>
                     <select id="industry_id" name="industry_id"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('industry_id') border-red-500 @enderror"
@@ -113,7 +113,7 @@
 
                     <div>
                         <label for="employment_type" class="block text-gray-700 text-sm font-bold mb-2 flex items-center">
-                            <i class="fa-solid fa-briefcase-clock mr-2 text-blue-500"></i> Tipe Pekerjaan 
+                            <i class="fas fa-clock  mr-2 text-blue-500"></i> Tipe Pekerjaan 
                         </label>
                         <select id="employment_type" name="employment_type"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('employment_type') border-red-500 @enderror"
@@ -172,7 +172,7 @@
 
                     <div>
                         <label for="status" class="block text-gray-700 text-sm font-bold mb-2 flex items-center">
-                            <i class="fa-solid fa-toggle-on mr-2 text-blue-500"></i> Status 
+                            <i class="fa-solid fa-circle-info mr-2 text-blue-500"></i> Status 
                         </label>
                         <select id="status" name="status"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('status') border-red-500 @enderror"
