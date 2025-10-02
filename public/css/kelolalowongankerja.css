@@ -1,0 +1,101 @@
+/* ===== Card Tabel ===== */
+.table-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* ===== Header Tabel ===== */
+.table-card thead th {
+    background: #1d4ed8; /* Biru */
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 14px 10px;
+    border: none;
+}
+
+/* ===== Body Tabel ===== */
+.table-card tbody td {
+    vertical-align: middle;
+    padding: 12px 10px;
+    font-size: 14px;
+    border-top: 1px solid #f1f5f9;
+}
+
+/* Hover Effect */
+.table-card tbody tr:hover {
+    background: #f9fbff;
+    transition: all 0.2s ease-in-out;
+}
+
+/* ===== Badge Status ===== */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.badge-success { background: #22c55e; }          /* Hijau */
+.badge-warning { background: #facc15; color:#333; } /* Kuning */
+.badge-danger  { background: #ef4444; }          /* Merah */
+.badge-info    { background: #0ea5e9; }          /* Biru */
+.badge-purple  { background: #8b5cf6; }          /* Ungu */
+
+/* ===== Tombol Aksi ===== */
+.action-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    margin: 0 2px;
+    font-size: 14px;
+    transition: all 0.2s;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.action-btn.view   { background: #2563eb; }      /* Biru */
+.action-btn.edit   { background: #facc15; color:#333; } /* Kuning */
+.action-btn.delete { background: #ef4444; }      /* Merah */
+
+.action-btn:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+/* ===== Responsive Tabel ===== */
+@media (max-width: 768px) {
+    .table-card thead {
+        display: none;
+    }
+    .table-card tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 10px;
+    }
+    .table-card tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 5px;
+        border: none;
+    }
+    .table-card tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #475569;
+    }
+}

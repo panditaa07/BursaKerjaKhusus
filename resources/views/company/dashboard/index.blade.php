@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+<link href="{{ asset('css/dashboardcompany.css') }}" rel="stylesheet">
+
 @section('content')
     {{-- === Statistics Cards === --}}
     <div class="row">
@@ -68,7 +70,7 @@
     {{-- === Tabel Pelamar Terbaru === --}}
     <div class="container table-section">
         <h3 class="mb-3">Pelamar Terbaru</h3>
-        <table class="table table-hover modern-table">
+        <table class="table-custom">
             <thead>
                 <tr>
                     <th>No</th><th>Nama</th><th>Email</th><th>No Hp</th>
