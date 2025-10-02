@@ -14,7 +14,7 @@
             </a>
         </div>
         <form method="GET" action="{{ route('admin.dashboard.pelamar') }}">
-    <div class="input-group search-box" style="width: 380px;">
+    <div class="input-group search-box" style="width: 380px;" align-items="right">
         <span class="input-group-text">
             <i class="bi bi-search"></i>
         </span>
