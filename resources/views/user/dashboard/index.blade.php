@@ -1,14 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="dashboard-header-bg" style="background-image: url('{{ asset('images/smkn4.png') }}');">
-    <div class="overlay"></div>
-    <img src="{{ asset('images/disdik.png') }}" alt="Disdik Jabar Logo" style="position: absolute; top: 15px; right: 15px; width: 100px; z-index: 10;">
-</div>
-
-<div style="background-color: #0d3a7d; color: white; padding: 5px 15px; font-weight: 600; font-size: 0.9rem;">
-    Lowongan Baru di PT Kotom Jaya!!
-</div>
+<link rel="stylesheet" href="{{ asset('css/userdashboard.css') }}">
 
 <section>
     <h2 class="section-title">LOWONGAN TERBARU</h2>
@@ -26,7 +19,7 @@
                     <div><i class="fas fa-clock icon"></i> Sisa waktu: {{ $job->created_at ? $job->created_at->diffForHumans(null, true) : 'Tidak tersedia' }}</div>
                 </div>
                 <div class="lowongan-meta">
-                    <a href="{{ route('jobs.show', $job->id) }}" class="btn-primary">Info</a>
+                    <a href="{{ route('jobs.show', $job->id) }}" class="btn-info">Info</a>
                 </div>
             </div>
         </div>
@@ -68,4 +61,5 @@
         <p>© 2025 smkn4bdg.sch.id All Rights Reserved</p>
     </div>
 </footer>
+<script src="{{ asset('js/userdashboard.js') }}"></script>
 @endsection

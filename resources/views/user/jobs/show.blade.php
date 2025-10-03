@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/detail-lowongan.css') }}">
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -271,4 +272,5 @@ function copyToClipboard() {
     background: var(--gray-500);
 }
 </style>
+<script src="{{ asset('js/detail-lowongan.js') }}"></script>
 @endsection
