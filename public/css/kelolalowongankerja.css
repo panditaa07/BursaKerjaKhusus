@@ -1,57 +1,107 @@
-/* ===== Card Tabel ===== */
-.table-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    margin-bottom: 20px;
+/* public/css/kelola-lowongan.css */
+
+/* ==============================
+   Kelola Lowongan Kerja Page
+   Custom Override CSS
+============================== */
+
+/* ====== Container & Page Wrapper ====== */
+.kelola-lowongan.container-fluid {
+    padding: 20px !important;
+    background: #f4f6fa !important;
+    border-radius: 10px !important;
+    border-top: 5px solid #1d4ed8 !important;
 }
 
-/* ===== Header Tabel ===== */
-.table-card thead th {
-    background: #1d4ed8; /* Biru */
-    color: #fff;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 14px 10px;
-    border: none;
+/* ====== Header Section ====== */
+.kelola-lowongan .page-title {
+    color: #1d3557 !important;
+    font-weight: 700 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 3px solid #1d4ed8 !important;
+    padding-bottom: 6px !important;
 }
 
-/* ===== Body Tabel ===== */
-.table-card tbody td {
-    vertical-align: middle;
-    padding: 12px 10px;
-    font-size: 14px;
-    border-top: 1px solid #f1f5f9;
+.kelola-lowongan .total-lowongan {
+    font-weight: 600 !important;
+    color: #1d4ed8 !important;
 }
 
-/* Hover Effect */
-.table-card tbody tr:hover {
-    background: #f9fbff;
-    transition: all 0.2s ease-in-out;
+/* ====== Button Utama ====== */
+.kelola-lowongan .btn-primary {
+    background: #1d4ed8 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    font-weight: 500 !important;
+    transition: 0.3s ease !important;
+}
+.kelola-lowongan .btn-primary:hover {
+    background: #153eaa !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ====== Search Bar ====== */
+.kelola-lowongan .search-bar .form-control {
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: none !important;
+}
+.kelola-lowongan .search-bar .btn {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+}
+
+/* ===== Tabel Custom ===== */
+.kelola-lowongan .table-card {
+    background: #fff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden !important;
+    border: none !important;
+}
+
+.kelola-lowongan .table-card thead th {
+    background: #1d4ed8 !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    padding: 14px 10px !important;
+    border: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.kelola-lowongan .table-card tbody td {
+    vertical-align: middle !important;
+    padding: 12px 10px !important;
+    font-size: 14px !important;
+    border-top: 1px solid #f1f5f9 !important;
+}
+
+.kelola-lowongan .table-card tbody tr:hover {
+    background: #f9fbff !important;
 }
 
 /* ===== Badge Status ===== */
 .badge-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
+    display: inline-block !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
 }
-
-.badge-success { background: #22c55e; }          /* Hijau */
-.badge-warning { background: #facc15; color:#333; } /* Kuning */
-.badge-danger  { background: #ef4444; }          /* Merah */
-.badge-info    { background: #0ea5e9; }          /* Biru */
-.badge-purple  { background: #8b5cf6; }          /* Ungu */
+.badge-success { background: #22c55e !important; }
+.badge-warning { background: #facc15 !important; color: #333 !important; }
+.badge-secondary { background: #6b7280 !important; }
+.badge-info { background: #0ea5e9 !important; }
 
 /* ===== Tombol Aksi ===== */
 .action-btn {
+<<<<<<< HEAD
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -65,37 +115,140 @@
     border: none;
     cursor: pointer;
     box-shadow: none; /* Removed shadow */
+=======
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+    margin: 0 2px !important;
+    font-size: 14px !important;
+    transition: all 0.2s !important;
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+>>>>>>> d658bd29a431b1b040c07ce67fad6da335054196
 }
-
-.action-btn.view   { background: #2563eb; }      /* Biru */
-.action-btn.edit   { background: #facc15; color:#333; } /* Kuning */
-.action-btn.delete { background: #ef4444; }      /* Merah */
+.action-btn.view { background: #2563eb !important; }
+.action-btn.edit { background: #facc15 !important; color: #333 !important; }
+.action-btn.delete { background: #ef4444 !important; }
 
 .action-btn:hover {
-    transform: scale(1.08);
-    opacity: 0.9;
+    transform: scale(1.08) !important;
+    opacity: 0.9 !important;
 }
 
-/* ===== Responsive Tabel ===== */
+/* Tambahkan style untuk form inline */
+.action-btn form {
+    display: inline !important;
+    margin: 0 !important;
+}
+
+.action-btn button {
+    background: none !important;
+    border: none !important;
+    color: inherit !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ===== Empty State ===== */
+.kelola-lowongan .empty-state {
+    background: #f9fafb !important;
+    padding: 3rem !important;
+}
+
+.kelola-lowongan .empty-state i {
+    color: #9ca3af !important;
+    opacity: 0.7 !important;
+}
+
+/* ===== Pagination Custom ===== */
+.kelola-lowongan .pagination-wrapper {
+    margin-top: 2rem !important;
+}
+
+.kelola-lowongan .pagination .page-link {
+    border-radius: 8px !important;
+    margin: 0 3px !important;
+    color: #1d4ed8 !important;
+    font-weight: 500 !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+.kelola-lowongan .pagination .page-link:hover {
+    background: #1d4ed8 !important;
+    color: #fff !important;
+}
+
+.kelola-lowongan .pagination .active .page-link {
+    background: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-    .table-card thead {
-        display: none;
+    .kelola-lowongan.container-fluid {
+        padding: 15px !important;
     }
-    .table-card tbody tr {
-        display: block;
-        margin-bottom: 15px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 10px;
+    
+    .kelola-lowongan .table-card thead {
+        display: none !important;
     }
-    .table-card tbody td {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 5px;
-        border: none;
+    
+    .kelola-lowongan .table-card tbody tr {
+        display: block !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #e5e7eb !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        background: #fff !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
+<<<<<<< HEAD
     .table-card tbody td::before {
         content: attr(data-label);
         font-weight: 600;
     }
+=======
+    
+    .kelola-lowongan .table-card tbody td {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 8px !important;
+        border: none !important;
+        border-bottom: 1px solid #f3f4f6 !important;
+    }
+    
+    .kelola-lowongan .table-card tbody td:last-child {
+        border-bottom: none !important;
+    }
+    
+    .kelola-lowongan .table-card tbody td::before {
+        content: attr(data-label) !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        color: #374151 !important;
+        font-size: 12px !important;
+    }
+    
+    .kelola-lowongan .btn-group {
+        justify-content: center !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .kelola-lowongan .d-flex.justify-content-between {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .kelola-lowongan .page-title {
+        text-align: center !important;
+    }
+>>>>>>> d658bd29a431b1b040c07ce67fad6da335054196
 }
