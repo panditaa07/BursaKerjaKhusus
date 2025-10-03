@@ -64,6 +64,7 @@
     color: #fff;
     border: none;
     cursor: pointer;
+    box-shadow: none; /* Removed shadow */
 }
 
 .action-btn.view   { background: #2563eb; }      /* Biru */
@@ -96,6 +97,5 @@
     .table-card tbody td::before {
         content: attr(data-label);
         font-weight: 600;
-        color: #475569;
     }
 }
