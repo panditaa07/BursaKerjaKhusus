@@ -105,12 +105,20 @@
 
     {{-- === Tabel Pelamar === --}}
     <div class="container table-section">
-        <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
-        <table class="modern-table mb-0 text-center">
+    <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
+
+    <div class="table-responsive">
+        <table class="table-dashboard mb-0 text-center">
             <thead>
                 <tr>
-                    <th>No</th><th>Nama</th><th>Email</th><th>No Hp</th>
-                    <th>Perusahaan</th><th>Lowongan</th><th>Status</th><th>Aksi</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>No Hp</th>
+                    <th>Perusahaan</th>
+                    <th>Lowongan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -151,16 +159,20 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
+                    <tr>
+                        <td colspan="8" class="text-center text-muted">Belum ada pelamar</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
+</div>
+
 
     {{-- === Tabel Loker Aktif === --}}
     <div class="container table-section">
         <h3 class="mb-3">Loker Terbaru</h3>
-        <table class="modern-table mb-0 text-center">
+        <table class="table-responsive table-dashboard mb-0 text-center">
             <thead>
                 <tr>
                     <th>No</th><th>Perusahaan</th><th>No HRD</th><th>Alamat</th><th>Status</th><th>Aksi</th>
