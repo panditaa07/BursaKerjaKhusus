@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/kelolapelamarcom.css') }}">
+@endpush
+
 @section('content')
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">

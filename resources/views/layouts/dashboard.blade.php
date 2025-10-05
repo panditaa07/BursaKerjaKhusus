@@ -17,6 +17,7 @@
 
     {{-- CSS tambahan untuk setiap halaman --}}
     @yield('css')
+    @stack('styles')
 </head>
 <body>
     <div class="d-flex">
