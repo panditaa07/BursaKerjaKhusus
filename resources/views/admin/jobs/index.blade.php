@@ -69,10 +69,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
+                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view" style="background-color: #3b82f6; border-radius: 12px; padding: 6px 12px; color: white; margin-right: 5px;"">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit" style="background-color: #facc15; border-radius: 12px; padding: 6px 12px; color: black; margin-right: 5px;">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
@@ -80,7 +80,7 @@
                                         @method('DELETE')
                                         <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
                                         <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus?')">
-                                            <i class="bi bi-trash"></i>
+                                            <i class="bi bi-trash" ></i>
                                         </button>
                                     </form>
                                 </td>

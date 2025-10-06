@@ -70,14 +70,14 @@
                         <span class="badge bg-danger">Tidak Aktif</span>
                     </td>
                     <td>
-                        <a href="{{ route('admin.job-posts.show', $l->id) }}" class="table-btn view"><i class="bi bi-eye"></i></a>
-                        <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="table-btn edit"><i class="bi bi-pencil"></i></a>
+                        <a href="{{ route('admin.job-posts.show', $l->id) }}" class="table-btn view"><i class="bi bi-eye" style="background-color: #3b82f6; border-radius: 12px; padding: 6px 12px; color: white; margin-right: 5px;"></i></a>
+                        <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="table-btn edit"><i class="bi bi-pencil" style="background-color: #facc15; border-radius: 12px; padding: 6px 12px; color: black; margin-right: 5px;"></i></a>
                         <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
-                            <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus?')">
-                                <i class="bi bi-trash"></i>
+                            <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">
+                                <i class="bi bi-trash" style="background-color: #ef4444; border-radius: 12px; padding: 6px 12px; color: white; border: none;"></i>
                             </button>
                         </form>
                     </td>

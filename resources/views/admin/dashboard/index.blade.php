@@ -82,7 +82,7 @@
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card chart-card shadow h-100">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-info">Lowongan Aktif</h6>
+                    <h6 class="m-0 font-weight-bold text-info">Lowongan</h6>
                 </div>
                 <div class="card-body">
                     <canvas id="lowonganChart" height="100"></canvas>
@@ -172,47 +172,49 @@
     {{-- === Tabel Loker Aktif === --}}
     <div class="container table-section">
         <h3 class="mb-3">Loker Terbaru</h3>
-        <table class="table-responsive table-dashboard mb-0 text-center">
-            <thead>
-                <tr>
-                    <th>No</th><th>Perusahaan</th><th>No HRD</th><th>Alamat</th><th>Status</th><th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($loker_terbaru as $index => $job)
+        <div class="table-responsive">
+            <table class="table-dashboard mb-0 text-center">
+                <thead>
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $job->company->name ?? '-' }}</td>
-                        <td>{{ $job->no_hrd ?? '-' }}</td>
-                        <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
-                        <td>
-                            @if($job->status === 'active')
-                                <span class="badge bg-success">Aktif</span>
-                            @else
-                                <span class="badge bg-secondary">Tidak Aktif</span>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                            <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
+                        <th>No</th><th>Perusahaan</th><th>No HRD</th><th>Alamat</th><th>Status</th><th>Aksi</th>
                     </tr>
-                @empty
-                    <tr><td colspan="6" class="text-center text-muted">Belum ada loker aktif</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($loker_terbaru as $index => $job)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $job->company->name ?? '-' }}</td>
+                            <td>{{ $job->no_hrd ?? '-' }}</td>
+                            <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
+                            <td>
+                                @if($job->status === 'active')
+                                    <span class="badge bg-success">Aktif</span>
+                                @else
+                                    <span class="badge bg-secondary">Tidak Aktif</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="6" class="text-center text-muted">Belum ada loker aktif</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
 @endsection
