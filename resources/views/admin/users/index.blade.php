@@ -87,18 +87,18 @@
                         @endif
                     </td>
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('admin.users.show', $user) }}" class="table-btn view" style="background-color: #3b82f6; border-radius: 12px; padding: 6px 12px; color: white; margin-right: 5px;">
+                        <td class="text-center aksi">
+                            <a href="{{ route('admin.users.show', $user) }}" class="table-btn view">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit" style="background-color: #facc15; border-radius: 12px; padding: 6px 12px; color: black; margin-right: 5px;">
+                            <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
                                   onsubmit="return confirm('Yakin ingin menghapus pengguna ini?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="table-btn delete" style="background-color: #ef4444; border-radius: 12px; padding: 6px 12px; color: white; border: none;">
+                                <button type="submit" class="table-btn delete">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>

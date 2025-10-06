@@ -218,11 +218,53 @@ h1.h3 {
     background-color: #f1f5f9; /* warna abu soft */
 }
 
-.table-btn.view,
-.table-btn.edit,
-.table-btn.delete {
-    box-shadow: none !important;
+/* ===============================
+   FORCE PERSEGI PADA TOMBOL AKSI
+   =============================== */
+
+/* Target semua ikon dalam tombol aksi */
+td.aksi a.table-btn i,
+td.aksi button.table-btn i {
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    /* INI YANG PENTING */
+    border-radius: 0 !important;   /* kotak penuh */
+    padding: 0 !important;         /* hapus padding inline */
+    margin: 0 !important;          /* hilangkan margin inline */
 }
+
+/* Jaga posisi tombol tetap sejajar */
+td.aksi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Hilangkan efek hover */
+td.aksi a.table-btn:hover i,
+td.aksi button.table-btn:hover i {
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+/* Hilangkan shadow khusus kolom Aksi */
+td.aksi .table-btn i {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Pastikan tombolnya juga gak punya efek shadow */
+td.aksi .table-btn {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+
 
 /* Modern Table Styles */
 .table-responsive {
@@ -514,25 +556,6 @@ h1.h3 {
 .status-info { background: #3b82f6; }   /* Biru */
 .status-warning { background: #f59e0b; } /* Kuning */
 
-/* Tombol Aksi bulat */
-.table-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: none;
-    margin: 0 2px;
-    color: #fff;
-    transition: 0.2s;
-}
-
-.table-btn.view { background: #3b82f6; }   /* Biru */
-.table-btn.edit { background: #facc15; color: #000; } /* Kuning */
-.table-btn.delete { background: #ef4444; } /* Merah */
-
-.table-btn:hover { transform: scale(1.1); }
 
 /* Pagination */
 .pagination {
@@ -660,4 +683,3 @@ h1.h3 {
     background-color: #153E75;
     transform: translateY(-2px);
 }
-

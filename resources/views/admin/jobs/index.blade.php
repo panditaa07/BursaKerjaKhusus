@@ -68,11 +68,11 @@
                                         <span class="badge bg-danger">Tidak Aktif</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view" style="background-color: #3b82f6; border-radius: 12px; padding: 6px 12px; color: white; margin-right: 5px;"">
+                                <td class="aksi">
+                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view" >
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit" style="background-color: #facc15; border-radius: 12px; padding: 6px 12px; color: black; margin-right: 5px;">
+                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">

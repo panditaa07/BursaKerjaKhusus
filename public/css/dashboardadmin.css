@@ -1182,3 +1182,49 @@ input:focus,
     color: black !important;
     box-shadow: none !important;
 }
+
+/* ===============================
+   FORCE PERSEGI PADA TOMBOL AKSI
+   =============================== */
+
+/* Target semua ikon dalam tombol aksi */
+td.aksi a.table-btn i,
+td.aksi button.table-btn i {
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    /* INI YANG PENTING */
+    border-radius: 0 !important;   /* kotak penuh */
+    padding: 0 !important;         /* hapus padding inline */
+    margin: 0 !important;          /* hilangkan margin inline */
+}
+
+/* Jaga posisi tombol tetap sejajar */
+td.aksi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Hilangkan efek hover */
+td.aksi a.table-btn:hover i,
+td.aksi button.table-btn:hover i {
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+/* Hilangkan shadow khusus kolom Aksi */
+td.aksi .table-btn i {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Pastikan tombolnya juga gak punya efek shadow */
+td.aksi .table-btn {
+    box-shadow: none !important;
+    filter: none !important;
+}

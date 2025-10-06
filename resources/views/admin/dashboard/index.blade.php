@@ -141,20 +141,20 @@
                                 <span class="badge bg-secondary">{{ ucfirst($app->status ?? '-') }}</span>
                             @endif
                         </td>
-                        <td>
+                        <td class="aksi">
                             <a href="{{ route('admin.applications.show', $app->id) }}" class="table-btn view">
-                                <i class="fas fa-eye"></i>
+                                <i class="bi bi-eye"></i>
                             </a>
                             <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="_from" value="dashboard">
                                 <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus pelamar ini?')">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="bi bi-trash"></i>
                                 </button>
                             </form>
                             <a href="{{ route('admin.applications.edit', $app->id) }}" class="table-btn edit">
-                                <i class="fas fa-edit"></i>
+                                <i class="bi bi-pencil"></i>
                             </a>
                         </td>
                     </tr>
@@ -193,19 +193,19 @@
                                     <span class="badge bg-secondary">Tidak Aktif</span>
                                 @endif
                             </td>
-                            <td>
+                            <td class="aksi">
                                 <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
-                                    <i class="fas fa-eye"></i>
+                                    <i class="bi bi-eye"></i>
                                 </a>
                                 <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                                 <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </a>
                             </td>
                         </tr>
