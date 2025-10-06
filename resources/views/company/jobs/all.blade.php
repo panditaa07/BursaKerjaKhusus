@@ -74,17 +74,17 @@
                     <td class="text-center" data-label="AKSI">
                         <div class="btn-group" role="group">
                             <a href="{{ route('company.jobs.show', $job->id) }}" class="action-btn view" title="Lihat Detail">
-                                <i class="fas fa-eye"></i>
+                                <i class="bi bi-eye"></i>
                             </a>
                             <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" class="action-btn edit" title="Edit">
-                                <i class="fas fa-edit"></i>
+                                <i class="bi bi-pencil-square"></i>
                             </a>
                             <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="from" value="all">
                                 <button type="submit" class="action-btn delete" title="Hapus">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="bi bi-trash"></i>
                                 </button>
                             </form>
                         </div>
