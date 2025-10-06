@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/kelolalowongankerja.css') }}?v={{ time() }}">
+<link rel="stylesheet" href="{{ asset('css/kelolalowongankerjacom.css') }}?v={{ time() }}">
 @endsection
 
 @section('content')
@@ -23,8 +23,8 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-bordered table-hover table-card">
-            <thead class="table-light">
+        <table class="company-applications-table">
+            <thead>
                 <tr>
                     <th class="text-center" width="60">NO</th>
                     <th>JUDUL</th>

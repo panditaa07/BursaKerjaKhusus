@@ -1,26 +1,40 @@
+/* ==============================
+   TABLE COMPANY APPLICATIONS (Fix Warna Header + Animasi)
+============================== */
+
 /* ===== Card Tabel ===== */
 .company-applications-table {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     overflow: hidden;
     margin-bottom: 20px;
+    border: 2px solid #d0e1ff; /* Border luar tabel */
+    animation: fadeSlideIn 0.8s ease-in-out; /* 🔥 Animasi muncul */
 }
 
-/* ===== Header Tabel ===== */
+/* ===== Header Tabel (Gradasi Menyatu) ===== */
+.company-applications-table thead {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+}
+
 .company-applications-table thead th {
-    background: #1d4ed8; /* Biru seperti dashboard */
-    color: #fff;
+    background: transparent;
+    color: #ffffff;
     font-weight: 600;
     text-align: center;
     vertical-align: middle;
-    border: 1px solid #e0e0e0;
+    border: 2px solid #93c5fd; /* Garis header tebal dan biru muda */
+    padding: 14px 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* ===== Isi Tabel ===== */
 .company-applications-table tbody td {
     vertical-align: middle;
-    border: 1px solid #e6e6e6; /* Garis antar kolom */
+    border: 2px solid #dbeafe; /* biru lembut agar lebih terlihat */
     padding: 12px;
 }
 
@@ -29,55 +43,42 @@
     text-align: center;
 }
 
-/* ===== Hover Effect ===== */
-.company-applications-table tbody tr:hover {
-    background-color: #f3f6ff;
-    transition: 0.2s;
-}
-
 /* ===== Avatar Pelamar ===== */
 .avatar-wrapper img {
-    border: 2px solid #1d4ed8;
+    border: 2px solid rgb(30, 58, 138);
+    border-radius: 50%;
 }
 
 /* ===== Badge Status ===== */
-.status-accepted {
-    background-color: #16a34a; /* Hijau */
-    color: #fff;
-    border-radius: 20px;
-    font-weight: 500;
-}
-.status-rejected {
-    background-color: #dc2626; /* Merah */
-    color: #fff;
-    border-radius: 20px;
-    font-weight: 500;
-}
-.status-interview {
-    background-color: #0284c7; /* Biru muda */
-    color: #fff;
-    border-radius: 20px;
-    font-weight: 500;
-}
-.status-test {
-    background-color: #6b21a8; /* Ungu */
-    color: #fff;
-    border-radius: 20px;
-    font-weight: 500;
-}
+.status-accepted,
+.status-rejected,
+.status-interview,
+.status-test,
 .status-pending {
-    background-color: #eab308; /* Kuning */
-    color: #fff;
-    border-radius: 20px;
+    display: inline-block;
+    padding: 6px 12px;
     font-weight: 500;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.2px;
 }
+
+/* Warna status */
+.status-accepted { background-color: #16a34a; }
+.status-rejected { background-color: #dc2626; }
+.status-interview { background-color: #0284c7; }
+.status-test { background-color: #6b21a8; }
+.status-pending { background-color: #eab308; }
 
 /* ===== Tombol Aksi ===== */
 .btn-outline-info,
 .btn-outline-warning,
 .btn-outline-danger {
     border-radius: 8px;
-    padding: 6px 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    transition: 0.25s;
 }
 
 .btn-outline-info:hover {
@@ -93,8 +94,67 @@
     color: #fff;
 }
 
-/* Hilangkan caret (ikon panah bawah) di tombol dropdown */
+/* Hilangkan caret dropdown */
 .dropdown-toggle::after {
     display: none !important;
+}
+
+/* ==============================
+   ANIMASI & TRANSISI
+============================== */
+
+/* 🔹 Animasi saat tabel muncul */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efek hover untuk tabel */
+.company-applications-table tbody tr {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.company-applications-table tbody tr:hover {
+    background-color: #f3f6ff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    border-radius: 10px;
+    z-index: 10;
+    position: relative;
+}
+
+/* Hover pada tombol */
+.btn-outline-info,
+.btn-outline-warning,
+.btn-outline-danger {
+    transition: 0.25s ease-in-out;
+}
+
+.btn-outline-info:hover,
+.btn-outline-warning:hover,
+.btn-outline-danger:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Hover pada kartu statistik (opsional jika ada di dashboard) */
+.stat-card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Hover halus pada tabel modern (jika digunakan di dashboard lain) */
+.modern-table tbody tr {
+    transition: all 0.25s ease-in-out;
 }
 
