@@ -6,13 +6,14 @@
 <link rel="stylesheet" href="{{ asset('css/kelolapengguna.css') }}">
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="page-title">Kelola Pengguna</h2>
-        <a href="{{ url('/admin/dashboard') }}" class="back-button">
-        <i class="fas fa-arrow-left"></i> Kembali
-    </a>
-
-    </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="page-title">Kelola Pengguna</h2>
+            <div>
+                <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary rounded">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </a>
+            </div>
+        </div>
 
     {{-- Form Filter & Search --}}
     <form method="GET" action="{{ route('admin.users.index') }}" 
@@ -36,7 +37,7 @@
                 <option value="company" {{ request('role') == 'company' ? 'selected' : '' }}>Company</option>
                 <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>User</option>
             </select>
-            <button type="submit" class="btn btn-secondary">Filter</button>
+            <button type="submit" class="btn btn-primary">Filter</button>
         </div>
     </form>
 
@@ -53,7 +54,7 @@
         <div class="alert alert-info">Tidak ada pengguna untuk ditampilkan.</div>
     @else
     <div class="table-container">
-        <table class="modern-table">
+        <table class="table-dashboard">
             <thead>
                 <tr>
                     <th>No</th>
@@ -86,16 +87,22 @@
                         @endif
                     </td>
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
-                    <td class="text-center">
-                        <a href="{{ route('admin.users.show', $user) }}" class="table-btn view"><i class="fas fa-eye"></i></a>
-                        <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit"><i class="fas fa-pen"></i></a>
-                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
-                              onsubmit="return confirm('Yakin ingin menghapus pengguna ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="table-btn delete"><i class="fas fa-trash"></i></button>
-                        </form>
-                    </td>
+                        <td class="text-center">
+                            <a href="{{ route('admin.users.show', $user) }}" class="table-btn view" style="background-color: #3b82f6; border-radius: 12px; padding: 6px 12px; color: white; margin-right: 5px;">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit" style="background-color: #facc15; border-radius: 12px; padding: 6px 12px; color: black; margin-right: 5px;">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
+                                  onsubmit="return confirm('Yakin ingin menghapus pengguna ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="table-btn delete" style="background-color: #ef4444; border-radius: 12px; padding: 6px 12px; color: white; border: none;">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                 </tr>
                 @endforeach
             </tbody>

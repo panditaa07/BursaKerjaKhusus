@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="container-fluid">
+<link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
      <div class="card shadow-lg border-0">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="page-title">Kelola Data Lowongan Kerja</h2>
+                <h2 class="page-title">Kelola Lowongan Kerja</h2>
                 <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary rounded">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
@@ -13,7 +13,7 @@
 
             <!-- Search and Filter -->
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="search-box w-25">
+                <div class="search-box w-55">
                     <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
                         <div class="input-group shadow-sm">
                             <span class="input-group-text bg-light text-muted">
@@ -23,25 +23,25 @@
                             <button type="submit" class="btn btn-primary">Cari</button>
                         </div>
                     </form>
-                    <a href="{{ route('admin.job-posts.create') }}" class="btn btn-add-job mt-2">+ Tambah Lowongan</a>
+                    <a href="{{ route('admin.job-posts.create') }}" class="btn btn-primary mt-2 me-2">+ Tambah Lowongan</a>
                 </div>
                 <div class="filter-box">
                     <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
                         <div class="input-group shadow-sm">
                             <span class="input-group-text bg-light text-muted">Status</span>
                             <select name="status" class="form-select">
-                                <option value="">Semua</option>
-                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Aktif</option>
-                                <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Tidak Aktif</option>
+                                <option value="">Semua Lowongan</option>
+                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Lowongan Aktif</option>
+                                <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Lowongan Tidak Aktif</option>
                             </select>
-                            <button type="submit" class="btn btn-secondary">Filter</button>
+                            <button type="submit" class="btn btn-primary">Filter</button>
                         </div>
                     </form>
                 </div>
             </div>
 
             <div class="table-responsive">
-                <table class="modern-table">
+                <table class="table-dashboard">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -69,10 +69,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
+                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view" style="background-color: #3b82f6; border-radius: 12px; padding: 6px 12px; color: white; margin-right: 5px;"">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit" style="background-color: #facc15; border-radius: 12px; padding: 6px 12px; color: black; margin-right: 5px;">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
@@ -80,7 +80,7 @@
                                         @method('DELETE')
                                         <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
                                         <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus?')">
-                                            <i class="bi bi-trash"></i>
+                                            <i class="bi bi-trash" ></i>
                                         </button>
                                     </form>
                                 </td>
@@ -127,5 +127,4 @@
 
         </div>
     </div>
-</div>
 @endsection

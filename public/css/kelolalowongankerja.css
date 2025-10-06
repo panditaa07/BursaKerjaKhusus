@@ -101,21 +101,6 @@
 
 /* ===== Tombol Aksi ===== */
 .action-btn {
-<<<<<<< HEAD
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    margin: 0 2px;
-    font-size: 14px;
-    transition: all 0.2s;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    box-shadow: none; /* Removed shadow */
-=======
     display: inline-flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -129,7 +114,7 @@
     border: none !important;
     cursor: pointer !important;
     text-decoration: none !important;
->>>>>>> d658bd29a431b1b040c07ce67fad6da335054196
+    box-shadow: none !important;
 }
 .action-btn.view { background: #2563eb !important; }
 .action-btn.edit { background: #facc15 !important; color: #333 !important; }
@@ -140,7 +125,7 @@
     opacity: 0.9 !important;
 }
 
-/* Tambahkan style untuk form inline */
+/* Tombol di dalam form inline */
 .action-btn form {
     display: inline !important;
     margin: 0 !important;
@@ -207,12 +192,6 @@
         background: #fff !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
-<<<<<<< HEAD
-    .table-card tbody td::before {
-        content: attr(data-label);
-        font-weight: 600;
-    }
-=======
     
     .kelola-lowongan .table-card tbody td {
         display: flex !important;
@@ -250,5 +229,4 @@
     .kelola-lowongan .page-title {
         text-align: center !important;
     }
->>>>>>> d658bd29a431b1b040c07ce67fad6da335054196
 }
