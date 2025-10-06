@@ -2,6 +2,7 @@
 @section('title', 'Daftar Pelamar')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 <div class="container daftar-pelamar">
 
     <!-- Header -->
@@ -14,32 +15,43 @@
             </a>
         </div>
 
-        {{-- Search + tombol cari + total --}}
-        <form method="GET" action="{{ route('admin.dashboard.pelamar') }}">
-    <div class="input-group search-box" style="width: 380px;">
-        <span class="input-group-text">
-            <i class="bi bi-search"></i>
-        </span>
-        <input 
-            type="text" 
-            name="search"
-            class="form-control" 
-            placeholder="Cari Pelamar..." 
-            value="{{ request('search') }}"
-        >
-        <button class="btn btn-success" type="submit">Cari</button>
-        <span class="input-group-text bg-success text-white fw-bold">
-            Total : {{ $pelamar->total() }}
+{{-- Search + tombol cari + total --}}
+<form method="GET" action="{{ route('admin.dashboard.pelamar') }}">
+    <div class="search-box d-flex justify-content-end gap-2 align-items-center">
+
+        {{-- Input Search --}}
+        <div class="input-group" style="width: 300px;">
+            <span class="input-group-text">
+                <i class="bi bi-search"></i>
+            </span>
+            <input 
+                type="text" 
+                name="search"
+                class="form-control" 
+                placeholder="Cari Pelamar..." 
+                value="{{ request('search') }}"
+            >
+        </div>
+
+        {{-- Tombol Cari --}}
+        <button class="btn-cari" type="submit">
+            <i class="bi bi-search"></i> Cari
+        </button>
+
+        {{-- Total --}}
+        <span class="btn-total">
+            <i class="bi bi-list-ul"></i> Total: {{ $pelamar->total() }}
         </span>
     </div>
 </form>
+
 
     </div>
 
     <!-- Table -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
-            <table class="modern-table mb-0 text-center">
+            <table class="table-responsive table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
                         <th>No</th>

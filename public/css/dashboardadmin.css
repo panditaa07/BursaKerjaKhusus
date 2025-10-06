@@ -1089,3 +1089,32 @@ input:focus,
     box-shadow: 0 6px 14px rgba(30, 64, 175, 0.4);
     transform: translateY(-2px);
 }
+
+.table-dashboard {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.table-dashboard th, 
+.table-dashboard td {
+    padding: 12px 10px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+/* Hover efek global untuk semua tabel dashboard */
+.table-dashboard tbody tr {
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.table-dashboard tbody tr:hover {
+    background-color: #f1f5f9; /* abu soft pas hover */
+}
+

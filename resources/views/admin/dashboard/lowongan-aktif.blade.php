@@ -3,6 +3,7 @@
 @section('title', 'Lowongan Aktif')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 <div class="container">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -13,29 +14,40 @@
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
-       <form method="GET" action="{{ route('admin.dashboard.lowongan-aktif') }}">
-            <div class="input-group search-box">
-                <span class="input-group-text">
-                    <i class="bi bi-search"></i>
-                </span>
-                <input 
-                    type="text" 
-                    name="search"
-                    class="form-control" 
-                    placeholder="Cari Lowongan..." 
-                    value="{{ request('search') }}"
-                >
-                <button class="btn btn-success" type="submit">Cari</button>
-                <span class="input-group-text bg-success text-white fw-bold">
-                    Total : {{ $lowongan->total() }}
-                </span>
-            </div>
-        </form>
+       {{-- Search + tombol cari + total lowongan --}}
+<form method="GET" action="{{ route('admin.dashboard.lowongan-aktif') }}">
+    <div class="search-box d-flex justify-content-end gap-2 align-items-center">
+
+        {{-- Input Search --}}
+        <div class="input-group" style="width: 300px;">
+            <span class="input-group-text">
+                <i class="bi bi-search"></i>
+            </span>
+            <input 
+                type="text" 
+                name="search"
+                class="form-control" 
+                placeholder="Cari Lowongan..." 
+                value="{{ request('search') }}"
+            >
+        </div>
+
+        {{-- Tombol Cari --}}
+        <button class="btn-cari" type="submit">
+            <i class="bi bi-search"></i> Cari
+        </button>
+
+        {{-- Total --}}
+        <span class="btn-total">
+            <i class="bi bi-list-ul"></i> Total: {{ $lowongan->total() }}
+        </span>
+    </div>
+</form>
         </div>
     </div>
     <div class="card">
         <div class="table-responsive">
-            <table class="modern-table mb-0 text-center">
+            <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
                         <th>No</th>

@@ -208,13 +208,28 @@ h1.h3 {
     box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
 
+/* Hover efek baris tabel */
+.table-dashboard tbody tr {
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.table-dashboard tbody tr:hover {
+    background-color: #f1f5f9; /* warna abu soft */
+}
+
+.table-btn.view,
+.table-btn.edit,
+.table-btn.delete {
+    box-shadow: none !important;
+}
+
 /* Modern Table Styles */
 .table-responsive {
     background: var(--glass-bg);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 0;
-    border: 1px solid var(--glass-border);
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
     overflow: hidden;
     animation: slideInRight 0.8s ease-out;
@@ -608,3 +623,41 @@ h1.h3 {
 .back-button i {
     font-size: 14px;
 }
+
+/* Tombol Cari */
+.btn-cari {
+    background-color: #1E40AF; /* biru tua */
+    color: #fff !important;
+    font-weight: 600;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.btn-cari:hover {
+    background-color: #153E75;
+    transform: translateY(-2px);
+}
+
+/* Total jadi badge tombol */
+.btn-total {
+    background-color: #1E40AF; /* biru */
+    color: #fff !important;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease-in-out;
+}
+.btn-total:hover {
+    background-color: #153E75;
+    transform: translateY(-2px);
+}
+
