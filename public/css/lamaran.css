@@ -1,0 +1,506 @@
+/* Modern Blue Theme - Elegant & Eye-Friendly */
+
+:root {
+    --primary-blue: #1e40af;
+    --primary-blue-dark: #1e3a8a;
+    --primary-blue-light: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(30, 64, 175, 0.08);
+    --shadow-md: 0 4px 12px rgba(30, 64, 175, 0.12);
+    --shadow-lg: 0 10px 30px rgba(30, 64, 175, 0.15);
+}
+
+/* Global Styles */
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Smooth Animations */
+* {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Search Bar Enhancement */
+.search-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.search-wrapper input.form-control {
+    border: 2px solid transparent;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.search-wrapper input.form-control:focus {
+    border-color: var(--primary-blue-light);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.search-wrapper .fa-search {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+/* Card Enhancements */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+.card-header {
+    background: rgb(30, 58, 138);
+    padding: 1.25rem 1.5rem;
+    border-bottom: none;
+    color: white;
+}
+
+.text-primary {
+    color: white;
+}
+
+.card-header h4, .card-header h5 {
+    color: white;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.card-header i {
+    margin-right: 0.5rem;
+    opacity: 0.9;
+}
+
+.card-body {
+    padding: 1.5rem;
+    border: rgb(30, 58, 138);
+}
+
+/* Table Styling */
+.table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+}
+
+.table thead th {
+    border: none;
+    border-radius: 8px;
+    color: rgb(30, 58, 138);
+    font-weight: 1000;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.5rem;
+}
+
+.table{
+    border: none;
+    border-radius: 8px;
+    color: rgb(30, 58, 138);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.5rem;
+}
+
+.table tbody tr {
+    background: white;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table tbody tr:hover {
+    background: linear-gradient(to right, #f0f9ff 0%, #e0f2fe 100%);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--primary-blue-light) inset;
+}
+
+.table tbody td {
+    padding: 1.25rem 1.5rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+/* Badge Animations */
+.badge {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.025em;
+    animation: fadeInScale 0.4s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.badge.bg-primary {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%) !important;
+}
+
+.badge.bg-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
+
+.badge.bg-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+/* Button Enhancements */
+.btn {
+    font-weight: 600;
+    padding: 0.625rem 1.5rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn i {
+    margin-right: 0.4rem;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Notification Card */
+.notification-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.notification-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary-blue-light) 0%, var(--accent-cyan) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.notification-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+    border-color: var(--primary-blue-light);
+}
+
+.notification-card:hover::before {
+    opacity: 1;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state i {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.empty-state h5 {
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* Pagination */
+.pagination {
+    gap: 0.5rem;
+}
+
+.page-link {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--primary-blue);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background: var(--primary-blue-light);
+    border-color: var(--primary-blue-light);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.page-item.active .page-link {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+    border-color: var(--primary-blue);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+    background-size: 1000px 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .card-header h4, .card-header h5 {
+        font-size: 1.1rem;
+    }
+    
+    .table thead th {
+        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .table tbody td {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Focus States for Accessibility */
+*:focus {
+    outline: 2px solid var(--primary-blue-light);
+    outline-offset: 2px;
+}
+
+button:focus, a:focus, input:focus {
+    outline: 2px solid var(--primary-blue-light);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .btn, .search-wrapper, .card-header, .pagination {
+        display: none;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* === CUSTOM STYLE REVISI === */
+
+/* Search field kecil + tombol cari */
+form .form-control {
+    height: 38px;
+    font-size: 0.9rem;
+}
+
+/* Header tabel jadi biru tua */
+.table thead {
+    background-color: rgb(30, 58, 138);
+}
+
+/* Tombol Lihat (ikon & teks sejajar tengah) */
+.btn .fas {
+    margin-right: 6px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Tombol umum (pusat isi) */
+.btn-primary {
+    background: rgb(30, 58, 138);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tombol Lihat Semua Notifikasi */
+.card .btn.btn-primary {
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+/* Tombol Cari */
+form .btn {
+    height: 38px;
+    font-size: 0.9rem;
+    padding: 0 1.5rem;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.pagination li {
+    margin: 0;
+}
+
+.pagination .page-link {
+    display: block;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    background: rgb(30, 58, 138); /* abu soft */
+    border: none;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background: rgb(30, 58, 138);;
+}
+
+.pagination .page-item:first-child .page-link {
+    border-radius: 12px 0 0 12px;
+}
+
+.pagination .page-item:last-child .page-link {
+    border-radius: 0 12px 12px 0;
+}
+
+/* Aktif */
+.pagination .active .page-link,
+.pagination .page-link.active {
+    background: rgb(30, 58, 138);
+    color: white !important;
+}
+
+/* Disabled */
+.pagination .disabled .page-link {
+    background: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+

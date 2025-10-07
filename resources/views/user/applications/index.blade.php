@@ -3,25 +3,32 @@
 @section('title', 'Lamaran Saya - BKK OPAT')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/lamaran.css') }}">
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
         <!-- Search Bar -->
         <div class="mb-4">
-            <form method="GET" action="{{ url('/user/applications') }}" class="w-100">
-                <div class="position-relative">
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan perusahaan atau posisi..." class="form-control form-control-lg rounded-pill shadow-sm border-0 ps-5">
-                    <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                </div>
-            </form>
+    <form method="GET" action="{{ url('/user/applications') }}" class="d-flex align-items-center justify-content-center gap-2">
+        <div class="position-relative" style="width: 60%;">
+            <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+            <input type="text" name="search" value="{{ request('search') }}"
+                placeholder="Cari berdasarkan perusahaan atau posisi..."
+                class="form-control rounded-pill shadow-sm border-0 ps-5" style="height: 42px;">
         </div>
+        <button type="submit" class="btn btn-primary rounded-pill fw-semibold px-4 py-2 d-flex align-items-center">
+            <i class="fas fa-search me-2"></i> Cari
+        </button>
+    </form>
+</div>
+
 
         <!-- Main Layout -->
         <div class="row g-4">
             <!-- Table Section -->
             <div class="col-lg-9">
                 <div class="card shadow-sm border-0 rounded-lg">
-                    <div class="card-header bg-white border-0">
-                        <h4 class="card-title mb-0 text-primary">
+                    <div class="card-header border-0">
+                        <h4 class="card-title mb-0">
                             <i class="fas fa-file-alt"></i>
                             Lamaran Saya
                         </h4>
@@ -30,13 +37,13 @@
                         @if($applications->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-borderless">
-                                    <thead class="table-dark" style="background-color: #0d47a1;">
+                                    <thead class="table">
                                         <tr>
-                                            <th class="px-4 py-3 text-white fw-bold">Perusahaan</th>
-                                            <th class="px-4 py-3 text-white fw-bold">Posisi</th>
-                                            <th class="px-4 py-3 text-white fw-bold">Status</th>
-                                            <th class="px-4 py-3 text-white fw-bold">Tanggal Melamar</th>
-                                            <th class="px-4 py-3 text-white fw-bold">Detail</th>
+                                            <th class="px-4 py-3 text-blue ">Perusahaan</th>
+                                            <th class="px-4 py-3 text-blue ">Posisi</th>
+                                            <th class="px-4 py-3 text-blue ">Status</th>
+                                            <th class="px-4 py-3 text-blue ">Tanggal Melamar</th>
+                                            <th class="px-4 py-3 text-blue ">Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,9 +65,11 @@
                                                     @endif
                                                 </td>
                                                 <td class="px-4 py-3">{{ $application->created_at->format('d M Y') }}</td>
-                                                <td class="px-4 py-3">
-                                                    <a href="{{ route('user.applications.show', $application) }}" class="btn btn-primary rounded-pill px-4 py-2 fw-bold" style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
-                                                        <i class="fas fa-eye"></i> Lihat
+                                                <td class="px-4 py-3 text-center">
+                                                    <a href="{{ route('user.applications.show', $application) }}" 
+                                                       class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-4 py-2 fw-bold"
+                                                       style="transition: background-color 0.3s;">
+                                                        <i class="fas fa-eye"></i><span>Lihat</span>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -70,9 +79,31 @@
                             </div>
 
                             <!-- Pagination -->
-                            <div class="d-flex justify-content-center mt-4">
-                                {{ $applications->links() }}
-                            </div>
+                          <div class="pagination-custom">
+    <ul class="pagination">
+        {{-- Tombol Previous --}}
+        @if ($applications->onFirstPage())
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+        @else
+            <li class="page-item">
+                <a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a>
+            </li>
+        @endif
+
+        {{-- Tombol Next --}}
+        @if ($applications->hasMorePages())
+            <li class="page-item">
+                <a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a>
+            </li>
+        @else
+            <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+        @endif
+    </ul>
+</div>
                         @else
                             <div class="text-center py-5">
                                 <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
@@ -88,7 +119,7 @@
             <!-- Sidebar Notifications -->
             <div class="col-lg-3">
                 <div class="card shadow-sm border-0 rounded-lg">
-                    <div class="card-header bg-white border-0">
+                    <div class="card-header border-0">
                         <h5 class="mb-0 fw-bold">Notifikasi</h5>
                     </div>
                     <div class="card-body p-3">
@@ -114,10 +145,11 @@
                             @else
                                 <p class="text-muted small">Tidak ada notifikasi baru.</p>
                             @endif
-                                <div class="text-center mt-2">
-                                    <a href="{{ route('notifications.index') }}" class="btn btn-link small">
-                                    Lihat Semua Notifikasi</a>
-                                </div>
+                            <div class="text-center mt-2">
+                                <a href="{{ route('notifications.index') }}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                                    Lihat Semua Notifikasi
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,4 +157,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/lamaran.js') }}"></script>
 @endsection
