@@ -4,6 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
+<link rel="stylesheet" href="{{ asset('css/table-admin.css?v=2') }}">
 <div class="container daftar-pelamar">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -44,11 +45,12 @@
         </span>
     </div>
 </form>
-
-
     </div>
 
-            <table class="table-responsive table-dashboard mb-0 text-center">
+    <!-- Table -->
+    <div class="container table-section">
+        <div class="table-responsive table-container">
+            <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -95,7 +97,10 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="d-flex justify-content-center mt-3">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
     <div class="btn-group" role="group" aria-label="Pagination">
         {{-- Tombol Previous --}}
         @if ($pelamar->onFirstPage())

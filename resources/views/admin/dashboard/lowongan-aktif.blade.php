@@ -4,6 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
+<link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
 <div class="container">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -45,8 +46,9 @@
 </form>
         </div>
     </div>
-    <div class="card">
-        <div class="table-responsive">
+    <!-- Table -->
+    <div class="container table-section">
+        <div class="table-responsive table-container">
             <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
@@ -63,7 +65,7 @@
                         <tr>
                             <td>{{ $lowongan->firstItem() + $index }}</td>
                             <td>{{ $l->company->name ?? 'N/A' }}</td>
-                            <td>{{ 'N/A' }}</td>
+                            <td>N/A</td>
                             <td>{{ $l->location ?? 'N/A' }}</td>
                             <td>
                                 <span class="badge bg-success">Aktif</span>
@@ -79,15 +81,16 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
+                        @empty
                         <tr>
-                            <td colspan="6" class="text-center">Belum ada lowongan aktif</td>
+                            <td colspan="6" class="text-center">Belum ada lowongan tidak aktif</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
+
     <div class="d-flex justify-content-center mt-3">
             <div class="btn-group" role="group" aria-label="Pagination">
                 {{-- Tombol Previous --}}

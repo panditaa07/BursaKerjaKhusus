@@ -3,6 +3,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
+<link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
 <div class="container daftar-pelamar">
 
     <!-- Header -->
@@ -49,9 +50,9 @@
     </div>
 
     <!-- Table -->
-    <div class="card shadow-sm">
-        <div class="card-body p-0">
-            <table class="table-responsive table-dashboard mb-0 text-center">
+    <div class="container table-section">
+        <div class="table-responsive table-container">
+            <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
                         <th>No</th>

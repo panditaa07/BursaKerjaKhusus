@@ -1,0 +1,77 @@
+/* 🌐 Styling Global untuk Semua Table di Admin Dashboard */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(30, 64, 175, 0.08); /* biru lembut dari sidebar */
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Header */
+th {
+    background-color: #1e40af; /* Warna sidebar kamu */
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid #f1f5f9; /* garis bawah halus */
+}
+
+/* Data */
+td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Hover Row */
+tbody tr:hover {
+    background-color: #f9fafb;
+    transition: 0.2s ease-in-out;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 0.6rem;
+    }
+    table {
+        font-size: 0.85rem;
+    }
+    th, td {
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+/* Optional Button Styling (edit/delete/view) */
+.table-actions button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+}
+.table-actions button:hover {
+    background: #2563eb;
+}
+
+/* Tambahan efek lembut di tabel */
+table {
+    border-radius: 10px;
+    overflow: hidden;
+}

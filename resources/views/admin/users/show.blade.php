@@ -9,7 +9,7 @@
     <h1>Detail Pengguna</h1>
     <div class="d-flex gap-2 mb-3">
     <!-- Tombol Kembali -->
-    <a href="{{ url('/admin/dashboard') }}" class="btn btn-custom back">
+    <a href="{{ url('/admin/users') }}" class="btn btn-custom back">
         <i class="fas fa-arrow-left"></i> Kembali
     </a>
 

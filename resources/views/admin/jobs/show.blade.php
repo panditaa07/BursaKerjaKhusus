@@ -13,10 +13,18 @@
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Detail Lowongan Kerja</h1>
             <div class="space-x-4">
-                <a href="{{ route('admin.job-posts.index') }}" class="bg-blue-600 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Kembali 
+                <a href="{{ route('admin.dashboard.lowongan-aktif') }}" class="bg-blue-600 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Kembali ke Lowongan Aktif
+                </a>
+                <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="bg-blue-600 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Kembali ke Lowongan Tidak Aktif
+                </a>
+                
+                <a href="{{ route('admin.job-posts.edit', $jobPost->id) }}" class="bg-blue-600 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-edit"></i> Edit Lowongan
                 </a>
             </div>
+
         </div>
 
         <div>

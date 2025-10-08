@@ -2,6 +2,8 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
+<link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
+
      <div class="card shadow-lg border-0">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -40,21 +42,23 @@
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <table class="table-dashboard">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Judul Pekerjaan</th>
-                            <th>Perusahaan</th>
-                            <th>Lokasi</th>
-                            <th>Tipe</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($jobPosts as $index => $job)
+             <!-- Table -->
+    <div class="container table-section">
+        <div class="table-responsive table-container">
+            <table class="table-dashboard mb-0 text-center">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul Pekerjaan</th>
+                        <th>Perusahaan</th>
+                        <th>Lokasi</th>
+                        <th>Tipe</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @forelse($jobPosts as $index => $job)
                             <tr>
                                 <td>{{ $jobPosts->firstItem() + $index }}</td>
                                 <td>{{ $job->title }}</td>
@@ -79,7 +83,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
-                                        <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus?')">
+                                        <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">
                                             <i class="bi bi-trash" ></i>
                                         </button>
                                     </form>
@@ -90,9 +94,11 @@
                                 <td colspan="7" class="text-center">Belum ada lowongan kerja</td>
                             </tr>
                         @endforelse
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
             <!-- Pagination Custom -->
             <div class="d-flex justify-content-center mt-3">

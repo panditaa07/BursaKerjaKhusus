@@ -1,6 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
+
     {{-- === Statistics Cards === --}}
     <div class="row">
         {{-- Total Pelamar --}}
@@ -107,7 +109,7 @@
     <div class="container table-section">
     <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
 
-    <div class="table-responsive">
+    <div class="table-responsive table-container">
         <table class="table-dashboard mb-0 text-center">
             <thead>
                 <tr>
@@ -145,17 +147,17 @@
                             <a href="{{ route('admin.applications.show', $app->id) }}" class="table-btn view">
                                 <i class="bi bi-eye"></i>
                             </a>
+                            <a href="{{ route('admin.applications.edit', $app->id) }}" class="table-btn edit">
+                                <i class="bi bi-pencil"></i>
+                            </a>
                             <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="_from" value="dashboard">
-                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus pelamar ini?')">
+                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
-                            <a href="{{ route('admin.applications.edit', $app->id) }}" class="table-btn edit">
-                                <i class="bi bi-pencil"></i>
-                            </a>
                         </td>
                     </tr>
                 @empty
@@ -172,7 +174,7 @@
     {{-- === Tabel Loker Aktif === --}}
     <div class="container table-section">
         <h3 class="mb-3">Loker Terbaru</h3>
-        <div class="table-responsive">
+        <div class="table-responsive table-container">
             <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
@@ -197,6 +199,9 @@
                                 <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
                                     <i class="bi bi-eye"></i>
                                 </a>
+                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
                                 <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
@@ -204,9 +209,6 @@
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
-                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
                             </td>
                         </tr>
                     @empty

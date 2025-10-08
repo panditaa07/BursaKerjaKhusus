@@ -4,6 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
+<link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
 <div class="container lowongan-tidak-aktif">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -47,48 +48,50 @@
 </form>
     </div>
 
-    {{-- Tabel --}}
-    <table class="table-responsive table-dashboard mb-0 text-center">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Perusahaan</th>
-                <th>No HRD</th>
-                <th>Alamat</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($lowongan as $index => $l)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $l->company->name ?? 'N/A' }}</td>
-                    <td>N/A</td>
-                    <td>{{ $l->location ?? 'N/A' }}</td>
-                    <td>
-                        <span class="badge bg-danger">Tidak Aktif</span>
-                    </td>
-                    <td class="aksi">
-                        <a href="{{ route('admin.job-posts.show', $l->id) }}" class="table-btn view"><i class="bi bi-eye"></i></a>
-                        <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="table-btn edit"><i class="bi bi-pencil"></i></a>
-                        <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
-                            <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="6" class="text-center">Belum ada lowongan tidak aktif</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+    <!-- Table -->
+    <div class="container table-section">
+        <div class="table-responsive table-container">
+            <table class="table-dashboard mb-0 text-center">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Perusahaan</th>
+                        <th>No HRD</th>
+                        <th>Alamat</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($lowongan as $index => $l)
+                        <tr>
+                            <td>{{ $lowongan->firstItem() + $index }}</td>
+                            <td>{{ $l->company->name ?? 'N/A' }}</td>
+                            <td>N/A</td>
+                            <td>{{ $l->location ?? 'N/A' }}</td>
+                            <td>
+                                <span class="badge bg-danger">Tidak Aktif</span>
+                            </td>
+                            <td class="aksi">
+                                <a href="{{ route('admin.job-posts.show', $l->id) }}" class="table-btn view"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="table-btn edit"><i class="bi bi-pencil"></i></a>
+                                <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
+                                    <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Belum ada lowongan tidak aktif</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- Pagination -->
 <div class="d-flex justify-content-center mt-3">

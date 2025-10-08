@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'update'])->name('applications.update');
         Route::delete('applications/{id}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'destroy'])->name('applications.destroy');
 
-        // File serving for secure access
+        // File serving for secure accessz
         Route::get('files/{path}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'serveFile'])->name('files')->where('path', '.*');
     });
 
@@ -139,6 +139,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('jobs')->name('jobs.')->group(function () {
         Route::get('/', [JobPostController::class, 'index'])->name('index');
         Route::get('/{job}', [JobPostController::class, 'show'])->name('show');
+        Route::get('/jobs/{id}/edit', [JobPostController::class, 'edit'])->name('edit');
+
     });
 
     // ===== Applications (pelamar) =====

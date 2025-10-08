@@ -166,7 +166,9 @@
     <a href="{{ url('/admin/dashboard/pelamar') }}" class="btn-custom back">
         <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pelamar
     </a>
-
+    <a href="{{ url('/admin/dashboard/pelamar/bulanini') }}" class="btn-custom back">
+        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pelamar Bulan Ini
+    </a>
     <!-- Tombol edit pelamar -->
     <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn-custom edit">
         <i class="fas fa-edit"></i> Edit Pelamar
