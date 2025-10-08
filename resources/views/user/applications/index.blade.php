@@ -77,6 +77,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                             <a href="{{ route('user.applications.index') }}" class="btn btn-back">
+                                    <i class="fas fa-arrow-left"></i> Kembali
+                                </a>
 
                             <!-- Pagination -->
                           <div class="pagination-custom">

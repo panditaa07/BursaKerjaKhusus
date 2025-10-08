@@ -490,3 +490,46 @@ form .btn {
     cursor: not-allowed;
 }
 
+.btn-back {
+    background: rgb(30, 58, 138);
+    color: #ffffff;
+    border: 2px solid rgb(30, 58, 138);
+    padding: 0.6rem 1.2rem; /* disamain tinggi sama pagination */
+    border-radius: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 42px; /* biar sejajar sama tombol pagination */
+    min-width: 120px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(30,58,138,0.15);
+    transition: all 0.2s ease-in-out;
+    float: left; /* tombol ke kiri */
+    margin-top: 1rem;
+}
+
+.btn-back i {
+    margin-right: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.btn-back:hover {
+    transform: translateY(-2px);
+    background: rgb(23, 37, 84);
+    border-color: rgb(23, 37, 84);
+    box-shadow: 0 6px 16px rgba(30,58,138,0.25);
+    color: #ffffff;
+}
+
+/* Biar rapi di layar kecil */
+@media (max-width: 768px) {
+    .btn-back,
+    .pagination {
+        float: none;
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem auto;
+    }
+}

@@ -3,22 +3,46 @@
 @section('title', 'Detail Lamaran - BKK OPAT')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/detail-lamaran.css') }}">
 @if(auth()->user()->role && auth()->user()->role->name === 'user')
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <!-- Header -->
+
+                <!-- Header (modern + detail pelamar + visible back button) -->
                 <div class="card shadow-sm border-0 rounded-lg mb-4">
-                    <div class="card-header bg-white border-0">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0 text-primary">
-                                <i class="fas fa-file-alt"></i>
-                                Detail Lamaran
-                            </h4>
-                            <a href="{{ route('user.applications.index') }}" class="btn btn-outline-primary">
-                                <i class="fas fa-arrow-left"></i> Kembali
-                            </a>
+                    <div class="card-header detail-header border-0">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="d-flex align-items-start gap-3 header-left">
+                                <div>
+                                    <h4 class="card-title mb-0 text-white">
+                                        <i class="fas fa-user-tie"></i>
+                                        Detail Lamaran
+                                    </h4>
+                                    <div class="header-subtext">
+                                        {{-- Tampilkan hanya email pelamar jika tersedia --}}
+                                        @if(isset($application->user))
+                                            @if(isset($application->user->email))
+                                                <small>{{ $application->user->email }}</small>
+                                            @endif
+                                        @elseif(isset($application->applicant_name) && $application->applicant_name)
+                                            {{-- Nama pelamar disembunyikan, hanya tampil email jika ada --}}
+                                            @if(isset($application->applicant_email))
+                                                <small>{{ $application->applicant_email }}</small>
+                                            @endif
+                                        @else
+                                            <small>Data Pelamar</small>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="header-actions">
+                                <a href="{{ route('user.applications.index') }}" class="btn btn-back">
+                                    <i class="fas fa-arrow-left"></i> Kembali
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,7 +105,11 @@
                                     @if($application->cv_path)
                                         <p class="mb-2">
                                             <i class="fas fa-file-pdf text-danger"></i>
-                                            CV: <a href="{{ asset('storage/' . $application->cv_path) }}" target="_blank" class="text-decoration-none">Lihat CV</a>
+                                            CV:
+                                                <a href="{{ asset('storage/' . $application->cv_path) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                                    <i class="fas fa-eye"></i> Lihat CV
+                                                </a>
+
                                         </p>
                                     @else
                                         <p class="mb-2 text-muted">
@@ -101,7 +129,7 @@
                                     <i class="fas fa-envelope"></i> Surat Lamaran
                                 </h5>
                                 <div class="bg-light p-3 rounded">
-                                    <p class="mb-0">{{ nl2br(e($application->cover_letter)) }}</p>
+                                    <p class="mb-0">{!! nl2br(e($application->cover_letter)) !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +143,7 @@
                                 </h5>
                                 <div class="bg-light p-3 rounded">
                                     @if($application->jobPost->description)
-                                        <p class="mb-0">{{ nl2br(e($application->jobPost->description)) }}</p>
+                                        <p class="mb-0">{!! nl2br(e($application->jobPost->description)) !!}</p>
                                     @else
                                         <p class="text-muted mb-0">Deskripsi tidak tersedia</p>
                                     @endif
@@ -128,6 +156,7 @@
         </div>
     </div>
 </div>
+
 @else
     <div class="container-fluid">
         <div class="row">
@@ -147,4 +176,5 @@
         </div>
     </div>
 @endif
+<script src="{{ asset('js/detail-lamaran.js') }}"></script>
 @endsection

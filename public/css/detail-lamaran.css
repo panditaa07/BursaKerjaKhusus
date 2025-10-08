@@ -1,0 +1,638 @@
+/* ============================================
+   MODERN BLUE ELEGANT THEME - BKK OPAT
+   ============================================ */
+
+:root {
+    /* Primary Blue Colors */
+    --primary-blue: #1e40af;
+    --primary-blue-light: #3b82f6;
+    --primary-blue-dark: #1e3a8a;
+    --primary-blue-hover: #2563eb;
+    
+    /* Accent Colors */
+    --accent-cyan: #06b6d4;
+    --accent-cyan-light: #22d3ee;
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    
+    /* Status Colors */
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+    color: var(--gray-900);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+.card {
+    background: var(--white);
+    border-radius: 16px;
+    border: none;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+}
+
+.card-header.detail-header {
+    background: rgb(30, 58, 138);
+    color: #ffffff;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(30, 58, 138, 0.18);
+}
+
+.card-header.detail-header .card-title {
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: 1.25rem;
+}
+
+.card-header.detail-header .header-subtext {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+.card-header h4,
+.card-header .card-title {
+    color: var(--white);
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+    animation: fadeIn 0.7s ease-out;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.btn {
+    padding: 0.625rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all var(--transition-base);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-back {
+    background: rgb(30, 58, 138);
+    color: #ffffff;
+    border: 2px solid white;
+    padding: .5rem .9rem;
+    border-radius: 10px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    box-shadow: 0 8px 18px rgba(30,58,138,0.12);
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+}
+
+.btn-back i { margin-right: .25rem; }
+
+.btn-back:hover {
+    transform: translateY(-3px);
+    background: rgb(30, 58, 138);
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(30,58,138,0.18);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-base), height var(--transition-base);
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+}
+
+.btn-outline-primary {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    color: var(--white);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: var(--white);
+}
+
+/* Action Buttons Container */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    animation: fadeInRight 0.6s ease-out;
+}
+
+/* ============================================
+   BADGE STYLES
+   ============================================ */
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all var(--transition-base);
+    animation: bounceIn 0.6s ease-out;
+}
+
+.badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse 2s infinite;
+}
+
+.bg-primary {
+    background: rgb(30, 58, 138);
+    color: var(--white);
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: var(--white);
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: var(--white);
+}
+
+.bg-secondary {
+    background: linear-gradient(135deg, var(--gray-600) 0%, var(--gray-700) 100%);
+    color: var(--white);
+}
+
+/* ============================================
+   BACKGROUND LIGHT SECTIONS
+   ============================================ */
+
+.bg-light {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%) !important;
+    position: relative;
+}
+
+.bg-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.bg-light .container-fluid,
+.bg-light .row,
+.bg-light .col-lg-10 {
+    position: relative;
+    z-index: 1;
+}
+
+/* Content Background */
+.bg-light.p-3,
+.bg-light.rounded {
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%) !important;
+    border: 1px solid var(--gray-200);
+    transition: all var(--transition-base);
+}
+
+.bg-light.p-3:hover {
+    background: var(--white) !important;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   TEXT STYLES
+   ============================================ */
+
+.text-primary { color: var(--primary-blue) !important; }
+.bg-primary { background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%) !important; color: #fff !important; }
+
+/* Slight spacing tweak for header contents on small screens */
+@media (max-width: 768px) {
+    .card-header.detail-header { text-align: center; }
+    .card-header.detail-header .d-flex { flex-direction: column; gap: .6rem; align-items: center; }
+    .header-actions { width: 100%; display: flex; justify-content: center; }
+}
+
+.text-muted {
+    color: var(--gray-600) !important;
+}
+
+h5.text-primary {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: slideInLeft 0.5s ease-out;
+}
+
+h5.text-primary i {
+    color: rgb(30, 58, 138);
+}
+
+/* ============================================
+   LINK STYLES
+   ============================================ */
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-cyan);
+    transition: width var(--transition-base);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+a:hover {
+    color: var(--accent-cyan);
+}
+
+/* ============================================
+   TABLE STYLES
+   ============================================ */
+
+.table {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.table thead {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+}
+
+.table thead th {
+    color: var(--white);
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: all var(--transition-base);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+    transform: scale(1.01);
+}
+
+.table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+
+.form-control,
+.form-select {
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: all var(--transition-base);
+    background: var(--white);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+/* ============================================
+   ICON STYLES
+   ============================================ */
+
+.fas,
+.fa {
+    transition: all var(--transition-base);
+}
+
+.btn:hover .fas,
+.btn:hover .fa {
+    transform: scale(1.1);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   LOADING ANIMATION
+   ============================================ */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity var(--transition-base);
+}
+
+.loading-overlay.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--gray-200);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   SCROLL TO TOP BUTTON
+   ============================================ */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgb(30, 58, 138);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    z-index: 1000;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-outline-primary.btn-sm {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.875rem;
+    border: 2px solid rgb(30, 58, 138);
+    color: rgb(30, 58, 138);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-primary.btn-sm i {
+    margin-right: 5px;
+}
+
+.btn-outline-primary.btn-sm:hover {
+    background: rgb(30, 58, 138);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(30,58,138,0.18);
+}
