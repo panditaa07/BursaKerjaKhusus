@@ -1,5 +1,5 @@
 /* ==============================
-   TABEL PELAMAR TERBARU (Versi Fix + Garis Vertikal)
+   TABEL PELAMAR TERBARU (Versi Fix + Tanpa Hover)
 ============================== */
 
 .table-section {
@@ -53,7 +53,7 @@
 
 /* Header tabel */
 .table-custom thead tr {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+    background: linear-gradient(90deg, #1E3A8A, #2563EB); /* Gradient biru elegan */
 }
 
 .table-custom thead th {
@@ -80,21 +80,46 @@
     border-right: none;
 }
 
-/* Hover efek */
-.table-custom tbody tr:hover {
-    background: #f9fafb;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-    z-index: 5;
-    position: relative;
+/* === Status Badge === */
+.status-accepted {
+    background-color: #22c55e;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
 }
 
-/* === Status Badge === */
-.status-accepted { background-color: #22c55e; color: #fff; border-radius: 20px; padding: 6px 12px; font-weight: 600; }
-.status-rejected { background-color: #ef4444; color: #fff; border-radius: 20px; padding: 6px 12px; font-weight: 600; }
-.status-interview { background-color: #06b6d4; color: #fff; border-radius: 20px; padding: 6px 12px; font-weight: 600; }
-.status-test { background-color: #7c3aed; color: #fff; border-radius: 20px; padding: 6px 12px; font-weight: 600; }
-.status-pending { background-color: #facc15; color: #000; border-radius: 20px; padding: 6px 12px; font-weight: 600; }
+.status-rejected {
+    background-color: #ef4444;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-interview {
+    background-color: #06b6d4;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-test {
+    background-color: #7c3aed;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background-color: #facc15;
+    color: #000;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
 
 /* === Tombol Aksi === */
 .btn-action {
@@ -119,29 +144,174 @@
 }
 
 /* ==============================
-   ANIMASI & TRANSISI TAMBAHAN
+   TANPA HOVER DI TABEL
 ============================== */
 
-.table-custom tbody tr,
-.modern-table tbody tr {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
+.table-custom tbody tr {
+    transition: none !important;
+    cursor: default !important;
 }
 
-.table-custom tbody tr:hover,
-.modern-table tbody tr:hover {
-    background-color: #fff !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px);
-    border-radius: 10px;
-    z-index: 10;
-    position: relative;
+.table-custom tbody tr:hover {
+    background: none !important;
+    box-shadow: none !important;
+    transform: none !important;
 }
 
+/* ==============================
+   ANIMASI & TRANSISI LAIN (KARTU)
+============================== */
 .stat-card {
     transition: transform 0.2s ease-in-out;
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
+}
+
+/* ====== Judul Section ("Pelamar Terbaru", "Lowongan Terbaru") ====== */
+.section-title {
+    font-weight: 700;
+    color: #1E3A8A; /* Biru tua */
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #1E3A8A 0%, #2563EB 100%);
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
+}
+
+/* Tambahan opsional: efek hover biar keren */
+.section-title:hover::after {
+    width: 160px;
+    transition: width 0.3s ease;
+}
+
+/* ======= Perbaiki warna teks & garis bawah judul ======= */
+.table-section h3,
+.section-title {
+    color: #1E3A8A !important; /* biru tua */
+    font-weight: 700 !important;
+    border-bottom: 4px solid transparent !important;
+    background: linear-gradient(to right, #1E3A8A, #2563eb) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    display: inline-block;
+    position: relative;
+}
+
+/* ======= Garis bawah biru linear ======= */
+.table-section h3::after,
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #1E3A8A, #2563eb);
+}
+
+/* === FIX AKHIR GARIS BAWAH JUDUL BIRU LINEAR === */
+.table-section h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1E3A8A 0%, #2563EB 100%) !important;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
+}
+
+/* Pastikan teks juga gradasi */
+.table-section h3 {
+    font-weight: 700 !important;
+    font-size: 1.6rem !important;
+    background: linear-gradient(90deg, #1E3A8A, #2563eb) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Rapiin tombol aksi di tabel */
+.table-custom td .btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.table-custom td .btn i {
+    font-size: 14px;
+}
+
+.table-custom td .btn-outline-info:hover {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.table-custom td .btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.table-custom td .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Dropdown tetap sejajar */
+.table-custom .dropdown-toggle::after {
+    display: none; /* hilangkan panah bawaan */
+}
+
+
+/* ===== Tombol Aksi (Sama seperti Semua Lowongan) ===== */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 3px;
+    font-size: 16px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.action-btn.view {
+    background-color: #3b82f6; /* biru */
+}
+.action-btn.edit {
+    background-color: #fbbf24; /* kuning */
+}
+.action-btn.delete {
+    background-color: #ef4444; /* merah */
+}
+
+.action-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
 }

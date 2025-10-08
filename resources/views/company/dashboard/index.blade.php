@@ -69,12 +69,18 @@
 
     {{-- === Tabel Pelamar Terbaru === --}}
     <div class="container table-section">
-        <h3 class="mb-3">Pelamar Terbaru</h3>
+        <h3 class="section-title mb-3">Pelamar Terbaru</h3>
         <table class="table-custom">
             <thead>
                 <tr>
-                    <th>No</th><th>Nama</th><th>Email</th><th>No Hp</th>
-                    <th>Lowongan</th><th>Status</th><th>Tanggal</th><th>Aksi</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>No Hp</th>
+                    <th>Lowongan</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,102 +111,67 @@
                             </span>
                         </td>
                         <td>{{ $app->created_at->format('d-m-Y') }}</td>
-                        <td>
-                            <div class="action-buttons d-flex gap-1 justify-content-center">
-                                <!-- Detail -->
-                                <a href="{{ route('company.applicants.show', $app->id) }}"
-                                   class="btn btn-sm btn-primary" title="Lihat Detail">
-                                    <i class="fa fa-eye"></i>
-                                </a>
+                       <td class="text-center">
+    <div class="d-flex justify-content-center align-items-center gap-2">
 
-                                <!-- Edit Status Dropdown -->
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-warning dropdown-toggle"
-                                            type="button"
-                                            id="dropdownMenuButton{{ $app->id }}"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                            title="Edit Status">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="dropdownMenuButton{{ $app->id }}">
-                                        <li>
-                                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" value="submitted">
-                                                <button type="submit" class="dropdown-item">
-                                                    <i class="fa fa-clock me-2"></i>Submitted
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" value="test1">
-                                                <button type="submit" class="dropdown-item">
-                                                    <i class="fa fa-flask me-2"></i>Test 1
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" value="test2">
-                                                <button type="submit" class="dropdown-item">
-                                                    <i class="fa fa-flask me-2"></i>Test 2
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" value="interview">
-                                                <button type="submit" class="dropdown-item">
-                                                    <i class="fa fa-user-tie me-2"></i>Interview
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" value="accepted">
-                                                <button type="submit" class="dropdown-item text-success">
-                                                    <i class="fa fa-check me-2"></i>Terima
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" value="rejected">
-                                                <button type="submit" class="dropdown-item text-danger">
-                                                    <i class="fa fa-times me-2"></i>Tolak
-                                                </button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
+        <!-- Lihat Detail -->
+        <a href="{{ route('company.applicants.show', $app->id) }}"
+           class="btn btn-sm btn-outline-info d-flex align-items-center justify-content-center"
+           title="Lihat Detail">
+            <i class="fas fa-eye"></i>
+        </a>
 
-                                <!-- Hapus -->
-                                <form action="{{ route('company.applicants.destroy', $app->id) }}"
-                                      method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Yakin ingin menghapus pelamar ini?')"
-                                            title="Hapus Pelamar">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
+        <!-- Edit Status -->
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-warning dropdown-toggle d-flex align-items-center justify-content-center"
+                    type="button"
+                    id="dropdownMenuButton{{ $app->id }}"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    title="Edit Status">
+                <i class="fas fa-pen"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="dropdownMenuButton{{ $app->id }}">
+                @foreach ([
+                    'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
+                    'test1' => ['icon' => 'fa-flask', 'label' => 'Test 1'],
+                    'test2' => ['icon' => 'fa-flask', 'label' => 'Test 2'],
+                    'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
+                    'accepted' => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
+                    'rejected' => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
+                ] as $status => $info)
+                    <li>
+                        <form action="{{ route('company.applications.updateStatus', $app->id) }}"
+                              method="POST" class="d-inline">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="status" value="{{ $status }}">
+                            <button type="submit" class="dropdown-item">
+                                <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
+                            </button>
+                        </form>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+        <!-- Hapus -->
+        <form action="{{ route('company.applicants.destroy', $app->id) }}"
+              method="POST"
+              class="d-inline"
+              onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                    title="Hapus Pelamar">
+                <i class="fas fa-trash"></i>
+            </button>
+        </form>
+    </div>
+</td>
+
                     </tr>
                 @empty
                     <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
@@ -216,7 +187,6 @@
             @forelse($recentJobs as $job)
                 <div class="col-md-4 mb-3">
                     <div class="card shadow-sm">
-                        <!-- Company Profile Photo -->
                         <div class="text-center p-3 bg-light">
                             @if($job->company && $job->company->user && $job->company->user->profile_photo_path)
                                 <img src="{{ asset('storage/' . $job->company->user->profile_photo_path) }}"
@@ -265,7 +235,7 @@
                 if (isNaN(finalNumber)) return;
 
                 let currentNumber = 0;
-                const increment = Math.max(1, Math.ceil(finalNumber / 100)); // Animate over ~100 frames
+                const increment = Math.max(1, Math.ceil(finalNumber / 100));
 
                 const timer = setInterval(() => {
                     currentNumber += increment;
@@ -274,7 +244,7 @@
                         clearInterval(timer);
                     }
                     number.textContent = currentNumber;
-                }, 20); // Update every 20ms
+                }, 20);
             });
         }
 
