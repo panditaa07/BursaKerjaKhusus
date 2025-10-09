@@ -2,6 +2,10 @@
 
 @section('title', 'Profil Perusahaan')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/profilcompany.css') }}">
+@endpush
+
 @section('content')
 <div class="container">
     <h1>Profil Perusahaan</h1>

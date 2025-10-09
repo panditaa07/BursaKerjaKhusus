@@ -315,3 +315,224 @@
     opacity: 0.85;
     transform: translateY(-2px);
 }
+/* ===============================
+   LOWONGAN TERBARU (scoped, aman)
+   =============================== */
+.jobs-latest {
+  --b50:#eff6ff; --b100:#dbeafe; --b400:#60a5fa; --b600:#2563eb; --b700:#1d4ed8;
+  --ink:#1f2937; --muted:#6b7280;
+}
+
+/* Header judul tengah */
+.jobs-latest .jobs-header{ text-align:center; }
+.jobs-latest .jobs-header .section-title{
+  font-weight:800; position:relative; display:inline-block; letter-spacing:.3px;
+}
+.jobs-latest .jobs-header .section-title::after{
+  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  bottom:-8px; width:110px; height:4px; border-radius:4px;
+  background:linear-gradient(90deg,#1E3A8A,#2563EB);
+  box-shadow:0 1px 6px rgba(30,58,138,.25);
+}
+.jobs-latest .jobs-header .see-all{ white-space:nowrap; }
+@media (max-width:576px){
+  .jobs-latest .jobs-header .see-all{ position:static !important; display:inline-block; margin-top:.5rem; }
+}
+
+/* Card */
+.jobs-latest .jl-card{
+  position:relative; background:#fff; border:1px solid rgba(0,0,0,.06);
+  border-radius:16px; overflow:hidden; box-shadow:0 6px 22px rgba(37,99,235,.08);
+  transition:transform .14s ease, box-shadow .18s ease; height:100%;
+  display:flex; flex-direction:column;
+}
+.jobs-latest .jl-card:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(37,99,235,.14); }
+
+/* Top accent */
+.jobs-latest .jl-accent{
+  height:86px;
+  background:
+    radial-gradient(900px 200px at 0% 0%, rgba(59,130,246,.16), transparent),
+    linear-gradient(135deg, var(--b700), var(--b400));
+}
+
+/* Avatar klik (tanpa scale agar tidak ‘buggy’) */
+.jobs-latest .jl-avatar{
+  position:absolute; top:34px; left:50%; transform:translateX(-50%);
+  width:76px; height:76px; border-radius:16px; overflow:hidden;
+  background:#fff; border:4px solid #fff; box-shadow:0 8px 24px rgba(0,0,0,.12);
+  cursor:pointer; will-change:opacity; backface-visibility:hidden;
+}
+.jobs-latest .jl-avatar::after{
+  content:""; position:absolute; inset:-4px; border-radius:18px;
+  background:radial-gradient(40px 40px at 50% 50%, rgba(59,130,246,.18), transparent);
+  opacity:0; transition:opacity .18s ease; pointer-events:none;
+}
+.jobs-latest .jl-avatar:hover::after{ opacity:1; }
+.jobs-latest .jl-avatar-img{ width:100%; height:100%; object-fit:cover; display:block; transform:translateZ(0); }
+
+/* Body */
+.jobs-latest .jl-body{ padding:64px 16px 16px; text-align:center; position:relative; }
+.jobs-latest .jl-company{ font-weight:700; color:var(--ink); }
+.jobs-latest .jl-title{ display:inline-block; margin-top:2px; font-weight:800; font-size:1.05rem; color:var(--b700); text-decoration:none; }
+.jobs-latest .jl-title:hover{ text-decoration:underline; }
+
+/* Ribbon "Baru" */
+.jobs-latest .jl-ribbon{
+  position:absolute; top:-10px; left:-36px; transform:rotate(-12deg);
+  background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; font-size:.75rem; font-weight:800;
+  padding:.25rem .75rem; border-radius:6px; box-shadow:0 8px 18px rgba(22,163,74,.25);
+}
+
+/* Meta & actions */
+.jobs-latest .jl-meta{ display:flex; justify-content:center; gap:1rem; margin-top:.35rem; color:var(--muted); font-size:.9rem; }
+.jobs-latest .jl-meta i{ margin-right:.35rem; }
+.jobs-latest .jl-actions{ display:flex; justify-content:center; gap:.5rem; margin-top:.9rem; }
+.jobs-latest .jl-actions .btn{ min-width:72px; border-radius:10px; }
+.jobs-latest .jl-actions .btn i{ font-size:.95rem; }
+.jobs-latest .jl-actions .btn-info{ background:var(--b600); border-color:var(--b600); }
+.jobs-latest .jl-actions .btn-info:hover{ background:var(--b700); border-color:var(--b700); }
+
+/* Modal preview: 16:9 */
+.jobs-latest .modal-dialog{ max-width:900px; }
+.jobs-latest .modal-image-frame{
+  aspect-ratio:16/9; width:100%;
+  background:linear-gradient(135deg,#1E3A8A,#2563EB);
+  display:flex; align-items:center; justify-content:center;
+}
+.jobs-latest .modal-image-frame img{
+  max-width:100%; max-height:100%; object-fit:contain; border-radius:12px;
+  box-shadow:0 8px 28px rgba(0,0,0,.25);
+}
+.jobs-latest .modal-content{ border-radius:16px; overflow:hidden; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark){
+  .jobs-latest .jl-card{ background:#0f172a; border-color:rgba(255,255,255,.06); }
+  .jobs-latest .jl-company{ color:#e5e7eb; }
+  .jobs-latest .jl-title{ color:#93c5fd; }
+  .jobs-latest .jl-meta{ color:#94a3b8; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .jobs-latest .jl-card, .jobs-latest .jl-avatar, .jobs-latest .jl-avatar::after{ transition:none !important; }
+}
+
+/* ====== Modal Preview Glow (scoped) ====== */
+
+/* bikin konten modal transparan + glassmorphism */
+.jobs-latest .modal-content{
+  background: rgba(17, 24, 39, 0.35);               /* glass layer */
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 20px 60px rgba(2, 6, 23, .45);
+}
+
+/* kanvas gambar: gradient, glow, vignette, pola halus */
+.jobs-latest .modal-image-frame{
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  /* base gradient biru */
+  background:
+    radial-gradient(1200px 400px at 10% 0%, rgba(59,130,246,.25), transparent 60%),
+    radial-gradient(900px 300px at 90% 100%, rgba(147,197,253,.18), transparent 60%),
+    linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #60A5FA 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 10px 30px rgba(2, 6, 23, .35);
+}
+
+/* noise super halus biar bertekstur (hemat performa) */
+.jobs-latest .modal-image-frame::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity:.25; pointer-events:none;
+}
+
+/* vignette lembut supaya fokus ke gambar */
+.jobs-latest .modal-image-frame::after{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(80% 70% at 50% 50%, transparent 60%, rgba(2,6,23,.35) 100%);
+  pointer-events:none;
+}
+
+/* gambar: floating + hover zoom lembut */
+.jobs-latest .modal-image-frame img{
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(2,6,23,.35), 0 0 0 1px rgba(255,255,255,.06);
+  transform: translateZ(0) scale(1);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.jobs-latest .modal-image-frame:hover img{
+  transform: scale(1.015);
+  box-shadow: 0 28px 80px rgba(2,6,23,.5), 0 0 0 1px rgba(255,255,255,.08);
+}
+
+/* header modal: teks terang + tanpa garis */
+.jobs-latest .modal-header{
+  background: transparent;
+  color: #e5edff;
+  border-bottom: none;
+}
+.jobs-latest .modal-title{
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: #E0EAFF;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.jobs-latest .btn-close{
+  filter: invert(1) grayscale(1) brightness(110%);
+  opacity: .9;
+}
+.jobs-latest .btn-close:hover{ opacity: 1; }
+
+/* dark-mode tweak (kalau OS user dark) */
+@media (prefers-color-scheme: dark){
+  .jobs-latest .modal-content{
+    background: rgba(8, 11, 20, 0.45);
+    border-color: rgba(255,255,255,.08);
+  }
+}
+
+/* ====== Matikan hover baris pada tabel Pelamar Terbaru ====== */
+.table-custom tbody tr {
+  transition: none !important;
+  cursor: default !important;
+}
+.table-custom tbody tr:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  z-index: auto !important;
+  position: static !important;
+}
+
+/* Aksi (biarkan tombol tetap punya hover) */
+.table-custom .action-mini{
+  display:inline-flex;justify-content:center;align-items:center;
+  width:36px;height:36px;border-radius:10px;background:#fff;border:2px solid transparent;
+  margin:0 3px;font-size:16px;line-height:1;color:#111827;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  transition:transform .18s ease, box-shadow .18s ease,
+             background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.table-custom .action-mini i{pointer-events:none;font-size:16px;}
+.table-custom .action-mini.view   { border-color:#0ea5e9; color:#0ea5e9; }
+.table-custom .action-mini.edit   { border-color:#facc15; color:#ca8a04; }
+.table-custom .action-mini.delete { border-color:#ef4444; color:#dc2626; }
+.table-custom .action-mini.view:hover   { background:#e0f2fe; box-shadow:0 6px 16px rgba(14,165,233,.28); transform:translateY(-2px); }
+.table-custom .action-mini.edit:hover   { background:#fef9c3; box-shadow:0 6px 16px rgba(250,204,21,.28); transform:translateY(-2px); }
+.table-custom .action-mini.delete:hover { background:#fee2e2; box-shadow:0 6px 16px rgba(239,68,68,.28); transform:translateY(-2px); }
+
