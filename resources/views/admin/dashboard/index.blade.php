@@ -72,7 +72,7 @@
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card chart-card shadow h-100">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Pelamar Bulan Ini</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Pelamar Setiap Bulan</h6>
                 </div>
                 <div class="card-body">
                     <canvas id="pelamarChart" height="100"></canvas>
@@ -84,7 +84,7 @@
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card chart-card shadow h-100">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-info">Lowongan</h6>
+                    <h6 class="m-0 font-weight-bold text-info">Data Lowongan</h6>
                 </div>
                 <div class="card-body">
                     <canvas id="lowonganChart" height="100"></canvas>
@@ -96,7 +96,7 @@
         <div class="col-xl-4 col-md-12 mb-4">
             <div class="card chart-card shadow h-100">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-success">Status Lamaran</h6>
+                    <h6 class="m-0 font-weight-bold text-success">Data Status Lamaran</h6>
                 </div>
                 <div class="card-body">
                     <canvas id="statusChart" height="100"></canvas>
