@@ -3,6 +3,7 @@
 @section('title', 'Profil Saya')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 <div class="container">
     <h1>Profil Saya</h1>
 

@@ -17,6 +17,7 @@
 
     {{-- CSS tambahan untuk setiap halaman --}}
     @yield('css')
+    @yield('styles') {{-- ✅ Tambahan agar CSS halaman seperti profile.css bisa terbaca --}}
     @stack('styles')
 </head>
 <body>
@@ -73,6 +74,7 @@
     <script src="{{ asset('js/dashboardadmin.js') }}" defer></script>
 
     {{-- Script tambahan untuk setiap halaman --}}
+    @yield('scripts') {{-- ✅ Tambahan agar JS halaman seperti profile.js bisa berjalan --}}
     @stack('scripts')
 </body>
 </html>
