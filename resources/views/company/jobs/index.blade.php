@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+<link href="{{ asset('css/kelolalowongankerjacom.css') }}" rel="stylesheet">
+
 @section('content')
 <div class="container-fluid">
     <!-- Header Section -->
@@ -80,7 +82,7 @@
                             <!-- Lihat -->
                             <a href="{{ route('company.jobs.show', $job->id) }}"
                                class="action-btn view" title="Lihat Detail">
-                                <i class="fas fa-eye"></i>
+                                <i class="bi bi-eye"></i>
                             </a>
                             <!-- Edit -->
                             <a href="{{ route('company.jobs.edit', $job->id) }}?from=all"
