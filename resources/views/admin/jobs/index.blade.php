@@ -73,10 +73,10 @@
                                     @endif
                                 </td>
                                 <td class="aksi">
-                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view" >
+                                    <a href="{{ route('admin.job-posts.show', $job->id) }}?from=kelola" class="table-btn view" >
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
+                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}?from=kelola" class="table-btn edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
