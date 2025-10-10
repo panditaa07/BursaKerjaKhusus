@@ -164,3 +164,196 @@
 .modern-table tbody tr {
     transition: all 0.25s ease-in-out;
 }
+
+/* ==============================
+   OVERRIDE: Hilangkan hover baris
+   ============================== */
+.company-applications-table tbody tr {
+  transition: none !important;
+  cursor: default !important;
+}
+.company-applications-table tbody tr:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  z-index: auto !important;
+  position: static !important;
+}
+
+/* =========================================
+   OVERRIDE: Aksi tombol -> gaya seperti foto-1
+   ========================================= */
+.action-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;              /* sedikit lebih kompak */
+  height: 36px;
+  border-radius: 10px;      /* kotak membulat */
+  border: 2px solid transparent;
+  background: #fff;         /* dasar putih */
+  margin: 0 3px;
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.action-btn i { pointer-events: none; }
+
+/* Lihat (biru) */
+.action-btn.view {
+  border-color: #0ea5e9;    /* cyan */
+  color: #0ea5e9;
+}
+.action-btn.view:hover {
+  background: #e0f2fe;      /* cyan sangat muda */
+  box-shadow: 0 6px 16px rgba(14,165,233,.28);
+  transform: translateY(-2px);
+}
+
+/* Edit (kuning) */
+.action-btn.edit {
+  border-color: #facc15;
+  color: #ca8a04;
+}
+.action-btn.edit:hover {
+  background: #fef9c3;
+  box-shadow: 0 6px 16px rgba(250,204,21,.28);
+  transform: translateY(-2px);
+}
+
+/* Hapus (merah) */
+.action-btn.delete {
+  border-color: #ef4444;
+  color: #dc2626;
+}
+.action-btn.delete:hover {
+  background: #fee2e2;
+  box-shadow: 0 6px 16px rgba(239,68,68,.28);
+  transform: translateY(-2px);
+}
+
+/* (Opsional) sentuhan fokus untuk aksesibilitas */
+.action-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* =========================================
+   Samakan tombol aksi dengan Dashboard
+   Scope: tabel Kelola Lowongan
+   ========================================= */
+
+/* Matikan hover baris */
+.company-applications-table tbody tr {
+  transition: none !important;
+  cursor: default !important;
+}
+.company-applications-table tbody tr:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  z-index: auto !important;
+  position: static !important;
+}
+
+/* Tombol aksi gaya dashboard */
+.company-applications-table .action-mini{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:36px; height:36px;
+  border-radius:10px;
+  border:2px solid transparent;
+  background:#fff;
+  margin:0 3px;
+  font-size:18px; line-height:1;
+  color:#111827;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  transition:transform .18s ease, box-shadow .18s ease,
+             background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.company-applications-table .action-mini i{ pointer-events:none; }
+
+/* Varian warna (lihat / edit / hapus) */
+.company-applications-table .action-mini.view   { border-color:#0ea5e9; color:#0ea5e9; }
+.company-applications-table .action-mini.edit   { border-color:#facc15; color:#ca8a04; }
+.company-applications-table .action-mini.delete { border-color:#ef4444; color:#dc2626; }
+
+/* Hover fill halus + sedikit naik */
+.company-applications-table .action-mini.view:hover{
+  background:#e0f2fe; box-shadow:0 6px 16px rgba(14,165,233,.28);
+  transform:translateY(-2px);
+}
+.company-applications-table .action-mini.edit:hover{
+  background:#fef9c3; box-shadow:0 6px 16px rgba(250,204,21,.28);
+  transform:translateY(-2px);
+}
+.company-applications-table .action-mini.delete:hover{
+  background:#fee2e2; box-shadow:0 6px 16px rgba(239,68,68,.28);
+  transform:translateY(-2px);
+}
+
+/* Fokus aksesibel */
+.company-applications-table .action-mini:focus-visible{
+  outline:2px solid #2563eb; outline-offset:2px;
+}
+
+/* =========================================
+   HOVER EFFECT untuk tombol "Tambah Lowongan" & "Cari"
+   ========================================= */
+
+/* Tombol Tambah Lowongan (biru utama) */
+.btn-primary {
+  background: linear-gradient(90deg, #1E3A8A, #2563EB);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 8px 18px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+}
+.btn-primary:hover {
+  background: linear-gradient(90deg, #2563EB, #1E40AF);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+}
+
+/* Tombol Cari (abu ke biru lembut) */
+/* =========================================
+   Tombol "Cari" versi biru aktif dari awal
+   ========================================= */
+.btn-secondary {
+  background: linear-gradient(90deg, #2563EB, #1E3A8A);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(90deg, #1E40AF, #1D4ED8);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid #60A5FA;
+  outline-offset: 2px;
+}
+

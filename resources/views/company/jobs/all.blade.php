@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <!-- Search Bar -->
+    {{-- Search Bar --}}
     <div class="mb-4 search-bar">
         <form method="GET" action="{{ route('company.jobs.all') }}" class="d-flex">
             <input type="text" name="search" class="form-control me-2" placeholder="Cari Lowongan" value="{{ request('search') }}">
@@ -42,23 +42,29 @@
                     <td class="text-center text-muted fw-bold" data-label="NO">
                         {{ $loop->iteration + ($jobs->currentPage() - 1) * $jobs->perPage() }}
                     </td>
+
                     <td data-label="JUDUL">
                         <div class="fw-bold">{{ $job->title }}</div>
                         <small class="text-muted">{{ Str::limit($job->description, 50) }}</small>
                     </td>
+
                     <td data-label="LOKASI">{{ $job->location ?? '-' }}</td>
+
                     <td data-label="TIPE">
                         <span class="badge bg-info">{{ $job->type ?? 'N/A' }}</span>
                     </td>
+
                     <td data-label="GAJI">{{ $job->salary ?? '-' }}</td>
+
                     <td data-label="STATUS">
-                        <span class="badge-status 
+                        <span class="badge-status
                             @if($job->status == 'active') badge-success
                             @elseif($job->status == 'inactive') badge-secondary
                             @else badge-warning @endif">
                             {{ ucfirst($job->status ?? 'draft') }}
                         </span>
                     </td>
+
                     <td data-label="DEADLINE">
                         @if($job->deadline)
                             {{ \Carbon\Carbon::parse($job->deadline)->format('d/m/Y') }}
@@ -71,19 +77,30 @@
                             -
                         @endif
                     </td>
+
+                    {{-- AKSI - disamakan dengan dashboard (kotak putih + border berwarna) --}}
                     <td class="text-center" data-label="AKSI">
                         <div class="btn-group" role="group">
-                            <a href="{{ route('company.jobs.show', $job->id) }}" class="action-btn view" title="Lihat Detail">
+                            {{-- Lihat --}}
+                            <a href="{{ route('company.jobs.show', $job->id) }}"
+                               class="action-mini view" title="Lihat Detail">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" class="action-btn edit" title="Edit">
+
+                            {{-- Edit --}}
+                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all"
+                               class="action-mini edit" title="Edit">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-                            <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
+
+                            {{-- Hapus --}}
+                            <form action="{{ route('company.jobs.destroy', $job->id) }}"
+                                  method="POST" class="d-inline"
+                                  onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="from" value="all">
-                                <button type="submit" class="action-btn delete" title="Hapus">
+                                <button type="submit" class="action-mini delete" title="Hapus">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
@@ -109,7 +126,7 @@
         </table>
     </div>
 
-    <!-- Pagination -->
+    {{-- Pagination --}}
     @if($jobs->hasPages())
         <div class="d-flex justify-content-center mt-4 pagination-wrapper">
             {{ $jobs->links() }}

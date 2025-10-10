@@ -156,23 +156,22 @@
             </ul>
         </div>
 
-        <!-- Hapus -->
-        <form action="{{ route('company.applicants.destroy', $app->id) }}"
-              method="POST"
-              class="d-inline"
-              onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
-                    title="Hapus Pelamar">
-                <i class="fas fa-trash"></i>
-            </button>
-        </form>
-    </div>
-</td>
-
-                    </tr>
+              {{-- Hapus --}}
+                            <form action="{{ route('company.applicants.destroy', $app->id) }}"
+                                  method="POST"
+                                  class="d-inline"
+                                  onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                        title="Hapus Pelamar">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
                 @empty
                     <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
                 @endforelse
@@ -180,39 +179,74 @@
         </table>
     </div>
 
-    {{-- === Lowongan Terbaru Cards === --}}
-    <div class="container">
-        <h3 class="mb-3">Lowongan Terbaru</h3>
-        <div class="row">
+
+    {{-- === Lowongan Terbaru Cards (Fix: 1 modal global anti-flicker) === --}}
+    <div class="container jobs-latest">
+        <div class="jobs-header position-relative mb-3 text-center">
+            <h3 class="section-title mb-0">Lowongan Terbaru</h3>
+            <a href="{{ route('company.jobs.active') }}"
+               class="see-all btn btn-outline-primary btn-sm position-absolute top-0 end-0">
+                Lihat Semua
+            </a>
+        </div>
+
+        <div class="row g-3 g-md-4">
             @forelse($recentJobs as $job)
-                <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm">
-                        <div class="text-center p-3 bg-light">
-                            @if($job->company && $job->company->user && $job->company->user->profile_photo_path)
-                                <img src="{{ asset('storage/' . $job->company->user->profile_photo_path) }}"
-                                     alt="{{ $job->company->name }} Profile Photo"
-                                     class="company-logo rounded-circle"
-                                     style="width: 80px; height: 80px; object-fit: cover; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            @else
-                                <div class="company-logo-placeholder rounded-circle d-inline-flex align-items-center justify-content-center bg-primary text-white"
-                                     style="width: 80px; height: 80px; font-size: 2rem; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            @endif
+                @php
+                    $avatar = ($job->company && $job->company->user && $job->company->user->profile_photo_path)
+                                ? asset('storage/' . $job->company->user->profile_photo_path)
+                                : asset('images/placeholders/company-avatar.png');
+                @endphp
+                <div class="col-md-6 col-lg-4">
+                    <div class="jl-card">
+                        <div class="jl-accent"></div>
+
+                        {{-- Avatar: klik -> isi modal global (tanpa data-bs-toggle individual) --}}
+                        <div class="jl-avatar js-preview"
+                             data-image="{{ $avatar }}"
+                             data-title="{{ $job->company->name ?? 'Logo Perusahaan' }}">
+                            <img src="{{ $avatar }}"
+                                 alt="{{ $job->company->name ?? 'Company' }}"
+                                 class="img-thumbnail rounded-circle shadow-sm jl-avatar-img"
+                                 loading="lazy" decoding="async" fetchpriority="low">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ $job->company->name ?? 'N/A' }}</h5>
-                            <h6 class="card-subtitle mb-2 text-success text-center">{{ $job->title ?? '-' }}</h6>
-                            <p class="card-text text-muted text-center">{{ $job->salary ?? 'Gaji tidak tersedia' }}</p>
-                            <p class="card-text text-center"><small class="text-muted">Skrg waktu {{ $job->created_at->diffForHumans(null, true) }}</small></p>
-                            <div class="d-flex justify-content-between">
-                                <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-info btn-sm">Info</a>
-                                <a href="{{ route('company.jobs.edit', $job->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
+
+                        <div class="jl-body">
+                            @if($job->created_at && $job->created_at->gt(now()->subDays(7)))
+                                <span class="jl-ribbon">Baru</span>
+                            @endif
+
+                            <div class="jl-company">{{ $job->company->name ?? 'N/A' }}</div>
+                            <a href="{{ route('company.jobs.show', $job->id) }}" class="jl-title">
+                                {{ $job->title ?? '-' }}
+                            </a>
+
+                            <div class="jl-meta">
+                                <span class="jl-salary">
+                                    <i class="fas fa-wallet"></i>
+                                    {{ $job->salary ?? 'Gaji tidak tersedia' }}
+                                </span>
+                                <span class="jl-time">
+                                    <i class="fas fa-clock"></i>
+                                    {{ $job->created_at->diffForHumans(null, true) }}
+                                </span>
+                            </div>
+
+                            <div class="jl-actions">
+                                <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-info-circle me-1"></i> Info
+                                </a>
+                                <a href="{{ route('company.jobs.edit', $job->id) }}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-pen-to-square me-1"></i> Edit
+                                </a>
+                                <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST"
+                                      class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="from" value="dashboard">
-                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt me-1"></i> Hapus
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -222,33 +256,65 @@
                 <div class="col-12 text-center text-muted">Belum ada lowongan</div>
             @endforelse
         </div>
-    </div>
+  {{-- Modal Global (satu saja, anti-bentrok) --}}
+        <div class="modal fade" id="jobImageModal" tabindex="-1" aria-labelledby="jobImageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 shadow-lg">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="jobImageModalLabel">Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="modal-image-frame">
+                            <img id="jobImageModalImg" src="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {{-- /jobs-latest --}}
 @endsection
 
 @push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function animateNumbers() {
-            const numbers = document.querySelectorAll('.stat-number');
-            numbers.forEach(number => {
-                const finalNumber = parseInt(number.textContent, 10);
-                if (isNaN(finalNumber)) return;
-
-                let currentNumber = 0;
-                const increment = Math.max(1, Math.ceil(finalNumber / 100));
-
-                const timer = setInterval(() => {
-                    currentNumber += increment;
-                    if (currentNumber >= finalNumber) {
-                        currentNumber = finalNumber;
-                        clearInterval(timer);
-                    }
-                    number.textContent = currentNumber;
-                }, 20);
-            });
-        }
-
-        animateNumbers();
+document.addEventListener('DOMContentLoaded', function () {
+    // animasi angka (tetap)
+    const numbers = document.querySelectorAll('.stat-number');
+    numbers.forEach(number => {
+        const finalNumber = parseInt(number.textContent, 10);
+        if (isNaN(finalNumber)) return;
+        let currentNumber = 0;
+        const increment = Math.max(1, Math.ceil(finalNumber / 100));
+        const timer = setInterval(() => {
+            currentNumber += increment;
+            if (currentNumber >= finalNumber) {
+                currentNumber = finalNumber;
+                clearInterval(timer);
+            }
+            number.textContent = currentNumber;
+        }, 20);
     });
+
+    // Preview gambar (modal global) — solusi anti-flicker
+    const modalEl  = document.getElementById('jobImageModal');
+    const modalImg = document.getElementById('jobImageModalImg');
+    const modalTit = document.getElementById('jobImageModalLabel');
+
+    // pastikan bootstrap.bundle sudah ada di layout
+    const bsModal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+
+    document.querySelectorAll('.jobs-latest .js-preview').forEach(el => {
+        el.addEventListener('click', () => {
+            const src   = el.getAttribute('data-image');
+            const title = el.getAttribute('data-title') || 'Logo Perusahaan';
+            // set konten modal
+            modalImg.src = src;
+            modalImg.alt = title;
+            modalTit.textContent = title;
+            // tampilkan modal
+            bsModal.show();
+        });
+    });
+});
 </script>
 @endpush

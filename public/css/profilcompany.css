@@ -1,0 +1,154 @@
+/* ===========================
+   Profil Perusahaan – Styling
+   Scope: .company-profile
+   =========================== */
+
+.company-profile {
+  --bg-soft: #f5f7fb;
+  --card-br: 14px;
+  --ring: 0 8px 30px rgba(2, 88, 255, .08);
+  --muted: #6b7280;
+  --ink: #1f2937;
+}
+
+/* Page title */
+.company-profile h1 {
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.75rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--ink);
+}
+
+/* Card */
+.company-profile .card {
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--card-br);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0,0,0,.04);
+}
+
+/* Card header */
+.company-profile .card-header {
+  background: linear-gradient(135deg, #eff6ff 0%, #eef2ff 100%);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  padding: 1rem 1.25rem;
+}
+.company-profile .card-header h3 {
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Button primary – lebih menonjol */
+.company-profile .btn.btn-primary {
+  border: none;
+  font-weight: 600;
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #2563eb, #1d4ed8);
+  box-shadow: 0 8px 20px rgba(37,99,235,.25);
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+}
+.company-profile .btn.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 10px 26px rgba(37,99,235,.3);
+}
+
+/* Card body spacing */
+.company-profile .card-body {
+  padding: 1.25rem;
+}
+@media (min-width: 768px){
+  .company-profile .card-body {
+    padding: 1.75rem;
+  }
+}
+
+/* Avatar (sudah ada style inline, ini memperhalus) */
+.company-profile .card-body .rounded-circle.border {
+  border-color: #e5e7eb !important;
+  box-shadow: var(--ring);
+}
+
+/* Section title (Foto Profil PIC) */
+.company-profile .card-body h5 i {
+  margin-right: .4rem;
+}
+.company-profile .card-body h5 {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Label & Value */
+.company-profile p {
+  margin-bottom: .5rem;
+  color: #111827;
+}
+.company-profile p > strong {
+  display: inline-block;
+  min-width: 180px;           /* rapikan kolom kiri label */
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Grid spacing */
+.company-profile .row > [class*="col-"] {
+  margin-bottom: .75rem;
+}
+
+/* Logo Perusahaan block */
+.company-profile img[alt="Logo"],
+.company-profile img[alt*="Logo"] {
+  display: block;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  padding: .75rem;
+  box-shadow: 0 4px 18px rgba(0,0,0,.06);
+}
+
+/* Empty state text */
+.company-profile .text-muted {
+  color: #9ca3af !important;
+}
+
+/* Divider yang halus */
+.company-profile .card-body hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+  margin: 1rem 0;
+}
+
+/* Hover micro-interaction pada card */
+.company-profile .card:hover {
+  box-shadow: 0 10px 34px rgba(0,0,0,.08);
+  transition: box-shadow .25s ease;
+}
+
+/* Responsive: tumpuk label di layar kecil */
+@media (max-width: 575.98px){
+  .company-profile p > strong {
+    min-width: 0;
+    display: block;
+    margin-bottom: .15rem;
+  }
+}
+
+/* Dark mode (berdasarkan preferensi OS) */
+@media (prefers-color-scheme: dark){
+  .company-profile .card {
+    background: #0f172a;
+    border-color: rgba(255,255,255,.06);
+  }
+  .company-profile .card-header {
+    background: linear-gradient(135deg, #0b1222 0%, #111a33 100%);
+    border-color: rgba(255,255,255,.06);
+  }
+  .company-profile h1,
+  .company-profile .card-header h3,
+  .company-profile p { color: #e5e7eb; }
+  .company-profile p > strong { color: #94a3b8; }
+  .company-profile img[alt*="Logo"] { background: #0b1220; border-color: rgba(255,255,255,.08); }
+}
