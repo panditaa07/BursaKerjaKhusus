@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/kelolalowongankerjacom.css') }}?v={{ time() }}">
+@endsection
 
 @section('content')
 <div class="container-fluid">

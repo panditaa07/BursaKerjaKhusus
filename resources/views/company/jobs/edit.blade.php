@@ -1,5 +1,9 @@
 <!--  -->@extends('layouts.dashboard')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/editlowongancom.css') }}">
+@endpush
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
