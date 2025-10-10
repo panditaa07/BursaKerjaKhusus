@@ -2,6 +2,10 @@
 
 @section('title', 'Detail Lowongan Kerja')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/detaillowongancomp.css') }}?v={{ time() }}">
+@endsection
+
 @section('content')
 <div class="container-fluid">
     @if(session('success'))
@@ -26,41 +30,46 @@
         </ol>
     </nav>
 
-    <!-- Header with Actions -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+  <!-- Header dengan Tombol Aksi (termasuk tombol Kembali) -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <h2 class="mb-0">
             <i class="fas fa-briefcase text-primary"></i>
             Detail Lowongan Kerja
         </h2>
-        <div>
-            <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning me-2">
+
+        <div class="jd-actions d-flex gap-2 flex-wrap">
+            <!-- Tombol Kembali -->
+            <button type="button" class="btn btn-back" onclick="history.back()">
+                <i class="fas fa-arrow-left me-1"></i> Kembali
+            </button>
+
+            <!-- Edit Lowongan -->
+            <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning">
                 <i class="fas fa-edit"></i> Edit Lowongan
             </a>
+
+            <!-- Aktif/Nonaktif -->
             <form method="POST" action="{{ route('company.jobs.toggle-status', $job) }}" class="d-inline">
                 @csrf
                 @method('PATCH')
-                <button type="submit" class="btn
-                    @if($job->status === 'active')
-                        btn-secondary
-                    @else
-                        btn-success
-                    @endif"
+                <button type="submit" class="btn {{ $job->status === 'active' ? 'btn-secondary' : 'btn-success' }}"
                     onclick="return confirm('Apakah Anda yakin ingin mengubah status lowongan ini?')">
                     <i class="fas fa-{{ $job->status === 'active' ? 'pause' : 'play' }}"></i>
-                    @if($job->status === 'active') Nonaktifkan @else Aktifkan @endif
+                    {{ $job->status === 'active' ? 'Nonaktifkan' : 'Aktifkan' }}
                 </button>
             </form>
-            <form method="POST" action="{{ route('company.jobs.destroy', $job) }}" class="d-inline ms-2">
+
+            <!-- Hapus -->
+            <form method="POST" action="{{ route('company.jobs.destroy', $job) }}" class="d-inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger"
-                    onclick="return confirm('Apakah Anda yakin ingin menghapus lowongan ini? Tindakan ini tidak dapat dibatalkan.')">
+                    onclick="return confirm('Apakah Anda yakin ingin menghapus lowongan ini?')">
                     <i class="fas fa-trash"></i> Hapus
                 </button>
             </form>
         </div>
     </div>
-
     <div class="row">
         <div class="col-12">
             <div class="card shadow-sm">
@@ -272,68 +281,95 @@
                     </div>
                     @endif
 
-                    <!-- Pelamar -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">
-                            <i class="fas fa-users text-primary"></i>
-                            Pelamar ({{ $job->applications->count() }})
-                        </h5>
-                        @if($job->applications->count() > 0)
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Email</th>
-                                            <th>Status</th>
-                                            <th>Tanggal</th>
-                                            <th class="text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($job->applications as $application)
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        @if($application->user->profile_photo_path)
-                                                            <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}" alt="Avatar" class="rounded-circle me-2" style="width: 32px; height: 32px; object-fit: cover;">
-                                                        @else
-                                                            <div class="bg-primary rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                                                                <span class="text-white fw-bold">{{ strtoupper(substr($application->user->name, 0, 1)) }}</span>
-                                                            </div>
-                                                        @endif
-                                                        {{ $application->user->name }}
-                                                    </div>
-                                                </td>
-                                                <td>{{ $application->user->email }}</td>
-                                                <td>
-                                                    <span class="badge
-                                                        @if($application->status == 'pending') bg-warning
-                                                        @elseif($application->status == 'accepted') bg-success
-                                                        @elseif($application->status == 'rejected') bg-danger
-                                                        @else bg-secondary @endif">
-                                                        {{ ucfirst($application->status) }}
-                                                    </span>
-                                                </td>
-                                                <td>{{ $application->created_at->format('d/m/Y') }}</td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('company.applications.show.company', $application->id) }}" class="btn btn-sm btn-info">
-                                                        <i class="fas fa-eye"></i> Lihat
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        @else
-                            <div class="text-center py-5">
-                                <i class="fas fa-users fa-3x text-muted mb-3"></i>
-                                <h5 class="text-muted">Belum ada pelamar</h5>
-                                <p class="text-muted">Belum ada pelamar yang melamar lowongan ini.</p>
-                            </div>
-                        @endif
+           {{-- Pelamar --}}
+<div class="mb-4">
+  <h5 class="mb-3">
+    <i class="fas fa-users text-primary"></i>
+    Pelamar ({{ $job->applications->count() }})
+  </h5>
+
+  @if($job->applications->count() > 0)
+    <div class="table-responsive">
+      <table class="table-applicants">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Tanggal</th>
+            <th class="text-center">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($job->applications as $application)
+            <tr>
+              {{-- NAMA --}}
+              <td data-label="Nama">
+                <div class="d-flex align-items-center">
+                  @if($application->user->profile_photo_path)
+                    <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
+                         alt="Avatar" class="rounded-circle me-2"
+                         style="width:32px;height:32px;object-fit:cover;">
+                  @else
+                    <div class="avatar-pill me-2">
+                      {{ strtoupper(substr($application->user->name, 0, 1)) }}
                     </div>
+                  @endif
+                  {{ $application->user->name }}
+                </div>
+              </td>
+
+              {{-- EMAIL --}}
+              <td data-label="Email">{{ $application->user->email }}</td>
+
+             {{-- STATUS --}}
+<td data-label="Status">
+  @php
+    $statusMap = [
+      'submitted' => ['label' => 'Menunggu', 'class' => 'status-wait',      'icon' => 'fa-circle'],
+      'pending'   => ['label' => 'Menunggu', 'class' => 'status-wait',      'icon' => 'fa-circle'],
+      'reviewed'  => ['label' => 'Menunggu', 'class' => 'status-wait',      'icon' => 'fa-circle'],
+      'test1'     => ['label' => 'Test 1',   'class' => 'status-test1',     'icon' => 'fa-circle'],
+      'test2'     => ['label' => 'Test 2',   'class' => 'status-test2',     'icon' => 'fa-circle'],
+      'interview' => ['label' => 'Interview','class' => 'status-interview', 'icon' => 'fa-circle'],
+      'accepted'  => ['label' => 'Terima',   'class' => 'status-accepted',  'icon' => 'fa-circle'],
+      'rejected'  => ['label' => 'Tolak',    'class' => 'status-rejected',  'icon' => 'fa-circle'],
+    ];
+
+    $key   = strtolower($application->status);
+    $cfg   = $statusMap[$key] ?? ['label'=>ucfirst($application->status),'class'=>'status-neutral','icon'=>'fa-circle'];
+  @endphp
+
+  <span class="chip {{ $cfg['class'] }}" title="{{ $cfg['label'] }}">
+    <span class="chip-dot"></span>
+    <span class="chip-label">{{ $cfg['label'] }}</span>
+  </span>
+</td>
+              {{-- TANGGAL --}}
+              <td data-label="Tanggal">{{ $application->created_at->format('d/m/Y') }}</td>
+
+              {{-- AKSI --}}
+              <td class="text-center" data-label="Aksi">
+                <a href="{{ route('company.applications.show.company', $application->id) }}"
+   class="btn-icon btn-view" title="Lihat Detail">
+   <i class="fas fa-eye"></i>
+</a>
+
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  @else
+    <div class="text-center py-5">
+      <i class="fas fa-users fa-3x text-muted mb-3"></i>
+      <h5 class="text-muted">Belum ada pelamar</h5>
+      <p class="text-muted">Belum ada pelamar yang melamar lowongan ini.</p>
+    </div>
+  @endif
+</div>
+
                 </div>
             </div>
         </div>
@@ -364,4 +400,13 @@
         color: #495057;
     }
 </style>
+
+@push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('job-detail');
+  });
+</script>
+@endpush
+
 @endpush
