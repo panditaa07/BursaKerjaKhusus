@@ -139,7 +139,7 @@
                                             <a href="{{ route('company.applications.show.company', $application->id) }}"
                                                class="btn btn-sm btn-outline-info"
                                                title="Lihat Detail">
-                                                <i class="fas fa-eye"></i>
+                                                <i class="bi bi-eye"></i>
                                             </a>
 
                                             <!-- Edit Status -->

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+,@extends('layouts.dashboard')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
