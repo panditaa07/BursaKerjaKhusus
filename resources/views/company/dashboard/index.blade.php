@@ -111,67 +111,67 @@
                             </span>
                         </td>
                         <td>{{ $app->created_at->format('d-m-Y') }}</td>
-                       <td class="text-center">
-    <div class="d-flex justify-content-center align-items-center gap-2">
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center align-items-center gap-2">
 
-        <!-- Lihat Detail -->
-        <a href="{{ route('company.applicants.show', $app->id) }}"
-           class="btn btn-sm btn-outline-info d-flex align-items-center justify-content-center"
-           title="Lihat Detail">
-            <i class="fas fa-eye"></i>
-        </a>
+                                {{-- Lihat Detail --}}
+                                <a href="{{ route('company.applicants.show', $app->id) }}"
+                                   class="action-mini view"
+                                   title="Lihat Detail">
+                                    <i class="fas fa-eye"></i>
+                                </a>
 
-        <!-- Edit Status -->
-        <div class="dropdown">
-            <button class="btn btn-sm btn-outline-warning dropdown-toggle d-flex align-items-center justify-content-center"
-                    type="button"
-                    id="dropdownMenuButton{{ $app->id }}"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    title="Edit Status">
-                <i class="fas fa-pen"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="dropdownMenuButton{{ $app->id }}">
-                @foreach ([
-                    'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
-                    'test1' => ['icon' => 'fa-flask', 'label' => 'Test 1'],
-                    'test2' => ['icon' => 'fa-flask', 'label' => 'Test 2'],
-                    'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
-                    'accepted' => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
-                    'rejected' => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
-                ] as $status => $info)
-                    <li>
-                        <form action="{{ route('company.applications.updateStatus', $app->id) }}"
-                              method="POST" class="d-inline">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="status" value="{{ $status }}">
-                            <button type="submit" class="dropdown-item">
-                                <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
-                            </button>
-                        </form>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
+                                {{-- Edit Status --}}
+                                <div class="dropdown">
+                                    <button class="action-mini edit dropdown-toggle"
+                                            type="button"
+                                            id="dropdownMenuButton{{ $app->id }}"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            title="Edit Status">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="dropdownMenuButton{{ $app->id }}">
+                                        @foreach ([
+                                            'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
+                                            'test1' => ['icon' => 'fa-flask', 'label' => 'Test 1'],
+                                            'test2' => ['icon' => 'fa-flask', 'label' => 'Test 2'],
+                                            'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
+                                            'accepted' => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
+                                            'rejected' => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
+                                        ] as $status => $info)
+                                            <li>
+                                                <form action="{{ route('company.applications.updateStatus', $app->id) }}"
+                                                      method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="status" value="{{ $status }}">
+                                                    <button type="submit" class="dropdown-item">
+                                                        <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
 
-              {{-- Hapus --}}
-                            <form action="{{ route('company.applicants.destroy', $app->id) }}"
-                                  method="POST"
-                                  class="d-inline"
-                                  onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
-                                        title="Hapus Pelamar">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
+                                {{-- Hapus --}}
+                                <form action="{{ route('company.applicants.destroy', $app->id) }}"
+                                      method="POST"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="action-mini delete"
+                                            title="Hapus Pelamar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                 @empty
                     <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
                 @endforelse
@@ -179,8 +179,7 @@
         </table>
     </div>
 
-
-    {{-- === Lowongan Terbaru Cards (Fix: 1 modal global anti-flicker) === --}}
+    {{-- === Lowongan Terbaru Cards === --}}
     <div class="container jobs-latest">
         <div class="jobs-header position-relative mb-3 text-center">
             <h3 class="section-title mb-0">Lowongan Terbaru</h3>
@@ -201,7 +200,6 @@
                     <div class="jl-card">
                         <div class="jl-accent"></div>
 
-                        {{-- Avatar: klik -> isi modal global (tanpa data-bs-toggle individual) --}}
                         <div class="jl-avatar js-preview"
                              data-image="{{ $avatar }}"
                              data-title="{{ $job->company->name ?? 'Logo Perusahaan' }}">
@@ -256,7 +254,8 @@
                 <div class="col-12 text-center text-muted">Belum ada lowongan</div>
             @endforelse
         </div>
-  {{-- Modal Global (satu saja, anti-bentrok) --}}
+
+        {{-- Modal Global --}}
         <div class="modal fade" id="jobImageModal" tabindex="-1" aria-labelledby="jobImageModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content border-0 shadow-lg">
@@ -272,13 +271,12 @@
                 </div>
             </div>
         </div>
-    </div> {{-- /jobs-latest --}}
+    </div>
 @endsection
 
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // animasi angka (tetap)
     const numbers = document.querySelectorAll('.stat-number');
     numbers.forEach(number => {
         const finalNumber = parseInt(number.textContent, 10);
@@ -295,23 +293,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 20);
     });
 
-    // Preview gambar (modal global) — solusi anti-flicker
     const modalEl  = document.getElementById('jobImageModal');
     const modalImg = document.getElementById('jobImageModalImg');
     const modalTit = document.getElementById('jobImageModalLabel');
-
-    // pastikan bootstrap.bundle sudah ada di layout
     const bsModal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
 
     document.querySelectorAll('.jobs-latest .js-preview').forEach(el => {
         el.addEventListener('click', () => {
             const src   = el.getAttribute('data-image');
             const title = el.getAttribute('data-title') || 'Logo Perusahaan';
-            // set konten modal
             modalImg.src = src;
             modalImg.alt = title;
             modalTit.textContent = title;
-            // tampilkan modal
             bsModal.show();
         });
     });

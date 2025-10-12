@@ -6,58 +6,63 @@
 
 @section('content')
 <div class="container-fluid">
+
+    {{-- Header atas --}}
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Lowongan Tidak Aktif</h2>
-        <div class="d-flex align-items-center">
-            <span class="mr-3">Total Lowongan: {{ $jobs->total() }}</span>
-            <a href="{{ route('company.jobs.create') }}?from=inactive" class="btn btn-primary">Tambah Lowongan</a>
+        <h2 class="page-title">Lowongan Tidak Aktif</h2>
+        <div class="d-flex align-items-center gap-2">
+            <span>Total Lowongan: {{ $jobs->total() }}</span>
+            <a href="{{ route('company.jobs.create') }}?from=inactive" class="btn btn-primary">
+                Tambah Lowongan
+            </a>
         </div>
     </div>
 
-
-
-    <!-- Search Bar -->
+    {{-- Search Bar --}}
     <div class="mb-4">
-        <form method="GET" action="{{ route('company.jobs.inactive') }}" class="d-flex">
-            <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
-            <button type="submit" class="btn btn-secondary ml-2">Cari</button>
+        <form method="GET" action="{{ route('company.jobs.inactive') }}" class="d-flex align-items-center">
+            <input type="text" name="search" class="form-control me-2" 
+                   placeholder="Cari Lowongan..." value="{{ request('search') }}">
+            <button type="submit" class="btn-secondary">Cari</button>
         </form>
     </div>
 
+    {{-- === Tabel Lowongan Tidak Aktif === --}}
     <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="table-light">
+        <table class="company-applications-table">
+            <thead>
                 <tr>
-                    <th class="text-center" width="60">NO</th>
-                    <th>JUDUL</th>
-                    <th>LOKASI</th>
-                    <th>TIPE</th>
-                    <th>GAJI</th>
-                    <th>STATUS</th>
-                    <th>DEADLINE</th>
-                    <th class="text-center" width="150">AKSI</th>
+                    <th width="60">No</th>
+                    <th>Judul</th>
+                    <th>Lokasi</th>
+                    <th>Tipe</th>
+                    <th>Gaji</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <th width="150">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($jobs as $job)
                 <tr>
-                    <td class="text-center text-muted fw-bold">{{ $loop->iteration + ($jobs->currentPage() - 1) * $jobs->perPage() }}</td>
+                    <td>{{ $loop->iteration + ($jobs->currentPage() - 1) * $jobs->perPage() }}</td>
                     <td>
                         <div class="fw-bold">{{ $job->title }}</div>
                         <small class="text-muted">{{ Str::limit($job->description, 50) }}</small>
                     </td>
                     <td>{{ $job->location ?? '-' }}</td>
                     <td>
-                        <span class="badge bg-info">{{ $job->type ?? 'N/A' }}</span>
+                        <span class="badge-status badge-warning">{{ $job->type ?? 'N/A' }}</span>
                     </td>
                     <td>{{ $job->salary ?? '-' }}</td>
                     <td>
-                        <span class="badge
-                            @if($job->status == 'active') badge-success
-                            @elseif($job->status == 'inactive') badge-secondary
-                            @else badge-warning @endif">
-                            {{ ucfirst($job->status ?? 'draft') }}
-                        </span>
+                        @if($job->status == 'active')
+                            <span class="badge-status badge-success">Aktif</span>
+                        @elseif($job->status == 'inactive')
+                            <span class="badge-status badge-secondary">Nonaktif</span>
+                        @else
+                            <span class="badge-status badge-warning">{{ ucfirst($job->status ?? 'draft') }}</span>
+                        @endif
                     </td>
                     <td>
                         @if($job->deadline)
@@ -71,19 +76,23 @@
                             -
                         @endif
                     </td>
-                    <td class="text-center">
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-sm btn-info" title="Lihat Detail">
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('company.jobs.show', $job->id) }}" 
+                               class="action-mini view" title="Lihat Detail">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=inactive" class="btn btn-sm btn-warning" title="Edit">
+                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=inactive" 
+                               class="action-mini edit" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
+                            <form action="{{ route('company.jobs.destroy', $job->id) }}" 
+                                  method="POST" class="d-inline"
+                                  onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="from" value="inactive">
-                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                <button type="submit" class="action-mini delete" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
@@ -92,15 +101,13 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5">
-                        <div class="text-muted">
+                    <td colspan="8" class="text-center py-5 text-muted">
+                        <div>
                             <i class="fas fa-briefcase fa-3x mb-3"></i>
-                            <p class="mb-0">Belum ada lowongan tidak aktif</p>
-                            <p class="mb-0">
-                                <a href="{{ route('company.jobs.create') }}?from=inactive" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> Buat Lowongan Baru
-                                </a>
-                            </p>
+                            <p class="mb-1">Belum ada lowongan tidak aktif</p>
+                            <a href="{{ route('company.jobs.create') }}?from=inactive" class="btn-primary btn-sm">
+                                <i class="fas fa-plus"></i> Buat Lowongan Baru
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -109,11 +116,11 @@
         </table>
     </div>
 
-    <!-- Pagination -->
+    {{-- Pagination --}}
     @if($jobs->hasPages())
-        <div class="d-flex justify-content-center mt-4">
-            {{ $jobs->links() }}
-        </div>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $jobs->links() }}
+    </div>
     @endif
 </div>
 @endsection

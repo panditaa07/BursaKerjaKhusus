@@ -82,15 +82,15 @@
                     <td class="text-center" data-label="AKSI">
                         <div class="btn-group" role="group">
                             {{-- Lihat --}}
-                            <a href="{{ route('company.jobs.show', $job->id) }}"
-                               class="action-mini view" title="Lihat Detail">
-                                <i class="bi bi-eye"></i>
+                            <a href="{{ route('company.jobs.show', $job->id) }}" 
+                            class="action-mini view" title="Lihat">
+                            <i class="fas fa-eye"></i>
                             </a>
 
                             {{-- Edit --}}
-                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all"
-                               class="action-mini edit" title="Edit">
-                                <i class="bi bi-pencil-square"></i>
+                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" 
+                            class="action-mini edit" title="Edit">
+                            <i class="fas fa-edit"></i>
                             </a>
 
                             {{-- Hapus --}}
@@ -101,7 +101,7 @@
                                 @method('DELETE')
                                 <input type="hidden" name="from" value="all">
                                 <button type="submit" class="action-mini delete" title="Hapus">
-                                    <i class="bi bi-trash"></i>
+                                <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </div>

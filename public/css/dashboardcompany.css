@@ -536,3 +536,10 @@
 .table-custom .action-mini.edit:hover   { background:#fef9c3; box-shadow:0 6px 16px rgba(250,204,21,.28); transform:translateY(-2px); }
 .table-custom .action-mini.delete:hover { background:#fee2e2; box-shadow:0 6px 16px rgba(239,68,68,.28); transform:translateY(-2px); }
 
+/* Hilangkan garis bawah di icon aksi (khususnya view) */
+.table-custom .action-mini {
+  text-decoration: none !important;
+}
+.table-custom .action-mini:hover {
+  text-decoration: none !important;
+}
