@@ -15,7 +15,7 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        $jobs = JobPost::active()->with('company')->latest()->paginate(10);
+        $jobs = JobPost::active()->with('company.user', 'industry')->latest()->paginate(10);
         return view('user.jobs.index', compact('jobs'));
     }
 
@@ -32,7 +32,7 @@ class JobPostController extends Controller
         }
 
         $query = JobPost::where('company_id', $company->id)
-                        ->with('company')
+                        ->with('company.user', 'industry')
                         ->latest();
 
         // Add search functionality
@@ -64,7 +64,7 @@ class JobPostController extends Controller
 
         $query = JobPost::where('company_id', $company->id)
                         ->where('status', 'active')
-                        ->with('company')
+                        ->with('company.user', 'industry')
                         ->latest();
 
         // Add search functionality
@@ -96,7 +96,7 @@ class JobPostController extends Controller
 
         $query = JobPost::where('company_id', $company->id)
                         ->where('status', 'inactive')
-                        ->with('company')
+                        ->with('company.user', 'industry')
                         ->latest();
 
         // Add search functionality
@@ -131,10 +131,13 @@ class JobPostController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'requirements' => 'nullable|string',
-            'salary' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'type' => 'nullable|string|in:full-time,part-time,contract,internship',
+            'location' => 'nullable|string|max:500',
+            'employment_type' => 'nullable|string|in:full-time,part-time,contract,internship',
+            'vacancies' => 'required|integer|min:1',
             'deadline' => 'nullable|date|after:today',
+            'industry_id' => 'required|exists:industries,id',
+            'min_salary' => 'nullable|numeric|min:0',
+            'max_salary' => 'nullable|numeric|min:0|gte:min_salary',
         ]);
 
         $company = auth()->user()->company;
@@ -177,7 +180,7 @@ class JobPostController extends Controller
             abort(403, 'Unauthorized access.');
         }
 
-        $job->load(['company.user', 'applications', 'industry']);
+        $job->load(['company.user', 'applications.user', 'industry']);
         return view($view, compact('job'));
     }
 

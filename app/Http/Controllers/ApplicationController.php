@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Models\Application;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Mail;
@@ -72,7 +73,7 @@ class ApplicationController extends Controller
         ->when($filter === 'process', function ($q) {
             $q->whereIn('status', ['interview', 'test1', 'test2']);
         })
-        ->with(['user', 'jobPost'])
+        ->with(['user', 'jobPost.company'])
         ->latest()
         ->paginate(10);
 
@@ -110,7 +111,7 @@ class ApplicationController extends Controller
                 $l->where('title', 'like', "%{$search}%");
             })->orWhere('status', 'like', "%{$search}%");
         })
-        ->with(['user', 'jobPost'])
+        ->with(['user', 'jobPost.company'])
         ->latest()
         ->paginate(10);
 
@@ -177,7 +178,7 @@ class ApplicationController extends Controller
         $request->validate([
             'job_post_id' => 'required|exists:job_posts,id',
             'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
-            'cover_letter' => 'nullable|string|max:2000',
+            'cover_letter' => 'nullable|string|max:2000|regex:/^[a-zA-Z0-9\s]+$/u',
         ]);
 
         $user = Auth::user();

@@ -49,7 +49,7 @@
                                     <tbody>
                                         @foreach($applications as $application)
                                             <tr class="border-bottom border-secondary-subtle" style="background-color: #ffffff;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='#ffffff'">
-                                                <td class="px-4 py-3">{{ $application->jobPost->company->name ?? 'Unknown Company' }}</td>
+                                                <td class="px-4 py-3 company-name-cell">{{ Str::limit($application->jobPost->company->name ?? 'Unknown Company', 30, '...') }}</td>
                                                 <td class="px-4 py-3">{{ $application->jobPost->title }}</td>
                                                 <td class="px-4 py-3">
                                                     @if(in_array($application->status, ['submitted', 'test1', 'test2']))
@@ -77,9 +77,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                             <a href="{{ route('user.applications.index') }}" class="btn btn-back">
-                                    <i class="fas fa-arrow-left"></i> Kembali
-                                </a>
 
                             <!-- Pagination -->
                           <div class="pagination-custom">

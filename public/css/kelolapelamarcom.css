@@ -127,6 +127,13 @@ h2.h4 {
     font-weight: 600 !important;
 }
 
+.status-reviewed {
+    background-color: #f59e0b !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
 /* ===== AVATAR ===== */
 .avatar-wrapper img {
     border: 2px solid #d0e1ff !important;

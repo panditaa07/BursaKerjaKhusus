@@ -533,3 +533,11 @@ form .btn {
         margin: 0.5rem auto;
     }
 }
+
+/* Limit text in company name cell to prevent overflow */
+.company-name-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

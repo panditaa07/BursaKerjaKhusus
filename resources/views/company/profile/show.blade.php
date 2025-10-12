@@ -12,7 +12,7 @@
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3>Informasi Perusahaan</h3>
-            <a href="{{ route('company.edit') }}" class="btn btn-primary">
+            <a href="{{ route('profile.edit') }}" class="btn btn-primary">
                 <i class="fas fa-pencil-alt me-1"></i> Edit Perusahaan
             </a>
         </div>

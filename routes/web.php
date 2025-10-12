@@ -19,18 +19,23 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ✅ Login & Logout pakai LoginController
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // ✅ Register with role-based forms
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-Route::get('/register/{role}', [RegisteredUserController::class, 'create'])->name('register.role');
+Route::get('/register', [RegisteredUserController::class, 'create'])->middleware('guest')->name('register');
+Route::get('/register/{role}', [RegisteredUserController::class, 'create'])->middleware('guest')->name('register.role');
 Route::post('/register/{role}', [RegisteredUserController::class, 'store'])->name('register.store');
 
 // Temporary route to check authentication
 Route::get('/check-auth', function () {
     return Auth::check() ? 'User is authenticated' : 'User is not authenticated';
+});
+
+// Route for /says to return JSON
+Route::get('/says', function () {
+    return response()->json(['message' => 'Hello from says endpoint']);
 });
 
 Route::middleware(['auth'])->group(function () {

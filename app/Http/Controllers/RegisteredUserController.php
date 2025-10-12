@@ -51,11 +51,16 @@ class RegisteredUserController extends Controller
 
         $request->validate($rules);
 
+        $roleModel = Role::where('name', $role)->first();
+        if (!$roleModel) {
+            return back()->withErrors(['role' => 'Role tidak ditemukan.']);
+        }
+
         $userData = [
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
-            'role'      => $role,
+            'role_id'   => $roleModel->id,
         ];
 
         if ($role === 'user') {
@@ -89,13 +94,11 @@ class RegisteredUserController extends Controller
         session()->forget('url.intended');
 
         // Role-based redirect after login
-        $roleName = $user->role->name ?? null;
-
-        if ($roleName === 'admin') {
+        if ($role === 'admin') {
             return redirect()->route('admin.dashboard.index');
-        } elseif ($roleName === 'company') {
+        } elseif ($role === 'company') {
             return redirect()->route('company.dashboard.index');
-        } elseif ($roleName === 'user') {
+        } elseif ($role === 'user') {
             return redirect()->route('user.dashboard.index');
         } else {
             auth()->logout();

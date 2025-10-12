@@ -10,7 +10,7 @@
             <h2 class="h4 mb-0">Semua Pelamar</h2>
             <div class="d-flex align-items-center">
                 <a href="{{ route('company.applications.this_month') }}" class="btn btn-primary me-2">
-                    <i class="fas fa-calendar-alt me-2"></i>
+                    <i class="fas fa-calendar-alt me-2"></i>Pelamar Bulan Ini
                 </a>
                 <div class="text-muted">
                     <i class="fas fa-users me-2"></i>
@@ -22,7 +22,7 @@
         <!-- Search Form -->
         <form method="GET" action="{{ route('company.pelamar.all') }}" class="mb-4">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..." value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">
@@ -124,7 +124,7 @@
                                                 'test1' => ['label' => 'Test 1', 'class' => 'status-test'],
                                                 'test2' => ['label' => 'Test 2', 'class' => 'status-test'],
                                                 'submitted' => ['label' => 'Menunggu', 'class' => 'status-pending'],
-                                                'reviewed' => ['label' => 'Menunggu', 'class' => 'status-pending'],
+                                                'reviewed' => ['label' => 'Ditinjau', 'class' => 'status-reviewed'],
                                             ];
                                             $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                                         @endphp
