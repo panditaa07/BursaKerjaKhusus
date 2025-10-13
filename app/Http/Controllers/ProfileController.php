@@ -157,10 +157,14 @@ class ProfileController extends Controller
 
         // Handle Cover Letter upload
         if ($request->hasFile('cover_letter')) {
-            if ($user->cover_letter_path && Storage::disk('public')->exists($user->cover_letter_path)) {
-                Storage::disk('public')->delete($user->cover_letter_path);
+            if ($user->cover_letter_path && Storage::disk('public')->exists('cover_letter_files/' . $user->cover_letter_path)) {
+                Storage::disk('public')->delete('cover_letter_files/' . $user->cover_letter_path);
             }
-            $userData['cover_letter_path'] = $request->file('cover_letter')->store('cover_letter_files', 'public');
+            $originalName = $request->file('cover_letter')->getClientOriginalName();
+            $extension = $request->file('cover_letter')->getClientOriginalExtension();
+            $filename = pathinfo($originalName, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
+            $request->file('cover_letter')->storeAs('cover_letter_files', $filename, 'public');
+            $userData['cover_letter_path'] = $filename; // Simpan hanya nama file
         }
 
         // Handle company logo upload if user has company

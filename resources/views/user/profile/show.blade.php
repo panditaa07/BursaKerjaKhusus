@@ -73,7 +73,7 @@
                     @if(Auth::user()->role->name !== 'company')
                     <p><strong>Surat Lamaran:</strong>
                         @if(Auth::user()->cover_letter_path)
-                            <a href="{{ Storage::url(Auth::user()->cover_letter_path) }}"
+                            <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}"
                                target="_blank"
                                class="btn btn-cv btn-sm text-white mt-1">
                                 <i class="fas fa-file-pdf me-1"></i> Lihat Surat Lamaran

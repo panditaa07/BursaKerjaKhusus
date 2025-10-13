@@ -101,9 +101,9 @@
                             <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx">
                             <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
 
-                            @if(Auth::user()->cover_letter_path && Storage::exists(Auth::user()->cover_letter_path))
+                            @if(Auth::user()->cover_letter_path)
                                 <div class="mt-2">
-                                    <a href="{{ Storage::url(Auth::user()->cover_letter_path) }}" target="_blank" class="btn btn-sm btn-primary">
+                                    <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank" class="btn btn-sm btn-primary">
                                         Lihat Surat Lamaran saat ini
                                     </a>
                                 </div>

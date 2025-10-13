@@ -187,7 +187,7 @@ class ApplicationController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $filePath = storage_path('app/public/' . $application->cover_letter_path);
+        $filePath = storage_path('app/public/cover_letter_files/' . $application->cover_letter_path);
 
         if (!file_exists($filePath)) {
             abort(404, 'File not found.');
@@ -213,7 +213,7 @@ class ApplicationController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $filePath = storage_path('app/public/' . $application->cover_letter_path);
+        $filePath = storage_path('app/public/cover_letter_files/' . $application->cover_letter_path);
 
         if (!file_exists($filePath)) {
             abort(404, 'File not found.');
@@ -254,7 +254,11 @@ class ApplicationController extends Controller
 
         $coverLetterPath = null;
         if ($request->hasFile('cover_letter_file')) {
-            $coverLetterPath = $request->file('cover_letter_file')->store('cover_letters', 'public');
+            $originalName = $request->file('cover_letter_file')->getClientOriginalName();
+            $extension = $request->file('cover_letter_file')->getClientOriginalExtension();
+            $filename = pathinfo($originalName, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
+            $coverLetterPath = $request->file('cover_letter_file')->storeAs('cover_letter_files', $filename, 'public');
+            $coverLetterPath = $filename; // Simpan hanya nama file
         }
 
         $application = Application::create([
@@ -362,8 +366,8 @@ class ApplicationController extends Controller
         }
 
         // Hapus file cover letter jika ada
-        if ($application->cover_letter_path && file_exists(storage_path('app/public/' . $application->cover_letter_path))) {
-            unlink(storage_path('app/public/' . $application->cover_letter_path));
+        if ($application->cover_letter_path && file_exists(storage_path('app/public/cover_letter_files/' . $application->cover_letter_path))) {
+            unlink(storage_path('app/public/cover_letter_files/' . $application->cover_letter_path));
         }
 
         // Hapus aplikasi

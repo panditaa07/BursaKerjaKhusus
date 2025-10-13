@@ -107,7 +107,7 @@
                         <ul>
                             @foreach($user->applications as $application)
                                 @if($application->cover_letter_path)
-                                    <li><a href="{{ asset('storage/' . $application->cover_letter_path) }}" target="_blank" download>Surat Lamaran untuk {{ $application->jobPost->title }}</a></li>
+                                    <li><a href="{{ asset('storage/cover_letter_files/' . $application->cover_letter_path) }}" target="_blank" download>Surat Lamaran untuk {{ $application->jobPost->title }}</a></li>
                                 @endif
                             @endforeach
                         </ul>
