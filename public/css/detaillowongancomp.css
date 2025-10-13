@@ -1,5 +1,5 @@
 /* ==========================================================
-   DETAIL LOWONGAN — FINAL PREMIUM DASHBOARD STYLE (MERGED)
+   DETAIL LOWONGAN — FINAL PREMIUM DASHBOARD STYLE (FIXED)
    ========================================================== */
 :root {
   --sidebar-bg: #0f2c6b;
@@ -102,7 +102,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   margin: 10px 0 2px;
 }
 
-/* Garis aksen di bawah judul */
+/* Garis aksen di bawah judul — DEFAULT TERLIHAT */
 .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0::after {
   content: "";
   display: block;
@@ -112,8 +112,8 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   background: var(--gradient) !important;
   margin: 10px auto 0;
   transform-origin: center;
-  transform: scaleX(0);
-  opacity: 0;
+  transform: scaleX(1);   /* <-- visible by default */
+  opacity: 1;            /* <-- visible by default */
 }
 
 /* Bar aksi (edit / kembali / hapus) di tengah di bawah judul */
@@ -295,7 +295,6 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   .company-card > .mt-3{ grid-column: 1 / -1; }
 }
 
-
 /* =========================
    RESPONSIVE kecil
    ========================= */
@@ -333,40 +332,65 @@ nav[aria-label="breadcrumb"],
   to   { transform: scaleX(1); opacity: 1; }
 }
 
-/* ===== apply animasi saat body punya .job-detail ===== */
-body.job-detail nav[aria-label="breadcrumb"]{
-  opacity: 0;
-  animation: fadeSlideUpSmooth var(--t-base) var(--ease-soft) .08s both;
-}
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0{
-  opacity: 0;
-  animation: fadeSlideUpSmooth var(--t-base) var(--ease-soft) .16s both;
-}
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0::after{
-  animation: underlineGrow var(--t-slow) var(--ease-out) .36s both;
-}
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn{
-  opacity: 0;
-  animation: popBumpSmooth var(--t-fast) var(--ease-soft) both;
-}
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(1){ animation-delay: .34s; }
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(2){ animation-delay: .44s; }
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(3){ animation-delay: .54s; }
-body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(4){ animation-delay: .64s; }
-body.job-detail .card{
-  opacity: 0;
-  animation: fadeSlideUpSmooth var(--t-slow) var(--ease-out) .58s both;
-}
-/* still respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; }
+/* =========================================================
+   VISIBILITY BASELINE + CONDITIONAL ANIMATIONS
+   ========================================================= */
+
+/* Default: semuanya terlihat (agar aman di reduce motion) */
+body.job-detail nav[aria-label="breadcrumb"],
+body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0,
+body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn,
+body.job-detail .card {
+  opacity: 1;
+  transform: none;
 }
 
-/* ===== TABEL PELAMAR ===== */
+/* Animasi hanya ketika user TIDAK mematikan motion */
+@media (prefers-reduced-motion: no-preference) {
+  body.job-detail nav[aria-label="breadcrumb"]{
+    opacity: 0;
+    animation: fadeSlideUpSmooth var(--t-base) var(--ease-soft) .08s both;
+  }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0{
+    opacity: 0;
+    animation: fadeSlideUpSmooth var(--t-base) var(--ease-soft) .16s both;
+  }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0::after{
+    animation: underlineGrow var(--t-slow) var(--ease-out) .36s both;
+  }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn{
+    opacity: 0;
+    animation: popBumpSmooth var(--t-fast) var(--ease-soft) both;
+  }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(1){ animation-delay: .34s; }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(2){ animation-delay: .44s; }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(3){ animation-delay: .54s; }
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn:nth-child(4){ animation-delay: .64s; }
+  body.job-detail .card{
+    opacity: 0;
+    animation: fadeSlideUpSmooth var(--t-slow) var(--ease-out) .58s both;
+  }
+}
+
+/* Masih hormati reduce motion, tapi elemen TETAP terlihat */
+@media (prefers-reduced-motion: reduce){
+  body.job-detail nav[aria-label="breadcrumb"],
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0,
+  body.job-detail .d-flex.justify-content-between.align-items-center.mb-4 > div .btn,
+  body.job-detail .card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   TABEL PELAMAR
+   ========================= */
 .table-applicants{
   width:100%;
-  border-collapse:separate;
-  border-spacing:0;
+  border-collapse: collapse; /* konsisten, tidak bertabrakan */
   background:#fff;
   border-radius:12px;
   overflow:hidden;
@@ -384,10 +408,22 @@ body.job-detail .card{
   letter-spacing:.4px;
   font-size:.85rem;
   border:none;
+  border-bottom: 2px solid #cbd5e1 !important; /* garis tebal di bawah header */
 }
-.table-applicants tbody tr{ border-bottom:1px solid #e5eaf3; transition:background .25s ease; }
+.table-applicants tbody tr{
+  border-bottom:1px solid #e5eaf3;
+  transition:background .25s ease;
+}
 .table-applicants tbody tr:hover{ background:#f8fbff; }
-.table-applicants tbody td{ padding:14px 16px; color:#0f172a; vertical-align:middle; }
+.table-applicants th,
+.table-applicants td {
+  border: 1px solid #e2e8f0 !important; /* garis halus */
+}
+.table-applicants tbody td{
+  padding:14px 16px; color:#0f172a; vertical-align:middle;
+}
+.table-applicants tbody tr td:first-child { border-left: none; }
+.table-applicants tbody tr td:last-child  { border-right: none; }
 
 /* Avatar huruf */
 .avatar-pill{
@@ -411,13 +447,15 @@ body.job-detail .card{
     display:block; margin-bottom:12px; background:#fff;
     border:1px solid #e3e9f3; border-radius:12px; box-shadow:0 4px 12px rgba(15,23,42,.06);
   }
-  .table-applicants tbody td{ display:flex; justify-content:space-between; padding:10px 14px; }
+  .table-applicants tbody td{
+    display:flex; justify-content:space-between; padding:10px 14px;
+  }
   .table-applicants tbody td::before{
     content:attr(data-label); font-weight:600; color:#475569; margin-right:10px;
   }
 }
 
-/* ====== CHIP STATUS (style vivid & pill shape) ====== */
+/* ====== CHIP STATUS (vivid & pill) ====== */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -432,7 +470,6 @@ body.job-detail .card{
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
   border: none;
 }
-
 .chip-dot {
   width: 10px;
   height: 10px;
@@ -441,34 +478,19 @@ body.job-detail .card{
   opacity: 0.9;
 }
 
-/* === Warna vivid sesuai screenshot === */
-.status-test1 {
-  background: #7c3aed; /* Ungu terang */
-  color: #fff;
-}
-.status-test2 {
-  background: #8b5cf6; /* Ungu muda */
-  color: #fff;
-}
+/* Warna status */
+.status-test1 { background: #7c3aed; color: #fff; }    /* Ungu terang   */
+.status-test2 { background: #8b5cf6; color: #fff; }    /* Ungu muda     */
+.status-rejected { background: #ef4444; color: #fff; } /* Merah vivid   */
+.status-accepted { background: #16a34a; color: #fff; } /* Hijau vivid   */
+.status-interview{ background: #2563eb; color: #fff; } /* Biru vivid    */
+.status-neutral  { background: #94a3b8; color: #fff; } /* Abu lembut    */
+
+/* Kuning (Menunggu) — gabungan + shadow */
 .status-wait {
-  background: #facc15; /* Kuning cerah */
+  background: #facc15;
   color: #1e1e1e;
-}
-.status-rejected {
-  background: #ef4444; /* Merah vivid */
-  color: #fff;
-}
-.status-accepted {
-  background: #16a34a; /* Hijau vivid */
-  color: #fff;
-}
-.status-interview {
-  background: #2563eb; /* Biru vivid */
-  color: #fff;
-}
-.status-neutral {
-  background: #94a3b8; /* Abu lembut */
-  color: #fff;
+  box-shadow: 0 3px 10px rgba(250, 204, 21, 0.45);
 }
 
 /* Hover efek glossy ringan */
@@ -477,11 +499,7 @@ body.job-detail .card{
   filter: brightness(1.05);
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
 }
-.status-wait {
-  background: #facc15;
-  color: #1e1e1e;
-  box-shadow: 0 3px 10px rgba(250, 204, 21, 0.45);
-}
+
 /* ===== TOMBOL ICON “LIHAT” (outline ➜ solid cyan) ===== */
 .btn-icon{
   width: 42px;
@@ -497,19 +515,16 @@ body.job-detail .card{
   box-shadow: 0 4px 10px rgba(15,23,42,.06);
   cursor: pointer;
 }
-
 .btn-view{
   border-color: #06b6d4;
   color: #06b6d4;
 }
-
 .btn-view:hover{
   background: #06b6d4;
   color: #fff;
   box-shadow: 0 6px 16px rgba(6,182,212,.35);
   transform: translateY(-2px);
 }
-
 .btn-view:active,
 .btn-view:focus{
   background: #06b6d4;
@@ -519,35 +534,5 @@ body.job-detail .card{
   box-shadow: inset 0 3px 8px rgba(0,0,0,.15);
   outline: none;
 }
-
-.btn-view i{
-  transition: transform .2s ease;
-}
+.btn-view i{ transition: transform .2s ease; }
 .btn-view:hover i{ transform: scale(1.12); }
-/* ===== GARIS PEMBATAS DALAM TABEL ===== */
-.table-applicants {
-  border-collapse: collapse; /* rapatkan border */
-  width: 100%;
-}
-
-.table-applicants th,
-.table-applicants td {
-  border: 1px solid #e2e8f0 !important; /* warna garis halus */
-}
-
-.table-applicants thead th {
-  border-bottom: 2px solid #cbd5e1 !important; /* garis tebal di bawah header */
-}
-
-.table-applicants tbody tr:hover td {
-  background: #f9fbff; /* tetap ada efek hover lembut */
-}
-
-.table-applicants tbody tr td:first-child {
-  border-left: none; /* hilangkan garis kiri */
-}
-
-.table-applicants tbody tr td:last-child {
-  border-right: none; /* hilangkan garis kanan */
-}
-
