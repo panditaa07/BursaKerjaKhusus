@@ -1,0 +1,193 @@
+/* ================================
+   Edit Profile — Company
+   ================================ */
+:root{
+  --bg:#eef2f7;
+  --card:#ffffff;
+  --ink:#0f172a;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --ring:#cfe0ff;
+  --ring-strong:#8fb1ff;
+  --blue:#1e3a8a;
+  --blue-500:#2563eb;
+  --blue-600:#1d4ed8;
+  --shadow:0 12px 28px rgba(2,6,23,.08);
+}
+
+html,body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* container + h1 */
+.container{max-width:1100px}
+.container > h1{
+  margin:24px 0 14px;
+  font-weight:900;
+  color:#0d1323;
+  letter-spacing:.2px;
+}
+
+/* Card */
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.card-header{
+  background:linear-gradient(90deg,#1f3ea9,#2156e0);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:16px 18px;
+}
+.card-header h3{
+  margin:0;
+  color:#fff;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+.card-body{padding:18px}
+
+/* Section titles inside columns */
+h5{
+  font-weight:800;
+  color:#16223a;
+  margin:2px 0 12px;
+}
+
+/* Form fields */
+.form-label{
+  font-weight:700;
+  color:#0f172a;
+  margin-bottom:6px;
+}
+.form-control,
+.form-select{
+  height:46px;
+  padding:10px 12px;
+  border:1.6px solid #d7dfef;
+  border-radius:12px;
+  background:#fff;
+  color:var(--ink);
+  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+textarea.form-control{
+  min-height:120px;
+  resize:vertical;
+  padding:12px 14px;
+}
+
+/* Placeholders */
+.form-control::placeholder{color:#94a3b8}
+
+/* Focus ring */
+.form-control:focus,
+.form-select:focus{
+  border-color:var(--ring-strong);
+  box-shadow:0 0 0 4px rgba(143,177,255,.25);
+  background:#fff;
+}
+
+/* File input nicer */
+input[type="file"].form-control{
+  height:auto;
+  padding:8px 10px;
+}
+input[type="file"].form-control::-webkit-file-upload-button,
+input[type="file"].form-control::file-selector-button{
+  border:1px solid #dbe5ff;
+  background:#f6f8ff;
+  color:#1e3a8a;
+  padding:8px 12px;
+  border-radius:10px;
+  margin-right:10px;
+  cursor:pointer;
+}
+input[type="file"].form-control::-webkit-file-upload-button:hover,
+input[type="file"].form-control::file-selector-button:hover{
+  background:#eef3ff;
+}
+
+/* Help text */
+.form-text.text-muted{color:#6b7280!important}
+
+/* Grid spacing: tighter & even */
+.row > [class*="col-"] .mb-3{margin-bottom:14px}
+
+/* Buttons: primary (blue) & secondary (red) */
+.btn{
+  border-radius:12px;
+  height:44px;
+  padding:0 18px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.btn-primary{
+  background:var(--blue-500);
+  border-color:var(--blue-500);
+  box-shadow:0 10px 22px rgba(37,99,235,.25);
+}
+.btn-primary:hover{background:var(--blue-600);border-color:var(--blue-600)}
+.btn-secondary{
+  background:#fff;
+  color:#b91c1c;
+  border:1.6px solid #fecaca;
+  box-shadow:0 10px 20px rgba(244,63,94,.12);
+}
+.btn-secondary:hover{
+  background:#fff1f2;
+  border-color:#fda4af;
+}
+
+/* Footer actions spacing */
+.card-body .d-flex.justify-content-between{
+  margin-top:8px;
+  gap:12px;
+}
+
+/* Elevation hover for inputs wrapper (subtle) */
+.mb-3:has(.form-control:hover),
+.mb-3:has(.form-select:hover){
+  filter:brightness(1.01);
+}
+
+/* Small screens */
+@media (max-width: 992px){
+  .container{padding-left:14px;padding-right:14px}
+}
+@media (max-width: 576px){
+  .btn{width:100%}
+  .card-body .d-flex.justify-content-between{flex-direction:column}
+  .card-header{padding:14px}
+  .card-body{padding:14px}
+  .form-control,.form-select{height:44px}
+}
+
+/* Optional: subtle focus for entire .col group when any field focused */
+.col-md-6:focus-within{
+  outline:2px solid rgba(143,177,255,.18);
+  border-radius:14px;
+  box-shadow:0 0 0 4px rgba(143,177,255,.12) inset;
+  transition:all .15s ease;
+  padding-top:2px; margin-top:-2px;
+}
+
+/* Make select’s caret more visible on light bg (Bootstrap respects this) */
+.form-select{
+  background-image:
+    linear-gradient(45deg, transparent 50%, #64748b 50%),
+    linear-gradient(135deg, #64748b 50%, transparent 50%),
+    linear-gradient(to right, #d7dfef, #d7dfef);
+  background-position:
+    calc(100% - 20px) calc(1.1em),
+    calc(100% - 15px) calc(1.1em),
+    calc(100% - 2.5rem) .8em;
+  background-size:5px 5px,5px 5px,1px 1.4em;
+  background-repeat:no-repeat;
+}
+
+/* Give cards breathing room from the sidebar on huge screens */
+@media (min-width:1400px){
+  .container{max-width:1160px}
+}

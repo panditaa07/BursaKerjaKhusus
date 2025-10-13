@@ -1,92 +1,167 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Profil Perusahaan & Pengguna')
+@section('title', 'Profil Perusahaan')
 
-@section('styles')
+@push('styles')
 <link rel="stylesheet" href="{{ asset('css/profilcompany.css') }}">
+@endpush
+
 @section('content')
-<div class="container">
-    <h1>Profil Perusahaan & Pengguna (PIC)</h1>
+@php
+  $user    = Auth::user();
+  $company = $user->company;
+  $logo    = optional($company)->logo;
+  $industry= optional($company?->industry)->name;
+  $webRaw  = $company?->website;
+  $web     = $webRaw ? \Illuminate\Support\Str::of($webRaw)
+              ->replaceStart('https://','')
+              ->replaceStart('http://','') : null;
+  $slug    = $company?->slug ?: 'company';
+@endphp
 
-    {{-- === Profil Perusahaan === --}}
-    <div class="card mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h3>Informasi Perusahaan</h3>
-            <a href="{{ route('profile.edit') }}" class="btn btn-primary">
-                <i class="fas fa-pencil-alt me-1"></i> Edit Perusahaan
+<div class="company-page">
+
+  {{-- HERO --}}
+  <section class="cp-hero">
+    <div class="cp-cover"></div>
+
+    <div class="cp-hero-inner">
+      <div class="cp-logo">
+        @if($logo)
+          <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
+        @else
+          <div class="cp-logo-fallback"><i class="fas fa-building"></i></div>
+        @endif
+      </div>
+
+      <div class="cp-title">
+        <h1>{{ $company->name ?? 'Nama Perusahaan' }}</h1>
+        <div class="cp-meta">
+          @if($industry)
+            <span class="chip"><i class="fas fa-industry"></i>{{ $industry }}</span>
+          @endif
+
+          @if($web)
+            <a class="cp-link" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank" rel="noopener">
+              <i class="fas fa-globe"></i>{{ $web }}
             </a>
-        </div>
+          @else
+            <span class="cp-link is-muted"><i class="fas fa-globe"></i>Website belum diisi</span>
+          @endif
 
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <p><strong>Nama Perusahaan:</strong> {{ Auth::user()->company->name ?? '-' }}</p>
-                    <p><strong>Alamat Perusahaan:</strong> {{ Auth::user()->company->address ?? '-' }}</p>
-                    <p><strong>No. Telp Perusahaan:</strong> {{ Auth::user()->company->phone ?? '-' }}</p>
-                    <p><strong>Email Kontak:</strong> {{ Auth::user()->company->email ?? '-' }}</p>
-                </div>
-                <div class="col-md-6">
-                    <p><strong>Industri:</strong> {{ Auth::user()->company->industry->name ?? '-' }}</p>
-                    <p><strong>Deskripsi:</strong> {{ Auth::user()->company->description ?? '-' }}</p>
-                </div>
-            </div>
-
-            <div class="mt-3">
-                <p><strong>Logo Perusahaan:</strong><br>
-                    @if(Auth::user()->company && Auth::user()->company->logo)
-                        <img src="{{ asset('storage/' . Auth::user()->company->logo) }}" alt="Logo Perusahaan"
-                             style="max-width: 150px;">
-                    @else
-                        <span class="text-muted">Belum ada logo perusahaan yang diunggah.</span>
-                    @endif
-                </p>
-            </div>
+          <span class="cp-link"><i class="fas fa-link"></i>{{ url('/'.$slug) }}</span>
         </div>
+      </div>
+
+      <div class="cp-actions">
+        <a href="{{ route('profile.edit') }}" class="btn btn-dark" title="Edit Profil">
+          <i class="fas fa-pen"></i><span class="hide-sm">Edit Profil</span>
+        </a>
+      </div>
     </div>
+  </section>
 
-    {{-- === Profil Pengguna (PIC) === --}}
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h3>Informasi PIC</h3>
-            <a href="{{ route('profile.edit') }}" class="btn btn-primary">
-                <i class="fas fa-pencil-alt me-1"></i> Edit Profil
-            </a>
+  {{-- GRID --}}
+  <section class="cp-grid">
+
+    {{-- Informasi Perusahaan --}}
+    <article class="card">
+      <header class="card-head">
+        <h3><i class="fas fa-briefcase"></i> Informasi Perusahaan</h3>
+      </header>
+      <div class="card-body grid-2">
+        <dl class="kv">
+          <dt>Nama Perusahaan</dt>
+          <dd>{{ $company->name ?? '-' }}</dd>
+
+          <dt>Alamat</dt>
+          <dd>{{ $company->address ?? '-' }}</dd>
+
+          <dt>Telepon</dt>
+          <dd>{{ $company->phone ?? '-' }}</dd>
+
+          <dt>Email Kontak</dt>
+          <dd>{{ $company->email ?? '-' }}</dd>
+        </dl>
+
+        <dl class="kv">
+          <dt>Industri</dt>
+          <dd>{{ $industry ?? '-' }}</dd>
+
+          <dt>Website</dt>
+          <dd>
+            @if($web)
+              <a class="link" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank">
+                {{ $web }} <i class="fas fa-external-link-alt"></i>
+              </a>
+            @else - @endif
+          </dd>
+
+          <dt>Dibuat</dt>
+          <dd>{{ optional($company?->created_at)->format('d M Y') ?? '-' }}</dd>
+
+          <dt>Diperbarui</dt>
+          <dd>{{ optional($company?->updated_at)->format('d M Y') ?? '-' }}</dd>
+        </dl>
+      </div>
+    </article>
+
+    {{-- Tentang Perusahaan --}}
+    <article class="card">
+      <header class="card-head">
+        <h3><i class="fas fa-align-left"></i> Tentang Perusahaan</h3>
+      </header>
+      <div class="card-body">
+        <div class="prose">
+          {{ $company?->description ?: 'Belum ada deskripsi perusahaan.' }}
         </div>
+      </div>
+    </article>
 
-        <div class="card-body">
-            <!-- Foto Profil -->
-            <div class="text-center mb-4">
-                <h5 class="mb-3">
-                    <i class="fas fa-user-circle text-primary"></i>
-                    Foto Profil PIC
-                </h5>
-                @if(Auth::user()->profile_photo_path)
-                    <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
-                         alt="Foto Profil {{ Auth::user()->name }}"
-                         class="rounded-circle border"
-                         style="width: 120px; height: 120px; object-fit: cover; border-width: 4px !important; border-color: #dee2e6 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                @else
-                    <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center"
-                         style="width: 120px; height: 120px; border-width: 4px !important; border-color: #dee2e6 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                        <i class="fas fa-user text-muted fa-3x"></i>
-                    </div>
-                @endif
-            </div>
-
-            <!-- Informasi Pengguna -->
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <p><strong>Nama PIC:</strong> {{ Auth::user()->name }}</p>
-                    <p><strong>Email PIC:</strong> {{ Auth::user()->email }}</p>
-                    <p><strong>No. HP PIC:</strong> {{ Auth::user()->phone ?? '-' }}</p>
-                    <p><strong>Alamat PIC:</strong> {{ Auth::user()->address ?? '-' }}</p>
-                </div>
-            </div>
+    {{-- Logo & Branding --}}
+    <article class="card">
+      <header class="card-head">
+        <h3><i class="fas fa-image"></i> Logo & Branding</h3>
+      </header>
+      <div class="card-body branding">
+        <div class="branding-preview">
+          @if($logo)
+            <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
+          @else
+            <div class="branding-fallback"><i class="fas fa-building"></i></div>
+          @endif
         </div>
-    </div>
+        <div class="branding-text">
+          <p>Gunakan logo resolusi tinggi (disarankan PNG transparan atau SVG). Ukuran ideal 800×400px.</p>
+          <a href="{{ route('profile.edit') }}" class="btn btn-light"><i class="fas fa-upload"></i> Ganti Logo</a>
+        </div>
+      </div>
+    </article>
+
+    {{-- Informasi PIC (opsional) --}}
+    <article class="card">
+      <header class="card-head">
+        <h3><i class="fas fa-user-circle"></i> Informasi PIC</h3>
+      </header>
+      <div class="card-body">
+        <div class="pic">
+          <div class="pic-avatar">
+            @if($user->profile_photo_path)
+              <img src="{{ asset('storage/'.$user->profile_photo_path) }}" alt="{{ $user->name }}">
+            @else
+              <div class="avatar-fallback"><i class="fas fa-user"></i></div>
+            @endif
+          </div>
+          <dl class="kv">
+            <dt>Nama</dt> <dd>{{ $user->name }}</dd>
+            <dt>Email</dt> <dd>{{ $user->email }}</dd>
+            <dt>No. HP</dt> <dd>{{ $user->phone ?? '-' }}</dd>
+            <dt>Alamat</dt> <dd>{{ $user->address ?? '-' }}</dd>
+          </dl>
+        </div>
+      </div>
+    </article>
+
+  </section>
 </div>
-@endsection
-
-@section('scripts')
-<script src="{{ asset('js/profile.js') }}" defer></script>
 @endsection

@@ -2,6 +2,10 @@
 
 @section('title', 'Edit Profil Perusahaan')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/editprofilcomp.css') }}">
+@endpush
+
 @section('content')
 <div class="container">
     <h1>Edit Profil Perusahaan</h1>
@@ -19,15 +23,15 @@
                     <div class="col-md-6">
                         <h5>Data PIC</h5>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nama PIC</label>
+                            <label for="name" class="form-label">Nama</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email PIC</label>
+                            <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email', Auth::user()->email) }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">No. HP PIC</label>
+                            <label for="phone" class="form-label">No. HP</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', Auth::user()->phone) }}">
                         </div>
                         <div class="mb-3">
@@ -35,7 +39,7 @@
                             <textarea class="form-control" id="address" name="address" rows="3">{{ old('address', Auth::user()->address) }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="profile_photo" class="form-label">Foto Profil PIC</label>
+                            <label for="profile_photo" class="form-label">Foto Profil</label>
                             <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/*">
                             <small class="form-text text-muted">Format: JPG, PNG, GIF. Maksimal 2MB.</small>
                             @if(Auth::user()->profile_photo_path)
