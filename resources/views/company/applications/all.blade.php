@@ -139,7 +139,7 @@
                                             <a href="{{ route('company.applications.show.company', $application->id) }}"
                                                class="btn btn-sm btn-outline-info"
                                                title="Lihat Detail">
-                                                <i class="bi bi-eye"></i>
+                                                <i class="fas fa-eye"></i>
                                             </a>
 
                                             <!-- Edit Status -->
@@ -150,7 +150,7 @@
                                                         data-bs-toggle="dropdown"
                                                         aria-expanded="false"
                                                         title="Ubah Status">
-                                                    <i class="fas fa-edit"></i>
+                                                    <i class="fas fa-pen"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end"
                                                     aria-labelledby="dropdownMenuButton{{ $application->id }}">

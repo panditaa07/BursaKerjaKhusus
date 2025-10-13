@@ -18,7 +18,7 @@
                         <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div>
                 </div>
-            </a>
+            </a>    
         </div>
 
         {{-- Pelamar Bulan Ini --}}
