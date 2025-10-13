@@ -4,7 +4,6 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/lamaran.css') }}">
-<link rel="stylesheet" href="{{ asset('css/lamaran-fix.css') }}">
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
         <!-- Search Bar -->
@@ -81,30 +80,30 @@
 
                             <!-- Pagination -->
                           <div class="pagination-custom">
-    <ul class="pagination">
-        {{-- Tombol Previous --}}
-        @if ($applications->onFirstPage())
-            <li class="page-item disabled">
-                <span class="page-link">Previous</span>
-            </li>
-        @else
-            <li class="page-item">
-                <a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a>
-            </li>
-        @endif
+                            <ul class="pagination">
+                                {{-- Tombol Previous --}}
+                                @if ($applications->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Previous</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a>
+                                    </li>
+                                @endif
 
-        {{-- Tombol Next --}}
-        @if ($applications->hasMorePages())
-            <li class="page-item">
-                <a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a>
-            </li>
-        @else
-            <li class="page-item disabled">
-                <span class="page-link">Next</span>
-            </li>
-        @endif
-    </ul>
-</div>
+                                {{-- Tombol Next --}}
+                                @if ($applications->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Next</span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
                         @else
                             <div class="text-center py-5">
                                 <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>

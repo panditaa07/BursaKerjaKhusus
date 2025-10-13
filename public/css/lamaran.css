@@ -173,15 +173,18 @@ body {
 
 /* Button Enhancements */
 .btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 0.625rem 1.5rem;
-    border-radius: 50px;
+    text-align: center;
+    text-decoration: none !important;
     border: none;
-    font-size: 0.875rem;
-    letter-spacing: 0.025em;
+    border-radius: 10px;
+    cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    z-index: 1; /* 🔹 teks & ikon di atas ripple */
 }
 
 .btn::before {
@@ -192,9 +195,9 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgb(30, 58, 138);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
+    z-index: 0; /* 🔹 ripple di bawah teks */
 }
 
 .btn:hover::before {
@@ -210,7 +213,7 @@ body {
 
 .btn-primary:hover {
     background: rgb(30, 58, 138);
-    color: whitesmoke;
+    color: whitesmoke !important;
     box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
     transform: translateY(-2px);
 }
@@ -376,17 +379,6 @@ body {
     }
 }
 
-/* Focus States for Accessibility */
-*:focus {
-    outline: 2px solid var(--primary-blue-light);
-    outline-offset: 2px;
-}
-
-button:focus, a:focus, input:focus {
-    outline: 2px solid var(--primary-blue-light);
-    outline-offset: 2px;
-}
-
 /* Print Styles */
 @media print {
     .btn, .search-wrapper, .card-header, .pagination {
@@ -440,14 +432,15 @@ form .btn {
     padding: 0 1.5rem;
 }
 
+/* Pagination Modern Style */
 .pagination {
     display: flex;
     list-style: none;
     padding: 0;
-    gap: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .pagination li {
@@ -456,40 +449,88 @@ form .btn {
 
 .pagination .page-link {
     display: block;
-    padding: 0.6rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     font-size: 0.95rem;
     font-weight: 600;
-    color: white;
-    background: rgb(30, 58, 138); /* abu soft */
-    border: none;
+    color: var(--primary-blue);
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 50px;
+    text-align: center;
 }
 
 .pagination .page-link:hover {
-    background: rgb(30, 58, 138);;
+    background: var(--primary-blue-light);
+    border-color: var(--primary-blue-light);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
 
-.pagination .page-item:first-child .page-link {
-    border-radius: 12px 0 0 12px;
+/* Blue line animation for number buttons on hover - from bottom to top */
+.pagination .page-item:nth-child(n+2):nth-last-child(n+2) .page-link:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    height: 0;
+    background: linear-gradient(180deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+    border-radius: 2px;
+    animation: slideUpLine 0.4s ease forwards;
+    transform: translateX(-50%);
 }
 
+@keyframes slideUpLine {
+    from {
+        height: 0;
+        bottom: 0;
+    }
+    to {
+        height: 4px;
+        bottom: 0;
+    }
+}
+
+/* Previous and Next buttons - no shadow on hover */
+.pagination .page-item:first-child .page-link,
 .pagination .page-item:last-child .page-link {
-    border-radius: 0 12px 12px 0;
+    color: var(--primary-blue);
+}
+
+.pagination .page-item:first-child .page-link:hover,
+.pagination .page-item:last-child .page-link:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 /* Aktif */
 .pagination .active .page-link,
 .pagination .page-link.active {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+    border-color: var(--primary-blue);
     color: white !important;
+    box-shadow: var(--shadow-sm);
 }
 
 /* Disabled */
 .pagination .disabled .page-link {
-    background: #f8fafc;
-    color: #94a3b8;
+    background: var(--bg-main);
+    color: var(--text-muted);
+    border-color: var(--border-color);
     cursor: not-allowed;
+}
+
+.pagination .disabled .page-link:hover {
+    background: var(--bg-main);
+    color: var(--text-muted);
+    transform: none;
+    box-shadow: none;
 }
 
 .btn-back {

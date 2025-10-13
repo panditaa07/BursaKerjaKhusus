@@ -116,13 +116,18 @@
 
 /* Button Styling */
 .btn {
-    padding: 0.65rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: var(--transition);
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none !important;
     border: none;
-    font-size: 0.95rem;
+    border-radius: 10px;
     cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
@@ -151,7 +156,7 @@
 
 .btn-secondary {
     background: rgb(30, 58, 138);
-    color: white;
+    color: white !important;
 }
 
 .btn-secondary:hover {

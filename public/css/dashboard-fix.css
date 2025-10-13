@@ -9,3 +9,13 @@
     width: 100vw;
     margin-left: 0;
 }
+
+/* === FIX KONTEN DEMPET SIDEBAR === */
+@media (min-width: 992px) {
+    .main-content {
+        margin-left: var(--sidebar-width) !important;
+        width: calc(100% - var(--sidebar-width)) !important;
+        padding: 2rem;
+        transition: margin-left 0.3s ease;
+    }
+}

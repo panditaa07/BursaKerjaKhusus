@@ -3,6 +3,7 @@
 @section('title', 'Edit Profil Saya')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/editprofile-user.css') }}">
 <div class="container">
     <h1>Edit Profil Saya</h1>
 
@@ -76,7 +77,7 @@
                         @if(Auth::user()->role->name !== 'company')
                         <div class="mb-3">
                             <label for="profile_photo" class="form-label">Foto Profil</label>
-                            <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/png, image/jpeg">
+                            <input type="file" class="form-foto" id="profile_photo" name="profile_photo" accept="image/png, image/jpeg">
                             @if(Auth::user()->profile_photo_path)
                                 <div class="mt-2">
                                     <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Foto Profil" style="max-width: 100px;">
@@ -86,41 +87,29 @@
                         </div>
                         <div class="mb-3">
                             <label for="cv" class="form-label">CV</label>
-                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
-                            <small class="form-text text-muted">Format: PDF. Maksimal 2MB.</small>
+                            <input type="file" class="form-cv" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                            <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
                             @if(Auth::user()->cv_path)
                                 <div class="mt-2">
-                                    <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">Lihat CV saat ini</a>
+                                    <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank">Lihat CV saat ini</a>
                                 </div>
                             @else
                                 <p class="text-muted">Belum ada CV yang diunggah.</p>
                             @endif
                         </div>
-                        <div class="mb-3">
-                            <label for="cover_letter" class="form-label">Surat Lamaran</label>
-                            <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf">
-                            <small class="form-text text-muted">Format: PDF. Maksimal 2MB.</small>
-
-                            @if(Auth::user()->cover_letter_path)
-                                <div class="mt-2">
-                                    <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank" class="btn btn-sm btn-primary">
-                                        Lihat Surat Lamaran saat ini
-                                    </a>
-                                </div>
-                            @else
-                                <p class="text-muted">Belum ada Surat Lamaran yang diunggah.</p>
-                            @endif
-                        </div>
                         @endif
+
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('profile.show') }}" class="btn btn-secondary">Batal</a>
+                    <a href="{{ route('profile.show') }}" class="btn btn-primary">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script src="{{ asset('js/editprofile-user.js') }}"></script>
 @endsection
+</create_file>

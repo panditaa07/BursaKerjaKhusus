@@ -29,37 +29,5 @@
         @endforelse
     </div>
 </section>
-
-<footer>
-    <div class="footer-info">
-        <div class="alamat">
-            <img src="{{ asset('images/smkn4.png') }}" alt="SMK Negeri 4 Bandung" style="height: 80px; margin-bottom: 10px;">
-            <p>SMK NEGERI 4 BANDUNG<br>
-            Jl. Kliningan No.6, Turangga, Kec. Lengkong<br>
-            Telp/Fax: (022) - 7309738<br>
-            Kode Pos : 40264 Kota Bandung<br>
-            Provinsi Jawa Barat<br>
-            Indonesia</p>
-        </div>
-        <div class="tautan">
-            <a href="https://disdik.jabarprov.go.id" target="_blank" rel="noopener noreferrer">Dinas Pendidikan Jawa Barat</a>
-            <a href="https://kemdikbud.go.id" target="_blank" rel="noopener noreferrer">Kementerian Pendidikan dan Kebudayaan</a>
-            <a href="https://referensi.data.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">Referensi Pendidikan</a>
-            <a href="https://digital.literasi" target="_blank" rel="noopener noreferrer">Digital Literasi</a>
-            <a href="https://smk.bisa" target="_blank" rel="noopener noreferrer">SMK Bisa</a>
-        </div>
-    </div>
-    <div class="sosmed">
-        <a href="https://instagram.com/smkn4bdg" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('images/instagram.png') }}" alt="Instagram">
-        </a>
-        <a href="https://facebook.com/smkn4bdg" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('images/facebook.png') }}" alt="Facebook">
-        </a>
-    </div>
-    <div class="copyright">
-        <p>© 2025 smkn4bdg.sch.id All Rights Reserved</p>
-    </div>
-</footer>
 <script src="{{ asset('js/userdashboard.js') }}"></script>
 @endsection

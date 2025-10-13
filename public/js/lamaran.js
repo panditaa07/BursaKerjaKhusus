@@ -2,12 +2,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ========== Table Row Animations ==========
-    const tableRows = document.querySelectorAll('tbody tr');
-    
-    tableRows.forEach((row, index) => {
-        // Staggered fade-in animation
-        row.style.opacity = '0';
-        row.style.transform = 'translateY(20px)';
+   const tableRows = document.querySelectorAll('tbody tr');
+
+tableRows.forEach((row) => {
+    row.style.opacity = '1';
+    row.style.transform = 'none';
+    row.style.transition = 'none';
         
         setTimeout(() => {
             row.style.transition = 'all 0.5s ease';
@@ -200,25 +200,6 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => btn.remove(), 400);
         }
     }
-    
-    // ========== Loading Animation for Buttons ==========
-    document.querySelectorAll('.btn-primary').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            if (this.classList.contains('loading')) return;
-            
-            const originalContent = this.innerHTML;
-            this.classList.add('loading');
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            this.style.pointerEvents = 'none';
-            
-            // Simulate loading (remove this in production)
-            setTimeout(() => {
-                this.innerHTML = originalContent;
-                this.classList.remove('loading');
-                this.style.pointerEvents = '';
-            }, 1000);
-        });
-    });
     
     // ========== Pagination Animation ==========
     const paginationLinks = document.querySelectorAll('.pagination .page-link');
