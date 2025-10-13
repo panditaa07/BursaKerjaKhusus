@@ -197,3 +197,36 @@ h2.h4 {
     border-color: rgb(30, 58, 138) !important;
     color: #fff !important;
 }
+
+/* ===== PERBAIKAN WARNA TEKS HILANG ===== */
+
+/* Pastikan tombol aktif tetap punya teks putih */
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active {
+    color: #ffffff !important;
+}
+
+/* Tombol outline-primary aktif atau fokus tetap biru */
+.btn-outline-primary.active,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    background-color: rgb(30, 58, 138) !important;
+    color: #ffffff !important;
+}
+
+/* Perbaikan dropdown-item agar teks selalu terlihat */
+.dropdown-menu .dropdown-item {
+    color: #1e3a8a !important; /* biru tua */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #e0e7ff !important; /* biru muda */
+    color: #1e3a8a !important;
+}
+
+/* Pastikan teks badge tidak menghilang */
+.badge {
+    color: #ffffff !important;
+}
+
