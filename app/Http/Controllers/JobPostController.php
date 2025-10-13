@@ -13,9 +13,24 @@ class JobPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = JobPost::active()->with('company.user', 'industry')->latest()->paginate(10);
+        $query = JobPost::active()->with('company.user', 'industry')->latest();
+
+        // Add search functionality
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%")
+                  ->orWhereHas('company', function($companyQuery) use ($search) {
+                      $companyQuery->where('name', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        $jobs = $query->paginate(10);
         return view('user.jobs.index', compact('jobs'));
     }
 

@@ -90,14 +90,28 @@
                             <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
                             @if(Auth::user()->cv_path)
                                 <div class="mt-2">
-                                    <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank">Lihat CV saat ini</a>
+                                    <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">Lihat CV saat ini</a>
                                 </div>
                             @else
                                 <p class="text-muted">Belum ada CV yang diunggah.</p>
                             @endif
                         </div>
-                        @endif
+                        <div class="mb-3">
+                            <label for="cover_letter" class="form-label">Surat Lamaran</label>
+                            <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx">
+                            <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
 
+                            @if(Auth::user()->cover_letter_path && Storage::exists(Auth::user()->cover_letter_path))
+                                <div class="mt-2">
+                                    <a href="{{ Storage::url(Auth::user()->cover_letter_path) }}" target="_blank" class="btn btn-sm btn-primary">
+                                        Lihat Surat Lamaran saat ini
+                                    </a>
+                                </div>
+                            @else
+                                <p class="text-muted">Belum ada Surat Lamaran yang diunggah.</p>
+                            @endif
+                        </div>
+                        @endif
                     </div>
                 </div>
 
@@ -110,4 +124,3 @@
     </div>
 </div>
 @endsection
-</create_file>

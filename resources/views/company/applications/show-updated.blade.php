@@ -150,30 +150,26 @@
                 </div>
                 <div class="card-body">
                     @if($application->cv_path)
-                        <button type="button" class="btn btn-success btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.download', $application->id) }}', '_blank')">
+                        <a href="{{ route('company.applications.download', $application->id) }}"
+                           class="btn btn-success btn-sm w-100 mb-2" target="_blank">
                             <i class="fas fa-download me-2"></i>Download CV
-                        </button>
+                        </a>
                     @else
                         <p class="text-muted mb-2">CV tidak tersedia</p>
                     @endif
 
-                    @if($application->cover_letter_path)
-                        <button type="button" class="btn btn-info btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.preview-cover-letter', $application->id) }}', '_blank')">
+                    @if($application->cover_letter)
+                        <a href="{{ asset('storage/' . $application->cover_letter) }}"
+                           class="btn btn-info btn-sm w-100 mb-2" target="_blank">
                             <i class="fas fa-file-alt me-2"></i>Lihat Surat Lamaran
-                        </button>
-                        <button type="button" class="btn btn-outline-info btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.download-cover-letter', $application->id) }}', '_blank')">
-                            <i class="fas fa-download me-2"></i>Download Surat Lamaran
-                        </button>
-                    @else
-                        <button type="button" class="btn btn-info btn-sm w-100 mb-2" onclick="showNoCoverLetterAlert()">
-                            <i class="fas fa-file-alt me-2"></i>Lihat Surat Lamaran
-                        </button>
+                        </a>
                     @endif
 
                     @if($application->cv_path)
-                        <button type="button" class="btn btn-outline-primary btn-sm w-100" onclick="window.open('{{ route('company.applications.preview', $application->id) }}', '_blank')">
+                        <a href="{{ route('company.applications.preview', $application->id) }}"
+                           class="btn btn-outline-primary btn-sm w-100" target="_blank">
                             <i class="fas fa-eye me-2"></i>Preview CV
-                        </button>
+                        </a>
                     @endif
                 </div>
             </div>
@@ -261,12 +257,6 @@
         </div>
     </div>
 </div>
-
-<script>
-function showNoCoverLetterAlert() {
-    alert('Pelamar tidak mencantumkan surat lamaran.');
-}
-</script>
 
 <style>
     .gap-2 > * {

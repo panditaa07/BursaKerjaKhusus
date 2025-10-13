@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('facebook')->nullable()->after('social_media_link')->comment('Facebook profile URL');
+            $table->string('portfolio_link')->nullable()->after('short_profile')->comment('Portfolio website URL');
+            $table->string('facebook')->nullable()->after('portfolio_link')->comment('Facebook profile URL');
             $table->string('instagram')->nullable()->after('facebook')->comment('Instagram profile URL');
             $table->string('linkedin')->nullable()->after('instagram')->comment('LinkedIn profile URL');
             $table->string('twitter')->nullable()->after('linkedin')->comment('Twitter profile URL');
@@ -26,7 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['facebook', 'instagram', 'linkedin', 'twitter', 'tiktok']);
+            $table->dropColumn(['portfolio_link', 'facebook', 'instagram', 'linkedin', 'twitter', 'tiktok']);
         });
     }
 };

@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         ];
 
         if ($role === 'user') {
-            $rules['nik_nisn'] = 'required|string|unique:users,nik_nisn';
+            $rules['nisn'] = 'required|string|max:20|unique:users,nisn';
         } elseif ($role === 'company') {
             $rules['company_name'] = 'required|string|max:255';
         }
@@ -64,7 +64,7 @@ class RegisteredUserController extends Controller
         ];
 
         if ($role === 'user') {
-            $userData['nik_nisn'] = $request->nik_nisn;
+            $userData['nisn'] = $request->nisn;
         } elseif ($role === 'company') {
             $userData['company_name'] = $request->company_name;
         }

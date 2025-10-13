@@ -7,8 +7,10 @@
 
 <!-- Logo Section -->
 <div class="sidebar-header">
-    <img src="{{ asset('images/smkn4.png') }}" alt="BKK OPAT Logo" class="mx-auto mb-2 rounded-circle" style="width: 64px; height: 64px;">
-    <h5 class="fw-bold mb-0">BKK OPAT</h5>
+    <a href="{{ route('home') }}" class="logo-link">
+        <img src="{{ asset('images/smkn4.png') }}" alt="BKK OPAT Logo" class="mx-auto mb-2 rounded-circle" style="width: 64px; height: 64px;">
+        <h5 class="fw-bold mb-0">BKK OPAT</h5>
+    </a>
 </div>
 
 <!-- Navigation Menu -->

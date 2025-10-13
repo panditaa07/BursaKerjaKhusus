@@ -171,6 +171,58 @@ class ApplicationController extends Controller
     }
 
     /**
+     * Preview Cover Letter file
+     */
+    public function previewCoverLetter(Application $application)
+    {
+        // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+
+        if (!$company || $application->jobPost->company_id !== $company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $filePath = storage_path('app/public/' . $application->cover_letter_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->file($filePath);
+    }
+
+    /**
+     * Download Cover Letter file
+     */
+    public function downloadCoverLetter(Application $application)
+    {
+        // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        $company = $user->company;
+
+        if (!$company || $application->jobPost->company_id !== $company->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $filePath = storage_path('app/public/' . $application->cover_letter_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->download($filePath, 'Surat_Lamaran_' . $application->user->name . '.' . pathinfo($filePath, PATHINFO_EXTENSION));
+    }
+
+    /**
      * Store a new application (for students)
      */
     public function store(Request $request)
@@ -179,6 +231,7 @@ class ApplicationController extends Controller
             'job_post_id' => 'required|exists:job_posts,id',
             'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
             'cover_letter' => 'nullable|string|max:2000|regex:/^[a-zA-Z0-9\s]+$/u',
+            'cover_letter_file' => 'nullable|mimes:pdf,doc,docx|max:2048',
         ]);
 
         $user = Auth::user();
@@ -199,10 +252,16 @@ class ApplicationController extends Controller
             ? $request->file('cv')->store('cvs', 'public')
             : $user->cv_path;
 
+        $coverLetterPath = null;
+        if ($request->hasFile('cover_letter_file')) {
+            $coverLetterPath = $request->file('cover_letter_file')->store('cover_letters', 'public');
+        }
+
         $application = Application::create([
             'user_id' => $user->id,
             'job_post_id' => $request->job_post_id,
             'cv_path' => $cvPath,
+            'cover_letter_path' => $coverLetterPath,
             'cover_letter' => $request->cover_letter,
             'status' => 'submitted',
         ]);
@@ -300,6 +359,11 @@ class ApplicationController extends Controller
         // Hapus file CV jika ada
         if ($application->cv_path && file_exists(storage_path('app/public/' . $application->cv_path))) {
             unlink(storage_path('app/public/' . $application->cv_path));
+        }
+
+        // Hapus file cover letter jika ada
+        if ($application->cover_letter_path && file_exists(storage_path('app/public/' . $application->cover_letter_path))) {
+            unlink(storage_path('app/public/' . $application->cover_letter_path));
         }
 
         // Hapus aplikasi

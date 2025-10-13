@@ -12,7 +12,7 @@ class ProfileController extends Controller
    public function show()
 {
     $user = Auth::user();
-    $user->load('company');
+    $user->load('company', 'applications.jobPost'); // Tambahkan eager loading untuk applications
 
     if ($user->role->name === 'company') {
         return view('company.profile.show', compact('user'));
@@ -111,6 +111,9 @@ class ProfileController extends Controller
 
     private function updateUserProfile(Request $request, $user)
     {
+        // Debug: Log request data
+        \Log::info('Profile update request data:', $request->all());
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
@@ -121,6 +124,7 @@ class ProfileController extends Controller
             'short_profile' => 'nullable|string|max:500',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
+            'cover_letter' => 'nullable|file|mimes:pdf,docx|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'portfolio_link' => 'nullable|url',
             'linkedin' => 'nullable|url',
@@ -131,6 +135,9 @@ class ProfileController extends Controller
         ]);
 
         $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile', 'portfolio_link', 'linkedin', 'instagram', 'facebook', 'twitter', 'tiktok']);
+
+        // Debug: Log userData before update
+        \Log::info('UserData to be updated:', $userData);
 
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
@@ -146,6 +153,14 @@ class ProfileController extends Controller
                 Storage::disk('public')->delete($user->cv_path);
             }
             $userData['cv_path'] = $request->file('cv')->store('cv_files', 'public');
+        }
+
+        // Handle Cover Letter upload
+        if ($request->hasFile('cover_letter')) {
+            if ($user->cover_letter_path && Storage::disk('public')->exists($user->cover_letter_path)) {
+                Storage::disk('public')->delete($user->cover_letter_path);
+            }
+            $userData['cover_letter_path'] = $request->file('cover_letter')->store('cover_letter_files', 'public');
         }
 
         // Handle company logo upload if user has company

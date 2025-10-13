@@ -1,0 +1,11 @@
+/* Fix search bar alignment */
+.search-form .d-flex {
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form .btn {
+    height: 42px; /* Sesuaikan dengan input height */
+    display: flex;
+    align-items: center;
+}

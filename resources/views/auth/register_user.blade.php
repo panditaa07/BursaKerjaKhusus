@@ -42,8 +42,8 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="nik_nisn">NIK/NISN</label>
-                            <input type="text" id="nik_nisn" name="nik_nisn" class="form-control" value="{{ old('nik_nisn') }}" required>
+                            <label for="nisn">NIK/NISN</label>
+                            <input type="text" id="nisn" name="nisn" class="form-control" value="{{ old('nisn') }}" required>
                         </div>
                         
                         <div class="mb-3">

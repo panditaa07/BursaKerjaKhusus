@@ -59,8 +59,8 @@
                     @if(Auth::user()->role->name !== 'company')
                     <p><strong>CV:</strong>
                         @if(Auth::user()->cv_path)
-                           <a href="{{ asset('storage/' . Auth::user()->cv_path) }}" 
-                            target="_blank" 
+                           <a href="{{ Storage::url(Auth::user()->cv_path) }}"
+                            target="_blank"
                             class="btn btn-cv btn-sm text-white mt-1">
                                 <i class="fas fa-file-pdf me-1"></i> Lihat CV
                             </a>
@@ -72,16 +72,14 @@
                     @endif
                     @if(Auth::user()->role->name !== 'company')
                     <p><strong>Surat Lamaran:</strong>
-                        @if(Auth::user()->applications->isNotEmpty())
-                            <ul>
-                                @foreach(Auth::user()->applications as $application)
-                                    @if($application->cover_letter_path)
-                                        <li><a href="{{ asset('storage/' . $application->cover_letter_path) }}" target="_blank" download>Surat Lamaran untuk {{ $application->jobPost->title }}</a></li>
-                                    @endif
-                                @endforeach
-                            </ul>
+                        @if(Auth::user()->cover_letter_path)
+                            <a href="{{ Storage::url(Auth::user()->cover_letter_path) }}"
+                               target="_blank"
+                               class="btn btn-cv btn-sm text-white mt-1">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat Surat Lamaran
+                            </a>
                         @else
-                            Tidak ada surat lamaran
+                            Tidak ada file surat lamaran
                         @endif
                     </p>
                     @endif

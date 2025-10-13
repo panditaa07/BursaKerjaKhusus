@@ -105,6 +105,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/applications/{applicationId}', [ApplicationController::class, 'showForCompany'])->name('applications.show.company');
         Route::get('/applications/{application}/preview', [ApplicationController::class, 'previewPdf'])->name('applications.preview');
         Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadPdf'])->name('applications.download');
+        Route::get('/applications/{application}/preview-cover-letter', [ApplicationController::class, 'previewCoverLetter'])->name('applications.preview-cover-letter');
+        Route::get('/applications/{application}/download-cover-letter', [ApplicationController::class, 'downloadCoverLetter'])->name('applications.download-cover-letter');
         Route::get('/applications/{application}/edit', [ApplicationController::class, 'edit'])->name('applications.edit');
         Route::put('/applications/{application}', [ApplicationController::class, 'update'])->name('lamarans.update');
         Route::put('/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');

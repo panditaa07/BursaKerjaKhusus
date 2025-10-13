@@ -4,6 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/lamaran.css') }}">
+<link rel="stylesheet" href="{{ asset('css/lamaran-fix.css') }}">
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
         <!-- Search Bar -->

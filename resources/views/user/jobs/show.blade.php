@@ -184,6 +184,14 @@
                         <div class="form-text">Format: PDF, DOC, DOCX. Maksimal 2MB.</div>
                     </div>
                     <div class="mb-3">
+                        <label for="cover_letter_file" class="form-label">Upload Surat Lamaran (Opsional)</label>
+                        <input type="file" class="form-control @error('cover_letter_file') is-invalid @enderror" id="cover_letter_file" name="cover_letter_file" accept=".pdf,.doc,.docx">
+                        @error('cover_letter_file')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <div class="form-text">Format: PDF, DOC, DOCX. Maksimal 2MB.</div>
+                    </div>
+                    <div class="mb-3">
                         <label for="cover_letter" class="form-label">Surat Lamaran (Opsional)</label>
                         <textarea class="form-control @error('cover_letter') is-invalid @enderror" id="cover_letter" name="cover_letter" rows="4" placeholder="Tulis surat lamaran Anda di sini..."></textarea>
                         @error('cover_letter')

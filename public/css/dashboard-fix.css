@@ -1,0 +1,11 @@
+/* Fix footer full width */
+.container-fluid {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.main-content {
+    width: 100vw;
+    margin-left: 0;
+}
