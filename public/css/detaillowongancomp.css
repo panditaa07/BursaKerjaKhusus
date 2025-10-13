@@ -124,7 +124,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   gap: 10px;
 }
 
-/* Tombol aksi */
+/* Tombol aksi (rule global—nantinya di-normalisasi lagi khusus di .jd-actions) */
 .d-flex.justify-content-between.align-items-center.mb-4 .btn {
   border: none !important;
   border-radius: 14px !important;
@@ -536,3 +536,137 @@ body.job-detail .card {
 }
 .btn-view i{ transition: transform .2s ease; }
 .btn-view:hover i{ transform: scale(1.12); }
+
+/* =========================================================
+   FINAL POLISH — Tombol Aksi & Ikon (Perfect Alignment)
+   ========================================================= */
+
+/* Bar tombol rapi & tengah */
+.jd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+/* Semua tombol sama tinggi & sejajar */
+.jd-actions .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-width: 145px;
+  min-height: 44px;
+  font-weight: 700 !important;
+  border-radius: 14px !important;
+  border: none !important;
+  letter-spacing: 0.2px;
+  box-shadow: 0 4px 14px rgba(15,23,42,.08);
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Ikon di tengah dan lurus sempurna */
+.jd-actions .btn i,
+.jd-actions .btn .fa,
+.jd-actions .btn .fas,
+.jd-actions .btn .far,
+.jd-actions .btn .fal,
+.jd-actions .btn .fab {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+  transform: none !important;
+  font-size: 1rem !important;
+  position: relative !important;
+  top: 0 !important;
+}
+
+/* Hover lembut */
+.jd-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15,23,42,0.1) !important;
+}
+
+/* ===== Warna Premium Dashboard ===== */
+
+/* Tombol Kembali (biru gradasi) */
+.jd-actions .btn-outline-secondary,
+.jd-actions .btn-back {
+  background: linear-gradient(135deg, #2156e0, #1a43b4) !important;
+  color: #fff !important;
+}
+.jd-actions .btn-outline-secondary:hover,
+.jd-actions .btn-back:hover {
+  background: linear-gradient(135deg, #1a43b4, #15378e) !important;
+  box-shadow: 0 6px 18px rgba(26,67,180,.35) !important;
+}
+
+/* Tombol Edit (kuning emas) */
+.jd-actions .btn-warning {
+  background: linear-gradient(135deg, #facc15, #eab308) !important;
+  color: #1a1a1a !important;
+}
+.jd-actions .btn-warning:hover {
+  background: linear-gradient(135deg, #fde047, #facc15) !important;
+  box-shadow: 0 6px 18px rgba(234,179,8,.35) !important;
+}
+
+/* Tombol Nonaktifkan/Aktifkan (biru premium) */
+.jd-actions .btn-outline-primary,
+.jd-actions .btn-secondary {
+  background: linear-gradient(135deg, #3b82f6, #2156e0) !important;
+  color: #fff !important;
+}
+.jd-actions .btn-outline-primary:hover,
+.jd-actions .btn-secondary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1a43b4) !important;
+  box-shadow: 0 6px 18px rgba(33,86,224,.35) !important;
+}
+
+/* Tombol Hapus (merah vivid) */
+.jd-actions .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: #fff !important;
+}
+.jd-actions .btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  box-shadow: 0 6px 18px rgba(239,68,68,.35) !important;
+}
+
+/* Tombol aktifkan (hijau vivid) */
+.jd-actions .btn-success {
+  background: linear-gradient(135deg, #22c55e, #15803d) !important;
+  color: #fff !important;
+}
+.jd-actions .btn-success:hover {
+  background: linear-gradient(135deg, #16a34a, #166534) !important;
+  box-shadow: 0 6px 18px rgba(22,163,74,.35) !important;
+}
+
+/* Saat ditekan (klik aktif) */
+.jd-actions .btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 10px rgba(15,23,42,0.08) inset !important;
+}
+
+/* Fokus untuk aksesibilitas */
+.jd-actions .btn:focus-visible {
+  outline: 3px solid rgba(33,86,224,.35);
+  outline-offset: 2px;
+}
+
+/* Responsif agar tombol rapi di HP */
+@media (max-width: 768px) {
+  .jd-actions {
+    gap: 10px;
+  }
+  .jd-actions .btn {
+    flex: 1 1 100%;
+    min-width: unset;
+    justify-content: center;
+  }
+}
+
+
