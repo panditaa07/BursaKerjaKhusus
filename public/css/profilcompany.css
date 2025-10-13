@@ -16,7 +16,7 @@
   font-size: clamp(1.25rem, 1vw + 1rem, 1.75rem);
   font-weight: 700;
   margin: 0 0 1rem;
-  color: var(--ink);
+  color: rgb(30, 58, 138);
 }
 
 /* Card */
@@ -151,4 +151,8 @@
   .company-profile p { color: #e5e7eb; }
   .company-profile p > strong { color: #94a3b8; }
   .company-profile img[alt*="Logo"] { background: #0b1220; border-color: rgba(255,255,255,.08); }
+}
+
+.h1 {
+  color: rgb(30, 58, 138);
 }

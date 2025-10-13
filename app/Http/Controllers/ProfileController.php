@@ -9,40 +9,42 @@ use App\Models\Company;
 
 class ProfileController extends Controller
 {
-    public function show()
-    {
-        $user = Auth::user();
-        $user->load('company');
+   public function show()
+{
+    $user = Auth::user();
+    $user->load('company');
 
-        if ($user->role === 'company') {
-            return view('company.profile.show', compact('user'));
-        } else {
-            return view('user.profile.show', compact('user'));
-        }
+    if ($user->role->name === 'company') {
+        return view('company.profile.show', compact('user'));
+    } else {
+        return view('user.profile.show', compact('user'));
     }
+}
+
 
     public function edit()
-    {
-        $user = Auth::user();
-        $user->load('company');
+{
+    $user = Auth::user();
+    $user->load('company');
 
-        if ($user->role === 'company') {
-            return view('company.profile.edit', compact('user'));
-        } else {
-            return view('user.profile.edit', compact('user'));
-        }
+    if ($user->role->name === 'company') {
+        return view('company.profile.edit', compact('user'));
+    } else {
+        return view('user.profile.edit', compact('user'));
     }
+}
 
     public function update(Request $request)
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        if ($user->role === 'company') {
-            return $this->updateCompanyProfile($request, $user);
-        } else {
-            return $this->updateUserProfile($request, $user);
-        }
+    if ($user->role->name === 'company') {
+        return $this->updateCompanyProfile($request, $user);
+    } else {
+        return $this->updateUserProfile($request, $user);
     }
+}
+
 
     private function updateCompanyProfile(Request $request, $user)
     {
