@@ -1,84 +1,464 @@
-/* Modern Blue Theme Animations */
+/* ==========================================
+   MODERN BLUE PROFILE CSS
+   Simple, Elegant, Eye-Friendly Design
+   ========================================== */
 
-.ripple-effect {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    transform: scale(0);
-    animation: ripple 0.6s ease-out;
-    pointer-events: none;
+:root {
+    --primary-blue: #1e3a8a;
+    --secondary-blue: #3b82f6;
+    --light-blue: #60a5fa;
+    --accent-blue: #2563eb;
+    --soft-blue: #dbeafe;
+    --bg-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    --card-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
+    --hover-shadow: 0 8px 30px rgba(30, 58, 138, 0.15);
+    --text-dark: #1e293b;
+    --text-gray: #64748b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes ripple {
-    to {
-        transform: scale(2);
+/* Container Styling */
+.profile-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.profile-container h1 {
+    color: var(--primary-blue);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    animation: slideInDown 0.6s ease-out;
+}
+
+/* Card Design */
+.card {
+    background: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.card:hover {
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: rgb(30, 58, 138);
+    color: white;
+    padding: 1.5rem 2rem;
+    border: none;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Profile Information */
+.card-body p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.card-body p:hover {
+    transform: translateX(5px);
+}
+
+.card-body p strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+    display: inline-block;
+    min-width: 140px;
+}
+
+/* Links Styling */
+.card-body a {
+    text-decoration: none;
+    transition: var(--transition);
+    position: relative;
+}
+
+.card-body a:hover {
+    color: var(--accent-blue);
+}
+
+.card-body a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: var(--accent-blue);
+    transition: width 0.3s ease;
+}
+
+.card-body a:hover::after {
+    width: 100%;
+}
+
+/* Button Styling */
+.btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: var(--transition);
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: whitesmoke;
+    color: rgb(30, 58, 138);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+    background: rgb(30, 58, 138);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-cv {
+    background: rgb(30, 58, 138);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-cv:hover {
+    background: rgb(30, 58, 138);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgb(30, 58, 138);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgb(30, 58, 138);
+    transform: translateY(-2px);
+}
+
+.btn i {
+    margin-right: 0.5rem;
+}
+
+/* Image Styling */
+.card-body img {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    margin-top: 0.5rem;
+}
+
+.card-body img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* List Styling */
+.card-body ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card-body ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--soft-blue);
+    transition: var(--transition);
+}
+
+.card-body ul li:last-child {
+    border-bottom: none;
+}
+
+.card-body ul li:hover {
+    padding-left: 10px;
+    background: var(--soft-blue);
+}
+
+/* Text Muted */
+.text-muted {
+    color: var(--text-gray) !important;
+    font-style: italic;
+}
+
+/* PDF Icon */
+.fa-file-pdf {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
         opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 .fade-in-row {
-    animation: fadeInRow 0.5s ease forwards;
-    opacity: 0;
+    animation: fadeInUp 0.6s ease-out;
 }
 
-@keyframes fadeInRow {
-    to {
+/* Table Styling (untuk halaman Kelola Pengguna) */
+.table-container {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    margin-top: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: var(--bg-gradient);
+    color: var(--white);
+}
+
+thead th {
+    padding: 1.2rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--soft-blue);
+    transition: var(--transition);
+}
+
+tbody tr:hover {
+    background: var(--soft-blue);
+    transform: scale(1.01);
+}
+
+tbody td {
+    padding: 1.2rem 1rem;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+/* Badge Styling */
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-user {
+    background: var(--light-blue);
+    color: var(--white);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-detail {
+    background: var(--light-blue);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.btn-detail:hover {
+    background: var(--secondary-blue);
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.btn-edit:hover {
+    background: var(--accent-blue);
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+/* Filter Section */
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.filter-section input,
+.filter-section select {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--soft-blue);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    background: var(--white);
+    color: var(--text-dark);
+}
+
+.filter-section input:focus,
+.filter-section select:focus {
+    outline: none;
+    border-color: var(--secondary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-filter {
+    background: var(--bg-gradient);
+    color: var(--white);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-filter:hover {
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-2px);
+}
+
+/* Back Button */
+.btn-back {
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: var(--transition);
+    margin-bottom: 2rem;
+}
+
+.btn-back:hover {
+    background: var(--accent-blue);
+    transform: translateX(-5px);
+    color: var(--white);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container h1 {
+        font-size: 2rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .card-body p strong {
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+    background: var(--light-blue);
+    color: var(--white);
+}
+
+/* Focus Styles */
+*:focus {
+    outline: none;
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
         opacity: 1;
     }
-}
-
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        transform: translateX(-20px);
+    50% {
+        opacity: 0.5;
     }
 }
 
-@keyframes slideOut {
-    to {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-}
-
-.custom-tooltip {
-    position: fixed;
-    background: var(--primary-blue, #2563eb);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    opacity: 0;
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.custom-tooltip.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.input-focused {
-    transform: scale(1.02);
-}
-
-.btn-loading::after {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-left: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+.loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

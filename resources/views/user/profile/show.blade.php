@@ -2,9 +2,13 @@
 
 @section('title', 'Profil Saya')
 
-@section('content')
+@push('styles')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-<div class="container">
+@endpush
+
+@section('content')
+
+<div class="container profile-container fade-in-row">
     <h1>Profil Saya</h1>
 
     <div class="card">
@@ -55,9 +59,12 @@
                     @if(Auth::user()->role->name !== 'company')
                     <p><strong>CV:</strong>
                         @if(Auth::user()->cv_path)
-                            <a href="{{ asset('storage/' . Auth::user()->cv_path) }}" target="_blank" class="text-decoration-none">
-                                <i class="fas fa-file-pdf text-danger"></i> Lihat CV
+                           <a href="{{ asset('storage/' . Auth::user()->cv_path) }}" 
+                            target="_blank" 
+                            class="btn btn-cv btn-sm text-white mt-1">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat CV
                             </a>
+
                         @else
                             Belum diunggah
                         @endif
