@@ -149,15 +149,6 @@
                     <h5 class="mb-0"><i class="fas fa-file-download me-2"></i>Dokumen</h5>
                 </div>
                 <div class="card-body">
-                    @if($application->cv_path)
-                        <a href="{{ route('company.applications.download', $application->id) }}"
-                           class="btn btn-success btn-sm w-100 mb-2" target="_blank">
-                            <i class="fas fa-download me-2"></i>Download CV
-                        </a>
-                    @else
-                        <p class="text-muted mb-2">CV tidak tersedia</p>
-                    @endif
-
                     @if($application->cover_letter)
                         <a href="{{ asset('storage/' . $application->cover_letter) }}"
                            class="btn btn-info btn-sm w-100 mb-2" target="_blank">

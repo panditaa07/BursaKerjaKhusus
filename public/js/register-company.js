@@ -148,39 +148,28 @@
         if (!strengthBar) return;
 
         const strength = calculatePasswordStrength(password);
-        
+
         // Remove existing classes
         strengthBar.classList.remove('weak', 'medium', 'strong');
-        
+
         if (strength.score === 0) {
             strengthBar.style.width = '0%';
-        } else if (strength.score <= 2) {
-            strengthBar.classList.add('weak');
-        } else if (strength.score <= 3) {
-            strengthBar.classList.add('medium');
         } else {
+            // Only one level now - strong if meets minimum length
             strengthBar.classList.add('strong');
+            strengthBar.style.width = '100%';
         }
     }
 
     function calculatePasswordStrength(password) {
-        let score = 0;
-        const checks = {
-            length: password.length >= 8,
-            lowercase: /[a-z]/.test(password),
-            uppercase: /[A-Z]/.test(password),
-            numbers: /\d/.test(password),
-            symbols: /[^A-Za-z0-9]/.test(password)
-        };
-
-        // Calculate score
-        Object.values(checks).forEach(check => {
-            if (check) score++;
-        });
+        // Simplified strength calculation - only check length
+        const score = password.length >= 8 ? 1 : 0;
 
         return {
             score: score,
-            checks: checks
+            checks: {
+                length: password.length >= 8
+            }
         };
     }
 
@@ -222,12 +211,8 @@
                     break;
                 
                 case 'password':
-                    const strength = calculatePasswordStrength(value);
                     if (value.length < 8) {
                         errorMessage = 'Password must be at least 8 characters';
-                        isValid = false;
-                    } else if (strength.score < 3) {
-                        errorMessage = 'Password should include uppercase, lowercase, numbers, and symbols';
                         isValid = false;
                     }
                     break;

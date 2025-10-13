@@ -149,20 +149,9 @@
                     <h5 class="mb-0"><i class="fas fa-file-download me-2"></i>Dokumen</h5>
                 </div>
                 <div class="card-body">
-                    @if($application->cv_path)
-                        <button type="button" class="btn btn-success btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.download', $application->id) }}', '_blank')">
-                            <i class="fas fa-download me-2"></i>Download CV
-                        </button>
-                    @else
-                        <p class="text-muted mb-2">CV tidak tersedia</p>
-                    @endif
-
                     @if($application->cover_letter_path)
                         <button type="button" class="btn btn-info btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.preview-cover-letter', $application->id) }}', '_blank')">
                             <i class="fas fa-file-alt me-2"></i>Lihat Surat Lamaran
-                        </button>
-                        <button type="button" class="btn btn-outline-info btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.download-cover-letter', $application->id) }}', '_blank')">
-                            <i class="fas fa-download me-2"></i>Download Surat Lamaran
                         </button>
                     @else
                         <button type="button" class="btn btn-info btn-sm w-100 mb-2" onclick="showNoCoverLetterAlert()">

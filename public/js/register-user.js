@@ -194,9 +194,6 @@
                     if (value.length < 8) {
                         errorMessage = 'Password must be at least 8 characters';
                         isValid = false;
-                    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(value)) {
-                        errorMessage = 'Password must contain at least one uppercase letter, lowercase letter, and number';
-                        isValid = false;
                     }
                     break;
             }
