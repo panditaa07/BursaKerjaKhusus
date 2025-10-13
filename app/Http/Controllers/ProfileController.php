@@ -57,7 +57,7 @@ class ProfileController extends Controller
             'birth_date' => 'nullable|date',
             'short_profile' => 'nullable|string|max:500',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
+            'cv' => 'nullable|file|mimes:pdf|max:2048',
             'company_name' => 'required|string|max:255',
             'company_email' => 'nullable|email|max:255',
             'company_phone' => 'nullable|string|max:20',
@@ -123,8 +123,8 @@ class ProfileController extends Controller
             'birth_date' => 'nullable|date',
             'short_profile' => 'nullable|string|max:500',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'cv' => 'nullable|file|mimes:pdf,docx|max:2048',
-            'cover_letter' => 'nullable|file|mimes:pdf,docx|max:2048',
+            'cv' => 'nullable|file|mimes:pdf|max:2048',
+            'cover_letter' => 'nullable|file|mimes:pdf|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'portfolio_link' => 'nullable|url',
             'linkedin' => 'nullable|url',
@@ -188,7 +188,7 @@ class ProfileController extends Controller
     public function uploadCv(Request $request)
     {
         $request->validate([
-            'cv' => 'required|file|mimes:pdf,docx|max:2048',
+            'cv' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         $user = Auth::user();

@@ -229,9 +229,9 @@ class ApplicationController extends Controller
     {
         $request->validate([
             'job_post_id' => 'required|exists:job_posts,id',
-            'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'cv' => 'nullable|mimes:pdf|max:2048',
             'cover_letter' => 'nullable|string|max:2000|regex:/^[a-zA-Z0-9\s]+$/u',
-            'cover_letter_file' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'cover_letter_file' => 'nullable|mimes:pdf|max:2048',
         ]);
 
         $user = Auth::user();
@@ -475,7 +475,7 @@ class ApplicationController extends Controller
         }
 
         $request->validate([
-            'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'cv' => 'nullable|mimes:pdf|max:2048',
             'nama_pelamar' => 'nullable|string|max:255',
             'lowongan' => 'nullable|string|max:255',
         ]);

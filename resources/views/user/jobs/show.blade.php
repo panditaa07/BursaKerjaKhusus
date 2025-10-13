@@ -177,19 +177,19 @@
                     <input type="hidden" name="job_post_id" value="{{ $job->id }}">
                     <div class="mb-3">
                         <label for="cv" class="form-label">Upload CV (Opsional)</label>
-                        <input type="file" class="form-control @error('cv') is-invalid @enderror" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                        <input type="file" class="form-control @error('cv') is-invalid @enderror" id="cv" name="cv" accept=".pdf">
                         @error('cv')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        <div class="form-text">Format: PDF, DOC, DOCX. Maksimal 2MB.</div>
+                        <div class="form-text">Format: PDF. Maksimal 2MB.</div>
                     </div>
                     <div class="mb-3">
                         <label for="cover_letter_file" class="form-label">Upload Surat Lamaran (Opsional)</label>
-                        <input type="file" class="form-control @error('cover_letter_file') is-invalid @enderror" id="cover_letter_file" name="cover_letter_file" accept=".pdf,.doc,.docx">
+                        <input type="file" class="form-control @error('cover_letter_file') is-invalid @enderror" id="cover_letter_file" name="cover_letter_file" accept=".pdf">
                         @error('cover_letter_file')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        <div class="form-text">Format: PDF, DOC, DOCX. Maksimal 2MB.</div>
+                        <div class="form-text">Format: PDF. Maksimal 2MB.</div>
                     </div>
                     <div class="mb-3">
                         <label for="cover_letter" class="form-label">Surat Lamaran (Opsional)</label>

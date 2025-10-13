@@ -86,8 +86,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="cv" class="form-label">CV</label>
-                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx">
-                            <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
+                            <small class="form-text text-muted">Format: PDF. Maksimal 2MB.</small>
                             @if(Auth::user()->cv_path)
                                 <div class="mt-2">
                                     <a href="{{ Storage::url(Auth::user()->cv_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">Lihat CV saat ini</a>
@@ -98,8 +98,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="cover_letter" class="form-label">Surat Lamaran</label>
-                            <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx">
-                            <small class="form-text text-muted">Format: PDF, DOC, DOCX. Maksimal 2MB.</small>
+                            <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf">
+                            <small class="form-text text-muted">Format: PDF. Maksimal 2MB.</small>
 
                             @if(Auth::user()->cover_letter_path)
                                 <div class="mt-2">

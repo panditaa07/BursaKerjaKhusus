@@ -191,7 +191,7 @@
                     {{-- CV --}}
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-file-pdf"></i> Upload CV Baru (Opsional)</label>
-                        <input type="file" name="cv_path" class="form-control" accept=".pdf,.doc,.docx">
+                        <input type="file" name="cv_path" class="form-control" accept=".pdf">
                         @if($application->cv_path)
                             <div class="file-info">
                                 <i class="fas fa-file-pdf"></i>
@@ -203,7 +203,7 @@
                     {{-- Surat Lamaran --}}
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-file-alt"></i> Upload Surat Lamaran Baru (Opsional)</label>
-                        <input type="file" name="cover_letter" class="form-control" accept=".pdf,.doc,.docx">
+                        <input type="file" name="cover_letter" class="form-control" accept=".pdf">
                         @if($application->cover_letter)
                             <div class="file-info">
                                 <i class="fas fa-file-alt"></i>

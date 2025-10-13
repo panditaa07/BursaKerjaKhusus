@@ -31,8 +31,8 @@
         </div>
 
         <div>
-            <label for="cv">Upload CV Baru (PDF/DOC/DOCX)</label><br>
-            <input type="file" name="cv" id="cv" accept=".pdf,.doc,.docx">
+            <label for="cv">Upload CV Baru (PDF)</label><br>
+            <input type="file" name="cv" id="cv" accept=".pdf">
             @if($lamaran->cv_path)
                 <p>CV sekarang: <a href="{{ asset('storage/'.$lamaran->cv_path) }}" target="_blank">Lihat CV</a></p>
             @endif
