@@ -44,9 +44,10 @@
     </a>
 
     {{-- Edit Lowongan --}}
-    <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning text-dark jd-btn">
+    <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning jd-btn">
         <i class="fas fa-edit me-2"></i> Edit Lowongan
     </a>
+
 
     {{-- Aktif/Nonaktif --}}
     <form method="POST" action="{{ route('company.jobs.toggle-status', $job) }}" class="m-0 p-0">

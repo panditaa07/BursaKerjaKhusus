@@ -8,7 +8,6 @@
 
 @section('content')
 <div class="container">
-    <h1>Edit Profil Perusahaan</h1>
 
     <div class="card">
         <div class="card-header">

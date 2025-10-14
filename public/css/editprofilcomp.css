@@ -22,7 +22,7 @@ html,body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-
 .container > h1{
   margin:24px 0 14px;
   font-weight:900;
-  color:#0d1323;
+  color :var(--blue-500);
   letter-spacing:.2px;
 }
 
@@ -126,9 +126,15 @@ input[type="file"].form-control::file-selector-button:hover{
 .btn-primary{
   background:var(--blue-500);
   border-color:var(--blue-500);
+  color:#fff; /* 🔥 ini yang bikin teks jadi putih */
   box-shadow:0 10px 22px rgba(37,99,235,.25);
 }
-.btn-primary:hover{background:var(--blue-600);border-color:var(--blue-600)}
+.btn-primary:hover{
+  background:var(--blue-600);
+  border-color:var(--blue-600);
+  color:#fff; /* tetap putih saat hover */
+}
+
 .btn-secondary{
   background:#fff;
   color:#b91c1c;
@@ -190,4 +196,17 @@ input[type="file"].form-control::file-selector-button:hover{
 /* Give cards breathing room from the sidebar on huge screens */
 @media (min-width:1400px){
   .container{max-width:1160px}
+}
+
+.btn-secondary {
+  background: var(--blue-500);      /* sama kayak simpan perubahan */
+  border-color: var(--blue-500);
+  color: #fff;                      /* teks putih */
+  box-shadow: 0 10px 22px rgba(37,99,235,.25);
+}
+
+.btn-secondary:hover {
+  background: var(--blue-600);      /* hover lebih gelap dikit */
+  border-color: var(--blue-600);
+  color: #fff;                      /* tetap putih pas hover */
 }

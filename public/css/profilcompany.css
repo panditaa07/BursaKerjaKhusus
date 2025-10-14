@@ -82,3 +82,27 @@
 
 /* icon alignment guard */
 i,.fas,.far,.fal,.fab{vertical-align:middle;transform:none}
+
+/* === Tombol Edit Profil (Versi Biru BKK OPAT) === */
+.cp-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2f57ef;            /* biru utama */
+  border: 1px solid #2f57ef;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(47, 87, 239, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.cp-actions .btn:hover {
+  background: #1e40af;           /* biru tua saat hover */
+  border-color: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(47, 87, 239, 0.35);
+}

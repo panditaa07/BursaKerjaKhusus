@@ -54,7 +54,7 @@
       </div>
 
       <div class="cp-actions">
-        <a href="{{ route('profile.edit') }}" class="btn btn-dark" title="Edit Profil">
+        <a href="{{ route('profile.edit') }}" class="btn btn-dark">
           <i class="fas fa-pen"></i><span class="hide-sm">Edit Profil</span>
         </a>
       </div>
