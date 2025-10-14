@@ -308,8 +308,6 @@ body {
 }
 
 .page-link:hover {
-    background: var(--primary-blue-light);
-    border-color: var(--primary-blue-light);
     color: white;
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
@@ -433,14 +431,15 @@ form .btn {
 }
 
 /* Pagination Modern Style */
+/* Pagination Modern Style */
 .pagination {
     display: flex;
     list-style: none;
     padding: 0;
-    gap: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 .pagination li {
@@ -449,41 +448,40 @@ form .btn {
 
 .pagination .page-link {
     display: block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--primary-blue);
-    background: transparent;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    color: white;
+    background: rgb(30, 58, 138); /* abu soft */
+    border: none;
     text-decoration: none;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    min-width: 50px;
-    text-align: center;
 }
 
 .pagination .page-link:hover {
-    background: var(--primary-blue-light);
-    border-color: var(--primary-blue-light);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    background: rgb(30, 58, 138);
 }
 
-/* Blue line animation for number buttons on hover - from bottom to top */
-.pagination .page-item:nth-child(n+2):nth-last-child(n+2) .page-link:hover::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 80%;
-    height: 0;
-    background: linear-gradient(180deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
-    border-radius: 2px;
-    animation: slideUpLine 0.4s ease forwards;
-    transform: translateX(-50%);
+.pagination .page-item:first-child .page-link {
+    border-radius: 12px 0 0 12px;
+}
+
+.pagination .page-item:last-child .page-link {
+    border-radius: 0 12px 12px 0;
+}
+
+/* Aktif */
+.pagination .active .page-link,
+.pagination .page-link.active {
+    background: rgb(30, 58, 138);
+    color: white !important;
+}
+
+/* Disabled */
+.pagination .disabled .page-link {
+    background: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
 }
 
 @keyframes slideUpLine {
@@ -495,42 +493,6 @@ form .btn {
         height: 4px;
         bottom: 0;
     }
-}
-
-/* Previous and Next buttons - no shadow on hover */
-.pagination .page-item:first-child .page-link,
-.pagination .page-item:last-child .page-link {
-    color: var(--primary-blue);
-}
-
-.pagination .page-item:first-child .page-link:hover,
-.pagination .page-item:last-child .page-link:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-/* Aktif */
-.pagination .active .page-link,
-.pagination .page-link.active {
-    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
-    border-color: var(--primary-blue);
-    color: white !important;
-    box-shadow: var(--shadow-sm);
-}
-
-/* Disabled */
-.pagination .disabled .page-link {
-    background: var(--bg-main);
-    color: var(--text-muted);
-    border-color: var(--border-color);
-    cursor: not-allowed;
-}
-
-.pagination .disabled .page-link:hover {
-    background: var(--bg-main);
-    color: var(--text-muted);
-    transform: none;
-    box-shadow: none;
 }
 
 .btn-back {
