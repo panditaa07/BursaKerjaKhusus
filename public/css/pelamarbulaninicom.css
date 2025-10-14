@@ -393,3 +393,71 @@
 .action-mini i {
     pointer-events: none;
 }
+
+/* =========================================
+   FORM SEARCH BAR STYLING
+   ========================================= */
+.search-bar {
+    width: 100%;
+    max-width: 600px; /* ubah sesuai panjang yang kamu mau */
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1.8px solid #cbd5e1;
+    transition: all 0.25s ease-in-out;
+}
+
+/* Efek fokus biar elegan */
+.search-bar:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.25);
+    outline: none;
+}
+
+/* Biar tombol cari nggak nempel banget */
+.input-group .btn-secondary {
+    margin-left: 6px;
+}
+
+/* Hilangkan garis bawah pada link view */
+a.action-mini.view,
+a.action-mini.view:hover,
+a.action-mini.view:focus,
+a.action-mini.view:active,
+a.action-mini.view:visited {
+  text-decoration: none !important;
+}
+
+/* Pastikan icon di dalamnya juga tidak terpengaruh */
+a.action-mini.view i,
+a.action-mini.view:hover i,
+a.action-mini.view:focus i {
+  text-decoration: none !important;
+}
+
+/* Jaga-jaga kalau parent <td> ada efek hover */
+td a.action-mini.view:hover {
+  text-decoration: none !important;
+}
+
+/* Nonaktifkan border bawah pseudo-element (kadang muncul efek dari bootstrap atau table hover) */
+a.action-mini.view::after,
+a.action-mini.view:hover::after {
+  border: none !important;
+  text-decoration: none !important;
+}
+
+/* Kadang efek underline muncul dari pseudo-element (Bootstrap focus) */
+a.action-mini.view::before,
+a.action-mini.view::after,
+a.action-mini.view:hover::before,
+a.action-mini.view:hover::after {
+  content: none !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+/* Matikan efek hover global untuk tombol icon */
+.action-mini:hover {
+  text-decoration: none !important;
+}

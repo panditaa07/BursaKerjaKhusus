@@ -28,7 +28,7 @@
                     <input 
                         type="text" 
                         name="search" 
-                        class="form-control" 
+                        class="form-control search-bar" 
                         placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..." 
                         value="{{ request('search') }}"
                     >
@@ -127,7 +127,7 @@
                                     <div class="d-flex justify-content-center">
                                         <!-- View -->
                                         <a href="{{ route('company.applications.show.company', $application->id) }}" 
-                                           class="action-mini view" title="Lihat Detail">
+                                           class="action-mini view">
                                             <i class="fas fa-eye"></i>
                                         </a>
 
@@ -162,7 +162,7 @@
                                               onsubmit="return confirm('Apakah Anda yakin ingin menghapus lamaran ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="action-mini delete" title="Hapus">
+                                            <button type="submit" class="action-mini delete">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
