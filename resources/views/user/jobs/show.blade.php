@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Detail Lowongan Kerja')
+
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/detail-lowongan.css') }}">
 <div class="container-fluid">

@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Daftar Lowongan Kerja')
+
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/daftarlowongan.css') }}">
 <div class="job-list">

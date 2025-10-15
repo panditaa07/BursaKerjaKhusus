@@ -382,4 +382,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 
     console.log('✨ Modern Profile JS Loaded Successfully!');
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'scale(0.7) translateY(20px)';
+        setTimeout(() => {
+            btn.style.transition = 'all 0.6s ease-out';
+            btn.style.opacity = '1';
+            btn.style.transform = 'scale(1)';
+            btn.style.boxShadow = '0 4px 12px rgba(30, 58, 138, 0.2)';
+        }, 150 * (index + 1)); // biar muncul satu-satu dikit
+    });
+});
 });

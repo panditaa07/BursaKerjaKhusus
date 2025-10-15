@@ -83,8 +83,8 @@ body {
 }
 
 .job-image {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     border-radius: 12px;
     object-fit: cover;
     border: 2px solid var(--border-color);
@@ -111,6 +111,10 @@ body {
     font-weight: 500;
     margin-bottom: 0.25rem;
     letter-spacing: 0.3px;
+}
+
+.job-card:hover .company-name {
+    color: rgb(30, 58, 138);
 }
 
 .job-title {
@@ -191,7 +195,6 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
 }
@@ -285,29 +288,34 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .job-card {
+        display: flex;
         flex-direction: column;
+        align-items: center;
+        text-align: center;
         padding: 1.5rem;
     }
 
-    .job-content {
-        flex-direction: column;
-        width: 100%;
+    .job-image {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 1rem;
     }
 
-    .job-image {
-        width: 60px;
-        height: 60px;
+    .job-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        text-align: left;
     }
 
     .info-button {
         width: 100%;
+        margin-top: 1rem;
         text-align: center;
     }
-
-    .job-list h2 {
-        font-size: 1.5rem;
-    }
 }
+
 
 /* Smooth Scrolling */
 html {
