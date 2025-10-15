@@ -121,7 +121,7 @@
     font-weight: 600;
 }
 
-/* === Tombol Aksi === */
+/* === Tombol Aksi (mini icon di tabel) === */
 .btn-action {
     display: inline-flex;
     justify-content: center;
@@ -169,7 +169,7 @@
     transform: translateY(-4px);
 }
 
-/* ====== Judul Section ("Pelamar Terbaru", "Lowongan Terbaru") ====== */
+/* ====== Judul Section ====== */
 .section-title {
     font-weight: 700;
     color: #1E3A8A; /* Biru tua */
@@ -192,7 +192,7 @@
     box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
 }
 
-/* Tambahan opsional: efek hover biar keren */
+/* Tambahan opsional: efek hover */
 .section-title:hover::after {
     width: 160px;
     transition: width 0.3s ease;
@@ -201,7 +201,7 @@
 /* ======= Perbaiki warna teks & garis bawah judul ======= */
 .table-section h3,
 .section-title {
-    color: #1E3A8A !important; /* biru tua */
+    color: #1E3A8A !important;
     font-weight: 700 !important;
     border-bottom: 4px solid transparent !important;
     background: linear-gradient(to right, #1E3A8A, #2563eb) !important;
@@ -285,7 +285,6 @@
     display: none; /* hilangkan panah bawaan */
 }
 
-
 /* ===== Tombol Aksi (Sama seperti Semua Lowongan) ===== */
 .action-btn {
     display: inline-flex;
@@ -301,20 +300,15 @@
     transition: 0.3s;
 }
 
-.action-btn.view {
-    background-color: #3b82f6; /* biru */
-}
-.action-btn.edit {
-    background-color: #fbbf24; /* kuning */
-}
-.action-btn.delete {
-    background-color: #ef4444; /* merah */
-}
+.action-btn.view  { background-color: #3b82f6; }
+.action-btn.edit  { background-color: #fbbf24; }
+.action-btn.delete{ background-color: #ef4444; }
 
 .action-btn:hover {
     opacity: 0.85;
     transform: translateY(-2px);
 }
+
 /* ===============================
    LOWONGAN TERBARU (scoped, aman)
    =============================== */
@@ -356,7 +350,7 @@
     linear-gradient(135deg, var(--b700), var(--b400));
 }
 
-/* Avatar klik (tanpa scale agar tidak ‘buggy’) */
+/* Avatar klik */
 .jobs-latest .jl-avatar{
   position:absolute; top:34px; left:50%; transform:translateX(-50%);
   width:76px; height:76px; border-radius:16px; overflow:hidden;
@@ -377,7 +371,7 @@
 .jobs-latest .jl-title{ display:inline-block; margin-top:2px; font-weight:800; font-size:1.05rem; color:var(--b700); text-decoration:none; }
 .jobs-latest .jl-title:hover{ text-decoration:underline; }
 
-/* Ribbon "Baru" */
+/* Ribbon */
 .jobs-latest .jl-ribbon{
   position:absolute; top:-10px; left:-36px; transform:rotate(-12deg);
   background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; font-size:.75rem; font-weight:800;
@@ -393,7 +387,7 @@
 .jobs-latest .jl-actions .btn-info{ background:var(--b600); border-color:var(--b600); }
 .jobs-latest .jl-actions .btn-info:hover{ background:var(--b700); border-color:var(--b700); }
 
-/* Modal preview: 16:9 */
+/* Modal 16:9 */
 .jobs-latest .modal-dialog{ max-width:900px; }
 .jobs-latest .modal-image-frame{
   aspect-ratio:16/9; width:100%;
@@ -406,7 +400,7 @@
 }
 .jobs-latest .modal-content{ border-radius:16px; overflow:hidden; }
 
-/* Dark mode */
+/* Dark mode (default) */
 @media (prefers-color-scheme: dark){
   .jobs-latest .jl-card{ background:#0f172a; border-color:rgba(255,255,255,.06); }
   .jobs-latest .jl-company{ color:#e5e7eb; }
@@ -419,25 +413,21 @@
   .jobs-latest .jl-card, .jobs-latest .jl-avatar, .jobs-latest .jl-avatar::after{ transition:none !important; }
 }
 
-/* ====== Modal Preview Glow (scoped) ====== */
-
-/* bikin konten modal transparan + glassmorphism */
+/* ====== Modal Preview Glow ====== */
 .jobs-latest .modal-content{
-  background: rgba(17, 24, 39, 0.35);               /* glass layer */
+  background: rgba(17, 24, 39, 0.35);
   backdrop-filter: blur(14px) saturate(120%);
   -webkit-backdrop-filter: blur(14px) saturate(120%);
   border: 1px solid rgba(255,255,255,.15);
   box-shadow: 0 20px 60px rgba(2, 6, 23, .45);
 }
 
-/* kanvas gambar: gradient, glow, vignette, pola halus */
 .jobs-latest .modal-image-frame{
   position: relative;
   aspect-ratio: 16 / 9;
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
-  /* base gradient biru */
   background:
     radial-gradient(1200px 400px at 10% 0%, rgba(59,130,246,.25), transparent 60%),
     radial-gradient(900px 300px at 90% 100%, rgba(147,197,253,.18), transparent 60%),
@@ -447,17 +437,14 @@
     0 10px 30px rgba(2, 6, 23, .35);
 }
 
-/* noise super halus biar bertekstur (hemat performa) */
 .jobs-latest .modal-image-frame::before{
   content:"";
   position:absolute; inset:0;
-  background-image:
-    radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
   background-size: 3px 3px;
   opacity:.25; pointer-events:none;
 }
 
-/* vignette lembut supaya fokus ke gambar */
 .jobs-latest .modal-image-frame::after{
   content:"";
   position:absolute; inset:0;
@@ -465,7 +452,6 @@
   pointer-events:none;
 }
 
-/* gambar: floating + hover zoom lembut */
 .jobs-latest .modal-image-frame img{
   max-width: 100%; max-height: 100%;
   object-fit: contain;
@@ -479,7 +465,6 @@
   box-shadow: 0 28px 80px rgba(2,6,23,.5), 0 0 0 1px rgba(255,255,255,.08);
 }
 
-/* header modal: teks terang + tanpa garis */
 .jobs-latest .modal-header{
   background: transparent;
   color: #e5edff;
@@ -543,11 +528,40 @@
 .table-custom .action-mini.edit:hover   { background:#fef9c3; box-shadow:0 6px 16px rgba(250,204,21,.28); transform:translateY(-2px); }
 .table-custom .action-mini.delete:hover { background:#fee2e2; box-shadow:0 6px 16px rgba(239,68,68,.28); transform:translateY(-2px); }
 
-/* Hilangkan garis bawah di icon aksi (khususnya view) */
-.table-custom .action-mini {
-  text-decoration: none !important;
-}
-.table-custom .action-mini:hover {
-  text-decoration: none !important;
+.table-custom .action-mini { text-decoration: none !important; }
+.table-custom .action-mini:hover { text-decoration: none !important; }
+
+/* =========================================================
+   COMPACT BUTTONS for "Lowongan Terbaru" cards (override)
+   ========================================================= */
+.jobs-latest .jl-actions{ 
+  gap: .5rem !important; 
+  margin-top: .75rem !important;
 }
 
+.jobs-latest .jl-actions .btn{
+  min-width: auto !important;         /* override 72px */
+  height: 36px !important;            /* lebih pendek */
+  padding: .35rem .7rem !important;   /* padding kecil */
+  border-radius: 10px !important;     /* sudut halus */
+  font-size: .9rem !important;        /* teks sedikit lebih kecil */
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .35rem !important;             /* jarak ikon-teks */
+}
+
+.jobs-latest .jl-actions .btn i{
+  font-size: .95rem !important;
+  margin: 0 !important;
+}
+
+/* Lebih kompak di layar kecil */
+@media (max-width: 480px){
+  .jobs-latest .jl-actions .btn{
+    height: 34px !important;
+    padding: .3rem .6rem !important;
+    font-size: .85rem !important;
+  }
+}
