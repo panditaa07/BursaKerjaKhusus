@@ -565,3 +565,16 @@
     font-size: .85rem !important;
   }
 }
+
+.btn-info,
+.btn-warning {
+    color: #fff !important;        /* teks putih */
+    font-weight: 600;              /* biar lebih jelas */
+}
+
+/* opsional: hover biar tetap putih juga */
+.btn-info:hover,
+.btn-warning:hover {
+    color: #fff !important;
+    opacity: 0.9;
+}
