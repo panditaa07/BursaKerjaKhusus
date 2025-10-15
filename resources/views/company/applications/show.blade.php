@@ -2,13 +2,18 @@
 
 @section('title', 'Detail Pelamar')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/detailpelamarcom.css') }}">
+@endpush
+
 @section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0">Detail Pelamar</h1>
-        <a href="{{ route('company.pelamar.all') }}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left me-2"></i>Kembali
-        </a>
+        <a href="{{ route('company.pelamar.all') }}" class="btn-kembali">
+    <i class="fas fa-arrow-left me-2"></i>Kembali
+    </a>
+
     </div>
 
     <!-- Profile Photo Section -->

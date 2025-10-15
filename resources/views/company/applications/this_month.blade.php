@@ -140,19 +140,30 @@
                                                     aria-expanded="false">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" 
-                                                aria-labelledby="dropdownMenuButton{{ $application->id }}">
-                                                @foreach(['submitted'=>'Submitted','test1'=>'Test 1','test2'=>'Test 2','interview'=>'Interview','accepted'=>'Terima','rejected'=>'Tolak'] as $key=>$label)
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="{{ $key }}">
-                                                            <button type="submit" class="dropdown-item">{{ $label }}</button>
-                                                        </form>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
+                                            <ul class="dropdown-menu dropdown-menu-end"
+    aria-labelledby="dropdownMenuButton{{ $application->id }}">
+    @foreach ([
+        'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
+        'test1' => ['icon' => 'fa-flask', 'label' => 'Test 1'],
+        'test2' => ['icon' => 'fa-flask', 'label' => 'Test 2'],
+        'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
+        'accepted' => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
+        'rejected' => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
+    ] as $status => $info)
+        <li>
+            <form action="{{ route('company.applications.updateStatus', $application->id) }}"
+                  method="POST" class="d-inline">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="status" value="{{ $status }}">
+                <button type="submit" class="dropdown-item">
+                    <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
+                </button>
+            </form>
+        </li>
+    @endforeach
+</ul>
+
                                         </div>
 
                                         <!-- Delete -->
