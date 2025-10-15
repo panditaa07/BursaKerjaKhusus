@@ -1,232 +1,334 @@
 /* ==============================
-   KELOLA PELAMAR - COMPANY (Versi Seragam dgn Admin)
-   Warna utama: rgb(30, 58, 138)
-============================== */
+   KELOLA PELAMAR - COMPANY
+   ============================== */
 
 /* ===== BASE ===== */
-.container-fluid {
-    padding: 24px !important;
-    background: #ffffff !important;
-    min-height: 100vh !important;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+.container-fluid{
+  padding:24px!important;
+  background:#fff!important;
+  min-height:100vh!important;
+  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;
 }
 
-/* ===== TITLE SECTION ===== */
-h2.h4 {
-    font-size: 28px !important;
-    font-weight: 700 !important;
-    color: rgb(30, 58, 138) !important;
-    border-bottom: 4px solid rgb(30, 58, 138);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+/* ===== TITLE ===== */
+h2.h4{
+  font-size:28px!important;
+  font-weight:700!important;
+  color:#1f3a95!important;
+  border-bottom:4px solid #1f3a95;
+  padding-bottom:10px;
+  margin-bottom:20px;
 }
 
-/* ===== SEARCH FORM ===== */
-.input-group .form-control {
-    border-radius: 10px 0 0 10px !important;
-    border: 2px solid #d0e1ff !important;
-    padding: 10px 16px !important;
+/* ===== SEARCH ===== */
+.input-group .form-control{
+  border-radius:10px 0 0 10px!important;
+  border:2px solid #d0e1ff!important;
+  padding:10px 16px!important;
+}
+.input-group .btn-primary{
+  background:#1f3a95!important;
+  border:none!important;
+  border-radius:0 10px 10px 0!important;
+  font-weight:700!important;
+  padding:10px 20px!important;
+  color:#fff!important;
+}
+.input-group .btn-outline-secondary{
+  border:2px solid #cbd5e1!important;
+  color:#334155!important;
+  background:#fff!important;
+  border-radius:10px!important;
+  margin-left:8px!important;
+}
+.input-group .btn-outline-secondary:hover{background:#f1f5f9!important}
+
+/* =========================
+   TABLE WRAPPER
+   ========================= */
+.company-applications-table{
+  --tbl-border:#cfe1ff;
+
+  background:#fff!important;
+  border-radius:16px!important;
+  /* biar dropdown tidak kepotong di mana pun */
+  overflow:visible!important;
+  border:2px solid #d0e1ff!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.08)!important;
 }
 
-.input-group .btn-primary {
-    background-color: rgb(30, 58, 138) !important;
-    border: none !important;
-    border-radius: 0 10px 10px 0 !important;
-    font-weight: 600 !important;
-    padding: 10px 20px !important;
+.company-applications-table .table-responsive{
+  overflow:visible!important;
+  padding:0!important;
 }
 
-.input-group .btn-outline-secondary {
-    border: 2px solid #ccc !important;
-    color: #333 !important;
+/* ===================
+   TABLE (general)
+   =================== */
+.company-applications-table table{
+  width:100%!important;
+  table-layout:auto!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  margin:0!important;
 }
 
-/* ===== FILTER BUTTONS ===== */
-.btn-outline-primary,
-.btn-primary {
-    font-weight: 600 !important;
-    border-radius: 10px !important;
-    padding: 8px 16px !important;
+/* ===== HEADER — SOLID & TANPA GARIS ===== */
+.company-applications-table .table thead th{
+  background:#1f3a95!important;   /* solid */
+  color:#fff!important;
+  border:0!important;              /* hilangkan garis */
+  padding:16px 18px!important;
+  font-size:16px!important;
+  font-weight:800!important;
+  letter-spacing:.3px!important;
+  white-space:nowrap!important;
+  vertical-align:middle!important;
+  text-transform:uppercase!important;
+  box-shadow:none!important;
+}
+.company-applications-table .table thead th:first-child{border-top-left-radius:16px!important}
+.company-applications-table .table thead th:last-child {border-top-right-radius:16px!important}
+
+/* ===== BODY ===== */
+.company-applications-table .table tbody td{
+  border-top:0!important;
+  border-bottom:1px solid var(--tbl-border)!important;
+  border-right:1px solid var(--tbl-border)!important;
+  padding:12px 14px!important;
+  vertical-align:middle!important;
+  font-size:14px!important;
+  color:#1f2937!important;
+}
+.company-applications-table .table tbody td:first-child{border-left:1px solid var(--tbl-border)!important}
+.company-applications-table .table tbody tr:last-child td{border-bottom:0!important}
+.table-hover tbody tr:hover{background:#f8fbff!important}
+
+/* Alignment kolom */
+.company-applications-table .table thead th:nth-child(1),
+.company-applications-table .table thead th:nth-last-child(2),
+.company-applications-table .table thead th:last-child,
+.company-applications-table .table tbody td:nth-child(1),
+.company-applications-table .table tbody td:nth-last-child(2),
+.company-applications-table .table tbody td:last-child{
+  text-align:center!important;
+}
+.company-applications-table .table thead th:nth-child(2),
+.company-applications-table .table thead th:nth-child(3),
+.company-applications-table .table thead th:nth-child(4),
+.company-applications-table .table thead th:nth-child(5),
+.company-applications-table .table tbody td:nth-child(2),
+.company-applications-table .table tbody td:nth-child(3),
+.company-applications-table .table tbody td:nth-child(4),
+.company-applications-table .table tbody td:nth-child(5){
+  text-align:left!important;
 }
 
-.btn-outline-primary {
-    border-color: rgb(30, 58, 138) !important;
-    color: rgb(30, 58, 138) !important;
-    transition: all 0.2s ease-in-out;
+/* Kolom NO */
+.table tbody td:first-child{font-weight:700;color:#64748b}
+
+/* ===== IKON — NORMALISASI (anti miring) ===== */
+.company-applications-table i,
+.company-applications-table .fa,
+.company-applications-table .fas,
+.company-applications-table .far,
+.company-applications-table .fal,
+.company-applications-table .fab,
+.company-applications-table .svg-inline--fa{
+  display:inline-block!important;
+  line-height:1!important;
+  vertical-align:middle!important;
+  transform:none!important;
+  margin:0!important;
 }
-
-.btn-outline-primary:hover {
-    background-color: rgb(30, 58, 138) !important;
-    color: #fff !important;
-}
-
-.btn-primary {
-    background-color: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-}
-
-
-/* ===== TABLE WRAPPER ===== */
-.company-applications-table {
-    background: #fff !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-    overflow: hidden !important;
-    border: 2px solid #d0e1ff !important;
-}
-
-/* ===== TABLE HEADER ===== */
-.table thead tr th {
-    background-color: rgb(30, 58, 138) !important;
-    color: #ffffff !important;
-    text-transform: uppercase !important;
-    font-size: 14px !important;
-    border: 1px solid #d0e1ff !important;
-}
-
-
-.table tbody td {
-    vertical-align: middle !important;
-    font-size: 15px !important;
-    color: #333 !important;
-}
-
-/* ===== STATUS BADGES ===== */
-.status-accepted {
-    background-color: #16a34a !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-.status-rejected {
-    background-color: #dc2626 !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-.status-pending {
-    background-color: #eab308 !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-.status-interview {
-    background-color: #2563eb !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-.status-test {
-    background-color: #7e22ce !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-.status-reviewed {
-    background-color: #f59e0b !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
+.company-applications-table td i.text-muted{ margin-right:8px!important; }
 
 /* ===== AVATAR ===== */
-.avatar-wrapper img {
-    border: 2px solid #d0e1ff !important;
-    object-fit: cover !important;
+.avatar-wrapper img{
+  width:36px!important;height:36px!important;
+  border:2px solid #d0e1ff!important;
+  object-fit:cover!important;
+  border-radius:50%!important;
 }
 
-/* ===== AKSI BUTTONS ===== */
-.btn-group .btn {
-    margin: 0 3px !important;
-    border-radius: 8px !important;
-    width: 34px !important;
-    height: 34px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+/* ===== BADGE STATUS (seperti admin) ===== */
+.badge{
+  border-radius:999px!important;
+  font-weight:800!important;
+  padding:8px 12px!important;
+  font-size:12.5px!important;
+}
+.badge i{font-size:8px}
+.status-accepted{background:#22c55e!important;color:#fff!important}
+.status-rejected{background:#ef4444!important;color:#fff!important}
+.status-interview{background:#0ea5e9!important;color:#fff!important}
+.status-test{background:#7c3aed!important;color:#fff!important}
+.status-pending{background:#f59e0b!important;color:#fff!important}
+.status-reviewed{background:#f59e0b!important;color:#fff!important}
+
+/* =========================================
+   AKSI (ikon kotak rounded — warna balik)
+   ========================================= */
+.company-applications-table .btn-group{
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+.company-applications-table .table thead th:last-child,
+.company-applications-table .table tbody td:last-child{
+  padding-right:18px!important;
+  padding-left:18px!important;
 }
 
-.btn-outline-info {
-    color: #2563eb !important;
-    border-color: #2563eb !important;
+.company-applications-table .btn-group .btn,
+.company-applications-table .dropdown .btn{
+  width:38px!important;height:38px!important;border-radius:10px!important;background:#fff!important;
+  display:grid!important;place-items:center!important;padding:0!important;margin:0!important;
+  font-size:0!important;line-height:0!important;border:2px solid transparent!important;box-sizing:border-box!important;
+  transform:none!important;
 }
 
-.btn-outline-info:hover {
-    background-color: #2563eb !important;
-    color: #fff !important;
+/* Ikon di dalam tombol */
+.company-applications-table .btn-group .btn i,
+.company-applications-table .dropdown .btn i{
+  display:block!important;width:1em!important;height:1em!important;font-size:16px!important;line-height:1!important;vertical-align:middle!important;margin:0!important;transform:none!important;
 }
 
-.btn-outline-warning {
-    color: #facc15 !important;
-    border-color: #facc15 !important;
+/* WARNA seperti sebelumnya: */
+.company-applications-table .btn-outline-info{
+  background:#eaf4ff!important;           /* biru muda */
+  border-color:#3b82f6!important;
+  color:#2563eb!important;
+  box-shadow:0 0 0 3px rgba(59,130,246,.14)!important;
 }
+.company-applications-table .btn-outline-warning{
+  background:#fff7db!important;           /* kuning muda */
+  border-color:#f59e0b!important;
+  color:#b45309!important;
+  box-shadow:0 0 0 3px rgba(245,158,11,.14)!important;
+}
+.company-applications-table .btn-outline-danger{
+  background:#ffe8e8!important;           /* merah muda */
+  border-color:#ef4444!important;
+  color:#dc2626!important;
+  box-shadow:0 0 0 3px rgba(239,68,68,.14)!important;
+}
+.company-applications-table .dropdown-toggle::after{display:none!important}
 
-.btn-outline-warning:hover {
-    background-color: #facc15 !important;
-    color: #fff !important;
+/* ===== DROPDOWN STATUS — SELALU DI DEPAN ===== */
+.company-applications-table td:last-child{ position:relative!important; overflow:visible!important; }
+.company-applications-table .dropdown{ position:relative!important; z-index:200!important; }
+.company-applications-table .dropdown-menu{
+  position:absolute!important;
+  z-index:99999!important;              /* di atas header & tombol */
+  min-width:220px!important;            /* cegah teks ke-potong */
+  white-space:nowrap!important;
+  padding:8px!important;
+  border:1px solid #e5e7eb!important;
+  border-radius:10px!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.18)!important;
+  background:#fff!important;
+  overflow:visible!important;
 }
-
-.btn-outline-danger {
-    color: #dc2626 !important;
-    border-color: #dc2626 !important;
+.company-applications-table .dropdown-menu .dropdown-item{
+  display:flex!important; align-items:center!important; gap:10px!important;
+  padding:10px 12px!important; border-radius:8px!important; font-weight:600!important;
+  color:#111827!important; background:transparent!important;
 }
-
-.btn-outline-danger:hover {
-    background-color: #dc2626 !important;
-    color: #fff !important;
-}
+.company-applications-table .dropdown-menu .dropdown-item:hover{ background:#f3f4f6!important; }
 
 /* ===== PAGINATION ===== */
-.pagination {
-    justify-content: center !important;
+.pagination{justify-content:center!important}
+.pagination .page-link{color:#1f3a95!important;font-weight:700!important;border-radius:6px!important}
+.pagination .page-item.active .page-link{background:#1f3a95!important;border-color:#1f3a95!important;color:#fff!important}
+
+/* ===== COMPACT ===== */
+.company-applications-table .table thead th{padding:12px 14px!important}
+.company-applications-table .table tbody td{padding:12px 14px!important;line-height:1.35!important}
+
+/* === PATCH: dropdown selalu di depan & ikon tidak “tembus” === */
+
+/* jangan ciptakan stacking-context pada tombol */
+.company-applications-table .btn-group .btn,
+.company-applications-table .btn-group .btn:hover,
+.company-applications-table .btn-group .btn:focus,
+.company-applications-table .btn-group .btn:active{
+  transform: none !important;
+  z-index: 1 !important;            /* tombol di bawah menu */
 }
 
-.pagination .page-link {
-    color: rgb(30, 58, 138) !important;
-    font-weight: 600 !important;
-    border-radius: 6px !important;
+/* sel aksi & dropdown   */
+.company-applications-table td:last-child{ position: relative !important; overflow: visible !important; }
+.company-applications-table .actions-cell{ position: relative !important; z-index: 2 !important; }
+.company-applications-table .dropdown{ position: relative !important; z-index: 20 !important; }
+
+/* menu dropdown paling atas */
+.company-applications-table .dropdown-menu{
+  position: absolute !important;
+  z-index: 99999 !important;
+  background: #fff !important;
 }
 
-.pagination .page-item.active .page-link {
-    background-color: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-    color: #fff !important;
+/* header & wrapper jangan memotong */
+.company-applications-table{ overflow: visible !important; }
+.company-applications-table .table-responsive{ overflow: visible !important; }
+
+/* normalisasi ikon agar tidak miring */
+.company-applications-table i,
+.company-applications-table .fa, .company-applications-table .fas,
+.company-applications-table .far, .company-applications-table .fab {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+/* Dropdown status: gaya dan layout ikon seperti contoh */
+.status-menu .dropdown-item{
+  font-weight: 600 !important;
+  padding: 10px 12px !important;
+  border-radius: 8px !important;
+}
+.status-menu .dropdown-item:hover{
+  background: #f3f4f6 !important;
+}
+.status-menu .dropdown-item i{
+  width: 18px;                 /* kolom ikon seragam */
+  text-align: center;
+  line-height: 1;
 }
 
-/* ===== PERBAIKAN WARNA TEKS HILANG ===== */
+/* Pastikan menu selalu di depan dan tidak ketimpa ikon tombol */
+.company-applications-table,
+.company-applications-table .table-responsive{ overflow: visible !important; }
 
-/* Pastikan tombol aktif tetap punya teks putih */
-.btn-primary,
-.btn-primary:focus,
-.btn-primary:active {
-    color: #ffffff !important;
+.actions-cell,
+.company-applications-table td:last-child{ position: relative !important; overflow: visible !important; }
+
+.company-applications-table .btn-group .btn,
+.company-applications-table .btn-group .btn:hover,
+.company-applications-table .btn-group .btn:focus,
+.company-applications-table .btn-group .btn:active{
+  transform: none !important;
+  z-index: 1 !important; /* tombol tetap di bawah menu */
 }
 
-/* Tombol outline-primary aktif atau fokus tetap biru */
-.btn-outline-primary.active,
-.btn-outline-primary:focus,
-.btn-outline-primary:active {
-    background-color: rgb(30, 58, 138) !important;
-    color: #ffffff !important;
+.company-applications-table .dropdown{ position: relative !important; z-index: 20 !important; }
+.company-applications-table .dropdown-menu{
+  position: absolute !important;
+  z-index: 99999 !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18) !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 10px !important;
+  background: #fff !important;
 }
 
-/* Perbaikan dropdown-item agar teks selalu terlihat */
-.dropdown-menu .dropdown-item {
-    color: #1e3a8a !important; /* biru tua */
+/* Normalisasi ikon agar tidak miring */
+.company-applications-table i,
+.company-applications-table .fa, .company-applications-table .fas,
+.company-applications-table .far, .company-applications-table .fab{
+  display: inline-block !important;
+  vertical-align: middle !important;
+  transform: none !important;
+  line-height: 1 !important;
 }
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #e0e7ff !important; /* biru muda */
-    color: #1e3a8a !important;
-}
-
-/* Pastikan teks badge tidak menghilang */
-.badge {
-    color: #ffffff !important;
-}
-

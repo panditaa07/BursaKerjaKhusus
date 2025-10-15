@@ -2,6 +2,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/kelolapelamarcom.css') }}">
+
 @endpush
 
 @section('content')
@@ -253,75 +254,31 @@
         @endif
     </div>
 
-    <!-- Custom JavaScript for dropdown functionality -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded');
-
-            // Test if Bootstrap is loaded
-            console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
-            console.log('Dropdown elements found:', document.querySelectorAll('.dropdown-toggle').length);
-
-            // Ensure all dropdowns work properly
-            if (typeof bootstrap !== 'undefined') {
-                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-                    return new bootstrap.Dropdown(dropdownToggleEl);
-                });
-                console.log('Bootstrap dropdowns initialized:', dropdownList.length);
-            } else {
-                console.warn('Bootstrap not loaded, using fallback');
-                // Fallback for dropdown functionality
-                document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-                    toggle.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        var dropdown = toggle.closest('.dropdown');
-                        var menu = dropdown.querySelector('.dropdown-menu');
-
-                        // Toggle menu visibility
-                        var isVisible = menu.style.display === 'block';
-                        menu.style.display = isVisible ? 'none' : 'block';
-
-                        // Close other dropdowns
-                        document.querySelectorAll('.dropdown-menu').forEach(function(otherMenu) {
-                            if (otherMenu !== menu) {
-                                otherMenu.style.display = 'none';
-                            }
-                        });
-                    });
-                });
-
-                // Close dropdowns when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.dropdown')) {
-                        document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-                            menu.style.display = 'none';
-                        });
-                    }
-                });
-            }
-
-            // Add click handler for dropdown items to prevent form submission issues
-            document.querySelectorAll('.dropdown-menu .dropdown-item').forEach(function(item) {
-                item.addEventListener('click', function(e) {
-                    // Only prevent default if it's a form button
-                    if (e.target.tagName === 'BUTTON' && e.target.closest('form')) {
-                        // Let the form submit normally
-                        return true;
-                    }
-                });
-            });
-
-            // Debug: Log when dropdown is clicked
-            document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-                toggle.addEventListener('click', function(e) {
-                    console.log('Dropdown clicked:', e.target);
-                    console.log('Dropdown button ID:', e.target.id);
-                    console.log('Dropdown aria-expanded:', e.target.getAttribute('aria-expanded'));
-                });
-            });
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Pastikan Bootstrap sudah aktif
+    if (typeof bootstrap !== 'undefined') {
+        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+            // Inisialisasi dropdown Bootstrap
+            new bootstrap.Dropdown(toggle, { autoClose: false });
         });
-    </script>
+    }
+
+    // Cegah dropdown langsung tertutup ketika klik di dalam menu
+    document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+        menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    });
+
+    // Pastikan form bisa dikirim tanpa gangguan dropdown
+    document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.stopPropagation(); // cegah dropdown nutup duluan
+            this.submit(); // kirim form normal
+        });
+    });
+});
+</script>
+
 @endsection

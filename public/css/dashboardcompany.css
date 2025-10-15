@@ -497,12 +497,19 @@
 }
 .jobs-latest .btn-close:hover{ opacity: 1; }
 
-/* dark-mode tweak (kalau OS user dark) */
-@media (prefers-color-scheme: dark){
-  .jobs-latest .modal-content{
-    background: rgba(8, 11, 20, 0.45);
-    border-color: rgba(255,255,255,.08);
-  }
+/* Paksa tampilan terang utk section jobs-latest */
+.jobs-latest .jl-card{
+  background:#fff !important;
+  border-color: rgba(0,0,0,.06) !important;
+}
+.jobs-latest .jl-company{ color:#1f2937 !important; }
+.jobs-latest .jl-title{ color:#1d4ed8 !important; }
+.jobs-latest .jl-meta{ color:#6b7280 !important; }
+
+/* Modal tetap terang */
+.jobs-latest .modal-content{
+  background:#ffffff !important;
+  border-color: rgba(0,0,0,.08) !important;
 }
 
 /* ====== Matikan hover baris pada tabel Pelamar Terbaru ====== */
