@@ -1,30 +1,3 @@
-/* ============================================
-   MODERN BLUE THEME - CSS VARIABLES
-   ============================================ */
-:root {
-    --primary-blue: #1e3a8a;
-    --primary-blue-dark: #1e40af;
-    --primary-blue-light: #3b82f6;
-    --accent-cyan: #06b6d4;
-    --accent-cyan-light: #22d3ee;
-    --danger-red: #ef4444;
-    --danger-red-hover: #dc2626;
-    --success-green: #10b981;
-    --bg-light: #f8fafc;
-    --bg-white: #ffffff;
-    --text-dark: #1e293b;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 12px rgba(30, 58, 138, 0.1);
-    --shadow-lg: 0 10px 25px rgba(30, 58, 138, 0.15);
-    --transition-speed: 0.3s;
-    --border-radius: 12px;
-}
-
-/* ============================================
-   GLOBAL STYLES
-   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -32,692 +5,193 @@
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
-    color: var(--text-dark);
-    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
     min-height: 100vh;
-    overflow-x: hidden;
+    padding: 20px;
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 2rem;
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeIn 0.6s ease-in;
 }
 
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.header {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.header h1 {
+    color: rgb(30, 58, 138);
+    font-size: 28px;
+    margin-bottom: 8px;
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.header p {
+    color: #6b7280;
+    font-size: 14px;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    padding: 40px;
+    animation: slideUp 0.6s ease-out;
 }
 
-@keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
+.photo-section {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 20px;
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
+.photo-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: var(--primary-blue);
-    margin-bottom: 2rem;
-    animation: fadeInUp 0.5s ease-out;
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgb(30, 58, 138);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
 }
 
-h3 {
-    font-size: 1.5rem;
-    color: var(--primary-blue-dark);
+.profile-photo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25);
 }
 
-/* ============================================
-   CARD COMPONENTS
-   ============================================ */
-.card {
-    background: var(--bg-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: all var(--transition-speed) ease;
-    animation: fadeIn 0.6s ease-out;
+.upload-btn {
+    margin-top: 12px;
+    display: inline-block;
+    background: rgb(30, 58, 138);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.card:hover {
-    box-shadow: var(--shadow-lg);
+.upload-btn:hover {
+    background: rgb(40, 68, 148);
     transform: translateY(-2px);
 }
 
-.card-header {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-    color: white;
-    padding: 1.5rem 2rem;
-    border-bottom: none;
+.form-group {
+    margin-bottom: 22px;
+    animation: fadeInUp 0.4s ease-out;
 }
 
-.card-header h3 {
-    color: white;
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.card-body {
-    padding: 2rem;
-}
-
-/* ============================================
-   FORM ELEMENTS
-   ============================================ */
-.form-label {
+label {
+    color: rgb(30, 58, 138);
+    font-weight: 500;
+    margin-bottom: 6px;
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-    transition: color var(--transition-speed) ease;
 }
 
-.form-control {
+input, textarea, select {
     width: 100%;
-    padding: 0.875rem 1rem;
-    border: 2px solid rgb(30, 58, 138);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all var(--transition-speed) ease;
-    background: var(--bg-white);
-    color: rgb(30, 58, 138);
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1.5px solid #e5e7eb;
+    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
-.form-control:focus {
+input:focus, textarea:focus, select:focus {
+    border-color: rgb(30, 58, 138);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
     outline: none;
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    transform: translateY(-1px);
 }
 
-.form-control:hover {
-    border-color: rgb(30, 58, 138);
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-.form-foto {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    border: 2px solid rgb(30, 58, 138);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all var(--transition-speed) ease;
-    background: var(--bg-white);
-    color: rgb(30, 58, 138);
+.btn-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
 }
 
-.form-foto:focus {
-    outline: none;
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    transform: translateY(-1px);
-}
-
-.form-foto:hover {
-    border-color: rgb(30, 58, 138);
-}
-
-.form-cv {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    border: 2px solid rgb(30, 58, 138);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all var(--transition-speed) ease;
-    background: var(--bg-white);
-    color: rgb(30, 58, 138);
-}
-
-.form-cv:focus {
-    outline: none;
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    transform: translateY(-1px);
-}
-
-.form-cv:hover {
-    border-color: rgb(30, 58, 138);
-}
-
-
-textarea.form-control {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.form-text {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--text-muted);
-}
-
-.text-muted {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-.mb-3 {
-    margin-bottom: 1.5rem;
-}
-
-/* ============================================
-   BUTTONS
-   ============================================ */
 .btn {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none !important;
+    padding: 12px 24px;
+    border-radius: 8px;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    position: relative;
-    overflow: hidden;
-}
-
-
-
-.btn:hover::before {
-    width: 300px;
-    height: 300px;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .btn-primary {
-    background:rgb(30, 58, 138);
-    color: white !important;
-    box-shadow: 0 4px 15px rgb(30, 58, 138);
+    background: rgb(30, 58, 138);
+    color: white;
 }
 
 .btn-primary:hover {
+    background: rgb(40, 68, 148);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
 
-.btn-primary:active {
-    transform: translateY(0);
-}
-
-
-
-.d-flex {
-    display: flex;
-}
-
-.justify-content-between {
-    justify-content: space-between;
-}
-
-/* ============================================
-   GRID SYSTEM
-   ============================================ */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -1rem;
-}
-
-.col-md-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-    padding: 0 1rem;
-}
-
-/* ============================================
-   IMAGE STYLES
-   ============================================ */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    transition: transform var(--transition-speed) ease;
-}
-
-img:hover {
-    transform: scale(1.05);
-}
-
-.mt-2 {
-    margin-top: 1rem;
-}
-
-/* ============================================
-   FILE INPUT CUSTOM STYLE
-   ============================================ */
-input[type="file"].form-control {
-    padding: 0.675rem 1rem;
-    cursor: pointer;
-    background: var(--bg-light);
-}
-
-input[type="file"].form-control::-webkit-file-upload-button {
-    background: var(--primary-blue);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 1rem;
-    transition: all var(--transition-speed) ease;
-    font-weight: 600;
-}
-
-input[type="file"].form-control::-webkit-file-upload-button:hover {
-    background: var(--primary-blue-dark);
-    transform: translateY(-1px);
-}
-
-/* ============================================
-   LINKS
-   ============================================ */
-a {
-    color: var(--primary-blue-light);
-    text-decoration: none;
-    transition: all var(--transition-speed) ease;
-    font-weight: 500;
-}
-
-a:hover {
-    color: var(--primary-blue-dark);
-    text-decoration: underline;
-}
-
-/* ============================================
-   TABLE STYLES (untuk halaman user management)
-   ============================================ */
-.table-responsive {
-    overflow-x: auto;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md);
+.btn-secondary {
     background: white;
-    animation: fadeIn 0.6s ease-out;
+    color: #6b7280;
+    border: 1.5px solid #e5e7eb;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-}
-
-thead {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-}
-
-thead th {
-    color: white;
-    padding: 1.25rem 1rem;
-    text-align: left;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-tbody tr {
-    border-bottom: 1px solid var(--border-color);
-    transition: all var(--transition-speed) ease;
-}
-
-tbody tr:hover {
-    background: rgba(59, 130, 246, 0.05);
-    transform: scale(1.01);
-}
-
-tbody td {
-    padding: 1.25rem 1rem;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-}
-
-/* ============================================
-   BADGES
-   ============================================ */
-.badge {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.badge-user {
-    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
-    color: white;
-}
-
-.badge-admin {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-    color: white;
-}
-
-/* ============================================
-   ACTION BUTTONS (Detail, Edit, Hapus)
-   ============================================ */
-.action-buttons {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.btn-detail {
-    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
-    color: white;
-    padding: 0.625rem 1.25rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all var(--transition-speed) ease;
-}
-
-.btn-detail:hover {
+.btn-secondary:hover {
+    background: #f9fafb;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
 }
 
-.btn-edit {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-    color: white;
-    padding: 0.625rem 1.25rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all var(--transition-speed) ease;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.btn-edit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.btn-hapus, .btn-danger {
-    background: linear-gradient(135deg, var(--danger-red) 0%, var(--danger-red-hover) 100%);
-    color: white;
-    padding: 0.625rem 1.25rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all var(--transition-speed) ease;
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.btn-hapus:hover, .btn-danger:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+@media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; }
+    .profile-card { padding: 25px; }
 }
 
-/* ============================================
-   SEARCH & FILTER
-   ============================================ */
-.search-filter-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    animation: slideInRight 0.5s ease-out;
+textarea#application_letter {
+    min-height: 150px;
 }
-
-.search-input {
-    flex: 1;
-    padding: 1rem 1.5rem;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all var(--transition-speed) ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-blue-light);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-}
-
-.filter-select {
-    padding: 1rem 1.5rem;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
-    background: white;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary-blue-light);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-}
-
-.btn-filter {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-    color: white;
-    padding: 1rem 2.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all var(--transition-speed) ease;
-}
-
-.btn-filter:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
-}
-
-/* ============================================
-   BACK BUTTON
-   ============================================ */
-.btn-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-    color: white;
-    padding: 0.875rem 1.75rem;
-    border-radius: 10px;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    transition: all var(--transition-speed) ease;
-}
-
-.btn-back:hover {
-    transform: translateX(-5px);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
-}
-
-/* ============================================
-   LOADING STATES
-   ============================================ */
-.loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* ============================================
-   ALERTS
-   ============================================ */
-.alert {
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1.5rem;
-    animation: slideInRight 0.5s ease-out;
-}
-
-.alert-success {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    color: #065f46;
-    border-left: 4px solid var(--success-green);
-}
-
-.alert-danger {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-    color: #991b1b;
-    border-left: 4px solid var(--danger-red);
-}
-
-.alert-info {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-    color: #1e40af;
-    border-left: 4px solid var(--primary-blue-light);
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-@media (max-width: 768px) {
-    .col-md-6 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
-    .container {
-        padding: 1rem;
-    }
-    
-    .card-body {
-        padding: 1.5rem;
-    }
-    
-    .search-filter-container {
-        flex-direction: column;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-    
-    table {
-        font-size: 0.875rem;
-    }
-    
-    thead th, tbody td {
-        padding: 0.875rem 0.5rem;
-    }
-}
-
-/* ============================================
-   SCROLLBAR STYLING
-   ============================================ */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-light);
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-blue-dark);
-}
-
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
-.text-center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mt-4 { margin-top: 2rem; }
-
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
-.mb-4 { margin-bottom: 2rem; }
-
-.p-1 { padding: 0.5rem; }
-.p-2 { padding: 1rem; }
-.p-3 { padding: 1.5rem; }
-.p-4 { padding: 2rem; }
-
-/* ============================================
-   SMOOTH TRANSITIONS FOR ALL INTERACTIVE ELEMENTS
-   ============================================ */
-button, input, select, textarea, a, .card, .btn {
-    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Warna tombol Choose File aja */
-input[type="file"]::-webkit-file-upload-button {
-    background-color: rgb(30, 58, 138);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-/* Hover effect */
-input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: rgb(30, 58, 138);
-}
-
