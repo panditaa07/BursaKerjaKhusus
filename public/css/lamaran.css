@@ -94,7 +94,7 @@
 }
 
 .table td:last-child {
-    width: 90px; /* lebar pas untuk tombol kecil */
+    width: 90px;
     white-space: nowrap;
     text-align: center;
     padding-right: 0.75rem;
@@ -105,8 +105,8 @@
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 0.8rem; /* tombol lebih kecil */
-    padding: 0.35rem 0.75rem; /* lebih ramping */
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -122,7 +122,7 @@
 
 .btn-detail::after,
 .btn-primary::after {
-    content: none !important; /* hapus pseudo-element panah */
+    content: none !important;
 }
 
 .company-name-cell {
@@ -288,67 +288,17 @@
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
 }
 
-/* ===== RESPONSIVE STYLES ===== */
-@media (max-width: 992px) {
-    .container-fluid {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    
-    .card-title {
-        font-size: 1.1rem;
-    }
-    
-    .table tbody td {
-        font-size: 0.85rem;
-        padding: 0.75rem 1rem;
-    }
+/* === Hapus background biru saat tombol NEXT diklik atau difokuskan === */
+.page-item:not(.disabled) .page-link:focus,
+.page-item:not(.disabled) .page-link:active {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
-@media (max-width: 768px) {
-    .d-flex.gap-2 {
-        flex-direction: column;
-    }
-    
-    .position-relative {
-        width: 100% !important;
-    }
-    
-    .btn.rounded-pill {
-        width: 100%;
-    }
-    
-    .table {
-        font-size: 0.8rem;
-    }
-    
-    .table thead th,
-    .table tbody td {
-        padding: 0.5rem;
-    }
-    
-    .company-name-cell {
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
-
-@media (max-width: 576px) {
-    .card-header {
-        padding: 1rem;
-    }
-    
-    .badge {
-        font-size: 0.75rem;
-        padding: 0.35rem 0.75rem;
-    }
-    
-    .btn-primary.d-flex {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-    }
+.page-link::after {
+    display: none !important;
+    content: none !important;
 }
 
 /* ===== ANIMATION ===== */
@@ -400,16 +350,69 @@
     margin-bottom: 0 !important;
 }
 
-/* === Hapus background biru saat tombol NEXT diklik atau difokuskan === */
-.page-item:not(.disabled) .page-link:focus,
-.page-item:not(.disabled) .page-link:active {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
+/* ===== RESPONSIVE STYLES ===== */
 
-/* Opsional: tetap hilangkan efek garis bawah biru */
-.page-link::after {
-    display: none !important;
-    content: none !important;
+/* === SMARTPHONE TANPA SCROLL (SKALA DESKTOP) === */
+@media (max-width: 576px) {
+    html, body {
+        overflow-x: hidden !important;
+    }
+
+    .card {
+        transform: scale(0.85);
+        transform-origin: top center;
+        width: 118%;
+        margin-left: -9%;
+    }
+
+    .card-header {
+        padding: 0.6rem 0.8rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    .card-title {
+        font-size: 0.9rem !important;
+    }
+
+    .table {
+        font-size: 0.7rem !important;
+        table-layout: auto !important;
+        width: 100% !important;
+    }
+
+    .table thead th,
+    .table tbody td {
+        padding: 0.3rem 0.4rem !important;
+        white-space: normal !important;
+        text-align: left;
+    }
+
+    .btn-detail,
+    .btn-primary {
+        font-size: 0.65rem !important;
+        padding: 0.25rem 0.45rem !important;
+        border-radius: 10px !important;
+    }
+
+    .badge {
+        font-size: 0.6rem !important;
+        padding: 0.25rem 0.45rem !important;
+    }
+
+    .page-link {
+        font-size: 0.65rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    .pagination {
+        gap: 0.25rem !important;
+    }
+
+    .text-center.py-5 h5 {
+        font-size: 1rem !important;
+    }
+
+    .text-center.py-5 p {
+        font-size: 0.85rem !important;
+    }
 }
