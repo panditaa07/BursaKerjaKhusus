@@ -1228,3 +1228,76 @@ td.aksi .table-btn {
     box-shadow: none !important;
     filter: none !important;
 }
+
+/* ==============================
+   FIX TAMBAH LOWONGAN - HILANGKAN FOCUS RING & WARNA TOMBOL
+============================== */
+
+/* Hilangkan focus ring untuk semua elemen */
+.container-fluid *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Tombol Simpan Lowongan - pastikan biru */
+.btn-primary {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #2563EB, #1E40AF) !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:focus {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
+    border: none !important;
+    color: #ffffff !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:active {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    color: #ffffff !important;
+}
+
+/* Tombol Kembali - pastikan biru */
+.btn-secondary {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(90deg, #2563EB, #1E40AF) !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary:focus {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
+    border: none !important;
+    color: #ffffff !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary:active {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    color: #ffffff !important;
+}
+
+/* Form elements focus */
+.form-control:focus,
+.form-select:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Alert close button */
+.btn-close:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

@@ -393,3 +393,94 @@
 .action-mini i {
     pointer-events: none;
 }
+
+/* ==============================
+   HILANGKAN FOCUS RING - KELOLA LOWONGAN KERJA
+============================== */
+
+/* Hilangkan focus ring untuk semua elemen di halaman ini */
+.kelola-lowongan *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Khusus untuk tombol utama */
+.btn:focus,
+.btn-primary:focus,
+.btn-secondary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* Tombol Tambah Lowongan - focus state */
+.btn-primary:focus {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Tombol Cari - focus state */
+.btn-secondary:focus {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Action buttons di tabel - focus state */
+.action-mini:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+    transform: none !important;
+    background: #fff !important;
+}
+
+/* Khusus untuk setiap jenis action button */
+.action-mini.view:focus {
+    border-color: #0ea5e9 !important;
+    color: #0ea5e9 !important;
+}
+
+.action-mini.edit:focus {
+    border-color: #facc15 !important;
+    color: #ca8a04 !important;
+}
+
+.action-mini.delete:focus {
+    border-color: #ef4444 !important;
+    color: #dc2626 !important;
+}
+
+/* Form elements - focus state */
+.form-control:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+    background: #fff !important;
+}
+
+/* Pagination links */
+.page-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #2563EB !important;
+}
+
+/* Badge focus */
+.badge:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Link dalam empty state */
+.empty-state .btn:focus {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
+}

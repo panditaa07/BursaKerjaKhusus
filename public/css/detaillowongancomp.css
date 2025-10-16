@@ -798,3 +798,205 @@ body.job-detail .card {
   font-style: normal !important;
 }
 
+/* ==============================
+   HILANGKAN FOCUS RING - DETAIL LOWONGAN
+============================== */
+
+/* Hilangkan focus ring untuk semua elemen di halaman ini */
+.container-fluid *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Khusus untuk tombol aksi utama */
+.jd-actions .btn:focus,
+.btn-outline-secondary:focus,
+.btn-warning:focus,
+.btn-outline-primary:focus,
+.btn-success:focus,
+.btn-danger:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* Tombol Kembali - focus state */
+.jd-actions .btn-outline-secondary:focus {
+    background: linear-gradient(135deg, #2156e0, #1a43b4) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08) !important;
+}
+
+/* Tombol Edit - focus state */
+.jd-actions .btn-warning:focus {
+    background: linear-gradient(135deg, #facc15, #eab308) !important;
+    border: none !important;
+    color: #1a1a1a !important;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08) !important;
+}
+
+/* Tombol Nonaktifkan - focus state */
+.jd-actions .btn-outline-primary:focus {
+    background: linear-gradient(135deg, #3b82f6, #2156e0) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08) !important;
+}
+
+/* Tombol Aktifkan - focus state */
+.jd-actions .btn-success:focus {
+    background: linear-gradient(135deg, #22c55e, #15803d) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08) !important;
+}
+
+/* Tombol Hapus - focus state */
+.jd-actions .btn-danger:focus {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08) !important;
+}
+
+/* Tombol Lihat di tabel pelamar - focus state */
+.btn-icon:focus,
+.btn-view:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #06b6d4 !important;
+    background: #fff !important;
+    color: #06b6d4 !important;
+    transform: none !important;
+}
+
+/* Breadcrumb links - focus state */
+.breadcrumb a:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+}
+
+/* Alert close button - focus state */
+.btn-close:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Link dalam tabel - focus state */
+.table-applicants a:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+}
+
+/* Chip status - focus state */
+.chip:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Form elements dalam tombol aksi */
+.jd-actions form:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Tombol dalam form - focus state */
+.jd-actions form button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* ==============================
+   FIX TOMBOL EDIT LOWONGAN - ACTIVE STATE
+============================== */
+
+/* Override Bootstrap active state yang bikin teks hitam */
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning:active:focus,
+.btn-warning:active:hover,
+.btn-warning:not(:disabled):not(.disabled):active,
+.btn-warning:not(:disabled):not(.disabled):active:focus {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #eab308, #ca8a04) !important;
+    border-color: transparent !important;
+}
+
+/* Hover state */
+.btn-warning:hover {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #fde047, #facc15) !important;
+}
+
+/* Normal state */
+.btn-warning {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #facc15, #eab308) !important;
+}
+
+/* Focus state */
+.btn-warning:focus {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #facc15, #eab308) !important;
+}
+
+/* Pastikan icon juga putih di semua state */
+.btn-warning i,
+.btn-warning .fas,
+.btn-warning .fa {
+    color: #ffffff !important;
+}
+
+/* Override khusus untuk tombol di jd-actions */
+.jd-actions .btn-warning:active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #eab308, #ca8a04) !important;
+    transform: translateY(0) !important;
+}
+
+/* ==============================
+   FIX TEKS TOMBOL EDIT LOWONGAN - PUTIH
+============================== */
+
+/* Target khusus untuk teks (bukan icon) */
+.btn-warning,
+.btn-warning:active,
+.btn-warning:focus,
+.btn-warning:hover {
+    color: #ffffff !important;
+}
+
+/* Override Bootstrap yang membuat teks hitam di active state */
+.btn-warning:active,
+.btn-warning:not(:disabled):not(.disabled):active {
+    color: #ffffff !important;
+}
+
+/* Pastikan teks dalam span atau elemen lain juga putih */
+.btn-warning span,
+.btn-warning .btn-text,
+.btn-warning:not(i):not(.fas):not(.fa) {
+    color: #ffffff !important;
+}
+
+/* Force teks putih dengan selector lebih spesifik */
+.jd-actions .btn-warning,
+.jd-actions .btn-warning:active,
+.jd-actions .btn-warning:focus,
+.jd-actions .btn-warning:hover {
+    color: #ffffff !important;
+}
+
+/* Override untuk semua elemen teks dalam tombol kecuali icon */
+.btn-warning *:not(i):not(.fas):not(.fa) {
+    color: #ffffff !important;
+}

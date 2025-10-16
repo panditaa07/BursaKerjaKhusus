@@ -185,3 +185,84 @@ hr {
         min-width: 100%;
     }
 }
+
+/* ==============================
+   HILANGKAN FOCUS RING - EDIT LOWONGAN
+============================== */
+
+/* Hilangkan focus ring untuk semua elemen di halaman ini */
+.container-fluid *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Khusus untuk tombol utama */
+.btn:focus,
+.btn-warning:focus,
+.btn-secondary:focus,
+.btn-outline-primary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* Tombol Simpan Perubahan - focus state */
+.btn-warning:focus {
+    background: linear-gradient(90deg, #2563eb, #3b82f6) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18) !important;
+}
+
+/* Tombol Kembali - focus state */
+.btn-secondary:focus {
+    background: linear-gradient(90deg, #2563eb, #3b82f6) !important;
+    border: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18) !important;
+}
+
+/* Form elements - focus state */
+.form-control:focus,
+.form-select:focus,
+.gaji-input:focus {
+    border-color: #9ca3af !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+}
+
+/* Alert close button */
+.btn-close:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Textarea focus */
+textarea.form-control:focus {
+    border-color: #9ca3af !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+}
+
+/* Select dropdown focus */
+.form-select:focus {
+    border-color: #9ca3af !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+}
+
+/* Input number focus */
+input[type="number"]:focus {
+    border-color: #9ca3af !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+}
+
+/* Input date focus */
+input[type="date"]:focus {
+    border-color: #9ca3af !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+}

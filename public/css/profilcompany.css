@@ -106,3 +106,42 @@ i,.fas,.far,.fal,.fab{vertical-align:middle;transform:none}
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(47, 87, 239, 0.35);
 }
+
+/* ==============================
+   HILANGKAN FOCUS RING UNTUK PROFIL COMPANY
+============================== */
+
+/* Hilangkan focus ring untuk semua elemen di halaman company */
+.company-page *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Khusus untuk tombol Edit Profil */
+.cp-actions .btn:focus {
+    background: #2f57ef !important;
+    border-color: #2f57ef !important;
+    transform: none !important;
+    box-shadow: 0 4px 10px rgba(47, 87, 239, 0.25) !important;
+}
+
+/* Untuk link di halaman company */
+.cp-link:focus,
+.link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Untuk card dan elemen lainnya */
+.card:focus,
+.cp-hero:focus {
+    outline: none !important;
+}
+
+/* Tetap beri focus yang baik untuk accessibility (opsional) */
+@media (prefers-reduced-motion: no-preference) {
+    .company-page *:focus-visible {
+        outline: 2px solid #2f57ef !important;
+        outline-offset: 2px !important;
+    }
+}

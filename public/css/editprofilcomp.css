@@ -210,3 +210,59 @@ input[type="file"].form-control::file-selector-button:hover{
   border-color: var(--blue-600);
   color: #fff;                      /* tetap putih pas hover */
 }
+
+/* ==============================
+   HILANGKAN FOCUS RING - EDIT PROFIL
+============================== */
+
+/* Hilangkan focus ring untuk semua elemen di halaman edit profil */
+.container *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Khusus untuk tombol */
+.btn:focus,
+.btn-primary:focus,
+.btn-secondary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* Tombol Batal - focus state */
+.btn-secondary:focus {
+    background: var(--blue-500) !important;
+    border-color: var(--blue-500) !important;
+    color: #fff !important;
+    transform: none !important;
+}
+
+/* Tombol Simpan - focus state */
+.btn-primary:focus {
+    background: var(--blue-500) !important;
+    border-color: var(--blue-500) !important;
+    color: #fff !important;
+    transform: none !important;
+}
+
+/* Form elements - focus state */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--ring-strong) !important;
+    box-shadow: 0 0 0 4px rgba(143,177,255,.25) !important;
+    background: #fff !important;
+}
+
+/* File input focus */
+input[type="file"].form-control:focus {
+    border-color: var(--ring-strong) !important;
+    box-shadow: 0 0 0 4px rgba(143,177,255,.25) !important;
+}
+
+/* Untuk link */
+a:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}

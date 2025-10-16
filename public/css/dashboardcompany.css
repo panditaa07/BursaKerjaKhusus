@@ -578,3 +578,111 @@
     color: #fff !important;
     opacity: 0.9;
 }
+
+/* === RAPIHIN BUTTON DI CARD LOWONGAN TERBARU === */
+.jobs-latest .jl-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.jobs-latest .jl-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.jobs-latest .jl-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto; /* Dorong tombol ke bawah */
+  padding-top: 15px;
+}
+
+/* Tombol seragam */
+.jobs-latest .jl-actions .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+  min-width: 90px;
+  height: 38px; /* bikin tinggi sejajar */
+  transition: 0.2s ease;
+}
+
+/* Hover lembut */
+.jobs-latest .jl-actions .btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Warna tombol */
+.jobs-latest .btn-info {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+}
+.jobs-latest .btn-warning {
+  background-color: #f59e0b;
+  color: #fff;
+  border: none;
+}
+.jobs-latest .btn-danger {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+}
+
+/* Biar icon dan teks selalu rata tengah */
+.jobs-latest .jl-actions .btn i {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+/* === HILANGKAN GARIS BIRU SAAT DIKLIK / FOCUS === */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+.select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Opsional: untuk link atau tombol khusus dashboard */
+.stat-link:focus,
+.action-btn:focus,
+.action-mini:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ==============================
+   SIMPLE FIX - Biarkan Tabel Natural
+============================== */
+
+.container.table-section {
+    max-width: 100%;
+    overflow-x: auto; /* Biarkan scroll jika perlu */
+}
+
+.table-section {
+    width: auto;
+    min-width: 100%;
+}
+
+.table-custom {
+    width: auto;
+    min-width: 100%;
+}
+
+/* Untuk mobile */
+@media (max-width: 768px) {
+    .table-section {
+        padding: 20px 15px;
+    }
+}

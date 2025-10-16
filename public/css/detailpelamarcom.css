@@ -123,3 +123,50 @@
 .table-section, .table-custom {
     overflow: visible !important;
 }
+
+/* ==============================
+   HILANGKAN FOCUS OUTLINE/RING
+============================== */
+
+/* Hilangkan outline/ring biru saat focus di semua elemen */
+a:focus,
+button:focus,
+.btn:focus,
+.btn-kembali:focus,
+.form-select:focus,
+.form-control:focus,
+.dropdown-toggle:focus,
+.action-mini:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* Khusus untuk tombol kembali */
+.btn-kembali:focus {
+    background: #2f57ef !important;
+    border-color: #2f57ef !important;
+    transform: none !important;
+    box-shadow: 0 4px 10px rgba(47, 87, 239, 0.25) !important;
+}
+
+/* Untuk tombol-tombol Bootstrap */
+.btn:focus {
+    background: #2f57ef !important;
+    border-color: #2f57ef !important;
+    transform: none !important;
+    box-shadow: 0 4px 10px rgba(47, 87, 239, 0.25) !important;
+}
+
+/* Untuk dropdown */
+.dropdown-toggle:focus {
+    background: #fff !important;
+    border-color: inherit !important;
+}
+
+/* Untuk form elements */
+.form-select:focus,
+.form-control:focus {
+    border-color: #2f57ef !important;
+    box-shadow: 0 0 0 0.2rem rgba(47, 87, 239, 0.25) !important;
+}
