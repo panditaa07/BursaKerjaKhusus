@@ -8,14 +8,14 @@
     border-radius: 16px;
     padding: 32px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-top: 5px solid rgb(30, 58, 138);
+    border-top: 5px solid #1E3A8A;
     text-align: center;
 }
 
 /* === Judul Tengah === */
 .table-section h3 {
     font-weight: 700;
-    color: rgb(30, 58, 138);
+    color: #1E3A8A !important;
     position: relative;
     display: inline-block;
     margin-bottom: 28px;
@@ -31,19 +31,20 @@
     transform: translateX(-50%);
     width: 70px;
     height: 3px;
-    background: rgb(30, 58, 138);
+    background: #1E3A8A !important;
     border-radius: 3px;
     transition: width 0.3s ease;
 }
 
 .table-section h3:hover::after {
     width: 100px;
+    background: #1E3A8A !important;
 }
 
 /* === Tabel === */
 .table-custom {
     width: 100%;
-    border-collapse: separate; /* supaya garis tidak nembus header */
+    border-collapse: separate;
     border-spacing: 0;
     border-radius: 12px;
     overflow: hidden;
@@ -53,7 +54,7 @@
 
 /* Header tabel */
 .table-custom thead tr {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB); /* Gradient biru elegan */
+    background: #1E3A8A;
 }
 
 .table-custom thead th {
@@ -62,7 +63,8 @@
     font-size: 14px;
     color: #fff;
     text-align: center;
-    border: none; /* supaya gradient menyatu */
+    border: none;
+    background: #1E3A8A;
 }
 
 /* Isi tabel */
@@ -71,8 +73,8 @@
     font-size: 14px;
     color: #374151;
     text-align: center;
-    border-top: 1.8px solid #93c5fd; /* garis horizontal antar baris */
-    border-right: 1.2px solid #c7ddff; /* garis vertikal antar kolom */
+    border-top: 1.8px solid #93c5fd;
+    border-right: 1.2px solid #c7ddff;
 }
 
 /* Hilangkan garis kanan terakhir agar rapi */
@@ -172,7 +174,7 @@
 /* ====== Judul Section ====== */
 .section-title {
     font-weight: 700;
-    color: #1E3A8A; /* Biru tua */
+    color: #1E3A8A;
     position: relative;
     display: inline-block;
     padding-bottom: 8px;
@@ -187,44 +189,26 @@
     transform: translateX(-50%);
     width: 120px;
     height: 4px;
-    background: linear-gradient(90deg, #1E3A8A 0%, #2563EB 100%);
+    background: #1E3A8A;
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
 }
 
-/* Tambahan opsional: efek hover */
 .section-title:hover::after {
     width: 160px;
     transition: width 0.3s ease;
 }
 
-/* ======= Perbaiki warna teks & garis bawah judul ======= */
-.table-section h3,
-.section-title {
+/* ======= Warna teks & garis bawah judul ======= */
+.table-section h3 {
     color: #1E3A8A !important;
     font-weight: 700 !important;
-    border-bottom: 4px solid transparent !important;
-    background: linear-gradient(to right, #1E3A8A, #2563eb) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    display: inline-block;
-    position: relative;
+    position: relative !important;
+    display: inline-block !important;
+    font-size: 1.6rem !important;
 }
 
-/* ======= Garis bawah biru linear ======= */
-.table-section h3::after,
-.section-title::after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    background: linear-gradient(to right, #1E3A8A, #2563eb);
-}
-
-/* === FIX AKHIR GARIS BAWAH JUDUL BIRU LINEAR === */
+/* ======= Garis bawah biru solid ======= */
 .table-section h3::after {
     content: "";
     position: absolute;
@@ -233,20 +217,9 @@
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1E3A8A 0%, #2563EB 100%) !important;
+    background: #1E3A8A !important;
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
-}
-
-/* Pastikan teks juga gradasi */
-.table-section h3 {
-    font-weight: 700 !important;
-    font-size: 1.6rem !important;
-    background: linear-gradient(90deg, #1E3A8A, #2563eb) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    position: relative !important;
-    display: inline-block !important;
 }
 
 /* Rapiin tombol aksi di tabel */
@@ -282,7 +255,7 @@
 
 /* Dropdown tetap sejajar */
 .table-custom .dropdown-toggle::after {
-    display: none; /* hilangkan panah bawaan */
+    display: none;
 }
 
 /* ===== Tombol Aksi (Sama seperti Semua Lowongan) ===== */
@@ -325,7 +298,7 @@
 .jobs-latest .jobs-header .section-title::after{
   content:""; position:absolute; left:50%; transform:translateX(-50%);
   bottom:-8px; width:110px; height:4px; border-radius:4px;
-  background:linear-gradient(90deg,#1E3A8A,#2563EB);
+  background:#1E3A8A;
   box-shadow:0 1px 6px rgba(30,58,138,.25);
 }
 .jobs-latest .jobs-header .see-all{ white-space:nowrap; }
@@ -540,16 +513,16 @@
 }
 
 .jobs-latest .jl-actions .btn{
-  min-width: auto !important;         /* override 72px */
-  height: 36px !important;            /* lebih pendek */
-  padding: .35rem .7rem !important;   /* padding kecil */
-  border-radius: 10px !important;     /* sudut halus */
-  font-size: .9rem !important;        /* teks sedikit lebih kecil */
+  min-width: auto !important;
+  height: 36px !important;
+  padding: .35rem .7rem !important;
+  border-radius: 10px !important;
+  font-size: .9rem !important;
   line-height: 1 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: .35rem !important;             /* jarak ikon-teks */
+  gap: .35rem !important;
 }
 
 .jobs-latest .jl-actions .btn i{
@@ -568,11 +541,10 @@
 
 .btn-info,
 .btn-warning {
-    color: #fff !important;        /* teks putih */
-    font-weight: 600;              /* biar lebih jelas */
+    color: #fff !important;
+    font-weight: 600;
 }
 
-/* opsional: hover biar tetap putih juga */
 .btn-info:hover,
 .btn-warning:hover {
     color: #fff !important;
@@ -598,7 +570,7 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: auto; /* Dorong tombol ke bawah */
+  margin-top: auto;
   padding-top: 15px;
 }
 
@@ -610,7 +582,7 @@
   font-weight: 600;
   border-radius: 8px;
   min-width: 90px;
-  height: 38px; /* bikin tinggi sejajar */
+  height: 38px;
   transition: 0.2s ease;
 }
 
@@ -653,7 +625,6 @@ textarea:focus,
     box-shadow: none !important;
 }
 
-/* Opsional: untuk link atau tombol khusus dashboard */
 .stat-link:focus,
 .action-btn:focus,
 .action-mini:focus {
@@ -667,7 +638,7 @@ textarea:focus,
 
 .container.table-section {
     max-width: 100%;
-    overflow-x: auto; /* Biarkan scroll jika perlu */
+    overflow-x: auto;
 }
 
 .table-section {
@@ -685,4 +656,16 @@ textarea:focus,
     .table-section {
         padding: 20px 15px;
     }
+}
+
+/* FIX HEADER LOWONGAN TERBARU */
+.jobs-latest .section-title {
+    color: #1E3A8A !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+}
+
+.jobs-latest .section-title::after {
+    background: #1E3A8A !important;
 }

@@ -1,5 +1,5 @@
 /* ================================
-   Edit Profile — Company
+   Edit Profile — Company (BLUE THEME)
    ================================ */
 :root{
   --bg:#eef2f7;
@@ -9,9 +9,9 @@
   --line:#e5e7eb;
   --ring:#cfe0ff;
   --ring-strong:#8fb1ff;
-  --blue:#1e3a8a;
-  --blue-500:#2563eb;
-  --blue-600:#1d4ed8;
+  --blue:#1e3a8a; /* BIRU TUA */
+  --blue-500:#1e3a8a; /* BIRU TUA */
+  --blue-600:#1d4ed8; /* Biru lebih gelap saat hover */
   --shadow:0 12px 28px rgba(2,6,23,.08);
 }
 
@@ -22,7 +22,7 @@ html,body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-
 .container > h1{
   margin:24px 0 14px;
   font-weight:900;
-  color :var(--blue-500);
+  color: var(--blue); /* BIRU TUA */
   letter-spacing:.2px;
 }
 
@@ -34,8 +34,10 @@ html,body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-
   box-shadow:var(--shadow);
   overflow:hidden;
 }
+
+/* ===== CARD HEADER ===== */
 .card-header{
-  background:linear-gradient(90deg,#1f3ea9,#2156e0);
+  background: #1e3a8a !important; /* BIRU TUA SOLID */
   border-bottom:1px solid rgba(255,255,255,.08);
   padding:16px 18px;
 }
@@ -45,6 +47,7 @@ html,body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-
   font-weight:800;
   letter-spacing:.2px;
 }
+
 .card-body{padding:18px}
 
 /* Section titles inside columns */
@@ -113,7 +116,7 @@ input[type="file"].form-control::file-selector-button:hover{
 /* Grid spacing: tighter & even */
 .row > [class*="col-"] .mb-3{margin-bottom:14px}
 
-/* Buttons: primary (blue) & secondary (red) */
+/* ===== BUTTON STYLES ===== */
 .btn{
   border-radius:12px;
   height:44px;
@@ -122,28 +125,21 @@ input[type="file"].form-control::file-selector-button:hover{
   display:inline-flex;
   align-items:center;
   gap:10px;
-}
-.btn-primary{
-  background:var(--blue-500);
-  border-color:var(--blue-500);
-  color:#fff; /* 🔥 ini yang bikin teks jadi putih */
-  box-shadow:0 10px 22px rgba(37,99,235,.25);
-}
-.btn-primary:hover{
-  background:var(--blue-600);
-  border-color:var(--blue-600);
-  color:#fff; /* tetap putih saat hover */
+  border: none;
 }
 
-.btn-secondary{
-  background:#fff;
-  color:#b91c1c;
-  border:1.6px solid #fecaca;
-  box-shadow:0 10px 20px rgba(244,63,94,.12);
+/* Tombol Simpan Perubahan & Batal - BIRU TUA */
+.btn-primary,
+.btn-secondary {
+  background: #1e3a8a !important; /* BIRU TUA SOLID */
+  color: #fff !important;
+  box-shadow: 0 10px 22px rgba(30, 58, 138, 0.25);
 }
-.btn-secondary:hover{
-  background:#fff1f2;
-  border-color:#fda4af;
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background: #1d4ed8 !important; /* Biru lebih gelap saat hover */
+  color: #fff !important;
 }
 
 /* Footer actions spacing */
@@ -179,7 +175,7 @@ input[type="file"].form-control::file-selector-button:hover{
   padding-top:2px; margin-top:-2px;
 }
 
-/* Make select’s caret more visible on light bg (Bootstrap respects this) */
+/* Make select's caret more visible on light bg (Bootstrap respects this) */
 .form-select{
   background-image:
     linear-gradient(45deg, transparent 50%, #64748b 50%),
@@ -196,19 +192,6 @@ input[type="file"].form-control::file-selector-button:hover{
 /* Give cards breathing room from the sidebar on huge screens */
 @media (min-width:1400px){
   .container{max-width:1160px}
-}
-
-.btn-secondary {
-  background: var(--blue-500);      /* sama kayak simpan perubahan */
-  border-color: var(--blue-500);
-  color: #fff;                      /* teks putih */
-  box-shadow: 0 10px 22px rgba(37,99,235,.25);
-}
-
-.btn-secondary:hover {
-  background: var(--blue-600);      /* hover lebih gelap dikit */
-  border-color: var(--blue-600);
-  color: #fff;                      /* tetap putih pas hover */
 }
 
 /* ==============================
@@ -232,16 +215,14 @@ input[type="file"].form-control::file-selector-button:hover{
 
 /* Tombol Batal - focus state */
 .btn-secondary:focus {
-    background: var(--blue-500) !important;
-    border-color: var(--blue-500) !important;
+    background: #1e3a8a !important; /* BIRU TUA SOLID */
     color: #fff !important;
     transform: none !important;
 }
 
 /* Tombol Simpan - focus state */
 .btn-primary:focus {
-    background: var(--blue-500) !important;
-    border-color: var(--blue-500) !important;
+    background: #1e3a8a !important; /* BIRU TUA SOLID */
     color: #fff !important;
     transform: none !important;
 }

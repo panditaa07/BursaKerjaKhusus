@@ -1,5 +1,5 @@
 /* ==============================
-   TABEL KELOLA LOWONGAN KERJA
+   TABEL KELOLA LOWONGAN KERJA (FIX HEADER ROUNDED)
 ============================== */
 .company-applications-table {
     width: 100%;
@@ -14,8 +14,18 @@
 
 /* === Header Tabel === */
 .company-applications-table thead tr {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+    background: #1E3A8A;
 }
+
+/* FIX: Border radius untuk header */
+.company-applications-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.company-applications-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
 .company-applications-table thead th {
     padding: 14px 16px;
     font-weight: 600;
@@ -36,6 +46,15 @@
 }
 .company-applications-table tbody td:last-child {
     border-right: none;
+}
+
+/* FIX: Border radius untuk baris terakhir */
+.company-applications-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.company-applications-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
 }
 
 /* === Efek Hover Baris === */
@@ -659,4 +678,12 @@ a.action-mini.view:hover::after {
     outline: none !important;
     box-shadow: none !important;
     border-color: #2563EB !important;
+}
+
+/* ==============================
+   JUDUL PELAMAR BULAN INI - WARNA BIRU TUA
+============================== */
+.h4 {
+    color: #1E3A8A !important;
+    font-weight: 700 !important;
 }

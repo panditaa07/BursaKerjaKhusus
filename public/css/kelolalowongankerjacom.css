@@ -14,7 +14,7 @@
 
 /* === Header Tabel === */
 .company-applications-table thead tr {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+    background: #1E3A8A; /* Biru tua solid */
 }
 .company-applications-table thead th {
     padding: 14px 16px;
@@ -23,6 +23,7 @@
     color: #fff;
     text-align: center;
     border: none;
+    background: #1E3A8A; /* Pastikan background tetap biru tua */
 }
 
 /* === Isi Tabel === */
@@ -483,4 +484,8 @@
     color: #fff !important;
     transform: none !important;
     box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+.mr-3 {
+    margin-right: 1rem !important; /* Sedikit tambahan jarak */
 }
