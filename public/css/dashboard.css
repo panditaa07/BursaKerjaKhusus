@@ -423,74 +423,84 @@ footer {
 }
 
 /* ==============================
-   FIX TAMBAH LOWONGAN - HILANGKAN FOCUS RING & WARNA TOMBOL
+   FIX TOMBOL BIRU TUA - TAMBAH LOWONGAN
 ============================== */
 
 /* Hilangkan focus ring untuk semua elemen */
-.container-fluid *:focus {
+.container-fluid *:focus,
+.card-body *:focus,
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
     outline: none !important;
     box-shadow: none !important;
 }
 
-/* Tombol Simpan Lowongan - pastikan biru */
+/* Tombol Simpan Lowongan - biru tua (#1e40af) */
 .btn-primary {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
-    border: none !important;
+    background: #1e40af !important;
+    border: 1px solid #1e40af !important;
     color: #ffffff !important;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(90deg, #2563EB, #1E40AF) !important;
+    background: #1e3a8a !important;
+    border-color: #1e3a8a !important;
     color: #ffffff !important;
 }
 
 .btn-primary:focus {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
-    border: none !important;
+    background: #1e40af !important;
+    border-color: #1e40af !important;
     color: #ffffff !important;
-    transform: none !important;
-    box-shadow: none !important;
 }
 
 .btn-primary:active {
-    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    background: #1e3a8a !important;
+    border-color: #1e3a8a !important;
     color: #ffffff !important;
 }
 
-/* Tombol Kembali - pastikan biru */
+/* Tombol Kembali - biru tua (#1e40af) */
 .btn-secondary {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
-    border: none !important;
+    background: #1e40af !important;
+    border: 1px solid #1e40af !important;
     color: #ffffff !important;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(90deg, #2563EB, #1E40AF) !important;
+    background: #1e3a8a !important;
+    border-color: #1e3a8a !important;
     color: #ffffff !important;
 }
 
 .btn-secondary:focus {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
-    border: none !important;
+    background: #1e40af !important;
+    border-color: #1e40af !important;
     color: #ffffff !important;
-    transform: none !important;
-    box-shadow: none !important;
 }
 
 .btn-secondary:active {
-    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    background: #1e3a8a !important;
+    border-color: #1e3a8a !important;
     color: #ffffff !important;
 }
 
-/* Form elements focus */
+/* Form elements focus - biru tua */
 .form-control:focus,
 .form-select:focus {
-    border-color: #2563EB !important;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+    border-color: #1e40af !important;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2) !important;
 }
 
 /* Alert close button */
 .btn-close:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+/* Pastikan icon di tombol juga putih */
+.btn-primary i,
+.btn-secondary i {
+    color: #ffffff !important;
 }
