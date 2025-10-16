@@ -254,31 +254,40 @@
         @endif
     </div>
 
-   <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Pastikan Bootstrap sudah aktif
-    if (typeof bootstrap !== 'undefined') {
-        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-            // Inisialisasi dropdown Bootstrap
-            new bootstrap.Dropdown(toggle, { autoClose: false });
-        });
-    }
-
-    // Cegah dropdown langsung tertutup ketika klik di dalam menu
-    document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-        menu.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
+  if (typeof bootstrap !== 'undefined') {
+    document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+      new bootstrap.Dropdown(toggle, { autoClose: false });
     });
+  }
 
-    // Pastikan form bisa dikirim tanpa gangguan dropdown
-    document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
-        form.addEventListener('submit', function(e) {
-            e.stopPropagation(); // cegah dropdown nutup duluan
-            this.submit(); // kirim form normal
-        });
+  // tandai <td> yang sedang membuka dropdown → jadi layer paling atas
+  document.querySelectorAll('.company-applications-table .dropdown').forEach(function(dd){
+    dd.addEventListener('shown.bs.dropdown', function(){
+      const td = dd.closest('td');
+      if (td) td.classList.add('dropdown-open');
     });
+    dd.addEventListener('hidden.bs.dropdown', function(){
+      const td = dd.closest('td');
+      if (td) td.classList.remove('dropdown-open');
+    });
+  });
+
+  // cegah menu menutup saat klik di dalam
+  document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+    menu.addEventListener('click', function (e) { e.stopPropagation(); });
+  });
+
+  // submit form di dalam dropdown tetap jalan normal
+  document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.stopPropagation();
+      this.submit();
+    });
+  });
 });
 </script>
+
 
 @endsection
