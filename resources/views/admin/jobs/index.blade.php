@@ -98,39 +98,23 @@
             </table>
         </div>
     </div>
-
-
-            <!-- Pagination Custom -->
-            <div class="d-flex justify-content-center mt-3">
-                <nav>
-                    <ul class="pagination">
-
-                        {{-- Tombol Previous --}}
-                        @if ($jobPosts->onFirstPage())
-                            <li class="page-item disabled">
-                                <span class="page-link">Previous</span>
-                            </li>
-                        @else
-                            <li class="page-item">
-                                <a class="page-link bg-primary text-white" href="{{ $jobPosts->previousPageUrl() }}" rel="prev">Previous</a>
-                            </li>
-                        @endif
-
-                        {{-- Tombol Next --}}
-                        @if ($jobPosts->hasMorePages())
-                            <li class="page-item">
-                                <a class="page-link bg-primary text-white" href="{{ $jobPosts->nextPageUrl() }}" rel="next">Next</a>
-                            </li>
-                        @else
-                            <li class="page-item disabled">
-                                <span class="page-link">Next</span>
-                            </li>
-                        @endif
-
-                    </ul>
-                </nav>
-            </div>
-
         </div>
+    </div>
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="btn-group" role="group" aria-label="Pagination">
+        {{-- Tombol Previous --}}
+        @if ($jobPosts->onFirstPage())
+            <button class="btn btn-outline-secondary" disabled>Previous</button>
+        @else
+            <a href="{{ $jobPosts->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+        @endif
+
+        {{-- Tombol Next --}}
+        @if ($jobPosts->hasMorePages())
+            <a href="{{ $jobPosts->nextPageUrl() }}" class="btn btn-primary">Next</a>
+        @else
+            <button class="btn btn-outline-secondary" disabled>Next</button>
+        @endif
     </div>
 @endsection

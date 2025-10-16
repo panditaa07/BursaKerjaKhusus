@@ -162,12 +162,9 @@
         </div>
     </div>
 <div class="d-flex gap-2 mt-4">
-    <!-- Tombol kembali ke daftar -->
-    <a href="{{ url('/admin/dashboard/pelamar') }}" class="btn-custom back">
-        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pelamar
-    </a>
-    <a href="{{ url('/admin/dashboard/pelamar/bulanini') }}" class="btn-custom back">
-        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pelamar Bulan Ini
+    <!-- Tombol kembali ke dashboard admin -->
+    <a href="{{ route('admin.dashboard.index') }}" class="btn-custom back">
+        <i class="fas fa-arrow-left me-2"></i> Kembali
     </a>
     <!-- Tombol edit pelamar -->
     <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn-custom edit">

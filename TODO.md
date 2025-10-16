@@ -1,16 +1,28 @@
-# TODO: Update Password Validation for Registration
+# TODO: Ubah Tombol Kembali di Halaman Fitur Lowongan
 
-## Tasks
-- [x] Update `public/js/register-company.js` to remove additional password requirements (uppercase, lowercase, numbers) and keep only minimum 8 characters
-- [x] Update password strength calculation in `register-company.js` to reflect new requirements
-- [x] Update `public/js/register-user.js` to remove additional password requirements and keep only minimum 8 characters
-- [ ] Test registration forms to ensure validation works correctly
+## Tugas Utama
+Ubah tampilan halaman fitur lowongan agar tombol "Kembali" konsisten dengan desain di fitur pelamar (seperti di halaman Detail Pelamar):
+- Class CSS: `btn-custom back` (tanpa "btn btn-")
+- Ikon: `<i class="fas fa-arrow-left me-2"></i>` (dengan margin end)
+- Teks: "Kembali" (sederhana)
+- Posisi: Di bagian atas halaman, sebelum isi konten utama
+- Fungsi: Mengarah ke halaman dashboard utama (/admin/dashboard)
 
-## Files to Modify
-- public/js/register-company.js
-- public/js/register-user.js
+## Langkah-langkah
+- [x] Ubah tombol kembali di `resources/views/admin/dashboard/lowongan-aktif.blade.php`
+- [x] Ubah tombol kembali di `resources/views/admin/dashboard/lowongan-tidak-aktif.blade.php`
+- [x] Ubah tombol kembali di `resources/views/admin/jobs/show.blade.php` (Detail Lowongan)
+- [x] Ubah tombol kembali di `resources/views/admin/jobs/edit.blade.php` (Edit Lowongan)
+- [x] Verifikasi tidak ada duplikat tombol kembali di halaman manapun
+- [x] Pastikan struktur Blade/HTML rapi dan mengikuti standar template layout
 
-## Notes
-- Backend validation is already correct (only requires min:8 characters)
-- Frontend JavaScript currently enforces additional requirements that need to be removed
-- Password strength indicator should be updated to match new requirements
+## File yang Terpengaruh
+- resources/views/admin/dashboard/lowongan-aktif.blade.php
+- resources/views/admin/dashboard/lowongan-tidak-aktif.blade.php
+- resources/views/admin/jobs/show.blade.php
+- resources/views/admin/jobs/edit.blade.php
+- resources/views/admin/applications/show.blade.php
+
+## Referensi
+- Halaman Detail Pelamar (resources/views/admin/applications/show.blade.php) menggunakan desain yang benar sebagai patokan.
+- Halaman Loker Terbaru (dashboard utama) tidak memiliki tombol kembali karena merupakan halaman utama.

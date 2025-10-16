@@ -86,7 +86,7 @@
                                 @endif
                             </td>
                             <td class="aksi">
-                                <a href="{{ route('admin.applications.show', $p->id) }}" class="table-btn view"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.applications.show', $p->id) }}?from=total" class="table-btn view"><i class="bi bi-eye"></i></a>
                                 <a href="{{ route('admin.applications.edit', $p->id) }}" class="table-btn edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('admin.applications.destroy', $p->id) }}" method="POST" class="d-inline">
                                     @csrf

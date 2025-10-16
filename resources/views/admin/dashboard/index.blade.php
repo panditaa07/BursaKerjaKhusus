@@ -1,4 +1,4 @@
-,@extends('layouts.dashboard')
+@extends('layouts.dashboard')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
@@ -133,15 +133,9 @@
                         <td>{{ $app->jobPost->company->name ?? '-' }}</td>
                         <td>{{ $app->jobPost->title ?? '-' }}</td>
                         <td>
-                            @if($app->status === 'accepted')
-                                <span class="badge bg-success">Accepted</span>
-                            @elseif($app->status === 'rejected')
-                                <span class="badge bg-danger">Rejected</span>
-                            @elseif($app->status === 'submitted')
-                                <span class="badge bg-warning text-dark">Submitted</span>
-                            @else
-                                <span class="badge bg-secondary">{{ ucfirst($app->status ?? '-') }}</span>
-                            @endif
+                            <span class="badge bg-{{ $app->status === 'accepted' ? 'badge bg-success' : ($app->status === 'rejected' ? 'badge bg-danger' : ($app->status === 'submitted' ? 'badge bg-secondary' : 'secondary')) }}">
+                                {{ $app->status_display }}
+                            </span>
                         </td>
                         <td class="aksi">
                             <a href="{{ route('admin.applications.show', $app->id) }}" class="table-btn view">
@@ -169,8 +163,8 @@
         </table>
     </div>
 </div>
-
-
+<br>
+<br>
     {{-- === Tabel Loker Aktif === --}}
     <div class="container table-section">
         <h3 class="mb-3">Loker Terbaru</h3>
@@ -192,7 +186,7 @@
                                 @if($job->status === 'active')
                                     <span class="badge bg-success">Aktif</span>
                                 @else
-                                    <span class="badge bg-secondary">Tidak Aktif</span>
+                                    <span class="badge bg-danger">Tidak Aktif</span>
                                 @endif
                             </td>
                             <td class="aksi">
@@ -267,7 +261,7 @@
         };
 
         const statusData = {
-            labels: ['Submitted', 'Accepted', 'Rejected'],
+            labels: ['Menunggu', 'Diterima', 'Ditolak'],
             datasets: [{
                 data: [{{ $statistics['submitted'] ?? 10 }}, {{ $statistics['accepted'] ?? 5 }}, {{ $statistics['rejected'] ?? 3 }}],
                 backgroundColor: ['rgba(255, 206, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)']

@@ -113,36 +113,23 @@
             </table>
         </div>
     </div>
-
-
-    {{-- Pagination --}}
-    <div class="d-flex justify-content-center mt-3">
-        <nav>
-            <ul class="pagination">
-                {{-- Tombol Previous --}}
-                @if ($users->onFirstPage())
-                    <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                    </li>
-                @else
-                    <li class="page-item">
-                        <a class="page-link bg-primary text-white" href="{{ $users->previousPageUrl() }}" rel="prev">Previous</a>
-                    </li>
-                @endif
-
-                {{-- Tombol Next --}}
-                @if ($users->hasMorePages())
-                    <li class="page-item">
-                        <a class="page-link bg-primary text-white" href="{{ $users->nextPageUrl() }}" rel="next">Next</a>
-                    </li>
-                @else
-                    <li class="page-item disabled">
-                        <span class="page-link">Next</span>
-                    </li>
-                @endif
-            </ul>
-        </nav>
-    </div>
     @endif
 </div>
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="btn-group" role="group" aria-label="Pagination">
+        {{-- Tombol Previous --}}
+        @if ($users->onFirstPage())
+            <button class="btn btn-outline-secondary" disabled>Previous</button>
+        @else
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+        @endif
+
+        {{-- Tombol Next --}}
+        @if ($users->hasMorePages())
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-primary">Next</a>
+        @else
+            <button class="btn btn-outline-secondary" disabled>Next</button>
+        @endif
+    </div>  
 @endsection

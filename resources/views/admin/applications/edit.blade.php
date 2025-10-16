@@ -11,8 +11,8 @@
                 <i class="fas fa-user-edit"></i>Update Data Pelamar</h1>
         </div>
 
-        <form class="form-container" 
-              action="{{ route('admin.applications.update', $application->id) }}" 
+        <form class="form-container"
+              action="{{ route('admin.applications.update', $application->id) }}"
               method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -26,9 +26,9 @@
 
                     {{-- Foto Profil --}}
                     <div class="profile-photo-container">
-                        <img src="{{ $application->user && $application->user->profile_photo_path 
-                                    ? asset('storage/' . $application->user->profile_photo_path) 
-                                    : asset('images/default-avatar.png') }}" 
+                        <img src="{{ $application->user && $application->user->profile_photo_path
+                                    ? asset('storage/' . $application->user->profile_photo_path)
+                                    : asset('images/default-avatar.png') }}"
                              alt="Foto Profil" class="profile-photo">
                         <input type="file" name="profile_photo_path" class="form-control" accept="image/*">
                         @error('profile_photo_path')
@@ -38,7 +38,7 @@
 
                     {{-- Nama --}}
                     <div class="form-group floating-label">
-                        <input type="text" name="name" class="form-control" 
+                        <input type="text" name="name" class="form-control"
                                placeholder=" " value="{{ old('name', $application->user?->name ?? '') }}" required>
                         <label class="form-label"><i class="fas fa-user"></i> Nama Lengkap</label>
                         @error('name')
@@ -48,7 +48,7 @@
 
                     {{-- Email --}}
                     <div class="form-group floating-label">
-                        <input type="email" name="email" class="form-control" placeholder=" " 
+                        <input type="email" name="email" class="form-control" placeholder=" "
                                value="{{ old('email', $application->user?->email ?? '') }}" required>
                         <label class="form-label"><i class="fas fa-envelope"></i> Email</label>
                         @error('email')
@@ -59,7 +59,7 @@
                     {{-- Tanggal Lahir --}}
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-calendar"></i> Tanggal Lahir</label>
-                        <input type="date" name="birth_date" class="form-control" 
+                        <input type="date" name="birth_date" class="form-control"
                                value="{{ old('birth_date', $application->user?->birth_date ? \Carbon\Carbon::parse($application->user->birth_date)->format('Y-m-d') : '') }}">
                         @error('birth_date')
                             <div class="text-danger mt-1">{{ $message }}</div>
@@ -68,7 +68,7 @@
 
                     {{-- No HP --}}
                     <div class="form-group floating-label">
-                        <input type="text" name="phone" class="form-control" placeholder=" " 
+                        <input type="text" name="phone" class="form-control" placeholder=" "
                                value="{{ old('phone', $application->user?->phone ?? '') }}">
                         <label class="form-label"><i class="fas fa-phone"></i> No. HP</label>
                         @error('phone')
@@ -78,7 +78,7 @@
 
                     {{-- NISN --}}
                     <div class="form-group floating-label">
-                        <input type="text" name="nisn" class="form-control" placeholder=" " 
+                        <input type="text" name="nisn" class="form-control" placeholder=" "
                                value="{{ old('nisn', $application->user?->nisn ?? '') }}">
                         <label class="form-label"><i class="fas fa-id-card"></i> NIK/NISN</label>
                         @error('nisn')
@@ -110,27 +110,27 @@
                         <div class="social-media-grid">
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fab fa-facebook"></i></span>
-                                <input type="url" name="facebook" class="form-control" 
+                                <input type="url" name="facebook" class="form-control"
                                        value="{{ old('facebook', $application->user?->facebook ?? '') }}" placeholder="Facebook URL">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fab fa-instagram"></i></span>
-                                <input type="url" name="instagram" class="form-control" 
+                                <input type="url" name="instagram" class="form-control"
                                        value="{{ old('instagram', $application->user?->instagram ?? '') }}" placeholder="Instagram URL">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
-                                <input type="url" name="linkedin" class="form-control" 
+                                <input type="url" name="linkedin" class="form-control"
                                        value="{{ old('linkedin', $application->user?->linkedin ?? '') }}" placeholder="LinkedIn URL">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fab fa-twitter"></i></span>
-                                <input type="url" name="twitter" class="form-control" 
+                                <input type="url" name="twitter" class="form-control"
                                        value="{{ old('twitter', $application->user?->twitter ?? '') }}" placeholder="Twitter URL">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fab fa-tiktok"></i></span>
-                                <input type="url" name="tiktok" class="form-control" 
+                                <input type="url" name="tiktok" class="form-control"
                                        value="{{ old('tiktok', $application->user?->tiktok ?? '') }}" placeholder="TikTok URL">
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                     {{-- Tanggal Melamar --}}
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-calendar-plus"></i> Tanggal Melamar</label>
-                        <input type="date" name="applied_at" class="form-control" 
+                        <input type="date" name="applied_at" class="form-control"
                                value="{{ old('applied_at', $application->applied_at ? \Carbon\Carbon::parse($application->applied_at)->format('Y-m-d') : $application->created_at->format('Y-m-d')) }}" required>
                         @error('applied_at')
                             <div class="text-danger mt-1">{{ $message }}</div>
@@ -173,15 +173,15 @@
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-flag"></i> Status</label>
                         <select name="status" class="form-control form-select" required>
-                            <option value="submitted" {{ $application->status == 'submitted' ? 'selected' : '' }}>Submitted</option>
+                            <option value="submitted" {{ $application->status == 'submitted' ? 'selected' : '' }}>Menunggu</option>
                             <option value="test1" {{ $application->status == 'test1' ? 'selected' : '' }}>Test 1</option>
                             <option value="test2" {{ $application->status == 'test2' ? 'selected' : '' }}>Test 2</option>
-                            <option value="interview" {{ $application->status == 'interview' ? 'selected' : '' }}>Interview</option>
-                            <option value="accepted" {{ $application->status == 'accepted' ? 'selected' : '' }}>Accepted</option>
-                            <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                            <option value="interview" {{ $application->status == 'interview' ? 'selected' : '' }}>Wawancara</option>
+                            <option value="accepted" {{ $application->status == 'accepted' ? 'selected' : '' }}>Diterima</option>
+                            <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
                         </select>
                         <span class="status-badge status-{{ $application->status }}">
-                            <i class="fas fa-paper-plane"></i> {{ ucfirst($application->status) }}
+                            <i class="fas fa-paper-plane"></i> {{ $application->status_display }}
                         </span>
                         @error('status')
                             <div class="text-danger mt-1">{{ $message }}</div>

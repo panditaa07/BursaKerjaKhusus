@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Log;
 
 class Application extends Model
 {
@@ -28,7 +29,7 @@ class Application extends Model
         $validStatuses = ['submitted', 'reviewed', 'accepted', 'rejected', 'interview', 'test1', 'test2'];
         if (!in_array($value, $validStatuses)) {
             // Log the invalid value and set to default
-            \Log::warning("Invalid status value attempted: {$value}. Setting to 'submitted'.");
+            Log::warning("Invalid status value attempted: {$value}. Setting to 'submitted'.");
             $this->attributes['status'] = 'submitted';
         } else {
             $this->attributes['status'] = $value;
@@ -38,5 +39,20 @@ class Application extends Model
         if ($value !== $this->getOriginal('status')) {
             $this->attributes['status_changed_at'] = now();
         }
+    }
+
+    public function getStatusDisplayAttribute()
+    {
+        $statusMap = [
+            'submitted' => 'Menunggu',
+            'reviewed' => 'Ditinjau',
+            'accepted' => 'Diterima',
+            'rejected' => 'Ditolak',
+            'interview' => 'Wawancara',
+            'test1' => 'Test 1',
+            'test2' => 'Test 2',
+        ];
+
+        return $statusMap[$this->status] ?? ucfirst($this->status);
     }
 }

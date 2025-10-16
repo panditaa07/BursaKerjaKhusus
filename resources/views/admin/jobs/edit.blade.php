@@ -11,16 +11,16 @@
     <h1>Edit Lowongan Kerja</h1>
     <div class="d-flex gap-2 mb-3">
         @if(request('from') == 'kelola')
-            <a href="{{ route('admin.job-posts.index') }}" class="btn btn-custom back">
-                <i class="fas fa-arrow-left"></i> Kembali ke Kelola Lowongan Kerja
+            <a href="{{ route('admin.job-posts.index') }}" class="btn-custom back">
+                <i class="fas fa-arrow-left me-2"></i> Kembali
             </a>
         @elseif($jobPost->status == 'active')
-            <a href="{{ route('admin.dashboard.lowongan-aktif') }}" class="btn btn-custom back">
-                <i class="fas fa-arrow-left"></i> Kembali ke Lowongan Aktif
+            <a href="{{ route('admin.dashboard.lowongan-aktif') }}" class="btn-custom back">
+                <i class="fas fa-arrow-left me-2"></i> Kembali
             </a>
         @else
-            <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="btn btn-custom back">
-                <i class="fas fa-arrow-left"></i> Kembali ke Lowongan Tidak Aktif
+            <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="btn-custom back">
+                <i class="fas fa-arrow-left me-2"></i> Kembali
             </a>
         @endif
         <a href="{{ route('admin.job-posts.show', $jobPost->id) }}?from={{ request('from') }}" class="btn btn-custom back">

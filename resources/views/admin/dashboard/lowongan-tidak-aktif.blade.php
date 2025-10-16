@@ -12,7 +12,7 @@
             <h4 class="fw-bold mb-2">LOWONGAN TIDAK AKTIF</h4>
             {{-- Tombol kembali --}}
             <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary btn-sm">
-                <i class="bi bi-arrow-left"></i> Kembali
+                <i class="fas fa-arrow-left me-2"></i> Kembali
             </a>
         </div>
         
