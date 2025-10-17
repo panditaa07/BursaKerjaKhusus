@@ -8,19 +8,18 @@
     <div class="container-fluid px-4">
         <!-- Search Bar -->
         <div class="mb-4">
-    <form method="GET" action="{{ url('/user/applications') }}" class="d-flex align-items-center justify-content-center gap-2">
-        <div class="position-relative" style="width: 60%;">
-            <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-            <input type="text" name="search" value="{{ request('search') }}"
-                placeholder="Cari berdasarkan perusahaan atau posisi..."
-                class="form-control rounded-pill shadow-sm border-0 ps-5" style="height: 42px;">
+            <form method="GET" action="{{ url('/user/applications') }}" class="d-flex align-items-center justify-content-center gap-2">
+                <div class="position-relative" style="width: 60%;">
+                    <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Cari berdasarkan perusahaan atau posisi..."
+                        class="form-control rounded-pill shadow-sm border-0 ps-5" style="height: 42px;">
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill fw-semibold px-4 py-2 d-flex align-items-center">
+                    <i class="fas fa-search me-2"></i> Cari
+                </button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary rounded-pill fw-semibold px-4 py-2 d-flex align-items-center">
-            <i class="fas fa-search me-2"></i> Cari
-        </button>
-    </form>
-</div>
-
 
         <!-- Main Layout -->
         <div class="row g-4">
@@ -36,22 +35,22 @@
                     <div class="card-body">
                         @if($applications->count() > 0)
                             <div class="table-responsive">
-                                <table class="table table-borderless">
-                                    <thead class="table">
+                                <table class="table table-borderless lamaran-table">
+                                    <thead>
                                         <tr>
-                                            <th class="px-4 py-3 text-blue ">Perusahaan</th>
-                                            <th class="px-4 py-3 text-blue ">Posisi</th>
-                                            <th class="px-4 py-3 text-blue ">Status</th>
-                                            <th class="px-4 py-3 text-blue ">Tanggal Melamar</th>
-                                            <th class="px-4 py-3 text-blue ">Detail</th>
+                                            <th>Perusahaan</th>
+                                            <th>Posisi</th>
+                                            <th>Status</th>
+                                            <th>Tanggal Melamar</th>
+                                            <th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($applications as $application)
-                                            <tr class="border-bottom border-secondary-subtle" style="background-color: #ffffff;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='#ffffff'">
-                                                <td class="px-4 py-3 company-name-cell">{{ Str::limit($application->jobPost->company->name ?? 'Unknown Company', 30, '...') }}</td>
-                                                <td class="px-4 py-3">{{ $application->jobPost->title }}</td>
-                                                <td class="px-4 py-3">
+                                            <tr>
+                                                <td data-label="Perusahaan">{{ $application->jobPost->company->name ?? 'Unknown Company' }}</td>
+                                                <td data-label="Posisi">{{ $application->jobPost->title }}</td>
+                                                <td data-label="Status">
                                                     @if(in_array($application->status, ['submitted', 'test1', 'test2']))
                                                         <span class="badge bg-primary fw-bold rounded-pill px-3 py-2">Proses</span>
                                                     @elseif($application->status === 'interview')
@@ -64,11 +63,10 @@
                                                         <span class="badge bg-secondary fw-bold rounded-pill px-3 py-2">{{ ucfirst($application->status) }}</span>
                                                     @endif
                                                 </td>
-                                                <td class="px-4 py-3">{{ $application->created_at->format('d M Y') }}</td>
-                                                <td class="px-4 py-3 text-center">
-                                                    <a href="{{ route('user.applications.show', $application) }}" 
-                                                       class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-4 py-2 fw-bold"
-                                                       style="transition: background-color 0.3s;">
+                                                <td data-label="Tanggal">{{ $application->created_at->format('d M Y') }}</td>
+                                                <td data-label="Detail">
+                                                    <a href="{{ route('user.applications.show', $application) }}"
+                                                       class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
                                                         <i class="fas fa-eye"></i><span>Lihat</span>
                                                     </a>
                                                 </td>
@@ -79,31 +77,21 @@
                             </div>
 
                             <!-- Pagination -->
-                          <div class="pagination-custom">
-                            <ul class="pagination">
-                                {{-- Tombol Previous --}}
-                                @if ($applications->onFirstPage())
-                                    <li class="page-item disabled">
-                                        <span class="page-link">Previous</span>
-                                    </li>
-                                @else
-                                    <li class="page-item">
-                                        <a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a>
-                                    </li>
-                                @endif
+                            <div class="pagination-custom">
+                                <ul class="pagination">
+                                    @if ($applications->onFirstPage())
+                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                    @else
+                                        <li class="page-item"><a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a></li>
+                                    @endif
 
-                                {{-- Tombol Next --}}
-                                @if ($applications->hasMorePages())
-                                    <li class="page-item">
-                                        <a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a>
-                                    </li>
-                                @else
-                                    <li class="page-item disabled">
-                                        <span class="page-link">Next</span>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
+                                    @if ($applications->hasMorePages())
+                                        <li class="page-item"><a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a></li>
+                                    @else
+                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                    @endif
+                                </ul>
+                            </div>
                         @else
                             <div class="text-center py-5">
                                 <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
@@ -127,18 +115,10 @@
                             @if($notifications->count() > 0)
                                 @foreach($notifications as $notification)
                                     <div class="border border-secondary-subtle rounded-lg p-3 mb-3 shadow-sm">
-                                        <p class="mb-1 small">
-                                            {{ $notification->data['message'] ?? 'New notification' }}
-                                        </p>
-                                        <p class="text-muted small mb-2">
-                                            {{ optional($notification->created_at)->diffForHumans() }}
-                                        </p>
-
+                                        <p class="mb-1 small">{{ $notification->data['message'] ?? 'New notification' }}</p>
+                                        <p class="text-muted small mb-2">{{ optional($notification->created_at)->diffForHumans() }}</p>
                                         @if(is_null($notification->read_at))
-                                            <a href="{{ route('notifications.read', $notification->id) }}" 
-                                            class="btn btn-sm btn-primary">
-                                            Tandai Sudah Dibaca
-                                            </a>
+                                            <a href="{{ route('notifications.read', $notification->id) }}" class="btn btn-sm btn-primary">Tandai Sudah Dibaca</a>
                                         @endif
                                     </div>
                                 @endforeach

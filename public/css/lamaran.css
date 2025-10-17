@@ -233,6 +233,29 @@
     box-shadow: none;
 }
 
+/* ===== HILANGKAN EFEK BIRU SAAT TOMBOL NEXT/PREV DIKLIK ===== */
+.page-item:not(.disabled) .page-link:focus,
+.page-item:not(.disabled) .page-link:active,
+.page-link:focus,
+.page-link:active,
+.page-link:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: inherit !important;
+    border-color: #007bff !important;
+}
+
+/* Hilangkan tap highlight (glow biru di Chrome/Safari saat ditekan) */
+.page-link {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Hilangkan pseudo-element setelah klik */
+.page-link::after {
+    display: none !important;
+    content: none !important;
+}
+
 /* ===== EMPTY STATE STYLES ===== */
 .text-center.py-5 {
     padding: 3rem 1rem;
@@ -288,19 +311,6 @@
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
 }
 
-/* === Hapus background biru saat tombol NEXT diklik atau difokuskan === */
-.page-item:not(.disabled) .page-link:focus,
-.page-item:not(.disabled) .page-link:active {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-.page-link::after {
-    display: none !important;
-    content: none !important;
-}
-
 /* ===== ANIMATION ===== */
 @keyframes fadeIn {
     from {
@@ -352,67 +362,70 @@
 
 /* ===== RESPONSIVE STYLES ===== */
 
-/* === SMARTPHONE TANPA SCROLL (SKALA DESKTOP) === */
+/* === PERBAIKAN AGAR TABEL KECIL, RAPI, TANPA SCROLL & TEKS HORIZONTAL === */
 @media (max-width: 576px) {
     html, body {
         overflow-x: hidden !important;
     }
 
-    .card {
-        transform: scale(0.85);
-        transform-origin: top center;
-        width: 118%;
-        margin-left: -9%;
-    }
-
-    .card-header {
-        padding: 0.6rem 0.8rem !important;
-        font-size: 0.85rem !important;
-    }
-
-    .card-title {
-        font-size: 0.9rem !important;
-    }
-
+    /* === Perkecil tabel dan teks === */
     .table {
-        font-size: 0.7rem !important;
-        table-layout: auto !important;
         width: 100% !important;
+        table-layout: fixed !important;
+        font-size: 0.45rem !important;
     }
 
     .table thead th,
     .table tbody td {
-        padding: 0.3rem 0.4rem !important;
-        white-space: normal !important;
-        text-align: left;
+        padding: 0.2rem 0.25rem !important;
+        font-size: 0.45rem !important;
+        white-space: nowrap !important; /* biar tetap horizontal */
+        word-break: keep-all !important;
+        vertical-align: middle !important;
+        text-align: left !important;
     }
 
+    /* === Atur lebar kolom supaya semua muat === */
+    .table th:nth-child(1),
+    .table td:nth-child(1) {
+        width: 32% !important; /* Perusahaan */
+    }
+
+    .table th:nth-child(2),
+    .table td:nth-child(2) {
+        width: 26% !important; /* Posisi */
+    }
+
+    .table th:nth-child(3),
+    .table td:nth-child(3) {
+        width: 22% !important; /* Status */
+    }
+
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+        width: 20% !important; /* Tanggal/Detail */
+    }
+
+    /* === Tombol dan badge kecil === */
     .btn-detail,
     .btn-primary {
-        font-size: 0.65rem !important;
-        padding: 0.25rem 0.45rem !important;
-        border-radius: 10px !important;
+        font-size: 0.4rem !important;
+        padding: 0.15rem 0.3rem !important;
+        border-radius: 5px !important;
     }
 
     .badge {
-        font-size: 0.6rem !important;
-        padding: 0.25rem 0.45rem !important;
+        font-size: 0.4rem !important;
+        padding: 0.15rem 0.25rem !important;
+        white-space: nowrap !important;
     }
 
+    /* === Pagination mini === */
     .page-link {
-        font-size: 0.65rem !important;
-        padding: 0.25rem 0.5rem !important;
+        font-size: 0.45rem !important;
+        padding: 0.15rem 0.35rem !important;
     }
 
     .pagination {
-        gap: 0.25rem !important;
+        gap: 0.15rem !important;
     }
-
-    .text-center.py-5 h5 {
-        font-size: 1rem !important;
-    }
-
-    .text-center.py-5 p {
-        font-size: 0.85rem !important;
-    }
-}
