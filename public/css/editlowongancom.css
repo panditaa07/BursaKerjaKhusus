@@ -254,3 +254,88 @@ input[type="date"]:focus {
     background: #ffffff !important;
     box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
 }
+
+/* editlowongancom.css */
+
+/* Tombol Kembali - warna abu-abu dengan hover biru tua */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: rgb(30, 58, 138) !important;
+    border-color: rgb(30, 58, 138) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
+}
+
+/* Tombol Simpan Perubahan - warna kuning dengan hover biru tua */
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-warning:hover {
+    background-color: rgb(30, 58, 138) !important;
+    border-color: rgb(30, 58, 138) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
+}
+
+/* Styling tambahan untuk form */
+.card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header.bg-warning {
+    background: rgb(30, 58, 138) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: rgb(30, 58, 138);
+    box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
+}
+
+.border-bottom {
+    border-color: #dee2e6 !important;
+}
+
+.text-primary {
+    color: rgb(30, 58, 138) !important;
+}
+
+/* Styling untuk alert */
+.alert-success {
+    border-left: 4px solid #198754;
+}
+
+.alert-danger {
+    border-left: 4px solid #dc3545;
+}
+
+/* Styling untuk gaji input */
+.gaji-input:focus {
+    border-color: rgb(30, 58, 138);
+    box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}

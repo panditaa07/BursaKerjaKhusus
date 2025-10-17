@@ -84,7 +84,7 @@
                             </a>
                             <a href="{{ route('company.jobs.edit', $job->id) }}?from=inactive" 
                                class="action-mini edit" title="Edit">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-pen"></i>
                             </a>
                             <form action="{{ route('company.jobs.destroy', $job->id) }}" 
                                   method="POST" class="d-inline"

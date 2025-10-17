@@ -90,7 +90,7 @@
                             {{-- Edit --}}
                             <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" 
                             class="action-mini edit" title="Edit">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-pen"></i>
                             </a>
 
                             {{-- Hapus --}}

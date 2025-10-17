@@ -1558,3 +1558,27 @@ body.job-detail .card {
     background: #ffffff !important;
     background-image: none !important;
 }
+
+/* ==========================================================
+   HILANGKAN HEADER BIRU HANYA DARI FORM LUAR - FIXED
+   ========================================================== */
+
+/* HANYA form luar yang kehilangan header biru */
+.container-fluid .row .col-12 > .card.enhanced-card::before {
+    display: none !important;
+    background: transparent !important;
+    height: 0 !important;
+}
+
+/* FORM DALAM (PT Contoh Company) - BIARKAN HEADER BIRU TETAP ADA */
+.card.enhanced-card .enhanced-header::before {
+    /* JANGAN DIUBAH - biarkan seperti semula */
+    display: block !important;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%) !important;
+    height: 4px !important;
+}
+
+.card.enhanced-card .enhanced-header {
+    /* JANGAN DIUBAH - biarkan seperti semula */
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+}

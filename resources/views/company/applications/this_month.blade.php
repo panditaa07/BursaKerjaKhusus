@@ -66,8 +66,8 @@
                             <th>Email</th>
                             <th>No. HP</th>
                             <th>Lowongan yang Dilamar</th>
-                            <th width="120">Status</th>
-                            <th width="150">Aksi</th>
+                            <th width="160">Status</th>
+                            <th width="170">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,17 +109,18 @@
                                     @php
                                         $status = $application->status;
                                         $statusConfig = [
-                                            'accepted' => ['label' => 'Terima', 'class' => 'badge badge-success'],
-                                            'rejected' => ['label' => 'Tolak', 'class' => 'badge badge-secondary'],
-                                            'interview' => ['label' => 'Wawancara', 'class' => 'badge badge-warning'],
-                                            'test1' => ['label' => 'Test 1', 'class' => 'badge badge-warning'],
-                                            'test2' => ['label' => 'Test 2', 'class' => 'badge badge-warning'],
-                                            'submitted' => ['label' => 'Menunggu', 'class' => 'badge badge-secondary'],
-                                            'reviewed' => ['label' => 'Menunggu', 'class' => 'badge badge-secondary'],
+                                            'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+                                            'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+                                            'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+                                            'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+                                            'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
+                                            'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
+                                            'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
                                         ];
-                                        $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'badge bg-light text-dark'];
+                                        $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                                     @endphp
-                                    <span class="{{ $currentStatus['class'] }}">
+                                    <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
+                                        <i class="fas fa-circle me-1" style="font-size: 8px;"></i>
                                         {{ $currentStatus['label'] }}
                                     </span>
                                 </td>
@@ -127,43 +128,43 @@
                                     <div class="d-flex justify-content-center">
                                         <!-- View -->
                                         <a href="{{ route('company.applications.show.company', $application->id) }}" 
-                                           class="action-mini view">
+                                           class="btn-icon view" aria-label="Lihat">
                                             <i class="fas fa-eye"></i>
                                         </a>
 
                                         <!-- Edit Dropdown -->
                                         <div class="dropdown">
-                                            <button class="action-mini edit dropdown-toggle" 
+                                            <button class="btn-icon edit dropdown-toggle" 
                                                     type="button" 
                                                     id="dropdownMenuButton{{ $application->id }}" 
                                                     data-bs-toggle="dropdown" 
                                                     aria-expanded="false">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-pen"></i>
                                             </button>
-                                            <ul class="dropdown-menu dropdown-menu-end"
-    aria-labelledby="dropdownMenuButton{{ $application->id }}">
-    @foreach ([
-        'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
-        'test1' => ['icon' => 'fa-flask', 'label' => 'Test 1'],
-        'test2' => ['icon' => 'fa-flask', 'label' => 'Test 2'],
-        'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
-        'accepted' => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
-        'rejected' => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
-    ] as $status => $info)
-        <li>
-            <form action="{{ route('company.applications.updateStatus', $application->id) }}"
-                  method="POST" class="d-inline">
-                @csrf
-                @method('PUT')
-                <input type="hidden" name="status" value="{{ $status }}">
-                <button type="submit" class="dropdown-item">
-                    <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
-                </button>
-            </form>
-        </li>
-    @endforeach
-</ul>
 
+                                            <ul class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="dropdownMenuButton{{ $application->id }}">
+                                                @foreach ([
+                                                    'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
+                                                    'test1'     => ['icon' => 'fa-flask', 'label' => 'Test 1'],
+                                                    'test2'     => ['icon' => 'fa-flask', 'label' => 'Test 2'],
+                                                    'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
+                                                    'accepted'  => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
+                                                    'rejected'  => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
+                                                ] as $st => $info)
+                                                    <li>
+                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}"
+                                                              method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="{{ $st }}">
+                                                            <button type="submit" class="dropdown-item">
+                                                                <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
                                         </div>
 
                                         <!-- Delete -->
@@ -173,7 +174,7 @@
                                               onsubmit="return confirm('Apakah Anda yakin ingin menghapus lamaran ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="action-mini delete">
+                                            <button type="submit" class="btn-icon delete" aria-label="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -201,75 +202,36 @@
         </div>
     @endif
 </div>
+
 <!-- Custom JavaScript for dropdown functionality -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded');
-
-            // Test if Bootstrap is loaded
-            console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
-            console.log('Dropdown elements found:', document.querySelectorAll('.dropdown-toggle').length);
-
-            // Ensure all dropdowns work properly
-            if (typeof bootstrap !== 'undefined') {
-                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-                    return new bootstrap.Dropdown(dropdownToggleEl);
-                });
-                console.log('Bootstrap dropdowns initialized:', dropdownList.length);
-            } else {
-                console.warn('Bootstrap not loaded, using fallback');
-                // Fallback for dropdown functionality
-                document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-                    toggle.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        var dropdown = toggle.closest('.dropdown');
-                        var menu = dropdown.querySelector('.dropdown-menu');
-
-                        // Toggle menu visibility
-                        var isVisible = menu.style.display === 'block';
-                        menu.style.display = isVisible ? 'none' : 'block';
-
-                        // Close other dropdowns
-                        document.querySelectorAll('.dropdown-menu').forEach(function(otherMenu) {
-                            if (otherMenu !== menu) {
-                                otherMenu.style.display = 'none';
-                            }
-                        });
-                    });
-                });
-
-                // Close dropdowns when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.dropdown')) {
-                        document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-                            menu.style.display = 'none';
-                        });
-                    }
-                });
-            }
-
-            // Add click handler for dropdown items to prevent form submission issues
-            document.querySelectorAll('.dropdown-menu .dropdown-item').forEach(function(item) {
-                item.addEventListener('click', function(e) {
-                    // Only prevent default if it's a form button
-                    if (e.target.tagName === 'BUTTON' && e.target.closest('form')) {
-                        // Let the form submit normally
-                        return true;
-                    }
-                });
-            });
-
-            // Debug: Log when dropdown is clicked
-            document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-                toggle.addEventListener('click', function(e) {
-                    console.log('Dropdown clicked:', e.target);
-                    console.log('Dropdown button ID:', e.target.id);
-                    console.log('Dropdown aria-expanded:', e.target.getAttribute('aria-expanded'));
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure all dropdowns work properly
+    if (typeof bootstrap !== 'undefined') {
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+        dropdownElementList.map(function (el) { return new bootstrap.Dropdown(el); });
+    } else {
+        // Fallback
+        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault(); e.stopPropagation();
+                var dropdown = toggle.closest('.dropdown');
+                var menu = dropdown.querySelector('.dropdown-menu');
+                var isVisible = menu.style.display === 'block';
+                menu.style.display = isVisible ? 'none' : 'block';
+                document.querySelectorAll('.dropdown-menu').forEach(function(other) {
+                    if (other !== menu) other.style.display = 'none';
                 });
             });
         });
-    </script>
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+                    menu.style.display = 'none';
+                });
+            }
+        });
+    }
+});
+</script>
 @endsection

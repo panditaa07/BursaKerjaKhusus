@@ -552,3 +552,80 @@
   outline:none !important; 
   box-shadow:0 6px 14px rgba(0,0,0,.12);
 }
+
+/* =========================================
+   SAMAKAN TOMBOL AKSI DENGAN DASHBOARD COMPANY
+   Untuk halaman Semua Lowongan
+   ========================================= */
+
+/* Override untuk tombol aksi di halaman Semua Lowongan */
+.company-applications-table .action-mini {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    border: none !important;
+    margin: 0 4px !important;
+    background: #e5e7eb !important;
+    color: #fff !important;
+    box-shadow: 0 6px 14px rgba(0,0,0,.12) !important;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease !important;
+    text-decoration: none !important;
+}
+
+/* Warna solid seperti dashboard */
+.company-applications-table .action-mini.view { 
+    background: #2563EB !important; /* biru */
+}
+.company-applications-table .action-mini.edit { 
+    background: #EAB308 !important; /* kuning */
+}
+.company-applications-table .action-mini.delete { 
+    background: #EF4444 !important; /* merah */
+}
+
+/* Hover effect sama seperti dashboard */
+.company-applications-table .action-mini:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 22px rgba(0,0,0,.18) !important;
+    filter: saturate(1.05) brightness(.98) !important;
+    background: inherit !important; /* Pertahankan warna asli */
+}
+
+/* Pastikan warna tetap saat hover */
+.company-applications-table .action-mini.view:hover { 
+    background: #2563EB !important; 
+}
+.company-applications-table .action-mini.edit:hover { 
+    background: #EAB308 !important; 
+}
+.company-applications-table .action-mini.delete:hover { 
+    background: #EF4444 !important; 
+}
+
+/* Ikon putih seperti dashboard */
+.company-applications-table .action-mini i { 
+    font-size: 18px !important;
+    line-height: 1 !important;
+    color: #fff !important;
+    pointer-events: none !important;
+}
+
+/* Active state */
+.company-applications-table .action-mini:active {
+    transform: scale(.96) !important;
+    box-shadow: none !important;
+}
+
+/* Hilangkan caret bootstrap */
+.company-applications-table .dropdown-toggle.action-mini.edit::after { 
+    display: none !important; 
+}
+
+/* Focus state */
+.company-applications-table .action-mini:focus { 
+    outline: none !important; 
+    box-shadow: 0 6px 14px rgba(0,0,0,.12) !important;
+}

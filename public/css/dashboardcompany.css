@@ -52,9 +52,18 @@
     font-family: "Inter", sans-serif;
 }
 
-/* Header tabel */
+/* PERBAIKAN: Header tabel dengan border radius */
 .table-custom thead tr {
     background: #1E3A8A;
+}
+
+/* PERBAIKAN: Tambahkan border radius untuk header */
+.table-custom thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.table-custom thead th:last-child {
+    border-top-right-radius: 12px;
 }
 
 .table-custom thead th {
@@ -80,6 +89,15 @@
 /* Hilangkan garis kanan terakhir agar rapi */
 .table-custom tbody td:last-child {
     border-right: none;
+}
+
+/* PERBAIKAN: Border radius untuk baris terakhir */
+.table-custom tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.table-custom tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
 }
 
 /* === Status Badge === */
@@ -377,7 +395,6 @@
   .jobs-latest .jl-company{ color:#e5e7eb; }
   .jobs-latest .jl-title{ color:#93c5fd; }
   .jobs-latest .jl-meta{ color:#94a3b8; }
-}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
@@ -709,15 +726,30 @@ textarea:focus,
   transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
 }
 
+/* PERBAIKAN: Garis biru hanya muncul saat hover */
+.table-custom .dropdown-item::before {
+  content:""; 
+  position:absolute; 
+  left:6px; 
+  top:8px; 
+  bottom:8px;
+  width:3px; 
+  border-radius:3px; 
+  background:#2563eb;
+  opacity: 0; /* Sembunyikan secara default */
+  transition: opacity 0.2s ease;
+}
+
 /* efek hover: highlight biru muda + garis di kiri */
 .table-custom .dropdown-item:hover{
   background: #e8f0ff;
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(59,130,246,.15);
 }
+
+/* Tampilkan garis biru hanya saat hover */
 .table-custom .dropdown-item:hover::before{
-  content:""; position:absolute; left:6px; top:8px; bottom:8px;
-  width:3px; border-radius:3px; background:#2563eb;
+  opacity: 1;
 }
 
 /* pemisah antar bagian */
@@ -896,4 +928,327 @@ textarea:focus,
 .table-section .card,
 .table-section .card-body {
   overflow: visible;
+}
+
+/* HILANGKAN EFEK WARNA PUTIH SAAT HOVER PADA TOMBOL AKSI */
+.table-custom .action-mini:hover {
+    background-color: inherit !important;
+}
+
+.table-custom .action-mini.view:hover {
+    background-color: #2563EB !important;
+}
+
+.table-custom .action-mini.edit:hover {
+    background-color: #EAB308 !important;
+}
+
+.table-custom .action-mini.delete:hover {
+    background-color: #EF4444 !important;
+}
+
+/* ==============================
+   DASHBOARD COMPANY - FIXED VERSION
+   Perbaikan bug dropdown & tampilan
+============================== */
+
+/* ==============================
+   FIX DROPDOWN CLIPPING BUG
+   ============================== */
+
+/* Container utama biar dropdown bebas */
+.table-section {
+    overflow: visible !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Pastikan card dan body tidak memotong */
+.table-section .card,
+.table-section .card-body {
+    overflow: visible !important;
+}
+
+/* Tabel positioning */
+.table-custom {
+    position: relative;
+    z-index: 2;
+}
+
+/* Kolom aksi harus visible */
+.table-custom td:last-child {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* DROPDOWN PARENT - KUNCI UTAMA */
+.table-custom .dropdown {
+    position: relative !important; /* Bukan static, tapi relative */
+    display: inline-block;
+}
+
+/* DROPDOWN MENU POSITIONING - SEPERTI FOTO 2 */
+.table-custom .dropdown-menu {
+    position: absolute !important;
+    left: auto !important;
+    right: 0 !important;
+    top: 100% !important;
+    margin-top: 0.125rem !important;
+    z-index: 1060 !important;
+    min-width: 240px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.18);
+    background: #fff;
+}
+
+/* Untuk baris di bagian bawah tabel, dropdown ke atas */
+.table-custom tr:last-child .dropdown-menu {
+    top: auto !important;
+    bottom: 100% !important;
+    margin-top: 0;
+    margin-bottom: 0.125rem;
+}
+
+/* Scrollbar dropdown */
+.table-custom .dropdown-menu::-webkit-scrollbar{ width:10px; }
+.table-custom .dropdown-menu::-webkit-scrollbar-track{ background:transparent; }
+.table-custom .dropdown-menu::-webkit-scrollbar-thumb{
+    background:#4f7cff; 
+    border-radius:10px; 
+    border:2px solid #eef2ff;
+}
+
+/* Item dropdown */
+.table-custom .dropdown-item{
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #111827;
+    position: relative;
+    transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+/* Garis biru kiri saat hover */
+.table-custom .dropdown-item::before {
+    content:""; 
+    position:absolute; 
+    left:6px; 
+    top:8px; 
+    bottom:8px;
+    width:3px; 
+    border-radius:3px; 
+    background:#2563eb;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.table-custom .dropdown-item:hover::before{
+    opacity: 1;
+}
+
+.table-custom .dropdown-item:hover{
+    background: #e8f0ff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(59,130,246,.15);
+}
+
+/* Pemisah */
+.table-custom .dropdown-divider{
+    margin: 8px 10px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Ikon status */
+.table-custom .dropdown-item .status-icon{
+    width: 18px; 
+    text-align: center; 
+    font-size: 16px; 
+    line-height: 1;
+}
+
+/* Warna ikon */
+.table-custom .dropdown-item .icon-submitted{ color:#6b7280; }
+.table-custom .dropdown-item .icon-test{ color:#7c3aed; }
+.table-custom .dropdown-item .icon-interview{ color:#0ea5e9; }
+.table-custom .dropdown-item .icon-accepted{ color:#22c55e; }
+.table-custom .dropdown-item .icon-rejected{ color:#ef4444; }
+
+/* Warna teks khusus */
+.table-custom .dropdown-item.text-success{ color:#22c55e !important; font-weight:700; }
+.table-custom .dropdown-item.text-danger{ color:#ef4444 !important; font-weight:700; }
+.table-custom .dropdown-item.text-success:hover{ background:#dcfce7; }
+.table-custom .dropdown-item.text-danger:hover{ background:#fee2e2; }
+
+/* ==============================
+   TOMBOL AKSI - SEPERTI FOTO 2
+   ============================== */
+.table-custom .action-mini{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    margin: 0 4px;
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(0,0,0,.12);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.table-custom .action-mini i{ 
+    font-size: 18px; 
+    line-height: 1; 
+    color: #fff !important;
+}
+
+/* Warna tombol */
+.table-custom .action-mini.view  { background: #2563EB; }
+.table-custom .action-mini.edit  { background: #EAB308; }
+.table-custom .action-mini.delete{ background: #EF4444; }
+
+/* Hover effect */
+.table-custom .action-mini:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    filter: saturate(1.05) brightness(.98);
+}
+
+.table-custom .action-mini:active{
+    transform: scale(.96);
+    box-shadow: none;
+}
+
+/* Hilangkan caret bootstrap */
+.table-custom .dropdown-toggle::after {
+    display: none !important;
+}
+
+/* ==============================
+   RESPONSIVE FIXES
+   ============================== */
+@media (max-width: 768px) {
+    .table-section {
+        padding: 15px 10px;
+    }
+    
+    .table-custom .dropdown-menu {
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 50% !important;
+        width: 90vw !important;
+        max-width: 280px !important;
+        max-height: 60vh;
+    }
+    
+    /* Untuk baris terakhir di mobile */
+    .table-custom tr:last-child .dropdown-menu {
+        top: auto !important;
+        bottom: 50% !important;
+        transform: translateX(-50%) translateY(50%) !important;
+    }
+    
+    .table-custom .action-mini {
+        width: 36px;
+        height: 36px;
+        margin: 0 2px;
+    }
+    
+    .table-custom .action-mini i {
+        font-size: 16px;
+    }
+}
+
+/* ==============================
+   STATUS BADGES - SEPERTI FOTO 2
+   ============================== */
+.status-pending {
+    background-color: #E2E8F0 !important;
+    color: #1E3A8A !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-reviewed {
+    background-color: #FDE68A !important;
+    color: #78350F !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-test {
+    background-color: #7C3AED !important;
+    color: #fff !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-test2 {
+    background-color: #A5F3FC !important;
+    color: #0E7490 !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-interview {
+    background-color: #06B6D4 !important;
+    color: #fff !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-accepted {
+    background-color: #22C55E !important;
+    color: #fff !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.status-rejected {
+    background-color: #EF4444 !important;
+    color: #fff !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+/* ==============================
+   HILANGKAN EFFECT YANG TIDAK PERLU
+   ============================== */
+.table-custom tbody tr {
+    transition: none !important;
+    cursor: default !important;
+}
+
+.table-custom tbody tr:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Focus states bersih */
+.action-mini:focus,
+.dropdown-toggle:focus {
+    outline: none !important;
+    box-shadow: 0 6px 14px rgba(0,0,0,.12) !important;
 }

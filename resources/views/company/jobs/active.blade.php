@@ -83,7 +83,7 @@
                                 <i class="fas fa-eye"></i>
                             </a>
                             <a href="{{ route('company.jobs.edit', $job->id) }}?from=active" class="action-mini edit" title="Edit">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-pen"></i>
                             </a>
                             <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')" class="d-inline">
                                 @csrf
