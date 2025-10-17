@@ -95,9 +95,10 @@ section {
 .lowongan-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 25px;
+    gap: 50px 50px; /* <— tambah jarak antar kolom dan baris */
+    margin-top: 40px; /* <— sedikit lebih jauh dari judul */
 }
+
 
 /* ===== LOWONGAN CARD ===== */
 .lowongan-card {
@@ -108,6 +109,7 @@ section {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     animation: fadeInUp 0.5s ease-out backwards;
+    margin-bottom: 15px;
 }
 
 .lowongan-card:nth-child(1) { animation-delay: 0.1s; }

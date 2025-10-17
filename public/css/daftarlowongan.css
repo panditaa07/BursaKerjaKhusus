@@ -392,3 +392,29 @@ html {
     color: #94a3b8;
     cursor: not-allowed;
 }
+
+/* ===== BUTTON KEMBALI ===== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.4rem;
+    background: rgb(30, 58, 138);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.btn-back:hover {
+    background: #1e40af;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+}
+
+.btn-back i {
+    font-size: 0.9rem;
+}
