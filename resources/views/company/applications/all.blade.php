@@ -143,79 +143,42 @@
                                                 <i class="fas fa-eye"></i>
                                             </a>
 
-                                            <!-- Edit Status -->
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm btn-outline-warning dropdown-toggle"
-                                                        type="button"
-                                                        id="dropdownMenuButton{{ $application->id }}"
-                                                        data-bs-toggle="dropdown"
-                                                        aria-expanded="false"
-                                                        title="Ubah Status">
-                                                    <i class="fas fa-pen"></i>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                    aria-labelledby="dropdownMenuButton{{ $application->id }}">
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="submitted">
-                                                            <button type="submit" class="dropdown-item">
-                                                                Submitted
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="test1">
-                                                            <button type="submit" class="dropdown-item">
-                                                                Test 1
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="test2">
-                                                            <button type="submit" class="dropdown-item">
-                                                                Test 2
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="interview">
-                                                            <button type="submit" class="dropdown-item">
-                                                                Interview
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="accepted">
-                                                            <button type="submit" class="dropdown-item text-success">
-                                                                <i class="fas fa-check-circle me-2"></i>Terima
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="rejected">
-                                                            <button type="submit" class="dropdown-item text-danger">
-                                                                <i class="fas fa-times-circle me-2"></i>Tolak
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                </ul>
+                                         <div class="dropdown">
+  <button class="btn btn-sm btn-outline-warning dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton{{ $application->id }}"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          title="Ubah Status">
+    <i class="fas fa-pen"></i>
+  </button>
+                                           <ul class="dropdown-menu dropdown-menu-end"
+    aria-labelledby="dropdownMenuButton{{ $application->id }}">
+
+   @foreach ([
+    'submitted' => ['icon' => 'far fa-clock',    'label' => 'Submitted', 'key' => 'submitted'],
+    'test1'     => ['icon' => 'fas fa-flask',    'label' => 'Test 1',    'key' => 'test'],
+    'test2'     => ['icon' => 'fas fa-flask',    'label' => 'Test 2',    'key' => 'test'],
+    'interview' => ['icon' => 'fas fa-user-tie', 'label' => 'Interview', 'key' => 'interview'],
+    'accepted'  => ['icon' => 'fas fa-check',    'label' => 'Terima',    'key' => 'accepted'],
+    'rejected'  => ['icon' => 'fas fa-times',    'label' => 'Tolak',     'key' => 'rejected'],
+] as $statusValue => $info)
+    <li>
+        <form action="{{ route('company.applications.updateStatus', $application->id) }}"
+              method="POST" class="d-inline">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="status" value="{{ $statusValue }}">
+            <button type="submit"
+                    class="dropdown-item {{ $statusValue === 'accepted' ? 'text-success' : '' }} {{ $statusValue === 'rejected' ? 'text-danger' : '' }}">
+                {{-- status-icon + icon-[key] => nempel ke CSS warna --}}
+                <i class="{{ $info['icon'] }} me-3 status-icon icon-{{ $info['key'] }}"></i>
+                {{ $info['label'] }}
+            </button>
+        </form>
+    </li>
+@endforeach
+</ul>
                                             </div>
 
                                             <!-- Delete Application -->

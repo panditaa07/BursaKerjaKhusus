@@ -95,13 +95,13 @@
                             @php
                                 $status = $app->status;
                                 $statusConfig = [
-                                    'accepted' => ['label' => 'Terima', 'class' => 'status-accepted'],
-                                    'rejected' => ['label' => 'Tolak', 'class' => 'status-rejected'],
-                                    'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-                                    'test1' => ['label' => 'Test 1', 'class' => 'status-test'],
-                                    'test2' => ['label' => 'Test 2', 'class' => 'status-test'],
-                                    'submitted' => ['label' => 'Menunggu', 'class' => 'status-pending'],
-                                    'reviewed' => ['label' => 'Menunggu', 'class' => 'status-pending'],
+                                    'accepted'  => ['label' => 'Terima',      'class' => 'status-accepted'],
+                                    'rejected'  => ['label' => 'Tolak',       'class' => 'status-rejected'],
+                                    'interview' => ['label' => 'Wawancara',   'class' => 'status-interview'],
+                                    'test1'     => ['label' => 'Test 1',      'class' => 'status-test'],
+                                    'test2'     => ['label' => 'Test 2',      'class' => 'status-test'],
+                                    'submitted' => ['label' => 'Menunggu',    'class' => 'status-pending'],
+                                    'reviewed'  => ['label' => 'Menunggu',    'class' => 'status-pending'],
                                 ];
                                 $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                             @endphp
@@ -121,7 +121,7 @@
                                     <i class="fas fa-eye"></i>
                                 </a>
 
-                                {{-- Edit Status --}}
+                                {{-- Edit Status (dropdown baru, sama seperti Kelola Pelamar) --}}
                                 <div class="dropdown">
                                     <button class="action-mini edit dropdown-toggle"
                                             type="button"
@@ -131,27 +131,39 @@
                                             title="Edit Status">
                                         <i class="fas fa-pen"></i>
                                     </button>
+
+                                    @php
+                                        // Definisi menu status + ikon berwarna seperti di Kelola Pelamar
+                                        $statusMenu = [
+                                            'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
+                                            'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
+                                            'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
+                                            'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
+                                            'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
+                                            'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
+                                        ];
+                                    @endphp
+
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="dropdownMenuButton{{ $app->id }}">
-                                        @foreach ([
-                                            'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
-                                            'test1' => ['icon' => 'fa-flask', 'label' => 'Test 1'],
-                                            'test2' => ['icon' => 'fa-flask', 'label' => 'Test 2'],
-                                            'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
-                                            'accepted' => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
-                                            'rejected' => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
-                                        ] as $status => $info)
+                                        @foreach ($statusMenu as $value => $opt)
                                             <li>
                                                 <form action="{{ route('company.applications.updateStatus', $app->id) }}"
                                                       method="POST" class="d-inline">
                                                     @csrf
                                                     @method('PUT')
-                                                    <input type="hidden" name="status" value="{{ $status }}">
-                                                    <button type="submit" class="dropdown-item">
-                                                        <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
+                                                    <input type="hidden" name="status" value="{{ $value }}">
+                                                    <button type="submit"
+                                                            class="dropdown-item {{ $opt['btn_class'] ?? '' }}">
+                                                        <i class="status-icon {{ $opt['icon'] }} me-2"></i>
+                                                        {{ $opt['label'] }}
                                                     </button>
                                                 </form>
                                             </li>
+
+                                            @if(!empty($opt['divider_after']))
+                                                <li><hr class="dropdown-divider"></li>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 </div>
@@ -277,6 +289,7 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    // animasi angka kartu
     const numbers = document.querySelectorAll('.stat-number');
     numbers.forEach(number => {
         const finalNumber = parseInt(number.textContent, 10);
@@ -293,10 +306,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 20);
     });
 
+    // modal preview logo
     const modalEl  = document.getElementById('jobImageModal');
     const modalImg = document.getElementById('jobImageModalImg');
     const modalTit = document.getElementById('jobImageModalLabel');
-    const bsModal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+    const bsModal  = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
 
     document.querySelectorAll('.jobs-latest .js-preview').forEach(el => {
         el.addEventListener('click', () => {
