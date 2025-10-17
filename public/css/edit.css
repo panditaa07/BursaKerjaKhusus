@@ -424,12 +424,12 @@
             margin-left: 1rem;
         }
 
-        .status-submitted { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; }
-        .status-test1 { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; }
-        .status-test2 { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
-        .status-interview { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; }
-        .status-accepted { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
-        .status-rejected { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; }
+        .status-submitted { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important; color: white !important; }
+        .status-test1 { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important; color: white !important; }
+        .status-test2 { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important; color: white !important; }
+        .status-interview { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important; color: white !important; }
+        .status-accepted { background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important; color: white !important; }
+        .status-rejected { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important; color: white !important;}
 
         /* ========== Error Styles ========== */
         .text-danger {

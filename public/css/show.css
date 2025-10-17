@@ -131,7 +131,7 @@
             transition: var(--transition);
             opacity: 0;
             animation: slideInLeft 0.6s ease-out forwards;
-        }
+        } 
 
         .info-item:nth-child(1) { animation-delay: 0.1s; }
         .info-item:nth-child(2) { animation-delay: 0.2s; }
@@ -144,9 +144,11 @@
 
         .info-item:hover {
             background: white;
+            color: rgb(30, 58, 138) !important;
             transform: translateX(5px);
             box-shadow: var(--shadow-soft);
         }
+
 
         .info-label {
             font-weight: 600;
@@ -169,6 +171,13 @@
             letter-spacing: 0.5px;
             transition: var(--transition);
             animation: badgePulse 2s infinite;
+        }
+
+        .status-badge:hover {
+            color: white !important;
+            transform: scale(1.1);
+            box-shadow: rgba(30, 58, 138, 0.3) 0px 4px 15px;
+            background: rgb(30, 58, 138);
         }
 
         .status-pending {
@@ -235,11 +244,11 @@
             box-shadow: var(--shadow-medium);
         }
 
-        .social-btn-facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); color: white; }
-        .social-btn-instagram { background: linear-gradient(135deg, #e91e63, #f06292, #ffb74d); color: white; }
-        .social-btn-linkedin { background: linear-gradient(135deg, #0077b5, #42a5f5); color: white; }
-        .social-btn-twitter { background: linear-gradient(135deg, #1da1f2, #42a5f5); color: white; }
-        .social-btn-tiktok { background: linear-gradient(135deg, #000000, #333333); color: white; }
+        .social-btn-facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); color: white !important; }
+        .social-btn-instagram { background: linear-gradient(135deg, #e91e63, #f06292, #ffb74d); color: white !important; }
+        .social-btn-linkedin { background: linear-gradient(135deg, #0077b5, #42a5f5); color: white !important; }
+        .social-btn-twitter { background: linear-gradient(135deg, #1da1f2, #42a5f5); color: white !important; }
+        .social-btn-tiktok { background: linear-gradient(135deg, #000000, #333333); color: white !important; }
 
         /* Download Links */
         .download-link {
@@ -248,7 +257,7 @@
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
             background: linear-gradient(135deg, rgb(30, 58, 138));
-            color: white;
+            color: white !important;
             text-decoration: none;
             border-radius: var(--border-radius);
             font-weight: 600;
