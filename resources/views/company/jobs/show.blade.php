@@ -10,7 +10,14 @@
 <div class="container-fluid">
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
+            <div class="d-flex align-items-center">
+                <div class="icon-container me-3">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div>
+                    {{ session('success') }}
+                </div>
+            </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     @endif
@@ -30,149 +37,173 @@
         </ol>
     </nav>
 
-  <!-- Header dengan Tombol Aksi (termasuk tombol Kembali) -->
+    <!-- Header dengan Tombol Aksi -->
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <h2 class="mb-0">
             <i class="fas fa-briefcase text-primary"></i>
             Detail Lowongan Kerja
         </h2>
 
-      <div class="jd-actions d-flex flex-wrap align-items-center">
-    {{-- Kembali --}}
-    <a href="javascript:history.back()" class="btn btn-outline-secondary jd-btn">
-        <i class="fas fa-arrow-left me-2"></i> Kembali
-    </a>
+        <div class="jd-actions d-flex flex-wrap align-items-center">
+            {{-- Kembali --}}
+            <a href="javascript:history.back()" class="btn btn-outline-secondary jd-btn">
+                <i class="fas fa-arrow-left me-2"></i> Kembali
+            </a>
 
-    {{-- Edit Lowongan --}}
-    <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning jd-btn">
-        <i class="fas fa-edit me-2"></i> Edit Lowongan
-    </a>
+            {{-- Edit Lowongan --}}
+            <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning jd-btn">
+                <i class="fas fa-edit me-2"></i> Edit Lowongan
+            </a>
 
+            {{-- Aktif/Nonaktif --}}
+            <form method="POST" action="{{ route('company.jobs.toggle-status', $job) }}" class="m-0 p-0">
+                @csrf
+                @method('PATCH')
+                <button type="submit"
+                        class="btn {{ $job->status === 'active' ? 'btn-outline-primary' : 'btn-success' }} jd-btn"
+                        onclick="return confirm('Apakah Anda yakin ingin mengubah status lowongan ini?')">
+                    <i class="fas fa-{{ $job->status === 'active' ? 'pause' : 'play' }} me-2"></i>
+                    {{ $job->status === 'active' ? 'Nonaktifkan' : 'Aktifkan' }}
+                </button>
+            </form>
 
-    {{-- Aktif/Nonaktif --}}
-    <form method="POST" action="{{ route('company.jobs.toggle-status', $job) }}" class="m-0 p-0">
-        @csrf
-        @method('PATCH')
-        <button type="submit"
-                class="btn {{ $job->status === 'active' ? 'btn-outline-primary' : 'btn-success' }} jd-btn"
-                onclick="return confirm('Apakah Anda yakin ingin mengubah status lowongan ini?')">
-            <i class="fas fa-{{ $job->status === 'active' ? 'pause' : 'play' }} me-2"></i>
-            {{ $job->status === 'active' ? 'Nonaktifkan' : 'Aktifkan' }}
-        </button>
-    </form>
-
-    {{-- Hapus --}}
-    <form method="POST" action="{{ route('company.jobs.destroy', $job) }}" class="m-0 p-0">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger jd-btn"
-                onclick="return confirm('Apakah Anda yakin ingin menghapus lowongan ini?')">
-            <i class="fas fa-trash me-2"></i> Hapus
-        </button>
-    </form>
-</div>
-
+            {{-- Hapus --}}
+            <form method="POST" action="{{ route('company.jobs.destroy', $job) }}" class="m-0 p-0">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger jd-btn"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus lowongan ini?')">
+                    <i class="fas fa-trash me-2"></i> Hapus
+                </button>
+            </form>
+        </div>
     </div>
+
     <div class="row">
         <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <!-- Header Perusahaan -->
-                    <div class="border-bottom pb-4 mb-4">
-                        <h4 class="card-title mb-3">
-                            <i class="fas fa-building text-primary"></i>
-                            Informasi Perusahaan
-                        </h4>
-                        <div class="d-flex align-items-center">
-                            @if($job->company && $job->company->logo)
-                                <img src="{{ asset('storage/' . $job->company->logo) }}" alt="Logo Perusahaan" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
-                            @else
-                                <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-building text-muted fa-2x"></i>
+            <!-- Enhanced Main Card -->
+            <div class="card enhanced-card floating-element">
+                <div class="card-body p-4">
+                    
+                    <!-- Enhanced Header Section - Fixed Layout -->
+                    <div class="enhanced-header mb-5">
+                        <!-- Company Info Grid -->
+                        <div class="company-header-grid">
+                            <!-- Logo -->
+                            <div class="company-logo-main">
+                                @if($job->company && $job->company->logo)
+                                    <img src="{{ asset('storage/' . $job->company->logo) }}" 
+                                         alt="Logo Perusahaan" 
+                                         class="rounded"
+                                         style="width: 100%; height: 100%; object-fit: cover;">
+                                @else
+                                    <i class="fas fa-building text-primary fa-3x"></i>
+                                @endif
+                            </div>
+                            
+                            <!-- Company Details -->
+                            <div class="company-details">
+                                <h1 class="company-name">{{ $job->company->name ?? 'N/A' }}</h1>
+                                
+                                <div class="company-contact-info">
+                                    <div class="contact-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>{{ $job->company->address ?? 'N/A' }}</span>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>{{ $job->company->user->email ?? 'N/A' }}</span>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-phone"></i>
+                                        <span>{{ $job->company->phone ?? 'N/A' }}</span>
+                                    </div>
                                 </div>
-                            @endif
-                            <div>
-                                <h5 class="mb-1">{{ $job->company->name ?? 'N/A' }}</h5>
-                                <p class="text-muted mb-1">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    {{ $job->company->address ?? 'N/A' }}
-                                </p>
-                                <p class="text-muted mb-1">
-                                    <i class="fas fa-envelope"></i>
-                                    {{ $job->company->user->email ?? 'N/A' }}
-                                </p>
-                                <p class="text-muted mb-0">
-                                    <i class="fas fa-phone"></i>
-                                    {{ $job->company->phone ?? 'N/A' }}
-                                </p>
                             </div>
                         </div>
-
-                        <!-- Company Profile Photo -->
-                        <div class="mt-3 text-center">
-                            <h6 class="mb-2">
-                                <i class="fas fa-user-circle text-primary"></i>
+                        
+                        <!-- Job Title Section -->
+                        <div class="job-title-main">
+                            <h2 class="job-title-text">{{ $job->title }}</h2>
+                            
+                            <div class="job-meta-tags">
+                                <span class="job-tag">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    {{ $job->location }}
+                                </span>
+                                <span class="job-tag">
+                                    <i class="fas fa-clock"></i>
+                                    {{ $job->employment_type }}
+                                </span>
+                                <span class="job-tag">
+                                    <i class="fas fa-users"></i>
+                                    {{ $job->vacancies }} Lowongan
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Profile Photo Section -->
+                        <div class="profile-section">
+                            <h6 class="profile-title">
+                                <i class="fas fa-user-circle"></i>
                                 Foto Profil Perusahaan
                             </h6>
                             @if($job->company && $job->company->user && $job->company->user->profile_photo_path)
                                 <img src="{{ asset('storage/' . $job->company->user->profile_photo_path) }}"
                                      alt="Foto Profil {{ $job->company->name }}"
-                                     class="rounded-circle border"
-                                     style="width: 100px; height: 100px; object-fit: cover; border-width: 3px !important; border-color: #dee2e6 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                     class="profile-avatar"
+                                     style="object-fit: cover;">
                             @else
-                                <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center"
-                                     style="width: 100px; height: 100px; border-width: 3px !important; border-color: #dee2e6 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                    <i class="fas fa-user text-muted fa-2x"></i>
+                                <div class="profile-avatar">
+                                    <i class="fas fa-user"></i>
                                 </div>
                             @endif
                         </div>
                     </div>
 
-                    <!-- Judul Posisi Lowongan -->
-                    <div class="mb-4">
-                        <h4 class="card-title mb-3">
-                            <i class="fas fa-briefcase text-success"></i>
-                            {{ $job->title }}
-                        </h4>
-                    </div>
+                    <!-- Section Divider -->
+                    <div class="section-divider"></div>
 
-                    <!-- Informasi Umum -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <h5 class="mb-3">
-                                <i class="fas fa-info-circle text-primary"></i>
+                    <!-- Enhanced Job Details Grid -->
+                    <div class="info-grid-enhanced mb-5">
+                        <!-- Informasi Umum -->
+                        <div class="info-card-enhanced">
+                            <h5 class="mb-4">
+                                <div class="icon-container d-inline-flex me-3">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
                                 Informasi Umum
                             </h5>
                             <table class="table table-borderless">
                                 <tr>
                                     <td class="text-muted" width="150">Lokasi:</td>
                                     <td>
-                                        <i class="fas fa-map-marker-alt text-muted"></i>
+                                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
                                         {{ $job->location }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Tipe Pekerjaan:</td>
                                     <td>
-                                        <i class="fas fa-clock text-muted"></i>
+                                        <i class="fas fa-clock text-primary me-2"></i>
                                         {{ $job->employment_type }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Jumlah Lowongan:</td>
                                     <td>
-                                        <i class="fas fa-users text-muted"></i>
+                                        <i class="fas fa-users text-primary me-2"></i>
                                         {{ $job->vacancies }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Status:</td>
                                     <td>
-                                        <span class="badge
+                                        <span class="badge-enhanced
                                             @if(in_array($job->status, ['active'])) bg-success
                                             @elseif(in_array($job->status, ['inactive'])) bg-danger
                                             @else bg-warning @endif">
-                                            <i class="fas fa-{{ in_array($job->status, ['active']) ? 'check' : 'pause' }}"></i>
+                                            <i class="fas fa-{{ in_array($job->status, ['active']) ? 'check' : 'pause' }} me-1"></i>
                                             {{ ucfirst($job->status) }}
                                         </span>
                                     </td>
@@ -180,14 +211,14 @@
                                 <tr>
                                     <td class="text-muted">Tanggal Dibuat:</td>
                                     <td>
-                                        <i class="fas fa-calendar text-muted"></i>
+                                        <i class="fas fa-calendar text-primary me-2"></i>
                                         {{ $job->created_at ? \Carbon\Carbon::parse($job->created_at)->format('d/m/Y H:i') : 'N/A' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Deadline:</td>
                                     <td>
-                                        <i class="fas fa-calendar-alt text-muted"></i>
+                                        <i class="fas fa-calendar-alt text-primary me-2"></i>
                                         {{ $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('d/m/Y') : 'N/A' }}
                                         @if($job->deadline)
                                             @php
@@ -208,7 +239,7 @@
                                 <tr>
                                     <td class="text-muted">Rentang Gaji:</td>
                                     <td>
-                                        <i class="fas fa-money-bill text-muted"></i>
+                                        <i class="fas fa-money-bill text-primary me-2"></i>
                                         @if($job->min_salary || $job->max_salary)
                                             Rp {{ number_format((float)($job->min_salary ?: 0)) }} - Rp {{ number_format((float)($job->max_salary ?: 0)) }}
                                         @else
@@ -219,24 +250,27 @@
                             </table>
                         </div>
 
-                        <div class="col-md-6">
-                            <h5 class="mb-3">
-                                <i class="fas fa-list text-primary"></i>
+                        <!-- Detail Tambahan -->
+                        <div class="info-card-enhanced">
+                            <h5 class="mb-4">
+                                <div class="icon-container d-inline-flex me-3">
+                                    <i class="fas fa-list"></i>
+                                </div>
                                 Detail Tambahan
                             </h5>
                             <table class="table table-borderless">
                                 <tr>
                                     <td class="text-muted" width="150">Industri:</td>
                                     <td>
-                                        <i class="fas fa-industry text-muted"></i>
+                                        <i class="fas fa-industry text-primary me-2"></i>
                                         {{ $job->industry->name ?? 'N/A' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Total Pelamar:</td>
                                     <td>
-                                        <i class="fas fa-users text-muted"></i>
-                                        <a href="{{ route('company.pelamar.all') }}" class="text-decoration-none">
+                                        <i class="fas fa-users text-primary me-2"></i>
+                                        <a href="{{ route('company.pelamar.all') }}" class="text-decoration-none text-primary fw-bold">
                                             {{ $job->applications->count() }} pelamar
                                         </a>
                                     </td>
@@ -245,134 +279,130 @@
                         </div>
                     </div>
 
-                    <!-- Jobdesk / Tugas Pekerjaan -->
+                    <!-- Enhanced Content Sections -->
                     @if($job->description)
-                    <div class="mb-4">
-                        <h5 class="mb-3">
-                            <i class="fas fa-tasks text-primary"></i>
+                    <div class="info-card-enhanced mb-4">
+                        <h5 class="mb-4">
+                            <div class="icon-container d-inline-flex me-3">
+                                <i class="fas fa-tasks"></i>
+                            </div>
                             Jobdesk / Tugas Pekerjaan
                         </h5>
-                        <div class="alert alert-light">
+                        <div class="alert-light-enhanced">
                             {!! nl2br(e($job->description)) !!}
                         </div>
                     </div>
                     @endif
 
-                    <!-- Persyaratan -->
                     @if($job->requirements)
-                    <div class="mb-4">
-                        <h5 class="mb-3">
-                            <i class="fas fa-clipboard-list text-primary"></i>
+                    <div class="info-card-enhanced mb-4">
+                        <h5 class="mb-4">
+                            <div class="icon-container d-inline-flex me-3">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
                             Persyaratan
                         </h5>
-                        <div class="alert alert-light">
+                        <div class="alert-light-enhanced">
                             {!! nl2br(e($job->requirements)) !!}
                         </div>
                     </div>
                     @endif
 
-                    <!-- Berkas Lamaran -->
                     @if($job->berkas_lamaran)
-                    <div class="mb-4">
-                        <h5 class="mb-3">
-                            <i class="fas fa-file-alt text-primary"></i>
+                    <div class="info-card-enhanced mb-4">
+                        <h5 class="mb-4">
+                            <div class="icon-container d-inline-flex me-3">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
                             Berkas Lamaran
                         </h5>
-                        <div class="alert alert-light">
+                        <div class="alert-light-enhanced">
                             {!! nl2br(e($job->berkas_lamaran)) !!}
                         </div>
                     </div>
                     @endif
 
-           {{-- Pelamar --}}
-<div class="mb-4">
-  <h5 class="mb-3">
-    <i class="fas fa-users text-primary"></i>
-    Pelamar ({{ $job->applications->count() }})
-  </h5>
-
-  @if($job->applications->count() > 0)
-    <div class="table-responsive">
-      <table class="table-applicants">
-        <thead>
-          <tr>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Tanggal</th>
-            <th class="text-center">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($job->applications as $application)
-            <tr>
-              {{-- NAMA --}}
-              <td data-label="Nama">
-                <div class="d-flex align-items-center">
-                  @if($application->user->profile_photo_path)
-                    <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
-                         alt="Avatar" class="rounded-circle me-2"
-                         style="width:32px;height:32px;object-fit:cover;">
-                  @else
-                    <div class="avatar-pill me-2">
-                      {{ strtoupper(substr($application->user->name, 0, 1)) }}
+                    <!-- Enhanced Applicants Section -->
+                    <div class="applicant-table-enhanced mt-5">
+                        <div class="applicant-header-enhanced">
+                            <h5>
+                                <i class="fas fa-users me-2"></i>
+                                Pelamar ({{ $job->applications->count() }})
+                            </h5>
+                        </div>
+                        
+                        <div class="p-4">
+                            @if($job->applications->count() > 0)
+                                <div class="table-responsive">
+                                    <table class="table-applicants">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
+                                                <th class="text-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($job->applications as $application)
+                                                <tr>
+                                                    <td data-label="Nama">
+                                                        <div class="d-flex align-items-center">
+                                                            @if($application->user->profile_photo_path)
+                                                                <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
+                                                                     alt="Avatar" class="rounded-circle me-2"
+                                                                     style="width:32px;height:32px;object-fit:cover;">
+                                                            @else
+                                                                <div class="avatar-pill me-2">
+                                                                    {{ strtoupper(substr($application->user->name, 0, 1)) }}
+                                                                </div>
+                                                            @endif
+                                                            {{ $application->user->name }}
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Email">{{ $application->user->email }}</td>
+                                                    <td data-label="Status">
+                                                        @php
+                                                            $statusMap = [
+                                                                'submitted' => ['label' => 'Menunggu', 'class' => 'status-wait', 'icon' => 'fa-circle'],
+                                                                'pending' => ['label' => 'Menunggu', 'class' => 'status-wait', 'icon' => 'fa-circle'],
+                                                                'reviewed' => ['label' => 'Menunggu', 'class' => 'status-wait', 'icon' => 'fa-circle'],
+                                                                'test1' => ['label' => 'Test 1', 'class' => 'status-test1', 'icon' => 'fa-circle'],
+                                                                'test2' => ['label' => 'Test 2', 'class' => 'status-test2', 'icon' => 'fa-circle'],
+                                                                'interview' => ['label' => 'Interview','class' => 'status-interview', 'icon' => 'fa-circle'],
+                                                                'accepted' => ['label' => 'Terima', 'class' => 'status-accepted', 'icon' => 'fa-circle'],
+                                                                'rejected' => ['label' => 'Tolak', 'class' => 'status-rejected', 'icon' => 'fa-circle'],
+                                                            ];
+                                                            $key = strtolower($application->status);
+                                                            $cfg = $statusMap[$key] ?? ['label'=>ucfirst($application->status),'class'=>'status-neutral','icon'=>'fa-circle'];
+                                                        @endphp
+                                                        <span class="chip {{ $cfg['class'] }}" title="{{ $cfg['label'] }}">
+                                                            <span class="chip-dot"></span>
+                                                            <span class="chip-label">{{ $cfg['label'] }}</span>
+                                                        </span>
+                                                    </td>
+                                                    <td data-label="Tanggal">{{ $application->created_at->format('d/m/Y') }}</td>
+                                                    <td class="text-center" data-label="Aksi">
+                                                        <a href="{{ route('company.applications.show.company', $application->id) }}"
+                                                           class="btn-icon btn-view" title="Lihat Detail">
+                                                           <i class="fas fa-eye"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="empty-state-enhanced">
+                                    <i class="fas fa-users"></i>
+                                    <h4 class="text-muted mb-3">Belum ada pelamar</h4>
+                                    <p class="text-muted">Belum ada pelamar yang melamar lowongan ini.</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                  @endif
-                  {{ $application->user->name }}
-                </div>
-              </td>
-
-              {{-- EMAIL --}}
-              <td data-label="Email">{{ $application->user->email }}</td>
-
-             {{-- STATUS --}}
-<td data-label="Status">
-  @php
-    $statusMap = [
-      'submitted' => ['label' => 'Menunggu', 'class' => 'status-wait',      'icon' => 'fa-circle'],
-      'pending'   => ['label' => 'Menunggu', 'class' => 'status-wait',      'icon' => 'fa-circle'],
-      'reviewed'  => ['label' => 'Menunggu', 'class' => 'status-wait',      'icon' => 'fa-circle'],
-      'test1'     => ['label' => 'Test 1',   'class' => 'status-test1',     'icon' => 'fa-circle'],
-      'test2'     => ['label' => 'Test 2',   'class' => 'status-test2',     'icon' => 'fa-circle'],
-      'interview' => ['label' => 'Interview','class' => 'status-interview', 'icon' => 'fa-circle'],
-      'accepted'  => ['label' => 'Terima',   'class' => 'status-accepted',  'icon' => 'fa-circle'],
-      'rejected'  => ['label' => 'Tolak',    'class' => 'status-rejected',  'icon' => 'fa-circle'],
-    ];
-
-    $key   = strtolower($application->status);
-    $cfg   = $statusMap[$key] ?? ['label'=>ucfirst($application->status),'class'=>'status-neutral','icon'=>'fa-circle'];
-  @endphp
-
-  <span class="chip {{ $cfg['class'] }}" title="{{ $cfg['label'] }}">
-    <span class="chip-dot"></span>
-    <span class="chip-label">{{ $cfg['label'] }}</span>
-  </span>
-</td>
-              {{-- TANGGAL --}}
-              <td data-label="Tanggal">{{ $application->created_at->format('d/m/Y') }}</td>
-
-              {{-- AKSI --}}
-              <td class="text-center" data-label="Aksi">
-                <a href="{{ route('company.applications.show.company', $application->id) }}"
-   class="btn-icon btn-view" title="Lihat Detail">
-   <i class="fas fa-eye"></i>
-</a>
-
-              </td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
-  @else
-    <div class="text-center py-5">
-      <i class="fas fa-users fa-3x text-muted mb-3"></i>
-      <h5 class="text-muted">Belum ada pelamar</h5>
-      <p class="text-muted">Belum ada pelamar yang melamar lowongan ini.</p>
-    </div>
-  @endif
-</div>
-
                 </div>
             </div>
         </div>
@@ -382,6 +412,7 @@
 
 @push('styles')
 <style>
+    /* Additional inline styles for better appearance */
     .card {
         border: none;
         border-radius: 10px;
@@ -403,13 +434,22 @@
         color: #495057;
     }
 </style>
+@endpush
 
 @push('scripts')
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('job-detail');
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('job-detail');
+        
+        // Add smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
 </script>
-@endpush
-
 @endpush
