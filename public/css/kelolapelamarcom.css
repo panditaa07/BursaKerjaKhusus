@@ -485,3 +485,33 @@ h2.h4{
 .company-applications-table .dropdown-menu.dd-status .dropdown-item.text-danger:hover {
   background: #fee2e2 !important;
 }
+/* ===== OVERRIDE WARNA STATUS (update terakhir) ===== */
+
+/* Menunggu: abu kebiruan */
+.status-pending {
+  background: #E2E8F0 !important;   /* slate-200, abu kebiruan lembut */
+  color: #1E3A8A !important;         /* teks biru tua agar kontras */
+}
+
+/* Ditinjau: amber lembut */
+.status-reviewed {
+  background: #FDE68A !important;    /* amber-200 */
+  color: #78350F !important;         /* amber-900 untuk teks */
+}
+
+/* Test 2: cyan lembut */
+.status-test2 {
+  background: #A5F3FC !important;    /* cyan-300 */
+  color: #0E7490 !important;         /* cyan-800 untuk teks */
+}
+
+/* (Opsional: ubah warna ikon di dropdown agar konsisten) */
+.company-applications-table .dropdown-menu .dropdown-item .icon-submitted {
+  color: #94A3B8 !important;  /* abu kebiruan (Menunggu) */
+}
+.company-applications-table .dropdown-menu .dropdown-item .icon-reviewed {
+  color: #FBBF24 !important;  /* amber lembut (Ditinjau) */
+}
+.company-applications-table .dropdown-menu .dropdown-item .icon-test2 {
+  color: #22D3EE !important;  /* cyan lembut (Test 2) */
+}

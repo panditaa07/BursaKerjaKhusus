@@ -118,15 +118,16 @@
                                     <td class="text-center">
                                         @php
                                             $status = $application->status;
-                                            $statusConfig = [
-                                                'accepted' => ['label' => 'Terima', 'class' => 'status-accepted'],
-                                                'rejected' => ['label' => 'Tolak', 'class' => 'status-rejected'],
-                                                'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-                                                'test1' => ['label' => 'Test 1', 'class' => 'status-test'],
-                                                'test2' => ['label' => 'Test 2', 'class' => 'status-test'],
-                                                'submitted' => ['label' => 'Menunggu', 'class' => 'status-pending'],
-                                                'reviewed' => ['label' => 'Ditinjau', 'class' => 'status-reviewed'],
-                                            ];
+                                  $statusConfig = [
+    'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+    'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+    'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+    'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+    'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],  // <— ini
+    'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
+    'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
+];
+
                                             $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                                         @endphp
                                         <span class="badge {{ $currentStatus['class'] }} px-3 py-2">

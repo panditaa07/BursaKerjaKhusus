@@ -94,15 +94,15 @@
                         <td>
                             @php
                                 $status = $app->status;
-                                $statusConfig = [
-                                    'accepted'  => ['label' => 'Terima',      'class' => 'status-accepted'],
-                                    'rejected'  => ['label' => 'Tolak',       'class' => 'status-rejected'],
-                                    'interview' => ['label' => 'Wawancara',   'class' => 'status-interview'],
-                                    'test1'     => ['label' => 'Test 1',      'class' => 'status-test'],
-                                    'test2'     => ['label' => 'Test 2',      'class' => 'status-test'],
-                                    'submitted' => ['label' => 'Menunggu',    'class' => 'status-pending'],
-                                    'reviewed'  => ['label' => 'Menunggu',    'class' => 'status-pending'],
-                                ];
+                           $statusConfig = [
+    'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+    'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+    'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+    'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+    'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],  // ✅ cyan lembut
+    'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'], // ✅ abu kebiruan
+    'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'], // ✅ amber lembut
+];
                                 $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                             @endphp
                             <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
@@ -122,15 +122,16 @@
                                 </a>
 
                                 {{-- Edit Status (dropdown baru, sama seperti Kelola Pelamar) --}}
-                                <div class="dropdown">
-                                    <button class="action-mini edit dropdown-toggle"
-                                            type="button"
-                                            id="dropdownMenuButton{{ $app->id }}"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                            title="Edit Status">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
+                           <div class="dropdown position-static">
+  <button class="action-mini edit dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton{{ $app->id }}"
+          data-bs-toggle="dropdown"
+          data-bs-boundary="viewport"   {{-- ⬅️ kunci: hindari clipping parent --}}
+          aria-expanded="false"
+          title="Edit Status">
+      <i class="fas fa-pen"></i>
+  </button>
 
                                     @php
                                         // Definisi menu status + ikon berwarna seperti di Kelola Pelamar

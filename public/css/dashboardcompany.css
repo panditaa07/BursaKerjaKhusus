@@ -743,3 +743,157 @@ textarea:focus,
 .table-custom .dropdown-item.text-danger{  color:#ef4444 !important; font-weight:700; }
 .table-custom .dropdown-item.text-success:hover{ background:#dcfce7; }
 .table-custom .dropdown-item.text-danger:hover{  background:#fee2e2; }
+/* ===== ACTION ICON BUTTONS (solid, rounded squares) ===== */
+.table-custom .action-mini{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:40px;           /* sedikit lebih besar agar seperti contoh */
+  height:40px;
+  border-radius:12px;   /* rounded square */
+  border:none;
+  margin:0 4px;
+  background:#e5e7eb;   /* default fallback */
+  color:#fff;           /* ikon putih */
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  text-decoration:none !important;
+}
+.table-custom .action-mini i{ 
+  font-size:18px; 
+  line-height:1; 
+  color:#fff !important;              /* pastikan ikon putih */
+  pointer-events:none;
+}
+
+/* warna sesuai contoh */
+.table-custom .action-mini.view  { background:#2563EB; } /* biru */
+.table-custom .action-mini.edit  { background:#EAB308; } /* kuning */
+.table-custom .action-mini.delete{ background:#EF4444; } /* merah */
+
+/* hover & active */
+.table-custom .action-mini:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.18);
+  filter:saturate(1.05) brightness(.98);
+}
+.table-custom .action-mini:active{
+  transform:scale(.96);
+  box-shadow:none;
+}
+
+/* hilangkan caret bootstrap di tombol dropdown edit */
+.table-custom .dropdown-toggle.action-mini.edit::after{ display:none; }
+
+/* samakan posisi dropdown agar tidak ke-potong */
+.table-custom td:last-child{ position:relative; overflow:visible; }
+.table-custom .dropdown-menu{
+  border-radius:12px;
+  box-shadow:0 14px 34px rgba(0,0,0,.18);
+}
+
+/* optional: fokus tanpa outline */
+.action-mini:focus{ outline:none !important; box-shadow:0 6px 14px rgba(0,0,0,.12); }
+/* ======================================
+   OVERRIDE WARNA STATUS (versi final)
+   ====================================== */
+
+/* 🕓 Menunggu — abu kebiruan lembut */
+.status-pending {
+  background-color: #E2E8F0 !important;  /* slate-200 */
+  color: #1E3A8A !important;             /* biru tua untuk teks */
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+
+/* 🔍 Ditinjau — amber lembut */
+.status-reviewed {
+  background-color: #FDE68A !important;  /* amber-200 */
+  color: #78350F !important;             /* amber-900 */
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+
+/* 🧪 Test 1 — ungu seperti biasa */
+.status-test {
+  background-color: #7C3AED !important;  /* ungu */
+  color: #fff !important;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+
+/* 🧫 Test 2 — cyan lembut */
+.status-test2 {
+  background-color: #A5F3FC !important;  /* cyan-300 */
+  color: #0E7490 !important;             /* cyan-800 */
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+
+/* 💬 Wawancara */
+.status-interview {
+  background-color: #06B6D4 !important;
+  color: #fff !important;
+}
+
+/* ✅ Diterima */
+.status-accepted {
+  background-color: #22C55E !important;
+  color: #fff !important;
+}
+
+/* ❌ Ditolak */
+.status-rejected {
+  background-color: #EF4444 !important;
+  color: #fff !important;
+}
+
+/* ======================================
+   IKON DALAM DROPDOWN STATUS
+   ====================================== */
+
+/* Menunggu → abu kebiruan */
+.table-custom .dropdown-item .icon-submitted {
+  color: #94A3B8 !important;  /* slate-400 */
+}
+
+/* Ditinjau → amber lembut */
+.table-custom .dropdown-item .icon-reviewed {
+  color: #FBBF24 !important;  /* amber-400 */
+}
+
+/* Test 2 → cyan lembut */
+.table-custom .dropdown-item .icon-test2 {
+  color: #22D3EE !important;  /* cyan-400 */
+}
+
+/* Ulang untuk status lain agar konsisten */
+.table-custom .dropdown-item .icon-test {
+  color: #7C3AED !important;
+}
+.table-custom .dropdown-item .icon-interview {
+  color: #0EA5E9 !important;
+}
+.table-custom .dropdown-item .icon-accepted {
+  color: #16A34A !important;
+}
+.table-custom .dropdown-item .icon-rejected {
+  color: #DC2626 !important;
+}
+/* pastikan dropdown di tabel tidak ter-clipping */
+.table-section,
+.table-section .table-custom,
+.table-section .table-custom tbody tr,
+.table-section .table-custom td {
+  overflow: visible;     /* ⬅️ biarkan menu keluar */
+}
+
+/* kalau ada wrapper card yang membungkus tabel dan diberi radius + shadow */
+.table-section .card,
+.table-section .card-body {
+  overflow: visible;
+}

@@ -489,3 +489,66 @@
 .mr-3 {
     margin-right: 1rem !important; /* Sedikit tambahan jarak */
 }
+/* =========================================================
+   ACTION ICON BUTTONS — solid rounded squares (unified)
+   Berlaku untuk .action-mini & .action-btn di tabel lowongan
+   ========================================================= */
+.company-applications-table .action-mini,
+.company-applications-table .action-btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:40px;
+  height:40px;
+  border-radius:12px;          /* rounded square */
+  margin:0 4px;
+  border:none !important;      /* buang border-outline lama */
+  background:#e5e7eb;          /* fallback */
+  color:#fff !important;       /* teks/ikon putih */
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  text-decoration:none !important;
+}
+
+/* pastikan ikon putih & tidak terpengaruh a:hover global */
+.company-applications-table .action-mini i,
+.company-applications-table .action-btn i{
+  font-size:18px;
+  line-height:1;
+  color:#fff !important;
+  pointer-events:none;
+}
+
+/* warna utama (sesuai contoh) */
+.company-applications-table .action-mini.view,
+.company-applications-table .action-btn.view{ background:#2563EB !important; } /* biru */
+.company-applications-table .action-mini.edit,
+.company-applications-table .action-btn.edit{ background:#EAB308 !important; } /* kuning */
+.company-applications-table .action-mini.delete,
+.company-applications-table .action-btn.delete{ background:#EF4444 !important; } /* merah */
+
+/* hover & active */
+.company-applications-table .action-mini:hover,
+.company-applications-table .action-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.18);
+  filter:saturate(1.05) brightness(.98);
+}
+.company-applications-table .action-mini:active,
+.company-applications-table .action-btn:active{
+  transform:scale(.96);
+  box-shadow:none;
+}
+
+/* hilangkan caret bootstrap pada tombol edit yang jadi dropdown */
+.company-applications-table .dropdown-toggle.action-mini.edit::after,
+.company-applications-table .dropdown-toggle.action-btn.edit::after{ 
+  display:none; 
+}
+
+/* fokus tanpa outline mencolok */
+.company-applications-table .action-mini:focus,
+.company-applications-table .action-btn:focus{ 
+  outline:none !important; 
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+}
