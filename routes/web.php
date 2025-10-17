@@ -162,6 +162,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/show', [ProfileController::class, 'show'])->name('show');
         Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
         Route::put('/', [ProfileController::class, 'update'])->name('update');
+        Route::post('/photo', [ProfileController::class, 'updatePhoto'])->name('photo.update');
         Route::get('/upload-cv', [ProfileController::class, 'showUploadForm'])->name('upload-cv');
         Route::post('/upload-cv', [ProfileController::class, 'uploadCv'])->name('upload-cv.post');
     });

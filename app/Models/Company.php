@@ -12,12 +12,16 @@ class Company extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'email',
         'description',
         'address',
         'phone',
         'is_verified',
-        'logo'
+        'logo',
+        'website',
+        'industry_id'
     ];
     public function user() { return $this->belongsTo(User::class); }
     public function jobPosts() { return $this->hasMany(JobPost::class); }
+    public function industry() { return $this->belongsTo(Industry::class); }
 }

@@ -66,6 +66,10 @@
                             <input type="text" class="form-control" id="company_phone" name="company_phone" value="{{ old('company_phone', Auth::user()->company->phone ?? '') }}">
                         </div>
                         <div class="mb-3">
+                            <label for="company_website" class="form-label">Website Perusahaan</label>
+                            <input type="url" class="form-control" id="company_website" name="company_website" value="{{ old('company_website', Auth::user()->company->website ?? '') }}" placeholder="https://example.com">
+                        </div>
+                        <div class="mb-3">
                             <label for="company_address" class="form-label">Alamat Perusahaan</label>
                             <textarea class="form-control" id="company_address" name="company_address" rows="3">{{ old('company_address', Auth::user()->company->address ?? '') }}</textarea>
                         </div>

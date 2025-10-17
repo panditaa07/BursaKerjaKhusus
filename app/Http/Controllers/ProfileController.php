@@ -45,6 +45,33 @@ class ProfileController extends Controller
     }
 }
 
+    public function updatePhoto(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // Delete old photo
+        if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+        }
+
+        // Store new photo
+        $path = $request->file('photo')->store('profile_photos', 'public');
+
+        // Update user record
+        $user->profile_photo_path = $path;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'path' => asset('storage/' . $path),
+            'message' => 'Foto profil berhasil diperbarui.'
+        ]);
+    }
+
 
     private function updateCompanyProfile(Request $request, $user)
     {
@@ -62,6 +89,7 @@ class ProfileController extends Controller
             'company_email' => 'nullable|email|max:255',
             'company_phone' => 'nullable|string|max:20',
             'company_address' => 'nullable|string|max:500',
+            'company_website' => 'nullable|url',
             'industry_id' => 'nullable|exists:industries,id',
             'description' => 'nullable|string|max:1000',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -89,7 +117,15 @@ class ProfileController extends Controller
         $user->update($userData);
 
         // Update or create company data
-        $companyData = $request->only(['company_name', 'company_email', 'company_phone', 'company_address', 'industry_id', 'description']);
+        $companyData = [
+            'name' => $request->company_name,
+            'email' => $request->company_email,
+            'address' => $request->company_address,
+            'phone' => $request->company_phone,
+            'website' => $request->company_website,
+            'industry_id' => $request->industry_id,
+            'description' => $request->description,
+        ];
 
         if ($request->hasFile('logo')) {
             // Hapus logo lama jika ada
@@ -121,7 +157,6 @@ class ProfileController extends Controller
             'nisn' => 'nullable|string|max:20|unique:users,nisn,' . $user->id,
             'birth_date' => 'nullable|date',
             'short_profile' => 'nullable|string|max:500',
-            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cv' => 'nullable|file|mimes:pdf|max:2048',
             'cover_letter' => 'nullable|file|mimes:pdf|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -137,15 +172,7 @@ class ProfileController extends Controller
 
         $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile', 'portfolio_link', 'linkedin', 'instagram', 'facebook', 'twitter', 'tiktok']);
 
-        if ($request->hasFile('profile_photo')) {
-            \Log::info('[PROFILE UPDATE] Uploading profile photo...');
-            if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
-                Storage::disk('public')->delete($user->profile_photo_path);
-            }
-            $userData['profile_photo_path'] = $request->file('profile_photo')->store('profile_photos', 'public');
-            \Log::info('[PROFILE UPDATE] Profile photo uploaded.');
-        }
-
+        // Handle CV upload
         if ($request->hasFile('cv')) {
             \Log::info('[PROFILE UPDATE] Uploading CV...');
             if ($user->cv_path && Storage::disk('public')->exists($user->cv_path)) {
@@ -155,6 +182,7 @@ class ProfileController extends Controller
             \Log::info('[PROFILE UPDATE] CV uploaded.');
         }
 
+        // Handle Cover Letter upload
         if ($request->hasFile('cover_letter')) {
             \Log::info('[PROFILE UPDATE] Uploading cover letter...');
             if ($user->cover_letter_path && Storage::disk('public')->exists('cover_letter_files/' . $user->cover_letter_path)) {
@@ -164,10 +192,11 @@ class ProfileController extends Controller
             $extension = $request->file('cover_letter')->getClientOriginalExtension();
             $filename = pathinfo($originalName, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
             $request->file('cover_letter')->storeAs('cover_letter_files', $filename, 'public');
-            $userData['cover_letter_path'] = $filename;
+            $userData['cover_letter_path'] = $filename; // Simpan hanya nama file
             \Log::info('[PROFILE UPDATE] Cover letter uploaded.');
         }
 
+        // Handle company logo upload if user has company
         if ($request->hasFile('logo') && $user->company) {
             \Log::info('[PROFILE UPDATE] Updating company logo...');
             if ($user->company->logo && Storage::disk('public')->exists($user->company->logo)) {
