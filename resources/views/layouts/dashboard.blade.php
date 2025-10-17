@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{ asset('css/dashboardadmin.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/dashboard-fix.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}" />
 
     {{-- CSS tambahan untuk setiap halaman --}}
     @yield('css')

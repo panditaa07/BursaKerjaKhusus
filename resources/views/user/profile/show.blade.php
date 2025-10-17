@@ -89,18 +89,12 @@
 
         <div class="info-item">
             <span>Surat Lamaran:</span>
-            @if(Auth::user()->applications->isNotEmpty())
-                <ul>
-                    @foreach(Auth::user()->applications as $application)
-                        @if($application->cover_letter_path)
-                            <li><a href="{{ asset('storage/' . $application->cover_letter_path) }}" target="_blank" download>
-                                Surat Lamaran untuk {{ $application->jobPost->title }}
-                            </a></li>
-                        @endif
-                    @endforeach
-                </ul>
+            @if(Auth::user()->cover_letter_path)
+                <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank" class="btn-cv">
+                    <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
+                </a>
             @else
-                Tidak ada surat lamaran
+                Belum diunggah
             @endif
         </div>
         @endif

@@ -120,16 +120,15 @@
 
             @if(Auth::user()->role->name !== 'company')
 
-<div class="form-group">
-    <label for="application_file">Upload Surat Lamaran</label>
-    <input type="file" id="application_file" name="application_file" accept=".pdf,.doc,.docx">
-    @if(Auth::user()->application_file)
-        <p class="current-file">
-            Surat Lamaran saat ini: 
-            <a href="{{ Storage::url(Auth::user()->application_file) }}" target="_blank">Lihat</a>
-        </p>
-    @endif
-</div>
+            <div class="form-group">
+                <label for="cover_letter">Upload Surat Lamaran</label>
+                <input type="file" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx">
+                @if(Auth::user()->cover_letter_path)
+                    <p class="current-file">Surat Lamaran saat ini: 
+                        <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank">Lihat</a>
+                    </p>
+                @endif
+            </div>
 @endif
 
             <div class="btn-group">

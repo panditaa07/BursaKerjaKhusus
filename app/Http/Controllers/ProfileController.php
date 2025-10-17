@@ -111,8 +111,7 @@ class ProfileController extends Controller
 
     private function updateUserProfile(Request $request, $user)
     {
-        // Debug: Log request data
-        \Log::info('Profile update request data:', $request->all());
+        \Log::info('[PROFILE UPDATE] Start for User ID: ' . $user->id);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -134,29 +133,30 @@ class ProfileController extends Controller
             'tiktok' => 'nullable|url',
         ]);
 
+        \Log::info('[PROFILE UPDATE] Validation passed.');
+
         $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile', 'portfolio_link', 'linkedin', 'instagram', 'facebook', 'twitter', 'tiktok']);
 
-        // Debug: Log userData before update
-        \Log::info('UserData to be updated:', $userData);
-
-        // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
+            \Log::info('[PROFILE UPDATE] Uploading profile photo...');
             if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
                 Storage::disk('public')->delete($user->profile_photo_path);
             }
             $userData['profile_photo_path'] = $request->file('profile_photo')->store('profile_photos', 'public');
+            \Log::info('[PROFILE UPDATE] Profile photo uploaded.');
         }
 
-        // Handle CV upload
         if ($request->hasFile('cv')) {
+            \Log::info('[PROFILE UPDATE] Uploading CV...');
             if ($user->cv_path && Storage::disk('public')->exists($user->cv_path)) {
                 Storage::disk('public')->delete($user->cv_path);
             }
             $userData['cv_path'] = $request->file('cv')->store('cv_files', 'public');
+            \Log::info('[PROFILE UPDATE] CV uploaded.');
         }
 
-        // Handle Cover Letter upload
         if ($request->hasFile('cover_letter')) {
+            \Log::info('[PROFILE UPDATE] Uploading cover letter...');
             if ($user->cover_letter_path && Storage::disk('public')->exists('cover_letter_files/' . $user->cover_letter_path)) {
                 Storage::disk('public')->delete('cover_letter_files/' . $user->cover_letter_path);
             }
@@ -164,18 +164,22 @@ class ProfileController extends Controller
             $extension = $request->file('cover_letter')->getClientOriginalExtension();
             $filename = pathinfo($originalName, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
             $request->file('cover_letter')->storeAs('cover_letter_files', $filename, 'public');
-            $userData['cover_letter_path'] = $filename; // Simpan hanya nama file
+            $userData['cover_letter_path'] = $filename;
+            \Log::info('[PROFILE UPDATE] Cover letter uploaded.');
         }
 
-        // Handle company logo upload if user has company
         if ($request->hasFile('logo') && $user->company) {
+            \Log::info('[PROFILE UPDATE] Updating company logo...');
             if ($user->company->logo && Storage::disk('public')->exists($user->company->logo)) {
                 Storage::disk('public')->delete($user->company->logo);
             }
             $user->company->update(['logo' => $request->file('logo')->store('company_logos', 'public')]);
+            \Log::info('[PROFILE UPDATE] Company logo updated.');
         }
 
+        \Log::info('[PROFILE UPDATE] Preparing to update user model. Data:', $userData);
         $user->update($userData);
+        \Log::info('[PROFILE UPDATE] User model update finished. Redirecting...');
 
         return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui!');
     }

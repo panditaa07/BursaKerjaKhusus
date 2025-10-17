@@ -158,17 +158,18 @@ class AdminDashboardController extends Controller
     {
         $query = JobPost::with('company')->where('status', 'inactive');
 
-        if ($request->has('keyword') && !empty($request->keyword)) {
-            $keyword = $request->keyword;
-            $query->where(function ($q) use ($keyword) {
-                $q->where('title', 'like', "%{$keyword}%")
-                  ->orWhereHas('company', function ($q) use ($keyword) {
-                      $q->where('name', 'like', "%{$keyword}%");
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%")
+                  ->orWhereHas('company', function ($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%");
                   });
             });
         }
 
-        $lowongan = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->query());
+        $lowongan = $query->latest()->paginate(10)->appends($request->query());
         return view('admin.dashboard.lowongan-tidak-aktif', compact('lowongan'));
     }
 
