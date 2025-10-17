@@ -374,8 +374,6 @@
 .jobs-latest .modal-content{ border-radius:16px; overflow:hidden; }
 
 /* Dark mode (default) */
-@media (prefers-color-scheme: dark){
-  .jobs-latest .jl-card{ background:#0f172a; border-color:rgba(255,255,255,.06); }
   .jobs-latest .jl-company{ color:#e5e7eb; }
   .jobs-latest .jl-title{ color:#93c5fd; }
   .jobs-latest .jl-meta{ color:#94a3b8; }

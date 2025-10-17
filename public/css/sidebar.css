@@ -3,7 +3,7 @@
     --sidebar-width-collapsed: 80px;
     --transition-speed: 0.3s;
 
-    --bg-sidebar: linear-gradient(135deg, #1f2937, #111827); /* dark gradient */
+    --bg-sidebar: linear-gradient(135deg, #1e3a8a, #1e40af); /* light blue gradient */
     --bg-hover: rgba(255, 255, 255, 0.1);
     --bg-active: linear-gradient(135deg, #4f46e5, #3b82f6); /* blue-purple */
     --text-color: #d1d5db;

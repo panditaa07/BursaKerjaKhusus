@@ -360,20 +360,7 @@
     }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: #1a202c;
-        --bg-secondary: #2d3748;
-        --bg-accent: #4a5568;
-        
-        --text-primary: #f7fafc;
-        --text-secondary: #e2e8f0;
-        --text-muted: #a0aec0;
-        
-        --border-color: #4a5568;
-    }
-}
+
 
 /* Loading Animation */
 .form-loading {

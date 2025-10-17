@@ -5,62 +5,6 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/editprofile-user.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
-<style>
-    .cropper-modal .modal-lg {
-        max-width: 800px;
-    }
-    #image-to-crop {
-        max-width: 100%;
-    }
-    .photo-wrapper {
-        width: 150px;
-        height: 150px;
-        margin: 0 auto;
-        border-radius: 50%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #e9ecef;
-        border: 4px solid #fff;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .profile-photo-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .profile-photo {
-        font-size: 4rem;
-        color: #adb5bd;
-    }
-    .cropper-preview {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: 20px auto;
-        border: 2px solid #e9ecef;
-    }
-
-    /* === New Styles for Backdrop and Cropper UI === */
-    .modal-backdrop {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-    .modal-backdrop.show {
-        opacity: 1; /* Use background-color for opacity */
-    }
-
-    .cropper-view-box {
-        outline: 1px solid white;
-        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
-    }
-    
-    /* Hide default cropper guides for a cleaner look */
-    .cropper-dashed, .cropper-point, .cropper-line, .cropper-center {
-        display: none;
-    }
-</style>
 @endpush
 
 @section('content')
@@ -74,6 +18,7 @@
             @csrf
             @method('PUT')
 
+            <!-- Photo Section - Horizontal Layout -->
             <div class="photo-section">
                 <div class="photo-wrapper">
                     @if(Auth::user()->profile_photo_path)
@@ -85,13 +30,13 @@
                         </div>
                     @endif
                 </div>
-
                 <label class="upload-btn">
                     Upload Foto
                     <input type="file" id="profile_photo_input" accept="image/png, image/jpeg" hidden>
                 </label>
             </div>
 
+            <!-- Basic Info -->
             <div class="form-row">
                 <div class="form-group">
                     <label>Nama</label>
@@ -129,60 +74,71 @@
 
             <div class="form-group">
                 <label>Profil Singkat</label>
-                <textarea name="short_profile" rows="4">{{ old('short_profile', Auth::user()->short_profile) }}</textarea>
+                <textarea name="short_profile" rows="3">{{ old('short_profile', Auth::user()->short_profile) }}</textarea>
             </div>
 
+            <!-- Links Section - 2 Columns -->
             <div class="form-row">
                 <div class="form-group">
                     <label>Portfolio Link</label>
-                    <input type="url" name="portfolio_link" value="{{ old('portfolio_link', Auth::user()->portfolio_link) }}">
+                    <input type="url" name="portfolio_link" value="{{ old('portfolio_link', Auth::user()->portfolio_link) }}" placeholder="https://portfolio.com">
                 </div>
                 <div class="form-group">
                     <label>LinkedIn</label>
-                    <input type="url" name="linkedin" value="{{ old('linkedin', Auth::user()->linkedin) }}">
+                    <input type="url" name="linkedin" value="{{ old('linkedin', Auth::user()->linkedin) }}" placeholder="https://linkedin.com/in/username">
                 </div>
             </div>
 
-            <div class="form-row">
+            <!-- Social Media - 3 Columns -->
+            <div class="social-media-row">
                 <div class="form-group">
                     <label>Instagram</label>
-                    <input type="url" name="instagram" value="{{ old('instagram', Auth::user()->instagram) }}">
+                    <input type="url" name="instagram" value="{{ old('instagram', Auth::user()->instagram) }}" placeholder="https://instagram.com/username">
                 </div>
                 <div class="form-group">
                     <label>Facebook</label>
-                    <input type="url" name="facebook" value="{{ old('facebook', Auth::user()->facebook) }}">
+                    <input type="url" name="facebook" value="{{ old('facebook', Auth::user()->facebook) }}" placeholder="https://facebook.com/username">
+                </div>
+                <div class="form-group">
+                    <label>Twitter</label>
+                    <input type="url" name="twitter" value="{{ old('twitter', Auth::user()->twitter) }}" placeholder="https://twitter.com/username">
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Twitter</label>
-                    <input type="url" name="twitter" value="{{ old('twitter', Auth::user()->twitter) }}">
-                </div>
-                <div class="form-group">
-                    <label>TikTok</label>
-                    <input type="url" name="tiktok" value="{{ old('tiktok', Auth::user()->tiktok) }}">
-                </div>
+            <div class="form-group">
+                <label>TikTok</label>
+                <input type="url" name="tiktok" value="{{ old('tiktok', Auth::user()->tiktok) }}" placeholder="https://tiktok.com/@username">
             </div>
 
             @if(Auth::user()->role->name !== 'company')
-            <div class="form-group">
-                <label>Upload CV</label>
-                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+            <!-- Documents Section - 2 Columns -->
+            <div class="documents-row">
+                <div class="form-group">
+                    <label class="file-upload-btn">
+                    Pilih CV
+                    <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" hidden>
+                </label>
+
                 @if(Auth::user()->cv_path)
-                    <p class="current-file">CV saat ini: 
-                        <a href="{{ asset('storage/' . Auth::user()->cv_path) }}" target="_blank">Lihat</a>
-                    </p>
+                <p class="current-file">Saat ini: 
+                    <a href="{{ asset('storage/' . Auth::user()->cv_path) }}" target="_blank">Lihat CV</a>
+                </p>
                 @endif
-            </div>
-            <div class="form-group">
-                <label for="cover_letter">Upload Surat Lamaran</label>
-                <input type="file" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx">
+
+                </div>
+                <div class="form-group">
+                    <label class="file-upload-btn">
+                    Pilih Surat Lamaran
+                    <input type="file" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx" hidden>
+                </label>
+
                 @if(Auth::user()->cover_letter_path)
-                    <p class="current-file">Surat Lamaran saat ini: 
-                        <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank">Lihat</a>
-                    </p>
+                <p class="current-file">Saat ini: 
+                    <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank">Lihat Surat</a>
+                </p>
                 @endif
+
+                </div>
             </div>
             @endif
 
