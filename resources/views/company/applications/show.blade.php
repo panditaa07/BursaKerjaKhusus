@@ -8,15 +8,14 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
         <h1 class="h3 mb-0">Detail Pelamar</h1>
         <a href="{{ route('company.pelamar.all') }}" class="btn-kembali">
-    <i class="fas fa-arrow-left me-2"></i>Kembali
-    </a>
-
+            <i class="fas fa-arrow-left me-1"></i> Kembali
+        </a>
     </div>
 
-    <!-- Profile Photo Section -->
+    <!-- Profile Photo -->
     <div class="mb-4 text-center">
         @if($application->user && $application->user->profile_photo_path)
             <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
@@ -31,19 +30,19 @@
         @endif
     </div>
 
-    <div class="row">
+    <div class="row g-3">
         <!-- Personal Information -->
         <div class="col-lg-8">
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-user me-2"></i>Informasi Pribadi</h5>
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-primary">
+                    <h5 class="mb-0"><i class="fas fa-user"></i> Informasi Pribadi</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
-                                    <td class="fw-bold" width="120">NIK/NISN:</td>
+                                    <td class="fw-bold" width="140">NIK/NISN:</td>
                                     <td>{{ $application->user ? $application->user->nisn ?? '-' : '-' }}</td>
                                 </tr>
                                 <tr>
@@ -63,7 +62,7 @@
                         <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
-                                    <td class="fw-bold" width="120">Tanggal Lahir:</td>
+                                    <td class="fw-bold" width="140">Tanggal Lahir:</td>
                                     <td>{{ $application->user && $application->user->birth_date ? \Carbon\Carbon::parse($application->user->birth_date)->format('d F Y') : '-' }}</td>
                                 </tr>
                                 <tr>
@@ -81,16 +80,16 @@
             </div>
 
             <!-- Application Information -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-info text-white">
-                    <h5 class="mb-0"><i class="fas fa-file-alt me-2"></i>Informasi Lamaran</h5>
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-info">
+                    <h5 class="mb-0"><i class="fas fa-file-alt"></i> Informasi Lamaran</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
-                                    <td class="fw-bold" width="120">Lowongan:</td>
+                                    <td class="fw-bold" width="140">Lowongan:</td>
                                     <td>{{ $application->jobPost->title ?? '-' }}</td>
                                 </tr>
                                 <tr>
@@ -106,24 +105,22 @@
                         <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
-                                    <td class="fw-bold" width="120">Status:</td>
+                                    <td class="fw-bold" width="140">Status:</td>
                                     <td>
                                         @php
                                             $status = $application->status;
                                             $statusConfig = [
-                                                'accepted' => ['label' => 'Diterima', 'class' => 'bg-success'],
-                                                'rejected' => ['label' => 'Ditolak', 'class' => 'bg-danger'],
-                                                'interview' => ['label' => 'Wawancara', 'class' => 'bg-primary'],
-                                                'test1' => ['label' => 'Test 1', 'class' => 'bg-warning'],
-                                                'test2' => ['label' => 'Test 2', 'class' => 'bg-warning'],
-                                                'submitted' => ['label' => 'Menunggu', 'class' => 'bg-secondary'],
-                                                'reviewed' => ['label' => 'Ditinjau', 'class' => 'bg-info'],
+                                                'accepted'  => ['label' => 'Diterima',  'class' => 'status-chip chip--accepted'],
+                                                'rejected'  => ['label' => 'Ditolak',   'class' => 'status-chip chip--rejected'],
+                                                'interview' => ['label' => 'Wawancara', 'class' => 'status-chip chip--interview'],
+                                                'test1'     => ['label' => 'Test 1',    'class' => 'status-chip chip--test1'],
+                                                'test2'     => ['label' => 'Test 2',    'class' => 'status-chip chip--test2'],
+                                                'submitted' => ['label' => 'Menunggu',  'class' => 'status-chip chip--submitted'],
+                                                'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-chip chip--review'],
                                             ];
-                                            $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light'];
+                                            $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'status-chip chip--submitted'];
                                         @endphp
-                                        <span class="badge {{ $currentStatus['class'] }} text-white px-3 py-2">
-                                            {{ $currentStatus['label'] }}
-                                        </span>
+                                        <span class="{{ $currentStatus['class'] }}"><span class="dot"></span>{{ $currentStatus['label'] }}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -135,9 +132,9 @@
                     </div>
 
                     @if($application->description)
-                    <div class="mt-3">
-                        <h6 class="fw-bold">Deskripsi Lamaran:</h6>
-                        <div class="border p-3 rounded bg-light">
+                    <div class="mt-2">
+                        <h6 class="fw-bold mb-2">Deskripsi Lamaran:</h6>
+                        <div class="inner">
                             {{ $application->description }}
                         </div>
                     </div>
@@ -149,24 +146,26 @@
         <!-- Sidebar -->
         <div class="col-lg-4">
             <!-- Documents -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-success text-white">
-                    <h5 class="mb-0"><i class="fas fa-file-download me-2"></i>Dokumen</h5>
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-success">
+                    <h5 class="mb-0"><i class="fas fa-file-download"></i> Dokumen</h5>
                 </div>
                 <div class="card-body">
                     @if($application->cover_letter_path)
-                        <button type="button" class="btn btn-info btn-sm w-100 mb-2" onclick="window.open('{{ route('company.applications.preview-cover-letter', $application->id) }}', '_blank')">
-                            <i class="fas fa-file-alt me-2"></i>Lihat Surat Lamaran
+                        <button type="button" class="btn-doc primary mb-2"
+                                onclick="window.open('{{ route('company.applications.preview-cover-letter', $application->id) }}', '_blank')">
+                            <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
                         </button>
                     @else
-                        <button type="button" class="btn btn-info btn-sm w-100 mb-2" onclick="showNoCoverLetterAlert()">
-                            <i class="fas fa-file-alt me-2"></i>Lihat Surat Lamaran
+                        <button type="button" class="btn-doc soft mb-2" onclick="showNoCoverLetterAlert()">
+                            <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
                         </button>
                     @endif
 
                     @if($application->cv_path)
-                        <button type="button" class="btn btn-outline-primary btn-sm w-100" onclick="window.open('{{ route('company.applications.preview', $application->id) }}', '_blank')">
-                            <i class="fas fa-eye me-2"></i>Preview CV
+                        <button type="button" class="btn-doc soft"
+                                onclick="window.open('{{ route('company.applications.preview', $application->id) }}', '_blank')">
+                            <i class="fas fa-eye"></i> Preview CV
                         </button>
                     @endif
                 </div>
@@ -174,52 +173,42 @@
 
             <!-- Social Media & Portfolio -->
             @if($application->user)
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-share-alt me-2"></i>Sosial Media & Portfolio</h5>
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-primary">
+                    <h5 class="mb-0"><i class="fas fa-share-alt"></i> Sosial Media & Portfolio</h5>
                 </div>
                 <div class="card-body text-center">
                     @if($application->user->portfolio_link || $application->user->facebook || $application->user->instagram || $application->user->linkedin || $application->user->twitter || $application->user->tiktok)
                         <div class="d-flex justify-content-center flex-wrap gap-2">
                             @if($application->user->portfolio_link)
                                 <a href="{{ $application->user->portfolio_link }}" target="_blank"
-                                   class="btn btn-outline-secondary btn-sm" title="Portfolio">
-                                    <i class="fas fa-globe"></i> Portfolio
+                                   class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-globe me-1"></i> Portfolio
                                 </a>
                             @endif
                             @if($application->user->facebook)
                                 <a href="{{ $application->user->facebook }}" target="_blank"
-                                   class="btn btn-outline-primary btn-sm" title="Facebook">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
+                                   class="btn btn-outline-primary btn-sm"><i class="fab fa-facebook"></i></a>
                             @endif
                             @if($application->user->instagram)
                                 <a href="{{ $application->user->instagram }}" target="_blank"
-                                   class="btn btn-outline-danger btn-sm" title="Instagram">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
+                                   class="btn btn-outline-danger btn-sm"><i class="fab fa-instagram"></i></a>
                             @endif
                             @if($application->user->linkedin)
                                 <a href="{{ $application->user->linkedin }}" target="_blank"
-                                   class="btn btn-outline-primary btn-sm" title="LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
+                                   class="btn btn-outline-primary btn-sm"><i class="fab fa-linkedin"></i></a>
                             @endif
                             @if($application->user->twitter)
                                 <a href="{{ $application->user->twitter }}" target="_blank"
-                                   class="btn btn-outline-info btn-sm" title="Twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
+                                   class="btn btn-outline-info btn-sm"><i class="fab fa-twitter"></i></a>
                             @endif
                             @if($application->user->tiktok)
                                 <a href="{{ $application->user->tiktok }}" target="_blank"
-                                   class="btn btn-outline-dark btn-sm" title="TikTok">
-                                    <i class="fab fa-tiktok"></i>
-                                </a>
+                                   class="btn btn-outline-dark btn-sm"><i class="fab fa-tiktok"></i></a>
                             @endif
                         </div>
                     @else
-                        <p class="text-muted">Tidak ada sosial media atau portfolio</p>
+                        <p class="text-muted mb-0">Tidak ada sosial media atau portfolio</p>
                     @endif
                 </div>
             </div>
@@ -228,7 +217,7 @@
             <!-- Status Update -->
             <div class="card shadow-sm">
                 <div class="card-header bg-warning text-dark">
-                    <h5 class="mb-0"><i class="fas fa-edit me-2"></i>Update Status</h5>
+                    <h5 class="mb-0"><i class="fas fa-edit"></i> Update Status</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST">
@@ -238,16 +227,16 @@
                             <label class="form-label fw-bold">Status Baru:</label>
                             <select name="status" class="form-select" required>
                                 <option value="">Pilih Status</option>
-                                <option value="reviewed" {{ $application->status == 'reviewed' ? 'selected' : '' }}>Ditinjau</option>
+                                <option value="reviewed"  {{ $application->status == 'reviewed' ? 'selected' : '' }}>Ditinjau</option>
                                 <option value="interview" {{ $application->status == 'interview' ? 'selected' : '' }}>Wawancara</option>
-                                <option value="test1" {{ $application->status == 'test1' ? 'selected' : '' }}>Test 1</option>
-                                <option value="test2" {{ $application->status == 'test2' ? 'selected' : '' }}>Test 2</option>
-                                <option value="accepted" {{ $application->status == 'accepted' ? 'selected' : '' }}>Diterima</option>
-                                <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                                <option value="test1"     {{ $application->status == 'test1' ? 'selected' : '' }}>Test 1</option>
+                                <option value="test2"     {{ $application->status == 'test2' ? 'selected' : '' }}>Test 2</option>
+                                <option value="accepted"  {{ $application->status == 'accepted' ? 'selected' : '' }}>Diterima</option>
+                                <option value="rejected"  {{ $application->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-warning w-100">
-                            <i class="fas fa-save me-2"></i>Update Status
+                        <button type="submit" class="btn-update w-100">
+                            <i class="fas fa-save me-2"></i> Update Status
                         </button>
                     </form>
                 </div>
@@ -258,23 +247,7 @@
 
 <script>
 function showNoCoverLetterAlert() {
-    alert('Pelamar tidak mencantumkan surat lamaran.');
+  alert('Pelamar tidak mencantumkan surat lamaran.');
 }
 </script>
-
-<style>
-    .gap-2 > * {
-        margin: 0.25rem;
-    }
-    .table-borderless td {
-        padding: 0.5rem 0;
-        border: none;
-    }
-    .card {
-        transition: box-shadow 0.3s ease;
-    }
-    .card:hover {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    }
-</style>
 @endsection
