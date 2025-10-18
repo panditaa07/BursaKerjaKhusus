@@ -598,3 +598,30 @@ h2.h4{
 .company-applications-table .dropdown-menu .dropdown-item.text-danger { color:#ef4444!important; }
 .company-applications-table .dropdown-menu .dropdown-item.text-success:hover{ background:#dcfce7!important; }
 .company-applications-table .dropdown-menu .dropdown-item.text-danger:hover { background:#fee2e2!important; }
+
+/* =========================
+   RESET BUTTON - MATCH PRIMARY BUTTON
+   ========================= */
+.input-group .btn-outline-secondary {
+    background: #1f3a95 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    margin-left: 8px !important;
+    font-weight: 700 !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 4px 12px rgba(31, 58, 149, 0.3) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.input-group .btn-outline-secondary:hover {
+    background: #1a2f7a !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(31, 58, 149, 0.4) !important;
+}
+
+.input-group .btn-outline-secondary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(31, 58, 149, 0.3) !important;
+}
