@@ -25,14 +25,19 @@ body{ background:#e9eef6; }
 /* Back button (Kembali) */
 .btn-kembali{
   display:inline-flex; align-items:center; gap:.5rem;
-  background:linear-gradient(90deg, var(--blue-700), var(--blue-900));
+  background:rgb(30, 58, 138);
   color:#fff; border:none; border-radius:12px; padding:.6rem 1rem;
-  box-shadow:0 6px 18px rgba(37,99,235,.25);
+  box-shadow:0 6px 18px rgba(30, 58, 138, 0.25);
   transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
   text-decoration:none;
   font-weight:700;
 }
-.btn-kembali:hover{ transform:translateY(-2px); filter:saturate(1.05); box-shadow:0 10px 24px rgba(37,99,235,.35); }
+.btn-kembali:hover{ 
+  background:rgb(30, 58, 138);
+  transform:translateY(-2px); 
+  filter:saturate(1.05); 
+  box-shadow:0 10px 24px rgba(30, 58, 138, 0.35); 
+}
 
 /* Avatar ring feel */
 .rounded-circle.border{
@@ -53,16 +58,24 @@ body{ background:#e9eef6; }
 }
 .card:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(2,6,23,.12); }
 
+/* SEMUA CARD HEADER MENGGUNAKAN WARNA rgb(30, 58, 138) */
 .card-header{
   border:0; padding:.8rem 1rem; color:#fff;
   font-weight:800;
+  background:rgb(30, 58, 138) !important;
 }
-.card-header.bg-primary{ background:var(--blue-700) !important; }
-.card-header.bg-info{ background:var(--indigo) !important; }
-.card-header.bg-success{ background:#10b981 !important; }
-.card-header.bg-warning{ background:var(--warning) !important; color:#111827 !important; }
 
-/* Card body spacing */
+/* UPDATE STATUS HEADER - ICON DAN TEXT PUTIH */
+.card-header.bg-warning {
+  background:rgb(30, 58, 138) !important;
+  color:#fff !important;
+}
+
+.card-header.bg-warning h5,
+.card-header.bg-warning .fas.fa-edit {
+  color:#fff !important;
+}
+
 .card-body{ padding:1.1rem 1.2rem; }
 
 /* Section body inner card */
@@ -116,7 +129,7 @@ body{ background:#e9eef6; }
 .chip--submitted{ background:#f1f5f9; color:#334155; --chip-color:#64748b; }
 
 /* ==============================
-   DOCUMENT BUTTONS
+   DOCUMENT BUTTONS - WARNA BIRU SEPERTI FOTO PROFIL
 ============================== */
 .btn-doc{
   width:100%;
@@ -125,22 +138,36 @@ body{ background:#e9eef6; }
   font-weight:700;
   padding:.6rem .8rem;
   transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, background-color .18s, color .18s;
+  background:rgb(30, 58, 138);
+  color:#fff;
+  box-shadow:0 6px 18px rgba(30, 58, 138, 0.25);
+  text-decoration: none;
+  border: none;
 }
-.btn-doc i{ font-size:.95rem; }
-
-.btn-doc.primary{
-  background:linear-gradient(90deg, var(--blue-700), var(--blue-900));
-  color:#fff; box-shadow:0 6px 18px rgba(37,99,235,.25);
+.btn-doc i{ 
+  font-size:.95rem; 
+  color:#fff !important;
 }
-.btn-doc.primary:hover{ transform:translateY(-2px); filter:saturate(1.05); box-shadow:0 10px 26px rgba(37,99,235,.35); }
 
+.btn-doc.primary,
 .btn-doc.soft{
-  background:#eef2ff; color:#3730a3; border-color:#c7d2fe;
+  background:rgb(30, 58, 138);
+  color:#fff; 
+  box-shadow:0 6px 18px rgba(30, 58, 138, 0.25);
+  border: none;
 }
-.btn-doc.soft:hover{ background:#e0e7ff; }
+
+.btn-doc.primary:hover,
+.btn-doc.soft:hover{ 
+  background:rgb(30, 58, 138);
+  transform:translateY(-2px); 
+  filter:saturate(1.05); 
+  box-shadow:0 10px 26px rgba(30, 58, 138, 0.35); 
+  color:#fff;
+}
 
 /* ==============================
-   UPDATE STATUS FORM
+   UPDATE STATUS FORM - TOMBOL BIRU
 ============================== */
 .form-select{
   border:1.6px solid var(--slate-200);
@@ -149,31 +176,52 @@ body{ background:#e9eef6; }
   transition:border .18s ease, box-shadow .18s ease;
 }
 .form-select:focus{
-  border-color:var(--blue-700);
-  box-shadow:0 0 0 4px rgba(37,99,235,.18);
+  border-color:rgb(30, 58, 138);
+  box-shadow:0 0 0 4px rgba(30, 58, 138, 0.18);
 }
 
 .btn-update{
-  background:linear-gradient(90deg, #fbbf24, var(--warning));
-  color:#111827;
+  background:rgb(30, 58, 138);
+  color:#fff;
   border:none; border-radius:12px; padding:.65rem 1rem;
   font-weight:800;
-  box-shadow:0 6px 18px rgba(250,204,21,.25);
+  box-shadow:0 6px 18px rgba(30, 58, 138, 0.25);
   transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
-.btn-update:hover{ transform:translateY(-2px); filter:saturate(1.05); box-shadow:0 10px 26px rgba(250,204,21,.35); }
+.btn-update:hover{ 
+  background:rgb(30, 58, 138);
+  transform:translateY(-2px); 
+  filter:saturate(1.05); 
+  box-shadow:0 10px 26px rgba(30, 58, 138, 0.35); 
+  color:#fff;
+}
+
+/* Icon dalam tombol update status */
+.btn-update i {
+  color:#fff !important;
+}
 
 /* ==============================
-   SIDEBAR LOGOUT BUTTON (MERAH)
-   Tambahkan class `btn-logout` pada tombol logout di layout.
+   SOCIAL MEDIA BUTTONS - WARNA BIRU
 ============================== */
-.btn-logout{
-  background:linear-gradient(90deg, #f43f5e, #dc2626) !important;
-  color:#fff !important; border:none !important; border-radius:12px !important;
-  font-weight:800 !important;
-  box-shadow:0 6px 18px rgba(220,38,38,.25) !important;
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-danger,
+.btn-outline-info,
+.btn-outline-dark {
+  border-color: rgb(30, 58, 138);
+  color: rgb(30, 58, 138);
 }
-.btn-logout:hover{ filter:saturate(1.05); transform:translateY(-2px); box-shadow:0 10px 26px rgba(220,38,38,.35) !important; }
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover,
+.btn-outline-danger:hover,
+.btn-outline-info:hover,
+.btn-outline-dark:hover {
+  background-color: rgb(30, 58, 138);
+  border-color: rgb(30, 58, 138);
+  color: #fff;
+}
 
 /* ==============================
    UTILITIES
@@ -182,7 +230,17 @@ body{ background:#e9eef6; }
 .bg-light{ background:var(--slate-100) !important; }
 
 /* spacing for icon headings */
-.card-header h5{ display:flex; align-items:center; gap:.6rem; margin:0; }
+.card-header h5{ 
+  display:flex; 
+  align-items:center; 
+  gap:.6rem; 
+  margin:0;
+  color:#fff !important;
+}
+
+.card-header h5 i {
+  color:#fff !important;
+}
 
 /* ==============================
    RESPONSIVE
