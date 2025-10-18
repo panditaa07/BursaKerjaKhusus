@@ -351,7 +351,7 @@ h1::after {
 
 .status-aktif {
     background: linear-gradient(135deg, var(--success), #059669);
-    color: var(--bal);
+    color: var(--white);
 }
 
 .status-nonaktif {

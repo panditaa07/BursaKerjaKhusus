@@ -7,17 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up(): void
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->string('portfolio_link')->nullable()->after('linkedin');
-    });
-}
+    {
+        Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'portfolio_link')) {
+                $table->string('portfolio_link')->nullable()->after('linkedin');
+            }
+        });
+    }
 
-public function down(): void
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('portfolio_link');
-    });
-}
-
+    public function down(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('portfolio_link');
+        });
+    }
 };

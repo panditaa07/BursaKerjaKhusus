@@ -18,7 +18,7 @@
             <a href="{{ route('admin.dashboard.lowongan-aktif') }}" class="btn-custom back">
                 <i class="fas fa-arrow-left me-2"></i> Kembali
             </a>
-        @else
+        @elseif($jobPost->status == 'inactive')
             <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="btn-custom back">
                 <i class="fas fa-arrow-left me-2"></i> Kembali
             </a>

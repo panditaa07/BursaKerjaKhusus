@@ -163,9 +163,19 @@
     </div>
 <div class="d-flex gap-2 mt-4">
     <!-- Tombol kembali ke dashboard admin -->
-    <a href="{{ route('admin.dashboard.index') }}" class="btn-custom back">
-        <i class="fas fa-arrow-left me-2"></i> Kembali
-    </a>
+    @if(request('from') == 'total')
+            <a href="{{ route('admin.dashboard.pelamar') }}" class="btn-custom back">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke halaman daftar pelamar
+         </a>
+     @elseif(request('from') == 'bulanini')
+            <a href="{{ route('admin.dashboard.pelamar.bulanini') }}" class="btn-custom back">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke halaman pelamar bulan ini
+         </a>
+     @else
+            <a href="{{ route('admin.dashboard.index') }}" class="btn-custom back">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke dashboard admin
+         </a>
+     @endif
     <!-- Tombol edit pelamar -->
     <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn-custom edit">
         <i class="fas fa-edit"></i> Edit Pelamar

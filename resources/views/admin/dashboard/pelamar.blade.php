@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($pelamar as $p)
+                    @forelse($pelamar as $p)
                         <tr>
                             <td>{{ ($pelamar->currentPage() - 1) * $pelamar->perPage() + $loop->iteration }}</td>
                             <td>{{ $p->user->name ?? 'N/A' }}</td>
@@ -77,7 +77,9 @@
                                     <span class="badge bg-success">Terima</span>
                                 @elseif($p->status == 'rejected')
                                     <span class="badge bg-danger">Tolak</span>
-                                @elseif(in_array($p->status, ['interview','test1','test2']))
+                                @elseif($p->status == 'interview')
+                                    <span class="badge bg-dark">Wawancara</span>
+                                @elseif(in_array($p->status, ['test1','test2']))
                                     <span class="badge bg-primary">Proses</span>
                                 @elseif($p->status == 'submitted')
                                     <span class="badge bg-secondary">Menunggu</span>
@@ -96,7 +98,11 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="10" class="text-center">Belum ada pelamar</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

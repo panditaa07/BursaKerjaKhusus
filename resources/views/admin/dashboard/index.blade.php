@@ -133,9 +133,19 @@
                         <td>{{ $app->jobPost->company->name ?? '-' }}</td>
                         <td>{{ $app->jobPost->title ?? '-' }}</td>
                         <td>
-                            <span class="badge bg-{{ $app->status === 'accepted' ? 'badge bg-success' : ($app->status === 'rejected' ? 'badge bg-danger' : ($app->status === 'submitted' ? 'badge bg-secondary' : 'secondary')) }}">
-                                {{ $app->status_display }}
-                            </span>
+                           @if($app->status == 'accepted')
+                                    <span class="badge bg-success">Terima</span>
+                                @elseif($app->status == 'rejected')
+                                    <span class="badge bg-danger">Tolak</span>
+                                @elseif($app->status == 'interview')
+                                    <span class="badge bg-dark">Wawancara</span>
+                                @elseif(in_array($app->status, ['test1','test2']))
+                                    <span class="badge bg-primary">Proses</span>
+                                @elseif($app->status == 'submitted')
+                                    <span class="badge bg-secondary">Menunggu</span>
+                                @else
+                                    <span class="badge bg-light text-dark">{{ $app->status }}</span>
+                                @endif
                         </td>
                         <td class="aksi">
                             <a href="{{ route('admin.applications.show', $app->id) }}" class="table-btn view">

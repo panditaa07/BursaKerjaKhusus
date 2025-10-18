@@ -12,7 +12,7 @@
             <h4 class="fw-bold mb-2">LOWONGAN AKTIF</h4>
             {{-- Tombol kembali --}}
             <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-arrow-left me-2"></i> Kembali
+                <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
        {{-- Search + tombol cari + total lowongan --}}
@@ -71,7 +71,7 @@
                                 <span class="badge bg-success">Aktif</span>
                             </td>
                             <td class="aksi">
-                                <a href="{{ route('admin.job-posts.show', $l->id) }}" class="table-btn view"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.job-posts.show', $l->id) }}?from=aktif" class="table-btn view"><i class="bi bi-eye"></i></a>
                                 <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="table-btn edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
                                     @csrf
@@ -83,7 +83,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Belum ada lowongan tidak aktif</td>
+                            <td colspan="6" class="text-center">Belum ada lowongan</td>
                         </tr>
                     @endforelse
                 </tbody>

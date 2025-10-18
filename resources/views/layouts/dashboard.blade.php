@@ -72,7 +72,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/sidebar.js') }}" defer></script>
-    <script src="{{ asset('js/dashboardadmin.js') }}" defer></script>
 
     {{-- Script tambahan untuk setiap halaman --}}
     @yield('scripts') {{-- ✅ Tambahan agar JS halaman seperti profile.js bisa berjalan --}}

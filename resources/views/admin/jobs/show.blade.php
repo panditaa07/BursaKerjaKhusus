@@ -13,17 +13,21 @@
     <div class="d-flex gap-2 mb-3">
         @if(request('from') == 'kelola')
             <a href="{{ route('admin.job-posts.index') }}" class="btn-custom back">
-                <i class="fas fa-arrow-left me-2"></i> Kembali
+                <i class="fas fa-arrow-left me-2"></i> Kembali ke kelola lowongan
             </a>
-        @elseif($jobPost->status == 'active')
+        @elseif(request('from') == 'aktif')
             <a href="{{ route('admin.dashboard.lowongan-aktif') }}" class="btn-custom back">
-                <i class="fas fa-arrow-left me-2"></i> Kembali
+                <i class="fas fa-arrow-left me-2"></i> Kembali ke lowongan aktif
+            </a>
+        @elseif(request('from') == 'tidak-aktif')
+            <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="btn-custom back">
+                <i class="fas fa-arrow-left me-2"></i> Kembali ke lowongan tidak aktif
             </a>
         @else
-            <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="btn-custom back">
-                <i class="fas fa-arrow-left me-2"></i> Kembali
-            </a>
-        @endif
+            <a href="{{ route('admin.dashboard.index') }}" class="btn-custom back">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke dashboard admin
+         </a>
+         @endif
         <a href="{{ route('admin.job-posts.edit', $jobPost->id) }}?from={{ request('from') }}" class="btn btn-custom edit">
             <i class="fas fa-edit"></i> Edit Lowongan
         </a>
@@ -40,10 +44,9 @@
             <p><strong>Gaji:</strong> {{ $jobPost->salary ?: 'Tidak ditentukan' }}</p>
             <p><strong>Status:</strong>
                 <span class="status-badge
-                    @if(in_array($jobPost->status, ['Accepted'])) status-aktif
-                    @elseif(in_array($jobPost->status, ['Rejected'])) status-nonaktif
+                    @if($jobPost->status == 'active') status-aktif
                     @else status-nonaktif @endif">
-                    {{ $jobPost->status }}
+                    @if($jobPost->status == 'active') Aktif @else Tidak Aktif @endif
                 </span>
             </p>
         </div>
