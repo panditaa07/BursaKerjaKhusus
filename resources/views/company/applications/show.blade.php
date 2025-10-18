@@ -151,22 +151,34 @@
                     <h5 class="mb-0"><i class="fas fa-file-download"></i> Dokumen</h5>
                 </div>
                 <div class="card-body">
-                    @if($application->cover_letter_path)
-                        <button type="button" class="btn-doc primary mb-2"
-                                onclick="window.open('{{ route('company.applications.preview-cover-letter', $application->id) }}', '_blank')">
-                            <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
-                        </button>
+                    @if($application->cover_letter_path || ($application->user && $application->user->cover_letter_path))
+                        <div class="d-flex gap-2 mb-2">
+                            <button type="button" class="btn-doc primary flex-fill"
+                                    onclick="window.open('{{ route('company.applications.preview-cover-letter', $application->id) }}', '_blank')">
+                                <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
+                            </button>
+                            <a href="{{ route('company.applications.download-cover-letter', $application->id) }}"
+                               class="btn-doc secondary" target="_blank" download>
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
                     @else
                         <button type="button" class="btn-doc soft mb-2" onclick="showNoCoverLetterAlert()">
                             <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
                         </button>
                     @endif
 
-                    @if($application->cv_path)
-                        <button type="button" class="btn-doc soft"
-                                onclick="window.open('{{ route('company.applications.preview', $application->id) }}', '_blank')">
-                            <i class="fas fa-eye"></i> Preview CV
-                        </button>
+                    @if($application->cv_path || ($application->user && $application->user->cv_path))
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn-doc soft flex-fill"
+                                    onclick="window.open('{{ route('company.applications.preview', $application->id) }}', '_blank')">
+                                <i class="fas fa-eye"></i> Preview CV
+                            </button>
+                            <a href="{{ route('company.applications.download', $application->id) }}"
+                               class="btn-doc secondary" target="_blank" download>
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
                     @endif
                 </div>
             </div>

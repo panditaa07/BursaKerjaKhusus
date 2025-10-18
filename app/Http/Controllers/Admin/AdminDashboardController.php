@@ -344,6 +344,57 @@ class AdminDashboardController extends Controller
         return redirect()->route('admin.users.index')->with('success', $message);
     }
 
+    public function downloadCoverLetter(User $user)
+    {
+        if (!$user->cover_letter_path) {
+            abort(404, 'Cover letter not found.');
+        }
+
+        $filePath = storage_path('app/public/cover_letter_files/' . $user->cover_letter_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->download($filePath, 'Surat_Lamaran_' . $user->name . '.' . pathinfo($filePath, PATHINFO_EXTENSION));
+    }
+
+    public function previewCv(User $user)
+    {
+        if (!$user->cv_path) {
+            abort(404, 'CV not found.');
+        }
+        $filePath = storage_path('app/public/' . $user->cv_path);
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+        return response()->file($filePath);
+    }
+
+    public function downloadCv(User $user)
+    {
+        if (!$user->cv_path) {
+            abort(404, 'CV not found.');
+        }
+        $filePath = storage_path('app/public/' . $user->cv_path);
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+        return response()->download($filePath, 'CV_' . $user->name . '.pdf');
+    }
+
+    public function previewCoverLetter(User $user)
+    {
+        if (!$user->cover_letter_path) {
+            abort(404, 'Cover letter not found.');
+        }
+        $filePath = storage_path('app/public/cover_letter_files/' . $user->cover_letter_path);
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+        return response()->file($filePath);
+    }
+
     /**
      * Hapus company
      */

@@ -102,7 +102,7 @@
         <div class="info-item">
             <span>CV:</span>
             @if(Auth::user()->cv_path)
-                <a href="{{ asset('storage/' . Auth::user()->cv_path) }}" target="_blank" class="btn-cv">
+                <a href="{{ route('profile.preview_cv') }}" target="_blank" class="btn-cv">
                     <i class="fas fa-file-pdf"></i> Lihat CV
                 </a>
             @else
@@ -113,7 +113,7 @@
         <div class="info-item">
             <span>Surat Lamaran:</span>
             @if(Auth::user()->cover_letter_path)
-                <a href="{{ asset('storage/cover_letter_files/' . Auth::user()->cover_letter_path) }}" target="_blank" class="btn-cv">
+                <a href="{{ route('profile.preview_cover_letter') }}" target="_blank" class="btn-cv">
                     <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
                 </a>
             @else

@@ -34,9 +34,7 @@ Route::get('/check-auth', function () {
 });
 
 // Route for /says to return JSON
-Route::get('/says', function () {
-    return response()->json(['message' => 'Hello from says endpoint']);
-});
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -56,6 +54,10 @@ Route::middleware(['auth'])->group(function () {
         // Route::post('/users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
         Route::get('/users/{user}/edit', [AdminDashboardController::class, 'editUser'])->name('users.edit');
         Route::put('/users/{user}', [AdminDashboardController::class, 'updateUser'])->name('users.update');
+        Route::get('/users/{user}/download-cover-letter', [AdminDashboardController::class, 'downloadCoverLetter'])->name('users.download_cover_letter');
+        Route::get('/users/{user}/preview-cv', [AdminDashboardController::class, 'previewCv'])->name('users.preview_cv');
+        Route::get('/users/{user}/download-cv', [AdminDashboardController::class, 'downloadCv'])->name('users.download_cv');
+        Route::get('/users/{user}/preview-cover-letter', [AdminDashboardController::class, 'previewCoverLetter'])->name('users.preview_cover_letter');
         Route::delete('/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('users.destroy');
         Route::delete('/company/{company}', [AdminDashboardController::class, 'destroyCompany'])->name('company.destroy');
 
@@ -165,6 +167,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/photo', [ProfileController::class, 'updatePhoto'])->name('photo.update');
         Route::get('/upload-cv', [ProfileController::class, 'showUploadForm'])->name('upload-cv');
         Route::post('/upload-cv', [ProfileController::class, 'uploadCv'])->name('upload-cv.post');
+        Route::get('/preview-cover-letter', [ProfileController::class, 'previewCoverLetter'])->name('preview_cover_letter');
+        Route::get('/preview-cv', [ProfileController::class, 'previewCv'])->name('preview_cv');
     });
 
 

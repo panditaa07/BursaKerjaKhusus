@@ -125,20 +125,30 @@ class ApplicationController extends Controller
     {
         // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
         $user = Auth::user();
-
-        // Load relationships to avoid N+1 queries
         $user->load(['role', 'company']);
-
         $company = $user->company;
 
         if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
-        $filePath = storage_path('app/public/' . $application->cv_path);
+        $application->load('user'); // Ensure user is loaded
+
+        $cvPath = null;
+        if (!empty($application->cv_path)) {
+            $cvPath = $application->cv_path;
+        } elseif ($application->user && !empty($application->user->cv_path)) {
+            $cvPath = $application->user->cv_path;
+        }
+
+        if (empty($cvPath)) {
+            abort(404, 'CV not found.');
+        }
+
+        $filePath = storage_path('app/public/' . $cvPath);
 
         if (!file_exists($filePath)) {
-            abort(404, 'File not found.');
+            abort(404, 'File not found at: ' . $filePath);
         }
 
         return response()->file($filePath);
@@ -151,20 +161,30 @@ class ApplicationController extends Controller
     {
         // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
         $user = Auth::user();
-
-        // Load relationships to avoid N+1 queries
         $user->load(['role', 'company']);
-
         $company = $user->company;
 
         if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
-        $filePath = storage_path('app/public/' . $application->cv_path);
+        $application->load('user'); // Ensure user is loaded
+
+        $cvPath = null;
+        if (!empty($application->cv_path)) {
+            $cvPath = $application->cv_path;
+        } elseif ($application->user && !empty($application->user->cv_path)) {
+            $cvPath = $application->user->cv_path;
+        }
+
+        if (empty($cvPath)) {
+            abort(404, 'CV not found.');
+        }
+
+        $filePath = storage_path('app/public/' . $cvPath);
 
         if (!file_exists($filePath)) {
-            abort(404, 'File not found.');
+            abort(404, 'File not found at: ' . $filePath);
         }
 
         return response()->download($filePath, 'CV_' . $application->user->name . '.pdf');
@@ -177,20 +197,31 @@ class ApplicationController extends Controller
     {
         // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
         $user = Auth::user();
-
-        // Load relationships to avoid N+1 queries
         $user->load(['role', 'company']);
-
         $company = $user->company;
 
         if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
-        $filePath = storage_path('app/public/cover_letter_files/' . $application->cover_letter_path);
+        $application->load('user'); // Ensure user is loaded
+
+        $coverLetterPath = null;
+        if (!empty($application->cover_letter_path)) {
+            $coverLetterPath = $application->cover_letter_path;
+        } elseif ($application->user && !empty($application->user->cover_letter_path)) {
+            $coverLetterPath = $application->user->cover_letter_path;
+        }
+
+        if (empty($coverLetterPath)) {
+            abort(404, 'Cover letter not found.');
+        }
+
+        // Both application->cover_letter_path and user->cover_letter_path store just the filename
+        $filePath = storage_path('app/public/cover_letter_files/' . $coverLetterPath);
 
         if (!file_exists($filePath)) {
-            abort(404, 'File not found.');
+            abort(404, 'File not found at: ' . $filePath);
         }
 
         return response()->file($filePath);
@@ -203,20 +234,31 @@ class ApplicationController extends Controller
     {
         // Cek hak akses - company hanya bisa akses aplikasi untuk job mereka
         $user = Auth::user();
-
-        // Load relationships to avoid N+1 queries
         $user->load(['role', 'company']);
-
         $company = $user->company;
 
         if (!$company || $application->jobPost->company_id !== $company->id) {
             abort(403, 'Unauthorized action.');
         }
 
-        $filePath = storage_path('app/public/cover_letter_files/' . $application->cover_letter_path);
+        $application->load('user'); // Ensure user is loaded
+
+        $coverLetterPath = null;
+        if (!empty($application->cover_letter_path)) {
+            $coverLetterPath = $application->cover_letter_path;
+        } elseif ($application->user && !empty($application->user->cover_letter_path)) {
+            $coverLetterPath = $application->user->cover_letter_path;
+        }
+
+        if (empty($coverLetterPath)) {
+            abort(404, 'Cover letter not found.');
+        }
+
+        // Both application->cover_letter_path and user->cover_letter_path store just the filename
+        $filePath = storage_path('app/public/cover_letter_files/' . $coverLetterPath);
 
         if (!file_exists($filePath)) {
-            abort(404, 'File not found.');
+            abort(404, 'File not found at: ' . $filePath);
         }
 
         return response()->download($filePath, 'Surat_Lamaran_' . $application->user->name . '.' . pathinfo($filePath, PATHINFO_EXTENSION));
@@ -252,12 +294,12 @@ class ApplicationController extends Controller
             ? $request->file('cv')->store('cvs', 'public')
             : $user->cv_path;
 
-        $coverLetterPath = null;
+        $coverLetterPath = $user->cover_letter_path;
         if ($request->hasFile('cover_letter_file')) {
             $originalName = $request->file('cover_letter_file')->getClientOriginalName();
             $extension = $request->file('cover_letter_file')->getClientOriginalExtension();
             $filename = pathinfo($originalName, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
-            $coverLetterPath = $request->file('cover_letter_file')->storeAs('cover_letter_files', $filename, 'public');
+            $request->file('cover_letter_file')->storeAs('cover_letter_files', $filename, 'public');
             $coverLetterPath = $filename; // Simpan hanya nama file
         }
 

@@ -97,20 +97,20 @@
             <div class="card-body">
                 <p><strong>CV:</strong>
                     @if($user->cv_path)
-                        <a href="{{ asset('storage/' . $user->cv_path) }}" target="_blank" class="btn btn-primary" download>Download CV</a>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.users.preview_cv', $user) }}" target="_blank" class="btn btn-info">Lihat CV</a>
+                            <a href="{{ route('admin.users.download_cv', $user) }}" class="btn btn-primary" download>Download CV</a>
+                        </div>
                     @else
                         Tidak ada CV
                     @endif
                 </p>
                 <p><strong>Surat Lamaran:</strong>
-                    @if($user->applications->isNotEmpty())
-                        <ul>
-                            @foreach($user->applications as $application)
-                                @if($application->cover_letter_path)
-                                    <li><a href="{{ asset('storage/cover_letter_files/' . $application->cover_letter_path) }}" target="_blank" download>Surat Lamaran untuk {{ $application->jobPost->title }}</a></li>
-                                @endif
-                            @endforeach
-                        </ul>
+                    @if($user->cover_letter_path)
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.users.preview_cover_letter', $user) }}" target="_blank" class="btn btn-info">Lihat Surat Lamaran</a>
+                            <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="btn btn-primary" download>Download Surat Lamaran</a>
+                        </div>
                     @else
                         Tidak ada surat lamaran
                     @endif

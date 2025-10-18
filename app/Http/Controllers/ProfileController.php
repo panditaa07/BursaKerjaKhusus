@@ -240,4 +240,38 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'CV berhasil diunggah!');
     }
+
+    public function previewCoverLetter()
+    {
+        $user = Auth::user();
+
+        if (!$user->cover_letter_path) {
+            abort(404, 'Cover letter not found.');
+        }
+
+        $filePath = storage_path('app/public/cover_letter_files/' . $user->cover_letter_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->file($filePath);
+    }
+
+    public function previewCv()
+    {
+        $user = Auth::user();
+
+        if (!$user->cv_path) {
+            abort(404, 'CV not found.');
+        }
+
+        $filePath = storage_path('app/public/' . $user->cv_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->file($filePath);
+    }
 }

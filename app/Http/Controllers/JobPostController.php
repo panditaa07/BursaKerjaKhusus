@@ -134,7 +134,8 @@ class JobPostController extends Controller
      */
     public function create()
     {
-        return view('company.jobs.create');
+        $industries = Industry::all();
+        return view('company.jobs.create', compact('industries'));
     }
 
     /**

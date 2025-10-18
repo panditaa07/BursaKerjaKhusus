@@ -98,6 +98,11 @@
                                     <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
+                                    @if ($user->role->name == 'user' && $user->cover_letter_path)
+                                        <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="table-btn download">
+                                            <i class="bi bi-download"></i>
+                                        </a>
+                                    @endif
                                     <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
                                         onsubmit="return confirm('Yakin ingin menghapus pengguna ini?');">
                                     @csrf

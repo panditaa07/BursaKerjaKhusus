@@ -82,16 +82,35 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="type" class="form-label fw-bold">Tipe Pekerjaan</label>
-                                <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
+                                <label for="employment_type" class="form-label fw-bold">Tipe Pekerjaan</label>
+                                <select class="form-select @error('employment_type') is-invalid @enderror" id="employment_type" name="employment_type">
                                     <option value="">Pilih Tipe Pekerjaan</option>
-                                    <option value="full-time" {{ old('type') == 'full-time' ? 'selected' : '' }}>Full-time</option>
-                                    <option value="part-time" {{ old('type') == 'part-time' ? 'selected' : '' }}>Part-time</option>
-                                    <option value="contract" {{ old('type') == 'contract' ? 'selected' : '' }}>Contract</option>
-                                    <option value="internship" {{ old('type') == 'internship' ? 'selected' : '' }}>Internship</option>
-                                    <option value="freelance" {{ old('type') == 'freelance' ? 'selected' : '' }}>Freelance</option>
+                                    <option value="full-time" {{ old('employment_type') == 'full-time' ? 'selected' : '' }}>Full-time</option>
+                                    <option value="part-time" {{ old('employment_type') == 'part-time' ? 'selected' : '' }}>Part-time</option>
+                                    <option value="contract" {{ old('employment_type') == 'contract' ? 'selected' : '' }}>Contract</option>
+                                    <option value="internship" {{ old('employment_type') == 'internship' ? 'selected' : '' }}>Internship</option>
+                                    <option value="freelance" {{ old('employment_type') == 'freelance' ? 'selected' : '' }}>Freelance</option>
                                 </select>
-                                @error('type')
+                                @error('employment_type')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="industry_id" class="form-label fw-bold">
+                                    Industri <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select @error('industry_id') is-invalid @enderror" id="industry_id" name="industry_id" required>
+                                    <option value="">Pilih Industri</option>
+                                    @foreach($industries as $industry)
+                                        <option value="{{ $industry->id }}" {{ old('industry_id') == $industry->id ? 'selected' : '' }}>
+                                            {{ $industry->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('industry_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -122,6 +141,24 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <div class="form-text">Opsional. Kosongkan jika tidak ada batas waktu.</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="vacancies" class="form-label fw-bold">
+                                    Jumlah Lowongan <span class="text-danger">*</span>
+                                </label>
+                                <input type="number"
+                                       class="form-control @error('vacancies') is-invalid @enderror"
+                                       id="vacancies"
+                                       name="vacancies"
+                                       value="{{ old('vacancies', 1) }}"
+                                       min="1"
+                                       required>
+                                @error('vacancies')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
