@@ -57,6 +57,8 @@
 }
 
 /* ===== TABLE STYLES ===== */
+
+
 .table-responsive {
     border-radius: 10px;
     overflow: visible;
@@ -362,70 +364,71 @@
 
 /* ===== RESPONSIVE STYLES ===== */
 
-/* === PERBAIKAN AGAR TABEL KECIL, RAPI, TANPA SCROLL & TEKS HORIZONTAL === */
+/* === CEGAH TEKS MENIMPA KOLOM LAIN DI HP === */
 @media (max-width: 576px) {
-    html, body {
-        overflow-x: hidden !important;
-    }
 
-    /* === Perkecil tabel dan teks === */
     .table {
-        width: 100% !important;
         table-layout: fixed !important;
-        font-size: 0.45rem !important;
+        width: 100% !important;
+        font-size: 0.28rem !important; /* 🔹 isi tabel makin kecil */
     }
 
-    .table thead th,
+    /* === HEADER === */
+    .table thead th {
+        font-size: 0.28rem !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        padding: 0.12rem 0.2rem !important;
+        letter-spacing: 0 !important;
+    }
+
+    /* === ISI TABEL === */
     .table tbody td {
-        padding: 0.2rem 0.25rem !important;
-        font-size: 0.45rem !important;
-        white-space: nowrap !important; /* biar tetap horizontal */
-        word-break: keep-all !important;
+        font-size: 0.26rem !important; /* 🔹 lebih kecil dari header */
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
         vertical-align: middle !important;
-        text-align: left !important;
+        padding: 0.12rem 0.2rem !important;
     }
 
-    /* === Atur lebar kolom supaya semua muat === */
-    .table th:nth-child(1),
-    .table td:nth-child(1) {
-        width: 32% !important; /* Perusahaan */
-    }
+    /* === BATASI LEBAR KOLOM === */
+    .table th:nth-child(1), .table td:nth-child(1) { max-width: 70px !important; } /* Perusahaan */
+    .table th:nth-child(2), .table td:nth-child(2) { max-width: 65px !important; } /* Posisi */
+    .table th:nth-child(3), .table td:nth-child(3) { max-width: 55px !important; text-align: center !important; } /* Status */
+    .table th:nth-child(4), .table td:nth-child(4) { max-width: 60px !important; text-align: center !important; } /* Tanggal */
+    .table th:nth-child(5), .table td:nth-child(5) { max-width: 55px !important; text-align: center !important; } /* Detail */
 
-    .table th:nth-child(2),
-    .table td:nth-child(2) {
-        width: 26% !important; /* Posisi */
-    }
-
-    .table th:nth-child(3),
-    .table td:nth-child(3) {
-        width: 22% !important; /* Status */
-    }
-
-    .table th:nth-child(4),
-    .table td:nth-child(4) {
-        width: 20% !important; /* Tanggal/Detail */
-    }
-
-    /* === Tombol dan badge kecil === */
-    .btn-detail,
-    .btn-primary {
-        font-size: 0.4rem !important;
-        padding: 0.15rem 0.3rem !important;
-        border-radius: 5px !important;
+    /* === Tombol & Badge Kecil === */
+    .btn-detail, .btn-primary {
+        font-size: 0.26rem !important;
+        padding: 0.08rem 0.18rem !important;
+        border-radius: 3px !important;
     }
 
     .badge {
-        font-size: 0.4rem !important;
-        padding: 0.15rem 0.25rem !important;
-        white-space: nowrap !important;
+        font-size: 0.25rem !important;
+        padding: 0.08rem 0.18rem !important;
+        border-radius: 4px !important;
     }
 
-    /* === Pagination mini === */
+    /* === Hover tampil teks penuh === */
+    .table td:hover {
+        white-space: normal !important;
+        overflow: visible !important;
+        background-color: #fff !important;
+        z-index: 10 !important;
+        position: relative;
+    }
+
+    /* === Pagination kecil === */
     .page-link {
-        font-size: 0.45rem !important;
-        padding: 0.15rem 0.35rem !important;
+        font-size: 0.25rem !important;
+        padding: 0.1rem 0.25rem !important;
     }
 
     .pagination {
-        gap: 0.15rem !important;
+        gap: 0.1rem !important;
     }
+}
