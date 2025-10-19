@@ -131,28 +131,28 @@
                         <div class="row">
                             <div class="col-md-3 mb-3">
                                 <label for="min_salary" class="form-label fw-bold">Gaji Minimum</label>
-                                <input type="number"
+                                <input type="text"
                                        class="form-control gaji-input @error('min_salary') is-invalid @enderror"
                                        id="min_salary"
                                        name="min_salary"
                                        value="{{ old('min_salary', $job->min_salary) }}"
-                                       min="0"
                                        placeholder="Contoh: 5000000"
-                                       step="1">
+                                       inputmode="numeric"
+                                       pattern="[0-9]*">
                                 @error('min_salary')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="max_salary" class="form-label fw-bold">Gaji Maksimum</label>
-                                <input type="number"
+                                <input type="text"
                                        class="form-control gaji-input @error('max_salary') is-invalid @enderror"
                                        id="max_salary"
                                        name="max_salary"
                                        value="{{ old('max_salary', $job->max_salary) }}"
-                                       min="0"
                                        placeholder="Contoh: 7000000"
-                                       step="1">
+                                       inputmode="numeric"
+                                       pattern="[0-9]*">
                                 @error('max_salary')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -225,29 +225,6 @@
                             </div>
                         </div>
 
-                        <!-- Berkas Lamaran Section -->
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <h5 class="border-bottom pb-2 mb-3">
-                                    <i class="fas fa-file-alt text-primary me-2"></i>Berkas Lamaran
-                                </h5>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="berkas_lamaran" class="form-label fw-bold">Berkas yang Diperlukan</label>
-                                <textarea class="form-control @error('berkas_lamaran') is-invalid @enderror"
-                                          id="berkas_lamaran"
-                                          name="berkas_lamaran"
-                                          rows="3"
-                                          placeholder="Contoh: CV, Surat Lamaran, Portofolio, Sertifikat">{{ old('berkas_lamaran', $job->berkas_lamaran) }}</textarea>
-                                @error('berkas_lamaran')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                <div class="form-text">Opsional. Sebutkan berkas-berkas yang harus diserahkan oleh pelamar.</div>
-                            </div>
-                        </div>
 
                         <!-- Form Actions -->
                         <div class="row">

@@ -123,42 +123,9 @@
                         </div>
                         
                         <!-- Job Title Section -->
-                        <div class="job-title-main">
-                            <h2 class="job-title-text">{{ $job->title }}</h2>
-                            
-                            <div class="job-meta-tags">
-                                <span class="job-tag">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    {{ $job->location }}
-                                </span>
-                                <span class="job-tag">
-                                    <i class="fas fa-clock"></i>
-                                    {{ $job->employment_type }}
-                                </span>
-                                <span class="job-tag">
-                                    <i class="fas fa-users"></i>
-                                    {{ $job->vacancies }} Lowongan
-                                </span>
-                            </div>
-                        </div>
                         
                         <!-- Profile Photo Section -->
-                        <div class="profile-section">
-                            <h6 class="profile-title">
-                                <i class="fas fa-user-circle"></i>
-                                Foto Profil Perusahaan
-                            </h6>
-                            @if($job->company && $job->company->user && $job->company->user->profile_photo_path)
-                                <img src="{{ asset('storage/' . $job->company->user->profile_photo_path) }}"
-                                     alt="Foto Profil {{ $job->company->name }}"
-                                     class="profile-avatar"
-                                     style="object-fit: cover;">
-                            @else
-                                <div class="profile-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            @endif
-                        </div>
+                        
                     </div>
 
                     <!-- Section Divider -->
@@ -194,25 +161,6 @@
                                     <td>
                                         <i class="fas fa-users text-primary me-2"></i>
                                         {{ $job->vacancies }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted">Status:</td>
-                                    <td>
-                                        <span class="badge-enhanced
-                                            @if(in_array($job->status, ['active'])) bg-success
-                                            @elseif(in_array($job->status, ['inactive'])) bg-danger
-                                            @else bg-warning @endif">
-                                            <i class="fas fa-{{ in_array($job->status, ['active']) ? 'check' : 'pause' }} me-1"></i>
-                                            {{ ucfirst($job->status) }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted">Tanggal Dibuat:</td>
-                                    <td>
-                                        <i class="fas fa-calendar text-primary me-2"></i>
-                                        {{ $job->created_at ? \Carbon\Carbon::parse($job->created_at)->format('d/m/Y H:i') : 'N/A' }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -273,6 +221,25 @@
                                         <a href="{{ route('company.pelamar.all') }}" class="text-decoration-none text-primary fw-bold">
                                             {{ $job->applications->count() }} pelamar
                                         </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">Status:</td>
+                                    <td>
+                                        <span class="badge-enhanced
+                                            @if(in_array($job->status, ['active'])) bg-success
+                                            @elseif(in_array($job->status, ['inactive'])) bg-danger
+                                            @else bg-warning @endif">
+                                            <i class="fas fa-{{ in_array($job->status, ['active']) ? 'check' : 'pause' }} me-1"></i>
+                                            {{ ucfirst($job->status) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">Tanggal Dibuat:</td>
+                                    <td>
+                                        <i class="fas fa-calendar text-primary me-2"></i>
+                                        {{ $job->created_at ? \Carbon\Carbon::parse($job->created_at)->format('d/m/Y H:i') : 'N/A' }}
                                     </td>
                                 </tr>
                             </table>

@@ -4,6 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/detail-lowongan.css') }}">
+<link rel="stylesheet" href="{{ asset('css/detaillowongancomp.css') }}?v={{ time() }}">
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -43,6 +44,118 @@
                                     </div>
                                 </div>
 
+                                <!-- Enhanced Job Details Grid -->
+                                <div class="info-grid-enhanced mb-5">
+                                    <!-- Informasi Umum -->
+                                    <div class="info-card-enhanced">
+                                        <h5 class="mb-4">
+                                            <div class="icon-container d-inline-flex me-3">
+                                                <i class="fas fa-info-circle"></i>
+                                            </div>
+                                            Informasi Umum
+                                        </h5>
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <td class="text-muted" width="150">Lokasi:</td>
+                                                <td>
+                                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                                    {{ $job->location }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Tipe Pekerjaan:</td>
+                                                <td>
+                                                    <i class="fas fa-clock text-primary me-2"></i>
+                                                    {{ $job->employment_type }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Jumlah Lowongan:</td>
+                                                <td>
+                                                    <i class="fas fa-users text-primary me-2"></i>
+                                                    {{ $job->vacancies }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Deadline:</td>
+                                                <td>
+                                                    <i class="fas fa-calendar-alt text-primary me-2"></i>
+                                                    {{ $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('d/m/Y') : 'N/A' }}
+                                                    @if($job->deadline)
+                                                        @php
+                                                            $now = \Carbon\Carbon::now();
+                                                            $deadline = \Carbon\Carbon::parse($job->deadline);
+                                                            $diff = $now->diff($deadline);
+                                                            $remaining = '';
+                                                            if ($deadline->isPast()) {
+                                                                $remaining = '<br><small class="text-danger"><i class="fas fa-exclamation-triangle"></i> Deadline telah berlalu</small>';
+                                                            } else {
+                                                                $remaining = '<br><small class="text-muted"><i class="fas fa-clock"></i> Sisa waktu: ' . $diff->d . ' Hari ' . $diff->h . ' Jam ' . $diff->i . ' Menit</small>';
+                                                            }
+                                                        @endphp
+                                                        {!! $remaining !!}
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Rentang Gaji:</td>
+                                                <td>
+                                                    <i class="fas fa-money-bill text-primary me-2"></i>
+                                                    @if($job->min_salary || $job->max_salary)
+                                                        Rp {{ number_format((float)($job->min_salary ?: 0)) }} - Rp {{ number_format((float)($job->max_salary ?: 0)) }}
+                                                    @else
+                                                        Tidak ditentukan
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <!-- Detail Tambahan -->
+                                    <div class="info-card-enhanced">
+                                        <h5 class="mb-4">
+                                            <div class="icon-container d-inline-flex me-3">
+                                                <i class="fas fa-list"></i>
+                                            </div>
+                                            Detail Tambahan
+                                        </h5>
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <td class="text-muted" width="150">Industri:</td>
+                                                <td>
+                                                    <i class="fas fa-industry text-primary me-2"></i>
+                                                    {{ $job->industry->name ?? 'N/A' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Total Pelamar:</td>
+                                                <td>
+                                                    <i class="fas fa-users text-primary me-2"></i>
+                                                    {{ $job->applications->count() }} pelamar
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Status:</td>
+                                                <td>
+                                                    <span class="badge-enhanced
+                                                        @if(in_array($job->status, ['active'])) bg-success
+                                                        @else bg-danger @endif">
+                                                        <i class="fas fa-{{ in_array($job->status, ['active']) ? 'check' : 'times' }} me-1"></i>
+                                                        {{ $job->status === 'active' ? 'Aktif' : 'Tidak Aktif' }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Tanggal Dibuat:</td>
+                                                <td>
+                                                    <i class="fas fa-calendar text-primary me-2"></i>
+                                                    {{ $job->created_at ? \Carbon\Carbon::parse($job->created_at)->format('d/m/Y H:i') : 'N/A' }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
                                 <div class="job-description mb-4">
                                     <h5>Deskripsi Pekerjaan</h5>
                                     <div class="description-content">
@@ -58,48 +171,6 @@
                                     </div>
                                 </div>
                                 @endif
-
-                                <div class="job-details mb-4">
-                                    <h5>Detail Lowongan</h5>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="detail-item">
-                                                <strong>Jenis Pekerjaan:</strong> {{ $job->employment_type }}
-                                            </div>
-                                            <div class="detail-item">
-                                                <strong>Lokasi:</strong> {{ $job->location }}
-                                            </div>
-                                            @if($job->min_salary || $job->max_salary)
-                                            <div class="detail-item">
-                                                <strong>Gaji:</strong>
-                                                @if($job->min_salary && $job->max_salary)
-                                                    Rp {{ number_format((float)$job->min_salary) }} - Rp {{ number_format((float)$job->max_salary) }}
-                                                @elseif($job->min_salary)
-                                                    Minimum Rp {{ number_format((float)$job->min_salary) }}
-                                                @elseif($job->max_salary)
-                                                    Maximum Rp {{ number_format((float)$job->max_salary) }}
-                                                @endif
-                                            </div>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="detail-item">
-                                                <strong>Jumlah Lowongan:</strong> {{ $job->vacancies }} orang
-                                            </div>
-                                            @if($job->deadline)
-                                            <div class="detail-item">
-                                                <strong>Batas Lamaran:</strong> {{ \Carbon\Carbon::parse($job->deadline)->format('d M Y') }}
-                                            </div>
-                                            @endif
-                                            <div class="detail-item">
-                                                <strong>Status:</strong>
-                                                <span class="badge {{ $job->status === 'active' ? 'badge-success' : 'badge-secondary' }}">
-                                                    {{ $job->status === 'active' ? 'Aktif' : 'Tidak Aktif' }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 @if($job->berkas_lamaran)
                                 <div class="application-requirements mb-4">
