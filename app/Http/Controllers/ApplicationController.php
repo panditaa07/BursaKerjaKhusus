@@ -18,14 +18,27 @@ class ApplicationController extends Controller
     /**
      * Display a listing of applications for the authenticated user
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
 
         // Load relationships to avoid N+1 queries
         $user->load(['role', 'company']);
 
-        $applications = $user->applications()->with(['jobPost.company'])->latest()->paginate(10);
+        $search = $request->input('search');
+
+        $applications = $user->applications()
+            ->with(['jobPost.company'])
+            ->when($search, function ($query) use ($search) {
+                $query->whereHas('jobPost', function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                      ->orWhereHas('company', function ($c) use ($search) {
+                          $c->where('name', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->latest()
+            ->paginate(10);
 
         // Get notifications for the user (if notifications table exists)
         try {
