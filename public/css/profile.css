@@ -301,18 +301,6 @@ body {
    STATUS BADGE
    ========================================== */
 
-.status-badge {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 16px;
-    background: rgba(30, 58, 138, 0.1);
-    color: rgb(30, 58, 138);
-    border-radius: 20px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    animation: pulse 2s ease-in-out infinite;
-}
-
 .status-badge:hover {
     background: rgb(30, 58, 138);
     color: white;
@@ -734,6 +722,7 @@ body {
    RESPONSIVE
    ========================================== */
 
+<<<<<<< Updated upstream
 @media (max-width: 768px) {
     .profile-content {
         flex-direction: column;
@@ -831,23 +820,191 @@ body {
     .btn-back {
         width: 100%;
     }
+=======
+/* ==========================================
+   SELECTION COLOR
+   ========================================== */
+
+::selection {
+    background: var(--light-blue);
+    color: var(--white);
+}
+
+/* ==========================================
+   FOCUS STYLES
+   ========================================== */
+
+*:focus {
+    outline: 2px solid rgb(30, 58, 138);
+    outline-offset: 2px;
+}
+
+/* ==========================================
+   LOADING ANIMATION
+   ========================================== */
+
+@keyframes loading {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: loading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+
+.social-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* jarak aman antar ikon */
+    margin-top: 8px;
+}
+
+.social-btn {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.25s ease;
+    text-decoration: none;
+    
+    /* 💥 ini yang penting */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.social-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-btn-facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); color: white !important; }
+        .social-btn-instagram { background: linear-gradient(135deg, #e91e63, #f06292, #ffb74d); color: white !important; }
+        .social-btn-linkedin { background: linear-gradient(135deg, #0077b5, #42a5f5); color: white !important; }
+        .social-btn-twitter { background: linear-gradient(135deg, #1da1f2, #42a5f5); color: white !important; }
+        .social-btn-tiktok { background: linear-gradient(135deg, #000000, #333333); color: white !important; }
+
+        .social-btn-portofolio {
+    background-color: #facc15; /* kuning cerah kayak iconnya */
+}
+
+.portfolio-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Hover biar sama dengan sosial media lain */
+.social-btn-portofolio:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+.profile-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Avatar besar di kiri */
+.avatar-large {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+    transition: all 0.4s ease;
+}
+
+.avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-large:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 12px 35px rgba(30, 58, 138, 0.4);
+}
+
+/* Info di kanan */
+.profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-details h1 {
+    font-size: 30px;
+    color: var(--primary-blue);
+    margin-bottom: 5px;
+}
+
+.profile-details p {
+    color: var(--text-gray);
+    font-size: 16px;
+}
+
+.edit-btn-inline {
+    margin-top: 15px;
+>>>>>>> Stashed changes
 }
 
 /* ==========================================
    PORTFOLIO LINK STYLE - sama kayak NIK/NISN
    ========================================== */
-
-.portfolio-text-link {
-    color: var(--primary-blue);
-    text-decoration: none;
-    font-weight: normal;
-    transition: color 0.3s ease;
-}
-
-.portfolio-text-link:hover {
-    color: var(--accent-blue);
-    text-decoration: underline;
-}
 
 .h3 {
     color:rgb(30, 58, 138);

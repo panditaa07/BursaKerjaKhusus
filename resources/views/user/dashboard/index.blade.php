@@ -21,7 +21,7 @@
                     <div><i class="fas fa-clock icon"></i> Sisa waktu: {{ $job->created_at ? $job->created_at->diffForHumans(null, true) : 'Tidak tersedia' }}</div>
                 </div>
                 <div class="lowongan-meta">
-                    <a href="{{ route('jobs.show', $job->id) }}" class="btn-info">Info</a>
+                    <a href="{{ route('jobs.show', $job->id) }}" class="btn-info">Detail</a>
                 </div>
             </div>
         </div>

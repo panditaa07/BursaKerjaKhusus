@@ -870,9 +870,9 @@ body.job-detail .card {
 .btn-view:focus {
     outline: none !important;
     box-shadow: none !important;
-    border-color: #06b6d4 !important;
+    background: rgb(30, 58, 138) !important;
     background: #fff !important;
-    color: #06b6d4 !important;
+    background: rgb(30, 58, 138) !important;
     transform: none !important;
 }
 
@@ -1104,7 +1104,7 @@ body.job-detail .card {
 .job-title-enhanced h4 {
   font-size: 1.8rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: rgb(30, 58, 138) !important;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
@@ -1135,7 +1135,7 @@ body.job-detail .card {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  background: rgb(30, 58, 138);
 }
 
 .info-card-enhanced:hover {
@@ -1193,14 +1193,17 @@ body.job-detail .card {
 
 .bg-success {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
 }
 
 .bg-danger {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  color: white !important;
 }
 
 .bg-warning {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: white !important;
 }
 
 /* Enhanced Applicant Table */
@@ -1248,7 +1251,7 @@ body.job-detail .card {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: rgb(30, 58, 138);
   color: white;
   margin-right: 15px;
   box-shadow: 0 4px 12px rgba(33, 86, 224, 0.3);
@@ -1386,7 +1389,7 @@ body.job-detail .card {
 .contact-item i {
     width: 16px;
     text-align: center;
-    color: var(--primary);
+    color: rgb(30, 58, 138) !important;
 }
 
 /* Job Title Section */
@@ -1399,6 +1402,7 @@ body.job-detail .card {
 }
 
 .job-title-text {
+    background: rgb(30, 58, 138) !important;
     font-size: 2rem;
     font-weight: 800;
     color: var(--text);
@@ -1433,7 +1437,7 @@ body.job-detail .card {
 }
 
 .job-tag i {
-    color: var(--primary);
+    background: rgb(30, 58, 138) !important;
 }
 
 /* Profile Photo Section */
@@ -1574,7 +1578,7 @@ body.job-detail .card {
 .card.enhanced-card .enhanced-header::before {
     /* JANGAN DIUBAH - biarkan seperti semula */
     display: block !important;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%) !important;
+    background: rgb(30, 58, 138);
     height: 4px !important;
 }
 

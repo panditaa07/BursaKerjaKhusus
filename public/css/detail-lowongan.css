@@ -69,6 +69,7 @@ body {
     font-weight: 600;
     margin: 0;
     font-size: 1.25rem;
+    border-bottom: 2px solid rgb(30, 58, 138);
 }
 
 .card-body {
@@ -77,7 +78,7 @@ body {
 
 /* ===== Job Detail Styling ===== */
 .job-title {
-    color: var(--primary);
+    color: rgb(30, 58, 138) I !important;
     font-weight: 700;
     margin-bottom: 1rem;
     font-size: 2rem;
@@ -151,6 +152,7 @@ body {
 
 /* ===== Badge Styling ===== */
 .badge {
+    background: rgb(30, 58, 138) !important;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 500;
@@ -159,7 +161,7 @@ body {
 }
 
 .badge-primary {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    background: rgb(30, 58, 138) !important;
     color: var(--white);
 }
 

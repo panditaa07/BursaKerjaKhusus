@@ -168,7 +168,6 @@ h2.text-xl {
     font-size: 1.25rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 3px solid var(--primary-blue);
     position: relative;
 }
 

@@ -31,7 +31,7 @@
                 {{ Auth::user()->role->name === 'company' ? 'Perusahaan' : 'Pencari Kerja' }}
             </span>
 
-            <div class="edit-btn-inline">
+<div class="edit-btn-inline">
                 <a href="{{ route('profile.edit') }}" class="btn-edit">
                     <i class="fas fa-pencil-alt"></i> Edit Profil
                 </a>
@@ -130,6 +130,6 @@
         'company' => 'company.dashboard.index',
         default => 'user.dashboard.index'
     }) }}" class="btn-back">Kembali</a>
-</div>
+</div> 
 <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
