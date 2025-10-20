@@ -1,19 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Form elements
+    const profileForm = document.getElementById('profile-form');
+    const saveChangesBtn = document.getElementById('save-changes-btn');
+
+    // Cropper elements
     const imageInput = document.getElementById('profile_photo_input');
     const cropModalElement = document.getElementById('cropImageModal');
     const cropModal = new bootstrap.Modal(cropModalElement);
     const imageToCrop = document.getElementById('image-to-crop');
     const cropAndSaveBtn = document.getElementById('crop-and-save');
-    const updateUrl = document.querySelector('meta[name="update-photo-url"]').getAttribute('content');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     let cropper;
 
-    if (!imageInput || !cropModalElement || !updateUrl) {
-        console.error('Required elements for cropping are not found.');
+    if (!profileForm || !saveChangesBtn || !imageInput) {
+        console.error('Required form elements are not found.');
         return;
     }
 
-    // 1. Open modal and prepare image when a file is selected
+    // --- Form Change Detection Logic ---
+
+    // The button is now always enabled.
+
+    // --- Cropper Logic ---
+
+    // Open modal when a file is selected
     imageInput.addEventListener('change', function (e) {
         const files = e.target.files;
         if (files && files.length > 0) {
@@ -26,89 +35,68 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // 2. Initialize Cropper.js when the modal is shown
+    // Initialize Cropper.js when the modal is shown
     cropModalElement.addEventListener('shown.bs.modal', function () {
         cropper = new Cropper(imageToCrop, {
             aspectRatio: 1,
             viewMode: 1,
-            background: false,
-            preview: '.cropper-preview', // Ensure you have a preview element with this class
+            preview: '.cropper-preview',
         });
     });
 
-    // 3. Destroy Cropper.js instance when the modal is hidden
+    // Destroy Cropper.js instance when the modal is hidden
     cropModalElement.addEventListener('hidden.bs.modal', function () {
         if (cropper) {
             cropper.destroy();
         }
         cropper = null;
-        imageInput.value = ''; // Reset file input
+        // Do not reset imageInput.value, so the form knows a file is selected
     });
 
-    // 4. Handle the crop and save button click
+    // Handle the "Simpan Foto" button click in the modal
     cropAndSaveBtn.addEventListener('click', function () {
         if (!cropper) {
             return;
         }
 
-        this.disabled = true;
-        this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Menyimpan...';
+        // --- This is the NEW workflow ---
+        // It does NOT save to server. It stages the data for the main form.
 
-        // Get the cropped image as a base64 string
-        const base64Image = cropper.getCroppedCanvas({
-            width: 512,
-            height: 512,
-            imageSmoothingQuality: 'high',
-        }).toDataURL('image/png');
+        // 1. Get the cropped canvas and convert to base64 JPEG
+        const croppedCanvas = cropper.getCroppedCanvas({ width: 512, height: 512 });
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = 512; finalCanvas.height = 512;
+        const ctx = finalCanvas.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, 512, 512);
+        ctx.drawImage(croppedCanvas, 0, 0);
+        const base64Image = finalCanvas.toDataURL('image/jpeg', 0.9);
 
-        // 5. Send the base64 image to the server
-        fetch(updateUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: JSON.stringify({ photo: base64Image })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(result => {
-            if (result.success) {
-                // Get the most current reference to the preview element on the main page
-                const currentPreviewEl = document.getElementById('profile-image-preview');
-                
-                // Add a cache-busting query parameter
-                const newImagePath = result.path + '?t=' + new Date().getTime();
-                
-                // Update the profile image on the page without reloading
-                if (currentPreviewEl.tagName === 'IMG') {
-                    currentPreviewEl.src = newImagePath;
-                } else {
-                    // If the preview was a div with initials, replace it with an img tag
-                    const newImg = document.createElement('img');
-                    newImg.src = newImagePath;
-                    newImg.alt = 'Foto Profil';
-                    newImg.className = 'profile-photo-img';
-                    newImg.id = 'profile-image-preview';
-                    currentPreviewEl.parentNode.replaceChild(newImg, currentPreviewEl);
-                }
-                
-                cropModal.hide();
-            } else {
-                alert('Gagal mengunggah foto: ' + (result.message || 'Unknown error'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat mengunggah foto.');
-        })
-        .finally(() => {
-            this.disabled = false;
-            this.innerHTML = 'Simpan Foto';
-        });
+        // 2. Update the visible image preview on the page
+        const currentPreviewEl = document.getElementById('profile-image-preview');
+        if (currentPreviewEl.tagName === 'IMG') {
+            currentPreviewEl.src = base64Image;
+        } else {
+            const newImg = document.createElement('img');
+            newImg.src = base64Image;
+            newImg.alt = 'Foto Profil';
+            newImg.className = 'profile-photo-img';
+            newImg.id = 'profile-image-preview';
+            currentPreviewEl.parentNode.replaceChild(newImg, currentPreviewEl);
+        }
+
+        // 3. Find or create a hidden input to store the base64 data
+        let hiddenInput = document.getElementById('profile_photo_base64');
+        if (!hiddenInput) {
+            hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'profile_photo_base64';
+            hiddenInput.id = 'profile_photo_base64';
+            profileForm.appendChild(hiddenInput);
+        }
+        hiddenInput.value = base64Image;
+
+        // 4. Close the modal
+        cropModal.hide();
     });
 });

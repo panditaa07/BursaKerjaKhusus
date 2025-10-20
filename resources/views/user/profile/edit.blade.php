@@ -21,6 +21,12 @@
         margin: 0 auto;
         border: 1px solid #ddd;
     }
+    .form-note {
+        font-size: 0.875rem;
+        color: #6c757d;
+        text-align: center;
+        margin-top: 1rem;
+    }
 </style>
 @endpush
 
@@ -159,9 +165,13 @@
             </div>
             @endif
 
+            <p class="form-note">
+                Catatan: Untuk perubahan data selain foto profil, pastikan Anda menekan tombol "Simpan Perubahan".
+            </p>
+
             <div class="btn-group">
                 <a href="{{ route('profile.show') }}" class="btn btn-secondary">Batal</a>
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                <button type="submit" class="btn btn-primary" id="save-changes-btn">Simpan Perubahan</button>
             </div>
         </form>
     </div>

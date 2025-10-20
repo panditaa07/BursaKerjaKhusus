@@ -47,11 +47,6 @@ class ProfileController extends Controller
 
     public function updatePhoto(Request $request)
     {
-        // First, check if the GD library is available
-        if (!function_exists('imagecreatefromstring')) {
-            return response()->json(['success' => false, 'message' => 'GD Library tidak aktif di server. Harap aktifkan untuk memproses gambar.'], 500);
-        }
-
         $request->validate([
             'photo' => 'required|string', // Validate that photo is a base64 string
         ]);
@@ -59,52 +54,21 @@ class ProfileController extends Controller
         $user = Auth::user();
         $photoData = $request->input('photo');
 
-        // Decode the base64 string
-        // The string is in format data:image/png;base64,iVBORw0KGgo...
+        // The incoming data is a base64 JPEG string from the client.
+        // We just need to decode it and save it.
         @list(, $photoData) = explode(';', $photoData);
         @list(, $photoData) = explode(',', $photoData);
-        $photoData = base64_decode($photoData);
+        $imageData = base64_decode($photoData);
 
-        // Create a GD image resource from the decoded data
-        $sourceImage = @imagecreatefromstring($photoData);
-
-        if (!$sourceImage) {
+        if (!$imageData) {
             return response()->json(['success' => false, 'message' => 'Invalid image data.'], 400);
         }
 
-        // Get original image dimensions
-        $width = imagesx($sourceImage);
-        $height = imagesy($sourceImage);
-
-        // Create a new true color image (the canvas)
-        $destImage = imagecreatetruecolor($width, $height);
-
-        // IMPORTANT: Enable alpha blending and save alpha channel
-        imagealphablending($destImage, false);
-        imagesavealpha($destImage, true);
-
-        // Create a white background color
-        $white = imagecolorallocate($destImage, 255, 255, 255);
-
-        // Fill the canvas with the white background
-        imagefill($destImage, 0, 0, $white);
-
-        // Copy the source (transparent PNG) onto the white canvas
-        imagecopy($destImage, $sourceImage, 0, 0, 0, 0, $width, $height);
-
         // Define path and filename for the new JPG
         $filename = 'profile_photos/' . uniqid() . '.jpg';
-        $path = storage_path('app/public/' . $filename);
 
-        // Ensure the directory exists
-        Storage::disk('public')->makeDirectory('profile_photos');
-
-        // Save the final image as a JPG
-        imagejpeg($destImage, $path, 90);
-
-        // Clean up GD resources from memory
-        imagedestroy($sourceImage);
-        imagedestroy($destImage);
+        // Ensure the directory exists and save the file
+        Storage::disk('public')->put($filename, $imageData);
 
         // Delete the old photo from storage if it exists
         if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
@@ -216,11 +180,34 @@ class ProfileController extends Controller
             'facebook' => 'nullable|url',
             'twitter' => 'nullable|url',
             'tiktok' => 'nullable|url',
+            'profile_photo_base64' => 'nullable|string', // New validation for base64 photo
         ]);
 
         \Log::info('[PROFILE UPDATE] Validation passed.');
 
         $userData = $request->only(['name', 'email', 'phone', 'address', 'nisn', 'birth_date', 'short_profile', 'portfolio_link', 'linkedin', 'instagram', 'facebook', 'twitter', 'tiktok']);
+
+        // Handle the new base64 profile photo
+        if ($request->filled('profile_photo_base64')) {
+            \Log::info('[PROFILE UPDATE] Processing new profile photo...');
+            $photoData = $request->input('profile_photo_base64');
+            @list(, $photoData) = explode(';', $photoData);
+            @list(, $photoData) = explode(',', $photoData);
+            $imageData = base64_decode($photoData);
+
+            if ($imageData) {
+                $filename = 'profile_photos/' . uniqid() . '.jpg';
+                Storage::disk('public')->put($filename, $imageData);
+
+                // Delete old photo
+                if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
+                    Storage::disk('public')->delete($user->profile_photo_path);
+                }
+
+                $userData['profile_photo_path'] = $filename;
+                \Log::info('[PROFILE UPDATE] New profile photo saved as ' . $filename);
+            }
+        }
 
         // Handle CV upload
         if ($request->hasFile('cv')) {
