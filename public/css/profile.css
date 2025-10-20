@@ -1,5 +1,5 @@
 /* ==========================================
-   MODERN BLUE PROFILE CSS
+   MODERN BLUE PROFILE CSS (RESPONSIVE V2)
    Simple, Elegant, Eye-Friendly Design
    ========================================== */
 
@@ -9,13 +9,11 @@
     --light-blue: #60a5fa;
     --accent-blue: #2563eb;
     --soft-blue: #dbeafe;
-    --bg-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    --card-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
-    --hover-shadow: 0 8px 30px rgba(30, 58, 138, 0.15);
     --text-dark: #1e293b;
     --text-gray: #64748b;
-    --bg-light: #f8fafc;
     --white: #ffffff;
+    --card-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
+    --hover-shadow: 0 8px 30px rgba(30, 58, 138, 0.15);
     --border-radius: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -42,220 +40,63 @@ body {
    ANIMASI KEYFRAMES
    ========================================== */
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes zoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: -1000px 0;
-    }
-    100% {
-        background-position: 1000px 0;
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-180deg) scale(0);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0) scale(1);
-    }
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ==========================================
-   CONTAINER ANIMASI
-   ========================================== */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
 .profile-container {
     animation: fadeInUp 0.8s ease forwards;
     opacity: 0;
 }
 
+
 /* ==========================================
    HEADER PROFIL
    ========================================== */
 
 .profile-header {
-    background: white;
+    background: var(--white);
     border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
-    margin-bottom: 15px;
-    margin: 20px auto;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 24px;
     position: relative;
     animation: fadeInDown 0.6s ease forwards;
     animation-delay: 0.2s;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+}
+
+.profile-header:hover {
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-5px);
 }
 
 .profile-content {
     display: flex;
     align-items: center;
     gap: 30px;
+    flex-wrap: wrap; /* Wajib untuk responsif */
 }
 
-.profile-details {
-    flex-grow: 1;
-}
-
-.profile-details h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 4px;
-}
-
-.profile-details p {
-    font-size: 16px;
-    color: var(--text-gray);
-    margin-bottom: 8px;
-}
-
-.profile-details .status-badge {
-    margin-top: 0;
-    margin-bottom: 16px;
-}
-
-.edit-btn-inline {
-    margin-top: 10px;
-}
-
-.profile-header:hover {
-    box-shadow: 0 8px 30px rgba(30, 58, 138, 0.15);
-    transform: translateY(-5px);
-}
-
-.profile-top {
-    animation: zoomIn 0.7s ease forwards;
-    animation-delay: 0.4s;
-    opacity: 0;
-}
-
-/* Kurangi jarak antar elemen teks */
-.profile-header h1 {
-    margin: 5px 0;
-    font-size: 22px;
-}
-
-.profile-header p {
-    margin: 3px 0;
-    font-size: 14px;
-}
-
-/* Kurangi jarak bawah antar card */
-.profile-section {
-    margin-top: 20px; /* biasanya 40px ke atas */
-}
-
-/* ==========================================
-   AVATAR
-   ========================================== */
-
+/* AVATAR */
 .avatar-large {
     width: 150px;
     height: 150px;
+    min-width: 150px;
     border-radius: 50%;
     overflow: hidden;
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    color: var(--white);
     font-size: 4rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
-    border: 4px solid white;
-    transition: all 0.3s ease;
-}
-
-.avatar-large:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3);
+    border: 4px solid var(--white);
+    transition: var(--transition);
 }
 
 .avatar-large img {
@@ -264,171 +105,103 @@ body {
     object-fit: cover;
 }
 
-/* ==========================================
-   PROFILE INFO
-   ========================================== */
-
-.profile-info {
-    animation: slideDown 0.6s ease forwards;
-    animation-delay: 0.7s;
-    opacity: 0;
+.avatar-large:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3);
 }
 
-.profile-info h1 {
-    color: rgb(30, 58, 138);
+/* DETAILS */
+.profile-details {
+    flex: 1;
+}
+
+.profile-details h1 {
     font-size: 28px;
-    margin-bottom: 6px;
-    transition: all 0.3s ease;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 5px 0;
 }
 
-.profile-info h1:hover {
-    color: rgb(50, 78, 158);
+.profile-details p {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin: 3px 0;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    background-color: var(--soft-blue);
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    transition: var(--transition);
+}
+
+.status-badge:hover {
+    background: var(--primary-blue);
+    color: var(--white);
     transform: scale(1.05);
 }
 
-.profile-info p {
-    color: #64748b;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-.profile-info p:hover {
-    color: rgb(30, 58, 138);
-    transform: translateX(5px);
-}
-
-/* ==========================================
-   STATUS BADGE
-   ========================================== */
-
-.status-badge:hover {
-    background: rgb(30, 58, 138);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
-}
-
-/* ==========================================
-   EDIT BUTTON
-   ========================================== */
-
-.edit-btn {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    animation: slideInRight 0.6s ease forwards;
-    animation-delay: 0.6s;
-    opacity: 0;
+.edit-btn-inline {
+    margin-top: 15px;
 }
 
 .btn-edit {
-    background: rgb(30, 58, 138);
-    color: white;
+    background: var(--primary-blue);
+    color: var(--white);
     padding: 8px 14px;
     border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: var(--transition);
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    position: relative;
-    overflow: hidden;
 }
-
-.btn-edit::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.4s, height 0.4s;
-}
-
-.btn-edit:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
 .btn-edit:hover {
-    background: #1e3a8a;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
-}
-
-.btn-edit:active {
-    transform: scale(1.15);
-    box-shadow: 0 0 20px rgba(30, 58, 138, 0.5);
+    background: var(--secondary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
 }
 
 /* ==========================================
-   SECTION
+   SECTION & GRID
    ========================================== */
 
 .section {
-    background: white;
+    background: var(--white);
     border-radius: 16px;
     padding: 30px;
     margin-bottom: 24px;
-    box-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
+    box-shadow: var(--card-shadow);
     animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.section:nth-child(2) {
-    animation-delay: 0.8s;
-}
-
-.section:nth-child(3) {
-    animation-delay: 1s;
-}
-
-.section:nth-child(4) {
-    animation-delay: 1.2s;
+    transition: var(--transition);
+    animation-delay: 0.8s; /* Animasi berurutan */
 }
 
 .section:hover {
-    box-shadow: 0 8px 30px rgba(30, 58, 138, 0.15);
-    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-3px);
 }
 
 .section h2 {
-    color: rgb(30, 58, 138);
+    color: var(--primary-blue);
     font-size: 20px;
     margin-bottom: 20px;
-    border-bottom: 2px solid rgba(30, 58, 138, 0.1);
+    border-bottom: 2px solid var(--soft-blue);
     padding-bottom: 8px;
-    position: relative;
-    transition: all 0.3s ease;
 }
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: rgb(30, 58, 138);
-    transition: width 0.4s ease;
-}
-
-.section:hover h2::after {
-    width: 100px;
-}
-
-/* ==========================================
-   INFO GRID
-   ========================================== */
 
 .info-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 24px;
+    /* Default 2 kolom, menyesuaikan minimal 300px per kolom */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px 24px;
 }
 
 .info-item {
@@ -436,294 +209,191 @@ body {
     font-size: 15px;
     padding: 10px;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    /* Hilangkan border-bottom agar lebih bersih */
+    transition: var(--transition);
     animation: slideInLeft 0.5s ease forwards;
     opacity: 0;
 }
 
-.info-item:nth-child(odd) {
-    animation-delay: calc(0.1s * var(--item-index, 1));
-}
-
+/* Animasi slide kanan untuk item genap (untuk efek zigzag) */
 .info-item:nth-child(even) {
-    animation: slideInRight 0.5s ease forwards;
-    animation-delay: calc(0.1s * var(--item-index, 1));
+    animation-name: slideInRight;
 }
 
-.info-item:nth-child(1) { --item-index: 1; }
-.info-item:nth-child(2) { --item-index: 2; }
-.info-item:nth-child(3) { --item-index: 3; }
-.info-item:nth-child(4) { --item-index: 4; }
-.info-item:nth-child(5) { --item-index: 5; }
-.info-item:nth-child(6) { --item-index: 6; }
-.info-item:nth-child(7) { --item-index: 7; }
-.info-item:nth-child(8) { --item-index: 8; }
-.info-item:nth-child(9) { --item-index: 9; }
-.info-item:nth-child(10) { --item-index: 10; }
+/* Animasi tunda berdasarkan index di Blade (penting untuk efek berurutan) */
+.info-item {
+    animation-delay: calc(0.1s * var(--item-index, 1));
+}
 
 .info-item:hover {
     background: rgba(30, 58, 138, 0.05);
-    transform: translateX(10px);
-    padding-left: 20px;
-    border-left: 3px solid rgb(30, 58, 138);
+    transform: translateX(5px);
+    border-left: 3px solid var(--primary-blue);
+    padding-left: 15px;
 }
 
 .info-item span {
     font-weight: 600;
-    color: rgb(30, 58, 138);
-    transition: all 0.3s ease;
+    color: var(--primary-blue);
+    display: block; /* Memaksa label di baris baru */
+    margin-bottom: 3px;
 }
 
-.info-item:hover span {
-    color: rgb(50, 78, 158);
+.info-item.full-width {
+    grid-column: 1 / -1; /* Ambil seluruh lebar */
+    padding: 10px 0;
+    animation: none; /* Jangan animasikan wrapper full-width */
+    opacity: 1;
 }
 
-.info-item a {
-    color: #1e3a8a;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
+.info-item h3 {
+    color: var(--primary-blue);
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.info-item a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: rgb(30, 58, 138);
-    transition: width 0.3s ease;
+/* Info Dokumen (inner items) */
+.info-doc {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--soft-blue);
+    transition: var(--transition);
+    animation: none; /* Nonaktifkan animasi pada inner item */
+    opacity: 1;
 }
 
-.info-item a:hover::after {
-    width: 100%;
+.info-doc:last-child {
+    border-bottom: none;
 }
 
-.info-item a:hover {
-    color: rgb(50, 78, 158);
-}
 
 /* ==========================================
-   BUTTONS
+   BUTTONS & LINKS
    ========================================== */
 
-.btn {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none !important;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.btn-primary {
-    background: white;
-    color: rgb(30, 58, 138);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.btn-primary:hover {
-    background: rgb(30, 58, 138);
-    color: white;
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-    transform: translateY(-3px);
+.btn-edit, .btn-cv, .btn-back {
+    /* Menerapkan transisi yang konsisten */
+    transition: var(--transition);
 }
 
 .btn-cv {
-    background: rgb(30, 58, 138);
+    background: var(--secondary-blue);
     color: white !important;
     padding: 6px 12px;
     border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
 .btn-cv:hover {
-    background: #1e3a8a;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
-.btn-cv:active {
-    transform: scale(1.15);
-    box-shadow: 0 0 20px rgba(30, 58, 138, 0.5);
-}
-
-.btn-secondary {
-    background: rgb(30, 58, 138);
-    color: white !important;
-}
-
-.btn-secondary:hover {
-    background: #1e3a8a;
-    transform: translateY(-3px);
-}
-
-/* ==========================================
-   BACK BUTTON
-   ========================================== */
-
-.back-btn {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    z-index: 999;
-    animation: fadeInUp 0.6s ease forwards;
-    opacity: 0;
-}
-
-.btn-back {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 8px;
-    background: rgb(30, 58, 138);
-    color: white;
+.portfolio-text-link {
+    color: var(--secondary-blue);
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-    overflow: hidden;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
-
-
-.btn-back::before {
-    content: '←';
-    position: absolute;
-    left: -20px;
-    transition: left 0.3s ease;
+.portfolio-text-link:hover {
+    text-decoration: underline;
+    color: var(--primary-blue);
 }
-
-.btn-back:hover::before {
-    left: 10px;
-}
-
-.btn-back:hover {
-    background: #1e3a8a;
-    transform: translateX(-5px);
-    padding-left: 35px;
-    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
-}
-
-.btn-back:active {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(30, 58, 138, 0.5);
-}
-
-/* ==========================================
-   IMAGES
-   ========================================== */
-
-.card-body img,
-.company-logo {
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    margin-top: 0.5rem;
-}
-
-.company-logo {
-    max-width: 120px;
-    animation: float 3s ease-in-out infinite;
-}
-
-.card-body img:hover,
-.company-logo:hover {
-    transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
-}
-
-/* ==========================================
-   LIST STYLING
-   ========================================== */
-
-.card-body ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.card-body ul li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--soft-blue);
-    transition: all 0.3s ease;
-    animation: slideInLeft 0.5s ease forwards;
-    opacity: 0;
-}
-
-.card-body ul li:nth-child(1) { animation-delay: 0.1s; }
-.card-body ul li:nth-child(2) { animation-delay: 0.2s; }
-.card-body ul li:nth-child(3) { animation-delay: 0.3s; }
-.card-body ul li:nth-child(4) { animation-delay: 0.4s; }
-.card-body ul li:nth-child(5) { animation-delay: 0.5s; }
-
-.card-body ul li:last-child {
-    border-bottom: none;
-}
-
-.card-body ul li:hover {
-    padding-left: 15px;
-    background: var(--soft-blue);
-    border-left: 3px solid rgb(30, 58, 138);
-}
-
-/* ==========================================
-   TEXT MUTED
-   ========================================== */
 
 .text-muted {
     color: var(--text-gray) !important;
     font-style: italic;
 }
 
-/* ==========================================
-   ICONS
-   ========================================== */
-
-.fa-file-pdf,
-.fa-pencil-alt,
-.fas {
-    transition: all 0.3s ease;
-}
-
-.btn:hover .fa-file-pdf,
-.btn:hover .fa-pencil-alt,
-.btn:hover .fas {
-    transform: scale(1.2) rotate(10deg);
-}
 
 /* ==========================================
-   RESPONSIVE
+   SOCIAL BUTTONS
    ========================================== */
 
-<<<<<<< Updated upstream
+.social-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.social-btn-facebook { background: #1877f2; }
+/* Menggunakan latar belakang linear yang lebih sederhana untuk Instagram */
+.social-btn-instagram { background: #C13584; } 
+.social-btn-linkedin { background: #0077b5; }
+.social-btn-twitter { background: #1da1f2; }
+.social-btn-tiktok { background: #000000; }
+
+
+/* ==========================================
+   BACK BUTTON
+   ========================================== */
+
+.back-btn-inline {
+    grid-column: 1 / -1;
+    text-align: right;
+    margin-top: 30px;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-back:hover {
+    background: var(--secondary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+
+/* ==========================================
+   MEDIA QUERIES (RESPONSIVITAS) 📱💻
+   ========================================== */
+
+/* Tablet View (max-width: 900px) */
+@media (max-width: 900px) {
+    .container {
+        max-width: 98%;
+    }
+}
+
+/* Tablet & Mobile Medium (max-width: 768px) */
 @media (max-width: 768px) {
+    /* Header: Tumpukan Vertikal */
     .profile-content {
         flex-direction: column;
         text-align: center;
@@ -732,280 +402,80 @@ body {
 
     .profile-details {
         align-items: center;
-    }
-
-    .info-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .profile-header {
-        padding: 24px;
         text-align: center;
     }
-
-    .edit-btn {
-        position: static;
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .btn-edit {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-
+    
     .avatar-large {
         width: 120px;
         height: 120px;
-        font-size: 48px;
+        min-width: 120px;
+        font-size: 3rem;
     }
-
-    .profile-details h1 {
-        font-size: 24px;
+    
+    /* Info Grid: Dipaksa 1 Kolom */
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
-
-    .section {
-        padding: 20px;
+    
+    /* Tombol CV/Dokumen dibuat full-width agar mudah diklik di mobile */
+    .btn-cv {
+        display: block;
+        width: 100%;
+        justify-content: center;
+        margin: 5px 0;
     }
-
+    
+    /* Sosial Buttons: Rata Tengah */
     .social-buttons {
         justify-content: center;
     }
+    
+    /* Item Info: Kurangi padding saat hover di mobile */
+    .info-item:hover {
+        transform: none;
+        padding-left: 10px;
+        border-left: 3px solid var(--primary-blue);
+    }
+    
+    /* Tombol Kembali: Rata Tengah dan Lebar Penuh */
+    .back-btn-inline {
+        text-align: center;
+    }
+    .btn-back {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
+/* Mobile Small (max-width: 480px) */
 @media (max-width: 480px) {
     body {
         padding: 10px;
     }
-
-    .profile-header {
+    
+    .profile-header, .section {
         padding: 20px;
+        margin-bottom: 15px;
     }
 
     .avatar-large {
-        width: 100px;
-        height: 100px;
-        font-size: 40px;
+        width: 90px;
+        height: 90px;
+        font-size: 2.5rem;
     }
-
+    
     .profile-details h1 {
         font-size: 20px;
     }
 
-    .profile-details p {
-        font-size: 14px;
-    }
-
-    .status-badge {
-        font-size: 12px;
-        padding: 4px 12px;
-    }
-
     .info-item {
         font-size: 14px;
-        padding: 8px;
+        padding: 8px 0;
     }
-
-    .btn-cv, .btn-edit {
+    
+    .btn-edit {
         width: 100%;
         justify-content: center;
     }
-
-    .back-btn-inline {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .btn-back {
-        width: 100%;
-    }
-=======
-/* ==========================================
-   SELECTION COLOR
-   ========================================== */
-
-::selection {
-    background: var(--light-blue);
-    color: var(--white);
-}
-
-/* ==========================================
-   FOCUS STYLES
-   ========================================== */
-
-*:focus {
-    outline: 2px solid rgb(30, 58, 138);
-    outline-offset: 2px;
-}
-
-/* ==========================================
-   LOADING ANIMATION
-   ========================================== */
-
-@keyframes loading {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-.loading {
-    animation: loading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-
-.social-buttons {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* jarak aman antar ikon */
-    margin-top: 8px;
-}
-
-.social-btn {
-    position: relative;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.25s ease;
-    text-decoration: none;
-    
-    /* 💥 ini yang penting */
-    overflow: hidden;
-    z-index: 1;
-}
-
-.social-btn::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-}
-
-.social-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-}
-
-
-
-        .social-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
-        }
-
-        .social-btn:hover::before {
-            left: 100%;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-2px) scale(1.1);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .social-btn-facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); color: white !important; }
-        .social-btn-instagram { background: linear-gradient(135deg, #e91e63, #f06292, #ffb74d); color: white !important; }
-        .social-btn-linkedin { background: linear-gradient(135deg, #0077b5, #42a5f5); color: white !important; }
-        .social-btn-twitter { background: linear-gradient(135deg, #1da1f2, #42a5f5); color: white !important; }
-        .social-btn-tiktok { background: linear-gradient(135deg, #000000, #333333); color: white !important; }
-
-        .social-btn-portofolio {
-    background-color: #facc15; /* kuning cerah kayak iconnya */
-}
-
-.portfolio-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-/* Hover biar sama dengan sosial media lain */
-.social-btn-portofolio:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-
-.profile-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-/* Avatar besar di kiri */
-.avatar-large {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    font-weight: 600;
-    color: white;
-    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
-    transition: all 0.4s ease;
-}
-
-.avatar-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.avatar-large:hover {
-    transform: scale(1.08) rotate(3deg);
-    box-shadow: 0 12px 35px rgba(30, 58, 138, 0.4);
-}
-
-/* Info di kanan */
-.profile-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-.profile-details h1 {
-    font-size: 30px;
-    color: var(--primary-blue);
-    margin-bottom: 5px;
-}
-
-.profile-details p {
-    color: var(--text-gray);
-    font-size: 16px;
-}
-
-.edit-btn-inline {
-    margin-top: 15px;
->>>>>>> Stashed changes
-}
-
-/* ==========================================
-   PORTFOLIO LINK STYLE - sama kayak NIK/NISN
-   ========================================== */
-
-.h3 {
-    color:rgb(30, 58, 138);
 }

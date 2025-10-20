@@ -11,8 +11,8 @@
         <div>
             <h4 class="fw-bold mb-2">LOWONGAN AKTIF</h4>
             {{-- Tombol kembali --}}
-            <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary btn-sm">
-                <i class="bi bi-arrow-left"></i> Kembali
+            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-custom back">
+                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Lowongan
             </a>
         </div>
        {{-- Search + tombol cari + total lowongan --}}

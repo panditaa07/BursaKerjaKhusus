@@ -63,10 +63,6 @@
                             </div>
                         </div>
                     </div>
-<<<<<<< Updated upstream
-=======
-                    <a href="{{ route('jobs.show', $job->id) }}" class="info-button" title="Lihat detail lowongan">Detail</a>
->>>>>>> Stashed changes
                 </div>
             @endforeach
         </div>

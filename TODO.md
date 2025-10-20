@@ -13,6 +13,7 @@ Ubah tampilan halaman fitur lowongan (Lowongan Aktif, Lowongan Tidak Aktif) agar
 - [x] Ubah tombol kembali di `resources/views/admin/dashboard/lowongan-tidak-aktif.blade.php`
 - [x] Verifikasi tidak ada duplikat tombol kembali di halaman manapun
 - [x] Pastikan struktur Blade/HTML rapi dan mengikuti standar template layout
+- [x] Pastikan tombol menggunakan class `btn btn-custom back` dan ikon FontAwesome
 
 ## File yang Terpengaruh
 - resources/views/admin/dashboard/lowongan-aktif.blade.php
