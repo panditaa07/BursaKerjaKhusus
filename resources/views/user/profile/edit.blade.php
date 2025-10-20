@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="{{ asset('css/editprofile-user.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 <style>
+    .cropper-modal {
+        background-color: rgba(0, 0, 0, 0.3); /* Make the overlay less dark */
+    }
     .img-container {
         max-height: 450px;
     }
@@ -165,7 +168,7 @@
 </div>
 
 <!-- Cropper Modal -->
-<div class="modal fade cropper-modal" id="cropImageModal" tabindex="-1" aria-labelledby="cropImageModalLabel" aria-hidden="true">
+<div class="modal fade" id="cropImageModal" tabindex="-1" aria-labelledby="cropImageModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

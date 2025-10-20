@@ -47,6 +47,11 @@ class ProfileController extends Controller
 
     public function updatePhoto(Request $request)
     {
+        // First, check if the GD library is available
+        if (!function_exists('imagecreatefromstring')) {
+            return response()->json(['success' => false, 'message' => 'GD Library tidak aktif di server. Harap aktifkan untuk memproses gambar.'], 500);
+        }
+
         $request->validate([
             'photo' => 'required|string', // Validate that photo is a base64 string
         ]);
