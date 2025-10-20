@@ -162,16 +162,47 @@ body {
 .profile-header {
     background: white;
     border-radius: 16px;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
     margin-bottom: 15px;
     margin: 20px auto;
     position: relative;
-    text-align: left;
     animation: fadeInDown 0.6s ease forwards;
     animation-delay: 0.2s;
     opacity: 0;
     transition: all 0.3s ease;
+}
+
+.profile-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-details {
+    flex-grow: 1;
+}
+
+.profile-details h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.profile-details p {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin-bottom: 8px;
+}
+
+.profile-details .status-badge {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.edit-btn-inline {
+    margin-top: 10px;
 }
 
 .profile-header:hover {
@@ -205,60 +236,32 @@ body {
    AVATAR
    ========================================== */
 
-.avatar {
+.avatar-large {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    background: linear-gradient(135deg, rgb(30, 58, 138) 0%, rgb(50, 78, 158) 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     color: white;
-    font-size: 40px;
+    font-size: 4rem;
     font-weight: 600;
-    margin: 0 auto 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.3);
-    animation: rotateIn 0.8s ease forwards;
-    animation-delay: 0.5s;
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+    border: 4px solid white;
+    transition: all 0.3s ease;
 }
 
-.avatar::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #3b82f6, #60a5fa, #3b82f6);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.avatar-large:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3);
 }
 
-.avatar:hover::before {
-    opacity: 1;
-    animation: shimmer 2s linear infinite;
-}
-
-.avatar:hover {
-    transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 12px 40px rgba(30, 58, 138, 0.4);
-}
-
-.avatar img {
+.avatar-large img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.avatar:hover img {
-    transform: scale(1.1);
 }
 
 /* ==========================================
@@ -732,229 +735,101 @@ body {
    ========================================== */
 
 @media (max-width: 768px) {
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .profile-header {
-        padding: 24px;
-    }
-
-    .btn-edit {
-        font-size: 13px;
-        padding: 6px 10px;
-    }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-
-    .profile-info h1 {
-        font-size: 22px;
-    }
-
-    .edit-btn {
-        position: static;
-        margin-top: 15px;
-        text-align: center;
-    }
-}
-
-/* ==========================================
-   SELECTION COLOR
-   ========================================== */
-
-::selection {
-    background: var(--light-blue);
-    color: var(--white);
-}
-
-/* ==========================================
-   FOCUS STYLES
-   ========================================== */
-
-*:focus {
-    outline: 2px solid rgb(30, 58, 138);
-    outline-offset: 2px;
-}
-
-/* ==========================================
-   LOADING ANIMATION
-   ========================================== */
-
-@keyframes loading {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-.loading {
-    animation: loading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-
-.social-buttons {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* jarak aman antar ikon */
-    margin-top: 8px;
-}
-
-.social-btn {
-    position: relative;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.25s ease;
-    text-decoration: none;
-    
-    /* 💥 ini yang penting */
-    overflow: hidden;
-    z-index: 1;
-}
-
-.social-btn::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-}
-
-.social-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-}
-
-
-
-        .social-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
-        }
-
-        .social-btn:hover::before {
-            left: 100%;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-2px) scale(1.1);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .social-btn-facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); color: white !important; }
-        .social-btn-instagram { background: linear-gradient(135deg, #e91e63, #f06292, #ffb74d); color: white !important; }
-        .social-btn-linkedin { background: linear-gradient(135deg, #0077b5, #42a5f5); color: white !important; }
-        .social-btn-twitter { background: linear-gradient(135deg, #1da1f2, #42a5f5); color: white !important; }
-        .social-btn-tiktok { background: linear-gradient(135deg, #000000, #333333); color: white !important; }
-
-        .social-btn-portofolio {
-    background-color: #facc15; /* kuning cerah kayak iconnya */
-}
-
-.portfolio-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-/* Hover biar sama dengan sosial media lain */
-.social-btn-portofolio:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-
-.profile-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-/* Avatar besar di kiri */
-.avatar-large {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    font-weight: 600;
-    color: white;
-    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
-    transition: all 0.4s ease;
-}
-
-.avatar-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.avatar-large:hover {
-    transform: scale(1.08) rotate(3deg);
-    box-shadow: 0 12px 35px rgba(30, 58, 138, 0.4);
-}
-
-/* Info di kanan */
-.profile-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-.profile-details h1 {
-    font-size: 30px;
-    color: var(--primary-blue);
-    margin-bottom: 5px;
-}
-
-.profile-details p {
-    color: var(--text-gray);
-    font-size: 16px;
-}
-
-.edit-btn-inline {
-    margin-top: 15px;
-}
-
-/* Responsive biar rapih di HP */
-@media (max-width: 768px) {
     .profile-content {
         flex-direction: column;
         text-align: center;
-    }
-
-    .avatar-large {
-        width: 150px;
-        height: 150px;
+        gap: 20px;
     }
 
     .profile-details {
         align-items: center;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .profile-header {
+        padding: 24px;
+        text-align: center;
+    }
+
+    .edit-btn {
+        position: static;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-edit {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .avatar-large {
+        width: 120px;
+        height: 120px;
+        font-size: 48px;
+    }
+
+    .profile-details h1 {
+        font-size: 24px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .social-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .profile-header {
+        padding: 20px;
+    }
+
+    .avatar-large {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+
+    .profile-details h1 {
+        font-size: 20px;
+    }
+
+    .profile-details p {
+        font-size: 14px;
+    }
+
+    .status-badge {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .info-item {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn-cv, .btn-edit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .back-btn-inline {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        width: 100%;
     }
 }
 
