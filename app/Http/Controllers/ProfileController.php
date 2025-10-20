@@ -48,26 +48,71 @@ class ProfileController extends Controller
     public function updatePhoto(Request $request)
     {
         $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'photo' => 'required|string', // Validate that photo is a base64 string
         ]);
 
         $user = Auth::user();
+        $photoData = $request->input('photo');
 
-        // Delete old photo
+        // Decode the base64 string
+        // The string is in format data:image/png;base64,iVBORw0KGgo...
+        @list(, $photoData) = explode(';', $photoData);
+        @list(, $photoData) = explode(',', $photoData);
+        $photoData = base64_decode($photoData);
+
+        // Create a GD image resource from the decoded data
+        $sourceImage = @imagecreatefromstring($photoData);
+
+        if (!$sourceImage) {
+            return response()->json(['success' => false, 'message' => 'Invalid image data.'], 400);
+        }
+
+        // Get original image dimensions
+        $width = imagesx($sourceImage);
+        $height = imagesy($sourceImage);
+
+        // Create a new true color image (the canvas)
+        $destImage = imagecreatetruecolor($width, $height);
+
+        // IMPORTANT: Enable alpha blending and save alpha channel
+        imagealphablending($destImage, false);
+        imagesavealpha($destImage, true);
+
+        // Create a white background color
+        $white = imagecolorallocate($destImage, 255, 255, 255);
+
+        // Fill the canvas with the white background
+        imagefill($destImage, 0, 0, $white);
+
+        // Copy the source (transparent PNG) onto the white canvas
+        imagecopy($destImage, $sourceImage, 0, 0, 0, 0, $width, $height);
+
+        // Define path and filename for the new JPG
+        $filename = 'profile_photos/' . uniqid() . '.jpg';
+        $path = storage_path('app/public/' . $filename);
+
+        // Ensure the directory exists
+        Storage::disk('public')->makeDirectory('profile_photos');
+
+        // Save the final image as a JPG
+        imagejpeg($destImage, $path, 90);
+
+        // Clean up GD resources from memory
+        imagedestroy($sourceImage);
+        imagedestroy($destImage);
+
+        // Delete the old photo from storage if it exists
         if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
             Storage::disk('public')->delete($user->profile_photo_path);
         }
 
-        // Store new photo
-        $path = $request->file('photo')->store('profile_photos', 'public');
-
-        // Update user record
-        $user->profile_photo_path = $path;
+        // Update user record with the new photo path
+        $user->profile_photo_path = $filename;
         $user->save();
 
         return response()->json([
             'success' => true,
-            'path' => asset('storage/' . $path),
+            'path' => asset('storage/' . $filename),
             'message' => 'Foto profil berhasil diperbarui.'
         ]);
     }

@@ -3,8 +3,22 @@
 @section('title', 'Edit Profil Saya')
 
 @push('styles')
+<meta name="update-photo-url" content="{{ route('profile.photo.update') }}">
 <link rel="stylesheet" href="{{ asset('css/editprofile-user.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+<style>
+    .img-container {
+        max-height: 450px;
+    }
+    .cropper-preview {
+        overflow: hidden;
+        width: 160px; /* preview width */
+        height: 160px; /* preview height */
+        border-radius: 50%; /* Make it a circle */
+        margin: 0 auto;
+        border: 1px solid #ddd;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -32,7 +46,7 @@
                 </div>
                 <label class="upload-btn">
                     Upload Foto
-                    <input type="file" id="profile_photo_input" accept="image/png, image/jpeg" hidden>
+                    <input type="file" id="profile_photo_input" accept="image/jpeg, image/png, .jpg, .jpeg, .png" hidden>
                 </label>
             </div>
 
