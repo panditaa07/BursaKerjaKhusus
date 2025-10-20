@@ -1,249 +1,235 @@
-/* ================================
-   Edit Profile — Company (BLUE THEME)
-   ================================ */
+/* =========================================
+   EDIT PROFIL PERUSAHAAN — Deluxe + Animations
+   ========================================= */
+
+/* Theme */
 :root{
   --bg:#eef2f7;
   --card:#ffffff;
   --ink:#0f172a;
   --muted:#6b7280;
   --line:#e5e7eb;
-  --ring:#cfe0ff;
-  --ring-strong:#8fb1ff;
-  --blue:#1e3a8a; /* BIRU TUA */
-  --blue-500:#1e3a8a; /* BIRU TUA */
-  --blue-600:#1d4ed8; /* Biru lebih gelap saat hover */
-  --shadow:0 12px 28px rgba(2,6,23,.08);
+  --blue:#2f57ef;
+  --blue-dark:#1e40af;
+  --green:#16a34a;
+  --red:#dc2626;
+  --shadow:0 12px 32px rgba(2,6,23,.10);
+  --shadow-lg:0 18px 44px rgba(2,6,23,.16);
 }
 
-html,body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html { scroll-behavior:smooth; }
+body{ background:var(--bg); color:var(--ink) }
 
-/* container + h1 */
-.container{max-width:1100px}
+/* ============ Animations ============ */
+@keyframes fadeInUp { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+@keyframes pulseRing { 0%{box-shadow:0 0 0 0 #e7ecff} 100%{box-shadow:0 0 0 6px rgba(231,236,255,0)} }
+@keyframes shimmer {
+  0%{background-position:-200% 0}
+  100%{background-position:200% 0}
+}
+
+/* ============ Title ============ */
 .container > h1{
-  margin:24px 0 14px;
-  font-weight:900;
-  color: var(--blue); /* BIRU TUA */
-  letter-spacing:.2px;
+  font-weight:900; font-size:36px; letter-spacing:.2px;
+  margin:18px 0 14px;
+  animation:fadeInUp .35s ease-out both;
 }
 
-/* Card */
+/* ============ Card ============ */
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  box-shadow:var(--shadow);
+  border:1px solid var(--line) !important;
+  border-radius:16px !important;
+  background:var(--card) !important;
+  box-shadow:var(--shadow) !important;
   overflow:hidden;
+  animation:fadeInUp .45s ease-out both;
 }
-
-/* ===== CARD HEADER ===== */
 .card-header{
-  background: #1e3a8a !important; /* BIRU TUA SOLID */
-  border-bottom:1px solid rgba(255,255,255,.08);
-  padding:16px 18px;
+  background:#f9fbff !important;
+  border-bottom:1px solid var(--line) !important;
+  padding:14px 16px !important;
+  position:relative;
 }
 .card-header h3{
-  margin:0;
-  color:#fff;
-  font-weight:800;
-  letter-spacing:.2px;
+  margin:0; font-weight:800; font-size:18px; color:#16223a;
+}
+.card-header::after{
+  content:"";
+  position:absolute; left:16px; right:16px; bottom:-1px; height:2px;
+  background-image:linear-gradient(90deg, transparent, #cfe0ff, transparent);
+  background-size:200% 100%;
+  animation:shimmer 2.2s linear infinite;
 }
 
-.card-body{padding:18px}
-
-/* Section titles inside columns */
-h5{
-  font-weight:800;
-  color:#16223a;
-  margin:2px 0 12px;
+/* ============ Grid 2 kolom (tanpa ubah Blade) ============ */
+.card-body .row{
+  display:grid; grid-template-columns:1fr 1fr; gap:22px 24px;
 }
-
-/* Form fields */
-.form-label{
-  font-weight:700;
-  color:#0f172a;
-  margin-bottom:6px;
-}
-.form-control,
-.form-select{
-  height:46px;
-  padding:10px 12px;
-  border:1.6px solid #d7dfef;
-  border-radius:12px;
-  background:#fff;
-  color:var(--ink);
-  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
-}
-textarea.form-control{
-  min-height:120px;
-  resize:vertical;
-  padding:12px 14px;
-}
-
-/* Placeholders */
-.form-control::placeholder{color:#94a3b8}
-
-/* Focus ring */
-.form-control:focus,
-.form-select:focus{
-  border-color:var(--ring-strong);
-  box-shadow:0 0 0 4px rgba(143,177,255,.25);
-  background:#fff;
-}
-
-/* File input nicer */
-input[type="file"].form-control{
-  height:auto;
-  padding:8px 10px;
-}
-input[type="file"].form-control::-webkit-file-upload-button,
-input[type="file"].form-control::file-selector-button{
-  border:1px solid #dbe5ff;
-  background:#f6f8ff;
-  color:#1e3a8a;
-  padding:8px 12px;
-  border-radius:10px;
-  margin-right:10px;
-  cursor:pointer;
-}
-input[type="file"].form-control::-webkit-file-upload-button:hover,
-input[type="file"].form-control::file-selector-button:hover{
-  background:#eef3ff;
-}
-
-/* Help text */
-.form-text.text-muted{color:#6b7280!important}
-
-/* Grid spacing: tighter & even */
-.row > [class*="col-"] .mb-3{margin-bottom:14px}
-
-/* ===== BUTTON STYLES ===== */
-.btn{
-  border-radius:12px;
-  height:44px;
-  padding:0 18px;
-  font-weight:800;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  border: none;
-}
-
-/* Tombol Simpan Perubahan & Batal - BIRU TUA */
-.btn-primary,
-.btn-secondary {
-  background: #1e3a8a !important; /* BIRU TUA SOLID */
-  color: #fff !important;
-  box-shadow: 0 10px 22px rgba(30, 58, 138, 0.25);
-}
-
-.btn-primary:hover,
-.btn-secondary:hover {
-  background: #1d4ed8 !important; /* Biru lebih gelap saat hover */
-  color: #fff !important;
-}
-
-/* Footer actions spacing */
-.card-body .d-flex.justify-content-between{
-  margin-top:8px;
-  gap:12px;
-}
-
-/* Elevation hover for inputs wrapper (subtle) */
-.mb-3:has(.form-control:hover),
-.mb-3:has(.form-select:hover){
-  filter:brightness(1.01);
-}
-
-/* Small screens */
 @media (max-width: 992px){
-  .container{padding-left:14px;padding-right:14px}
-}
-@media (max-width: 576px){
-  .btn{width:100%}
-  .card-body .d-flex.justify-content-between{flex-direction:column}
-  .card-header{padding:14px}
-  .card-body{padding:14px}
-  .form-control,.form-select{height:44px}
+  .card-body .row{ grid-template-columns:1fr; }
 }
 
-/* Optional: subtle focus for entire .col group when any field focused */
-.col-md-6:focus-within{
-  outline:2px solid rgba(143,177,255,.18);
-  border-radius:14px;
-  box-shadow:0 0 0 4px rgba(143,177,255,.12) inset;
-  transition:all .15s ease;
-  padding-top:2px; margin-top:-2px;
+/* Staggered entrance untuk tiap control */
+.card-body .col-md-6 > *{ animation:fadeInUp .35s ease-out both; }
+.card-body .col-md-6 > *:nth-child(1){ animation-delay:.02s }
+.card-body .col-md-6 > *:nth-child(2){ animation-delay:.05s }
+.card-body .col-md-6 > *:nth-child(3){ animation-delay:.08s }
+.card-body .col-md-6 > *:nth-child(4){ animation-delay:.11s }
+.card-body .col-md-6 > *:nth-child(5){ animation-delay:.14s }
+.card-body .col-md-6 > *:nth-child(6){ animation-delay:.17s }
+
+/* ============ Subsection label (Data PIC / Data Perusahaan) ============ */
+.card-body h5{
+  font-weight:800; font-size:15px; color:#1f2a44;
+  margin:4px 0 10px;
+  padding:6px 12px;
+  border:1px solid #e6ebff; background:#f5f8ff;
+  border-radius:12px;
+  position:relative; overflow:hidden;
+}
+.card-body h5::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,transparent,rgba(47,87,239,.08),transparent);
+  background-size:200% 100%;
+  animation:shimmer 3s linear infinite;
+  pointer-events:none;
 }
 
-/* Make select's caret more visible on light bg (Bootstrap respects this) */
-.form-select{
-  background-image:
-    linear-gradient(45deg, transparent 50%, #64748b 50%),
-    linear-gradient(135deg, #64748b 50%, transparent 50%),
-    linear-gradient(to right, #d7dfef, #d7dfef);
-  background-position:
-    calc(100% - 20px) calc(1.1em),
-    calc(100% - 15px) calc(1.1em),
-    calc(100% - 2.5rem) .8em;
-  background-size:5px 5px,5px 5px,1px 1.4em;
-  background-repeat:no-repeat;
+/* ============ Form controls ============ */
+.form-label{ font-weight:700; font-size:12px; color:#64748b; margin-bottom:6px }
+
+.form-control, .form-select, textarea.form-control{
+  border:1px solid #d6dae3; border-radius:12px; background:#fff;
+  padding:.65rem .9rem; line-height:1.45;
+  transition: box-shadow .25s ease, border-color .25s ease, transform .06s ease;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  will-change: transform, box-shadow, border-color;
+}
+.form-control:hover, .form-select:hover, textarea.form-control:hover{
+  border-color:#c7cfeb;
+}
+.form-control:focus, .form-select:focus, textarea.form-control:focus{
+  border-color:#b8c4ff;
+  box-shadow:0 0 0 4px #e7ecff;
+  transform:translateY(-1px);
+  animation:pulseRing .9s ease-out 1;
+  outline: none;
 }
 
-/* Give cards breathing room from the sidebar on huge screens */
-@media (min-width:1400px){
-  .container{max-width:1160px}
+/* Valid / invalid states (subtle) */
+.form-control.is-valid, .form-select.is-valid, textarea.is-valid{
+  border-color:rgba(22,163,74,.65);
+  box-shadow:0 0 0 4px rgba(22,163,74,.12);
+}
+.form-control.is-invalid, .form-select.is-invalid, textarea.is-invalid{
+  border-color:rgba(220,38,38,.7);
+  box-shadow:0 0 0 4px rgba(220,38,38,.10);
 }
 
-/* ==============================
-   HILANGKAN FOCUS RING - EDIT PROFIL
-============================== */
-
-/* Hilangkan focus ring untuk semua elemen di halaman edit profil */
-.container *:focus {
-    outline: none !important;
-    box-shadow: none !important;
+/* Textarea */
+textarea.form-control{
+  resize: vertical;
+  min-height: 96px;
 }
 
-/* Khusus untuk tombol */
-.btn:focus,
-.btn-primary:focus,
-.btn-secondary:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: inherit !important;
+/* File input — feel like drop zone */
+.form-control[type=file]{
+  padding:.55rem .9rem; cursor:pointer;
+  border-style:dashed;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    repeating-linear-gradient(45deg,#eef2ff 0 8px,#f6f8ff 8px 16px) border-box;
+}
+.form-control[type=file]:hover{ border-color:#b8c4ff }
+
+/* Helper text */
+.form-text{ color:var(--muted) !important }
+
+/* Preview thumbs */
+.card-body .mt-2 img[alt="Foto Profil"],
+.card-body .mt-2 img[alt="Logo"]{
+  width:96px; height:96px; object-fit:cover;
+  border-radius:14px; background:#f6f8ff;
+  border:1px dashed #cbd5ff; padding:8px;
+  filter:drop-shadow(0 6px 12px rgba(2,6,23,.1));
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card-body .mt-2 img:hover{ transform:translateY(-2px) scale(1.02); box-shadow:var(--shadow-lg) }
+
+/* ============ Actions bar (sticky) ============ */
+.card-body .d-flex{
+  position: sticky; bottom:0; z-index:2;
+  margin-top:18px; padding:10px 12px;
+  background:linear-gradient(180deg, rgba(255,255,255,0) 0, rgba(255,255,255,.9) 30%, rgba(255,255,255,.98) 100%);
+  backdrop-filter: blur(2px);
+  border-top:1px solid var(--line);
+  border-bottom-left-radius:12px; border-bottom-right-radius:12px;
 }
 
-/* Tombol Batal - focus state */
-.btn-secondary:focus {
-    background: #1e3a8a !important; /* BIRU TUA SOLID */
-    color: #fff !important;
-    transform: none !important;
+/* Buttons */
+.btn-primary{
+  background:var(--blue) !important; border-color:var(--blue) !important;
+  border-radius:12px !important; padding:.65rem 1rem !important;
+  font-weight:700 !important; box-shadow:0 8px 16px rgba(47,87,239,.25) !important;
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.btn-primary:hover{
+  background:var(--blue-dark) !important; border-color:var(--blue-dark) !important;
+  transform:translateY(-2px); box-shadow:0 12px 22px rgba(47,87,239,.35) !important;
+}
+.btn-secondary{
+  border-radius:12px !important; padding:.65rem 1rem !important;
 }
 
-/* Tombol Simpan - focus state */
-.btn-primary:focus {
-    background: #1e3a8a !important; /* BIRU TUA SOLID */
-    color: #fff !important;
-    transform: none !important;
+/* Spacing for buttons */
+.card-body .d-flex .btn{ min-width:140px }
+
+/* Muted */
+.text-muted{ color:var(--muted) !important }
+
+/* Focus cleanup */
+.container *:focus{ outline:none }
+/* ===== Garis di bawah judul utama ===== */
+.container > h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+.container > h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+  animation: slideLine 1.5s ease-in-out forwards;
+}
+@keyframes slideLine {
+  0% { width: 0; opacity: 0; transform: translateX(-20px); }
+  100% { width: 100%; opacity: 1; transform: translateX(0); }
 }
 
-/* Form elements - focus state */
-.form-control:focus,
-.form-select:focus {
-    border-color: var(--ring-strong) !important;
-    box-shadow: 0 0 0 4px rgba(143,177,255,.25) !important;
-    background: #fff !important;
+/* ===== Tombol Batal — warna merah ===== */
+.btn-secondary {
+  background: #dc2626 !important;
+  border: 1px solid #dc2626 !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  padding: .65rem 1rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.25) !important;
+  transition: all 0.18s ease-in-out;
 }
-
-/* File input focus */
-input[type="file"].form-control:focus {
-    border-color: var(--ring-strong) !important;
-    box-shadow: 0 0 0 4px rgba(143,177,255,.25) !important;
+.btn-secondary:hover {
+  background: #b91c1c !important;
+  border-color: #b91c1c !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(220, 38, 38, 0.35) !important;
 }
-
-/* Untuk link */
-a:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    text-decoration: none !important;
+.btn-secondary:active {
+  transform: scale(.97);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25) !important;
 }

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Profil Perusahaan')
+@section('title', 'Profil Perusahaan & Pengguna')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/profilcompany.css') }}">
@@ -8,160 +8,107 @@
 
 @section('content')
 @php
-  $user    = Auth::user();
-  $company = $user->company;
-  $logo    = optional($company)->logo;
-  $industry= optional($company?->industry)->name;
-  $webRaw  = $company?->website;
-  $web     = $webRaw ? \Illuminate\Support\Str::of($webRaw)
-              ->replaceStart('https://','')
-              ->replaceStart('http://','') : null;
-  $slug    = $company?->slug ?: 'company';
+  $user     = Auth::user();
+  $company  = $user->company;
+  $logo     = optional($company)->logo;
+  $slug     = $company?->slug ?: 'company';
+  $companyUrl = url('/'.$slug);
 @endphp
 
-<div class="company-page">
+<div class="container">
 
-  {{-- HERO --}}
-  <section class="cp-hero">
-    <div class="cp-cover"></div>
+  {{-- ===== HERO HEADER ===== --}}
+  <header class="hero">
+    <div class="hero-cover"></div>
 
-    <div class="cp-hero-inner">
-      <div class="cp-logo">
+    <div class="hero-inner">
+      <div class="hero-logo">
         @if($logo)
           <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
         @else
-          <div class="cp-logo-fallback"><i class="fas fa-building"></i></div>
+          <div class="hero-logo-fallback"><i class="fas fa-building"></i></div>
         @endif
       </div>
 
-      <div class="cp-title">
+      <div class="hero-title">
         <h1>{{ $company->name ?? 'Nama Perusahaan' }}</h1>
-        <div class="cp-meta">
-          @if($industry)
-            <span class="chip"><i class="fas fa-industry"></i>{{ $industry }}</span>
-          @endif
 
-          @if($web)
-            <a class="cp-link" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank" rel="noopener">
-              <i class="fas fa-globe"></i>{{ $web }}
-            </a>
-          @else
-            <span class="cp-link is-muted"><i class="fas fa-globe"></i>Website belum diisi</span>
-          @endif
-
-          <span class="cp-link"><i class="fas fa-link"></i>{{ url('/'.$slug) }}</span>
+        <div class="hero-meta">
+          <a class="chip" href="{{ $companyUrl }}" target="_blank" rel="noopener">
+            <i class="fas fa-globe"></i>{{ $companyUrl }}
+          </a>
         </div>
       </div>
 
-      <div class="cp-actions">
-        <a href="{{ route('profile.edit') }}" class="btn btn-dark">
-          <i class="fas fa-pen"></i><span class="hide-sm">Edit Profil</span>
+      <div class="hero-actions">
+        <a href="{{ route('profile.edit') }}" class="btn btn-primary">
+          <i class="fas fa-pen"></i> Edit Profil
         </a>
       </div>
     </div>
-  </section>
+  </header>
 
-  {{-- GRID --}}
-  <section class="cp-grid">
-
-    {{-- Informasi Perusahaan --}}
-    <article class="card">
-      <header class="card-head">
-        <h3><i class="fas fa-briefcase"></i> Informasi Perusahaan</h3>
-      </header>
-      <div class="card-body grid-2">
-        <dl class="kv">
-          <dt>Nama Perusahaan</dt>
-          <dd>{{ $company->name ?? '-' }}</dd>
-
-          <dt>Alamat</dt>
-          <dd>{{ $company->address ?? '-' }}</dd>
-
-          <dt>Telepon</dt>
-          <dd>{{ $company->phone ?? '-' }}</dd>
-
-          <dt>Email Kontak</dt>
-          <dd>{{ $company->email ?? '-' }}</dd>
-        </dl>
-
-        <dl class="kv">
-          <dt>Industri</dt>
-          <dd>{{ $industry ?? '-' }}</dd>
-
-          <dt>Website</dt>
-          <dd>
-            @if($web)
-              <a class="link" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank">
-                {{ $web }} <i class="fas fa-external-link-alt"></i>
-              </a>
-            @else - @endif
-          </dd>
-
-          <dt>Dibuat</dt>
-          <dd>{{ optional($company?->created_at)->format('d M Y') ?? '-' }}</dd>
-
-          <dt>Diperbarui</dt>
-          <dd>{{ optional($company?->updated_at)->format('d M Y') ?? '-' }}</dd>
-        </dl>
+  {{-- ===== GRID: 2 kartu ===== --}}
+  <div class="cards-grid">
+    {{-- === Informasi Perusahaan === --}}
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Informasi Perusahaan</h3>
       </div>
-    </article>
 
-    {{-- Tentang Perusahaan --}}
-    <article class="card">
-      <header class="card-head">
-        <h3><i class="fas fa-align-left"></i> Tentang Perusahaan</h3>
-      </header>
       <div class="card-body">
-        <div class="prose">
-          {{ $company?->description ?: 'Belum ada deskripsi perusahaan.' }}
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Nama Perusahaan:</strong> {{ $company->name ?? '-' }}</p>
+            <p><strong>Alamat Perusahaan:</strong> {{ $company->address ?? '-' }}</p>
+            <p><strong>No. Telp Perusahaan:</strong> {{ $company->phone ?? '-' }}</p>
+            <p><strong>Email Kontak:</strong> {{ $company->email ?? '-' }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Industri:</strong> {{ optional($company?->industry)->name ?? '-' }}</p>
+            <p><strong>Deskripsi:</strong> {{ $company->description ?? '-' }}</p>
+          </div>
         </div>
       </div>
-    </article>
+    </div>
 
-    {{-- Logo & Branding --}}
-    <article class="card">
-      <header class="card-head">
-        <h3><i class="fas fa-image"></i> Logo & Branding</h3>
-      </header>
-      <div class="card-body branding">
-        <div class="branding-preview">
-          @if($logo)
-            <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
+    {{-- === Informasi PIC === --}}
+    <div class="card">
+      <div class="card-header">
+        <h3>Informasi PIC</h3>
+      </div>
+
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <h5 class="mb-3"><i class="fas fa-user-circle text-primary"></i> Foto Profil PIC</h5>
+          @if($user->profile_photo_path)
+            <img src="{{ asset('storage/'.$user->profile_photo_path) }}"
+                 alt="Foto Profil {{ $user->name }}"
+                 class="rounded-circle border"
+                 style="width:120px;height:120px;object-fit:cover;border-width:4px !important;border-color:#dee2e6 !important;box-shadow:0 4px 12px rgba(0,0,0,.15);">
           @else
-            <div class="branding-fallback"><i class="fas fa-building"></i></div>
+            <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center"
+                 style="width:120px;height:120px;border-width:4px !important;border-color:#dee2e6 !important;box-shadow:0 4px 12px rgba(0,0,0,.15);">
+              <i class="fas fa-user text-muted fa-3x"></i>
+            </div>
           @endif
         </div>
-        <div class="branding-text">
-          <p>Gunakan logo resolusi tinggi (disarankan PNG transparan atau SVG). Ukuran ideal 800×400px.</p>
-          <a href="{{ route('profile.edit') }}" class="btn btn-light"><i class="fas fa-upload"></i> Ganti Logo</a>
-        </div>
-      </div>
-    </article>
 
-    {{-- Informasi PIC (opsional) --}}
-    <article class="card">
-      <header class="card-head">
-        <h3><i class="fas fa-user-circle"></i> Informasi PIC</h3>
-      </header>
-      <div class="card-body">
-        <div class="pic">
-          <div class="pic-avatar">
-            @if($user->profile_photo_path)
-              <img src="{{ asset('storage/'.$user->profile_photo_path) }}" alt="{{ $user->name }}">
-            @else
-              <div class="avatar-fallback"><i class="fas fa-user"></i></div>
-            @endif
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <p><strong>Nama PIC:</strong> {{ $user->name }}</p>
+            <p><strong>Email PIC:</strong> {{ $user->email }}</p>
+            <p><strong>No. HP PIC:</strong> {{ $user->phone ?? '-' }}</p>
+            <p><strong>Alamat PIC:</strong> {{ $user->address ?? '-' }}</p>
           </div>
-          <dl class="kv">
-            <dt>Nama</dt> <dd>{{ $user->name }}</dd>
-            <dt>Email</dt> <dd>{{ $user->email }}</dd>
-            <dt>No. HP</dt> <dd>{{ $user->phone ?? '-' }}</dd>
-            <dt>Alamat</dt> <dd>{{ $user->address ?? '-' }}</dd>
-          </dl>
         </div>
       </div>
-    </article>
+    </div>
+  </div>
 
-  </section>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/profile.js') }}" defer></script>
+@endpush
