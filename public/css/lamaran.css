@@ -57,8 +57,6 @@
 }
 
 /* ===== TABLE STYLES ===== */
-
-
 .table-responsive {
     border-radius: 10px;
     overflow: visible;
@@ -193,69 +191,50 @@
     margin: 0;
 }
 
-.page-item {
-    margin: 0;
+/* ===== Pagination halus tanpa efek glow ===== */
+.pagination .page-link {
+    border-radius: 50rem !important;
+    border: none !important;
+    background-color: white !important;
+    color: #1e3a8a !important;
+    font-weight: 600 !important;
+    padding: 0.55rem 1.5rem !important;
+    transition: all 0.25s ease !important;
+    box-shadow: none !important;
 }
 
-.page-link {
-    padding: 0.5rem 1.25rem;
-    border-radius: 50rem;
-    border: 2px solid #007bff;
-    color: #007bff;
-    background-color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    display: inline-block;
+.pagination .page-link:hover {
+    background-color: #1e3a8a !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3) !important;
+    transform: translateY(-1px);
 }
 
-.page-link:hover {
-    background-color: #007bff;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+.pagination .page-link.active,
+.pagination .page-item.active .page-link {
+    background-color: #1e3a8a !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-.page-link.active {
-    background-color: rgb(30, 58, 138);
-    color: white;
-    border-color: #007bff;
+.pagination .page-item.disabled .page-link {
+    background-color: #f1f3f5 !important;
+    color: #adb5bd !important;
+    box-shadow: none !important;
 }
 
-.page-item.disabled .page-link {
-    color: #6c757d;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.page-item.disabled .page-link:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-/* ===== HILANGKAN EFEK BIRU SAAT TOMBOL NEXT/PREV DIKLIK ===== */
-.page-item:not(.disabled) .page-link:focus,
-.page-item:not(.disabled) .page-link:active,
-.page-link:focus,
-.page-link:active,
-.page-link:focus-visible {
+.pagination .page-link:focus,
+.pagination .page-link:active,
+.pagination .page-link:focus-visible {
     outline: none !important;
     box-shadow: none !important;
+    border: none !important;
     background-color: inherit !important;
-    border-color: #007bff !important;
 }
 
-/* Hilangkan tap highlight (glow biru di Chrome/Safari saat ditekan) */
-.page-link {
+.pagination .page-link {
     -webkit-tap-highlight-color: transparent !important;
-}
-
-/* Hilangkan pseudo-element setelah klik */
-.page-link::after {
-    display: none !important;
-    content: none !important;
 }
 
 /* ===== EMPTY STATE STYLES ===== */
@@ -363,17 +342,13 @@
 }
 
 /* ===== RESPONSIVE STYLES ===== */
-
-/* === CEGAH TEKS MENIMPA KOLOM LAIN DI HP === */
 @media (max-width: 576px) {
-
     .table {
         table-layout: fixed !important;
         width: 100% !important;
-        font-size: 0.28rem !important; /* 🔹 isi tabel makin kecil */
+        font-size: 0.28rem !important;
     }
 
-    /* === HEADER === */
     .table thead th {
         font-size: 0.28rem !important;
         white-space: nowrap !important;
@@ -383,9 +358,8 @@
         letter-spacing: 0 !important;
     }
 
-    /* === ISI TABEL === */
     .table tbody td {
-        font-size: 0.26rem !important; /* 🔹 lebih kecil dari header */
+        font-size: 0.26rem !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         white-space: nowrap !important;
@@ -393,14 +367,12 @@
         padding: 0.12rem 0.2rem !important;
     }
 
-    /* === BATASI LEBAR KOLOM === */
-    .table th:nth-child(1), .table td:nth-child(1) { max-width: 70px !important; } /* Perusahaan */
-    .table th:nth-child(2), .table td:nth-child(2) { max-width: 65px !important; } /* Posisi */
-    .table th:nth-child(3), .table td:nth-child(3) { max-width: 55px !important; text-align: center !important; } /* Status */
-    .table th:nth-child(4), .table td:nth-child(4) { max-width: 60px !important; text-align: center !important; } /* Tanggal */
-    .table th:nth-child(5), .table td:nth-child(5) { max-width: 55px !important; text-align: center !important; } /* Detail */
+    .table th:nth-child(1), .table td:nth-child(1) { max-width: 70px !important; }
+    .table th:nth-child(2), .table td:nth-child(2) { max-width: 65px !important; }
+    .table th:nth-child(3), .table td:nth-child(3) { max-width: 55px !important; text-align: center !important; }
+    .table th:nth-child(4), .table td:nth-child(4) { max-width: 60px !important; text-align: center !important; }
+    .table th:nth-child(5), .table td:nth-child(5) { max-width: 55px !important; text-align: center !important; }
 
-    /* === Tombol & Badge Kecil === */
     .btn-detail, .btn-primary {
         font-size: 0.26rem !important;
         padding: 0.08rem 0.18rem !important;
@@ -413,7 +385,6 @@
         border-radius: 4px !important;
     }
 
-    /* === Hover tampil teks penuh === */
     .table td:hover {
         white-space: normal !important;
         overflow: visible !important;
@@ -422,7 +393,6 @@
         position: relative;
     }
 
-    /* === Pagination kecil === */
     .page-link {
         font-size: 0.25rem !important;
         padding: 0.1rem 0.25rem !important;
@@ -430,5 +400,31 @@
 
     .pagination {
         gap: 0.1rem !important;
+    }
+}
+
+/* ===== RESPONSIVE POSISI NOTIFIKASI ===== */
+@media (max-width: 768px) {
+    .responsive-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notification-card {
+        order: 1;
+    }
+
+    .table-card {
+        order: 2;
+    }
+}
+
+@media (min-width: 769px) {
+    .notification-card {
+        order: 2;
+    }
+
+    .table-card {
+        order: 1;
     }
 }

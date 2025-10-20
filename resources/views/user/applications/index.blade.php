@@ -4,9 +4,11 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/lamaran.css') }}">
+
 <div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
-        <!-- Search Bar -->
+
+        <!-- 🔍 Search Bar -->
         <div class="mb-4">
             <form method="GET" action="{{ url('/user/applications') }}" class="d-flex align-items-center justify-content-center gap-2">
                 <div class="position-relative" style="width: 60%;">
@@ -21,10 +23,42 @@
             </form>
         </div>
 
-        <!-- Main Layout -->
-        <div class="row g-4">
-            <!-- Table Section -->
-            <div class="col-lg-9">
+        <!-- 🧩 Main Layout -->
+        <div class="row g-4 responsive-layout">
+
+            <!-- 📢 Sidebar Notifications -->
+            <div class="col-lg-3 notification-card">
+                <div class="card shadow-sm border-0 rounded-lg">
+                    <div class="card-header border-0">
+                        <h5 class="mb-0 fw-bold">Notifikasi</h5>
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="overflow-auto" style="max-height: 400px;">
+                            @if($notifications->count() > 0)
+                                @foreach($notifications as $notification)
+                                    <div class="border border-secondary-subtle rounded-lg p-3 mb-3 shadow-sm">
+                                        <p class="mb-1 small">{{ $notification->data['message'] ?? 'New notification' }}</p>
+                                        <p class="text-muted small mb-2">{{ optional($notification->created_at)->diffForHumans() }}</p>
+                                        @if(is_null($notification->read_at))
+                                            <a href="{{ route('notifications.read', $notification->id) }}" class="btn btn-sm btn-primary">Tandai Sudah Dibaca</a>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @else
+                                <p class="text-muted small">Tidak ada notifikasi baru.</p>
+                            @endif
+                            <div class="text-center mt-2">
+                                <a href="{{ route('notifications.index') }}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                                    Lihat Semua Notifikasi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 📋 Tabel Lamaran -->
+            <div class="col-lg-9 table-card">
                 <div class="card shadow-sm border-0 rounded-lg">
                     <div class="card-header border-0">
                         <h4 class="card-title mb-0">
@@ -48,9 +82,9 @@
                                     <tbody>
                                         @foreach($applications as $application)
                                             <tr>
-                                                <td data-label="Perusahaan">{{ $application->jobPost->company->name ?? 'Unknown Company' }}</td>
-                                                <td data-label="Posisi">{{ $application->jobPost->title }}</td>
-                                                <td data-label="Status">
+                                                <td>{{ $application->jobPost->company->name ?? 'Unknown Company' }}</td>
+                                                <td>{{ $application->jobPost->title }}</td>
+                                                <td>
                                                     @if(in_array($application->status, ['submitted', 'test1', 'test2']))
                                                         <span class="badge bg-primary fw-bold rounded-pill px-3 py-2">Proses</span>
                                                     @elseif($application->status === 'interview')
@@ -63,8 +97,8 @@
                                                         <span class="badge bg-secondary fw-bold rounded-pill px-3 py-2">{{ ucfirst($application->status) }}</span>
                                                     @endif
                                                 </td>
-                                                <td data-label="Tanggal">{{ $application->created_at->format('d M Y') }}</td>
-                                                <td data-label="Detail">
+                                                <td>{{ $application->created_at->format('d M Y') }}</td>
+                                                <td>
                                                     <a href="{{ route('user.applications.show', $application) }}"
                                                        class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
                                                         <i class="fas fa-eye"></i><span>Lihat</span>
@@ -100,37 +134,6 @@
                                 <a href="{{ route('jobs.index') }}" class="btn btn-primary px-4 py-2">Cari Lowongan</a>
                             </div>
                         @endif
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sidebar Notifications -->
-            <div class="col-lg-3">
-                <div class="card shadow-sm border-0 rounded-lg">
-                    <div class="card-header border-0">
-                        <h5 class="mb-0 fw-bold">Notifikasi</h5>
-                    </div>
-                    <div class="card-body p-3">
-                        <div class="overflow-auto" style="max-height: 400px;">
-                            @if($notifications->count() > 0)
-                                @foreach($notifications as $notification)
-                                    <div class="border border-secondary-subtle rounded-lg p-3 mb-3 shadow-sm">
-                                        <p class="mb-1 small">{{ $notification->data['message'] ?? 'New notification' }}</p>
-                                        <p class="text-muted small mb-2">{{ optional($notification->created_at)->diffForHumans() }}</p>
-                                        @if(is_null($notification->read_at))
-                                            <a href="{{ route('notifications.read', $notification->id) }}" class="btn btn-sm btn-primary">Tandai Sudah Dibaca</a>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            @else
-                                <p class="text-muted small">Tidak ada notifikasi baru.</p>
-                            @endif
-                            <div class="text-center mt-2">
-                                <a href="{{ route('notifications.index') }}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
-                                    Lihat Semua Notifikasi
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
