@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Detail Pengguna')
+@section('title', 'Profil Saya')
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/detailpengguna.css') }}">
-@endsection
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@endpush
 
 @section('content')
-
 <div class="container profile-container fade-in-row">
 
    {{-- HEADER PROFIL BARU (FOTO KIRI, INFO KANAN) --}}
