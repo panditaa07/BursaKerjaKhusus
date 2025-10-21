@@ -689,3 +689,135 @@
   transform: none !important;
   box-shadow: 0 3px 10px rgba(30, 58, 138, 0.25) !important;
 }
+
+/* =========================================
+   STYLING TOMBOL RESET (Match dengan Kelola Pelamar)
+   ========================================= */
+
+/* Container input group */
+.search-bar .input-group {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+}
+
+/* Input field */
+.search-bar .form-control {
+    border-radius: 8px 0 0 8px !important;
+    border: 2px solid #d0e1ff !important;
+    padding: 10px 16px !important;
+    flex: 1;
+}
+
+/* Tombol Cari */
+.search-bar .btn-secondary {
+    border-radius: 0 8px 8px 0 !important;
+    margin: 0 !important;
+    background: #1E3A8A !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 10px 20px !important;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, 0.25) !important;
+}
+
+.search-bar .btn-secondary:hover {
+    background: #1E3A8A !important;
+    box-shadow: 0 6px 18px rgba(30, 58, 138, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* Tombol Reset */
+.search-bar .btn-outline-secondary {
+    background: #1E3A8A !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-left: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, 0.25) !important;
+    transition: all 0.25s ease-in-out !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.search-bar .btn-outline-secondary:hover {
+    background: #1a2f7a !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4) !important;
+}
+
+.search-bar .btn-outline-secondary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* Ikon di tombol */
+.search-bar .btn i {
+    margin-right: 6px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search-bar .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-bar .form-control {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+    
+    .search-bar .btn-secondary {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+    
+    .search-bar .btn-outline-secondary {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+}
+
+/* Hilangkan focus ring untuk tombol reset */
+.search-bar .btn-outline-secondary:focus {
+    outline: none !important;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, 0.25) !important;
+    background: #1E3A8A !important;
+    color: #fff !important;
+    transform: none !important;
+}
+
+/* =========================================
+   HILANGKAN FOCUS RING PADA SEARCH FIELD
+   ========================================= */
+
+/* Hilangkan focus ring untuk search input */
+.search-bar .form-control:focus {
+    border-color: #d0e1ff !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Hilangkan focus ring untuk semua input di halaman kelola lowongan */
+.kelola-lowongan .form-control:focus {
+    border-color: #d0e1ff !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Untuk browser tertentu yang menggunakan outline */
+.kelola-lowongan .form-control:focus-visible {
+    outline: none !important;
+}
+
+/* Hilangkan focus ring saat input aktif */
+.kelola-lowongan .form-control:active {
+    border-color: #d0e1ff !important;
+    box-shadow: none !important;
+}

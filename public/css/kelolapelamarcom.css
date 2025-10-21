@@ -2,13 +2,7 @@
    KELOLA PELAMAR - COMPANY
    ============================== */
 
-/* ===== BASE ===== */
-.container-fluid{
-  padding:24px!important;
-  background:#fff!important;
-  min-height:100vh!important;
-  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;
-}
+
 
 /* ===== TITLE ===== */
 h2.h4{
@@ -21,11 +15,18 @@ h2.h4{
 }
 
 /* ===== SEARCH ===== */
+.input-group{
+  display:flex;
+  align-items:center;
+}
+
 .input-group .form-control{
   border-radius:10px 0 0 10px!important;
   border:2px solid #d0e1ff!important;
   padding:10px 16px!important;
+  flex:1;
 }
+
 .input-group .btn-primary{
   background:#1f3a95!important;
   border:none!important;
@@ -33,18 +34,45 @@ h2.h4{
   font-weight:700!important;
   padding:10px 20px!important;
   color:#fff!important;
+  transition:all 0.2s ease-in-out!important;
 }
+
+.input-group .btn-primary:hover{
+  background:#1a2f7a!important;
+  transform:translateY(-2px);
+}
+
 .input-group .btn-outline-secondary{
-  border:2px solid #cbd5e1!important;
-  color:#334155!important;
-  background:#fff!important;
+  background:#1f3a95!important;
+  color:#fff!important;
+  border:none!important;
   border-radius:10px!important;
   margin-left:8px!important;
+  font-weight:700!important;
+  padding:10px 16px!important;
+  box-shadow:0 4px 12px rgba(31,58,149,0.3)!important;
+  transition:all 0.2s ease-in-out!important;
 }
-.input-group .btn-outline-secondary:hover{background:#f1f5f9!important}
+
+.input-group .btn-outline-secondary:hover{
+  background:#1a2f7a!important;
+  color:#fff!important;
+  transform:translateY(-2px);
+}
+
+.input-group .btn-outline-secondary:active{
+  transform:scale(0.98);
+}
+
+/* Hilangkan focus ring pada input */
+.input-group .form-control:focus{
+  border-color:#d0e1ff!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
 
 /* =========================
-   TABLE WRAPPER
+   TABLE WRAPPER (TANPA CARD)
    ========================= */
 .company-applications-table{
   --tbl-border:#cfe1ff;
@@ -52,16 +80,16 @@ h2.h4{
   border-radius:16px!important;
   border:2px solid #d0e1ff!important;
   box-shadow:0 8px 20px rgba(0,0,0,.08)!important;
-  overflow:visible!important; /* dropdown tidak kepotong */
+  overflow:visible!important;
+  margin-bottom: 20px;
 }
 
-/* tabel full lebar, tidak terpotong */
 .company-applications-table .table-responsive{
   width:100%!important;
   max-width:100%!important;
-  overflow-x:auto!important;    /* boleh horizontal bila kolom melebar */
-  overflow-y:visible!important; /* dropdown tetap terlihat */
-  padding:0!important;
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  border-radius: 16px;
 }
 
 /* ===================
@@ -73,6 +101,7 @@ h2.h4{
   border-collapse:separate!important;
   border-spacing:0!important;
   margin:0!important;
+  border-radius: 16px;
 }
 
 /* ===== HEADER ===== */
@@ -80,7 +109,7 @@ h2.h4{
   background:#1f3a95!important;
   color:#fff!important;
   border:0!important;
-  padding:12px 14px!important;      /* lebih rapat */
+  padding:12px 14px!important;
   font-size:14px!important;
   font-weight:800!important;
   letter-spacing:.3px!important;
@@ -89,22 +118,41 @@ h2.h4{
   text-transform:uppercase!important;
   box-shadow:none!important;
 }
-.company-applications-table .table thead th:first-child{border-top-left-radius:16px!important}
-.company-applications-table .table thead th:last-child {border-top-right-radius:16px!important}
+
+.company-applications-table .table thead th:first-child{
+  border-top-left-radius:14px!important;
+}
+
+.company-applications-table .table thead th:last-child{
+  border-top-right-radius:14px!important;
+}
 
 /* ===== BODY ===== */
 .company-applications-table .table tbody td{
   border-top:0!important;
   border-bottom:1px solid var(--tbl-border)!important;
   border-right:1px solid var(--tbl-border)!important;
-  padding:8px 12px!important;        /* lebih rapat */
+  padding:8px 12px!important;
   vertical-align:middle!important;
   font-size:13px!important;
   color:#1f2937!important;
 }
-.company-applications-table .table tbody td:first-child{border-left:1px solid var(--tbl-border)!important}
-.company-applications-table .table tbody tr:last-child td{border-bottom:0!important}
-.table-hover tbody tr:hover{background:#f8fbff!important}
+
+.company-applications-table .table tbody td:first-child{
+  border-left:1px solid var(--tbl-border)!important;
+}
+
+.company-applications-table .table tbody tr:last-child td:first-child{
+  border-bottom-left-radius:14px!important;
+}
+
+.company-applications-table .table tbody tr:last-child td:last-child{
+  border-bottom-right-radius:14px!important;
+}
+
+.table-hover tbody tr:hover{
+  background:#f8fbff!important;
+}
 
 /* Alignment kolom */
 .company-applications-table .table thead th:nth-child(1),
@@ -115,6 +163,7 @@ h2.h4{
 .company-applications-table .table tbody td:last-child{
   text-align:center!important;
 }
+
 .company-applications-table .table thead th:nth-child(2),
 .company-applications-table .table thead th:nth-child(3),
 .company-applications-table .table thead th:nth-child(4),
@@ -127,9 +176,12 @@ h2.h4{
 }
 
 /* Kolom NO */
-.table tbody td:first-child{font-weight:700;color:#64748b}
+.table tbody td:first-child{
+  font-weight:700;
+  color:#64748b;
+}
 
-/* ===== IKON — NORMALISASI ===== */
+/* ===== IKON ===== */
 .company-applications-table i,
 .company-applications-table .fa,
 .company-applications-table .fas,
@@ -146,11 +198,15 @@ h2.h4{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
-.company-applications-table td i.text-muted{ margin-right:8px!important; }
+
+.company-applications-table td i.text-muted{
+  margin-right:8px!important;
+}
 
 /* ===== AVATAR ===== */
 .avatar-wrapper img{
-  width:36px!important;height:36px!important;
+  width:36px!important;
+  height:36px!important;
   border:2px solid #d0e1ff!important;
   object-fit:cover!important;
   border-radius:50%!important;
@@ -163,13 +219,45 @@ h2.h4{
   padding:8px 12px!important;
   font-size:12.5px!important;
 }
-.badge i{font-size:8px}
-.status-accepted{background:#22c55e!important;color:#fff!important}
-.status-rejected{background:#ef4444!important;color:#fff!important}
-.status-interview{background:#0ea5e9!important;color:#fff!important}
-.status-test{background:#7c3aed!important;color:#fff!important}
-.status-pending{background:#f59e0b!important;color:#fff!important}
-.status-reviewed{background:#f59e0b!important;color:#fff!important}
+
+.badge i{
+  font-size:8px;
+}
+
+.status-accepted{
+  background:#22c55e!important;
+  color:#fff!important;
+}
+
+.status-rejected{
+  background:#ef4444!important;
+  color:#fff!important;
+}
+
+.status-interview{
+  background:#0ea5e9!important;
+  color:#fff!important;
+}
+
+.status-test{
+  background:#7c3aed!important;
+  color:#fff!important;
+}
+
+.status-pending{
+  background:#E2E8F0!important;
+  color:#1E3A8A!important;
+}
+
+.status-reviewed{
+  background:#FDE68A!important;
+  color:#78350F!important;
+}
+
+.status-test2{
+  background:#A5F3FC!important;
+  color:#0E7490!important;
+}
 
 /* =========================================
    AKSI (ikon kotak rounded)
@@ -178,18 +266,18 @@ h2.h4{
   display:flex!important;
   justify-content:center!important;
   align-items:center!important;
-  gap:8px!important;                 /* lebih hemat */
+  gap:8px!important;
   position:relative!important;
   z-index:auto!important;
   isolation:isolate!important;
 }
+
 .company-applications-table .table thead th:last-child,
 .company-applications-table .table tbody td:last-child{
   padding-right:18px!important;
   padding-left:18px!important;
 }
 
-/* --- TOMBOL AKSI --- */
 .company-applications-table .btn-group .btn,
 .company-applications-table .dropdown .btn{
   width:38px!important;
@@ -206,6 +294,7 @@ h2.h4{
   font-size:0!important;
   line-height:1!important;
 }
+
 .company-applications-table .btn-group .btn i,
 .company-applications-table .dropdown .btn i{
   font-size:16px!important;
@@ -218,6 +307,7 @@ h2.h4{
   background:#2563eb!important;
   box-shadow:0 6px 14px rgba(37,99,235,.28)!important;
 }
+
 .company-applications-table .btn-outline-info:hover{
   background:#1d4ed8!important;
   transform:translateY(-2px);
@@ -228,6 +318,7 @@ h2.h4{
   background:#facc15!important;
   box-shadow:0 6px 14px rgba(250,204,21,.28)!important;
 }
+
 .company-applications-table .btn-outline-warning:hover{
   background:#eab308!important;
   transform:translateY(-2px);
@@ -238,28 +329,43 @@ h2.h4{
   background:#ef4444!important;
   box-shadow:0 6px 14px rgba(239,68,68,.28)!important;
 }
+
 .company-applications-table .btn-outline-danger:hover{
   background:#dc2626!important;
   transform:translateY(-2px);
 }
 
-/* Efek klik */
-.company-applications-table .btn-group .btn:active{ transform:scale(.95); box-shadow:none!important; }
-.company-applications-table .dropdown-toggle::after{display:none!important}
+.company-applications-table .btn-group .btn:active{
+  transform:scale(.95);
+  box-shadow:none!important;
+}
+
+.company-applications-table .dropdown-toggle::after{
+  display:none!important;
+}
 
 /* =========================================
-   DROPDOWN STATUS (tanpa scroll & tanpa animasi)
+   DROPDOWN STATUS
    ========================================= */
-.company-applications-table td:last-child{ position:relative!important; overflow:visible!important; }
-.company-applications-table .dropdown{ position:relative!important; z-index:2!important; }
-.company-applications-table .dropdown.show{ z-index:10000!important; }
+.company-applications-table td:last-child{
+  position:relative!important;
+  overflow:visible!important;
+}
 
-/* menu */
+.company-applications-table .dropdown{
+  position:relative!important;
+  z-index:2!important;
+}
+
+.company-applications-table .dropdown.show{
+  z-index:10000!important;
+}
+
 .company-applications-table .dropdown-menu{
   position:absolute!important;
   z-index:10001!important;
   min-width:240px!important;
-  max-height:none!important;         /* tampil penuh, no scroll */
+  max-height:none!important;
   overflow-y:visible!important;
   white-space:nowrap!important;
   padding:8px!important;
@@ -269,80 +375,138 @@ h2.h4{
   background:#fff!important;
 }
 
-/* item */
 .company-applications-table .dropdown-menu .dropdown-item{
-  display:flex!important; align-items:center!important; gap:10px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
   padding:12px 14px!important;
   border-radius:10px!important;
   font-weight:700!important;
   color:#111827!important;
   background:transparent!important;
-  /* NO animation */
   transition:none!important;
   box-shadow:none!important;
   transform:none!important;
+  position:relative;
 }
 
-/* hover sederhana */
 .company-applications-table .dropdown-menu .dropdown-item:hover{
   background:#e8f0ff!important;
 }
 
-/* garis tipis kiri saat hover (opsional, halus) */
 .company-applications-table .dropdown-menu .dropdown-item:hover::before{
-  content:""; position:absolute; left:8px; top:8px; bottom:8px;
-  width:3px; border-radius:3px; background:#2563eb;
+  content:"";
+  position:absolute;
+  left:8px;
+  top:8px;
+  bottom:8px;
+  width:3px;
+  border-radius:3px;
+  background:#2563eb;
+  opacity:1;
 }
 
-/* divider */
 .company-applications-table .dropdown-menu .dropdown-divider{
   margin:8px 10px!important;
   border-top:1px solid #e5e7eb!important;
 }
 
-/* ikon per opsi */
 .company-applications-table .dropdown-menu .dropdown-item .status-icon{
-  width:18px!important; text-align:center!important; font-size:16px!important; line-height:1!important;
+  width:18px!important;
+  text-align:center!important;
+  font-size:16px!important;
+  line-height:1!important;
 }
-.company-applications-table .dropdown-menu .dropdown-item .icon-submitted{ color:#6b7280!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-test{      color:#7c3aed!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-interview{ color:#0ea5e9!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-accepted{  color:#22c55e!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-rejected{  color:#ef4444!important; }
 
-/* warna teks khusus + hover lembut untuk accept/deny */
-.company-applications-table .dropdown-menu .dropdown-item.text-success{ color:#22c55e!important; }
-.company-applications-table .dropdown-menu .dropdown-item.text-danger { color:#ef4444!important; }
-.company-applications-table .dropdown-menu .dropdown-item.text-success:hover{ background:#dcfce7!important; }
-.company-applications-table .dropdown-menu .dropdown-item.text-danger:hover { background:#fee2e2!important; }
+.company-applications-table .dropdown-menu .dropdown-item .icon-submitted{
+  color:#334155!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item .icon-test{
+  color:#8b5cf6!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item .icon-interview{
+  color:#0ea5e9!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item .icon-accepted{
+  color:#16a34a!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item .icon-rejected{
+  color:#dc2626!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item.text-success{
+  color:#16a34a!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item.text-danger{
+  color:#dc2626!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item.text-success:hover{
+  background:#dcfce7!important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item.text-danger:hover{
+  background:#fee2e2!important;
+}
 
 /* ===== PAGINATION ===== */
-.pagination{justify-content:center!important}
-.pagination .page-link{color:#1f3a95!important;font-weight:700!important;border-radius:6px!important}
-.pagination .page-item.active .page-link{background:#1f3a95!important;border-color:#1f3a95!important;color:#fff!important}
+.pagination{
+  justify-content:center!important;
+}
+
+.pagination .page-link{
+  color:#1f3a95!important;
+  font-weight:700!important;
+  border-radius:6px!important;
+}
+
+.pagination .page-item.active .page-link{
+  background:#1f3a95!important;
+  border-color:#1f3a95!important;
+  color:#fff!important;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px){
-  .company-applications-table .table thead th{font-size:13px!important}
-  .company-applications-table .table tbody td{font-size:13.5px!important}
+  .company-applications-table .table thead th{
+    font-size:13px!important;
+  }
+  
+  .company-applications-table .table tbody td{
+    font-size:13.5px!important;
+  }
 }
 
 /* === LAYERING FIX === */
 .company-applications-table,
-.company-applications-table .table-responsive{ overflow:visible!important; }
-.company-applications-table td{ position:relative!important; z-index:0!important; }
-.company-applications-table td.dropdown-open{ z-index:100000!important; }
-.company-applications-table .btn-group{ z-index:auto!important; }
-.company-applications-table .dropdown.show{ z-index:100001!important; }
-.company-applications-table .dropdown-menu{ z-index:100002!important; }
+.company-applications-table .table-responsive{
+  overflow:visible!important;
+}
 
-/* =========================
-   TABEL DI TENGAH (card)
-   ========================= */
-.card.company-applications-table{
-  max-width:1240px!important;
-  width:98%!important;
-  margin:0 auto!important;
+.company-applications-table td{
+  position:relative!important;
+  z-index:0!important;
+}
+
+.company-applications-table td.dropdown-open{
+  z-index:100000!important;
+}
+
+.company-applications-table .btn-group{
+  z-index:auto!important;
+}
+
+.company-applications-table .dropdown.show{
+  z-index:100001!important;
+}
+
+.company-applications-table .dropdown-menu{
+  z-index:100002!important;
 }
 
 /* =========================
@@ -353,7 +517,10 @@ h2.h4{
   box-shadow:none!important;
   border-color:transparent!important;
 }
-.btn{ transition:all .15s ease-in-out!important; }
+
+.btn{
+  transition:all .15s ease-in-out!important;
+}
 
 /* ===============================
    BUTTON FILTER (state & active)
@@ -367,11 +534,13 @@ h2.h4{
   transition:all .2s ease-in-out!important;
   box-shadow:0 0 0 rgba(0,0,0,0)!important;
 }
+
 .btn-outline-primary:hover{
   background:#eef2ff!important;
   color:#1f3a95!important;
   box-shadow:0 2px 6px rgba(31,58,149,.15)!important;
 }
+
 .btn-outline-primary.active,
 .btn-outline-primary:focus,
 .btn-outline-primary:active,
@@ -382,246 +551,26 @@ h2.h4{
   box-shadow:0 4px 12px rgba(31,58,149,.3)!important;
   font-weight:700!important;
 }
-/* =========================
-   DROPDOWN STATUS — COMPACT (tanpa scroll & animasi)
-   ========================= */
-.company-applications-table .dropdown-toggle::after{ display:none !important; }
-.company-applications-table td:last-child{ position:relative; overflow:visible; }
 
-.company-applications-table .dropdown-menu.dd-status{
-  min-width:260px;
-  max-height:none !important;          /* hilangkan scroll */
-  overflow-y:visible !important;
-  padding:10px 12px;
-  border:1px solid #e5e7eb;
-  border-radius:14px;
-  background:#fff;
-  box-shadow:0 12px 28px rgba(0,0,0,.16);
+/* Force warna teks tetap hitam untuk semua state autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    color: #000000 !important;
 }
 
-/* item ringkas, tidak ada animasi */
-.company-applications-table .dropdown-menu.dd-status .dropdown-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 12px;                   /* rapat → menu lebih pendek */
-  border-radius:10px;
-  font-weight:700;
-  font-size:15px;
-  color:#0f172a;
-  line-height:1.2;
-  background:transparent;
-  transition:none !important;
-  transform:none !important;
-  box-shadow:none !important;
-}
-.company-applications-table .dropdown-menu.dd-status .dropdown-item:hover{
-  background:#f3f4f6 !important;       /* hover ringan */
+/* Untuk placeholder/text yang terlihat memudar */
+input::placeholder {
+    color: #666666 !important;
+    opacity: 1 !important;
 }
 
-/* divider antar grup (seperti gambar 2) */
-.company-applications-table .dropdown-menu.dd-status .dropdown-divider{
-  margin:8px 0;
-  border-top:1px solid #e5e7eb;
-  opacity:1;
-}
-
-/* icon */
-.company-applications-table .dropdown-menu.dd-status .status-icon{
-  width:18px; text-align:center; font-size:16px; line-height:1;
-}
-.company-applications-table .dropdown-menu.dd-status .icon-test{ color:#7c3aed; }
-.company-applications-table .dropdown-menu.dd-status .icon-interview{ color:#0ea5e9; }
-
-/* warna teks untuk Terima/Tolak */
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-success{ color:#22c55e !important; }
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-danger{  color:#ef4444 !important; }
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-success:hover{ background:#dcfce7 !important; }
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-danger:hover{  background:#fee2e2 !important; }
-
-/* pastikan tidak ada pseudo dari style lama */
-.company-applications-table .dropdown-menu.dd-status .dropdown-item::before,
-.company-applications-table .dropdown-menu.dd-status .dropdown-item::after{
-  content:none !important;
-}
-/* =========================
-   DROPDOWN STATUS — WARNA IKON SESUAI GAMBAR
-   ========================= */
-
-.company-applications-table .dropdown-menu.dd-status .status-icon {
-  width: 18px;
-  text-align: center;
-  font-size: 16px;
-  line-height: 1;
-}
-
-/* ===== WARNA IKON PER STATUS ===== */
-.company-applications-table .dropdown-menu.dd-status .icon-submitted {
-  color: #334155 !important;   /* abu gelap (Submitted) */
-}
-.company-applications-table .dropdown-menu.dd-status .icon-test {
-  color: #8b5cf6 !important;   /* ungu cerah (Test 1 & 2) */
-}
-.company-applications-table .dropdown-menu.dd-status .icon-interview {
-  color: #0ea5e9 !important;   /* biru terang (Interview) */
-}
-.company-applications-table .dropdown-menu.dd-status .icon-accepted {
-  color: #16a34a !important;   /* hijau terang (Terima) */
-}
-.company-applications-table .dropdown-menu.dd-status .icon-rejected {
-  color: #dc2626 !important;   /* merah lembut (Tolak) */
-}
-
-/* ===== TEKS & HOVER ===== */
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-success {
-  color: #16a34a !important;
-}
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-danger {
-  color: #dc2626 !important;
-}
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-success:hover {
-  background: #dcfce7 !important;
-}
-.company-applications-table .dropdown-menu.dd-status .dropdown-item.text-danger:hover {
-  background: #fee2e2 !important;
-}
-/* ===== OVERRIDE WARNA STATUS (update terakhir) ===== */
-
-/* Menunggu: abu kebiruan */
-.status-pending {
-  background: #E2E8F0 !important;   /* slate-200, abu kebiruan lembut */
-  color: #1E3A8A !important;         /* teks biru tua agar kontras */
-}
-
-/* Ditinjau: amber lembut */
-.status-reviewed {
-  background: #FDE68A !important;    /* amber-200 */
-  color: #78350F !important;         /* amber-900 untuk teks */
-}
-
-/* Test 2: cyan lembut */
-.status-test2 {
-  background: #A5F3FC !important;    /* cyan-300 */
-  color: #0E7490 !important;         /* cyan-800 untuk teks */
-}
-
-/* (Opsional: ubah warna ikon di dropdown agar konsisten) */
-.company-applications-table .dropdown-menu .dropdown-item .icon-submitted {
-  color: #94A3B8 !important;  /* abu kebiruan (Menunggu) */
-}
-.company-applications-table .dropdown-menu .dropdown-item .icon-reviewed {
-  color: #FBBF24 !important;  /* amber lembut (Ditinjau) */
-}
-.company-applications-table .dropdown-menu .dropdown-item .icon-test2 {
-  color: #22D3EE !important;  /* cyan lembut (Test 2) */
-}
-
-/* =========================================
-   DROPDOWN STATUS (tanpa scroll & tanpa animasi)
-   ========================================= */
-.company-applications-table td:last-child{ position:relative!important; overflow:visible!important; }
-.company-applications-table .dropdown{ position:relative!important; z-index:2!important; }
-.company-applications-table .dropdown.show{ z-index:10000!important; }
-
-/* menu */
-.company-applications-table .dropdown-menu{
-  position:absolute!important;
-  z-index:10001!important;
-  min-width:240px!important;
-  max-height:none!important;         /* tampil penuh, no scroll */
-  overflow-y:visible!important;
-  white-space:nowrap!important;
-  padding:8px!important;
-  border:1px solid #e5e7eb!important;
-  border-radius:12px!important;
-  box-shadow:0 12px 28px rgba(0,0,0,.18)!important;
-  background:#fff!important;
-}
-
-/* item */
-.company-applications-table .dropdown-menu .dropdown-item{
-  display:flex!important; align-items:center!important; gap:10px!important;
-  padding:12px 14px!important;
-  border-radius:10px!important;
-  font-weight:700!important;
-  color:#111827!important;
-  background:transparent!important;
-  /* NO animation */
-  transition:none!important;
-  box-shadow:none!important;
-  transform:none!important;
-  position: relative; /* Tambahkan ini */
-}
-
-/* HAPUS garis biru permanen - hanya muncul saat hover */
-.company-applications-table .dropdown-menu .dropdown-item::before {
-  content: ""; 
-  position: absolute; 
-  left: 8px; 
-  top: 8px; 
-  bottom: 8px;
-  width: 3px; 
-  border-radius: 3px; 
-  background: #2563eb;
-  opacity: 0; /* Sembunyikan secara default */
-  transition: opacity 0.2s ease; /* Transisi halus */
-}
-
-/* hover sederhana - garis biru hanya muncul saat hover */
-.company-applications-table .dropdown-menu .dropdown-item:hover{
-  background:#e8f0ff!important;
-}
-
-/* Tampilkan garis biru hanya saat hover */
-.company-applications-table .dropdown-menu .dropdown-item:hover::before{
-  opacity: 1; /* Tampilkan saat hover */
-}
-
-/* divider */
-.company-applications-table .dropdown-menu .dropdown-divider{
-  margin:8px 10px!important;
-  border-top:1px solid #e5e7eb!important;
-}
-
-/* ikon per opsi */
-.company-applications-table .dropdown-menu .dropdown-item .status-icon{
-  width:18px!important; text-align:center!important; font-size:16px!important; line-height:1!important;
-}
-.company-applications-table .dropdown-menu .dropdown-item .icon-submitted{ color:#6b7280!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-test{      color:#7c3aed!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-interview{ color:#0ea5e9!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-accepted{  color:#22c55e!important; }
-.company-applications-table .dropdown-menu .dropdown-item .icon-rejected{  color:#ef4444!important; }
-
-/* warna teks khusus + hover lembut untuk accept/deny */
-.company-applications-table .dropdown-menu .dropdown-item.text-success{ color:#22c55e!important; }
-.company-applications-table .dropdown-menu .dropdown-item.text-danger { color:#ef4444!important; }
-.company-applications-table .dropdown-menu .dropdown-item.text-success:hover{ background:#dcfce7!important; }
-.company-applications-table .dropdown-menu .dropdown-item.text-danger:hover { background:#fee2e2!important; }
-
-/* =========================
-   RESET BUTTON - MATCH PRIMARY BUTTON
-   ========================= */
-.input-group .btn-outline-secondary {
-    background: #1f3a95 !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 10px !important;
-    margin-left: 8px !important;
-    font-weight: 700 !important;
-    padding: 10px 16px !important;
-    box-shadow: 0 4px 12px rgba(31, 58, 149, 0.3) !important;
-    transition: all 0.2s ease-in-out !important;
-}
-
-.input-group .btn-outline-secondary:hover {
-    background: #1a2f7a !important;
-    color: #fff !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(31, 58, 149, 0.4) !important;
-}
-
-.input-group .btn-outline-secondary:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 8px rgba(31, 58, 149, 0.3) !important;
+/* Untuk teks yang sedang dipilih/autofill */
+input:-webkit-autofill::first-line {
+    color: #000000 !important;
+    font-size: inherit !important;
 }

@@ -10,15 +10,26 @@
         <h2 class="page-title">Semua Lowongan</h2>
         <div class="d-flex align-items-center">
             <span class="me-3 total-lowongan">Total Lowongan: {{ $jobs->total() }}</span>
-            <a href="{{ route('company.jobs.create') }}?from=all" class="btn btn-primary">Tambah Lowongan</a>
+            <a href="{{ route('company.jobs.create') }}?from=all" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Tambah Lowongan
+            </a>
         </div>
     </div>
 
-    {{-- Search Bar --}}
+    {{-- Search Bar dengan Reset --}}
     <div class="mb-4 search-bar">
-        <form method="GET" action="{{ route('company.jobs.all') }}" class="d-flex">
-            <input type="text" name="search" class="form-control me-2" placeholder="Cari Lowongan" value="{{ request('search') }}">
-            <button type="submit" class="btn btn-secondary">Cari</button>
+        <form method="GET" action="{{ route('company.jobs.all') }}">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Cari lowongan berdasarkan judul, lokasi, atau tipe..." value="{{ request('search') }}">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-search me-2"></i>Cari
+                </button>
+                @if(request('search'))
+                    <a href="{{ route('company.jobs.all') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-times me-2"></i>Reset
+                    </a>
+                @endif
+            </div>
         </form>
     </div>
 
