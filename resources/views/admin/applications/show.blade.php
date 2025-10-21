@@ -185,10 +185,6 @@
                                     onclick="window.open('{{ route('admin.users.preview_cv', $application->user) }}', '_blank')">
                                 <i class="fas fa-eye"></i> Preview CV
                             </button>
-                            <a href="{{ route('admin.users.download_cv', $application->user) }}"
-                               class="btn-doc secondary" target="_blank" download>
-                                <i class="fas fa-download"></i>
-                            </a>
                         </div>
                     @endif
                 </div>
