@@ -2,66 +2,8 @@
 
 @section('title', 'Detail Pengguna')
 
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/profilcompany.css') }}">
-<link rel="stylesheet" href="{{ asset('css/detailpengguna.css') }}">
-<style>
-.job-post-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.job-post-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-    border: 1px solid #e9ecef;
-    border-radius: 0.5rem;
-    background-color: #fdfdff;
-}
-.job-post-info h4 {
-    margin-bottom: 0.25rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-.job-post-info p {
-    margin-bottom: 0;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-.job-post-status {
-    text-align: right;
-    flex-shrink: 0;
-}
-.badge-enhanced {
-    display: inline-block;
-    padding: .4em .65em;
-    font-size: .75em;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25rem;
-}
-.badge-enhanced .fas {
-    font-size: 0.9em;
-    margin-right: 0.25rem;
-}
-.bg-success {
-    background-color: #198754 !important;
-}
-.bg-danger {
-    background-color: #dc3545 !important;
-}
-</style>
-@endpush
-
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/detailpengguna.css') }}">
 
 {{-- Tombol Kembali --}}
 <div class="mb-3">
@@ -82,40 +24,39 @@
       $slug    = $company?->slug ?: 'company';
     @endphp
 
-    <div class="container mx-auto px-4 py-4 company-page">
+    <div class="container">
       {{-- HERO --}}
-      <section class="cp-hero">
-        <div class="cp-cover"></div>
-        <div class="cp-hero-inner">
-          <div class="cp-logo">
+      <section class="hero">
+        <div class="hero-cover"></div>
+        <div class="hero-inner">
+          <div class="hero-logo">
             @if($logo)
               <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
             @else
-              <div class="cp-logo-fallback"><i class="fas fa-building"></i></div>
+              <div class="hero-logo-fallback"><i class="fas fa-building"></i></div>
             @endif
           </div>
-          <div class="cp-title">
+          <div class="hero-title">
             <h1>{{ $company->name ?? 'Nama Perusahaan' }}</h1>
-            <div class="cp-meta">
+            <div class="hero-meta">
               @if($industry)
                 <span class="chip"><i class="fas fa-industry"></i>{{ $industry }}</span>
               @endif
               @if($web)
-                <a class="cp-link" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank" rel="noopener">
+                <a class="chip" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank" rel="noopener">
                   <i class="fas fa-globe"></i>{{ $web }}
                 </a>
               @else
-                <span class="cp-link is-muted"><i class="fas fa-globe"></i>Website belum diisi</span>
+                <span class="chip is-muted"><i class="fas fa-globe"></i>Website belum diisi</span>
               @endif
-              <span class="cp-link"><i class="fas fa-link"></i>{{ url('/'.$slug) }}</span>
+              <span class="chip"><i class="fas fa-link"></i>{{ url('/'.$slug) }}</span>
             </div>
           </div>
-          {{-- Actions removed --}}
         </div>
       </section>
 
       {{-- GRID --}}
-      <section class="cp-grid">
+      <section class="cards-grid">
         {{-- Informasi Perusahaan --}}
         <article class="card">
           <header class="card-head">
@@ -178,7 +119,6 @@
             </div>
             <div class="branding-text">
               <p>Logo perusahaan yang terdaftar.</p>
-              {{-- Upload button removed --}}
             </div>
           </div>
         </article>
@@ -241,34 +181,32 @@
       </section>
     </div>
 
-@else {{-- This is for regular users --}}
-
-    <div class="company-page"> {{-- Re-use the same container class --}}
+@else {{-- For regular users --}}
+    <div class="container">
       {{-- HERO --}}
-      <section class="cp-hero">
-        <div class="cp-cover"></div>
-        <div class="cp-hero-inner">
-          <div class="cp-logo">
+      <section class="hero">
+        <div class="hero-cover"></div>
+        <div class="hero-inner">
+          <div class="hero-logo">
             @if($user->profile_photo_path)
               <img src="{{ asset('storage/'.$user->profile_photo_path) }}" alt="Foto Profil">
             @else
-              <div class="cp-logo-fallback"><i class="fas fa-user"></i></div>
+              <div class="hero-logo-fallback"><i class="fas fa-user"></i></div>
             @endif
           </div>
-          <div class="cp-title">
+          <div class="hero-title">
             <h1>{{ $user->name }}</h1>
-            <div class="cp-meta">
+            <div class="hero-meta">
                 <span class="chip"><i class="fas fa-user-tag"></i>{{ $user->role->name }}</span>
-                <span class="cp-link"><i class="fas fa-envelope"></i>{{ $user->email }}</span>
-                <span class="cp-link"><i class="fas fa-phone"></i>{{ $user->phone ?? 'No. HP belum diisi' }}</span>
+                <span class="chip"><i class="fas fa-envelope"></i>{{ $user->email }}</span>
+                <span class="chip"><i class="fas fa-phone"></i>{{ $user->phone ?? 'No. HP belum diisi' }}</span>
             </div>
           </div>
-          {{-- Actions removed --}}
         </div>
       </section>
 
       {{-- GRID --}}
-      <section class="cp-grid">
+      <section class="cards-grid">
         {{-- Informasi Personal --}}
         <article class="card">
           <header class="card-head">
@@ -364,37 +302,41 @@
         </article>
 
         {{-- Riwayat Lamaran --}}
-        <article class="card">
-            <header class="card-head">
-                <h3><i class="fas fa-history"></i> Riwayat Lamaran ({{ $user->applications->count() }})</h3>
-            </header>
-            <div class="card-body">
-                @if($user->applications->isEmpty())
-                    <p>Belum ada riwayat lamaran.</p>
-                @else
-                    <table class="table table-bordered table-striped">
-                        <thead>
+        {{-- Riwayat Lamaran --}}
+<article class="card riwayat-card">
+    <header class="card-head">
+        <h3><i class="fas fa-history"></i> Riwayat Lamaran ({{ $user->applications->count() }})</h3>
+    </header>
+    <div class="card-body riwayat-container">
+        @if($user->applications->isEmpty())
+            <p>Belum ada riwayat lamaran.</p>
+        @else
+            <div class="table-wrapper">
+                <table class="table table-bordered table-striped riwayat-table">
+                    <thead>
+                        <tr>
+                            <th>Judul Lowongan</th>
+                            <th>Perusahaan</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($user->applications as $application)
                             <tr>
-                                <th>Judul Lowongan</th>
-                                <th>Perusahaan</th>
-                                <th>Status</th>
-                                <th>Tanggal</th>
+                                <td>{{ $application->jobPost->title ?? '-' }}</td>
+                                <td>{{ $application->jobPost->company->name ?? '-' }}</td>
+                                <td>{{ ucfirst($application->status) }}</td>
+                                <td>{{ $application->created_at->format('d M Y') }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($user->applications as $application)
-                                <tr>
-                                    <td>{{ $application->jobPost->title ?? '-' }}</td>
-                                    <td>{{ $application->jobPost->company->name ?? '-' }}</td>
-                                    <td>{{ ucfirst($application->status) }}</td>
-                                    <td>{{ $application->created_at->format('d M Y') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @endif
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-        </article>
+        @endif
+    </div>
+</article>
+
       </section>
     </div>
 @endif
