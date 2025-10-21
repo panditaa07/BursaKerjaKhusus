@@ -12,35 +12,71 @@
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>
+<!-- Search and Filter -->
+<div class="d-flex justify-content-between align-items-start align-items-md-center mb-3 gap-3 flex-wrap">
 
-            <!-- Search and Filter -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="search-box w-55">
-                    <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
-                        <div class="input-group shadow-sm">
-                            <span class="input-group-text bg-light text-muted">
-                                <i class="bi bi-search"></i>
-                            </span>
-                            <input type="text" name="search" class="form-control" placeholder="Cari Lowongan" value="{{ request('search') }}">
-                            <button type="submit" class="btn btn-primary">Cari</button>
-                        </div>
-                    </form>
-                    <a href="{{ route('admin.job-posts.create') }}" class="btn btn-primary mt-2 me-2">+ Tambah Lowongan</a>
-                </div>
-                <div class="filter-box">
-                    <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
-                        <div class="input-group shadow-sm">
-                            <span class="input-group-text bg-light text-muted">Status</span>
-                            <select name="status" class="form-select">
-                                <option value="">Semua Lowongan</option>
-                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Lowongan Aktif</option>
-                                <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Lowongan Tidak Aktif</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  {{-- 🔍 PENCARIAN --}}
+
+    <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
+   <div class="d-flex align-items-center gap-2">
+  <div class="input-group shadow-sm" style="max-width: 400px;">
+    <span class="input-group-text bg-white">
+      <i class="fas fa-search"></i>
+    </span>
+    <input type="text" name="search" class="form-control"
+           placeholder="Cari lowongan..." value="{{ request('search') }}">
+    <button type="submit" class="btn btn-primary fw-bold btn-cari">Cari</button>
+  </div>
+
+  @if(request('search'))
+    <a href="{{ route('admin.job-posts.index', array_filter(request()->except('search'))) }}"
+       class="btn btn-reset d-flex align-items-center justify-content-center gap-2">
+      <i class="fas fa-times"></i> Reset
+    </a>
+  @endif
+</div>
+
+    </form>
+
+    {{-- Tombol tambah lowongan --}}
+    <a href="{{ route('admin.job-posts.create') }}" class="btn btn-primary mt-2 me-2 fw-bold">
+      + Tambah Lowongan
+    </a>
+  </div>
+
+  {{-- ⚙️ FILTER STATUS + RESET SEMUA --}}
+  <div class="d-flex align-items-center gap-3">
+    <form method="GET" action="{{ route('admin.job-posts.index') }}" class="d-inline">
+      <div class="input-group shadow-sm">
+        <span class="input-group-text bg-white">Status</span>
+        <select name="status" class="form-select">
+          <option value="">Semua Lowongan</option>
+          <option value="active"   {{ request('status') == 'active'   ? 'selected' : '' }}>Lowongan Aktif</option>
+          <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Lowongan Tidak Aktif</option>
+        </select>
+        <button type="submit" class="btn btn-primary px-4 fw-bold">Filter</button>
+
+        {{-- Tombol Reset khusus filter --}}
+        @if(request('status') !== null && request('status') !== '')
+          <a href="{{ route('admin.job-posts.index', array_filter(request()->except('status'))) }}"
+             class="btn btn-reset px-4">
+            <i class="fas fa-times me-2"></i> Reset
+          </a>
+        @endif
+      </div>
+    </form>
+
+ {{-- Tombol Reset Semua (disamakan dengan Kelola Pengguna) --}}
+@if(request('search') || request('status'))
+  <a href="{{ route('admin.job-posts.index') }}" class="btn-reset-all text-decoration-none d-inline-flex align-items-center justify-content-center gap-2">
+    <i class="fas fa-undo-alt"></i>
+    <span>Reset Semua</span>
+  </a>
+@endif
+
+  </div>
+</div>
+
 
              <!-- Table -->
     <div class="container table-section table-responsive table-container">

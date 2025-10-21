@@ -266,61 +266,102 @@
             @endforelse
         </div>
 
-        {{-- Modal Global --}}
-        <div class="modal fade" id="jobImageModal" tabindex="-1" aria-labelledby="jobImageModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content border-0 shadow-lg">
-                    <div class="modal-header border-0">
-                        <h5 class="modal-title" id="jobImageModalLabel">Preview</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="modal-image-frame">
-                            <img id="jobImageModalImg" src="" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{-- Modal Preview Logo --}}
+<div class="modal fade modal-zoom" id="jobImageModal" tabindex="-1" aria-labelledby="jobImageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content jobs-modal">
+      {{-- Tombol X melayang di kanan atas --}}
+      <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div class="modal-header jobs-modal-header">
+        <h5 class="modal-title" id="jobImageModalLabel">Preview</h5>
+      </div>
+
+      <div class="modal-body p-0">
+        <div class="modal-image-frame">
+          <img id="jobImageModalImg" src="" alt="">
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
 @endsection
 
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // animasi angka kartu
-    const numbers = document.querySelectorAll('.stat-number');
-    numbers.forEach(number => {
-        const finalNumber = parseInt(number.textContent, 10);
-        if (isNaN(finalNumber)) return;
-        let currentNumber = 0;
-        const increment = Math.max(1, Math.ceil(finalNumber / 100));
-        const timer = setInterval(() => {
-            currentNumber += increment;
-            if (currentNumber >= finalNumber) {
-                currentNumber = finalNumber;
-                clearInterval(timer);
-            }
-            number.textContent = currentNumber;
-        }, 20);
-    });
+  // --- TANDAKAN JS SIAP ---
+  document.body.classList.add('js-ready');
 
-    // modal preview logo
-    const modalEl  = document.getElementById('jobImageModal');
-    const modalImg = document.getElementById('jobImageModalImg');
-    const modalTit = document.getElementById('jobImageModalLabel');
-    const bsModal  = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+  // --- ANIMASI ANGKA KARTU (aman tanpa crash) ---
+  document.querySelectorAll('.stat-number').forEach(function (el) {
+    var finalNumber = parseInt(el.textContent, 10);
+    if (isNaN(finalNumber)) return;
+    var current = 0;
+    var inc = Math.max(1, Math.ceil(finalNumber / 100));
+    var timer = setInterval(function () {
+      current += inc;
+      if (current >= finalNumber) {
+        current = finalNumber;
+        clearInterval(timer);
+      }
+      el.textContent = current;
+    }, 20);
+  });
 
-    document.querySelectorAll('.jobs-latest .js-preview').forEach(el => {
-        el.addEventListener('click', () => {
-            const src   = el.getAttribute('data-image');
-            const title = el.getAttribute('data-title') || 'Logo Perusahaan';
-            modalImg.src = src;
-            modalImg.alt = title;
-            modalTit.textContent = title;
-            bsModal.show();
-        });
+  // --- MODAL PREVIEW LOGO (guard kalau bootstrap tidak ada) ---
+  var modalEl  = document.getElementById('jobImageModal');
+  var modalImg = document.getElementById('jobImageModalImg');
+  var modalTit = document.getElementById('jobImageModalLabel');
+  var bsModal  = null;
+
+  if (modalEl && window.bootstrap && bootstrap.Modal) {
+    try { bsModal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true }); }
+    catch(e){ /* diamkan supaya tidak mengganggu reveal */ }
+  }
+
+  if (bsModal) {
+    document.querySelectorAll('.jobs-latest .js-preview').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var src   = el.getAttribute('data-image');
+        var title = el.getAttribute('data-title') || 'Logo Perusahaan';
+        modalImg.src = src;
+        modalImg.alt = title;
+        modalTit.textContent = title;
+        bsModal.show();
+      });
     });
+  }
+
+  // --- REVEAL ON SCROLL (anti-bug + fallback) ---
+  var targets = Array.prototype.slice.call(document.querySelectorAll(
+    '.stat-card, .table-section, .jl-card'
+  ));
+
+  // Set delay bertahap (opsional)
+  targets.forEach(function (el, i) {
+    el.classList.add('reveal');
+    el.style.setProperty('--delay', (Math.min(i * 0.06, 0.36)) + 's');
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-inview');
+          io.unobserve(entry.target); // animasi sekali saja
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+    targets.forEach(function (el) { io.observe(el); });
+  } else {
+    // Fallback: kalau IO tidak didukung, langsung tampilkan semua
+    targets.forEach(function (el) { el.classList.add('is-inview'); });
+  }
 });
 </script>
 @endpush
+
+

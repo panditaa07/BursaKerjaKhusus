@@ -721,3 +721,244 @@ td.aksi .table-btn {
     background-color: #153e75;
     transform: translateY(-2px);
 }
+/* Optional – samakan gaya tombol reset seperti di Kelola Pelamar */
+.input-group .btn-outline-secondary{
+  background:#1f3a95!important;
+  color:#fff!important;
+  border:none!important;
+  border-radius:10px!important;
+  margin-left:8px!important;
+  font-weight:700!important;
+  padding:10px 16px!important;
+  box-shadow:0 4px 12px rgba(31,58,149,0.3)!important;
+  transition:all 0.2s ease-in-out!important;
+}
+.input-group .btn-outline-secondary:hover{
+  background:#1a2f7a!important;
+  transform:translateY(-2px);
+}
+/* === Tombol CARI (biar seragam) === */
+.btn-cari {
+  height: 44px !important;
+  min-width: 90px !important;
+  font-weight: 700 !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* === Tombol RESET — ukuran dan tinggi sama dengan tombol CARI === */
+.btn-reset {
+  background: #1f3a95 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  height: 44px !important;
+  min-width: 90px !important;
+  padding: 0 18px !important;
+  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25) !important;
+  transition: all 0.2s ease-in-out !important;
+  margin-left: 8px !important; /* beri jarak dari tombol cari */
+}
+
+.btn-reset i {
+  font-size: 14px;
+}
+
+.btn-reset:hover {
+  background: #183081 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(31, 58, 149, 0.3) !important;
+}
+
+.btn-reset:active {
+  transform: scale(0.97);
+  box-shadow: none !important;
+}
+
+/* Responsif */
+@media (max-width: 576px) {
+  .btn-cari,
+  .btn-reset {
+    height: 40px !important;
+    min-width: 80px !important;
+    font-size: 13px !important;
+    padding: 0 14px !important;
+  }
+}
+/* Pusatkan isi tombol (Cari/Filter/Reset) */
+.btn-cari,
+.btn-filter,
+.btn-reset{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .5rem;                 /* jarak ikon-teks */
+  line-height: 1 !important;  /* cegah teks naik turun */
+  height: 44px !important;
+  padding: 0 18px !important; /* sudah tanpa padding atas/bawah */
+}
+
+/* Pastikan ikon tidak mendorong teks */
+.btn-reset i,
+.btn-cari i,
+.btn-filter i{
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Khusus tombol filter yang nempel di input-group */
+.filter-group .btn-filter{
+  border-radius: 0 8px 8px 0 !important;
+}
+/* Tombol "Reset Semua" – ukuran sedang */
+.btn-reset-all{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  height:38px;                 /* sedang */
+  padding:0 .9rem;             /* sedang */
+  font-size:.92rem;            /* sedang */
+  font-weight:700;
+  color:#1e40af;               /* biru */
+  background:#fff;
+  border:1px solid #dbeafe;    /* biru muda */
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(30,58,138,.08);
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+
+.btn-reset-all:hover{
+  background:#eff6ff;          /* hover lembut */
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(30,58,138,.12);
+}
+
+.btn-reset-all:active{
+  transform:scale(.98);
+  box-shadow:none;
+}
+
+.btn-reset-all i{
+  font-size:14px;              /* ikon proporsional */
+  line-height:1;
+}
+/* Samakan ukuran dan gaya dengan tombol Filter */
+.btn-reset-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #1e3a8a;
+  border: 1px solid #1e3a8a;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  height: 44px;             /* sama dengan tombol Filter */
+  min-width: 100px;
+  padding: 0 18px;
+  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.12);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-reset-all:hover {
+  background: #1e3a8a;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(31, 58, 149, 0.25);
+}
+
+.btn-reset-all:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+.btn-reset-all i {
+  font-size: 16px;
+  line-height: 1;
+}
+/* === Tombol Filter, Reset, Reset Semua — Ukuran & Style Sama === */
+.btn-filter,
+.btn-reset,
+.btn-reset-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 44px;                 /* Semua sama tinggi */
+  min-width: 110px;             /* Ukuran seragam */
+  padding: 0 18px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* === Tombol Filter, Reset, dan Reset Semua (ukuran sama) === */
+.btn-filter,
+.btn-reset,
+.btn-reset-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 44px;                 /* tinggi seragam */
+  min-width: 110px;             /* lebar minimum sama */
+  padding: 0 18px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  line-height: 1;
+}
+
+/* === Filter === */
+.btn-filter {
+  background: #1e3a8a;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25);
+}
+.btn-filter:hover {
+  background: #1a307a;
+  transform: translateY(-2px);
+}
+
+/* === Reset === */
+.btn-reset {
+  background: #1e3a8a;          /* warna sama seperti Filter */
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25);
+  height: 44px;                 /* pastikan sama tinggi */
+  min-width: 110px;             /* pastikan sama lebar */
+  padding: 0 18px;              /* spacing sama */
+}
+.btn-reset:hover {
+  background: #1a307a;
+  transform: translateY(-2px);
+}
+
+/* === Reset Semua === */
+.btn-reset-all {
+  background: #ffffff;
+  color: #1e3a8a;
+  border: 1.8px solid #1e3a8a;
+  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.12);
+}
+.btn-reset-all:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(31, 58, 149, 0.25);
+}
+
+.btn-reset i,
+.btn-filter i,
+.btn-reset-all i {
+  font-size: 14px;
+  line-height: 1;
+}

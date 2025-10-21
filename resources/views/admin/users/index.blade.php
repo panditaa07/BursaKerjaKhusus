@@ -15,22 +15,31 @@
                 </a>
             </div>
         </div>
+      
 
-    {{-- Form Filter & Search --}}
-    <form method="GET" action="{{ route('admin.users.index') }}" 
-          class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      {{-- Form Filter & Search --}}
+<form method="GET" action="{{ route('admin.users.index') }}"
+      class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
 
-        <!-- Search box -->
-        <div class="input-group" style="max-width: 400px;">
-            <span class="input-group-text bg-white">
-                <i class="fas fa-search"></i>
-            </span>
-            <input type="text" name="search" class="form-control" 
-                   placeholder="Cari nama atau email" value="{{ request('search') }}">
-            <button type="submit" class="btn btn-primary">Cari</button>
-        </div>
+    {{-- Search box --}}
+    <div class="input-group" style="max-width: 400px;">
+        <span class="input-group-text bg-white">
+            <i class="fas fa-search"></i>
+        </span>
+        <input type="text" name="search" class="form-control"
+               placeholder="Cari nama atau email" value="{{ request('search') }}">
+        <button type="submit" class="btn btn-primary">Cari</button>
 
-        <!-- Role filter -->
+        {{-- Reset hanya untuk pencarian (seperti di Kelola Pelamar) --}}
+        @if(request('search'))
+            <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-times"></i> Reset
+            </a>
+        @endif
+    </div>
+
+    {{-- Role filter --}}
+    <div class="d-flex align-items-center gap-2">
         <div class="input-group" style="max-width: 300px;">
             <span class="input-group-text bg-white">Role</span>
             <select name="role" class="form-select">
@@ -40,7 +49,20 @@
             </select>
             <button type="submit" class="btn btn-primary">Filter</button>
         </div>
-    </form>
+
+      {{-- Reset semua filter (muncul jika ada search atau role) --}}
+@if(request('search') || request('role'))
+  <a href="{{ route('admin.users.index') }}" class="btn-reset-all text-decoration-none">
+    <i class="fas fa-undo-alt"></i>
+    <span>Reset Semua</span>
+  </a>
+@endif
+    </div>
+</form>
+
+    {{-- Form Filter & Search --}}
+    <form method="GET" action="{{ route('admin.users.index') }}" 
+   
 
     {{-- Flash Message --}}
     @if(session('success'))

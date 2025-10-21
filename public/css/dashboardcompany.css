@@ -334,12 +334,18 @@
 .jobs-latest .jl-card:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(37,99,235,.14); }
 
 /* Top accent */
-.jobs-latest .jl-accent{
-  height:86px;
-  background:
-    radial-gradient(900px 200px at 0% 0%, rgba(59,130,246,.16), transparent),
-    linear-gradient(135deg, var(--b700), var(--b400));
+.jobs-latest .jl-accent {
+  height: 86px;
+  background: linear-gradient(
+    135deg,
+    #0F172A 0%,   /* biru-hitam tua */
+    #1E3A8A 40%,  /* navy (senada sidebar) */
+    #312E81 75%,  /* indigo tua */
+    #4C1D95 100%  /* ungu gelap elegan */
+  );
+  box-shadow: inset 0 -2px 6px rgba(0,0,0,0.2);
 }
+
 
 /* Avatar klik */
 .jobs-latest .jl-avatar{
@@ -1253,3 +1259,164 @@ textarea:focus,
     box-shadow: 0 6px 14px rgba(0,0,0,.12) !important;
 }
 
+/* Hilangkan ribbon hijau di card Lowongan Terbaru */
+.jobs-latest .jl-ribbon {
+  display: none !important;
+}
+/* ==== Reveal on scroll (AMAN: tidak menyembunyikan default) ==== */
+.reveal { will-change: opacity, transform, filter; }
+
+/* Hanya aktif kalau JS berhasil jalan dan menambah .js-ready di <body> */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  filter: blur(2px);
+  transition:
+    opacity .6s ease,
+    transform .6s ease,
+    filter .6s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.js-ready .reveal.is-inview {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Hormati preferensi pengguna */
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .reveal,
+  .js-ready .reveal.is-inview {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+/* ====== Modal Preview: polish + tombol X ====== */
+.jobs-latest .jobs-modal{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 22px 70px rgba(2, 6, 23, .35);
+}
+
+/* header tipis elegan */
+.jobs-latest .jobs-modal-header{
+  background: linear-gradient(90deg,#1E3A8A 0%, #2563EB 60%, #60A5FA 100%);
+  color: #EAF2FF;
+  padding: 10px 16px;
+  border-bottom: none;
+}
+.jobs-latest .jobs-modal-header .modal-title{
+  font-weight: 800;
+  letter-spacing: .2px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.18);
+  margin: 0;
+}
+
+/* tombol X (melayang di pojok kanan atas) */
+.jobs-latest .modal-close{
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(15,23,42,.55);           /* midnight glass */
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  box-shadow: 0 10px 28px rgba(2,6,23,.28), inset 0 1px 0 rgba(255,255,255,.08);
+  opacity: 1 !important;
+  z-index: 2;
+}
+.jobs-latest .modal-close:hover{
+  background: rgba(15,23,42,.7);
+  transform: translateY(-1px);
+}
+.jobs-latest .modal-close:focus{ box-shadow: none; }
+/* pastikan ikon X terlihat putih bersih */
+.jobs-latest .modal-close::before,
+.jobs-latest .modal-close::after{ background: none; }
+.jobs-latest .modal-close{
+  filter: invert(1) grayscale(1) brightness(115%);
+}
+
+/* frame gambar yang mewah */
+.jobs-latest .modal-image-frame{
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  background:
+    radial-gradient(1200px 400px at 10% 0%, rgba(59,130,246,.22), transparent 60%),
+    radial-gradient(900px 300px at 90% 100%, rgba(147,197,253,.18), transparent 60%),
+    linear-gradient(135deg, #1E3A8A 0%, #2563EB 52%, #4F46E5 100%);
+  border-radius: 0 0 16px 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.jobs-latest .modal-image-frame img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(2,6,23,.35), 0 0 0 1px rgba(255,255,255,.06);
+  transform: translateZ(0) scale(1);
+  transition: transform .35s ease, box-shadow .35s ease, opacity .2s ease;
+  opacity: 0;
+}
+.jobs-latest .modal.show .modal-image-frame img{ opacity: 1; }
+.jobs-latest .modal-image-frame:hover img{
+  transform: scale(1.012);
+  box-shadow: 0 28px 80px rgba(2,6,23,.45), 0 0 0 1px rgba(255,255,255,.08);
+}
+
+/* zoom masuk saat modal muncul */
+.modal.modal-zoom .modal-dialog{
+  transform: translateY(8px) scale(.98);
+  transition: transform .22s cubic-bezier(.2,.8,.3,1);
+}
+.modal.modal-zoom.show .modal-dialog{
+  transform: translateY(0) scale(1);
+}
+
+/* hilangkan style lama yang membuat tombol X pudar */
+.jobs-latest .btn-close{ filter: none; opacity: 1; }
+/* ===== Fix tombol X pada modal preview ===== */
+.jobs-latest .modal-close{
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 12px;
+  background: #ef4444 !important;      /* merah */
+  background-image: none !important;    /* matikan SVG default bootstrap */
+  opacity: 1 !important;
+  z-index: 5;                            /* pastikan di atas header/gradasi */
+  box-shadow: 0 10px 24px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* gambar X putih sendiri */
+.jobs-latest .modal-close::before,
+.jobs-latest .modal-close::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 2px;
+  background: #ffffff;                   /* garis X putih */
+  border-radius: 2px;
+  transform-origin: center;
+}
+.jobs-latest .modal-close::before{ transform: translate(-50%, -50%) rotate(45deg); }
+.jobs-latest .modal-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* interaksi */
+.jobs-latest .modal-close:hover{ background:#dc2626 !important; transform: translateY(-1px); }
+.jobs-latest .modal-close:active{ transform: scale(.98); }
+.jobs-latest .modal-close:focus{ outline: none; box-shadow: 0 0 0 3px rgba(239,68,68,.25); }
