@@ -194,12 +194,10 @@
 
     {{-- === Lowongan Terbaru Cards === --}}
     <div class="container jobs-latest">
-        <div class="jobs-header position-relative mb-3 text-center">
+        {{-- HEADER TANPA TOMBOL LIHAT SEMUA --}}
+        <div class="jobs-header mb-4 text-center">
             <h3 class="section-title mb-0">Lowongan Terbaru</h3>
-            <a href="{{ route('company.jobs.active') }}"
-               class="see-all btn btn-outline-primary btn-sm position-absolute top-0 end-0">
-                Lihat Semua
-            </a>
+            {{-- TOMBOL LIHAT SEMUA DIHAPUS --}}
         </div>
 
         <div class="row g-3 g-md-4">
