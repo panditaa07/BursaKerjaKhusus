@@ -1,116 +1,310 @@
-/* ===========================
-   PROFIL COMPANY – HERO HEADER + 1 EDIT BUTTON
-   =========================== */
-
-:root{
-  --bg:#eef2f7;
-  --card:#ffffff;
-  --ink:#0f172a;
-  --muted:#6b7280;
-  --line:#e5e7eb;
-  --chip:#eef3ff;
-  --blue:#2f57ef;
-  --shadow:0 12px 32px rgba(2,6,23,.10);
-  --shadow-lg:0 18px 44px rgba(2,6,23,.16);
-}
-body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-
-/* Animations */
-@keyframes fadeSlideIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-
-/* Container */
-.container{max-width:1100px;margin:26px auto;padding:0 12px}
-.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:980px){.cards-grid{grid-template-columns:1fr}}
-
-/* ===== HERO ===== */
-.hero{
-  position:relative;
-  border-radius:22px;
-  overflow:hidden;
-  background:var(--card);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-  margin-bottom:18px;
-}
-.hero-cover{
-  height:180px;
-  background:
-    radial-gradient(900px 120px at -10% -40%, #9cc0ff40 0, transparent 60%),
-    radial-gradient(900px 160px at 120% -40%, #83b0ff30 0, transparent 60%),
-    linear-gradient(90deg,#1f3ea9,#2563eb);
-}
-.hero-inner{
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  align-items:end;
-  gap:16px;
-  padding:16px 18px;
-  margin-top:-70px;
+:root {
+  --bg: #f3f6fb;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --chip: #eef3ff;
+  --blue: #2f57ef;
+  --blue-dark: #1e3a8a;
+  --accent: #2563eb;
+  --gradient: linear-gradient(135deg, #2563eb, #1e40af);
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 18px 40px rgba(37, 99, 235, 0.25);
+  --radius: 18px;
 }
 
-/* Logo box */
-.hero-logo{
-  width:92px;height:92px;border-radius:18px;
-  background:#f6f8ff;border:1px dashed #c7d6ff;
-  display:grid;place-items:center;padding:10px;
-  box-shadow:0 8px 16px rgba(2,6,23,.10), inset 0 0 0 6px #ffffff99;
-  animation:floatY 6s ease-in-out infinite;
-}
-.hero-logo img{width:100%;height:100%;object-fit:contain;border-radius:12px}
-.hero-logo-fallback{font-size:36px;color:#7a8aa8}
-
-/* Title & Meta */
-.hero-title h1{margin:0 0 6px;font-weight:900;font-size:26px;color:#0f172a}
-.hero-meta{display:flex;gap:10px;flex-wrap:wrap}
-.chip{
-  display:inline-flex;gap:8px;align-items:center;
-  padding:8px 12px;border-radius:12px;font-size:13px;
-  background:var(--chip);border:1px solid #dbe6ff;color:#1e2b55;
-  text-decoration:none;
-}
-.chip i{font-size:12px}
-
-/* One action button */
-.hero-actions .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#2f57ef;border:1px solid #2f57ef;color:#fff;
-  border-radius:12px;padding:10px 14px;font-weight:700;
-  box-shadow:0 8px 16px rgba(47,87,239,.25);
-  transition:transform .18s ease,box-shadow .18s ease;
-}
-.hero-actions .btn:hover{
-  background:#1e40af;border-color:#1e40af;
-  transform:translateY(-2px);
-  box-shadow:0 10px 22px rgba(47,87,239,.35);
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
 }
 
-/* ===== KARTU ===== */
-.card{
-  background:var(--card)!important;border:1px solid var(--line)!important;
-  border-radius:16px!important;box-shadow:var(--shadow)!important;
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)!important}
-.card-header{background:#f9fbff!important;border-bottom:1px solid var(--line)!important;padding:14px 16px!important}
-.card-header h3{margin:0;font-weight:800;font-size:16px;color:#16223a}
-.card-body{padding:16px !important}
-
-/* Detail perusahaan */
-.mb-4 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.mb-4 .row{grid-template-columns:1fr}}
-.mb-4 .row p{margin:.35rem 0;line-height:1.5}
-.mb-4 .row p strong{color:#64748b;font-size:12px;display:block;margin-bottom:2px}
-.mb-4 .row p{font-weight:800;color:#0f172a}
-
-/* PIC */
-.text-primary{color:#2563eb !important}
-.rounded-circle.border{
-  width:120px !important;height:120px !important;border-width:5px !important;border-color:#fff !important;
-  background:#f6f8ff !important;box-shadow:0 16px 36px rgba(2,6,23,.16) !important;
-  animation:floatY 6s ease-in-out infinite;
+/* === LAYOUT === */
+.container {
+  max-width: 1150px;
+  margin: 30px auto;
+  padding: 0 15px;
 }
 
-/* Focus state */
-*:focus{outline:none!important;box-shadow:none!important}
+/* === HERO SECTION === */
+.hero {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 22px;
+  animation: fadeInUp 0.7s ease-out both;
+}
+
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(20px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+.hero-cover {
+  height: 180px;
+  background: linear-gradient(135deg, #0a1e5e, #0f2983, #1e3fa3, #244bb8);
+}
+
+.hero {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a1e5e, #0f2983, #1e3fa3);
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  margin-bottom: 22px;
+  animation: fadeInUp 0.7s ease-out both;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #1e3fa3, #2563eb, #60a5fa);
+  opacity: 0.7;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 18px;
+  padding: 20px 24px;
+  margin-top: -70px;
+}
+
+/* logo perusahaan */
+.hero-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 25px rgba(255,255,255,0.25);
+  animation: floatY 6s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%,100% {transform: translateY(0);}
+  50% {transform: translateY(-5px);}
+}
+
+.hero-logo img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.hero-logo-fallback {
+  font-size: 40px;
+  color: var(--accent);
+}
+
+/* teks utama */
+.hero-title h1 {
+  font-weight: 800;
+  font-size: 26px;
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: background .25s;
+}
+
+.chip:hover {
+  background: rgba(255,255,255,.25);
+}
+
+.hero-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--blue);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 600;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 6px 15px rgba(255,255,255,.3);
+}
+
+.hero-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255,255,255,.4);
+}
+
+/* === GRID CARD === */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === CARD === */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  transition: transform .2s, box-shadow .3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  background: linear-gradient(to right, #f3f6ff, #eaf0ff);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 18px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--blue-dark);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* === FOTO PROFIL HRD === */
+.pic-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.pic-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
+
+.avatar-fallback {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #edf2ff;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  color: var(--accent);
+}
+
+.pic-details {
+  text-align: center;
+  line-height: 1.7;
+}
+
+.pic-details strong {
+  color: var(--blue-dark);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .card-body p {
+    font-size: 14px;
+  }
+}
+/* ==== TOMBOL EDIT PROFIL (kanan bawah dekat card) ==== */
+/* ==== Tombol Edit Profil (lebih dekat ke card) ==== */
+.company-edit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -5px; /* tarik lebih dekat ke card */
+  padding-right: 20px;
+}
+
+.btn-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+  transition: all 0.25s ease;
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.55);
+}
+
+.btn-edit i {
+  font-size: 14px;
+}
+
