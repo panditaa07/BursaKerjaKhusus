@@ -20,7 +20,7 @@
 </div>
 
 
-
+<div class="container mx-auto px-4 py-4">
     <div class="card mb-4">
         <div class="card-header">
             <h3>Data Umum</h3>
@@ -190,6 +190,7 @@
             </div>
         </div>
     @endif
+</div>
 </div>
 
 <script src="{{ asset('js/detail.js') }}"></script>

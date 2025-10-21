@@ -3,7 +3,7 @@
 @section('title', 'Pending Companies')
 
 @section('content')
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
     <h1 class="h3 mb-4">Pending Companies</h1>
 
     @if($pendingCompanies->isEmpty())

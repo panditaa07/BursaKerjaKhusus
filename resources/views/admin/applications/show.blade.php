@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
         <h1 class="h3 mb-0">Detail Pelamar</h1>
         
@@ -32,7 +32,7 @@
             <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
                  alt="Foto Profil"
                  class="rounded-circle border"
-                 style="width: 120px; height: 120px; object-fit: cover;">
+                 style="width: 32px; height: 32px; object-fit: cover;">
         @else
             <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto"
                  style="width: 120px; height: 120px; font-size: 48px; font-weight: bold;">

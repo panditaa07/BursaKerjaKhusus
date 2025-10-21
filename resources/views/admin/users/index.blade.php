@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/kelolapengguna.css') }}">
 <link rel="stylesheet" href="{{ asset('css/table-admin.css?v=2') }}">
 
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="page-title">Kelola Pengguna</h2>
             <div>
@@ -56,8 +56,8 @@
     @else
     
      <!-- Table -->
-    <div class="container table-section">
-        <div class="table-responsive table-container">
+    <div class="container table-section table-responsive table-container">
+        
             <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
@@ -92,23 +92,22 @@
                             </td>
                             <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                 <td class="text-center aksi">
-                                    <a href="{{ route('admin.users.show', $user) }}" class="table-btn view">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="table-btn edit">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    @if ($user->role->name == 'user' && $user->cover_letter_path)
+                                   <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
+                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                </a>
+                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-edit">
+                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                </a>
+                                @if ($user->role->name == 'user' && $user->cover_letter_path)
                                         <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="table-btn download">
                                             <i class="bi bi-download"></i>
                                         </a>
                                     @endif
-                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline"
-                                        onsubmit="return confirm('Yakin ingin menghapus pengguna ini?');">
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="table-btn delete">
-                                        <i class="bi bi-trash"></i>
+                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                        <i class="fas fa-trash"></i><span>Hapus</span>
                                     </button>
                                 </form>
                             </td>
@@ -116,10 +115,10 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        
     </div>
     @endif
-</div>
+
 
 <div class="d-flex justify-content-center mt-3">
     <div class="btn-group" role="group" aria-label="Pagination">

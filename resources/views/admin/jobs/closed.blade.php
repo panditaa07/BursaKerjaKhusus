@@ -2,7 +2,7 @@
 @section('title', 'Daftar Lowongan Kerja Ditutup')
 
 @section('content')
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
     <h1 class="h3 mb-4">Daftar Lowongan Kerja Ditutup</h1>
 
     <div class="table-responsive">

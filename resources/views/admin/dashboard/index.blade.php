@@ -2,9 +2,11 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
+<link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 
+<div class="container mx-auto px-4 py-4">
     {{-- === Statistics Cards === --}}
-    <div class="row">
+    <div class="row g-4">
         {{-- Total Pelamar --}}
         <div class="col-xl-3 col-md-6 mb-4">
             <a href="{{ route('admin.dashboard.pelamar') }}" class="stat-link">
@@ -67,7 +69,7 @@
     </div>
 
     {{-- === Charts Section === --}}
-    <div class="row mb-4">
+    <div class="row g-4 mt-4">
         {{-- Line Chart: Pelamar Bulan Ini --}}
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card chart-card shadow h-100">
@@ -106,7 +108,7 @@
     </div>
 
     {{-- === Tabel Pelamar === --}}
-    <div class="container table-section">
+    <div class="container table-section mt-4">
     <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
 
     <div class="table-responsive table-container">
@@ -148,20 +150,29 @@
                                 @endif
                         </td>
                         <td class="aksi">
-                            <a href="{{ route('admin.applications.show', $app->id) }}" class="table-btn view">
-                                <i class="bi bi-eye"></i>
+                            <!-- Tombol Lihat -->
+                            <a href="{{ route('admin.applications.show', $app->id) }}"
+                            class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold">
+                                <i class="fas fa-eye"></i><span>Lihat</span>
                             </a>
-                            <a href="{{ route('admin.applications.edit', $app->id) }}" class="table-btn edit">
-                                <i class="bi bi-pencil"></i>
+
+                            <!-- Tombol Edit -->
+                            <a href="{{ route('admin.applications.edit', $app->id) }}"
+                            class="btn btn-warning d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold">
+                                <i class="fas fa-edit"></i><span>Edit</span>
                             </a>
-                            <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="display:inline;">
+
+                            <!-- Tombol Hapus -->
+                            <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="_from" value="dashboard">
-                                <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">
-                                    <i class="bi bi-trash"></i>
+                                <button type="submit"
+                                    class="btn btn-danger d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold"
+                                    onclick="return confirm('Yakin ingin menghapus?')">
+                                    <i class="fas fa-trash"></i><span>Hapus</span>
                                 </button>
                             </form>
+
                         </td>
                     </tr>
                 @empty
@@ -174,9 +185,8 @@
     </div>
 </div>
 <br>
-<br>
     {{-- === Tabel Loker Aktif === --}}
-    <div class="container table-section">
+    <div class="container table-section mt-4">
         <h3 class="mb-3">Loker Terbaru</h3>
         <div class="table-responsive table-container">
             <table class="table-dashboard mb-0 text-center">
@@ -200,17 +210,17 @@
                                 @endif
                             </td>
                             <td class="aksi">
-                                <a href="{{ route('admin.job-posts.show', $job->id) }}" class="table-btn view">
-                                    <i class="bi bi-eye"></i>
+                                <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold">
+                                    <i class="fas fa-eye"></i><span>Lihat</span>
                                 </a>
-                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="table-btn edit">
-                                    <i class="bi bi-pencil"></i>
+                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold">
+                                    <i class="fas fa-edit"></i><span>Edit</span>
                                 </a>
                                 <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="table-btn delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class="bi bi-trash"></i>
+                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold" onclick="return confirm('Yakin hapus loker ini?')">
+                                        <i class="fas fa-trash"></i><span>Hapus</span>
                                     </button>
                                 </form>
                             </td>
@@ -222,6 +232,7 @@
             </table>
         </div>
     </div>
+</div>
 
 @endsection
 

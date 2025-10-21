@@ -14,7 +14,7 @@
     </h2>
 </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 job-form-container">
+        <div class="bg-white rounded-lg shadow-md p-6 job-form-container mx-auto px-4 py-4">
             <form method="POST" action="{{ route('admin.job-posts.store') }}" enctype="multipart/form-data">
                 @csrf
 

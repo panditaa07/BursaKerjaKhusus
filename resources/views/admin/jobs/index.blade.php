@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
 
-     <div class="card shadow-lg border-0">
+     <div class="container mx-auto px-4 py-4">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="page-title">Kelola Lowongan Kerja</h2>
@@ -43,8 +43,8 @@
             </div>
 
              <!-- Table -->
-    <div class="container table-section">
-        <div class="table-responsive table-container">
+    <div class="container table-section table-responsive table-container">
+        
             <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
@@ -73,20 +73,19 @@
                                     @endif
                                 </td>
                                 <td class="aksi">
-                                    <a href="{{ route('admin.job-posts.show', $job->id) }}?from=kelola" class="table-btn view" >
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.job-posts.edit', $job->id) }}?from=kelola" class="table-btn edit">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
-                                        <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">
-                                            <i class="bi bi-trash" ></i>
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
+                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                </a>
+                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-edit">
+                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                </a>
+                                <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                        <i class="fas fa-trash"></i><span>Hapus</span>
+                                    </button>
+                                </form>
                                 </td>
                             </tr>
                         @empty
@@ -96,10 +95,10 @@
                         @endforelse
                 </tbody>
             </table>
-        </div>
+        
     </div>
         </div>
-    </div>
+    
 
 <div class="d-flex justify-content-center mt-3">
     <div class="btn-group" role="group" aria-label="Pagination">

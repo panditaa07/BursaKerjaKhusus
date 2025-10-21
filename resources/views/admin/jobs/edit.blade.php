@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="card shadow-sm">

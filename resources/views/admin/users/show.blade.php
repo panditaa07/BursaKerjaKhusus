@@ -82,7 +82,7 @@
       $slug    = $company?->slug ?: 'company';
     @endphp
 
-    <div class="company-page">
+    <div class="container mx-auto px-4 py-4 company-page">
       {{-- HERO --}}
       <section class="cp-hero">
         <div class="cp-cover"></div>

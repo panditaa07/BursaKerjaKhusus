@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ asset('css/edit.css') }}" />
 
 <div class="demo-preview">
-    <div class="container-fluid">
+    <div class="container mx-auto px-4 py-4">
         <div class="page-header">
             <h1 class="page-title">
                 <i class="fas fa-user-edit"></i>Update Data Pelamar</h1>

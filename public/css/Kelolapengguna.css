@@ -5,9 +5,9 @@
     --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
     --success-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
     --warning-gradient: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
-    --danger-gradient: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    --danger-gradient: linear-gradient(135deg, #ef4444, #dc2626);
     --info-gradient: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
-    
+
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
     --shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
@@ -22,14 +22,14 @@
 
 body {
     background: #f1f5f9;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .container-fluid {
     background: #fff;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes slideInUp {
@@ -77,7 +77,7 @@ h1.h3 {
     font-weight: 700;
     font-size: 2.5rem;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Modern Form Styles */
@@ -88,7 +88,7 @@ h1.h3 {
     padding: 1.5rem;
     margin-bottom: 2rem;
     border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     animation: slideInLeft 0.7s ease-out;
 }
 
@@ -103,7 +103,8 @@ h1.h3 {
     }
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid transparent;
     border-radius: 12px;
@@ -113,7 +114,8 @@ h1.h3 {
     backdrop-filter: blur(10px);
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     background: rgba(255, 255, 255, 0.95);
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -140,13 +142,18 @@ h1.h3 {
 }
 
 .btn::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
     transition: left 0.5s;
 }
 
@@ -165,14 +172,14 @@ h1.h3 {
 }
 
 .btn-primary {
-    background: #1e3a8a;;
+    background: #1e3a8a;
     color: white;
     box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgb(30, 58, 138);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .btn-info {
@@ -187,14 +194,20 @@ h1.h3 {
 }
 
 .btn-danger {
-    background: var(--danger-gradient);
+    background: #ef4444;
     color: white;
-    box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+    border: none;
 }
 
 .btn-danger:hover {
+    background: #dc2626;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 65, 108, 0.6);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .btn-sm {
@@ -232,9 +245,9 @@ td.aksi button.table-btn i {
     justify-content: center !important;
 
     /* INI YANG PENTING */
-    border-radius: 0 !important;   /* kotak penuh */
-    padding: 0 !important;         /* hapus padding inline */
-    margin: 0 !important;          /* hilangkan margin inline */
+    border-radius: 0 !important; /* kotak penuh */
+    padding: 0 !important; /* hapus padding inline */
+    margin: 0 !important; /* hilangkan margin inline */
 }
 
 /* Jaga posisi tombol tetap sejajar */
@@ -264,8 +277,6 @@ td.aksi .table-btn {
     filter: none !important;
 }
 
-
-
 /* Modern Table Styles */
 .table-responsive {
     background: var(--glass-bg);
@@ -288,7 +299,7 @@ td.aksi .table-btn {
     }
 }
 
-.table th, 
+.table th,
 .table td {
     border: 1px solid #ccc !important;
 }
@@ -300,7 +311,7 @@ td.aksi .table-btn {
 }
 
 .table thead th {
-    background: #1e3a8a;;
+    background: #1e3a8a;
     color: white;
     border: none;
     padding: 1rem;
@@ -327,7 +338,7 @@ td.aksi .table-btn {
 .table tbody tr:hover {
     background: rgba(255, 255, 255, 0.95);
     transform: scale(1.01);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .table tbody td {
@@ -373,19 +384,31 @@ td.aksi .table-btn {
 }
 
 .alert-success {
-    background: linear-gradient(135deg, rgba(86, 171, 47, 0.9), rgba(168, 230, 207, 0.9));
+    background: linear-gradient(
+        135deg,
+        rgba(86, 171, 47, 0.9),
+        rgba(168, 230, 207, 0.9)
+    );
     color: white;
     box-shadow: 0 4px 20px rgba(86, 171, 47, 0.3);
 }
 
 .alert-danger {
-    background: linear-gradient(135deg, rgba(255, 65, 108, 0.9), rgba(255, 75, 43, 0.9));
+    background: linear-gradient(
+        135deg,
+        rgba(255, 65, 108, 0.9),
+        rgba(255, 75, 43, 0.9)
+    );
     color: white;
     box-shadow: 0 4px 20px rgba(255, 65, 108, 0.3);
 }
 
 .alert-info {
-    background: linear-gradient(135deg, rgba(54, 209, 220, 0.9), rgba(91, 134, 229, 0.9));
+    background: linear-gradient(
+        135deg,
+        rgba(54, 209, 220, 0.9),
+        rgba(91, 134, 229, 0.9)
+    );
     color: white;
     box-shadow: 0 4px 20px rgba(54, 209, 220, 0.3);
 }
@@ -394,7 +417,7 @@ td.aksi .table-btn {
 .btn-group {
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-group .btn {
@@ -418,8 +441,12 @@ td.aksi .table-btn {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .slide-up {
@@ -444,7 +471,7 @@ td.aksi .table-btn {
 }
 
 .loading::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -458,8 +485,12 @@ td.aksi .table-btn {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsive Design */
@@ -469,23 +500,23 @@ td.aksi .table-btn {
         padding: 1rem;
         border-radius: 16px;
     }
-    
+
     h1.h3 {
         font-size: 2rem;
     }
-    
+
     .modern-search-form {
         padding: 1rem;
     }
-    
+
     .table-responsive {
         border-radius: 12px;
     }
-    
+
     .btn-group {
         flex-direction: column;
     }
-    
+
     .btn-group .btn {
         border-radius: 8px !important;
         margin-bottom: 0.25rem;
@@ -522,7 +553,7 @@ td.aksi .table-btn {
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Header tabel warna biru tua */
@@ -553,9 +584,12 @@ td.aksi .table-btn {
     font-weight: 600;
     color: #fff;
 }
-.status-info { background: #3b82f6; }   /* Biru */
-.status-warning { background: #f59e0b; } /* Kuning */
-
+.status-info {
+    background: #3b82f6;
+} /* Biru */
+.status-warning {
+    background: #f59e0b;
+} /* Kuning */
 
 /* Pagination */
 .pagination {
@@ -565,7 +599,8 @@ td.aksi .table-btn {
 /* === Custom Style untuk Filter & Search === */
 
 /* Tombol utama */
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
     background-color: rgb(30, 64, 175); /* biru sama kaya User */
     border: none;
     color: #fff;
@@ -576,9 +611,11 @@ td.aksi .table-btn {
 }
 
 /* Hover & Active biar kontras */
-.btn-primary:hover, .btn-secondary:hover,
-.btn-primary:active, .btn-secondary:active {
-    background-color: #3367D6; /* biru lebih gelap */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-primary:active,
+.btn-secondary:active {
+    background-color: #3367d6; /* biru lebih gelap */
     color: #fff;
 }
 
@@ -593,8 +630,9 @@ td.aksi .table-btn {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.btn-back:hover, .btn-back:active {
-    background-color: #3367D6;
+.btn-back:hover,
+.btn-back:active {
+    background-color: #3367d6;
     color: #fff !important;
 }
 
@@ -625,7 +663,7 @@ td.aksi .table-btn {
 }
 
 .back-button {
-    background-color: rgb(30, 58, 138);   /* sama kayak filter */
+    background-color: rgb(30, 58, 138); /* sama kayak filter */
     border: none;
     color: #fff !important;
     font-weight: 600;
@@ -639,7 +677,7 @@ td.aksi .table-btn {
 }
 
 .back-button:hover {
-    background-color: #3367D6;   /* hover biar kontras */
+    background-color: #3367d6; /* hover biar kontras */
     transform: translateY(-1px);
 }
 
@@ -649,7 +687,7 @@ td.aksi .table-btn {
 
 /* Tombol Cari */
 .btn-cari {
-    background-color: #1E40AF; /* biru tua */
+    background-color: #1e40af; /* biru tua */
     color: #fff !important;
     font-weight: 600;
     padding: 8px 18px;
@@ -659,16 +697,16 @@ td.aksi .table-btn {
     align-items: center;
     gap: 6px;
     transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 .btn-cari:hover {
-    background-color: #153E75;
+    background-color: #153e75;
     transform: translateY(-2px);
 }
 
 /* Total jadi badge tombol */
 .btn-total {
-    background-color: #1E40AF; /* biru */
+    background-color: #1e40af; /* biru */
     color: #fff !important;
     font-weight: 600;
     padding: 8px 18px;
@@ -676,10 +714,10 @@ td.aksi .table-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease-in-out;
 }
 .btn-total:hover {
-    background-color: #153E75;
+    background-color: #153e75;
     transform: translateY(-2px);
 }

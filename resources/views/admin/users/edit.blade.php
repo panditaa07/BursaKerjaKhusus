@@ -5,6 +5,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/detailpengguna.css') }}">
 
+<div class="container mx-auto px-4 py-4">
 <div class="detail-pengguna-page">
     <h1>Edit User</h1>
     <div class="d-flex gap-2 mb-3">
@@ -143,6 +144,7 @@
             </button>
         </div>
     </form>
+</div>
 </div>
 
 <script src="{{ asset('js/detail.js') }}"></script>

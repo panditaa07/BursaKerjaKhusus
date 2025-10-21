@@ -5,14 +5,15 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
-<div class="container">
+<div class="container mx-auto px-4 py-4">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h4 class="fw-bold mb-2">LOWONGAN AKTIF</h4>
+            
             {{-- Tombol kembali --}}
-            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-custom back">
-                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Lowongan
+            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-primary btn-sm">
+                <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
        {{-- Search + tombol cari + total lowongan --}}
@@ -47,8 +48,8 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="container table-section">
-        <div class="table-responsive table-container">
+    <div class="container table-section table-responsive table-container">
+        
             <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
@@ -71,13 +72,18 @@
                                 <span class="badge bg-success">Aktif</span>
                             </td>
                             <td class="aksi">
-                                <a href="{{ route('admin.job-posts.show', $l->id) }}?from=aktif" class="table-btn view"><i class="bi bi-eye"></i></a>
-                                <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="table-btn edit"><i class="bi bi-pencil"></i></a>
-                                <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
+                                <a href="{{ route('admin.job-posts.show', $l->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
+                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                </a>
+                                <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-edit">
+                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                </a>
+                                <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="_redirect_to" value="{{ url()->full() }}">
-                                    <button type="submit" class="table-btn delete" onclick="return confirm('Yakin ingin menghapus lowongan ini?')"><i class="bi bi-trash"></i></button>
+                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                        <i class="fas fa-trash"></i><span>Hapus</span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -88,7 +94,7 @@
                     @endforelse
                 </tbody>
             </table>
-        </div>
+        
     </div>
 
     <div class="d-flex justify-content-center mt-3">

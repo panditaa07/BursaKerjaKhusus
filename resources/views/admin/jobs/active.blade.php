@@ -2,7 +2,7 @@
 @section('title', 'Daftar Lowongan Kerja Aktif')
 
 @section('content')
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
     <h1 class="h3 mb-4">Daftar Lowongan Kerja Aktif</h1>
     <form method="GET" action="{{ route('admin.job-posts.active') }}" class="mb-3">
         <div class="input-group">
