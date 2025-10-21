@@ -88,9 +88,10 @@
         @if(Auth::user()->portfolio_link)
     <div class="info-item">
         <span>Portofolio:</span> 
-        <a href="{{ Auth::user()->portfolio_link }}" target="_blank" class="portfolio-text-link">
-            Portofolio
-        </a>
+      <a href="{{ Auth::user()->portfolio_link }}" target="_blank" class="portfolio-text-link">
+    {{ Auth::user()->portfolio_link }}
+</a>
+
     </div>
 @endif
 
@@ -122,14 +123,5 @@
         </div>
     @endif
 </div>
-
-{{-- TOMBOL KEMBALI --}}
-<div class="back-btn-inline">
-    <a href="{{ route(match(auth()->user()->role ?? 'user') {
-        'admin' => 'admin.dashboard.index',
-        'company' => 'company.dashboard.index',
-        default => 'user.dashboard.index'
-    }) }}" class="btn-back">Kembali</a>
-</div> 
 <script src="{{ asset('js/profile.js') }}"></script>
 @endsection

@@ -112,7 +112,7 @@
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: "{{ asset('animations/bkk-loading.json') }}"  // ganti dengan lokasi file animasi logo kamu
+    path: "https://lottie.host/2adb744f-2abc-4095-9378-78bc3567170c/MLSmswGBDW.json "  // ganti dengan lokasi file animasi logo kamu
   });
 
   function hideLoader() {

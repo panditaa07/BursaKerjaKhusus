@@ -58,7 +58,7 @@
                                         </div>
                                         @endif
                                     </div>
-                                    <a href="{{ route('jobs.show', $job->id) }}" class="info-button" title="Lihat detail lowongan">Info</a>
+                                    <a href="{{ route('jobs.show', $job->id) }}" class="info-button" title="Lihat detail lowongan">Detail</a>
                                 </div>
                             </div>
                         </div>

@@ -30,7 +30,7 @@ class JobPostController extends Controller
             });
         }
 
-        $jobs = $query->paginate(10);
+        $jobs = $query->paginate(5);
         return view('user.jobs.index', compact('jobs'));
     }
 

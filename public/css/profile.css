@@ -228,7 +228,6 @@ body {
 .info-item:hover {
     background: rgba(30, 58, 138, 0.05);
     transform: translateX(5px);
-    border-left: 3px solid var(--primary-blue);
     padding-left: 15px;
 }
 
@@ -277,7 +276,7 @@ body {
 }
 
 .btn-cv {
-    background: var(--secondary-blue);
+    background: rgb(30, 58, 138);
     color: white !important;
     padding: 6px 12px;
     border-radius: 8px;
@@ -344,12 +343,30 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-.social-btn-facebook { background: #1877f2; }
-/* Menggunakan latar belakang linear yang lebih sederhana untuk Instagram */
-.social-btn-instagram { background: #C13584; } 
-.social-btn-linkedin { background: #0077b5; }
-.social-btn-twitter { background: #1da1f2; }
-.social-btn-tiktok { background: #000000; }
+/* FACEBOOK */
+.social-btn-facebook {
+    background: linear-gradient(135deg, #1877f2, #3b5998);
+}
+
+/* INSTAGRAM */
+.social-btn-instagram {
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+/* LINKEDIN */
+.social-btn-linkedin {
+    background: linear-gradient(135deg, #0077b5, #00a0dc);
+}
+
+/* TWITTER / X */
+.social-btn-twitter {
+    background: linear-gradient(135deg, #1da1f2, #0d8bec);
+}
+
+/* TIKTOK */
+.social-btn-tiktok {
+    background: linear-gradient(135deg, #000000);
+}
 
 
 /* ==========================================
@@ -366,7 +383,7 @@ body {
     display: inline-block;
     padding: 10px 24px;
     border-radius: 8px;
-    background: var(--primary-blue);
+    background: rgb(30, 58, 138);
     color: white;
     text-decoration: none;
     font-weight: 600;
@@ -374,7 +391,7 @@ body {
 }
 
 .btn-back:hover {
-    background: var(--secondary-blue);
+    background: rgb(30, 58, 138);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
@@ -478,4 +495,24 @@ body {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* ==========================================
+   PORTOFOLIO LINK (HANDLE LONG URL)
+   ========================================== */
+.portfolio-text-link {
+    color: rgb(30, 58, 138);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;         /* biar bisa wrap ke bawah */
+    max-width: 100%;               /* jangan melewati container */
+    word-break: break-all;         /* potong teks panjang */
+    overflow-wrap: break-word;     /* fallback browser modern */
+    white-space: normal;           /* biar teks bisa turun */
+    line-height: 1.4;
+}
+
+.portfolio-text-link:hover {
+    text-decoration: underline;
+    color: rgb(30, 58, 138);
 }
