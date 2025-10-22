@@ -44,41 +44,7 @@
             Detail Lowongan Kerja
         </h2>
 
-        <div class="jd-actions d-flex flex-wrap align-items-center">
-            {{-- Kembali --}}
-            <a href="javascript:history.back()" class="btn btn-outline-secondary jd-btn">
-                <i class="fas fa-arrow-left me-2"></i> Kembali
-            </a>
-
-            {{-- Edit Lowongan --}}
-            <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-warning jd-btn">
-                <i class="fas fa-edit me-2"></i> Edit Lowongan
-            </a>
-
-            {{-- Aktif/Nonaktif --}}
-            <form method="POST" action="{{ route('company.jobs.toggle-status', $job) }}" class="m-0 p-0">
-                @csrf
-                @method('PATCH')
-                <button type="submit"
-                        class="btn {{ $job->status === 'active' ? 'btn-outline-primary' : 'btn-success' }} jd-btn"
-                        onclick="return confirm('Apakah Anda yakin ingin mengubah status lowongan ini?')">
-                    <i class="fas fa-{{ $job->status === 'active' ? 'pause' : 'play' }} me-2"></i>
-                    {{ $job->status === 'active' ? 'Nonaktifkan' : 'Aktifkan' }}
-                </button>
-            </form>
-
-            {{-- Hapus --}}
-            <form method="POST" action="{{ route('company.jobs.destroy', $job) }}" class="m-0 p-0">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger jd-btn"
-                        onclick="return confirm('Apakah Anda yakin ingin menghapus lowongan ini?')">
-                    <i class="fas fa-trash me-2"></i> Hapus
-                </button>
-            </form>
-        </div>
-    </div>
-
+    
     <div class="row">
         <div class="col-12">
             <!-- Enhanced Main Card -->
@@ -374,6 +340,41 @@
         </div>
     </div>
 </div>
+
+<!-- Tombol Aksi di Bagian Bawah -->
+<div class="jd-actions-bottom mt-5">
+    <!-- Tombol Kembali -->
+    <a href="javascript:history.back()" class="btn btn-dark-back">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+
+    <!-- Tombol Edit Lowongan -->
+    <a href="{{ route('company.jobs.edit', $job) }}" class="btn btn-dark-edit">
+        <i class="fas fa-edit"></i> Edit Lowongan
+    </a>
+
+    <!-- Tombol Nonaktifkan / Aktifkan -->
+    <form method="POST" action="{{ route('company.jobs.toggle-status', $job) }}" class="d-inline">
+        @csrf
+        @method('PATCH')
+        <button type="submit" class="btn btn-dark-toggle"
+            onclick="return confirm('Apakah Anda yakin ingin mengubah status lowongan ini?')">
+            <i class="fas fa-toggle-on"></i>
+            {{ $job->status === 'active' ? 'Nonaktifkan' : 'Aktifkan' }}
+        </button>
+    </form>
+
+    <!-- Tombol Hapus -->
+    <form method="POST" action="{{ route('company.jobs.destroy', $job) }}" class="d-inline">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-dark-delete"
+            onclick="return confirm('Apakah Anda yakin ingin menghapus lowongan ini?')">
+            <i class="fas fa-trash"></i> Hapus
+        </button>
+    </form>
+</div>
+
 @endsection
 
 @push('styles')
