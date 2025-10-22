@@ -77,7 +77,7 @@
   </div>
 </div>
 
-
+<br>
              <!-- Table -->
     <div class="container table-section table-responsive table-container">
         
@@ -109,16 +109,16 @@
                                     @endif
                                 </td>
                                 <td class="aksi">
-                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
+                                    <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-detail">
                                     <i class="fas fa-eye"></i><span>Lihat</span>
                                 </a>
-                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-edit">
+                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
                                     <i class="fas fa-edit"></i><span>Edit</span>
                                 </a>
                                 <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
+                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
                                         <i class="fas fa-trash"></i><span>Hapus</span>
                                     </button>
                                 </form>

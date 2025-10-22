@@ -133,7 +133,6 @@
 
                     <!-- Enhanced Job Details Grid -->
                     <div class="info-grid-enhanced mb-5">
-                        <!-- Informasi Umum -->
                         <div class="info-card-enhanced">
                             <h5 class="mb-4">
                                 <div class="icon-container d-inline-flex me-3">

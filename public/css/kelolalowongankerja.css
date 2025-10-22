@@ -56,8 +56,7 @@
 /* ===== Tabel Custom ===== */
 .kelola-lowongan .table-card {
     background: #fff !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important; 
     overflow: hidden !important;
     border: none !important;
 }

@@ -26,65 +26,70 @@
         @endif
     </div>
 
-    <!-- Profile Photo -->
-    <div class="mb-4 text-center">
-        @if($application->user && $application->user->profile_photo_path)
-            <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
-                 alt="Foto Profil"
-                 class="rounded-circle border"
-                 style="width: 32px; height: 32px; object-fit: cover;">
-        @else
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto"
-                 style="width: 120px; height: 120px; font-size: 48px; font-weight: bold;">
-                {{ strtoupper(substr($application->user->name ?? 'N', 0, 1)) }}
-            </div>
-        @endif
-    </div>
-
-    <div class="row g-3">
-        <!-- Personal Information -->
-        <div class="col-lg-8">
-            <div class="card shadow-sm mb-3">
-                <div class="card-header bg-primary">
-                    <h5 class="mb-0"><i class="fas fa-user"></i> Informasi Pribadi</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <td class="fw-bold" width="140">NIK/NISN:</td>
-                                    <td>{{ $application->user ? $application->user->nisn ?? '-' : '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Nama Lengkap:</td>
-                                    <td>{{ $application->user ? $application->user->name : '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Email:</td>
-                                    <td>{{ $application->user ? $application->user->email : '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">No. HP:</td>
-                                    <td>{{ $application->user ? $application->user->phone ?? '-' : '-' }}</td>
-                                </tr>
-                            </table>
+                    <div class="row g-3">  
+                        <!-- Personal Information -->
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm mb-3">
+                                <div class="card-header bg-primary">
+                                    <h5 class="mb-0"><i class="fas fa-user"></i> Informasi Pribadi</h5>
+                                </div>
+                                <div class="card-body">
+                    <div class="d-flex align-items-start">
+                        <!-- Foto Profil di Kiri -->
+                        <div class="me-4">
+                            @if($application->user && $application->user->profile_photo_path)
+                                <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
+                                    alt="Foto Profil"
+                                    class="rounded-circle border"
+                                    style="width: 150px; height: 150px; object-fit: cover;">
+                            @else
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                    style="width: 150px; height: 150px; font-size: 70px; font-weight: bold;">
+                                    {{ strtoupper(substr($application->user->name ?? 'N', 0, 1)) }}
+                                </div>
+                            @endif
                         </div>
-                        <div class="col-md-6">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <td class="fw-bold" width="140">Tanggal Lahir:</td>
-                                    <td>{{ $application->user && $application->user->birth_date ? \Carbon\Carbon::parse($application->user->birth_date)->format('d F Y') : '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Alamat:</td>
-                                    <td>{{ $application->user ? $application->user->address ?? '-' : '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Profil:</td>
-                                    <td>{{ $application->user ? $application->user->short_profile ?? '-' : '-' }}</td>
-                                </tr>
-                            </table>
+
+                        <!-- Data Pribadi di Kanan -->
+                        <div class="flex-grow-1">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td class="fw-bold" width="140">NIK/NISN:</td>
+                                            <td>{{ $application->user ? $application->user->nisn ?? '-' : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Nama Lengkap:</td>
+                                            <td>{{ $application->user ? $application->user->name : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Email:</td>
+                                            <td>{{ $application->user ? $application->user->email : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">No. HP:</td>
+                                            <td>{{ $application->user ? $application->user->phone ?? '-' : '-' }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td class="fw-bold" width="140">Tanggal Lahir:</td>
+                                            <td>{{ $application->user && $application->user->birth_date ? \Carbon\Carbon::parse($application->user->birth_date)->format('d F Y') : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Alamat:</td>
+                                            <td>{{ $application->user ? $application->user->address ?? '-' : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Profil:</td>
+                                            <td>{{ $application->user ? $application->user->short_profile ?? '-' : '-' }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
