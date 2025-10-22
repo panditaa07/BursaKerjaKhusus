@@ -55,8 +55,8 @@
                                    request()->routeIs('user.dashboard.index');
             @endphp
             @if($isDashboardPage)
-            <div class="page-title-section">
-                <div class="container-fluid">
+            <div class="page-title">
+                <div class="container mx-auto px-4 py-4">
                     <h1 class="page-title">{{ $pageTitle }}</h1>
                 </div>
             </div>

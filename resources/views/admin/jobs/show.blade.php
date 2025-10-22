@@ -107,7 +107,7 @@
                     <!-- Enhanced Job Details Grid -->
                     <div class="info-grid-enhanced mb-5">
                         <!-- Informasi Umum -->
-                        <div class="info-card-enhanced">
+                        <div class="info-card-enhanced card-shadow">
                             <h5 class="mb-4">
                                 <div class="icon-container d-inline-flex me-3">
                                     <i class="fas fa-info-circle"></i>
@@ -172,7 +172,7 @@
                         </div>
 
                         <!-- Detail Tambahan -->
-                        <div class="info-card-enhanced">
+                        <div class="info-card-enhanced card-shadow">
                             <h5 class="mb-4">
                                 <div class="icon-container d-inline-flex me-3">
                                     <i class="fas fa-list"></i>
@@ -219,7 +219,7 @@
 
                     <!-- Enhanced Content Sections -->
                     @if($jobPost->description)
-                    <div class="info-card-enhanced mb-4">
+                    <div class="info-card-enhanced mb-4 card-shadow">
                         <h5 class="mb-4">
                             <div class="icon-container d-inline-flex me-3">
                                 <i class="fas fa-tasks"></i>
@@ -233,7 +233,7 @@
                     @endif
 
                     @if($jobPost->requirements)
-                    <div class="info-card-enhanced mb-4">
+                    <div class="info-card-enhanced mb-4 card-shadow">
                         <h5 class="mb-4">
                             <div class="icon-container d-inline-flex me-3">
                                 <i class="fas fa-clipboard-list"></i>
@@ -247,7 +247,7 @@
                     @endif
 
                     @if($jobPost->berkas_lamaran)
-                    <div class="info-card-enhanced mb-4">
+                    <div class="info-card-enhanced mb-4 card-shadow">
                         <h5 class="mb-4">
                             <div class="icon-container d-inline-flex me-3">
                                 <i class="fas fa-file-alt"></i>
