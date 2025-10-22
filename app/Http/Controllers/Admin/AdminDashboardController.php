@@ -303,6 +303,12 @@ class AdminDashboardController extends Controller
             'birth_date' => 'nullable|date',
             'role'      => 'required|string|in:admin,company,user',
             'status'    => 'required|in:active,inactive',
+            'portfolio_link' => 'nullable|url|max:255',
+            'linkedin' => 'nullable|url|max:255',
+            'instagram' => 'nullable|url|max:255',
+            'facebook' => 'nullable|url|max:255',
+            'twitter' => 'nullable|url|max:255',
+            'tiktok' => 'nullable|url|max:255',
         ]);
 
         $user->update([
@@ -313,6 +319,12 @@ class AdminDashboardController extends Controller
             'nisn'      => $request->nisn,
             'birth_date' => $request->birth_date,
             'role_id'   => \App\Models\Role::where('name', $request->role)->first()->id,
+            'portfolio_link' => $request->portfolio_link,
+            'linkedin' => $request->linkedin,
+            'instagram' => $request->instagram,
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'tiktok' => $request->tiktok,
         ]);
 
         if ($request->status === 'active') {
