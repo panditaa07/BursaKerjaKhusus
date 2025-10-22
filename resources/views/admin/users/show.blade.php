@@ -24,164 +24,16 @@
       $slug    = $company?->slug ?: 'company';
     @endphp
 
-    <div class="container">
-      {{-- HERO --}}
-      <section class="hero">
-        <div class="hero-cover"></div>
-        <div class="hero-inner">
-          <div class="hero-logo">
-            @if($logo)
-              <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
-            @else
-              <div class="hero-logo-fallback"><i class="fas fa-building"></i></div>
-            @endif
-          </div>
-          <div class="hero-title">
-            <h1>{{ $company->name ?? 'Nama Perusahaan' }}</h1>
-            <div class="hero-meta">
-              @if($industry)
-                <span class="chip"><i class="fas fa-industry"></i>{{ $industry }}</span>
-              @endif
-              @if($web)
-                <a class="chip" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank" rel="noopener">
-                  <i class="fas fa-globe"></i>{{ $web }}
-                </a>
-              @else
-                <span class="chip is-muted"><i class="fas fa-globe"></i>Website belum diisi</span>
-              @endif
-              <span class="chip"><i class="fas fa-link"></i>{{ url('/'.$slug) }}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {{-- GRID --}}
-      <section class="cards-grid">
-        {{-- Informasi Perusahaan --}}
-        <article class="card">
-          <header class="card-head">
-            <h3><i class="fas fa-briefcase"></i> Informasi Perusahaan</h3>
-          </header>
-          <div class="card-body grid-2">
-            <dl class="kv">
-              <dt>Nama Perusahaan</dt>
-              <dd>{{ $company->name ?? '-' }}</dd>
-              <dt>Alamat</dt>
-              <dd>{{ $company->address ?? '-' }}</dd>
-              <dt>Telepon</dt>
-              <dd>{{ $company->phone ?? '-' }}</dd>
-              <dt>Email Kontak</dt>
-              <dd>{{ $company->email ?? '-' }}</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Industri</dt>
-              <dd>{{ $industry ?? '-' }}</dd>
-              <dt>Website</dt>
-              <dd>
-                @if($web)
-                  <a class="link" href="{{ \Illuminate\Support\Str::startsWith($webRaw,'http') ? $webRaw : 'https://'.$web }}" target="_blank">
-                    {{ $web }} <i class="fas fa-external-link-alt"></i>
-                  </a>
-                @else - @endif
-              </dd>
-              <dt>Dibuat</dt>
-              <dd>{{ optional($company?->created_at)->format('d M Y') ?? '-' }}</dd>
-              <dt>Diperbarui</dt>
-              <dd>{{ optional($company?->updated_at)->format('d M Y') ?? '-' }}</dd>
-            </dl>
-          </div>
-        </article>
-
-        {{-- Tentang Perusahaan --}}
-        <article class="card">
-          <header class="card-head">
-            <h3><i class="fas fa-align-left"></i> Tentang Perusahaan</h3>
-          </header>
-          <div class="card-body">
-            <div class="prose">
-              {{ $company?->description ?: 'Belum ada deskripsi perusahaan.' }}
-            </div>
-          </div>
-        </article>
-
-        {{-- Logo & Branding --}}
-        <article class="card">
-          <header class="card-head">
-            <h3><i class="fas fa-image"></i> Logo & Branding</h3>
-          </header>
-          <div class="card-body branding">
-            <div class="branding-preview">
-              @if($logo)
-                <img src="{{ asset('storage/'.$logo) }}" alt="Logo Perusahaan">
-              @else
-                <div class="branding-fallback"><i class="fas fa-building"></i></div>
-              @endif
-            </div>
-            <div class="branding-text">
-              <p>Logo perusahaan yang terdaftar.</p>
-            </div>
-          </div>
-        </article>
-
-        {{-- Informasi PIC --}}
-        <article class="card">
-          <header class="card-head">
-            <h3><i class="fas fa-user-circle"></i> Informasi PIC</h3>
-          </header>
-          <div class="card-body">
-            <div class="pic">
-              <div class="pic-avatar">
-                @if($user->profile_photo_path)
-                  <img src="{{ asset('storage/'.$user->profile_photo_path) }}" alt="{{ $user->name }}">
-                @else
-                  <div class="avatar-fallback"><i class="fas fa-user"></i></div>
-                @endif
-              </div>
-              <dl class="kv">
-                <dt>Nama</dt> <dd>{{ $user->name }}</dd>
-                <dt>Email</dt> <dd>{{ $user->email }}</dd>
-                <dt>No. HP</dt> <dd>{{ $user->phone ?? '-' }}</dd>
-                <dt>Alamat</dt> <dd>{{ $user->address ?? '-' }}</dd>
-              </dl>
-            </div>
-          </div>
-        </article>
-
-        {{-- Lowongan Perusahaan --}}
-        <article class="card">
-          <header class="card-head">
-            <h3><i class="fas fa-briefcase-medical"></i> Lowongan Perusahaan ({{ $user->jobPosts->count() }})</h3>
-          </header>
-          <div class="card-body">
-            @if($user->jobPosts->isEmpty())
-                <p>Perusahaan ini belum memiliki lowongan.</p>
-            @else
-                <div class="job-post-list">
-                    @foreach($user->jobPosts as $job)
-                        <div class="job-post-item">
-                            <div class="job-post-info">
-                                <h4>{{ $job->title }}</h4>
-                                <p>{{ $job->location }} &bull; {{ $job->employment_type }}</p>
-                            </div>
-                            <div class="job-post-status">
-                                <span class="badge-enhanced
-                                    @if($job->status == 'active') bg-success
-                                    @else bg-danger @endif">
-                                    <i class="fas fa-{{ $job->status == 'active' ? 'check' : 'pause' }} me-1"></i>
-                                    {{ ucfirst($job->status) }}
-                                </span>
-                                <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-sm btn-outline-primary mt-2">Lihat Detail</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-          </div>
-        </article>
-      </section>
+    {{-- ✅ Fallback biar gak blank --}}
+    <div class="container text-center py-5">
+        <h3><i class="fas fa-building text-primary"></i></h3>
+        <h4>{{ $user->name }}</h4>
+        <p class="text-muted">Perusahaan ini belum memiliki detail yang lengkap.</p>
+        <hr class="my-4" style="width:60%;margin:auto;opacity:0.3;">
+        <p>Silakan periksa kembali data perusahaan di menu lain.</p>
     </div>
 
-@else {{-- For regular users --}}
+@else
     <div class="container">
       {{-- HERO --}}
       <section class="hero">
@@ -302,41 +154,39 @@
         </article>
 
         {{-- Riwayat Lamaran --}}
-        {{-- Riwayat Lamaran --}}
-<article class="card riwayat-card">
-    <header class="card-head">
-        <h3><i class="fas fa-history"></i> Riwayat Lamaran ({{ $user->applications->count() }})</h3>
-    </header>
-    <div class="card-body riwayat-container">
-        @if($user->applications->isEmpty())
-            <p>Belum ada riwayat lamaran.</p>
-        @else
-            <div class="table-wrapper">
-                <table class="table table-bordered table-striped riwayat-table">
-                    <thead>
-                        <tr>
-                            <th>Judul Lowongan</th>
-                            <th>Perusahaan</th>
-                            <th>Status</th>
-                            <th>Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($user->applications as $application)
-                            <tr>
-                                <td>{{ $application->jobPost->title ?? '-' }}</td>
-                                <td>{{ $application->jobPost->company->name ?? '-' }}</td>
-                                <td>{{ ucfirst($application->status) }}</td>
-                                <td>{{ $application->created_at->format('d M Y') }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        <article class="card riwayat-card">
+            <header class="card-head">
+                <h3><i class="fas fa-history"></i> Riwayat Lamaran ({{ $user->applications->count() }})</h3>
+            </header>
+            <div class="card-body riwayat-container">
+                @if($user->applications->isEmpty())
+                    <p>Belum ada riwayat lamaran.</p>
+                @else
+                    <div class="table-wrapper">
+                        <table class="table table-bordered table-striped riwayat-table">
+                            <thead>
+                                <tr>
+                                    <th>Judul Lowongan</th>
+                                    <th>Perusahaan</th>
+                                    <th>Status</th>
+                                    <th>Tanggal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($user->applications as $application)
+                                    <tr>
+                                        <td>{{ $application->jobPost->title ?? '-' }}</td>
+                                        <td>{{ $application->jobPost->company->name ?? '-' }}</td>
+                                        <td>{{ ucfirst($application->status) }}</td>
+                                        <td>{{ $application->created_at->format('d M Y') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             </div>
-        @endif
-    </div>
-</article>
-
+        </article>
       </section>
     </div>
 @endif

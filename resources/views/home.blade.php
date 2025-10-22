@@ -112,7 +112,7 @@
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: "https://lottie.host/2adb744f-2abc-4095-9378-78bc3567170c/MLSmswGBDW.json "  // ganti dengan lokasi file animasi logo kamu
+    path: "https://lottie.host/ed4366ef-6af4-41ba-b36c-9c880d611414/UiJzA4O4Gj.json "  // ganti dengan lokasi file animasi logo kamu
   });
 
   function hideLoader() {
