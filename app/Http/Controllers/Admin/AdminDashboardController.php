@@ -339,18 +339,46 @@ class AdminDashboardController extends Controller
     /**
      * Hapus user (permanent delete)
      */
-    public function deleteUser(User $user)
+    public function deleteUser($user_id)
     {
+        $user = User::withTrashed()->findOrFail($user_id);
+
         // Prevent admin from deleting their own account
         if (auth()->id() === $user->id) {
             return redirect()->route('admin.users.index')->with('error', 'Anda tidak dapat menghapus akun sendiri.');
         }
 
+        // Delete related data and files
+        if ($user->role->name === 'company' && $user->company) {
+            // Delete job posts for company
+            JobPost::where('company_id', $user->company->id)->delete();
+
+            // Delete company logo if exists
+            if ($user->company->logo && \Storage::disk('public')->exists($user->company->logo)) {
+                \Storage::disk('public')->delete($user->company->logo);
+            }
+        }
+
+        // Delete user files
+        if ($user->cv_path && \Storage::disk('public')->exists($user->cv_path)) {
+            \Storage::disk('public')->delete($user->cv_path);
+        }
+        if ($user->cover_letter_path && \Storage::disk('public')->exists('cover_letter_files/' . $user->cover_letter_path)) {
+            \Storage::disk('public')->delete('cover_letter_files/' . $user->cover_letter_path);
+        }
+        if ($user->profile_photo_path && \Storage::disk('public')->exists($user->profile_photo_path)) {
+            \Storage::disk('public')->delete($user->profile_photo_path);
+        }
+
+        // Delete notifications
+        UserNotification::where('user_id', $user->id)->delete();
+
+        // Force delete the user (this will cascade delete company and applications due to foreign keys)
         $user->forceDelete();
 
         // Set message based on user role
         $message = $user->role->name === 'company'
-            ? 'company berhasil dihapus secara permanen.'
+            ? 'Company berhasil dihapus secara permanen.'
             : 'User berhasil dihapus secara permanen.';
 
         return redirect()->route('admin.users.index')->with('success', $message);
