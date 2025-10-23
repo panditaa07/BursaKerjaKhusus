@@ -512,3 +512,55 @@ select:focus-visible {
         border: 1px solid #000;
     }
 }
+
+/* === MODERN DATEPICKER STYLE === */
+.modern-datepicker {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    color: rgb(30, 58, 138);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.modern-datepicker:hover {
+    border-color: rgb(30, 58, 138);
+}
+
+.modern-datepicker:focus {
+    outline: none;
+    border-color: rgb(30, 58, 138);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+.flatpickr-calendar {
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    border: none;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day:focus {
+    background: rgb(30, 58, 138);
+    color: white;
+}
+
+.flatpickr-day.today {
+    border-color: rgb(30, 58, 138);
+    color: rgb(30, 58, 138);
+}
+
+.flatpickr-day.selected {
+    background: rgb(30, 58, 138);
+    color: white;
+}
+
+.flatpickr-months .flatpickr-month {
+    background: rgb(30, 58, 138);
+    color: white;
+    border-radius: 8px 8px 0 0;
+}

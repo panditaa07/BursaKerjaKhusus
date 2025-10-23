@@ -6,18 +6,23 @@
 <meta name="update-photo-url" content="{{ route('profile.photo.update') }}">
 <link rel="stylesheet" href="{{ asset('css/editprofile-user.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+
+{{-- Tambahan untuk kalender modern --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
 <style>
     .cropper-modal {
-        background-color: rgba(0, 0, 0, 0.3); /* Make the overlay less dark */
+        background-color: rgba(0, 0, 0, 0.3);
     }
     .img-container {
         max-height: 450px;
     }
     .cropper-preview {
         overflow: hidden;
-        width: 160px; /* preview width */
-        height: 160px; /* preview height */
-        border-radius: 50%; /* Make it a circle */
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
         margin: 0 auto;
         border: 1px solid #ddd;
     }
@@ -90,7 +95,9 @@
                 </div>
                 <div class="form-group">
                     <label>Tanggal Lahir</label>
-                    <input type="date" name="birth_date" value="{{ old('birth_date', Auth::user()->birth_date) }}">
+                    {{-- ubah ke text agar flatpickr bisa bekerja --}}
+                    <input type="text" class="modern-datepicker" name="birth_date"
+                        value="{{ old('birth_date', Auth::user()->birth_date) }}">
                 </div>
             </div>
             @endif
@@ -210,4 +217,19 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 <script src="{{ asset('js/editprofile-user.js') }}"></script>
+
+{{-- Tambahan script Flatpickr --}}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    flatpickr("input[name='birth_date']", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "d/m/Y",
+        locale: "id",
+        disableMobile: true
+    });
+});
+</script>
 @endpush
+    
