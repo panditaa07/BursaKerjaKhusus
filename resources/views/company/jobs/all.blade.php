@@ -6,9 +6,11 @@
 
 @section('content')
 <div class="container-fluid kelola-lowongan">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="page-title">Semua Lowongan</h2>
-        <div class="d-flex align-items-center">
+
+    {{-- Header + tombol tambah --}}
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h2 class="page-title mb-0">Semua Lowongan</h2>
+        <div class="d-flex align-items-center flex-wrap gap-2">
             <span class="me-3 total-lowongan">Total Lowongan: {{ $jobs->total() }}</span>
             <a href="{{ route('company.jobs.create') }}?from=all" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Tambah Lowongan
@@ -16,14 +18,17 @@
         </div>
     </div>
 
-    {{-- Search Bar dengan Reset --}}
+    {{-- Search Bar --}}
     <div class="mb-4 search-bar">
         <form method="GET" action="{{ route('company.jobs.all') }}">
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Cari lowongan berdasarkan judul, lokasi, atau tipe..." value="{{ request('search') }}">
+                <input type="text" name="search" class="form-control"
+                       placeholder="Cari lowongan berdasarkan judul, lokasi, atau tipe..."
+                       value="{{ request('search') }}">
                 <button type="submit" class="btn btn-secondary">
                     <i class="fas fa-search me-2"></i>Cari
                 </button>
+
                 @if(request('search'))
                     <a href="{{ route('company.jobs.all') }}" class="btn btn-outline-secondary">
                         <i class="fas fa-times me-2"></i>Reset
@@ -33,41 +38,55 @@
         </form>
     </div>
 
-    <div class="table-responsive">
-        <table class="company-applications-table">
+    {{-- Tabel --}}
+    <div class="table-responsive lowongan-wrapper">
+        <table class="company-applications-table compact">
+            <colgroup>
+                <col style="width:5%">    {{-- NO --}}
+                <col style="width:22%">   {{-- JUDUL --}}
+                <col style="width:14%">   {{-- LOKASI --}}
+                <col style="width:10%">   {{-- TIPE --}}
+                <col style="width:12%">   {{-- GAJI --}}
+                <col style="width:12%">   {{-- STATUS --}}
+                <col style="width:12%">   {{-- DEADLINE --}}
+                <col style="width:13%">   {{-- AKSI --}}
+            </colgroup>
             <thead>
                 <tr>
-                    <th class="text-center" width="60">NO</th>
+                    <th class="text-center">NO</th>
                     <th>JUDUL</th>
                     <th>LOKASI</th>
                     <th>TIPE</th>
                     <th>GAJI</th>
                     <th>STATUS</th>
                     <th>DEADLINE</th>
-                    <th class="text-center" width="150">AKSI</th>
+                    <th class="text-center">AKSI</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($jobs as $job)
                 <tr>
-                    <td class="text-center text-muted fw-bold" data-label="NO">
+                    {{-- NO --}}
+                    <td class="text-center fw-bold text-muted">
                         {{ $loop->iteration + ($jobs->currentPage() - 1) * $jobs->perPage() }}
                     </td>
 
-                    <td data-label="JUDUL">
-                        <div class="fw-bold">{{ $job->title }}</div>
-                        <small class="text-muted">{{ Str::limit($job->description, 50) }}</small>
+                    {{-- JUDUL tanpa deskripsi --}}
+                    <td class="text-start fw-bold">
+                        {{ $job->title }}
                     </td>
 
-                    <td data-label="LOKASI">{{ $job->location ?? '-' }}</td>
+                    {{-- LOKASI --}}
+                    <td>{{ $job->location ?? '-' }}</td>
 
-                    <td data-label="TIPE">
-                        <span class="badge bg-info">{{ $job->type ?? 'N/A' }}</span>
-                    </td>
+                    {{-- TIPE --}}
+                    <td><span class="badge bg-info">{{ $job->type ?? 'N/A' }}</span></td>
 
-                    <td data-label="GAJI">{{ $job->salary ?? '-' }}</td>
+                    {{-- GAJI --}}
+                    <td>{{ $job->salary ?? '-' }}</td>
 
-                    <td data-label="STATUS">
+                    {{-- STATUS --}}
+                    <td>
                         <span class="badge-status
                             @if($job->status == 'active') badge-success
                             @elseif($job->status == 'inactive') badge-secondary
@@ -76,60 +95,37 @@
                         </span>
                     </td>
 
-                    <td data-label="DEADLINE">
+                    {{-- DEADLINE --}}
+                    <td>
                         @if($job->deadline)
                             {{ \Carbon\Carbon::parse($job->deadline)->format('d/m/Y') }}
-                            @if(\Carbon\Carbon::parse($job->deadline)->isPast())
-                                <br><small class="text-danger">Deadline berlalu</small>
-                            @else
-                                <br><small class="text-muted">{{ \Carbon\Carbon::parse($job->deadline)->diffForHumans() }}</small>
-                            @endif
+                            <br><small class="text-muted">{{ \Carbon\Carbon::parse($job->deadline)->diffForHumans() }}</small>
                         @else
                             -
                         @endif
                     </td>
 
-                    {{-- AKSI - disamakan dengan dashboard (kotak putih + border berwarna) --}}
-                    <td class="text-center" data-label="AKSI">
-                        <div class="btn-group" role="group">
-                            {{-- Lihat --}}
-                            <a href="{{ route('company.jobs.show', $job->id) }}" 
-                            class="action-mini view" title="Lihat">
-                            <i class="fas fa-eye"></i>
-                            </a>
-
-                            {{-- Edit --}}
-                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" 
-                            class="action-mini edit" title="Edit">
-                            <i class="fas fa-pen"></i>
-                            </a>
-
-                            {{-- Hapus --}}
-                            <form action="{{ route('company.jobs.destroy', $job->id) }}"
-                                  method="POST" class="d-inline"
+                    {{-- AKSI --}}
+                    <td class="text-center">
+                        <div class="aksi-wrapper">
+                            <a href="{{ route('company.jobs.show', $job->id) }}" class="action-text view">Lihat</a>
+                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=all" class="action-text edit">Edit</a>
+                            <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline"
                                   onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <input type="hidden" name="from" value="all">
-                                <button type="submit" class="action-mini delete" title="Hapus">
-                                <i class="fas fa-trash"></i>
-                                </button>
+                                @csrf @method('DELETE')
+                                <button type="submit" class="action-text delete">Hapus</button>
                             </form>
                         </div>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5 empty-state">
-                        <div class="text-muted">
-                            <i class="fas fa-briefcase fa-3x mb-3"></i>
-                            <p class="mb-0">Belum ada lowongan kerja</p>
-                            <p class="mb-0 mt-2">
-                                <a href="{{ route('company.jobs.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> Buat Lowongan Pertama
-                                </a>
-                            </p>
-                        </div>
+                    <td colspan="8" class="text-center py-5 text-muted">
+                        <i class="fas fa-briefcase fa-3x mb-3"></i><br>
+                        Belum ada lowongan kerja.
+                        <br><a href="{{ route('company.jobs.create') }}" class="btn btn-primary btn-sm mt-2">
+                            <i class="fas fa-plus"></i> Buat Lowongan Pertama
+                        </a>
                     </td>
                 </tr>
                 @endforelse
