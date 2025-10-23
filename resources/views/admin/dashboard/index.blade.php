@@ -108,10 +108,10 @@
     </div>
 
     {{-- === Tabel Pelamar === --}}
-    <div class="container table-section mt-4">
+    <div class="container table-section table-section1 mt-4">
     <h3 class="mb-3">Daftar Pelamar Terbaru</h3>
 
-    <div class="table-responsive table-container">
+    <div class="table-responsive table-section">
         <table class="table-dashboard mb-0 text-center">
             <thead>
                 <tr>
@@ -153,13 +153,13 @@
                             <!-- Tombol Lihat -->
                             <a href="{{ route('admin.applications.show', $app->id) }}"
                             class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                <i class="fas fa-eye"></i><span>Lihat</span>
+                                <i class=""></i><span>Lihat</span>
                             </a>
 
                             <!-- Tombol Edit -->
                             <a href="{{ route('admin.applications.edit', $app->id) }}"
                             class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                <i class="fas fa-edit"></i><span>Edit</span>
+                                <i class=""></i><span>Edit</span>
                             </a>
 
                             <!-- Tombol Hapus -->
@@ -169,7 +169,7 @@
                                 <button type="submit"
                                     class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold"
                                     onclick="return confirm('Yakin ingin menghapus?')">
-                                    <i class="fas fa-trash"></i><span>Hapus</span>
+                                    <i class=""></i><span>Hapus</span>
                                 </button>
                             </form>
 
@@ -186,9 +186,9 @@
 </div>
 <br>
     {{-- === Tabel Loker Aktif === --}}
-    <div class="container table-section mt-4">
+    <div class="container table-section table-section1 mt-4">
         <h3 class="mb-3">Loker Terbaru</h3>
-        <div class="table-responsive table-container">
+        <div class="table-responsive table-section">
             <table class="table-dashboard mb-0 text-center">
                 <thead>
                     <tr>
@@ -211,16 +211,16 @@
                             </td>
                             <td class="aksi">
                                 <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                    <i class=""></i><span>Lihat</span>
                                 </a>
                                 <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                    <i class=""></i><span>Edit</span>
                                 </a>
                                 <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class="fas fa-trash"></i><span>Hapus</span>
+                                        <i class=""></i><span>Hapus</span>
                                     </button>
                                 </form>
                             </td>

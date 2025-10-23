@@ -326,24 +326,37 @@ body {
    TABLE STYLING FIXED (rapi + hover interaktif)
    ================================================ */
 
+.container,
 .table-section {
-    background: var(--white);
-    border-radius: var(--border-radius-lg);
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+
+.table-section1 {
+    background: none !important;        /* hilangkan warna putih di belakang */
+    border-radius: 12px;                /* biar tetap lembut di sudut */
     padding: 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--gray-200);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);        /* hilangin efek bayangan putih */
+    border: none !important;            /* hilangin garis putih di pinggir */
+    transition: all 0.3s ease;
+}
 
-    transition: var(--transition);
+.table-section table {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .table-section:hover {
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
 }
 
 .table-section h3 {
-    color: black;
+    color: rgb(30, 58, 138);
     font-weight: 700;
     margin: -2rem -2rem 2rem -2rem; /* biar full lebar, nyatu sama card */
     padding: 1rem 0 1.5rem 0; /* tambahin padding bawah */
@@ -362,7 +375,7 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: black;
+    background: rgb(30, 58, 138);
     border-radius: 2px;
 }
 

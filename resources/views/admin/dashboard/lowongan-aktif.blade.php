@@ -48,7 +48,7 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="container table-section table-responsive table-container">
+    <div class="container table-section table-responsive table-responsive1">
         
             <table class="table-dashboard mb-0 text-center">
                 <thead>
@@ -73,16 +73,16 @@
                             </td>
                             <td class="aksi">
                                 <a href="{{ route('admin.job-posts.show', $l->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-detail">
-                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                    <i class=""></i><span>Lihat</span>
                                 </a>
                                 <a href="{{ route('admin.job-posts.edit', $l->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
-                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                    <i class=""></i><span>Edit</span>
                                 </a>
                                 <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class="fas fa-trash"></i><span>Hapus</span>
+                                        <i class=""></i><span>Hapus</span>
                                     </button>
                                 </form>
                             </td>

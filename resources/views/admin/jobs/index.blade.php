@@ -25,7 +25,7 @@
     </span>
     <input type="text" name="search" class="form-control"
            placeholder="Cari lowongan..." value="{{ request('search') }}">
-    <button type="submit" class="btn btn-primary fw-bold btn-cari">Cari</button>
+    <button type="submit" class="btn btn-primary">Cari</button>
   </div>
 
   @if(request('search'))
@@ -79,7 +79,7 @@
 
 <br>
              <!-- Table -->
-    <div class="container table-section table-responsive table-container">
+    <div class="container table-section table-responsive">
         
             <table class="table-dashboard mb-0 text-center">
                 <thead>
@@ -110,16 +110,16 @@
                                 </td>
                                 <td class="aksi">
                                     <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-detail">
-                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                    <i class=""></i><span>Lihat</span>
                                 </a>
                                 <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
-                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                    <i class=""></i><span>Edit</span>
                                 </a>
                                 <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class="fas fa-trash"></i><span>Hapus</span>
+                                        <i class=""></i><span>Hapus</span>
                                     </button>
                                 </form>
                                 </td>
@@ -131,10 +131,7 @@
                         @endforelse
                 </tbody>
             </table>
-        
     </div>
-        </div>
-    
 
 <div class="d-flex justify-content-center mt-3">
     <div class="btn-group" role="group" aria-label="Pagination">

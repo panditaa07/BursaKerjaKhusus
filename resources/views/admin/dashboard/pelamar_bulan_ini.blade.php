@@ -50,7 +50,7 @@
     </div>
 
     <!-- Table -->
-    <div class="container table-section table-responsive table-container">
+    <div class="container table-section table-responsive table-responsive1">
         
             <table class="table-dashboard mb-0 text-center">
                 <thead>
@@ -90,13 +90,13 @@
                             <td class="aksi">
                                     <a href="{{ route('admin.applications.show', $p->id) }}"
                             class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-detail">
-                                <i class="fas fa-eye"></i><span>Lihat</span>
+                                <i class=""></i><span>Lihat</span>
                             </a>
 
                             <!-- Tombol Edit -->
                             <a href="{{ route('admin.applications.edit', $p->id) }}"
                             class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
-                                <i class="fas fa-edit"></i><span>Edit</span>
+                                <i class=""></i><span>Edit</span>
                             </a>
 
                             <!-- Tombol Hapus -->
@@ -106,7 +106,7 @@
                                 <button type="submit"
                                     class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-delete"
                                     onclick="return confirm('Yakin ingin menghapus?')">
-                                    <i class="fas fa-trash"></i><span>Hapus</span>
+                                    <i class=""></i><span>Hapus</span>
                                 </button>
                             </form>
                             </td>

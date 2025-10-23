@@ -25,11 +25,11 @@ body {
     font-family: "Inter", sans-serif;
 }
 
-.container-fluid {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.container,
+.table-section {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 @keyframes slideInUp {
@@ -278,14 +278,25 @@ td.aksi .table-btn {
 }
 
 /* Modern Table Styles */
-.table-responsive {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 0;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+.table-responsive1 {
+    background: none !important;        /* hilangkan warna putih di belakang */
+    border-radius: 12px;                /* biar tetap lembut di sudut */
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);        /* hilangin efek bayangan putih */
+    border: none !important;            /* hilangin garis putih di pinggir */
+    transition: all 0.3s ease;
+}
+
+.table-responsive table {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
     overflow: hidden;
-    animation: slideInRight 0.8s ease-out;
+}
+
+.table-section:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 @keyframes slideInRight {

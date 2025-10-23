@@ -78,7 +78,7 @@
     @else
     
      <!-- Table -->
-    <div class="container table-section table-responsive table-container">
+    <div class="container table-section table-responsive">
         
             <table class="table-dashboard mb-0 text-center">
                 <thead>
@@ -115,10 +115,10 @@
                             <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                 <td class="text-center aksi">
                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-detail">
-                                    <i class="fas fa-eye"></i><span>Lihat</span>
+                                    <i class=""></i><span>Lihat</span>
                                 </a>
                                 <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
-                                    <i class="fas fa-edit"></i><span>Edit</span>
+                                    <i class=""></i><span>Edit</span>
                                 </a>
                                 @if ($user->role->name == 'user' && $user->cover_letter_path)
                                         <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="table-btn download">
@@ -129,7 +129,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-delete" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class="fas fa-trash"></i><span>Hapus</span>
+                                        <i class=""></i><span>Hapus</span>
                                     </button>
                                 </form>
                             </td>

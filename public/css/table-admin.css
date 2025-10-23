@@ -3,9 +3,8 @@
     width: 100%;
     overflow-x: auto;
     background: #ffffff;
-    border-radius: 12px;
- 
-    box-shadow: 0 4px 10px rgba(30, 64, 175, 0.08); /* biru lembut dari sidebar */
+    border-radius: 12px; 
+    box-shadow: none !important; /* biru lembut dari sidebar */
     padding: 1rem;
     margin-bottom: 1.5rem;
 }

@@ -43,13 +43,6 @@
             <i class="fas fa-briefcase text-primary"></i>
             Detail Lowongan Kerja
         </h2>
-
-        <div class="jd-actions d-flex flex-wrap align-items-center">
-            {{-- Kembali --}}
-            <a href="javascript:history.back()" class="btn btn-outline-secondary jd-btn">
-                <i class="fas fa-arrow-left me-2"></i> Kembali
-            </a>
-        </div>
     </div>
 
     <div class="row">
@@ -334,9 +327,19 @@
                             @endif
                         </div>
                     </div>
+                    
                 </div>
+                
+            </div>
+            <br>
+            <div class="jd-actions d-flex flex-wrap align-items-center justify-content-start">
+                {{-- Kembali --}}
+                <a href="javascript:history.back()" class="btn btn-outline-secondary jd-btn">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali
+                </a>
             </div>
         </div>
+        
     </div>
 </div>
 @endsection
