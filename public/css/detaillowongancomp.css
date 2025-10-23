@@ -1586,3 +1586,271 @@ body.job-detail .card {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
 }
 
+/* ==========================================================
+   TARGET SPESIFIK IKON DI INFORMASI LOWONGAN
+   ========================================================== */
+
+/* Semua ikon di baris tabel Informasi Umum */
+.info-card-enhanced .table-borderless tr:first-child i, /* Lokasi */
+.info-card-enhanced .table-borderless tr:nth-child(2) i, /* Tipe Pekerjaan */
+.info-card-enhanced .table-borderless tr:nth-child(3) i, /* Jumlah Lowongan */
+.info-card-enhanced .table-borderless tr:nth-child(4) i, /* Deadline */
+.info-card-enhanced .table-borderless tr:nth-child(5) i { /* Rentang Gaji */
+    color: rgb(30, 58, 138) !important;
+}
+
+/* Semua ikon di baris tabel Detail Tambahan */
+.info-card-enhanced .table-borderless tr:first-child i, /* Industri */
+.info-card-enhanced .table-borderless tr:nth-child(2) i, /* Total Pelamar */
+.info-card-enhanced .table-borderless tr:nth-child(3) i, /* Status */
+.info-card-enhanced .table-borderless tr:nth-child(4) i { /* Tanggal Dibuat */
+    color: rgb(30, 58, 138) !important;
+}
+
+/* ==========================================================
+   PERBAIKAN WARNA TEKS COMPANY NAME - rgb(30, 58, 138)
+   ========================================================== */
+
+/* Teks nama perusahaan */
+.company-name {
+    color: rgb(30, 58, 138) !important;
+    background: none !important;
+    -webkit-text-fill-color: rgb(30, 58, 138) !important;
+}
+
+/* Override untuk gradient text sebelumnya */
+.company-name {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: rgb(30, 58, 138) !important;
+}
+
+/* Hapus gradient dan buat solid color */
+.enhanced-header .company-name,
+.company-details .company-name {
+    color: rgb(30, 58, 138) !important;
+    background-image: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: rgb(30, 58, 138) !important;
+}
+
+/* ==========================================================
+   TARGET SPESIFIK BORDER/BACKGROUND YANG DIMINTA
+   ========================================================== */
+
+/* 1. Background header Pelamar */
+.applicant-table-enhanced .applicant-header-enhanced {
+    background: rgb(30, 58, 138) !important;
+}
+
+/* 2. Border kiri Jobdesk/Tugas Pekerjaan */
+.info-card-enhanced:has(.fa-tasks) .alert-light-enhanced::before,
+.info-card-enhanced:first-of-type .alert-light-enhanced::before {
+    background: rgb(30, 58, 138) !important;
+}
+
+/* 3. Border kiri Persyaratan */
+.info-card-enhanced:has(.fa-clipboard-list) .alert-light-enhanced::before,
+.info-card-enhanced:nth-of-type(2) .alert-light-enhanced::before {
+    background: rgb(30, 58, 138) !important;
+}
+
+/* Alternative untuk browser yang tidak support :has() */
+.info-card-enhanced .alert-light-enhanced::before {
+    background: rgb(30, 58, 138) !important;
+}
+
+/* ==========================================================
+   PERBAIKAN WARNA TEKS COMPANY NAME - HITAM
+   ========================================================== */
+
+/* Teks nama perusahaan menjadi hitam */
+.company-name {
+    color: #000000 !important;
+    background: none !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Override untuk gradient text sebelumnya */
+.company-name {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Hapus gradient dan buat color hitam */
+.enhanced-header .company-name,
+.company-details .company-name {
+    color: #000000 !important;
+    background-image: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* ==========================================================
+   PERBAIKAN WARNA IKON CEKLIS PADA STATUS - TETAP PUTIH
+   ========================================================== */
+
+/* Ikon ceklis dalam status tetap putih */
+.chip .fa-check,
+.status-accepted .fa-check,
+.table-borderless .fa-check {
+    color: #ffffff !important;
+}
+
+/* Ikon pause dalam status tetap putih */
+.chip .fa-pause,
+.status-inactive .fa-pause,
+.table-borderless .fa-pause {
+    color: #ffffff !important;
+}
+
+/* Override untuk semua ikon dalam chip status */
+.chip i,
+[class*="status-"] i {
+    color: #ffffff !important;
+}
+
+/* Pastikan ikon dalam status tidak terpengaruh oleh style biru tua sebelumnya */
+.table-borderless .chip i,
+.info-card-enhanced .chip i {
+    color: #ffffff !important;
+}
+
+/* Specific untuk ikon di tabel Detail Tambahan - status */
+.info-card-enhanced .table-borderless tr:nth-child(3) i.fa-check,
+.info-card-enhanced .table-borderless tr:nth-child(3) i.fa-pause {
+    color: #ffffff !important;
+}
+
+/* ==========================================================
+   OVERRIDE TOTAL UNTUK MENGHAPUS GRADASI
+   ========================================================== */
+
+/* Hapus semua gradasi dari ikon empty state */
+.empty-state-enhanced i,
+.empty-state-enhanced .fas,
+.empty-state-enhanced .fa-users {
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: rgb(30, 58, 138) !important;
+    color: rgb(30, 58, 138) !important;
+}
+
+/* Hapus gradasi dari garis bawah */
+.empty-state-enhanced h4.text-muted::after {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+    linear-gradient: none !important;
+}
+
+/* Override dengan important untuk memastikan */
+[style*="gradient"] .empty-state-enhanced .fa-users,
+.empty-state-enhanced [style*="gradient"] {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+    color: rgb(30, 58, 138) !important;
+}
+
+/* ==========================================================
+   HAPUS HANYA GARIS BAWAH SAJA
+   ========================================================== */
+
+/* HAPUS SEMUA GARIS BAWAH dari teks "Belum ada pelamar" */
+.empty-state-enhanced h4.text-muted {
+    border-bottom: none !important;
+    text-decoration: none !important;
+}
+
+/* Hapus pseudo-element garis bawah */
+.empty-state-enhanced h4.text-muted::after,
+.empty-state-enhanced h4.text-muted::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Hapus border dari parent elements jika ada */
+.empty-state-enhanced h4 {
+    border-bottom: none !important;
+}
+
+/* ==========================================================
+   UBAH SEMUA GRADIENT BIRU MUDA MENJADI BIRU TUNA
+   ========================================================== */
+
+/* Background header tabel pelamar */
+.applicant-header-enhanced {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+/* Background header tabel */
+.table-applicants thead tr {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+/* Garis aksen di bawah judul utama */
+.d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0::after {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+/* Border di info cards */
+.info-card-enhanced::before {
+    background: rgb(30, 58, 138) !important;
+}
+
+/* Border di alert boxes */
+.alert-light-enhanced::before {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+/* Background tombol biru */
+.jd-actions .btn-outline-secondary,
+.jd-actions .btn-back {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+.jd-actions .btn-outline-secondary:hover,
+.jd-actions .btn-back:hover {
+    background: rgb(23, 43, 110) !important;
+    background-image: none !important;
+}
+
+/* Tombol nonaktifkan/aktifkan */
+.jd-actions .btn-outline-primary,
+.jd-actions .btn-secondary {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+.jd-actions .btn-outline-primary:hover,
+.jd-actions .btn-secondary:hover {
+    background: rgb(23, 43, 110) !important;
+    background-image: none !important;
+}
+
+/* Border di enhanced header (jika masih ada) */
+.enhanced-header::before {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+/* Border di company info (jika masih ada) */
+.company-info-enhanced::before {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+
+/* Override semua gradient menjadi solid color */
+[style*="gradient"],
+[class*="gradient"] {
+    background: rgb(30, 58, 138) !important;
+    background-image: none !important;
+}
+

@@ -1420,3 +1420,176 @@ textarea:focus,
 .jobs-latest .modal-close:hover{ background:#dc2626 !important; transform: translateY(-1px); }
 .jobs-latest .modal-close:active{ transform: scale(.98); }
 .jobs-latest .modal-close:focus{ outline: none; box-shadow: 0 0 0 3px rgba(239,68,68,.25); }
+
+/* ==============================
+   TOMBOL AKSI DENGAN TEKS
+   ============================== */
+
+/* Container tombol aksi */
+.table-custom td .d-flex {
+    gap: 8px !important;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Base style untuk tombol aksi dengan teks */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+    min-width: 70px;
+    height: 36px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+/* Warna tombol */
+.action-btn.view {
+    background: #2563EB;
+    color: white;
+}
+
+.action-btn.edit {
+    background: #EAB308;
+    color: white;
+}
+
+.action-btn.delete {
+    background: #EF4444;
+    color: white;
+}
+
+/* Hover effects */
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0.9;
+    color: white;
+    text-decoration: none;
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Ikon dalam tombol */
+.action-btn i {
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+/* Dropdown khusus untuk tombol Edit */
+.table-custom .dropdown .action-btn.edit {
+    position: relative;
+    padding-right: 28px;
+}
+
+.table-custom .dropdown .action-btn.edit::after {
+    content: "▼";
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 768px) {
+    .action-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+        min-width: 60px;
+        height: 32px;
+    }
+    
+    .action-btn i {
+        font-size: 11px;
+        margin-right: 3px;
+    }
+    
+    .table-custom td .d-flex {
+        gap: 6px !important;
+    }
+}
+
+/* Untuk layar sangat kecil */
+@media (max-width: 576px) {
+    .action-btn span:not(.fa) {
+        display: none;
+    }
+    
+    .action-btn {
+        min-width: auto;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        padding: 0;
+    }
+    
+    .action-btn i {
+        margin-right: 0;
+        font-size: 14px;
+    }
+    
+    .table-custom .dropdown .action-btn.edit::after {
+        display: none;
+    }
+}
+
+/* Pastikan form tidak mengganggu layout */
+.table-custom td form {
+    display: inline;
+    margin: 0;
+}
+
+/* Dropdown positioning fix */
+.table-custom .dropdown-menu {
+    min-width: 200px;
+}
+
+/* Hilangkan outline focus yang mengganggu */
+.action-btn:focus,
+.dropdown-toggle:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* ==============================
+   MEMASTIKAN TABEL TETAP RAPI
+   ============================== */
+
+/* Pastikan kolom aksi cukup lebar */
+.table-custom th:nth-last-child(1),
+.table-custom td:nth-last-child(1) {
+    min-width: 220px;
+    width: auto;
+}
+
+/* Untuk layar medium */
+@media (max-width: 992px) {
+    .table-custom th:nth-last-child(1),
+    .table-custom td:nth-last-child(1) {
+        min-width: 200px;
+    }
+}
+
+/* Untuk layar kecil */
+@media (max-width: 768px) {
+    .table-custom th:nth-last-child(1),
+    .table-custom td:nth-last-child(1) {
+        min-width: 180px;
+    }
+}
+
+/* Hilangkan efek hover baris yang mengganggu */
+.table-custom tbody tr:hover {
+    background: transparent !important;
+}
