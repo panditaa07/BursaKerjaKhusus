@@ -11,9 +11,9 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-            <h4 class="fw-bold mb-2">DAFTAR PELAMAR</h4>
+            <h4 class="fw-bold mb-2 page-title">DAFTAR PELAMAR</h4>
             {{-- Tombol kembali --}}
-            <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary btn-sm">
+            <a href="{{ url('/admin/dashboard') }}" class="btn btn-kembali btn-sm">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
@@ -129,12 +129,12 @@
         @if ($pelamar->onFirstPage())
             <button class="btn btn-outline-secondary" disabled>Previous</button>
         @else
-            <a href="{{ $pelamar->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+            <a href="{{ $pelamar->previousPageUrl() }}" class="btn btn-kembali">Previous</a>
         @endif
 
         {{-- Tombol Next --}}
         @if ($pelamar->hasMorePages())
-            <a href="{{ $pelamar->nextPageUrl() }}" class="btn btn-primary">Next</a>
+            <a href="{{ $pelamar->nextPageUrl() }}" class="btn btn-kembali">Next</a>
         @else
             <button class="btn btn-outline-secondary" disabled>Next</button>
         @endif

@@ -55,7 +55,7 @@ body {
 .page-title {
     font-weight: 700;
     font-size: 1.8rem;
-    color: rgb(30, 64, 175); /* Biru tua */
+    color: #1E3A8A; /* Biru tua */
 }
 
 @keyframes fadeInDown {
@@ -162,17 +162,17 @@ h1.h3 {
 }
 
 .btn-filter {
-    background-color: #1e3a8a;
+    background-color: #1E3A8A;
     color: #fff;
     border-radius: 6px;
     padding: 6px 16px;
 }
 .btn-filter:hover {
-    background-color: #1d4ed8; /* Biru lebih terang */
+    background-color: #1E3A8A; /* Biru lebih terang */
 }
 
 .btn-primary {
-    background: #1e3a8a;
+    background: #1E3A8A;
     color: white;
     box-shadow: 0 4px 15px rgb(30, 58, 138);
 }
@@ -613,7 +613,7 @@ td.aksi .table-btn {
 /* Tombol utama */
 .btn-primary,
 .btn-secondary {
-    background-color: rgb(30, 64, 175); /* biru sama kaya User */
+    background-color: #1E3A8A; /* biru sama kaya User */
     border: none;
     color: #fff;
     font-weight: 600;
@@ -627,25 +627,28 @@ td.aksi .table-btn {
 .btn-secondary:hover,
 .btn-primary:active,
 .btn-secondary:active {
-    background-color: #3367d6; /* biru lebih gelap */
+    background-color: #1E3A8A; /* biru lebih gelap */
     color: #fff;
 }
 
 /* Tombol kembali */
-.btn-back {
-    background-color: rgb(30, 64, 175);
+.btn-kembali {
+    background-color: #1E3A8A;
     border: none;
     color: #fff !important;
     font-weight: 600;
     border-radius: 8px;
-    transition: 0.2s;
+    padding: 8px 16px;
+    transition: 0.2s ease-in-out;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.btn-back:hover,
-.btn-back:active {
-    background-color: #3367d6;
-    color: #fff !important;
+.btn-kembali:hover {
+    background-color: #1E3A8A;
+    transform: translateY(-2px);
 }
 
 /* Search input biar lebih jelas */
@@ -654,6 +657,39 @@ td.aksi .table-btn {
     border-left: none;
     box-shadow: none;
     transition: 0.2s;
+}
+
+.input-group .btn-cari,
+.input-group .form-control {
+    height: 45px; /* samain tinggi manual */
+}
+
+.input-group .btn-filter:hover {
+    background-color: #1E3A8A; /* sedikit lebih terang */
+}
+
+.input-group .btn-filter:focus,
+.input-group .btn-filter:active {
+    background-color: #1E3A8A !important; /* tetap biru, ga berubah abu-abu */
+    color: #fff !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+.input-group .btn-filter {
+    background-color: #1E3A8A;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+    cursor: pointer;
 }
 
 .input-group .form-control:focus {
@@ -699,7 +735,7 @@ td.aksi .table-btn {
 
 /* Tombol Cari */
 .btn-cari {
-    background-color: #1e40af; /* biru tua */
+    background-color: #1E3A8A; /* biru tua */
     color: #fff !important;
     font-weight: 600;
     padding: 8px 18px;
@@ -712,13 +748,26 @@ td.aksi .table-btn {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 .btn-cari:hover {
-    background-color: #153e75;
+    background-color: #1E3A8A;
     transform: translateY(-2px);
 }
 
+.btn-cari:focus,
+.btn-cari:active {
+    outline: none;
+    box-shadow: none !important;
+}
+
+.btn,
+.btn-cari {
+    box-shadow: none !important;
+}
+
+
+
 /* Total jadi badge tombol */
 .btn-total {
-    background-color: #1e40af; /* biru */
+    background-color: #1E3A8A; /* biru */
     color: #fff !important;
     font-weight: 600;
     padding: 8px 18px;
@@ -730,12 +779,12 @@ td.aksi .table-btn {
     transition: all 0.2s ease-in-out;
 }
 .btn-total:hover {
-    background-color: #153e75;
+    background-color: #1E3A8A;
     transform: translateY(-2px);
 }
 /* Optional – samakan gaya tombol reset seperti di Kelola Pelamar */
 .input-group .btn-outline-secondary{
-  background:#1f3a95!important;
+  background:#1E3A8A;
   color:#fff!important;
   border:none!important;
   border-radius:10px!important;
@@ -746,7 +795,7 @@ td.aksi .table-btn {
   transition:all 0.2s ease-in-out!important;
 }
 .input-group .btn-outline-secondary:hover{
-  background:#1a2f7a!important;
+  background:#1E3A8A;
   transform:translateY(-2px);
 }
 /* === Tombol CARI (biar seragam) === */
@@ -929,13 +978,13 @@ td.aksi .table-btn {
 
 /* === Filter === */
 .btn-filter {
-  background: #1e3a8a;
+  background: #1E3A8A;
   color: #fff;
   border: none;
   box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25);
 }
 .btn-filter:hover {
-  background: #1a307a;
+  background: #1E3A8A;
   transform: translateY(-2px);
 }
 

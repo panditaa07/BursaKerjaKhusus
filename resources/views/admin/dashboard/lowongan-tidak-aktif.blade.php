@@ -9,10 +9,10 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-            <h4 class="fw-bold mb-2">LOWONGAN TIDAK AKTIF</h4>
+            <h4 class="fw-bold mb-2 page-title">LOWONGAN TIDAK AKTIF</h4>
             
             {{-- Tombol kembali --}}
-            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-kembali btn-sm">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
@@ -106,12 +106,12 @@
         @if ($lowongan->onFirstPage())
             <button class="btn btn-outline-secondary" disabled>Previous</button>
         @else
-            <a href="{{ $lowongan->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+            <a href="{{ $lowongan->previousPageUrl() }}" class="btn btn-kembali">Previous</a>
         @endif
 
         {{-- Tombol Next --}}
         @if ($lowongan->hasMorePages())
-            <a href="{{ $lowongan->nextPageUrl() }}" class="btn btn-primary">Next</a>
+            <a href="{{ $lowongan->nextPageUrl() }}" class="btn btn-kembali">Next</a>
         @else
             <button class="btn btn-outline-secondary" disabled>Next</button>
         @endif

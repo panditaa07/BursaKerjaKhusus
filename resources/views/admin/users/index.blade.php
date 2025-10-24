@@ -10,7 +10,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="page-title">Kelola Pengguna</h2>
             <div>
-                <a href="{{ url('/admin/dashboard') }}" class="btn btn-primary rounded">
+                <a href="{{ url('/admin/dashboard') }}" class="btn btn-kembali rounded">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>
@@ -24,11 +24,12 @@
     {{-- Search box --}}
     <div class="input-group" style="max-width: 400px;">
         <span class="input-group-text bg-white">
-            <i class="fas fa-search"></i>
+            <i class="bi bi-search"></i>
         </span>
         <input type="text" name="search" class="form-control"
                placeholder="Cari nama atau email" value="{{ request('search') }}">
-        <button type="submit" class="btn btn-primary">Cari</button>
+        <button type="submit" class="btn btn-cari">Cari
+        </button>
 
         {{-- Reset hanya untuk pencarian (seperti di Kelola Pelamar) --}}
         @if(request('search'))
@@ -47,7 +48,7 @@
                 <option value="company" {{ request('role') == 'company' ? 'selected' : '' }}>Company</option>
                 <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>User</option>
             </select>
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-filter">Filter</button>
         </div>
 
       {{-- Reset semua filter (muncul jika ada search atau role) --}}
@@ -148,12 +149,12 @@
         @if ($users->onFirstPage())
             <button class="btn btn-outline-secondary" disabled>Previous</button>
         @else
-            <a href="{{ $users->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-kembali">Previous</a>
         @endif
 
         {{-- Tombol Next --}}
         @if ($users->hasMorePages())
-            <a href="{{ $users->nextPageUrl() }}" class="btn btn-primary">Next</a>
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-kembali">Next</a>
         @else
             <button class="btn btn-outline-secondary" disabled>Next</button>
         @endif
