@@ -1,226 +1,331 @@
-/* =========================================================
-   TAMBALOWONGANCOM.CSS — BERSIH & DIGABUNG (FINAL)
-   - Blok A: Styling form container (SAMA PERSIS ADMIN) -> namespaced ke .job-form-container
-   - Blok B: Tema kartu/warna tombol/alert global (modern)
-   ========================================================= */
+/* ==============================
+   Container Utama - SAMA PERSIS ADMIN
+============================== */
+.job-form-container {
+    background: #ffffff !important;
+    border-top: 5px solid rgb(30, 58, 138) !important;
+    border-radius: 16px !important;
+    padding: 32px !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
 
-/* =========================================================
-   BLOK A — FORM CONTAINER (SAMA PERSIS ADMIN) — NAMESPACED
-   ========================================================= */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    caret-color: transparent !important;
+    user-select: none !important;
 
-/* Container Utama */
-.job-form-container{
-  background:#fff !important;
-  border-top:5px solid rgb(30,58,138) !important;
-  border-radius:16px !important;
-  padding:32px !important;
-  box-shadow:0 6px 16px rgba(0,0,0,.15) !important;
-
-  display:flex !important;
-  flex-direction:column !important;
-  gap:12px !important;
-
-  /* animasi masuk */
-  opacity:0; transform:translateY(40px);
-  transition:all .7s ease-in-out;
+    /* Animasi masuk form */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease-in-out;
 }
-.job-form-container.show{opacity:1; transform:translateY(0);}
-
-/* Judul Form */
-.page-title{
-  font-size:40px; font-weight:700; color:rgb(30,58,138);
-  display:inline-flex; align-items:center; gap:12px;
-  position:relative; margin:0 auto; margin-bottom:48px !important;
-  padding-bottom:14px;
-  opacity:0; transform:translateY(-30px);
-  transition:all .6s ease-out;
-}
-.page-title.show{opacity:1; transform:translateY(0);}
-.page-title::after{
-  content:""; position:absolute; bottom:0; left:0; right:0; margin:auto;
-  width:60%; height:4px; background:rgb(30,58,138); border-radius:3px;
-}
-.page-title i{transition:transform .3s ease;}
-.page-title i:hover{transform:rotate(-10deg) scale(1.2);}
-
-/* Label */
-.job-form-container label{
-  display:block !important; margin-bottom:4px !important; margin-top:12px !important;
-  font-weight:600 !important; color:#374151 !important;
+.job-form-container.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Input, Select, Textarea */
+/* ==============================
+   Judul Form - SAMA PERSIS ADMIN
+============================== */
+.page-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(30, 58, 138);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 48px !important;
+    padding-bottom: 14px;
+    /* Animasi masuk judul */
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.6s ease-out;
+}
+.page-title.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Garis bawah */
+.page-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 60%;
+    height: 4px;
+    background: rgb(30, 58, 138);
+    border-radius: 3px;
+}
+
+/* Ikon judul hover */
+.page-title i {
+    transition: transform 0.3s ease;
+}
+.page-title i:hover {
+    transform: rotate(-10deg) scale(1.2);
+}
+
+/* ==============================
+   Label - SAMA PERSIS ADMIN
+============================== */
+.job-form-container label {
+    display: block !important;
+    margin-bottom: 4px !important;
+    margin-top: 12px !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+}
+
+/* ==============================
+   Input, Select, Textarea - SAMA PERSIS ADMIN
+============================== */
 .job-form-container input,
 .job-form-container select,
-.job-form-container textarea{
-  width:100% !important; padding:12px 16px !important; font-size:15px !important;
-  border:2px solid #d1d5db !important; border-radius:8px !important;
-  background:#f9fafb !important; transition:all .3s ease-in-out !important;
-  margin-bottom:6px !important;
+.job-form-container textarea {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    border: 2px solid #d1d5db !important;
+    border-radius: 8px !important;
+    background: #f9fafb !important;
+    transition: all 0.3s ease-in-out !important;
+    margin-bottom: 6px !important;
+    caret-color: auto !important;
+    user-select: text !important;
 }
+
 .job-form-container input:focus,
 .job-form-container select:focus,
-.job-form-container textarea:focus{
-  border-color:rgb(30,58,138) !important; background:#fff !important;
-  box-shadow:0 0 6px rgba(30,58,138,.5) !important; outline:none !important;
-  transform:scale(1.03);
+.job-form-container textarea:focus {
+    border-color: rgb(30, 58, 138) !important;
+    background: #fff !important;
+    box-shadow: 0 0 6px rgba(30, 58, 138, 0.5) !important;
+    outline: none !important;
+    transform: scale(1.03);
 }
+
 .job-form-container input:hover,
 .job-form-container select:hover,
-.job-form-container textarea:hover{
-  transform:scale(1.02); border-color:rgb(30,58,138);
-  box-shadow:0 4px 12px rgba(30,58,138,.2);
+.job-form-container textarea:hover {
+    transform: scale(1.02);
+    border-color: rgb(30, 58, 138);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
 }
 
-/* Wrapper Tombol */
-.form-actions{
-  display:flex !important; justify-content:space-between !important;
-  align-items:center !important; margin-top:24px !important;
+/* ==============================
+   Wrapper Tombol - SAMA PERSIS ADMIN
+============================== */
+.form-actions {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: 24px !important;
 }
 
-/* Tombol Submit (di dalam .job-form-container) */
-.job-form-container button[type="submit"]{
-  background:rgb(30,58,138) !important; color:#fff !important; font-weight:bold !important;
-  padding:12px 24px !important; border-radius:8px !important; transition:all .3s ease !important;
-  border:none !important; cursor:pointer !important; margin:0 !important;
+/* ==============================
+   Tombol Submit (Simpan) - SAMA PERSIS ADMIN
+============================== */
+.job-form-container button[type="submit"] {
+    background: rgb(30, 58, 138) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin: 0 !important;
 }
-.job-form-container button[type="submit"]:hover{
-  background:rgb(23,43,110) !important; transform:translateY(-2px) scale(1.05);
-  box-shadow:0 8px 18px rgba(0,0,0,.15);
-}
-
-/* Tombol Kembali (link) */
-.btn-back{
-  background:rgb(30,58,138) !important; color:#fff !important; font-weight:bold !important;
-  padding:12px 24px !important; border-radius:8px !important; transition:all .3s ease !important;
-  border:none !important; cursor:pointer !important; text-decoration:none !important;
-  display:inline-flex !important; align-items:center !important; gap:6px !important;
-}
-.btn-back:hover{
-  background:rgb(23,43,110) !important; color:#fff !important; text-decoration:none !important;
-  transform:translateY(-2px) scale(1.05); box-shadow:0 8px 18px rgba(0,0,0,.15);
+.job-form-container button[type="submit"]:hover {
+    background: rgb(23, 43, 110) !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
-/* Alert di dalam form container (supaya tidak override alert global) */
-.job-form-container .alert{
-  border:none !important; border-radius:8px !important; padding:1rem 1.25rem !important;
-  border-left:4px solid !important;
+/* ==============================
+   Tombol Kembali - SAMA PERSIS ADMIN
+============================== */
+.btn-back {
+    background: rgb(30, 58, 138) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
 }
-.job-form-container .alert-success{
-  background-color:#f0f9ff !important; color:#0369a1 !important;
-  border-left-color:rgb(30,58,138) !important;
-}
-.job-form-container .alert-danger{
-  background-color:#fef2f2 !important; color:#dc2626 !important;
-  border-left-color:#ef4444 !important;
-}
-.job-form-container .alert ul{margin: .5rem 0 0 !important;}
-
-/* Utilities yang dipakai di form */
-.text-blue-500{color:rgb(30,58,138) !important;}
-.mr-2{margin-right:.5rem !important;}
-
-@media (max-width:768px){
-  .job-form-container{padding:1.5rem !important;}
-  .form-actions{flex-direction:column !important; gap:1rem !important;}
-  .job-form-container button[type="submit"], .btn-back{
-    width:100% !important; justify-content:center !important;
-  }
+.btn-back:hover {
+    background: rgb(23, 43, 110) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
-/* =========================================================
-   BLOK B — TEMA KARTU / BUTTON / ALERT GLOBAL (MODERN)
-   ========================================================= */
-
-body{
-  background:#f8fafc;
-  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans','Liberation Sans',sans-serif;
-  color:#1e293b;
+/* ==============================
+   Alert Styling
+============================== */
+.alert {
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 1rem 1.25rem !important;
+    border-left: 4px solid !important;
 }
 
-/* Card Bootstrap yang dipakai di halaman */
-.card{
-  background:#fff; border-radius:16px; border:none;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  transition:all .3s ease;
-}
-.card:hover{transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.1);}
-
-/* Header Card */
-.card-header{
-  background:linear-gradient(90deg,#1e1b4b,#312e81,#3730a3);
-  color:#f1f5f9; border-bottom:none; border-radius:16px 16px 0 0;
-  padding:20px 25px; box-shadow:inset 0 -2px 0 rgba(255,255,255,.15);
-  display:flex; align-items:center; justify-content:space-between;
-}
-.card-header h4{font-size:1.25rem; font-weight:600;}
-
-/* Section Title kecil (Bootstrap <h5>) */
-h5{
-  color:#1e3a8a; font-weight:600; position:relative; margin-bottom:1.2rem;
-}
-h5::before{
-  content:""; position:absolute; bottom:-6px; left:0; width:50px; height:3px;
-  background:linear-gradient(90deg,#1e40af,#3b82f6); border-radius:5px;
+.alert-success {
+    background-color: #f0f9ff !important;
+    color: #0369a1 !important;
+    border-left-color: rgb(30, 58, 138) !important;
 }
 
-/* Form Control (Bootstrap) */
-.form-label{font-weight:600; color:#1e3a8a;}
-.form-control,.form-select{
-  border:1.5px solid #cbd5e1; border-radius:10px; padding:12px;
-  transition:all .3s ease; background-color:#f9fafb;
-}
-.form-control:focus,.form-select:focus{
-  border-color:#2563eb; box-shadow:0 0 0 3px rgba(37,99,235,.2); transform:scale(1.01);
+.alert-danger {
+    background-color: #fef2f2 !important;
+    color: #dc2626 !important;
+    border-left-color: #ef4444 !important;
 }
 
-/* Tombol utama/sekunder (Bootstrap) */
-.btn-primary,.btn-secondary{
-  position:relative; overflow:hidden; border:none; border-radius:10px;
-  padding:10px 24px; font-weight:600; cursor:pointer; transition:all .3s ease;
+.alert ul {
+    margin-bottom: 0 !important;
+    margin-top: 0.5rem !important;
 }
 
-/* Primary (Simpan) */
-.btn-primary{background:linear-gradient(90deg,#1e40af,#2563eb); color:#fff;}
-.btn-primary::before{
-  content:""; position:absolute; top:0; left:-75%; width:50%; height:100%;
-  background:rgba(255,255,255,.25); transform:skewX(-25deg); transition:left .6s ease;
+/* ==============================
+   Text Styling
+============================== */
+.text-gray-600 {
+    color: #6b7280 !important;
 }
-.btn-primary:hover::before{left:125%;}
-.btn-primary:hover{
-  background:linear-gradient(90deg,#1d4ed8,#3b82f6);
-  transform:translateY(-3px) scale(1.03); box-shadow:0 8px 25px rgba(37,99,235,.4);
-}
-.btn-primary:active{transform:scale(.97); box-shadow:0 3px 10px rgba(37,99,235,.3);}
 
-/* Secondary (Kembali) */
-.btn-secondary{background:#475569; color:#f1f5f9;}
-.btn-secondary:hover{
-  background:#334155; color:#fff; transform:translateY(-3px) scale(1.03);
-  box-shadow:0 6px 20px rgba(51,65,85,.4);
+.text-xs {
+    font-size: 0.75rem !important;
 }
-.btn-secondary:active{transform:scale(.97); box-shadow:0 3px 10px rgba(51,65,85,.3);}
 
-/* Ripple fokus */
-.btn-primary:focus::after,.btn-secondary:focus::after{
-  content:""; position:absolute; top:50%; left:50%; width:0; height:0;
-  background:rgba(255,255,255,.2); border-radius:50%; transform:translate(-50%,-50%);
-  animation:ripple .6s linear;
+.text-danger {
+    color: #dc2626 !important;
 }
-@keyframes ripple{to{width:300%; height:300%; opacity:0;}}
 
-/* Alert global (di luar .job-form-container) */
-.alert{border-radius:10px; color:#fff; animation:fadeIn .5s ease;}
-.alert-success{background:linear-gradient(90deg,#22c55e,#16a34a);}
-.alert-danger{background:linear-gradient(90deg,#ef4444,#dc2626);}
-@keyframes fadeIn{from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);}}
-
-/* Responsif */
-@media (max-width:992px){
-  .btn{width:100%; margin-bottom:10px;}
-  .d-flex{flex-direction:column; align-items:stretch;}
+.text-red-500 {
+    color: #dc2626 !important;
 }
-@media (max-width:576px){
-  .card-body{padding:1.5rem;}
-  h4{font-size:1.1rem;}
+
+.border-red-500 {
+    border-color: #dc2626 !important;
+}
+
+/* ==============================
+   Grid System
+============================== */
+.grid {
+    display: grid !important;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+.gap-4 {
+    gap: 1rem !important;
+}
+
+/* ==============================
+   Utility Classes
+============================== */
+.mb-4 {
+    margin-bottom: 1rem !important;
+}
+
+.mt-1 {
+    margin-top: 0.25rem !important;
+}
+
+.mb-8 {
+    margin-bottom: 2rem !important;
+}
+
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+.py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.block {
+    display: block !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.items-center {
+    align-items: center !important;
+}
+
+.space-x-3 > * + * {
+    margin-left: 0.75rem !important;
+}
+
+.inline-flex {
+    display: inline-flex !important;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+/* ==============================
+   Ikon di Label
+============================== */
+.text-blue-500 {
+    color: rgb(30, 58, 138) !important;
+}
+
+.mr-2 {
+    margin-right: 0.5rem !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .job-form-container {
+        padding: 1.5rem !important;
+    }
+    
+    .form-actions {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .job-form-container button[type="submit"],
+    .btn-back {
+        width: 100% !important;
+        justify-content: center !important;
+    }
 }
