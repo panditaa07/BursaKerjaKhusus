@@ -63,9 +63,16 @@
 
                     <td data-label="LOKASI">{{ $job->location ?? '-' }}</td>
 
-                    <td data-label="TIPE">
-                        <span class="badge bg-info">{{ $job->type ?? 'N/A' }}</span>
-                    </td>
+                    {{-- TIPE --}}
+@php $type = trim($job->type ?? ''); @endphp
+<td data-label="TIPE" class="text-center">
+  @if($type !== '')
+    <span class="badge-type">{{ $type }}</span>
+  @else
+    <span class="text-muted">-</span>
+  @endif
+</td>
+
 
                     <td data-label="GAJI">{{ $job->salary ?? '-' }}</td>
 
@@ -88,34 +95,25 @@
                         @endif
                     </td>
 
-                    {{-- AKSI - disamakan dengan dashboard --}}
-                    <td class="text-center" data-label="AKSI">
-                        <div class="btn-group" role="group">
-                            {{-- Lihat --}}
-                            <a href="{{ route('company.jobs.show', $job->id) }}" 
-                            class="action-mini view" title="Lihat">
-                            <i class="fas fa-eye"></i>
-                            </a>
+                {{-- AKSI --}}
+<td class="text-center" data-label="AKSI">
+  <div class="aksi-wrapper">
+    {{-- Lihat --}}
+    <a href="{{ route('company.jobs.show', $job->id) }}" class="action-text view">Lihat</a>
 
-                            {{-- Edit --}}
-                            <a href="{{ route('company.jobs.edit', $job->id) }}?from=active" 
-                            class="action-mini edit" title="Edit">
-                            <i class="fas fa-pen"></i>
-                            </a>
+    {{-- Edit --}}
+    <a href="{{ route('company.jobs.edit', $job->id) }}?from=active" class="action-text edit">Edit</a>
 
-                            {{-- Hapus --}}
-                            <form action="{{ route('company.jobs.destroy', $job->id) }}"
-                                  method="POST" class="d-inline"
-                                  onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <input type="hidden" name="from" value="active">
-                                <button type="submit" class="action-mini delete" title="Hapus">
-                                <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
+    {{-- Hapus --}}
+    <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline"
+          onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
+      @csrf @method('DELETE')
+      <input type="hidden" name="from" value="active">
+      <button type="submit" class="action-text delete">Hapus</button>
+    </form>
+  </div>
+</td>
+
                 </tr>
                 @empty
                 <tr>

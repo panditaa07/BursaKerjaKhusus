@@ -76,7 +76,7 @@
 
   {{-- === Tabel Pelamar Terbaru === --}}
   <div class="container table-section">
-    <h3 class="section-title">Pelamar Terbaru</h3>
+    <h3 class="section-title mb-3">Pelamar Terbaru</h3>
 
     <table class="table-custom">
       <thead>

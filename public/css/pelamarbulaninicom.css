@@ -1,1369 +1,377 @@
-/* ==============================
-   TABEL KELOLA LOWONGAN KERJA (FIX HEADER ROUNDED)
-============================== */
-.company-applications-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    font-family: "Inter", sans-serif;
-    background: #ffffff;
+/* ============================
+   TABEL PELAMAR — MIRIP DASHBOARD
+============================ */
+.company-applications-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(2,6,23,.08);
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
-/* === Header Tabel === */
-.company-applications-table thead tr {
-    background: #1E3A8A;
+/* Header biru tua + huruf tebal */
+.company-applications-table thead tr{ background:#1E3A8A; }
+.company-applications-table thead th{
+  padding:16px 14px;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  border:none;
+  text-align:center;
+}
+.company-applications-table thead th:first-child{ border-top-left-radius:16px; }
+.company-applications-table thead th:last-child{  border-top-right-radius:16px; }
+
+/* Sel body + garis pemisah lembut */
+.company-applications-table tbody td{
+  padding:14px 16px;
+  font-size:14px;
+  color:#1f2937;
+  text-align:center;
+  border-top:1.6px solid #d6e6ff;   /* garis antar baris */
+  border-right:1px solid #e3edff;   /* garis antar kolom */
+  background:#fff;
+}
+.company-applications-table tbody td:last-child{ border-right:none; }
+
+/* Sudut bulat baris terakhir */
+.company-applications-table tbody tr:last-child td:first-child{ border-bottom-left-radius:16px; }
+.company-applications-table tbody tr:last-child td:last-child{  border-bottom-right-radius:16px; }
+
+/* Non-aktifkan hover mengangkat baris (biar stabil seperti contoh) */
+.company-applications-table tbody tr{ transition:none; }
+.company-applications-table tbody tr:hover{
+  background:#fff;
+  box-shadow:none;
+  transform:none;
 }
 
-/* FIX: Border radius untuk header */
-.company-applications-table thead th:first-child {
-    border-top-left-radius: 12px;
+/* Kolom AKSI agak lebar */
+.company-applications-table th:last-child,
+.company-applications-table td:last-child{ min-width:260px; }
+
+/* Nama: biar mirip tampilan tengah berbaris 2 */
+.company-applications-table td:nth-child(2){
+  font-weight:700;
+  line-height:1.25;
 }
 
-.company-applications-table thead th:last-child {
-    border-top-right-radius: 12px;
-}
-
-.company-applications-table thead th {
-    padding: 14px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    text-align: center;
-    border: none;
-}
-
-/* === Isi Tabel === */
-.company-applications-table tbody td {
-    padding: 12px 16px;
-    font-size: 14px;
-    color: #374151;
-    text-align: center;
-    border-top: 1.8px solid #93c5fd;
-    border-right: 1.2px solid #c7ddff;
-}
-.company-applications-table tbody td:last-child {
-    border-right: none;
-}
-
-/* FIX: Border radius untuk baris terakhir */
-.company-applications-table tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
-}
-
-.company-applications-table tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 12px;
-}
-
-/* === Efek Hover Baris === */
-.company-applications-table tbody tr {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-}
-.company-applications-table tbody tr:hover {
-    background-color: #fff !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px);
-    border-radius: 10px;
-    z-index: 10;
-    position: relative;
-}
-
-/* ==============================
-   STATUS BADGE
-============================== */
-.badge-status {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 13px;
-    transition: all 0.25s ease;
-}
-.badge-success {
-    background-color: #22c55e;
-    color: #fff;
-}
-.badge-success:hover {
-    background-color: #16a34a;
-}
-.badge-secondary {
-    background-color: #6b7280;
-    color: #fff;
-}
-.badge-secondary:hover {
-    background-color: #4b5563;
-}
-.badge-warning {
-    background-color: #facc15;
-    color: #000;
-}
-.badge-warning:hover {
-    background-color: #eab308;
-}
-
-/* ==============================
-   TOMBOL AKSI (ICON BORDER)
-============================== */
-.action-btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    background: transparent;
-    margin: 0 3px;
-    font-size: 17px;
-    transition: all 0.25s ease-in-out;
-}
-
-/* Lihat */
-.action-btn.view {
-    border-color: #0ea5e9;
-    color: #0ea5e9;
-}
-.action-btn.view:hover {
-    background: #e0f2fe;
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Edit */
-.action-btn.edit {
-    border-color: #facc15;
-    color: #ca8a04;
-}
-.action-btn.edit:hover {
-    background: #fef9c3;
-    box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Hapus */
-.action-btn.delete {
-    border-color: #ef4444;
-    color: #dc2626;
-}
-.action-btn.delete:hover {
-    background: #fee2e2;
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
-    transform: translateY(-2px);
-}
-
-.action-btn i {
-    pointer-events: none;
-}
-
-/* ==============================
-   ANIMASI & TRANSISI TAMBAHAN
-============================== */
-
-/* Hover pada tombol */
-.btn-action {
-    transition: 0.2s ease-in-out;
-}
-.btn-action:hover {
-    opacity: 0.85;
-    transform: scale(1.05);
-}
-
-/* Hover pada kartu statistik */
-.stat-card {
-    transition: transform 0.2s ease-in-out;
-}
-.stat-card:hover {
-    transform: translateY(-4px);
-}
-
-/* Hover halus tabel modern */
-.modern-table tbody tr {
-    transition: all 0.25s ease-in-out;
-}
-
-/* ==============================
-   OVERRIDE: Hilangkan hover baris
-   ============================== */
-.company-applications-table tbody tr {
-  transition: none !important;
-  cursor: default !important;
-}
-.company-applications-table tbody tr:hover {
-  background: transparent !important;
-  box-shadow: none !important;
-  transform: none !important;
-  border-radius: 0 !important;
-  z-index: auto !important;
-  position: static !important;
-}
-
-/* =========================================
-   OVERRIDE: Aksi tombol -> gaya seperti foto-1
-   ========================================= */
-.action-btn {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: all 0.2s ease-in-out;
-}
-.action-btn i { font-size: 14px; }
-
-/* Lihat (biru) */
-.action-btn.view {
-  border-color: #0dcaf0;
-  color: #f3f5f6;
-}
-.action-btn.view:hover {
-  background-color: #0dcaf0;
-  color: #fff;
-}
-
-/* Edit (kuning) */
-.action-btn.edit {
-  border-color: #ffc107;
-  color: #ffc107;
-}
-.action-btn.edit:hover {
-  background-color: #ffc107;
-  color: #000;
-}
-
-/* Hapus (merah) */
-.action-btn.delete {
-  border-color: #dc3545;
-  color: #dc2626;
-}
-.action-btn.delete:hover {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-/* (Opsional) sentuhan fokus untuk aksesibilitas */
-.action-btn:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-}
-
-/* =========================================
-   Samakan tombol aksi dengan Dashboard
-   Scope: tabel Kelola Lowongan
-   ========================================= */
-
-/* Matikan hover baris */
-.company-applications-table tbody tr {
-  transition: none !important;
-  cursor: default !important;
-}
-.company-applications-table tbody tr:hover {
-  background: transparent !important;
-  box-shadow: none !important;
-  transform: none !important;
-  border-radius: 0 !important;
-  z-index: auto !important;
-  position: static !important;
-}
-
-/* Tombol aksi gaya dashboard */
-.company-applications-table .action-mini{
+/* ============================
+   STATUS CHIP (dot + label)
+============================ */
+.badge{
   display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 16px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:13px;
+  letter-spacing:.3px;
+  border:none;
+}
+.badge i{ font-size:8px; }
+
+/* Warna status seperti screenshot */
+.status-rejected{  background:#EF4444; color:#fff; }    /* TOLAK */
+.status-test{      background:#7C3AED; color:#fff; }    /* TEST 1 */
+.status-test2{     background:#7C3AED; color:#fff; }    /* TEST 2 (pakai ungu juga) */
+.status-reviewed{  background:#FDE68A; color:#78350F; } /* DITINJAU */
+.status-pending{   background:#E2E8F0; color:#1E3A8A; } /* MENUNGGU (opsional) */
+.status-interview{ background:#06B6D4; color:#fff; }    /* WAWANCARA (opsional) */
+.status-accepted{  background:#22C55E; color:#fff; }    /* TERIMA */
+
+/* ============================
+   AKSI: tombol pil (Lihat|Edit|Hapus)
+============================ */
+.aksi-wrapper{
+  display:flex;
   justify-content:center;
   align-items:center;
-  width:36px; height:36px;
-  border-radius:10px;
-  border:2px solid transparent;
-  background:#fff;
-  margin:0 3px;
-  font-size:16px; line-height:1;
-  color:#111827;
-  box-shadow:0 2px 6px rgba(0,0,0,.06);
-  transition:transform .18s ease, box-shadow .18s ease,
-             background-color .18s ease, color .18s ease, border-color .18s ease;
-}
-.company-applications-table .action-mini i{ pointer-events:none; font-size:16px; }
-
-/* Varian warna (lihat / edit / hapus) */
-.company-applications-table .action-mini.view   { border-color:#0ea5e9; color:#0ea5e9  }
-.company-applications-table .action-mini.edit   { border-color:#facc15; color:#ca8a04; }
-.company-applications-table .action-mini.delete { border-color:#ef4444; color:#dc2626; }
-
-
-/* Hover fill halus + sedikit naik */
-.company-applications-table .action-mini.view:hover{
-  background:#0ea5e9; box-shadow:0 6px 16px rgba(14,165,233,.28);
-  transform:translateY(-2px);
-}
-.company-applications-table .action-mini.edit:hover{
-  background:#ca8a04; box-shadow:0 6px 16px rgba(250,204,21,.28);
-  transform:translateY(-2px);
-}
-.company-applications-table .action-mini.delete:hover{
-  background:#ef4444; box-shadow:0 6px 16px rgba(239,68,68,.28);
-  transform:translateY(-2px);
+  gap:18px;
+  flex-wrap:nowrap;
 }
 
-/* Fokus aksesibel */
-.company-applications-table .action-mini:focus-visible{
-  outline:2px solid #2563eb; outline-offset:2px;
-}
-
-/* =========================================
-   HOVER EFFECT untuk tombol "Tambah Lowongan" & "Cari"
-   ========================================= */
-
-/* Tombol Tambah Lowongan (biru utama) */
-.btn-primary {
-  background: linear-gradient(90deg, #1E3A8A, #2563EB);
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 8px 18px;
-  transition: all 0.25s ease-in-out;
-  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
-}
-.btn-primary:hover {
-  background: linear-gradient(90deg, #2563EB, #1E40AF);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-}
-.btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
-}
-
-/* Tombol Cari (abu ke biru lembut) */
-/* =========================================
-   Tombol "Cari" versi biru aktif dari awal
-   ========================================= */
-.btn-secondary {
-  background: linear-gradient(90deg, #2563EB, #1E3A8A);
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  transition: all 0.25s ease-in-out;
-  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
-}
-
-.btn-secondary:hover {
-  background: linear-gradient(90deg, #1E40AF, #1D4ED8);
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-  transform: translateY(-2px);
-}
-
-.btn-secondary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
-}
-
-.btn-secondary:focus-visible {
-  outline: 2px solid #60A5FA;
-  outline-offset: 2px;
-}
-
-/* ======== FIX: Hover warna tombol aksi ======== */
-.action-mini {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    background-color: #fff;
-    color: #333;
-    font-size: 16px;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
-    margin: 0 4px;
-}
-
-.action-mini.view {
-    border-color: #00bcd4;
-    color: #00bcd4;
-}
-
-.action-mini.edit {
-    border-color: #ffc107;
-    color: #ffc107;
-}
-
-.action-mini.delete {
-    border-color: #f44336;
-    color: #f44336;
-}
-
-/* === Hover (fix supaya tidak jadi biru) === */
-.action-mini:hover {
-    background-color: #fff !important;  /* tetap putih */
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none !important;
-}
-
-/* Tambahan agar global a:hover gak ganggu ikon */
-.action-mini i {
-    pointer-events: none;
-}
-
-/* =========================================
-   FORM SEARCH BAR STYLING
-   ========================================= */
-.search-bar {
-    width: 100%;
-    max-width: 600px; /* ubah sesuai panjang yang kamu mau */
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 15px;
-    border: 1.8px solid #cbd5e1;
-    transition: all 0.25s ease-in-out;
-}
-
-/* Efek fokus biar elegan */
-.search-bar:focus {
-    border-color: #2563EB;
-    box-shadow: 0 0 8px rgba(37, 99, 235, 0.25);
-    outline: none;
-}
-
-/* Biar tombol cari nggak nempel banget */
-.input-group .btn-secondary {
-    margin-left: 6px;
-}
-
-/* Hilangkan garis bawah pada link view */
-a.action-mini.view,
-a.action-mini.view:hover,
-a.action-mini.view:focus,
-a.action-mini.view:active,
-a.action-mini.view:visited {
-  text-decoration: none !important;
-}
-
-/* Pastikan icon di dalamnya juga tidak terpengaruh */
-a.action-mini.view i,
-a.action-mini.view:hover i,
-a.action-mini.view:focus i {
-  text-decoration: none !important;
-}
-
-/* Jaga-jaga kalau parent <td> ada efek hover */
-td a.action-mini.view:hover {
-  text-decoration: none !important;
-}
-
-/* Nonaktifkan border bawah pseudo-element (kadang muncul efek dari bootstrap atau table hover) */
-a.action-mini.view::after,
-a.action-mini.view:hover::after {
-  border: none !important;
-  text-decoration: none !important;
-}
-
-/* Kadang efek underline muncul dari pseudo-element (Bootstrap focus) */
-a.action-mini.view::before,
-a.action-mini.view::after,
-a.action-mini.view:hover::before,
-a.action-mini.view:hover::after {
-  content: none !important;
-  text-decoration: none !important;
-  border: none !important;
-}
-
-/* Matikan efek hover global untuk tombol icon */
-.action-mini:hover {
-  text-decoration: none !important;
-}
-
-/* === FIX: Biar dropdown tidak kepotong tabel === */
-.table-responsive,
-.company-applications-table,
-.company-applications-table tbody,
-.company-applications-table tbody tr {
-    overflow: visible !important;
-}
-
-/* === Pastikan dropdown muncul di atas elemen lain === */
-.company-applications-table .dropdown-menu {
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    bottom: auto !important;
-    transform: none !important;
-    z-index: 3000 !important;
-}
-
-/* Kalau masih ketutup, tambahkan parent card juga visible */
-.card-body, .card {
-    overflow: visible !important;
-}
-
-/* =========================================
-   DROPDOWN STYLING: Edit Status Lamaran
-   ========================================= */
-
-/* Wrapper dropdown */
-.company-applications-table .dropdown {
-    position: relative;
-}
-
-/* Tombol toggle dropdown */
-.company-applications-table .dropdown-toggle {
-    border: none;
-    background: #fff;
-    color: #ca8a04;
-    border-radius: 8px;
-    width: 36px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #facc15;
-    transition: all 0.25s ease-in-out;
-}
-
-.company-applications-table .dropdown-toggle:hover {
-    background: #fffbe6;
-    box-shadow: 0 4px 10px rgba(250, 204, 21, 0.25);
-    transform: translateY(-2px);
-}
-
-/* Icon di tombol edit */
-.company-applications-table .dropdown-toggle i {
-    font-size: 15px;
-    color: #ca8a04;
-}
-
-/* Dropdown menu itu sendiri */
-.company-applications-table .dropdown-menu {
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    padding: 6px 0;
-    font-size: 14px;
-    background: #fff;
-    animation: fadeSlideIn 0.18s ease;
-    min-width: 170px;
-}
-
-/* Item di dalam dropdown */
-.company-applications-table .dropdown-menu .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #374151;
-    padding: 9px 14px;
-    transition: all 0.2s ease;
-}
-
-/* Icon di dropdown item */
-.company-applications-table .dropdown-menu .dropdown-item i {
-    font-size: 14px;
-    color: #64748b;
-    width: 18px;
-    text-align: center;
-}
-
-/* Hover efek */
-.company-applications-table .dropdown-menu .dropdown-item:hover {
-    background-color: #f1f5ff;
-    color: #1d4ed8;
-}
-.company-applications-table .dropdown-menu .dropdown-item:hover i {
-    color: #1d4ed8;
-}
-
-/* Divider antar item */
-.company-applications-table .dropdown-menu .dropdown-item + .dropdown-item {
-    border-top: 1px solid #f1f5f9;
-}
-
-/* Animasi lembut muncul */
-@keyframes fadeSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ==============================
-   HILANGKAN FOCUS RING - PELAMAR BULAN INI
-============================== */
-
-/* Hilangkan focus ring untuk semua elemen di halaman ini */
-.container-fluid *:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-/* Khusus untuk tombol utama */
-.btn:focus,
-.btn-primary:focus,
-.btn-secondary:focus,
-.btn-outline-secondary:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: inherit !important;
-}
-
-/* Tombol Lihat Semua Pelamar - focus state */
-.btn-primary:focus {
-    background: linear-gradient(90deg, #1E3A8A, #2563EB) !important;
-    border: none !important;
-    color: #fff !important;
-    transform: none !important;
-    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
-}
-
-/* Tombol Cari - focus state */
-.btn-secondary:focus {
-    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
-    border: none !important;
-    color: #fff !important;
-    transform: none !important;
-    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25) !important;
-}
-
-/* Tombol Reset - focus state */
-.btn-outline-secondary:focus {
-    background: transparent !important;
-    border-color: #6b7280 !important;
-    color: #6b7280 !important;
-    transform: none !important;
-}
-
-/* Action buttons - focus state */
-.action-mini:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: inherit !important;
-    transform: none !important;
-}
-
-/* Dropdown toggle - focus state */
-.dropdown-toggle:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: #facc15 !important;
-    background: #fff !important;
-}
-
-/* Form elements - focus state */
-.form-control:focus,
-.form-select:focus,
-.search-bar:focus {
-    border-color: #2563EB !important;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
-    background: #fff !important;
-}
-
-/* Alert close button */
-.btn-close:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-/* Pagination links */
-.page-link:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: #2563EB !important;
-}
-
-/* ==============================
-   JUDUL PELAMAR BULAN INI - WARNA BIRU TUA
-============================== */
-.h4 {
-    color: #1E3A8A !important;
-    font-weight: 700 !important;
-}
-
-/* ==============================
-   STATUS CHIP (sesuai gambar)
-============================== */
-.status-chip{
-  --chip-color:#6b7280;              /* titik warna */
-  display:inline-flex; align-items:center; gap:10px;
-  padding:6px 14px;
-  border-radius:9999px;
-  font-weight:700; font-size:13px;
-  line-height:1; white-space:nowrap;
-  box-shadow:0 2px 6px rgba(0,0,0,.06);
-}
-
-/* titik kecil di kiri */
-.status-chip .dot{
-  width:10px; height:10px; border-radius:9999px;
-  background:var(--chip-color);
-  box-shadow:0 0 0 3px rgba(255,255,255,.9);   /* ring tipis seperti di gambar */
-}
-
-/* VARIAN warna (ambil dari screenshot) */
-
-/* Tolak = merah solid */
-.chip--rejected{
-  --chip-color:#fff;                     /* titik putih kecil tampak jelas */
-  background:#ef4444; color:#fff;
-}
-.chip--rejected .dot{ background:#fff; }
-
-/* Ditinjau = kuning lembut */
-.chip--review{
-  --chip-color:#f59e0b;
-  background:#fef3c7; color:#a16207;
-}
-
-/* Test 1 = ungu lembut */
-.chip--test1{
-  --chip-color:#7c3aed;
-  background:#ede9fe; color:#5b21b6;
-}
-
-/* Test 2 = tosca lembut */
-.chip--test2{
-  --chip-color:#14b8a6;
-  background:#ccfbf1; color:#0f766e;
-}
-
-/* Wawancara = biru lembut (opsional) */
-.chip--interview{
-  --chip-color:#2563eb;
-  background:#dbeafe; color:#1e40af;
-}
-
-/* Terima = hijau solid (kontras) */
-.chip--accepted{
-  --chip-color:#fff;
-  background:#22c55e; color:#fff;
-}
-.chip--accepted .dot{ background:#fff; }
-
-/* Menunggu/Submitted = abu lembut */
-.chip--submitted{
-  --chip-color:#64748b;
-  background:#f1f5f9; color:#334155;
-}
-
-/* ==============================
-   AKSI ICON (filled, rounded, shadow)
-============================== */
-.btn-icon{
-  width:40px; height:40px;
-  display:inline-flex; align-items:center; justify-content:center;
-  border:none; border-radius:12px;
-  color:#fff; background:#e5e7eb;
-  margin:0 6px; font-size:16px; line-height:1;
-  box-shadow:0 4px 12px rgba(0,0,0,.12);
-  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, background-color .18s ease, color .18s ease;
+.action-text{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:120px;           /* ukuran pil seperti gambar */
+  height:56px;               /* tinggi pil */
+  padding:0 22px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:20px;
+  color:#fff;
   text-decoration:none !important;
-}
-.btn-icon i{ pointer-events:none; }
-
-.btn-icon:hover{ transform:translateY(-2px); filter:saturate(1.05); }
-
-/* Varian sesuai gambar */
-.btn-icon.view{ background:#2563eb; color:#fff; }                /* biru, ikon putih */
-.btn-icon.view:hover{ box-shadow:0 8px 18px rgba(37,99,235,.35); }
-
-.btn-icon.edit{ background:#facc15; color:#111827; }             /* kuning, ikon hitam */
-.btn-icon.edit:hover{ box-shadow:0 8px 18px rgba(250,204,21,.35); }
-
-.btn-icon.delete{ background:#ef4444; color:#fff; }              /* merah, ikon putih */
-.btn-icon.delete:hover{ box-shadow:0 8px 18px rgba(239,68,68,.35); }
-
-/* =========================================
-   FIX DROPDOWN EDIT BUTTON - HILANGKAN PANAH & SAMAKAN DENGAN DASHBOARD
-   ========================================= */
-
-/* Override untuk tombol edit dropdown di Pelamar Bulan Ini */
-.btn-icon.edit.dropdown-toggle {
-    position: relative !important;
-    border: none !important;
-    background: #EAB308 !important; /* kuning solid seperti dashboard */
-    color: #111827 !important; /* ikon hitam seperti dashboard */
-    box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 12px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 6px !important;
-    font-size: 16px !important;
-    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
-    text-decoration: none !important;
-}
-
-/* HILANGKAN PANAH DROPDOWN DARI BOOTSTRAP */
-.btn-icon.edit.dropdown-toggle::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* Hover effect sama seperti tombol lainnya */
-.btn-icon.edit.dropdown-toggle:hover {
-    transform: translateY(-2px) !important;
-    filter: saturate(1.05) brightness(.98) !important;
-    box-shadow: 0 8px 18px rgba(250,204,21,.35) !important;
-    background: #EAB308 !important; /* tetap kuning */
-    color: #111827 !important; /* tetap hitam */
-}
-
-/* Active state */
-.btn-icon.edit.dropdown-toggle:active {
-    transform: scale(.96) !important;
-    box-shadow: none !important;
-}
-
-/* Focus state */
-.btn-icon.edit.dropdown-toggle:focus {
-    outline: none !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
-    background: #EAB308 !important;
-    color: #111827 !important;
-}
-
-/* Pastikan ikon terpusat dengan sempurna */
-.btn-icon.edit.dropdown-toggle i {
-    font-size: 18px !important;
-    line-height: 1 !important;
-    color: inherit !important;
-    pointer-events: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Dropdown menu styling */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu {
-    border-radius: 10px !important;
-    border: 1px solid #e5e7eb !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1) !important;
-    padding: 6px 0 !important;
-    font-size: 14px !important;
-    background: #fff !important;
-    animation: fadeSlideIn 0.18s ease !important;
-    min-width: 170px !important;
-    z-index: 1000 !important;
-}
-
-/* Item di dalam dropdown */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    color: #374151 !important;
-    padding: 9px 14px !important;
-    transition: all 0.2s ease !important;
-    border: none !important;
-    background: transparent !important;
-}
-
-/* Icon di dropdown item */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item i {
-    font-size: 14px !important;
-    color: #64748b !important;
-    width: 18px !important;
-    text-align: center !important;
-}
-
-/* Hover efek dropdown item */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item:hover {
-    background-color: #f1f5ff !important;
-    color: #1d4ed8 !important;
-}
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item:hover i {
-    color: #1d4ed8 !important;
-}
-
-/* Animasi dropdown */
-@keyframes fadeSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================================
-   FIX DROPDOWN EDIT BUTTON - IKON PUTIH SEPERTI DASHBOARD
-   ========================================= */
-
-/* Override untuk tombol edit dropdown di Pelamar Bulan Ini */
-.btn-icon.edit.dropdown-toggle {
-    position: relative !important;
-    border: none !important;
-    background: #EAB308 !important; /* kuning solid seperti dashboard */
-    color: #ffffff !important; /* IKON PUTIH seperti dashboard */
-    box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 12px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 6px !important;
-    font-size: 16px !important;
-    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
-    text-decoration: none !important;
-}
-
-/* HILANGKAN PANAH DROPDOWN DARI BOOTSTRAP */
-.btn-icon.edit.dropdown-toggle::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* Hover effect sama seperti tombol lainnya */
-.btn-icon.edit.dropdown-toggle:hover {
-    transform: translateY(-2px) !important;
-    filter: saturate(1.05) brightness(.98) !important;
-    box-shadow: 0 8px 18px rgba(250,204,21,.35) !important;
-    background: #EAB308 !important; /* tetap kuning */
-    color: #ffffff !important; /* IKON TETAP PUTIH */
-}
-
-/* Active state */
-.btn-icon.edit.dropdown-toggle:active {
-    transform: scale(.96) !important;
-    box-shadow: none !important;
-}
-
-/* Focus state */
-.btn-icon.edit.dropdown-toggle:focus {
-    outline: none !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
-    background: #EAB308 !important;
-    color: #ffffff !important; /* IKON TETAP PUTIH */
-}
-
-/* Pastikan ikon terpusat dengan sempurna dan PUTIH */
-.btn-icon.edit.dropdown-toggle i {
-    font-size: 18px !important;
-    line-height: 1 !important;
-    color: #ffffff !important; /* WARNA PUTIH */
-    pointer-events: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Juga override untuk class .btn-icon.edit biasa */
-.btn-icon.edit {
-    background: #EAB308 !important;
-    color: #ffffff !important; /* IKON PUTIH */
-}
-
-.btn-icon.edit i {
-    color: #ffffff !important; /* WARNA PUTIH */
-}
-
-.btn-icon.edit:hover {
-    background: #EAB308 !important;
-    color: #ffffff !important; /* IKON TETAP PUTIH */
-}
-
-.btn-icon.edit:hover i {
-    color: #ffffff !important; /* WARNA PUTIH */
-}
-
-/* =========================================
-   FIX DROPDOWN EFFECT - SAMAKAN DENGAN FOTO KE-1
-   ========================================= */
-
-/* Dropdown menu styling - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu {
-    border-radius: 12px !important;
-    border: 1px solid #e5e7eb !important;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18) !important;
-    padding: 8px !important;
-    font-size: 14px !important;
-    background: #fff !important;
-    min-width: 240px !important;
-    z-index: 1000 !important;
-    max-height: none !important;
-    overflow-y: visible !important;
-}
-
-/* Item di dalam dropdown - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    padding: 12px 14px !important;
-    border-radius: 10px !important;
-    font-weight: 600 !important;
-    color: #111827 !important;
-    position: relative !important;
-    transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease !important;
-    border: none !important;
-    background: transparent !important;
-}
-
-/* Hover effect dropdown item - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item:hover {
-    background: #e8f0ff !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.15) !important;
-}
-
-/* Garis biru di kiri saat hover - seperti foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item:hover::before {
-    content: "" !important;
-    position: absolute !important;
-    left: 6px !important;
-    top: 8px !important;
-    bottom: 8px !important;
-    width: 3px !important;
-    border-radius: 3px !important;
-    background: #2563eb !important;
-}
-
-/* Divider - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-divider {
-    margin: 8px 10px !important;
-    border-top: 1px solid #e5e7eb !important;
-}
-
-/* Icon di dropdown item - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item i {
-    font-size: 16px !important;
-    color: #64748b !important;
-    width: 18px !important;
-    text-align: center !important;
-}
-
-/* Warna icon khusus untuk status tertentu - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item .fa-clock {
-    color: #6b7280 !important;  /* Submitted - abu */
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item .fa-flask {
-    color: #7c3aed !important;  /* Test 1 & 2 - ungu */
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item .fa-user-tie {
-    color: #0ea5e9 !important;  /* Interview - biru */
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item .fa-check {
-    color: #22c55e !important;  /* Terima - hijau */
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item .fa-times {
-    color: #ef4444 !important;  /* Tolak - merah */
-}
-
-/* Warna teks untuk Terima/Tolak - samakan dengan foto ke-1 */
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item.text-success {
-    color: #22c55e !important;
-    font-weight: 700 !important;
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item.text-danger {
-    color: #ef4444 !important;
-    font-weight: 700 !important;
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item.text-success:hover {
-    background: #dcfce7 !important;
-}
-
-.btn-icon.edit.dropdown-toggle + .dropdown-menu .dropdown-item.text-danger:hover {
-    background: #fee2e2 !important;
-}
-
-/* =========================================
-   FIX WARNA STATUS - SAMAKAN DENGAN FOTO KE-1
-   ========================================= */
-
-/* Override warna status chip untuk samakan dengan foto ke-1 */
-.status-chip {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    padding: 6px 12px !important;
-    border-radius: 20px !important;
-    font-weight: 600 !important;
-    font-size: 13px !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-}
-
-/* Titik kecil di kiri */
-.status-chip .dot {
-    width: 8px !important;
-    height: 8px !important;
-    border-radius: 50% !important;
-    background: currentColor !important;
-}
-
-/* WARNA STATUS SESUAI FOTO KE-1 */
-
-/* Menunggu/Submitted - abu kebiruan */
-.chip--submitted {
-    background-color: #E2E8F0 !important;  /* slate-200 */
-    color: #1E3A8A !important;             /* biru tua untuk teks */
-}
-.chip--submitted .dot {
-    background: #1E3A8A !important;
-}
-
-/* Ditinjau/Reviewed - amber lembut */
-.chip--review {
-    background-color: #FDE68A !important;  /* amber-200 */
-    color: #78350F !important;             /* amber-900 */
-}
-.chip--review .dot {
-    background: #78350F !important;
-}
-
-/* Test 1 - ungu */
-.chip--test1 {
-    background-color: #7C3AED !important;  /* ungu */
-    color: #fff !important;
-}
-.chip--test1 .dot {
-    background: #fff !important;
-}
-
-/* Test 2 - cyan lembut */
-.chip--test2 {
-    background-color: #A5F3FC !important;  /* cyan-300 */
-    color: #0E7490 !important;             /* cyan-800 */
-}
-.chip--test2 .dot {
-    background: #0E7490 !important;
-}
-
-/* Interview - biru */
-.chip--interview {
-    background-color: #06B6D4 !important;  /* cyan-500 */
-    color: #fff !important;
-}
-.chip--interview .dot {
-    background: #fff !important;
-}
-
-/* Terima/Accepted - hijau */
-.chip--accepted {
-    background-color: #22C55E !important;  /* hijau */
-    color: #fff !important;
-}
-.chip--accepted .dot {
-    background: #fff !important;
-}
-
-/* Tolak/Rejected - merah */
-.chip--rejected {
-    background-color: #EF4444 !important;  /* merah */
-    color: #fff !important;
-}
-.chip--rejected .dot {
-    background: #fff !important;
-}
-
-/* ==============================
-   STATUS BADGE - SAMAKAN DENGAN KELOLA PELAMAR
-============================== */
-.badge {
-    border-radius: 999px !important;
-    font-weight: 800 !important;
-    padding: 8px 12px !important;
-    font-size: 12.5px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-}
-
-.badge i {
-    font-size: 8px !important;
-}
-
-/* WARNA STATUS SESUAI KELOLA PELAMAR */
-.status-accepted {
-    background: #22c55e !important;
-    color: #fff !important;
-}
-
-.status-rejected {
-    background: #ef4444 !important;
-    color: #fff !important;
-}
-
-.status-interview {
-    background: #0ea5e9 !important;
-    color: #fff !important;
-}
-
-.status-test {
-    background: #7c3aed !important;
-    color: #fff !important;
-}
-
-.status-test2 {
-    background: #A5F3FC !important;
-    color: #0E7490 !important;
-}
-
-.status-pending {
-    background: #E2E8F0 !important;
-    color: #1E3A8A !important;
-}
-
-.status-reviewed {
-    background: #FDE68A !important;
-    color: #78350F !important;
-}
-
-/* HAPUS STYLING LAMA STATUS CHIP */
-.status-chip,
-.chip--submitted,
-.chip--review, 
-.chip--test1,
-.chip--test2,
-.chip--interview,
-.chip--accepted,
-.chip--rejected {
-    all: unset !important;
-}
-
-.status-chip .dot {
-    display: none !important;
-}
-
-/* =========================
-   RESET BUTTON STYLING - PELAMAR BULAN INI
-   ========================= */
-.btn-outline-secondary {
-    background: #1f3a95 !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 10px !important;
-    margin-left: 8px !important;
-    font-weight: 700 !important;
-    padding: 10px 16px !important;
-    box-shadow: 0 4px 12px rgba(31, 58, 149, 0.3) !important;
-    transition: all 0.2s ease-in-out !important;
-}
-
-.btn-outline-secondary:hover {
-    background: #1a2f7a !important;
-    color: #fff !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(31, 58, 149, 0.4) !important;
-}
-
-.btn-outline-secondary:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 8px rgba(31, 58, 149, 0.3) !important;
-}
-
-.btn-outline-secondary:focus {
-    background: #1f3a95 !important;
-    color: #fff !important;
-    border: none !important;
-    transform: none !important;
-    box-shadow: 0 4px 12px rgba(31, 58, 149, 0.3) !important;
-}
-
-/* =========================================
-   FIX TOMBOL CARI DENGAN WARNA rgb(30, 58, 138)
-   ========================================= */
-
-/* Tombol Cari - Warna solid rgb(30, 58, 138) */
-.input-group .btn-secondary {
-    background: rgb(30, 58, 138) !important;
-    color: #fff !important;
-    border: 1.5px solid rgb(30, 58, 138) !important;
-    border-left: none !important;
-    border-radius: 0 8px 8px 0 !important;
-    padding: 10px 20px !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    transition: all 0.25s ease-in-out !important;
-    box-shadow: none !important;
-    margin-left: 0 !important;
-}
-
-/* Hover - warna sama, sedikit efek */
-.input-group .btn-secondary:hover {
-    background: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-    opacity: 0.9 !important;
-    transform: translateY(-1px) !important;
-}
-
-/* Active/Click - warna sama, efek tekan */
-.input-group .btn-secondary:active {
-    background: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-    transform: translateY(0) !important;
-    opacity: 0.95 !important;
-}
-
-/* Focus - warna sama */
-.input-group .btn-secondary:focus {
-    background: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-    color: rgb(30, 58, 138) !important;
-    box-shadow: none !important;
-}
-
-/* Input field sesuaikan */
-.search-bar {
-    border-radius: 8px 0 0 8px !important;
-}
-
-/* =========================================
-   FIX RADICAL - HILANGKAN SEMUA EFEK PUTIH
-   ========================================= */
-
-.input-group .btn-secondary {
-    all: unset !important;
-    background: rgb(30, 58, 138) !important;
-    background-color: rgb(30, 58, 138) !important;
-    color: #fff !important;
-    border: 1.5px solid rgb(30, 58, 138) !important;
-    border-left: none !important;
-    border-radius: 0 8px 8px 0 !important;
-    padding: 10px 20px !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    margin-left: 0 !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.input-group .btn-secondary:hover {
-    all: unset !important;
-    background: rgb(30, 58, 138) !important;
-    background-color: rgb(30, 58, 138) !important;
-    color: #fff !important;
-    border: 1.5px solid rgb(30, 58, 138) !important;
-    border-left: none !important;
-    border-radius: 0 8px 8px 0 !important;
-    padding: 10px 20px !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    margin-left: 0 !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+  border:none;
+  box-shadow:0 10px 26px rgba(0,0,0,.12);
+  transition:transform .16s ease, filter .16s ease, box-shadow .16s ease;
+  white-space:nowrap;
+}
+
+/* Warna tombol sesuai screenshot */
+.action-text.view{
+  background:linear-gradient(180deg,#2E5BD8,#1E3A8A); /* biru gradasi */
+}
+.action-text.edit{
+  background:linear-gradient(180deg,#F1C40F,#D4A107); /* kuning gradasi */
+  color:#fff;
+}
+.action-text.delete{
+  background:linear-gradient(180deg,#F05252,#DC2626); /* merah gradasi */
+}
+
+/* Efek hover halus */
+.action-text:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.03);
+  box-shadow:0 14px 34px rgba(0,0,0,.18);
+}
+.action-text:active{ transform:scale(.98); box-shadow:none; }
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width:992px){
+  .company-applications-table th:last-child,
+  .company-applications-table td:last-child{ min-width:220px; }
+
+  .action-text{ min-width:110px; height:50px; font-size:18px; }
+}
+@media (max-width:768px){
+  .action-text{ min-width:96px; height:44px; font-size:16px; padding:0 16px; }
+  .aksi-wrapper{ gap:10px; flex-wrap:wrap; }
+}
+/* ===========================
+   PELAMAR BULAN INI (scoped)
+=========================== */
+.pelamar-bulan-ini .company-applications-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(2,6,23,.08);
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+
+/* Header */
+.pelamar-bulan-ini .company-applications-table thead tr{ background:#1E3A8A; }
+.pelamar-bulan-ini .company-applications-table thead th{
+  padding:14px 16px;
+  color:#fff; font-weight:800; font-size:14px;
+  text-transform:uppercase; letter-spacing:.4px; border:none; text-align:center;
+}
+.pelamar-bulan-ini .company-applications-table thead th:first-child{ border-top-left-radius:16px; }
+.pelamar-bulan-ini .company-applications-table thead th:last-child { border-top-right-radius:16px; }
+
+/* Body cells */
+.pelamar-bulan-ini .company-applications-table tbody td{
+  padding:12px 14px;
+  font-size:14px; color:#1f2937; text-align:center;
+  border-top:1.6px solid #d6e6ff; border-right:1px solid #e3edff;
+  background:#fff; vertical-align:middle;
+}
+.pelamar-bulan-ini .company-applications-table tbody td:last-child{ border-right:none; }
+.pelamar-bulan-ini .company-applications-table tbody tr:last-child td:first-child{ border-bottom-left-radius:16px; }
+.pelamar-bulan-ini .company-applications-table tbody tr:last-child td:last-child { border-bottom-right-radius:16px; }
+.pelamar-bulan-ini .company-applications-table tbody tr{ transition:none; }
+.pelamar-bulan-ini .company-applications-table tbody tr:hover{ background:#fff; box-shadow:none; transform:none; }
+
+/* Kolom AKSI lebih wajar */
+.pelamar-bulan-ini .company-applications-table th:last-child,
+.pelamar-bulan-ini .company-applications-table td:last-child{ min-width:220px; }
+
+/* ===========================
+   Status badge
+=========================== */
+.pelamar-bulan-ini .badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  font-weight:800; font-size:12.5px; border:none;
+}
+.pelamar-bulan-ini .badge i{ font-size:8px; }
+.pelamar-bulan-ini .status-rejected{  background:#EF4444; color:#fff; }
+.pelamar-bulan-ini .status-test{      background:#7C3AED; color:#fff; }
+.pelamar-bulan-ini .status-test2{     background:#7C3AED; color:#fff; }
+.pelamar-bulan-ini .status-reviewed{  background:#FDE68A; color:#78350F; }
+.pelamar-bulan-ini .status-pending{   background:#E2E8F0; color:#1E3A8A; }
+.pelamar-bulan-ini .status-interview{ background:#06B6D4; color:#fff; }
+.pelamar-bulan-ini .status-accepted{  background:#22C55E; color:#fff; }
+
+/* ===========================
+   Aksi: tombol pil (lebih kecil)
+=========================== */
+.pelamar-bulan-ini .aksi-wrapper{
+  display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:nowrap;
+}
+.pelamar-bulan-ini .action-text{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:100px; height:44px; padding:0 16px;
+  border-radius:999px; font-weight:800; font-size:16px;
+  color:#fff; text-decoration:none !important; border:none;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+  transition:transform .16s ease, filter .16s ease, box-shadow .16s ease;
+  white-space:nowrap;
+}
+.pelamar-bulan-ini .action-text:hover{ transform:translateY(-2px); filter:brightness(1.06); }
+.pelamar-bulan-ini .action-text:active{ transform:scale(.98); box-shadow:none; }
+
+/* Warna tombol */
+.pelamar-bulan-ini .action-text.view{
+  background:linear-gradient(180deg,#2E5BD8,#1E3A8A);
+}
+.pelamar-bulan-ini .action-text.edit{
+  background:linear-gradient(180deg,#F1C40F,#D4A107); color:#fff;
+}
+.pelamar-bulan-ini .action-text.delete{
+  background:linear-gradient(180deg,#F05252,#DC2626);
+}
+
+/* ===========================
+   Dropdown Edit (tanpa caret)
+=========================== */
+.pelamar-bulan-ini .aksi-wrapper .dropdown{ position:relative; display:inline-block; }
+.pelamar-bulan-ini .aksi-wrapper .dropdown > .dropdown-toggle::after{
+  content:none !important; display:none !important; border:0 !important;
+}
+.pelamar-bulan-ini .company-applications-table td:last-child{ position:relative; overflow:visible !important; }
+.pelamar-bulan-ini .company-applications-table td:last-child .dropdown-menu{
+  position:absolute !important; top:100% !important; right:auto !important;
+  min-width:240px; padding:10px; margin-top:.125rem;
+  border:1px solid #e5e7eb; border-radius:14px; background:#fff;
+  box-shadow:0 18px 40px rgba(0,0,0,.2); z-index:9999 !important;
+}
+.pelamar-bulan-ini .dropdown-item{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:12px; font-weight:600;
+  color:#111827; transition:background-color .18s ease, transform .18s ease;
+}
+.pelamar-bulan-ini .dropdown-item:hover{
+  background:#e8f0ff; color:#1e3a8a; transform:translateY(-1px);
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 768px){
+  .pelamar-bulan-ini .action-text{ min-width:90px; height:40px; font-size:14px; padding:0 14px; }
+  .pelamar-bulan-ini .aksi-wrapper{ gap:10px; flex-wrap:wrap; }
+  .pelamar-bulan-ini .company-applications-table th:last-child,
+  .pelamar-bulan-ini .company-applications-table td:last-child{ min-width:180px; }
+}
+/* ==== pastikan container tidak memotong dropdown ==== */
+.pelamar-bulan-ini .table-responsive,
+.pelamar-bulan-ini .card,
+.pelamar-bulan-ini .card-body,
+.pelamar-bulan-ini .company-applications-table,
+.pelamar-bulan-ini .company-applications-table tbody,
+.pelamar-bulan-ini .company-applications-table tr,
+.pelamar-bulan-ini .company-applications-table td {
+  overflow: visible !important;
+}
+
+/* ==== dropdown nempel ke tombol Edit (centered) ==== */
+.pelamar-bulan-ini .aksi-wrapper .dropdown{ position:relative; }
+.pelamar-bulan-ini .aksi-wrapper .dropdown > .dropdown-toggle::after{
+  content:none !important;
+}
+
+.pelamar-bulan-ini .aksi-wrapper .dropdown-menu{
+  position:absolute !important;
+  top:100% !important;
+  left:50% !important;               /* titik tengah tombol */
+  transform:translateX(-50%) translateY(8px) !important;
+  right:auto !important;
+  margin:0 !important;
+
+  min-width:240px;
+  padding:10px;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 18px 40px rgba(0,0,0,.2);
+  z-index:9999 !important;
+}
+
+/* Baris terakhir → dropup agar tidak mentok bawah tabel */
+.pelamar-bulan-ini .company-applications-table tbody tr:last-child
+  td:last-child .dropdown-menu{
+  top:auto !important;
+  bottom:100% !important;
+  left:50% !important;
+  transform:translateX(-50%) translateY(-8px) !important;
+}
+
+/* Hover item */
+.pelamar-bulan-ini .dropdown-item{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:12px; font-weight:600;
+  color:#111827; transition:background-color .18s ease, transform .18s ease;
+}
+.pelamar-bulan-ini .dropdown-item:hover{
+  background:#e8f0ff; color:#1e3a8a; transform:translateY(-1px);
+}
+/* ===== PERBAIKAN UKURAN TOMBOL AKSI AGAR RATA BARIS ===== */
+.pelamar-bulan-ini .aksi-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* jarak antar tombol lebih rapat */
+}
+
+.pelamar-bulan-ini .action-text {
+  min-width: 88px;   /* lebar lebih kecil */
+  height: 38px;      /* tinggi lebih pendek */
+  padding: 0 14px;
+  font-size: 14px;   /* ukuran teks lebih kecil */
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.pelamar-bulan-ini .action-text:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* Warna tetap sama */
+.pelamar-bulan-ini .action-text.view {
+  background: linear-gradient(180deg, #2E5BD8, #1E3A8A);
+  color: #fff;
+}
+.pelamar-bulan-ini .action-text.edit {
+  background: linear-gradient(180deg, #F1C40F, #D4A107);
+  color: #fff;
+}
+.pelamar-bulan-ini .action-text.delete {
+  background: linear-gradient(180deg, #F05252, #DC2626);
+  color: #fff;
+}
+
+/* Pastikan dropdown tetap sejajar di bawah tombol edit */
+.pelamar-bulan-ini .aksi-wrapper .dropdown {
+  position: relative;
+}
+.pelamar-bulan-ini .aksi-wrapper .dropdown > .dropdown-toggle::after {
+  content: none !important;
+}
+.pelamar-bulan-ini .aksi-wrapper .dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(6px) !important;
+  min-width: 200px;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e5e7eb;
 }

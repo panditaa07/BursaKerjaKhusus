@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid pelamar-bulan-ini">
     <!-- Header Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="h4 mb-0">Pelamar Bulan Ini</h2>
@@ -67,7 +67,7 @@
                             <th>No. HP</th>
                             <th>Lowongan yang Dilamar</th>
                             <th width="160">Status</th>
-                            <th width="170">Aksi</th>
+                            <th width="220" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,59 +124,53 @@
                                         {{ $currentStatus['label'] }}
                                     </span>
                                 </td>
+
+                                {{-- === AKSI (teks) === --}}
                                 <td class="text-center">
-                                    <div class="d-flex justify-content-center">
-                                        <!-- View -->
-                                        <a href="{{ route('company.applications.show.company', $application->id) }}" 
-                                           class="btn-icon view" aria-label="Lihat">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
+                                    <div class="aksi-wrapper">
+                                        {{-- Lihat --}}
+                                        <a href="{{ route('company.applications.show.company', $application->id) }}"
+                                           class="action-text view">Lihat</a>
 
-                                        <!-- Edit Dropdown -->
-                                        <div class="dropdown">
-                                            <button class="btn-icon edit dropdown-toggle" 
-                                                    type="button" 
-                                                    id="dropdownMenuButton{{ $application->id }}" 
-                                                    data-bs-toggle="dropdown" 
-                                                    aria-expanded="false">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
+                                        {{-- Edit (dropdown ubah status) --}}
+                                     <button
+  class="action-text edit dropdown-toggle"
+  id="dd-{{ $application->id }}"
+  data-bs-toggle="dropdown"
+  data-bs-display="static"   {{-- penting: jangan auto-reposition --}}
+  aria-expanded="false">
+  Edit
+</button>
 
-                                            <ul class="dropdown-menu dropdown-menu-end"
-                                                aria-labelledby="dropdownMenuButton{{ $application->id }}">
+                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dd-{{ $application->id }}">
                                                 @foreach ([
-                                                    'submitted' => ['icon' => 'fa-clock', 'label' => 'Submitted'],
-                                                    'test1'     => ['icon' => 'fa-flask', 'label' => 'Test 1'],
-                                                    'test2'     => ['icon' => 'fa-flask', 'label' => 'Test 2'],
-                                                    'interview' => ['icon' => 'fa-user-tie', 'label' => 'Interview'],
-                                                    'accepted'  => ['icon' => 'fa-check text-success', 'label' => 'Terima'],
-                                                    'rejected'  => ['icon' => 'fa-times text-danger', 'label' => 'Tolak']
-                                                ] as $st => $info)
+                                                    'submitted' => 'Submitted',
+                                                    'test1'     => 'Test 1',
+                                                    'test2'     => 'Test 2',
+                                                    'interview' => 'Interview',
+                                                    'accepted'  => 'Terima',
+                                                    'rejected'  => 'Tolak'
+                                                ] as $st => $label)
                                                     <li>
                                                         <form action="{{ route('company.applications.updateStatus', $application->id) }}"
                                                               method="POST" class="d-inline">
                                                             @csrf
                                                             @method('PUT')
                                                             <input type="hidden" name="status" value="{{ $st }}">
-                                                            <button type="submit" class="dropdown-item">
-                                                                <i class="fa {{ $info['icon'] }} me-2"></i>{{ $info['label'] }}
-                                                            </button>
+                                                            <button type="submit" class="dropdown-item">{{ $label }}</button>
                                                         </form>
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </div>
 
-                                        <!-- Delete -->
-                                        <form action="{{ route('company.applications.destroy', $application->id) }}" 
-                                              method="POST" 
-                                              class="d-inline"
+                                        {{-- Hapus --}}
+                                        <form action="{{ route('company.applications.destroy', $application->id) }}"
+                                              method="POST" class="d-inline"
                                               onsubmit="return confirm('Apakah Anda yakin ingin menghapus lamaran ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-icon delete" aria-label="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <button type="submit" class="action-text delete">Hapus</button>
                                         </form>
                                     </div>
                                 </td>
@@ -203,32 +197,25 @@
     @endif
 </div>
 
-<!-- Custom JavaScript for dropdown functionality -->
+<!-- Dropdown fallback tetap sama -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Ensure all dropdowns work properly
     if (typeof bootstrap !== 'undefined') {
-        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-        dropdownElementList.map(function (el) { return new bootstrap.Dropdown(el); });
+        [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+          .map(el => new bootstrap.Dropdown(el));
     } else {
-        // Fallback
         document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
             toggle.addEventListener('click', function(e) {
                 e.preventDefault(); e.stopPropagation();
-                var dropdown = toggle.closest('.dropdown');
-                var menu = dropdown.querySelector('.dropdown-menu');
-                var isVisible = menu.style.display === 'block';
-                menu.style.display = isVisible ? 'none' : 'block';
-                document.querySelectorAll('.dropdown-menu').forEach(function(other) {
-                    if (other !== menu) other.style.display = 'none';
-                });
+                const menu = toggle.closest('.dropdown').querySelector('.dropdown-menu');
+                const open = menu.style.display === 'block';
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+                menu.style.display = open ? 'none' : 'block';
             });
         });
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', e => {
             if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-                    menu.style.display = 'none';
-                });
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
             }
         });
     }
