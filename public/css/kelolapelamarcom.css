@@ -1,8 +1,6 @@
 /* ==============================
-   KELOLA PELAMAR - COMPANY
+   KELOLA PELAMAR - COMPANY - FIXED
    ============================== */
-
-
 
 /* ===== TITLE ===== */
 h2.h4{
@@ -72,7 +70,7 @@ h2.h4{
 }
 
 /* =========================
-   TABLE WRAPPER (TANPA CARD)
+   TABLE WRAPPER - FIXED DROPDOWN
    ========================= */
 .company-applications-table{
   --tbl-border:#cfe1ff;
@@ -90,6 +88,7 @@ h2.h4{
   overflow-x:auto!important;
   overflow-y:visible!important;
   border-radius: 16px;
+  position: relative;
 }
 
 /* ===================
@@ -148,6 +147,13 @@ h2.h4{
 
 .company-applications-table .table tbody tr:last-child td:last-child{
   border-bottom-right-radius:14px!important;
+}
+
+/* TD AKSI - FIX UNTUK DROPDOWN */
+.company-applications-table .table tbody td:last-child {
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 1 !important;
 }
 
 .table-hover tbody tr:hover{
@@ -293,6 +299,7 @@ h2.h4{
   transition:transform .15s ease, box-shadow .15s ease!important;
   font-size:0!important;
   line-height:1!important;
+  cursor: pointer !important;
 }
 
 .company-applications-table .btn-group .btn i,
@@ -345,34 +352,44 @@ h2.h4{
 }
 
 /* =========================================
-   DROPDOWN STATUS
+   DROPDOWN STATUS - FIXED!
    ========================================= */
 .company-applications-table td:last-child{
   position:relative!important;
   overflow:visible!important;
 }
 
+/* PERBAIKAN UTAMA: ganti relative jadi static */
 .company-applications-table .dropdown{
-  position:relative!important;
-  z-index:2!important;
+  position: static !important; /* INI PERBAIKAN UTAMA */
+  display: inline-block !important;
+  z-index: 1000 !important;
 }
 
 .company-applications-table .dropdown.show{
-  z-index:10000!important;
+  z-index: 10000 !important;
 }
 
+/* PERBAIKAN POSITIONING DROPDOWN MENU */
 .company-applications-table .dropdown-menu{
-  position:absolute!important;
-  z-index:10001!important;
-  min-width:240px!important;
-  max-height:none!important;
-  overflow-y:visible!important;
-  white-space:nowrap!important;
-  padding:8px!important;
-  border:1px solid #e5e7eb!important;
-  border-radius:12px!important;
-  box-shadow:0 12px 28px rgba(0,0,0,.18)!important;
-  background:#fff!important;
+  position: absolute !important;
+  z-index: 10001 !important;
+  min-width: 240px !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+  white-space: nowrap !important;
+  padding: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+  background: #fff !important;
+  
+  /* POSITIONING FIX */
+  top: 100% !important;
+  right: 0 !important;
+  left: auto !important;
+  transform: none !important;
+  margin-top: 5px !important;
 }
 
 .company-applications-table .dropdown-menu .dropdown-item{
@@ -388,6 +405,8 @@ h2.h4{
   box-shadow:none!important;
   transform:none!important;
   position:relative;
+  cursor: pointer !important;
+  border: none !important;
 }
 
 .company-applications-table .dropdown-menu .dropdown-item:hover{
@@ -479,6 +498,16 @@ h2.h4{
   
   .company-applications-table .table tbody td{
     font-size:13.5px!important;
+  }
+  
+  /* FIX DROPDOWN MOBILE */
+  .company-applications-table .dropdown-menu {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 50% !important;
+    margin-top: 0 !important;
+    z-index: 100000 !important;
   }
 }
 
@@ -574,3 +603,22 @@ input:-webkit-autofill::first-line {
     color: #000000 !important;
     font-size: inherit !important;
 }
+
+/* =========================
+   FIX UNTUK FORM DI DROPDOWN
+   ========================= */
+.company-applications-table .dropdown-menu form {
+  margin: 0 !important;
+  display: block !important;
+}
+
+.company-applications-table .dropdown-menu button[type="submit"] {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
