@@ -257,3 +257,62 @@ body{ background:#e9eef6; }
   .table-borderless tr{ margin-bottom:.6rem; display:block; }
   .table-borderless td.fw-bold{ margin-top:.25rem; }
 }
+/* Judul besar halaman */
+.page-title{
+  color: var(--blue-900);
+  font-weight: 800;
+  font-size: 2.25rem;      /* besar seperti pada gambar */
+  letter-spacing: .3px;
+}
+
+/* Avatar di dalam kartu */
+.avatar-photo{
+  width: 150px; height: 150px; object-fit: cover;
+  border-radius: 9999px; border: 4px solid #fff;
+  box-shadow: 0 8px 24px rgba(2,6,23,.15);
+}
+.avatar-initial{
+  width: 150px; height: 150px;
+  border-radius: 9999px;
+  background: rgb(30,58,138);
+  color:#fff; font-weight: 800; font-size: 64px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 24px rgba(2,6,23,.15);
+}
+
+/* Header kartu biru konsisten seperti foto */
+.card-header{
+  border: 0;
+  padding: .9rem 1rem;
+  color: #fff !important;
+  font-weight: 800;
+  background: rgb(30,58,138) !important;
+}
+
+/* Tombol kembali — kapsul biru */
+.btn-kembali{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background: rgb(30,58,138); color:#fff;
+  border:none; border-radius:14px; padding:.7rem 1.1rem;
+  box-shadow: 0 6px 18px rgba(30,58,138,.25);
+  font-weight: 800; text-decoration:none;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn-kembali:hover{
+  transform: translateY(-2px);
+  filter: saturate(1.05);
+  box-shadow: 0 10px 24px rgba(30,58,138,.35);
+}
+
+/* Pertegas chip status (seperti contoh) */
+.status-chip{ font-size:.9rem; padding:.5rem 1rem; }
+
+/* Rapikan tabel label:value */
+.table-borderless td{ padding:.45rem .25rem; }
+.table-borderless td.fw-bold{ width:140px; }
+
+/* Responsif kecil */
+@media (max-width: 768px){
+  .avatar-photo, .avatar-initial{ width:120px; height:120px; font-size:52px; }
+  .page-title{ font-size:1.9rem; }
+}

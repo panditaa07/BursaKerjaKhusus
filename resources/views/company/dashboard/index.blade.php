@@ -76,7 +76,7 @@
 
   {{-- === Tabel Pelamar Terbaru === --}}
   <div class="container table-section">
-    <h3 class="section-title mb-3">Pelamar Terbaru</h3>
+    <h3 class="section-title">Pelamar Terbaru</h3>
 
     <table class="table-custom">
       <thead>
@@ -119,71 +119,87 @@
             </td>
             <td>{{ $app->created_at->format('d-m-Y') }}</td>
 
-            {{-- AKSI --}}
-            <td class="text-center">
-              <div class="aksi-wrapper d-flex justify-content-center align-items-center">
+    {{-- AKSI --}}
+<td class="text-center">
+  <div class="aksi-wrapper d-flex justify-content-center align-items-center">
 
-                {{-- Lihat --}}
-                <a href="{{ route('company.applicants.show', $app->id) }}" class="action-text view">Lihat</a>
+    {{-- Lihat --}}
+    <a href="{{ route('company.applicants.show', $app->id) }}" class="action-text view">Lihat</a>
 
-                {{-- Edit (dropdown buka ke kiri) --}}
-                <div class="dropdown dropstart position-static">
-                  <button
-                    class="action-text edit dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton{{ $app->id }}"
-                    data-bs-toggle="dropdown"
-                    data-bs-display="static"
-                    data-bs-boundary="viewport"
-                    data-bs-reference="parent"
-                    aria-expanded="false">
-                    Edit
-                  </button>
+    {{-- Edit (dropdown buka ke kiri) --}}
+    <div class="dropdown dropstart position-static">
+      <button
+        class="action-text edit"
+        type="button"
+        id="dropdownMenuButton{{ $app->id }}"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        data-bs-boundary="viewport"
+        data-bs-reference="parent"
+        aria-expanded="false">
+        Edit
+      </button>
 
-                  @php
-                    $statusMenu = [
-                      'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
-                      'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
-                      'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
-                      'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
-                      'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
-                      'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
-                    ];
-                  @endphp
+      @php
+        $statusMenu = [
+          'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
+          'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
+          'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
+          'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
+          'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
+          'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
+        ];
+      @endphp
 
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $app->id }}">
-                    @foreach ($statusMenu as $value => $opt)
-                      <li>
-                        <form action="{{ route('company.applications.updateStatus', $app->id) }}"
-                              method="POST" class="d-inline">
-                          @csrf
-                          @method('PUT')
-                          <input type="hidden" name="status" value="{{ $value }}">
-                          <button type="submit" class="dropdown-item {{ $opt['btn_class'] ?? '' }}">
-                            <i class="status-icon {{ $opt['icon'] }} me-2"></i>
-                            {{ $opt['label'] }}
-                          </button>
-                        </form>
-                      </li>
-                      @if(!empty($opt['divider_after']))
-                        <li><hr class="dropdown-divider"></li>
-                      @endif
-                    @endforeach
-                  </ul>
-                </div>
-
-                {{-- Hapus --}}
-                <form action="{{ route('company.applicants.destroy', $app->id) }}"
-                      method="POST" class="d-inline"
-                      onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="action-text delete">Hapus</button>
-                </form>
-
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $app->id }}">
+        @foreach ($statusMenu as $value => $opt)
+          @php
+            $isActive = ($value === $status);
+            $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
+          @endphp
+          <li>
+            @if($isActive)
+              {{-- Status aktif --}}
+              <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
+                <i class="status-icon {{ $opt['icon'] }}"></i>
+                {{ $opt['label'] }}
+                <span class="tick"><i class="fas fa-check"></i></span>
               </div>
-            </td>
-          </tr>
+            @else
+              {{-- Status lain --}}
+              <form action="{{ route('company.applications.updateStatus', $app->id) }}"
+                    method="POST" class="d-inline">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="status" value="{{ $value }}">
+                <button type="submit" class="dropdown-item {{ $btnClasses }}">
+                  <i class="status-icon {{ $opt['icon'] }}"></i>
+                  {{ $opt['label'] }}
+                  <span class="tick"><i class="fas fa-check"></i></span>
+                </button>
+              </form>
+            @endif
+          </li>
+
+          @if(!empty($opt['divider_after']))
+            <li><hr class="dropdown-divider"></li>
+          @endif
+        @endforeach
+      </ul>
+    </div>
+
+    {{-- Hapus --}}
+    <form action="{{ route('company.applicants.destroy', $app->id) }}"
+          method="POST" class="d-inline"
+          onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="action-text delete">Hapus</button>
+    </form>
+
+  </div>
+</td>
+
         @empty
           <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
         @endforelse
@@ -192,7 +208,8 @@
   </div>
 
   {{-- === Lowongan Terbaru Cards === --}}
-  <div class="container jobs-latest">
+  <div class="container jobs-latest mt-4">  {{-- sebelumnya: <div class="container jobs-latest"> --}}
+
     <div class="jobs-header mb-4 text-center">
       <h3 class="section-title mb-0">Lowongan Terbaru</h3>
     </div>

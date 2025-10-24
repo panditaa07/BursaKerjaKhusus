@@ -80,7 +80,15 @@
                     <td>{{ $job->location ?? '-' }}</td>
 
                     {{-- TIPE --}}
-                    <td><span class="badge bg-info">{{ $job->type ?? 'N/A' }}</span></td>
+                   <td>
+  @php $type = trim($job->type ?? ''); @endphp
+  @if($type !== '')
+    <span class="badge badge-type">{{ $type }}</span>
+  @else
+    <span class="text-muted">-</span>
+  @endif
+</td>
+
 
                     {{-- GAJI --}}
                     <td>{{ $job->salary ?? '-' }}</td>
