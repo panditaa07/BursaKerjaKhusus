@@ -80,6 +80,8 @@ h2.h4{
   box-shadow:0 8px 20px rgba(0,0,0,.08)!important;
   overflow:visible!important;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .company-applications-table .table-responsive{
@@ -153,7 +155,7 @@ h2.h4{
 .company-applications-table .table tbody td:last-child {
   position: relative !important;
   overflow: visible !important;
-  z-index: 1 !important;
+  z-index: auto !important;
 }
 
 .table-hover tbody tr:hover{
@@ -268,14 +270,13 @@ h2.h4{
 /* =========================================
    AKSI (ikon kotak rounded)
    ========================================= */
-.company-applications-table .btn-group{
-  display:flex!important;
-  justify-content:center!important;
-  align-items:center!important;
-  gap:8px!important;
-  position:relative!important;
-  z-index:auto!important;
-  isolation:isolate!important;
+.company-applications-table .aksi-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+    position: relative;
 }
 
 .company-applications-table .table thead th:last-child,
@@ -284,96 +285,68 @@ h2.h4{
   padding-left:18px!important;
 }
 
-.company-applications-table .btn-group .btn,
-.company-applications-table .dropdown .btn{
-  width:38px!important;
-  height:38px!important;
-  border-radius:10px!important;
-  display:flex!important;
-  justify-content:center!important;
-  align-items:center!important;
-  padding:0!important;
-  margin:0!important;
-  border:none!important;
-  box-shadow:0 4px 10px rgba(0,0,0,.10)!important;
-  transition:transform .15s ease, box-shadow .15s ease!important;
-  font-size:0!important;
-  line-height:1!important;
-  cursor: pointer !important;
+/* Tombol aksi */
+.company-applications-table .action-text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none !important;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
-.company-applications-table .btn-group .btn i,
-.company-applications-table .dropdown .btn i{
-  font-size:16px!important;
-  line-height:1!important;
-  color:#fff!important;
+.company-applications-table .action-text:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
 }
 
-/* Lihat (biru) */
-.company-applications-table .btn-outline-info{
-  background:#2563eb!important;
-  box-shadow:0 6px 14px rgba(37,99,235,.28)!important;
+.company-applications-table .action-text:active {
+    transform: scale(.98);
+    box-shadow: none;
 }
 
-.company-applications-table .btn-outline-info:hover{
-  background:#1d4ed8!important;
-  transform:translateY(-2px);
+/* Warna tombol */
+.company-applications-table .action-text.view {
+    background: linear-gradient(180deg, #2E5BD8, #1E3A8A);
 }
 
-/* Edit (kuning) */
-.company-applications-table .btn-outline-warning{
-  background:#facc15!important;
-  box-shadow:0 6px 14px rgba(250,204,21,.28)!important;
+.company-applications-table .action-text.edit {
+    background: linear-gradient(180deg, #F1C40F, #D4A107);
+    color: #fff;
 }
 
-.company-applications-table .btn-outline-warning:hover{
-  background:#eab308!important;
-  transform:translateY(-2px);
-}
-
-/* Hapus (merah) */
-.company-applications-table .btn-outline-danger{
-  background:#ef4444!important;
-  box-shadow:0 6px 14px rgba(239,68,68,.28)!important;
-}
-
-.company-applications-table .btn-outline-danger:hover{
-  background:#dc2626!important;
-  transform:translateY(-2px);
-}
-
-.company-applications-table .btn-group .btn:active{
-  transform:scale(.95);
-  box-shadow:none!important;
-}
-
-.company-applications-table .dropdown-toggle::after{
-  display:none!important;
+.company-applications-table .action-text.delete {
+    background: linear-gradient(180deg, #F05252, #DC2626);
 }
 
 /* =========================================
    DROPDOWN STATUS - FIXED!
    ========================================= */
-.company-applications-table td:last-child{
-  position:relative!important;
-  overflow:visible!important;
-}
 
-/* PERBAIKAN UTAMA: ganti relative jadi static */
+/* PERBAIKAN UTAMA: dropdown positioning */
 .company-applications-table .dropdown{
-  position: static !important; /* INI PERBAIKAN UTAMA */
+  position: static !important;
   display: inline-block !important;
-  z-index: 1000 !important;
 }
 
-.company-applications-table .dropdown.show{
+.company-applications-table .dropdown.active {
   z-index: 10000 !important;
 }
 
 /* PERBAIKAN POSITIONING DROPDOWN MENU */
 .company-applications-table .dropdown-menu{
   position: absolute !important;
-  z-index: 10001 !important;
+  z-index: 1060 !important;
   min-width: 240px !important;
   max-height: none !important;
   overflow-y: visible !important;
@@ -386,12 +359,20 @@ h2.h4{
   
   /* POSITIONING FIX */
   top: 100% !important;
-  right: 0 !important;
-  left: auto !important;
-  transform: none !important;
-  margin-top: 5px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  right: auto !important;
+  margin: 0 !important;
 }
 
+/* Untuk baris terakhir - dropdown ke atas */
+.company-applications-table .dropdown.last-row .dropdown-menu {
+  top: auto !important;
+  bottom: 100% !important;
+  transform: translateX(-50%) translateY(-8px) !important;
+}
+
+/* Dropdown item */
 .company-applications-table .dropdown-menu .dropdown-item{
   display:flex!important;
   align-items:center!important;
@@ -407,6 +388,7 @@ h2.h4{
   position:relative;
   cursor: pointer !important;
   border: none !important;
+  width: 100%;
 }
 
 .company-applications-table .dropdown-menu .dropdown-item:hover{
@@ -473,6 +455,24 @@ h2.h4{
   background:#fee2e2!important;
 }
 
+/* Status aktif */
+.company-applications-table .dropdown-menu .dropdown-item.is-active {
+    background: #ECFDF5 !important;
+    color: #065F46 !important;
+    cursor: default;
+    pointer-events: none;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item.is-active .status-icon {
+    color: #10B981 !important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item .tick {
+    font-size: 14px;
+    margin-left: auto;
+    color: #10B981;
+}
+
 /* ===== PAGINATION ===== */
 .pagination{
   justify-content:center!important;
@@ -500,20 +500,38 @@ h2.h4{
     font-size:13.5px!important;
   }
   
+  .company-applications-table .action-text {
+      min-width: 90px;
+      height: 40px;
+      font-size: 14px;
+      padding: 0 14px;
+  }
+  
+  .company-applications-table .aksi-wrapper {
+      gap: 10px;
+      flex-wrap: wrap;
+  }
+  
+  .company-applications-table th:last-child,
+  .company-applications-table td:last-child {
+      min-width: 180px;
+  }
+  
   /* FIX DROPDOWN MOBILE */
   .company-applications-table .dropdown-menu {
-    position: fixed !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    top: 50% !important;
-    margin-top: 0 !important;
-    z-index: 100000 !important;
+      position: fixed !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      top: 50% !important;
+      margin-top: 0 !important;
+      z-index: 100000 !important;
   }
 }
 
 /* === LAYERING FIX === */
 .company-applications-table,
-.company-applications-table .table-responsive{
+.company-applications-table .table-responsive,
+.company-applications-table .card-body {
   overflow:visible!important;
 }
 
@@ -524,18 +542,6 @@ h2.h4{
 
 .company-applications-table td.dropdown-open{
   z-index:100000!important;
-}
-
-.company-applications-table .btn-group{
-  z-index:auto!important;
-}
-
-.company-applications-table .dropdown.show{
-  z-index:100001!important;
-}
-
-.company-applications-table .dropdown-menu{
-  z-index:100002!important;
 }
 
 /* =========================
@@ -604,21 +610,263 @@ input:-webkit-autofill::first-line {
     font-size: inherit !important;
 }
 
-/* =========================
-   FIX UNTUK FORM DI DROPDOWN
-   ========================= */
-.company-applications-table .dropdown-menu form {
-  margin: 0 !important;
-  display: block !important;
+/* HILANGKAN PANAH DROPDOWN PADA TOMBOL EDIT TAPI DROPDOWN MASIH BERFUNGSI */
+.action-text.edit.dropdown-toggle::after {
+    display: none !important;
 }
 
-.company-applications-table .dropdown-menu button[type="submit"] {
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  text-align: left !important;
-  cursor: pointer !important;
+/* Tombol Edit tetap berfungsi normal */
+.action-text.edit {
+    background: linear-gradient(135deg, #d4a107, #EAB308) !important;
+    color: #fff !important;
+    cursor: pointer;
+    position: relative;
+}
+
+/* =========================================================
+   KELOLA PELAMAR — Tabel & Aksi (Sama dengan Kelola Lowongan)
+   ========================================================= */
+
+/* ---------- Tabel ---------- */
+.company-applications-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+  background:#fff;
+  font-family:"Inter",sans-serif;
+}
+
+/* Header */
+.company-applications-table thead tr{ background:#1E3A8A; }
+.company-applications-table thead th{
+  padding:14px 16px;
+  font-weight:600;
+  font-size:14px;
+  color:#fff;
+  text-align:center;
+  border:none;
+  background:#1E3A8A;
+}
+
+/* Body - SEMUA CELL JADI CENTER */
+.company-applications-table tbody td{
+  padding:12px 16px;
+  font-size:14px;
+  color:#374151;
+  text-align:center; /* SEMUA JADI CENTER */
+  border-top:1.8px solid #93c5fd;
+  border-right:1.2px solid #c7ddff;
+  vertical-align:middle;
+}
+.company-applications-table tbody td:last-child{ border-right:none; }
+
+/* Matikan hover baris - SAMA DENGAN LOWONGAN */
+.company-applications-table tbody tr{ 
+  transition:none !important; 
+  cursor:default !important; 
+}
+.company-applications-table tbody tr:hover{
+  background:transparent !important;
+  box-shadow:none !important;
+  transform:none !important;
+  border-radius:0 !important;
+  z-index:auto !important;
+  position:static !important;
+}
+
+/* ---------- Status Badges ---------- */
+.badge-status{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-weight:600;
+  font-size:13px;
+  transition:.25s;
+}
+.badge-success{  background:#22c55e; color:#fff; }
+.badge-secondary{ background:#6b7280; color:#fff; }
+.badge-warning{  background:#facc15; color:#000; }
+.badge-danger{   background:#ef4444; color:#fff; }
+.badge-info{     background:#0ea5e9; color:#fff; }
+.badge-primary{  background:#3b82f6; color:#fff; }
+
+/* ---------- Aksi: pill text buttons ---------- */
+.aksi-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+
+.table-responsive .action-text,
+.company-applications-table .action-text{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-width:90px;          /* biar seragam */
+  height:40px;             /* tinggi konsisten */
+  padding:0 18px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:1rem;
+  letter-spacing:.3px;
+  border:none;
+  color:#fff;
+  text-decoration:none !important;
+  transition:all .25s ease-in-out;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  white-space:nowrap;
+}
+
+/* Warna tombol */
+.action-text.view{
+  background:linear-gradient(135deg,#1E3A8A,#2563EB);
+}
+.action-text.edit{
+  background:linear-gradient(135deg,#d4a107,#EAB308);
+  color:#fff !important;              /* teks edit putih */
+}
+.action-text.delete{
+  background:linear-gradient(135deg,#dc2626,#EF4444);
+}
+
+/* Hover/active/focus */
+.action-text:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+  box-shadow:0 6px 20px rgba(0,0,0,.2);
+}
+.action-text:active{ transform:scale(.96); box-shadow:none; }
+.action-text:focus{ outline:none; box-shadow:0 0 0 3px rgba(37,99,235,.25); }
+
+/* ---------- Search bar & tombol atas ---------- */
+.search-bar .input-group{ 
+  display:flex; 
+  align-items:center; 
+  max-width:600px; 
+}
+.search-bar .form-control{
+  border-radius:8px 0 0 8px !important;
+  border:2px solid #d0e1ff !important;
+  padding:10px 16px !important;
+  flex:1;
+}
+.search-bar .btn-secondary{
+  border-radius:0 8px 8px 0 !important;
+  margin:0 !important;
+  background:#1E3A8A !important;
+  border:none !important;
+  color:#fff !important;
+  font-weight:600;
+  padding:10px 20px !important;
+  transition:.25s;
+  box-shadow:0 3px 10px rgba(30,58,138,.25) !important;
+}
+.search-bar .btn-secondary:hover{
+  background:#1E3A8A !important;
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(30,58,138,.4) !important;
+}
+.search-bar .btn-outline-secondary{
+  background:#1E3A8A !important; 
+  color:#fff !important; 
+  border:none !important;
+  border-radius:8px !important; 
+  margin-left:8px !important; 
+  font-weight:600 !important;
+  padding:10px 16px !important; 
+  box-shadow:0 3px 10px rgba(30,58,138,.25) !important;
+  transition:.25s; 
+  display:flex !important; 
+  align-items:center !important; 
+  justify-content:center !important;
+}
+.search-bar .btn-outline-secondary:hover{
+  background:#1a2f7a !important; 
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(30,58,138,.4) !important;
+}
+.search-bar .btn i{ margin-right:6px; }
+
+/* Tombol di header */
+.btn-primary{
+  background:#1E3A8A !important; 
+  border:none !important; 
+  color:#fff !important;
+  font-weight:600; 
+  border-radius:8px; 
+  padding:8px 18px; 
+  transition:.25s;
+  box-shadow:0 3px 10px rgba(30,58,138,.25);
+}
+.btn-primary:hover{ 
+  transform:translateY(-2px); 
+  box-shadow:0 6px 18px rgba(30,58,138,.4); 
+}
+
+/* Tombol filter outline */
+.btn-outline-primary{
+  background:#ffffff !important;
+  color:#1E3A8A !important;
+  border:2px solid #1E3A8A !important;
+  font-weight:600;
+  border-radius:8px;
+  padding:8px 16px;
+  transition:.25s;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary.active{
+  background:#1E3A8A !important;
+  color:#fff !important;
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(30,58,138,.3);
+}
+
+/* ---------- Avatar ---------- */
+.avatar-wrapper img{
+  width:36px !important;
+  height:36px !important;
+  border:2px solid #d0e1ff !important;
+  object-fit:cover !important;
+  border-radius:50% !important;
+}
+
+/* ---------- Focus cleanup ---------- */
+.kelola-pelamar *:focus{ outline:none !important; box-shadow:none !important; }
+.form-control:focus{ border-color:#2563EB !important; box-shadow:0 0 0 4px rgba(37,99,235,.25) !important; }
+
+/* ---------- Alert ---------- */
+.alert-success{
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#fff;
+  font-weight:600;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:768px){
+  .aksi-wrapper{ gap:8px; flex-wrap:wrap; }
+  .company-applications-table .action-text{ min-width:78px; height:36px; font-size:.9rem; padding:0 14px; }
+  .search-bar .input-group{ flex-direction:column; gap:10px; }
+  .search-bar .form-control{ border-radius:8px !important; width:100%; }
+  .search-bar .btn-secondary,
+  .search-bar .btn-outline-secondary{ border-radius:8px !important; width:100%; margin-left:0 !important; }
+  
+  /* Hide some columns on mobile */
+  .company-applications-table tbody td:nth-child(4), /* No HP */
+  .company-applications-table thead th:nth-child(4) {
+    display:none;
+  }
+}
+
+/* Hilangkan panah dropdown pada tombol Edit */
+.action-text.edit.dropdown-toggle::after {
+    display: none !important;
+    content: none !important;
 }
 

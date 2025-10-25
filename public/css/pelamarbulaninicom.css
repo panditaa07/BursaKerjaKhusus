@@ -375,3 +375,797 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
   border: 1px solid #e5e7eb;
 }
+
+/* =========================================================
+   PELAMAR BULAN INI - Desain Sama dengan Kelola Pelamar
+   ========================================================= */
+
+/* ---------- Container Utama ---------- */
+.pelamar-bulan-ini {
+    position: relative;
+}
+
+/* ---------- Header & Title ---------- */
+.pelamar-bulan-ini h2.h4 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1E3A8A;
+    margin-bottom: 0;
+}
+
+/* ---------- Search Bar ---------- */
+.pelamar-bulan-ini .search-bar .input-group {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+}
+
+.pelamar-bulan-ini .search-bar .form-control {
+    border-radius: 8px 0 0 8px !important;
+    border: 2px solid #d0e1ff !important;
+    padding: 10px 16px !important;
+    flex: 1;
+    font-size: 14px;
+}
+
+.pelamar-bulan-ini .search-bar .btn-secondary {
+    border-radius: 0 8px 8px 0 !important;
+    margin: 0 !important;
+    background: #1E3A8A !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 10px 20px !important;
+    transition: .25s;
+    box-shadow: 0 3px 10px rgba(30,58,138,.25) !important;
+}
+
+.pelamar-bulan-ini .search-bar .btn-secondary:hover {
+    background: #1E3A8A !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30,58,138,.4) !important;
+}
+
+.pelamar-bulan-ini .search-bar .btn-outline-secondary {
+    background: #1E3A8A !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-left: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 3px 10px rgba(30,58,138,.25) !important;
+    transition: .25s;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pelamar-bulan-ini .search-bar .btn-outline-secondary:hover {
+    background: #1a2f7a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30,58,138,.4) !important;
+}
+
+/* ---------- Tombol Utama ---------- */
+.pelamar-bulan-ini .btn-primary {
+    background: #1E3A8A !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: .25s;
+    box-shadow: 0 3px 10px rgba(30,58,138,.25);
+}
+
+.pelamar-bulan-ini .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30,58,138,.4);
+}
+
+/* ---------- Tabel Utama ---------- */
+.pelamar-bulan-ini .company-applications-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    background: #fff;
+    font-family: "Inter", sans-serif;
+}
+
+/* Header Tabel */
+.pelamar-bulan-ini .company-applications-table thead tr {
+    background: #1E3A8A !important;
+}
+
+.pelamar-bulan-ini .company-applications-table thead th {
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    background: #1E3A8A !important;
+}
+
+/* Body Tabel - Garis Biru Sama Persis */
+.pelamar-bulan-ini .company-applications-table tbody td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #374151;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1.8px solid #93c5fd;
+    border-right: 1.2px solid #c7ddff;
+    background: #fff;
+}
+
+.pelamar-bulan-ini .company-applications-table tbody td:last-child {
+    border-right: none;
+}
+
+/* Matikan Hover Baris - Sama dengan Kelola Pelamar */
+.pelamar-bulan-ini .company-applications-table tbody tr {
+    transition: none !important;
+    cursor: default !important;
+    background: transparent !important;
+}
+
+.pelamar-bulan-ini .company-applications-table tbody tr:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* ---------- Avatar ---------- */
+.pelamar-bulan-ini .avatar-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.pelamar-bulan-ini .avatar-wrapper img {
+    width: 36px !important;
+    height: 36px !important;
+    border: 2px solid #d0e1ff !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+}
+
+/* ---------- Status Badges ---------- */
+.pelamar-bulan-ini .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.pelamar-bulan-ini .status-accepted { background: #22c55e; color: #fff; }
+.pelamar-bulan-ini .status-rejected { background: #ef4444; color: #fff; }
+.pelamar-bulan-ini .status-interview { background: #0ea5e9; color: #fff; }
+.pelamar-bulan-ini .status-test { background: #7c3aed; color: #fff; }
+.pelamar-bulan-ini .status-test2 { background: #7c3aed; color: #fff; }
+.pelamar-bulan-ini .status-pending { background: #E2E8F0; color: #1E3A8A; }
+.pelamar-bulan-ini .status-reviewed { background: #FDE68A; color: #78350F; }
+
+/* ---------- Aksi: Pill Text Buttons ---------- */
+.pelamar-bulan-ini .aksi-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.pelamar-bulan-ini .action-text {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 90px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .3px;
+    border: none;
+    color: #fff;
+    text-decoration: none !important;
+    transition: all .25s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Warna Tombol */
+.pelamar-bulan-ini .action-text.view {
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+}
+
+.pelamar-bulan-ini .action-text.edit {
+    background: linear-gradient(135deg, #d4a107, #EAB308);
+    color: #fff !important;
+}
+
+.pelamar-bulan-ini .action-text.delete {
+    background: linear-gradient(135deg, #dc2626, #EF4444);
+}
+
+/* Hover Tombol */
+.pelamar-bulan-ini .action-text:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
+.pelamar-bulan-ini .action-text:active {
+    transform: scale(.96);
+    box-shadow: none;
+}
+
+/* ---------- HILANGKAN PANAH DROPDOWN ---------- */
+.pelamar-bulan-ini .action-text.edit.dropdown-toggle::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+}
+
+/* ---------- Dropdown Menu ---------- */
+.pelamar-bulan-ini .dropdown-menu {
+    position: absolute !important;
+    z-index: 1060 !important;
+    min-width: 240px !important;
+    padding: 8px !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+    background: #fff !important;
+}
+
+.pelamar-bulan-ini .dropdown-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    background: transparent !important;
+    transition: background-color 0.2s ease !important;
+    cursor: pointer !important;
+    border: none !important;
+    width: 100%;
+    text-align: left;
+}
+
+.pelamar-bulan-ini .dropdown-item:hover {
+    background: #e8f0ff !important;
+}
+
+/* ---------- Alert ---------- */
+.pelamar-bulan-ini .alert-success {
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ---------- Pagination ---------- */
+.pelamar-bulan-ini .pagination .page-link {
+    color: #1E3A8A !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    border: 1px solid #d1d5db !important;
+}
+
+.pelamar-bulan-ini .pagination .page-item.active .page-link {
+    background: #1E3A8A !important;
+    border-color: #1E3A8A !important;
+    color: #fff !important;
+}
+
+/* ---------- Focus Cleanup ---------- */
+.pelamar-bulan-ini *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.pelamar-bulan-ini .form-control:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.25) !important;
+}
+
+/* ---------- Table Wrapper ---------- */
+.pelamar-bulan-ini .table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .pelamar-bulan-ini .aksi-wrapper {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .pelamar-bulan-ini .action-text {
+        min-width: 78px;
+        height: 36px;
+        font-size: .9rem;
+        padding: 0 14px;
+    }
+    
+    .pelamar-bulan-ini .search-bar .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pelamar-bulan-ini .search-bar .form-control {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+    
+    .pelamar-bulan-ini .search-bar .btn-secondary,
+    .pelamar-bulan-ini .search-bar .btn-outline-secondary {
+        border-radius: 8px !important;
+        width: 100%;
+        margin-left: 0 !important;
+    }
+}
+
+/* ---------- Icons ---------- */
+.pelamar-bulan-ini .company-applications-table i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+/* =========================================================
+   PELAMAR BULAN INI - Dropdown Sama dengan Dashboard Company
+   ========================================================= */
+
+/* ---------- Container Utama ---------- */
+.pelamar-bulan-ini {
+    position: relative;
+}
+
+/* ---------- Header & Title ---------- */
+.pelamar-bulan-ini h2.h4 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1E3A8A;
+    margin-bottom: 0;
+}
+
+/* ---------- Search Bar ---------- */
+.pelamar-bulan-ini .search-bar .input-group {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+}
+
+.pelamar-bulan-ini .search-bar .form-control {
+    border-radius: 8px 0 0 8px !important;
+    border: 2px solid #d0e1ff !important;
+    padding: 10px 16px !important;
+    flex: 1;
+    font-size: 14px;
+}
+
+.pelamar-bulan-ini .search-bar .btn-secondary {
+    border-radius: 0 8px 8px 0 !important;
+    margin: 0 !important;
+    background: #1E3A8A !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 10px 20px !important;
+    transition: .25s;
+    box-shadow: 0 3px 10px rgba(30,58,138,.25) !important;
+}
+
+.pelamar-bulan-ini .search-bar .btn-secondary:hover {
+    background: #1E3A8A !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30,58,138,.4) !important;
+}
+
+.pelamar-bulan-ini .search-bar .btn-outline-secondary {
+    background: #1E3A8A !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-left: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 3px 10px rgba(30,58,138,.25) !important;
+    transition: .25s;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pelamar-bulan-ini .search-bar .btn-outline-secondary:hover {
+    background: #1a2f7a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30,58,138,.4) !important;
+}
+
+/* ---------- Tombol Utama ---------- */
+.pelamar-bulan-ini .btn-primary {
+    background: #1E3A8A !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: .25s;
+    box-shadow: 0 3px 10px rgba(30,58,138,.25);
+}
+
+.pelamar-bulan-ini .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30,58,138,.4);
+}
+
+/* ---------- Tabel Utama ---------- */
+.pelamar-bulan-ini .company-applications-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    background: #fff;
+    font-family: "Inter", sans-serif;
+}
+
+/* Header Tabel */
+.pelamar-bulan-ini .company-applications-table thead tr {
+    background: #1E3A8A !important;
+}
+
+.pelamar-bulan-ini .company-applications-table thead th {
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    background: #1E3A8A !important;
+}
+
+/* Body Tabel - Garis Biru Sama Persis */
+.pelamar-bulan-ini .company-applications-table tbody td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #374151;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1.8px solid #93c5fd;
+    border-right: 1.2px solid #c7ddff;
+    background: #fff;
+    overflow: visible !important;
+    position: relative;
+}
+
+.pelamar-bulan-ini .company-applications-table tbody td:last-child {
+    border-right: none;
+}
+
+/* Matikan Hover Baris - Sama dengan Kelola Pelamar */
+.pelamar-bulan-ini .company-applications-table tbody tr {
+    transition: none !important;
+    cursor: default !important;
+    background: transparent !important;
+}
+
+.pelamar-bulan-ini .company-applications-table tbody tr:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* ---------- Avatar ---------- */
+.pelamar-bulan-ini .avatar-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.pelamar-bulan-ini .avatar-wrapper img {
+    width: 36px !important;
+    height: 36px !important;
+    border: 2px solid #d0e1ff !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+}
+
+/* ---------- Status Badges ---------- */
+.pelamar-bulan-ini .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.pelamar-bulan-ini .status-accepted { background: #22c55e; color: #fff; }
+.pelamar-bulan-ini .status-rejected { background: #ef4444; color: #fff; }
+.pelamar-bulan-ini .status-interview { background: #0ea5e9; color: #fff; }
+.pelamar-bulan-ini .status-test { background: #7c3aed; color: #fff; }
+.pelamar-bulan-ini .status-test2 { background: #7c3aed; color: #fff; }
+.pelamar-bulan-ini .status-pending { background: #E2E8F0; color: #1E3A8A; }
+.pelamar-bulan-ini .status-reviewed { background: #FDE68A; color: #78350F; }
+
+/* ---------- Aksi: Pill Text Buttons ---------- */
+.pelamar-bulan-ini .aksi-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.pelamar-bulan-ini .action-text {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 90px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .3px;
+    border: none;
+    color: #fff;
+    text-decoration: none !important;
+    transition: all .25s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Warna Tombol */
+.pelamar-bulan-ini .action-text.view {
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+}
+
+.pelamar-bulan-ini .action-text.edit {
+    background: linear-gradient(135deg, #d4a107, #EAB308);
+    color: #fff !important;
+}
+
+.pelamar-bulan-ini .action-text.delete {
+    background: linear-gradient(135deg, #dc2626, #EF4444);
+}
+
+/* Hover Tombol */
+.pelamar-bulan-ini .action-text:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
+.pelamar-bulan-ini .action-text:active {
+    transform: scale(.96);
+    box-shadow: none;
+}
+
+/* ========== DROPDOWN SAMA DENGAN DASHBOARD COMPANY ========== */
+.pelamar-bulan-ini .aksi-wrapper .dropdown {
+    position: relative !important;
+    display: inline-block;
+}
+
+/* Hilangkan tanda panah di tombol Edit */
+.pelamar-bulan-ini .action-text.edit.dropdown-toggle::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Kolom aksi */
+.pelamar-bulan-ini .company-applications-table td:last-child {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Dropdown menu - SAMA dengan dashboard */
+.pelamar-bulan-ini .aksi-wrapper .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: auto !important;
+    margin-top: .125rem !important;
+    min-width: 240px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .2);
+    background: #fff;
+    z-index: 3001 !important;
+}
+
+/* Untuk baris terakhir - dropdown ke atas */
+.pelamar-bulan-ini .company-applications-table tbody tr:last-child .dropdown-menu {
+    top: auto !important;
+    bottom: 100% !important;
+    margin-bottom: .125rem;
+}
+
+/* Scrollbar dropdown */
+.pelamar-bulan-ini .dropdown-menu::-webkit-scrollbar {
+    width: 10px;
+}
+
+.pelamar-bulan-ini .dropdown-menu::-webkit-scrollbar-thumb {
+    background: #4f7cff;
+    border-radius: 10px;
+    border: 2px solid #eef2ff;
+}
+
+/* ========== ITEM MENU DROPDOWN - SAMA DENGAN DASHBOARD ========== */
+.pelamar-bulan-ini .dropdown-item {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #111827;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.pelamar-bulan-ini .dropdown-item:hover {
+    background: #F3F4F6;
+    transform: translateY(-1px);
+    box-shadow: none;
+}
+
+.pelamar-bulan-ini .dropdown-divider {
+    margin: 8px 6px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Ikon warna - SAMA dengan dashboard */
+.pelamar-bulan-ini .dropdown-item .status-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.pelamar-bulan-ini .dropdown-item .icon-submitted { color: #64748B; }
+.pelamar-bulan-ini .dropdown-item .icon-test { color: #7C3AED; }
+.pelamar-bulan-ini .dropdown-item .icon-interview { color: #0EA5E9; }
+.pelamar-bulan-ini .dropdown-item .icon-accepted { color: #16A34A; }
+.pelamar-bulan-ini .dropdown-item .icon-rejected { color: #DC2626; }
+
+/* Status aktif */
+.pelamar-bulan-ini .dropdown-item.is-active {
+    background: #ECFDF5;
+    color: #065F46;
+    cursor: default;
+    pointer-events: none;
+}
+
+.pelamar-bulan-ini .dropdown-item.is-active .status-icon {
+    color: #10B981;
+}
+
+.pelamar-bulan-ini .dropdown-item .tick {
+    font-size: 14px;
+    margin-left: 8px;
+    visibility: hidden;
+}
+
+.pelamar-bulan-ini .dropdown-item.is-active .tick {
+    visibility: visible;
+    color: #10B981;
+}
+
+/* ---------- Alert ---------- */
+.pelamar-bulan-ini .alert-success {
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ---------- Pagination ---------- */
+.pelamar-bulan-ini .pagination .page-link {
+    color: #1E3A8A !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    border: 1px solid #d1d5db !important;
+}
+
+.pelamar-bulan-ini .pagination .page-item.active .page-link {
+    background: #1E3A8A !important;
+    border-color: #1E3A8A !important;
+    color: #fff !important;
+}
+
+/* ---------- Focus Cleanup ---------- */
+.pelamar-bulan-ini *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.pelamar-bulan-ini .form-control:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.25) !important;
+}
+
+/* ---------- Table Wrapper ---------- */
+.pelamar-bulan-ini .table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .pelamar-bulan-ini .aksi-wrapper {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .pelamar-bulan-ini .action-text {
+        min-width: 78px;
+        height: 36px;
+        font-size: .9rem;
+        padding: 0 14px;
+    }
+    
+    .pelamar-bulan-ini .search-bar .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pelamar-bulan-ini .search-bar .form-control {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+    
+    .pelamar-bulan-ini .search-bar .btn-secondary,
+    .pelamar-bulan-ini .search-bar .btn-outline-secondary {
+        border-radius: 8px !important;
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    /* Dropdown mobile */
+    .pelamar-bulan-ini .aksi-wrapper .dropdown-menu {
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 50% !important;
+        width: 90vw !important;
+        max-width: 280px !important;
+        max-height: 60vh;
+    }
+
+    .pelamar-bulan-ini .company-applications-table tbody tr:last-child .dropdown-menu {
+        top: 50% !important;
+        bottom: auto !important;
+        margin-bottom: 0;
+    }
+}
+
+/* ---------- Icons ---------- */
+.pelamar-bulan-ini .company-applications-table i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+

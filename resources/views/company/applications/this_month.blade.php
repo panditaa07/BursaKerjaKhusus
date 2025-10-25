@@ -57,7 +57,7 @@
     <!-- Table -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
-            <div class="table-responsive">
+            <div class="table-responsive" id="table-container">
                 <table class="company-applications-table mb-0">
                     <thead>
                         <tr>
@@ -125,7 +125,7 @@
                                     </span>
                                 </td>
 
-                                {{-- === AKSI (teks) === --}}
+                                {{-- === AKSI (SEJAJAR HORIZONTAL) === --}}
                                 <td class="text-center">
                                     <div class="aksi-wrapper">
                                         {{-- Lihat --}}
@@ -133,33 +133,57 @@
                                            class="action-text view">Lihat</a>
 
                                         {{-- Edit (dropdown ubah status) --}}
-                                     <button
-  class="action-text edit dropdown-toggle"
-  id="dd-{{ $application->id }}"
-  data-bs-toggle="dropdown"
-  data-bs-display="static"   {{-- penting: jangan auto-reposition --}}
-  aria-expanded="false">
-  Edit
-</button>
+                                        <div class="dropdown d-inline-block custom-dropdown">
+                                            <button
+                                                class="action-text edit dropdown-toggle"
+                                                type="button"
+                                                data-dropdown-id="dropdown-{{ $application->id }}">
+                                                Edit
+                                            </button>
 
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dd-{{ $application->id }}">
-                                                @foreach ([
-                                                    'submitted' => 'Submitted',
-                                                    'test1'     => 'Test 1',
-                                                    'test2'     => 'Test 2',
-                                                    'interview' => 'Interview',
-                                                    'accepted'  => 'Terima',
-                                                    'rejected'  => 'Tolak'
-                                                ] as $st => $label)
+                                            <ul class="dropdown-menu custom-dropdown-menu" id="dropdown-{{ $application->id }}">
+                                                @php
+                                                    $statusMenu = [
+                                                        'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
+                                                        'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
+                                                        'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
+                                                        'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
+                                                        'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
+                                                        'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
+                                                    ];
+                                                @endphp
+
+                                                @foreach ($statusMenu as $value => $opt)
+                                                    @php
+                                                        $isActive = ($value === $application->status);
+                                                        $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
+                                                    @endphp
                                                     <li>
-                                                        <form action="{{ route('company.applications.updateStatus', $application->id) }}"
-                                                              method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="{{ $st }}">
-                                                            <button type="submit" class="dropdown-item">{{ $label }}</button>
-                                                        </form>
+                                                        @if($isActive)
+                                                            {{-- Status aktif --}}
+                                                            <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
+                                                                <i class="status-icon {{ $opt['icon'] }}"></i>
+                                                                {{ $opt['label'] }}
+                                                                <span class="tick"><i class="fas fa-check"></i></span>
+                                                            </div>
+                                                        @else
+                                                            {{-- Status lain --}}
+                                                            <form action="{{ route('company.applications.updateStatus', $application->id) }}"
+                                                                  method="POST" class="d-inline w-100">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="status" value="{{ $value }}">
+                                                                <button type="submit" class="dropdown-item {{ $btnClasses }} w-100 text-start">
+                                                                    <i class="status-icon {{ $opt['icon'] }}"></i>
+                                                                    {{ $opt['label'] }}
+                                                                </button>
+                                                            </form>
+                                                        @endif
                                                     </li>
+
+                                                    @if(!empty($opt['divider_after']))
+                                                        <li><hr class="dropdown-divider"></li>
+                                                    @endif
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -197,28 +221,128 @@
     @endif
 </div>
 
-<!-- Dropdown fallback tetap sama -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    if (typeof bootstrap !== 'undefined') {
-        [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-          .map(el => new bootstrap.Dropdown(el));
-    } else {
-        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation();
-                const menu = toggle.closest('.dropdown').querySelector('.dropdown-menu');
-                const open = menu.style.display === 'block';
-                document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
-                menu.style.display = open ? 'none' : 'block';
+    // Custom dropdown system untuk menghindari konflik Bootstrap
+    class CustomDropdown {
+        constructor(button) {
+            this.button = button;
+            this.dropdownId = button.getAttribute('data-dropdown-id');
+            this.menu = document.getElementById(this.dropdownId);
+            this.isOpen = false;
+            
+            this.init();
+        }
+        
+        init() {
+            // Click event untuk toggle dropdown
+            this.button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggle();
             });
-        });
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+            
+            // Close ketika klik di luar
+            document.addEventListener('click', (e) => {
+                if (!this.button.contains(e.target) && !this.menu.contains(e.target)) {
+                    this.close();
+                }
+            });
+            
+            // Close ketika tekan Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.isOpen) {
+                    this.close();
+                }
+            });
+        }
+        
+        toggle() {
+            if (this.isOpen) {
+                this.close();
+            } else {
+                this.open();
+            }
+        }
+        
+        open() {
+            // Close semua dropdown lain
+            document.querySelectorAll('.custom-dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            
+            // Position dropdown
+            this.positionDropdown();
+            
+            // Show current dropdown
+            this.menu.classList.add('show');
+            this.isOpen = true;
+        }
+        
+        close() {
+            this.menu.classList.remove('show');
+            this.isOpen = false;
+        }
+        
+        positionDropdown() {
+            const buttonRect = this.button.getBoundingClientRect();
+            const menuRect = this.menu.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Default: tampilkan di bawah
+            let top = buttonRect.bottom + scrollTop;
+            let left = buttonRect.left + (buttonRect.width / 2) - (menuRect.width / 2);
+            
+            // Jika tidak cukup space di bawah, tampilkan di atas
+            const spaceBelow = viewportHeight - buttonRect.bottom;
+            const spaceAbove = buttonRect.top;
+            
+            if (spaceBelow < menuRect.height && spaceAbove > menuRect.height) {
+                top = buttonRect.top + scrollTop - menuRect.height;
+            }
+            
+            // Pastikan tidak keluar dari viewport horizontal
+            if (left < 10) left = 10;
+            if (left + menuRect.width > window.innerWidth - 10) {
+                left = window.innerWidth - menuRect.width - 10;
+            }
+            
+            // Apply position
+            this.menu.style.top = top + 'px';
+            this.menu.style.left = left + 'px';
+        }
+    }
+    
+    // Initialize semua custom dropdown
+    document.querySelectorAll('.custom-dropdown .dropdown-toggle').forEach(button => {
+        new CustomDropdown(button);
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        document.querySelectorAll('.custom-dropdown-menu.show').forEach(menu => {
+            const dropdownId = menu.id;
+            const button = document.querySelector(`[data-dropdown-id="${dropdownId}"]`);
+            if (button) {
+                const buttonRect = button.getBoundingClientRect();
+                const menuRect = menu.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                let top = buttonRect.bottom + scrollTop;
+                let left = buttonRect.left + (buttonRect.width / 2) - (menuRect.width / 2);
+                
+                // Pastikan tidak keluar dari viewport
+                if (left < 10) left = 10;
+                if (left + menuRect.width > window.innerWidth - 10) {
+                    left = window.innerWidth - menuRect.width - 10;
+                }
+                
+                menu.style.top = top + 'px';
+                menu.style.left = left + 'px';
             }
         });
-    }
+    });
 });
 </script>
 @endsection

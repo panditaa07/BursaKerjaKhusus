@@ -2,7 +2,6 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/kelolapelamarcom.css') }}">
-
 @endpush
 
 @section('content')
@@ -77,7 +76,7 @@
                                 <th class="border-0 fw-bold">No. Hp</th>
                                 <th class="border-0 fw-bold">Lowongan yang dilamar</th>
                                 <th class="border-0 fw-bold text-center" width="120">Status</th>
-                                <th class="border-0 fw-bold text-center" width="150">Aksi</th>
+                                <th class="border-0 fw-bold text-center" width="220">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -118,15 +117,15 @@
                                     <td class="text-center">
                                         @php
                                             $status = $application->status;
-                                  $statusConfig = [
-    'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
-    'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
-    'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-    'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
-    'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],  // <— ini
-    'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
-    'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
-];
+                                            $statusConfig = [
+                                                'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+                                                'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+                                                'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+                                                'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+                                                'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
+                                                'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
+                                                'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
+                                            ];
 
                                             $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                                         @endphp
@@ -136,50 +135,63 @@
                                         </span>
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group" role="group">
+                                        <div class="aksi-wrapper">
                                             <!-- View Detail -->
                                             <a href="{{ route('company.applications.show.company', $application->id) }}"
-                                               class="btn btn-sm btn-outline-info"
-                                               title="Lihat Detail">
-                                                <i class="fas fa-eye"></i>
+                                               class="action-text view">
+                                                Lihat
                                             </a>
 
-                                         <div class="dropdown">
-  <button class="btn btn-sm btn-outline-warning dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton{{ $application->id }}"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          title="Ubah Status">
-    <i class="fas fa-pen"></i>
-  </button>
-                                           <ul class="dropdown-menu dropdown-menu-end"
-    aria-labelledby="dropdownMenuButton{{ $application->id }}">
+                                            <!-- Edit Status Dropdown -->
+                                            <div class="dropdown position-static">
+                                                <button class="action-text edit dropdown-toggle"
+                                                        type="button"
+                                                        id="dropdownMenuButton{{ $application->id }}"
+                                                        data-bs-toggle="dropdown"
+                                                        aria-expanded="false"
+                                                        data-bs-boundary="viewport">
+                                                    Edit
+                                                </button>
+                                                
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $application->id }}">
+                                                    @foreach ([
+                                                        'submitted' => ['icon' => 'far fa-clock', 'label' => 'Submitted'],
+                                                        'test1'     => ['icon' => 'fas fa-flask', 'label' => 'Test 1'],
+                                                        'test2'     => ['icon' => 'fas fa-flask', 'label' => 'Test 2', 'divider_after' => true],
+                                                        'interview' => ['icon' => 'fas fa-user-tie', 'label' => 'Interview', 'divider_after' => true],
+                                                        'accepted'  => ['icon' => 'fas fa-check', 'label' => 'Terima', 'btn_class' => 'text-success'],
+                                                        'rejected'  => ['icon' => 'fas fa-times', 'label' => 'Tolak', 'btn_class' => 'text-danger'],
+                                                    ] as $statusValue => $info)
+                                                        @php
+                                                            $isActive = ($statusValue === $application->status);
+                                                            $btnClasses = trim(($info['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
+                                                        @endphp
+                                                        <li>
+                                                            @if($isActive)
+                                                                <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
+                                                                    <i class="status-icon {{ $info['icon'] }}"></i>
+                                                                    {{ $info['label'] }}
+                                                                    <span class="tick"><i class="fas fa-check"></i></span>
+                                                                </div>
+                                                            @else
+                                                                <form action="{{ route('company.applications.updateStatus', $application->id) }}"
+                                                                      method="POST" class="d-inline w-100">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <input type="hidden" name="status" value="{{ $statusValue }}">
+                                                                    <button type="submit" class="dropdown-item {{ $btnClasses }} w-100 text-start">
+                                                                        <i class="status-icon {{ $info['icon'] }}"></i>
+                                                                        {{ $info['label'] }}
+                                                                    </button>
+                                                                </form>
+                                                            @endif
+                                                        </li>
 
-   @foreach ([
-    'submitted' => ['icon' => 'far fa-clock',    'label' => 'Submitted', 'key' => 'submitted'],
-    'test1'     => ['icon' => 'fas fa-flask',    'label' => 'Test 1',    'key' => 'test'],
-    'test2'     => ['icon' => 'fas fa-flask',    'label' => 'Test 2',    'key' => 'test'],
-    'interview' => ['icon' => 'fas fa-user-tie', 'label' => 'Interview', 'key' => 'interview'],
-    'accepted'  => ['icon' => 'fas fa-check',    'label' => 'Terima',    'key' => 'accepted'],
-    'rejected'  => ['icon' => 'fas fa-times',    'label' => 'Tolak',     'key' => 'rejected'],
-] as $statusValue => $info)
-    <li>
-        <form action="{{ route('company.applications.updateStatus', $application->id) }}"
-              method="POST" class="d-inline">
-            @csrf
-            @method('PUT')
-            <input type="hidden" name="status" value="{{ $statusValue }}">
-            <button type="submit"
-                    class="dropdown-item {{ $statusValue === 'accepted' ? 'text-success' : '' }} {{ $statusValue === 'rejected' ? 'text-danger' : '' }}">
-                {{-- status-icon + icon-[key] => nempel ke CSS warna --}}
-                <i class="{{ $info['icon'] }} me-3 status-icon icon-{{ $info['key'] }}"></i>
-                {{ $info['label'] }}
-            </button>
-        </form>
-    </li>
-@endforeach
-</ul>
+                                                        @if(!empty($info['divider_after']))
+                                                            <li><hr class="dropdown-divider"></li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
                                             </div>
 
                                             <!-- Delete Application -->
@@ -187,8 +199,8 @@
                                                   onsubmit="return confirm('Apakah Anda yakin ingin menghapus lamaran ini?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus Lamaran">
-                                                    <i class="fas fa-trash"></i>
+                                                <button type="submit" class="action-text delete">
+                                                    Hapus
                                                 </button>
                                             </form>
                                         </div>
@@ -219,48 +231,38 @@
     </div>
 
 <script>
+// JavaScript untuk handle dropdown positioning
 document.addEventListener('DOMContentLoaded', function() {
-  if (typeof bootstrap !== 'undefined') {
-    document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-      new bootstrap.Dropdown(toggle, { autoClose: false });
+    // Handle dropdown show event untuk positioning yang tepat
+    var dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(function(dropdown) {
+        dropdown.addEventListener('show.bs.dropdown', function () {
+            // Tambahkan class active untuk styling
+            this.classList.add('active');
+            
+            // Cek jika ini baris terakhir
+            var row = this.closest('tr');
+            var tableBody = row.closest('tbody');
+            var lastRow = tableBody.lastElementChild;
+            
+            if (row === lastRow) {
+                this.classList.add('last-row');
+            }
+        });
+        
+        dropdown.addEventListener('hide.bs.dropdown', function () {
+            // Hapus class active ketika dropdown ditutup
+            this.classList.remove('active', 'last-row');
+        });
     });
-  }
-
-  // tandai <td> yang sedang membuka dropdown → jadi layer paling atas
-  document.querySelectorAll('.company-applications-table .dropdown').forEach(function(dd){
-    dd.addEventListener('shown.bs.dropdown', function(){
-      const td = dd.closest('td');
-      if (td) td.classList.add('dropdown-open');
+    
+    // Prevent form submission dari bubbling ke dropdown
+    document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
+        form.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     });
-    dd.addEventListener('hidden.bs.dropdown', function(){
-      const td = dd.closest('td');
-      if (td) td.classList.remove('dropdown-open');
-    });
-  });
-
-  // cegah menu menutup saat klik di dalam
-  document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-    menu.addEventListener('click', function (e) { e.stopPropagation(); });
-  });
-
-  // submit form di dalam dropdown tetap jalan normal
-  document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
-    form.addEventListener('submit', function(e) {
-      e.stopPropagation();
-      this.submit();
-    });
-  });
 });
 </script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Pastikan Bootstrap dropdown berfungsi normal
-  var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-  var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-    return new bootstrap.Dropdown(dropdownToggleEl);
-  });
-});
-</script>
-
 @endsection
