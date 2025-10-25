@@ -67,7 +67,7 @@
         <div class="card shadow-sm company-applications-table">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0 company-applications-table">
+                    <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th class="border-0 fw-bold text-center" width="60">No</th>
@@ -149,11 +149,12 @@
                                                         id="dropdownMenuButton{{ $application->id }}"
                                                         data-bs-toggle="dropdown"
                                                         aria-expanded="false"
-                                                        data-bs-boundary="viewport">
+                                                        data-bs-boundary="viewport"
+                                                        data-bs-offset="0,8">
                                                     Edit
                                                 </button>
                                                 
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $application->id }}">
+                                                <ul class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuButton{{ $application->id }}">
                                                     @foreach ([
                                                         'submitted' => ['icon' => 'far fa-clock', 'label' => 'Submitted'],
                                                         'test1'     => ['icon' => 'fas fa-flask', 'label' => 'Test 1'],
@@ -179,16 +180,18 @@
                                                                     @csrf
                                                                     @method('PUT')
                                                                     <input type="hidden" name="status" value="{{ $statusValue }}">
-                                                                    <button type="submit" class="dropdown-item {{ $btnClasses }} w-100 text-start">
-                                                                        <i class="status-icon {{ $info['icon'] }}"></i>
-                                                                        {{ $info['label'] }}
+                                                                    <button type="submit" class="dropdown-item {{ $btnClasses }} w-100 text-start border-0 bg-transparent p-0">
+                                                                        <span class="dropdown-item-inner d-block w-100 px-3 py-2">
+                                                                            <i class="status-icon {{ $info['icon'] }}"></i>
+                                                                            {{ $info['label'] }}
+                                                                        </span>
                                                                     </button>
                                                                 </form>
                                                             @endif
                                                         </li>
 
                                                         @if(!empty($info['divider_after']))
-                                                            <li><hr class="dropdown-divider"></li>
+                                                            <li><hr class="dropdown-divider my-1"></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
@@ -231,37 +234,128 @@
     </div>
 
 <script>
-// JavaScript untuk handle dropdown positioning
+// JavaScript untuk handle dropdown positioning dan z-index
 document.addEventListener('DOMContentLoaded', function() {
     // Handle dropdown show event untuk positioning yang tepat
     var dropdowns = document.querySelectorAll('.dropdown');
     
     dropdowns.forEach(function(dropdown) {
-        dropdown.addEventListener('show.bs.dropdown', function () {
+        dropdown.addEventListener('show.bs.dropdown', function (e) {
             // Tambahkan class active untuk styling
             this.classList.add('active');
             
-            // Cek jika ini baris terakhir
-            var row = this.closest('tr');
-            var tableBody = row.closest('tbody');
-            var lastRow = tableBody.lastElementChild;
+            // Tambahkan class ke td parent dan tr
+            var td = this.closest('td');
+            var tr = this.closest('tr');
             
-            if (row === lastRow) {
+            if (td) {
+                td.classList.add('dropdown-open');
+            }
+            if (tr) {
+                tr.classList.add('dropdown-active');
+            }
+            
+            // Cek jika ini baris terakhir
+            var tableBody = tr ? tr.closest('tbody') : null;
+            var lastRow = tableBody ? tableBody.lastElementChild : null;
+            
+            if (tr && lastRow && tr === lastRow) {
                 this.classList.add('last-row');
+            } else {
+                this.classList.remove('last-row');
+            }
+            
+            // Untuk mobile, tambahkan backdrop
+            if (window.innerWidth <= 768) {
+                addMobileBackdrop(this);
             }
         });
         
         dropdown.addEventListener('hide.bs.dropdown', function () {
             // Hapus class active ketika dropdown ditutup
             this.classList.remove('active', 'last-row');
+            
+            // Hapus class dari td parent dan tr
+            var td = this.closest('td');
+            var tr = this.closest('tr');
+            
+            if (td) {
+                td.classList.remove('dropdown-open');
+            }
+            if (tr) {
+                tr.classList.remove('dropdown-active');
+            }
+            
+            // Hapus backdrop mobile
+            removeMobileBackdrop();
         });
     });
+    
+    // Function untuk menambah backdrop di mobile
+    function addMobileBackdrop(dropdown) {
+        // Hapus backdrop lama jika ada
+        removeMobileBackdrop();
+        
+        // Buat backdrop baru
+        var backdrop = document.createElement('div');
+        backdrop.className = 'dropdown-backdrop';
+        backdrop.style.cssText = `
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+            z-index: 999998 !important;
+        `;
+        
+        // Click backdrop untuk close dropdown
+        backdrop.addEventListener('click', function() {
+            var bsDropdown = bootstrap.Dropdown.getInstance(dropdown);
+            if (bsDropdown) {
+                bsDropdown.hide();
+            }
+        });
+        
+        document.body.appendChild(backdrop);
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function removeMobileBackdrop() {
+        var backdrop = document.querySelector('.dropdown-backdrop');
+        if (backdrop) {
+            backdrop.remove();
+        }
+        document.body.style.overflow = '';
+    }
     
     // Prevent form submission dari bubbling ke dropdown
     document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
         form.addEventListener('click', function(e) {
             e.stopPropagation();
         });
+    });
+    
+    // Close dropdown ketika klik di luar (untuk desktop)
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown') && window.innerWidth > 768) {
+            dropdowns.forEach(function(dropdown) {
+                var bsDropdown = bootstrap.Dropdown.getInstance(dropdown);
+                if (bsDropdown) {
+                    bsDropdown.hide();
+                }
+            });
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        // Jika resize ke desktop dan ada backdrop, hapus
+        if (window.innerWidth > 768) {
+            removeMobileBackdrop();
+        }
     });
 });
 </script>

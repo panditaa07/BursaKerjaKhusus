@@ -870,3 +870,215 @@ input:-webkit-autofill::first-line {
     content: none !important;
 }
 
+/* =========================
+   DROPDOWN STATUS - FIXED Z-INDEX
+   ========================= */
+
+/* RESET Z-INDEX UNTUK SEMUA ELEMENT PARENT */
+.company-applications-table,
+.company-applications-table .card-body,
+.company-applications-table .table-responsive,
+.company-applications-table .table,
+.company-applications-table table,
+.company-applications-table tbody,
+.company-applications-table tr,
+.company-applications-table td {
+  position: relative !important;
+  z-index: auto !important;
+  overflow: visible !important;
+}
+
+/* PERBAIKAN UTAMA: DROPDOWN CONTAINER */
+.company-applications-table .dropdown {
+  position: static !important;
+  display: inline-block !important;
+}
+
+/* CLASS ACTIVE UNTUK DROPDOWN YANG SEDANG TERBUKA */
+.company-applications-table .dropdown.active {
+  z-index: 10050 !important;
+  position: relative !important;
+}
+
+/* FIX UTAMA: DROPDOWN MENU - Z-INDEX TERTINGGI */
+.company-applications-table .dropdown-menu {
+  position: absolute !important;
+  z-index: 99999 !important; /* Z-INDEX PALING TINGGI */
+  min-width: 240px !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+  white-space: nowrap !important;
+  padding: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+  background: #fff !important;
+  
+  /* POSITIONING FIX - TURUNKAN POSISI DROPDOWN */
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  right: auto !important;
+  margin: 0 !important;
+  
+  /* PASTIKAN TIDAK ADA CLIPPING */
+  clip: auto !important;
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+}
+
+/* Untuk baris terakhir - dropdown ke atas */
+.company-applications-table .dropdown.last-row .dropdown-menu {
+  top: auto !important;
+  bottom: 100% !important;
+  transform: translateX(-50%) translateY(-8px) !important;
+}
+
+/* FIX KHUSUS UNTUK TD TERAKHIR */
+.company-applications-table .table tbody td:last-child {
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+/* TD YANG SEDANG DROPDOWN OPEN - TINGKATKAN Z-INDEX */
+.company-applications-table td.dropdown-open {
+  z-index: 10000 !important;
+  position: relative !important;
+}
+
+/* FIX UNTUK TABLE RESPONSIVE - JANGAN POTONG DROPDOWN */
+.company-applications-table .table-responsive {
+  position: relative !important;
+  z-index: 1 !important;
+  overflow-x: auto !important; /* Hanya horizontal scroll */
+  overflow-y: visible !important;
+}
+
+/* FIX UNTUK CARD BODY */
+.company-applications-table .card-body {
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+/* FIX UNTUK TABLE */
+.company-applications-table .table {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-bottom: 0 !important;
+}
+
+/* FIX UNTUK ROW YANG SEDANG ACTIVE */
+.company-applications-table tr.dropdown-active {
+  z-index: 10000 !important;
+  position: relative !important;
+}
+
+/* DROPDOWN ITEM STYLING */
+.company-applications-table .dropdown-menu .dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 14px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  background: transparent !important;
+  transition: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  position: relative;
+  cursor: pointer !important;
+  border: none !important;
+  width: 100%;
+  text-align: left !important;
+  z-index: inherit !important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item:hover {
+  background: #e8f0ff !important;
+  z-index: inherit !important;
+}
+
+.company-applications-table .dropdown-menu .dropdown-item:hover::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: #2563eb;
+  opacity: 1;
+}
+
+/* FIX UNTUK MOBILE - DROPDOWN DI TENGAH LAYAR */
+@media (max-width: 768px) {
+  /* DROPDOWN MOBILE - POSITION FIXED DI TENGAH DENGAN Z-INDEX TERTINGGI */
+  .company-applications-table .dropdown-menu {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin-top: 0 !important;
+    z-index: 999999 !important; /* Z-INDEX PALING TINGGI DI MOBILE */
+    width: 90% !important;
+    max-width: 280px !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+  }
+  
+  /* OVERLAY BACKGROUND UNTUK MOBILE */
+  .dropdown-backdrop {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 999998 !important;
+  }
+  
+  /* Untuk baris terakhir di mobile */
+  .company-applications-table .dropdown.last-row .dropdown-menu {
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+  }
+}
+
+/* LAYERING FIX - PASTIKAN SEMUA PARENT TIDAK MEMOTONG */
+.company-applications-table,
+.company-applications-table .card,
+.company-applications-table .card-body,
+.company-applications-table .table-responsive,
+.company-applications-table .table,
+.company-applications-table tbody,
+.company-applications-table tr {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* HACK UNTUK MEMASTIKAN DROPDOWN SELALU DI ATAS */
+.company-applications-table .dropdown-menu.show {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+
+/* FIX UNTUK BOOTSTRAP DROPDOWN BACKDROP JIKA ADA */
+.dropdown-backdrop {
+  z-index: 99990 !important;
+}
+
+/* FIX UNTUK MODAL JIKA ADA */
+.modal {
+  z-index: 999999 !important;
+}
+
+.modal-backdrop {
+  z-index: 999998 !important;
+}
+
