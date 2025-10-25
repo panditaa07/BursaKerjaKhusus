@@ -57,7 +57,13 @@ body {
 }
 
 .card-header {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     border: none;
     padding: 1.5rem;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -69,7 +75,6 @@ body {
     font-weight: 600;
     margin: 0;
     font-size: 1.25rem;
-    border-bottom: 2px solid rgb(30, 58, 138);
 }
 
 .card-body {
@@ -78,7 +83,7 @@ body {
 
 /* ===== Job Detail Styling ===== */
 .job-title {
-    color: rgb(30, 58, 138) I !important;
+    color: #4C1D95 !important;
     font-weight: 700;
     margin-bottom: 1rem;
     font-size: 2rem;
@@ -86,7 +91,7 @@ body {
 }
 
 .job-meta {
-    color: var(--gray-600);
+    color: #4C1D95;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
@@ -99,7 +104,7 @@ body {
     background: var(--gray-50);
     padding: 1.5rem;
     border-radius: var(--radius);
-    border-left: 4px solid rgb(30, 58, 138);
+    border-left: 4px solid #4C1D95;
     animation: fadeInLeft 0.6s ease-out 0.2s backwards;
 }
 
@@ -127,7 +132,7 @@ body {
     padding: 1rem;
     background: var(--gray-50);
     border-radius: var(--radius);
-    border-left: 3px solid rgb(30, 58, 138);
+    border-left: 3px solid #4C1D95;
 }
 
 .detail-item {
@@ -135,13 +140,13 @@ body {
     padding: 1rem;
     border-radius: var(--radius);
     background: var(--gray-50);
-    border-left: 3px solid rgb(30, 58, 138);
+    border-left: 3px solid #4C1D95;
     transition: var(--transition);
 }
 
 .detail-item:hover {
     background: var(--white);
-    border-left-color: rgb(30, 58, 138);
+    border-left-color: #4C1D95;
     transform: translateX(5px);
     box-shadow: var(--shadow-sm);
 }
@@ -190,8 +195,20 @@ body {
 
 .alert-info {
     background: #dbeafe;
-    color: var(--primary-dark);
-    border-left-color: rgb(30, 58, 138);
+    color: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
+    border-left-color: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    );
 }
 
 .alert-success {
@@ -236,12 +253,24 @@ body {
 }
 
 .btn-primary {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     color: var(--white);
 }
 
 .btn-primary:hover {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -337,7 +366,7 @@ body {
 .modal-footer {
     border: none;
     padding: 1.5rem;
-    background: var(--gray-50);
+    background: #4C1D95;
 }
 
 .btn-close {
@@ -363,12 +392,12 @@ body {
 
 .form-label {
     font-weight: 500;
-    color: var(--gray-700);
+    color: #4C1D95;
     margin-bottom: 0.5rem;
 }
 
 .form-text {
-    color: var(--gray-500);
+    color: #4C1D95;
     font-size: 0.875rem;
 }
 
@@ -468,7 +497,13 @@ a:hover {
 }
 
 .btn-secondary {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     color: white;
     border: none;
 }
@@ -476,8 +511,156 @@ a:hover {
 .btn-secondary:hover,
 .btn-secondary:focus,
 .btn-secondary:active {
-    background: rgb(30, 58, 138); /* biru lebih gelap buat efek hover */
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important; /* biru lebih gelap buat efek hover */
     color: #fff;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }   
+
+/* === Apply Section Gradient Style === */
+.apply-section .card {
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    );
+    color: white;
+    box-shadow: var(--shadow-xl);
+    border: none;
+    border-radius: var(--radius-lg);
+    position: sticky;
+    top: 20px;
+    overflow: hidden;
+}
+
+/* Biar isi dalamnya transparan dikit */
+.apply-section .card-body {
+    background: transparent;
+    color: white;
+}
+
+/* Judul dan teks di dalamnya */
+.apply-section .card-title,
+.apply-section .card-text,
+.apply-section small {
+    color: white !important;
+}
+
+/* Tombol Lamar Sekarang tetap mencolok tapi nyatu */
+.apply-section .btn-primary {
+    background: white !important;
+    color: #1E3A8A !important;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+.apply-section .btn-primary:hover {
+    background: #f3f4f6 !important;
+    transform: translateY(-2px);
+}
+
+/* === Share Section juga disamain === */
+.share-section {
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    );
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.share-section h6,
+.share-section .btn {
+    color: white !important;
+}
+
+/* Tombol di dalam share */
+.share-section .btn-success,
+.share-section .btn-primary {
+    background: white !important;
+    color: #1E3A8A !important;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.share-section .btn-success:hover,
+.share-section .btn-primary:hover {
+    background: #f3f4f6 !important;
+    transform: translateY(-2px);
+}
+
+/* === Garis Atas Card Gradasi === */
+.info-card, .detail-card {
+    border-top: 5px solid transparent;
+    border-image: linear-gradient(to right, #4C1D95, #6366F1);
+    border-image-slice: 1;
+}
+
+/* === Judul Section Gradasi === */
+.info-card h5, .detail-card h5 {
+    background: linear-gradient(to right, #4C1D95, #6366F1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* === Kotak Icon Sebelah Judul Gradasi === */
+.icon-box {
+    background: linear-gradient(135deg, #4C1D95, #6366F1);
+    color: white;
+}
+
+/* === Semua Icon Kecil (lokasi, orang, kalender, dll) Gradasi === */
+.icon-small {
+    background: linear-gradient(135deg, #4C1D95, #6366F1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Kalau icon-nya pakai font-awesome atau lucide-react */
+.icon-small i, .icon-small svg {
+    background: linear-gradient(135deg, #4C1D95, #6366F1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* === Status Aktif di Mobile biar gak naik / loncat === */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.status-badge .check-icon {
+    position: relative;
+    top: 0;
+}
+
+/* Responsive fix di HP */
+@media (max-width: 576px) {
+    .status-badge {
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .status-badge .check-icon {
+        top: 0;
+        transform: none;
+        margin-right: 4px;
+    }
+}

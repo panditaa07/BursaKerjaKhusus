@@ -4,8 +4,6 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/lamaran.css') }}">
-
-<div class="bg-light min-vh-100 py-4">
     <div class="container-fluid px-4">
 
         <!-- 🔍 Search Bar -->
@@ -60,13 +58,6 @@
             <!-- 📋 Tabel Lamaran -->
             <div class="col-lg-9 table-card">
                 <div class="card shadow-sm border-0 rounded-lg">
-                    <div class="card-header border-0">
-                        <h4 class="card-title mb-0">
-                            <i class="fas fa-file-alt"></i>
-                            Lamaran Saya
-                        </h4>
-                    </div>
-                    <div class="card-body">
                         @if($applications->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-borderless lamaran-table">

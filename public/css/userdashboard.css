@@ -81,14 +81,14 @@ section {
 .section-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: rgb(30, 58, 138);
+    color: #4C1D95;
     margin-bottom: 30px;
     position: relative;
     padding-left: 20px;
 }
 
 .section-title::after {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
 }
 
 /* ===== LOWONGAN GRID ===== */
@@ -124,7 +124,7 @@ section {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #1e5bb8 0%, #2563eb 100%);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
@@ -166,7 +166,7 @@ section {
 .lowongan-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: rgb(30, 58, 138);
+    color: #4C1D95;
     margin-bottom: 15px;
     line-height: 1.4;
 }
@@ -179,18 +179,18 @@ section {
     display: flex;
     align-items: center;
     font-size: 0.9rem;
-    color: #4b5563;
+    color: #4C1D95;
     margin-bottom: 8px;
     transition: color 0.3s ease;
 }
 
 .lowongan-details > div:hover {
-    color: rgb(30, 58, 138);
+    color: #4C1D95;
 }
 
 .lowongan-details .icon {
     margin-right: 10px;
-    color: rgb(30, 58, 138);
+    color: #4C1D95;
     font-size: 0.95rem;
     width: 18px;
 }
@@ -289,7 +289,7 @@ section {
 
 .btn-info {
     padding: 0.75rem 2rem;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: white;
     border: none;
     border-radius: 10px;

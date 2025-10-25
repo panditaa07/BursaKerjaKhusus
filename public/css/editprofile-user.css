@@ -28,7 +28,7 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--background-color);
+    background: var(--surface-color);
     min-height: 100vh;
     padding: 16px;
     color: var(--text-primary);
@@ -42,7 +42,7 @@ body {
 }
 
 .header {
-    background: var(--surface-color);
+    background: var(--background-color);
     padding: 20px 24px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
@@ -51,14 +51,14 @@ body {
 }
 
 .header h1 {
-    color: var(--text-primary);
+    color: #4C1D95;
     font-size: 24px;
     font-weight: 600;
     margin: 0;
 }
 
 .profile-card {
-    background: var(--surface-color);
+    background: var(--background-color);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
     padding: 24px;
@@ -110,7 +110,7 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua /#1E3A8A 40%,  / navy (senada sidebar) /#312E81 75%,  / indigo tua / #4C1D95 100%  / ungu gelap elegan */);
     color: white;
     display: flex;
     align-items: center;
@@ -144,7 +144,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     color: white;
     padding: 12px 24px;
     border-radius: var(--border-radius-small);
@@ -158,6 +164,7 @@ body {
     position: relative;
     overflow: hidden;
 }
+
 
 .upload-btn::before {
     content: '';
@@ -175,7 +182,13 @@ body {
 }
 
 .upload-btn:hover {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     transform: translateY(-2px);
     box-shadow: var(--shadow-heavy);
 }
@@ -187,7 +200,7 @@ body {
 }
 
 label {
-    color: var(--text-primary);
+    color: #4C1D95;
     font-weight: 600;
     margin-bottom: 8px;
     display: block;
@@ -263,7 +276,13 @@ input[type="file"] {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     color: white;
     padding: 12px 20px;
     border-radius: var(--border-radius-small);
@@ -293,7 +312,13 @@ input[type="file"] {
 }
 
 .file-upload-btn:hover {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     transform: translateY(-2px);
     box-shadow: var(--shadow-heavy);
 }
@@ -309,7 +334,7 @@ input[type="file"] {
 }
 
 .current-file a {
-    color: var(--primary-color);
+    color: #4C1D95;
     text-decoration: none;
     font-weight: 600;
     transition: var(--transition);
@@ -327,7 +352,6 @@ input[type="file"] {
     gap: 16px;
     margin-top: 24px;
     padding-top: 24px;
-    border-top: 1px solid var(--border-color);
     position: relative;
 }
 
@@ -359,9 +383,16 @@ input[type="file"] {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white;
-    box-shadow: var(--shadow-medium);
+background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: var(--shadow-medium) !important;
 }
 
 .btn-primary::before {
@@ -380,24 +411,43 @@ input[type="file"] {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-heavy);
+   background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: var(--shadow-medium) !important;
 }
 
 .btn-secondary {
-    background: var(--surface-color);
-    color: var(--text-secondary);
-    border: 2px solid var(--border-color);
-    box-shadow: var(--shadow-light);
+ background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: var(--shadow-medium) !important;
 }
 
 .btn-secondary:hover {
-    background: var(--background-color);
-    border-color: var(--primary-light);
-    color: var(--primary-color);
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: var(--shadow-medium) !important;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-medium);
 }
 
 /* Animations */

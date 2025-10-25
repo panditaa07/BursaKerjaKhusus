@@ -118,13 +118,13 @@ body {
 .profile-details h1 {
     font-size: 28px;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #4C1D95;
     margin: 0 0 5px 0;
 }
 
 .profile-details p {
     font-size: 16px;
-    color: var(--text-gray);
+    color: #4C1D95;
     margin: 3px 0;
 }
 
@@ -132,8 +132,8 @@ body {
     display: inline-block;
     padding: 4px 12px;
     border-radius: 50px;
-    background-color: var(--soft-blue);
-    color: var(--primary-blue);
+    background-color: var(--primary-blue);
+    color: white;
     font-weight: 600;
     font-size: 0.85rem;
     margin-top: 10px;
@@ -151,7 +151,7 @@ body {
 }
 
 .btn-edit {
-    background: var(--primary-blue);
+    background: rgb(30, 58, 138);
     color: var(--white);
     padding: 8px 14px;
     border-radius: 8px;
@@ -163,7 +163,7 @@ body {
     gap: 6px;
 }
 .btn-edit:hover {
-    background: var(--secondary-blue);
+    background: rgb(30, 58, 138);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
 }
@@ -190,7 +190,7 @@ body {
 }
 
 .section h2 {
-    color: var(--primary-blue);
+    color: #4C1D95;
     font-size: 20px;
     margin-bottom: 20px;
     border-bottom: 2px solid var(--soft-blue);
@@ -233,7 +233,7 @@ body {
 
 .info-item span {
     font-weight: 600;
-    color: var(--primary-blue);
+    color: #4C1D95;
     display: block; /* Memaksa label di baris baru */
     margin-bottom: 3px;
 }
@@ -246,7 +246,7 @@ body {
 }
 
 .info-item h3 {
-    color: var(--primary-blue);
+    color: #4C1D95;
     font-size: 18px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -276,7 +276,7 @@ body {
 }
 
 .btn-cv {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: white !important;
     padding: 6px 12px;
     border-radius: 8px;
@@ -288,13 +288,13 @@ body {
 }
 
 .btn-cv:hover {
-    background: var(--primary-blue);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
 .portfolio-text-link {
-    color: var(--secondary-blue);
+    color: #4C1D95;
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
@@ -303,7 +303,7 @@ body {
 }
 .portfolio-text-link:hover {
     text-decoration: underline;
-    color: var(--primary-blue);
+    color: #4C1D95;
 }
 
 .text-muted {
@@ -383,7 +383,7 @@ body {
     display: inline-block;
     padding: 10px 24px;
     border-radius: 8px;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: white;
     text-decoration: none;
     font-weight: 600;
@@ -391,7 +391,7 @@ body {
 }
 
 .btn-back:hover {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }

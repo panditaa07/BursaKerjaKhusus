@@ -37,23 +37,12 @@ animation: fadeIn 0.6s ease-in-out;
 .job-list h2 {
 font-size: 2rem;
 font-weight: 700;
-color: var(--primary-blue);
+color: #4C1D95;
 margin-bottom: 2rem;
 position: relative;
 padding-bottom: 0.75rem;
 }
 
-.job-list h2::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 0;
-width: 60px;
-height: 4px;
-background: rgb(30, 58, 138);
-border-radius: 2px;
-animation: slideIn 0.8s ease-out;
-}
 
 .job-card {
 background: var(--bg-card);
@@ -79,7 +68,7 @@ animation: slideUp 0.5s ease-out forwards;
 .job-card:hover {
 transform: translateY(-4px);
 box-shadow: var(--shadow-lg);
-border-color: var(--light-blue);
+border-color: #4C1D95;
 }
 
 .job-image {
@@ -93,7 +82,7 @@ flex-shrink: 0;
 }
 
 .job-card:hover .job-image {
-border-color: rgb(30, 58, 138);
+border-color: #4C1D95;
 transform: scale(1.05);
 }
 
@@ -107,26 +96,26 @@ gap: 1.5rem;
 
 .company-name {
 font-size: 0.875rem;
-color: rgb(30, 58, 138);
+color: #4C1D95;
 font-weight: 500;
 margin-bottom: 0.25rem;
 letter-spacing: 0.3px;
 }
 
 .job-card:hover .company-name {
-color: rgb(30, 58, 138);
+color: #4C1D95;
 }
 
 .job-title {
 font-size: 1.25rem;
 font-weight: 700;
-color: rgb(30, 58, 138);
+color: #4C1D95;
 margin-bottom: 0.75rem;
 transition: color 0.3s ease;
 }
 
 .job-card:hover .job-title {
-color: rgb(30, 58, 138);
+color: #4C1D95;
 }
 
 .badge-job-type {
@@ -150,7 +139,7 @@ transform: scale(1.05);
 .salary {
 font-size: 1rem;
 font-weight: 600;
-color: rgb(30, 58, 138);
+color: #4C1D95;
 margin-bottom: 0.5rem;
 }
 
@@ -166,13 +155,13 @@ gap: 0.5rem;
 
 .job-location i,
 .job-deadline i {
-color: rgb(30, 58, 138);
+color: #4C1D95;
 font-size: 0.85rem;
 }
 
 .info-button {
 padding: 0.75rem 2rem;
-background: rgb(30, 58, 138);
+background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
 color: white;
 border: none;
 border-radius: 10px;
@@ -230,7 +219,7 @@ box-shadow: none !important;
 }
 
 .pagination .page-link:hover {
-background-color: #1e3a8a !important;
+background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
 color: white !important;
 box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3) !important;
 transform: translateY(-1px);
@@ -238,7 +227,7 @@ transform: translateY(-1px);
 
 .pagination .page-link.active,
 .pagination .page-item.active .page-link {
-background-color: #1e3a8a !important;
+background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
 color: white !important;
 border: none !important;
 box-shadow: none !important;
@@ -370,4 +359,35 @@ border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
 background: rgb(30, 58, 138);
+}
+
+/* ==========================
+   🎨 CUSTOM SEARCH BUTTON
+   ========================== */
+form .btn.btn-primary {
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,   /* biru-hitam tua */
+        #1E3A8A 40%,  /* navy */
+        #312E81 75%,  /* indigo tua */
+        #4C1D95 100%  /* ungu gelap elegan */
+    ) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Hover effect */
+form .btn.btn-primary:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+/* Focus/Active state biar gak ada kotak putih */
+form .btn.btn-primary:focus,
+form .btn.btn-primary:active {
+    outline: none !important;
+    box-shadow: none !important;
+    transform: scale(0.98);
 }

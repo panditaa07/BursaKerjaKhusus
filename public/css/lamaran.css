@@ -19,13 +19,25 @@
 }
 
 .btn-primary {
-    background: rgb(30, 58, 138);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    ) !important;
     border: none;
     transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
@@ -41,13 +53,6 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
-
-.card-header {
-    background: rgb(30, 58, 138);
-    color: white;
-    padding: 1.25rem 1.5rem;
-}
-
 .card-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -71,6 +76,13 @@
 }
 
 .table thead th {
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -101,7 +113,13 @@
 }
 
 .btn-detail {
-    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     color: white;
     border: none;
     border-radius: 20px;
@@ -115,7 +133,13 @@
 }
 
 .btn-detail:hover {
-    background: linear-gradient(135deg, #004aad 0%, #002f7a 100%);
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    );
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0, 64, 128, 0.25);
 }
@@ -204,7 +228,13 @@
 }
 
 .pagination .page-link:hover {
-    background-color: #1e3a8a !important;
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    ) !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3) !important;
     transform: translateY(-1px);
@@ -212,7 +242,13 @@
 
 .pagination .page-link.active,
 .pagination .page-item.active .page-link {
-    background-color: #1e3a8a !important;
+     background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    ) !important;
     color: white !important;
     border: none !important;
     box-shadow: none !important;
@@ -374,6 +410,13 @@
     .table th:nth-child(5), .table td:nth-child(5) { max-width: 55px !important; text-align: center !important; }
 
     .btn-detail, .btn-primary {
+         background: linear-gradient(
+        135deg,
+        #0F172A 0%,    /* biru-hitam tua */
+        #1E3A8A 40%,   /* navy */
+        #312E81 75%,   /* indigo tua */
+        #4C1D95 100%   /* ungu gelap elegan */
+    ) !important;
         font-size: 0.26rem !important;
         padding: 0.08rem 0.18rem !important;
         border-radius: 3px !important;
