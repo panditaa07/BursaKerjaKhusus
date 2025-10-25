@@ -459,3 +459,8 @@
 .company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
   pointer-events: none !important;
 }
+
+.kelola-pelamar h2.h4 {
+    color: rgb(30, 58, 138);
+    font-weight: 600;
+}

@@ -258,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.addEventListener('resize', removeBackdrop);
 });
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const tableCard = document.querySelector('.company-applications-table');

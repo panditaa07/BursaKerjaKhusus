@@ -277,3 +277,130 @@
   from { opacity: 0; transform: translateY(15px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+
+/* =========================================================
+   KELOLA PELAMAR — Tabel Seragam dengan Lowongan
+   ========================================================= */
+
+.company-applications-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+  background: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+/* Header tabel */
+.company-applications-table thead tr { background: #1E3A8A; }
+.company-applications-table thead th {
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  background: #1E3A8A;
+}
+
+/* Isi tabel */
+.company-applications-table tbody td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #374151;
+  text-align: center;
+  border-top: 1.8px solid #93c5fd;
+  border-right: 1.2px solid #c7ddff;
+}
+.company-applications-table tbody td:last-child { border-right: none; }
+
+/* Matikan efek hover */
+.company-applications-table tbody tr { transition: none !important; cursor: default !important; }
+.company-applications-table tbody tr:hover { background: transparent !important; }
+
+/* Badge status */
+.badge-status {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.badge-success { background: #22c55e; color: #fff; }
+.badge-warning { background: #facc15; color: #000; }
+.badge-secondary { background: #6b7280; color: #fff; }
+
+/* Aksi tombol */
+.aksi-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.action-text {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 90px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none !important;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  transition: .25s;
+}
+
+.action-text.view {
+  background: linear-gradient(135deg,#1E3A8A,#2563EB);
+}
+.action-text.delete {
+  background: linear-gradient(135deg,#dc2626,#EF4444);
+}
+
+.action-text:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
+/* Search bar */
+.search-bar .input-group {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+}
+.search-bar .form-control {
+  border-radius: 8px 0 0 8px !important;
+  border: 2px solid #d0e1ff !important;
+  padding: 10px 16px !important;
+}
+.search-bar .btn-secondary {
+  border-radius: 0 8px 8px 0 !important;
+  background: #1E3A8A !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+.search-bar .btn-outline-secondary {
+  background: #1E3A8A !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  margin-left: 8px !important;
+  font-weight: 600 !important;
+  padding: 10px 16px !important;
+}
+
+/* Judul Halaman */
+.page-title {
+  font-weight: 700;
+  color: #1E3A8A !important;
+  letter-spacing: 0.5px;
+}
+
