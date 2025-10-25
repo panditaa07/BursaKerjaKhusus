@@ -5,358 +5,404 @@
 @endpush
 
 @section('content')
-    <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="h4 mb-0">Semua Pelamar</h2>
-            <div class="d-flex align-items-center">
-                <a href="{{ route('company.applications.this_month') }}" class="btn btn-primary me-2">
-                    <i class="fas fa-calendar-alt me-2"></i>Pelamar Bulan Ini
-                </a>
-                <div class="text-muted">
-                    <i class="fas fa-users me-2"></i>
-                    Total Pelamar: <strong>{{ $applications->total() }}</strong>
-                </div>
+<div class="container-fluid kelola-pelamar">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h4 mb-0">Semua Pelamar</h2>
+        <div class="d-flex align-items-center gap-2">
+            <a href="{{ route('company.applications.this_month') }}" class="btn btn-primary">
+                <i class="fas fa-calendar-alt me-2"></i> Pelamar Bulan Ini
+            </a>
+            <div class="text-muted fw-semibold">
+                <i class="fas fa-users me-2"></i>
+                Total Pelamar: <strong>{{ $applications->total() }}</strong>
             </div>
         </div>
-
-        <!-- Search Form -->
-        <form method="GET" action="{{ route('company.pelamar.all') }}" class="mb-4">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..." value="{{ request('search') }}">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search"></i> Cari
-                        </button>
-                        @if(request('search'))
-                            <a href="{{ route('company.pelamar.all') }}" class="btn btn-outline-secondary">
-                                <i class="fas fa-times"></i> Reset
-                            </a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </form>
-
-        <!-- Filter Buttons -->
-        <div class="mb-4">
-            <div class="d-flex flex-wrap gap-2">
-                <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'new'])) }}"
-                   class="btn {{ request('filter') === 'new' ? 'btn-primary' : 'btn-outline-primary' }}">
-                    <i class="fas fa-user-plus me-2"></i>Pelamar Baru
-                </a>
-                <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'process'])) }}"
-                   class="btn {{ request('filter') === 'process' ? 'btn-primary' : 'btn-outline-primary' }}">
-                    <i class="fas fa-cogs me-2"></i>Pelamar Dalam Proses
-                </a>
-                <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'all'])) }}"
-                   class="btn {{ !request('filter') || request('filter') === 'all' ? 'btn-primary' : 'btn-outline-primary' }}">
-                    <i class="fas fa-users me-2"></i>Total Pelamar
-                </a>
-            </div>
-        </div>
-
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fas fa-check-circle me-2"></i>
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        <div class="card shadow-sm company-applications-table">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="border-0 fw-bold text-center" width="60">No</th>
-                                <th class="border-0 fw-bold">Nama</th>
-                                <th class="border-0 fw-bold">Email</th>
-                                <th class="border-0 fw-bold">No. Hp</th>
-                                <th class="border-0 fw-bold">Lowongan yang dilamar</th>
-                                <th class="border-0 fw-bold text-center" width="120">Status</th>
-                                <th class="border-0 fw-bold text-center" width="220">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($applications as $application)
-                                <tr>
-                                    <td class="text-center text-muted fw-bold">{{ $loop->iteration + ($applications->currentPage() - 1) * $applications->perPage() }}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-wrapper me-3">
-                                                @if($application->user->profile_photo_path)
-                                                    <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
-                                                         class="rounded-circle" width="40" height="40" alt="Avatar">
-                                                @else
-                                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
-                                                         style="width: 40px; height: 40px; font-size: 14px; font-weight: bold;">
-                                                        {{ strtoupper(substr($application->user->name, 0, 1)) }}
-                                                    </div>
-                                                @endif
-                                            </div>
-                                            <div>
-                                                <div class="fw-bold">{{ $application->user->name }}</div>
-                                                <small class="text-muted">ID: {{ $application->id }}</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-envelope text-muted me-2"></i>
-                                        {{ $application->user->email }}
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-phone text-muted me-2"></i>
-                                        {{ $application->user->phone ?? '-' }}
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-briefcase text-muted me-2"></i>
-                                        {{ $application->jobPost->title ?? 'N/A' }}
-                                    </td>
-                                    <td class="text-center">
-                                        @php
-                                            $status = $application->status;
-                                            $statusConfig = [
-                                                'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
-                                                'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
-                                                'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-                                                'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
-                                                'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
-                                                'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
-                                                'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
-                                            ];
-
-                                            $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
-                                        @endphp
-                                        <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
-                                            <i class="fas fa-circle me-1" style="font-size: 8px;"></i>
-                                            {{ $currentStatus['label'] }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="aksi-wrapper">
-                                            <!-- View Detail -->
-                                            <a href="{{ route('company.applications.show.company', $application->id) }}"
-                                               class="action-text view">
-                                                Lihat
-                                            </a>
-
-                                            <!-- Edit Status Dropdown -->
-                                            <div class="dropdown position-static">
-                                                <button class="action-text edit dropdown-toggle"
-                                                        type="button"
-                                                        id="dropdownMenuButton{{ $application->id }}"
-                                                        data-bs-toggle="dropdown"
-                                                        aria-expanded="false"
-                                                        data-bs-boundary="viewport"
-                                                        data-bs-offset="0,8">
-                                                    Edit
-                                                </button>
-                                                
-                                                <ul class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuButton{{ $application->id }}">
-                                                    @foreach ([
-                                                        'submitted' => ['icon' => 'far fa-clock', 'label' => 'Submitted'],
-                                                        'test1'     => ['icon' => 'fas fa-flask', 'label' => 'Test 1'],
-                                                        'test2'     => ['icon' => 'fas fa-flask', 'label' => 'Test 2', 'divider_after' => true],
-                                                        'interview' => ['icon' => 'fas fa-user-tie', 'label' => 'Interview', 'divider_after' => true],
-                                                        'accepted'  => ['icon' => 'fas fa-check', 'label' => 'Terima', 'btn_class' => 'text-success'],
-                                                        'rejected'  => ['icon' => 'fas fa-times', 'label' => 'Tolak', 'btn_class' => 'text-danger'],
-                                                    ] as $statusValue => $info)
-                                                        @php
-                                                            $isActive = ($statusValue === $application->status);
-                                                            $btnClasses = trim(($info['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
-                                                        @endphp
-                                                        <li>
-                                                            @if($isActive)
-                                                                <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
-                                                                    <i class="status-icon {{ $info['icon'] }}"></i>
-                                                                    {{ $info['label'] }}
-                                                                    <span class="tick"><i class="fas fa-check"></i></span>
-                                                                </div>
-                                                            @else
-                                                                <form action="{{ route('company.applications.updateStatus', $application->id) }}"
-                                                                      method="POST" class="d-inline w-100">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <input type="hidden" name="status" value="{{ $statusValue }}">
-                                                                    <button type="submit" class="dropdown-item {{ $btnClasses }} w-100 text-start border-0 bg-transparent p-0">
-                                                                        <span class="dropdown-item-inner d-block w-100 px-3 py-2">
-                                                                            <i class="status-icon {{ $info['icon'] }}"></i>
-                                                                            {{ $info['label'] }}
-                                                                        </span>
-                                                                    </button>
-                                                                </form>
-                                                            @endif
-                                                        </li>
-
-                                                        @if(!empty($info['divider_after']))
-                                                            <li><hr class="dropdown-divider my-1"></li>
-                                                        @endif
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-
-                                            <!-- Delete Application -->
-                                            <form action="{{ route('company.applications.destroy', $application->id) }}" method="POST" class="d-inline"
-                                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus lamaran ini?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="action-text delete">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="text-center py-5">
-                                        <div class="text-muted">
-                                            <i class="fas fa-inbox fa-3x mb-3"></i>
-                                            <p class="mb-0">Belum ada lamaran</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        @if($applications->hasPages())
-            <div class="d-flex justify-content-center mt-4">
-                {{ $applications->links() }}
-            </div>
-        @endif
     </div>
 
+    <!-- Search -->
+    <form method="GET" action="{{ route('company.pelamar.all') }}" class="mb-3">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="input-group search-hero">
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..."
+                        value="{{ request('search') }}"
+                    >
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search me-1"></i> Cari
+                    </button>
+                    @if(request('search'))
+                        <a href="{{ route('company.pelamar.all') }}" class="btn btn-outline-secondary reset-btn">
+                            <i class="fas fa-times me-1"></i> Reset
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Filter -->
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'new'])) }}"
+           class="btn {{ request('filter') === 'new' ? 'btn-primary' : 'btn-outline-primary' }}">
+            <i class="fas fa-user-plus me-2"></i> Pelamar Baru
+        </a>
+        <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'process'])) }}"
+           class="btn {{ request('filter') === 'process' ? 'btn-primary' : 'btn-outline-primary' }}">
+            <i class="fas fa-cogs me-2"></i> Pelamar Dalam Proses
+        </a>
+        <a href="{{ route('company.pelamar.all', array_merge(request()->query(), ['filter' => 'all'])) }}"
+           class="btn {{ !request('filter') || request('filter') === 'all' ? 'btn-primary' : 'btn-outline-primary' }}">
+            <i class="fas fa-users me-2"></i> Total Pelamar
+        </a>
+    </div>
+
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    <!-- Tabel -->
+    <div class="card shadow-sm company-applications-table">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th width="56">No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>No. Hp</th>
+                            <th>Lowongan yang Dilamar</th>
+                            <th width="120" class="text-center">Status</th>
+                            <th width="220" class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($applications as $application)
+                        <tr>
+                            <td class="text-center text-muted fw-bold">
+                                {{ $loop->iteration + ($applications->currentPage() - 1) * $applications->perPage() }}
+                            </td>
+
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-wrapper me-3">
+                                        @if($application->user->profile_photo_path)
+                                            <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}" width="36" height="36" class="rounded-circle" alt="">
+                                        @else
+                                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                 style="width:36px;height:36px;font-size:13px;font-weight:700;">
+                                                {{ strtoupper(substr($application->user->name, 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold">{{ $application->user->name }}</div>
+                                        <small class="text-muted">ID: {{ $application->id }}</small>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td><i class="fas fa-envelope text-muted me-2"></i>{{ $application->user->email }}</td>
+                            <td><i class="fas fa-phone text-muted me-2"></i>{{ $application->user->phone ?? '-' }}</td>
+                            <td><i class="fas fa-briefcase text-muted me-2"></i>{{ $application->jobPost->title ?? 'N/A' }}</td>
+
+                            <td class="text-center">
+                                @php
+                                    $status = $application->status;
+                                    $statusConfig = [
+                                        'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+                                        'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+                                        'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+                                        'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+                                        'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
+                                        'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
+                                        'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
+                                    ];
+                                    $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
+                                @endphp
+                                <span class="badge {{ $currentStatus['class'] }}">
+                                    <i class="fas fa-circle me-1" style="font-size:8px;"></i>{{ $currentStatus['label'] }}
+                                </span>
+                            </td>
+
+                            <td class="text-center">
+                                <div class="aksi-wrapper">
+                                    <a href="{{ route('company.applications.show.company', $application->id) }}" class="action-text view">Lihat</a>
+
+                                    <!-- Dropdown Aksi -->
+                                    <div class="dropdown">
+                                      <button
+                                        class="action-text edit dropdown-toggle"
+                                        type="button"
+                                        id="dd-{{ $application->id }}"
+                                        data-bs-toggle="dropdown"
+                                        data-bs-boundary="viewport"
+                                        data-bs-reference="parent"
+                                        data-bs-offset="0,8"
+                                        data-bs-display="static"
+                                        aria-expanded="false">
+                                        Edit
+                                      </button>
+
+                                      <ul class="dropdown-menu status-menu" aria-labelledby="dd-{{ $application->id }}">
+                                        @foreach ([
+                                          'submitted' => ['icon' => 'far fa-clock', 'label' => 'Submitted'],
+                                          'test1'     => ['icon' => 'fas fa-flask', 'label' => 'Test 1'],
+                                          'test2'     => ['icon' => 'fas fa-flask', 'label' => 'Test 2', 'divider_after' => true],
+                                          'interview' => ['icon' => 'fas fa-user-tie', 'label' => 'Interview', 'divider_after' => true],
+                                          'accepted'  => ['icon' => 'fas fa-check', 'label' => 'Terima', 'btn_class' => 'text-success'],
+                                          'rejected'  => ['icon' => 'fas fa-times', 'label' => 'Tolak', 'btn_class' => 'text-danger'],
+                                        ] as $value => $opt)
+                                          @php
+                                            $isActive = ($value === $application->status);
+                                            $btnClasses = trim('opt-'.$value.' '.($opt['btn_class'] ?? '').' '.($isActive ? 'is-active' : ''));
+                                          @endphp
+                                          <li>
+                                            @if($isActive)
+                                              <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
+                                                <i class="status-icon {{ $opt['icon'] }}"></i>
+                                                {{ $opt['label'] }}
+                                                <span class="tick ms-auto"><i class="fas fa-check"></i></span>
+                                              </div>
+                                            @else
+                                              <form action="{{ route('company.applications.updateStatus', $application->id) }}" method="POST" class="d-inline w-100">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="status" value="{{ $value }}">
+                                                <button type="submit" class="dropdown-item {{ $btnClasses }} w-100 text-start border-0 bg-transparent">
+                                                  <i class="status-icon {{ $opt['icon'] }}"></i> {{ $opt['label'] }}
+                                                </button>
+                                              </form>
+                                            @endif
+                                          </li>
+                                          @if(!empty($opt['divider_after'])) <li><hr class="dropdown-divider my-1"></li> @endif
+                                        @endforeach
+                                      </ul>
+                                    </div>
+
+                                    <form action="{{ route('company.applications.destroy', $application->id) }}" method="POST" class="d-inline"
+                                          onsubmit="return confirm('Apakah Anda yakin ingin menghapus lamaran ini?')">
+                                        @csrf @method('DELETE')
+                                        <button type="submit" class="action-text delete">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center py-5 text-muted">
+                                <i class="fas fa-inbox fa-3x mb-3"></i><br>Belum ada lamaran
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @if($applications->hasPages())
+        <div class="d-flex justify-content-center mt-3">
+            {{ $applications->links() }}
+        </div>
+    @endif
+</div>
+
 <script>
-// JavaScript untuk handle dropdown positioning dan z-index
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle dropdown show event untuk positioning yang tepat
-    var dropdowns = document.querySelectorAll('.dropdown');
-    
-    dropdowns.forEach(function(dropdown) {
-        dropdown.addEventListener('show.bs.dropdown', function (e) {
-            // Tambahkan class active untuk styling
-            this.classList.add('active');
-            
-            // Tambahkan class ke td parent dan tr
-            var td = this.closest('td');
-            var tr = this.closest('tr');
-            
-            if (td) {
-                td.classList.add('dropdown-open');
-            }
-            if (tr) {
-                tr.classList.add('dropdown-active');
-            }
-            
-            // Cek jika ini baris terakhir
-            var tableBody = tr ? tr.closest('tbody') : null;
-            var lastRow = tableBody ? tableBody.lastElementChild : null;
-            
-            if (tr && lastRow && tr === lastRow) {
-                this.classList.add('last-row');
-            } else {
-                this.classList.remove('last-row');
-            }
-            
-            // Untuk mobile, tambahkan backdrop
-            if (window.innerWidth <= 768) {
-                addMobileBackdrop(this);
-            }
-        });
-        
-        dropdown.addEventListener('hide.bs.dropdown', function () {
-            // Hapus class active ketika dropdown ditutup
-            this.classList.remove('active', 'last-row');
-            
-            // Hapus class dari td parent dan tr
-            var td = this.closest('td');
-            var tr = this.closest('tr');
-            
-            if (td) {
-                td.classList.remove('dropdown-open');
-            }
-            if (tr) {
-                tr.classList.remove('dropdown-active');
-            }
-            
-            // Hapus backdrop mobile
-            removeMobileBackdrop();
-        });
+document.addEventListener('DOMContentLoaded', function () {
+  const tableCard = document.querySelector('.company-applications-table');
+  const dropdowns  = document.querySelectorAll('.company-applications-table .dropdown');
+
+  function addBackdrop(dropdownEl){
+    if (window.innerWidth > 768) return;
+    const backdrop = document.createElement('div');
+    backdrop.className = 'dropdown-backdrop';
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener('click', () => {
+      const inst = bootstrap.Dropdown.getInstance(
+        dropdownEl.querySelector('[data-bs-toggle="dropdown"]')
+      );
+      inst && inst.hide();
     });
-    
-    // Function untuk menambah backdrop di mobile
-    function addMobileBackdrop(dropdown) {
-        // Hapus backdrop lama jika ada
-        removeMobileBackdrop();
-        
-        // Buat backdrop baru
-        var backdrop = document.createElement('div');
-        backdrop.className = 'dropdown-backdrop';
-        backdrop.style.cssText = `
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background: rgba(0, 0, 0, 0.5) !important;
-            z-index: 999998 !important;
-        `;
-        
-        // Click backdrop untuk close dropdown
-        backdrop.addEventListener('click', function() {
-            var bsDropdown = bootstrap.Dropdown.getInstance(dropdown);
-            if (bsDropdown) {
-                bsDropdown.hide();
-            }
-        });
-        
-        document.body.appendChild(backdrop);
-        
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  function removeBackdrop(){
+    const bd = document.querySelector('.dropdown-backdrop');
+    if (bd) bd.remove();
+    document.body.style.overflow = '';
+  }
+
+  dropdowns.forEach(dd => {
+    dd.addEventListener('show.bs.dropdown', () => {
+      tableCard && tableCard.classList.add('dropdown-active');
+      const td = dd.closest('td');
+      td && td.classList.add('dropdown-open');
+      addBackdrop(dd);
+    });
+
+    dd.addEventListener('hide.bs.dropdown', () => {
+      tableCard && tableCard.classList.remove('dropdown-active');
+      const td = dd.closest('td');
+      td && td.classList.remove('dropdown-open');
+      removeBackdrop();
+    });
+  });
+
+  window.addEventListener('resize', removeBackdrop);
+});
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const tableCard = document.querySelector('.company-applications-table');
+  const dropdowns  = document.querySelectorAll('.company-applications-table .dropdown');
+
+  function addBackdrop(dropdownEl){
+    if (window.innerWidth > 768) return;
+    const backdrop = document.createElement('div');
+    backdrop.className = 'dropdown-backdrop';
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener('click', () => {
+      const inst = bootstrap.Dropdown.getInstance(
+        dropdownEl.querySelector('[data-bs-toggle="dropdown"]')
+      );
+      inst && inst.hide();
+    });
+    document.body.style.overflow = 'hidden';
+  }
+  function removeBackdrop(){
+    const bd = document.querySelector('.dropdown-backdrop');
+    if (bd) bd.remove();
+    document.body.style.overflow = '';
+  }
+
+  function placePortal(menu, toggle){
+    const r = toggle.getBoundingClientRect();
+    // Simpan parent asal
+    menu.__origin = menu.__origin || menu.parentElement;
+    // Pindah ke body
+    document.body.appendChild(menu);
+    // Gunakan posisi fixed agar lepas dari semua stacking context
+    Object.assign(menu.style, {
+      position: 'fixed',
+      left: (r.left) + 'px',
+      top:  (r.bottom + 8) + 'px',
+      zIndex: 2147483647,
+      transform: 'none',
+      willChange: 'auto'
+    });
+    menu.classList.add('dropdown-menu-portal');
+  }
+
+  function restorePortal(menu){
+    if (menu && menu.__origin) {
+      menu.__origin.appendChild(menu);
+      menu.removeAttribute('style');
+      menu.classList.remove('dropdown-menu-portal');
     }
-    
-    function removeMobileBackdrop() {
-        var backdrop = document.querySelector('.dropdown-backdrop');
-        if (backdrop) {
-            backdrop.remove();
-        }
-        document.body.style.overflow = '';
-    }
-    
-    // Prevent form submission dari bubbling ke dropdown
-    document.querySelectorAll('.dropdown-menu form').forEach(function(form) {
-        form.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
+  }
+
+  // Reposisi saat scroll/resize
+  let currentToggle = null, currentMenu = null;
+  function repro(){
+    if (!currentToggle || !currentMenu) return;
+    placePortal(currentMenu, currentToggle);
+  }
+  window.addEventListener('scroll', repro, true);
+  window.addEventListener('resize', repro);
+
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('[data-bs-toggle="dropdown"]');
+    const menu = dd.querySelector('.dropdown-menu');
+
+    dd.addEventListener('show.bs.dropdown', () => {
+      tableCard && tableCard.classList.add('dropdown-active');
+      const td = dd.closest('td');
+      const tr = dd.closest('tr');
+      td && td.classList.add('dropdown-open');
+      tr && tr.classList.add('row-locked');
+
+      placePortal(menu, toggle);
+      currentToggle = toggle;
+      currentMenu = menu;
+      addBackdrop(dd);
     });
-    
-    // Close dropdown ketika klik di luar (untuk desktop)
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown') && window.innerWidth > 768) {
-            dropdowns.forEach(function(dropdown) {
-                var bsDropdown = bootstrap.Dropdown.getInstance(dropdown);
-                if (bsDropdown) {
-                    bsDropdown.hide();
-                }
-            });
-        }
+
+    dd.addEventListener('hide.bs.dropdown', () => {
+      tableCard && tableCard.classList.remove('dropdown-active');
+      const td = dd.closest('td');
+      const tr = dd.closest('tr');
+      td && td.classList.remove('dropdown-open');
+      tr && tr.classList.remove('row-locked');
+
+      restorePortal(menu);
+      currentToggle = null;
+      currentMenu = null;
+      removeBackdrop();
     });
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        // Jika resize ke desktop dan ada backdrop, hapus
-        if (window.innerWidth > 768) {
-            removeMobileBackdrop();
-        }
-    });
+  });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdowns = document.querySelectorAll('.company-applications-table .dropdown');
+  let currentToggle=null, currentMenu=null;
+
+  function portal(menu, toggle){
+    const r = toggle.getBoundingClientRect();
+    // pindahkan node asli ke body (bukan clone)
+    menu.__origin = menu.__origin || menu.parentElement;
+    document.body.appendChild(menu);
+    // posisikan tepat di bawah tombol
+    Object.assign(menu.style, {
+      position: 'fixed',
+      left: r.left + 'px',
+      top: (r.bottom + 8) + 'px',
+      zIndex: 2147483647,
+      transform: 'none',
+      willChange: 'auto'
+    });
+    menu.classList.add('dropdown-menu-portal');
+  }
+  function restore(menu){
+    if (menu && menu.__origin){
+      menu.__origin.appendChild(menu);
+      menu.removeAttribute('style');
+      menu.classList.remove('dropdown-menu-portal');
+    }
+  }
+  function repro(){ if(currentToggle && currentMenu){ portal(currentMenu, currentToggle); } }
+  window.addEventListener('scroll', repro, true);
+  window.addEventListener('resize', repro);
+
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('[data-bs-toggle="dropdown"]');
+    const menu = dd.querySelector('.dropdown-menu');
+
+    dd.addEventListener('show.bs.dropdown', () => {
+      const td = dd.closest('td'); const tr = dd.closest('tr');
+      td && td.classList.add('dropdown-open');
+      tr && tr.classList.add('row-locked');
+      portal(menu, toggle);
+      currentToggle = toggle; currentMenu = menu;
+    });
+
+    dd.addEventListener('hide.bs.dropdown', () => {
+      const td = dd.closest('td'); const tr = dd.closest('tr');
+      td && td.classList.remove('dropdown-open');
+      tr && tr.classList.remove('row-locked');
+      restore(menu);
+      currentToggle = null; currentMenu = null;
+    });
+  });
+});
+</script>
+
+
 @endsection

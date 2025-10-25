@@ -25,11 +25,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="input-group">
-                    <input 
-                        type="text" 
-                        name="search" 
-                        class="form-control search-bar" 
-                        placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..." 
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control search-bar"
+                        placeholder="Cari pelamar berdasarkan nama, lowongan, atau status..."
                         value="{{ request('search') }}"
                     >
                     <button class="btn btn-secondary" type="submit">
@@ -78,7 +78,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="avatar-wrapper me-3">
                                             @if($application->user->profile_photo_path)
-                                                <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}" 
+                                                <img src="{{ asset('storage/' . $application->user->profile_photo_path) }}"
                                                      width="40" height="40" alt="Avatar">
                                             @else
                                                 <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -141,7 +141,8 @@
                                                 Edit
                                             </button>
 
-                                            <ul class="dropdown-menu custom-dropdown-menu" id="dropdown-{{ $application->id }}">
+                                            <!-- list-unstyled untuk pastikan tidak ada bullet -->
+                                            <ul class="dropdown-menu custom-dropdown-menu list-unstyled m-0 p-0" id="dropdown-{{ $application->id }}">
                                                 @php
                                                     $statusMenu = [
                                                         'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
@@ -158,16 +159,14 @@
                                                         $isActive = ($value === $application->status);
                                                         $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
                                                     @endphp
-                                                    <li>
+                                                    <li class="m-0 p-0">
                                                         @if($isActive)
-                                                            {{-- Status aktif --}}
                                                             <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
                                                                 <i class="status-icon {{ $opt['icon'] }}"></i>
                                                                 {{ $opt['label'] }}
                                                                 <span class="tick"><i class="fas fa-check"></i></span>
                                                             </div>
                                                         @else
-                                                            {{-- Status lain --}}
                                                             <form action="{{ route('company.applications.updateStatus', $application->id) }}"
                                                                   method="POST" class="d-inline w-100">
                                                                 @csrf
@@ -182,7 +181,7 @@
                                                     </li>
 
                                                     @if(!empty($opt['divider_after']))
-                                                        <li><hr class="dropdown-divider"></li>
+                                                        <li class="m-0 p-0"><hr class="dropdown-divider"></li>
                                                     @endif
                                                 @endforeach
                                             </ul>
@@ -223,124 +222,65 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Custom dropdown system untuk menghindari konflik Bootstrap
     class CustomDropdown {
         constructor(button) {
             this.button = button;
             this.dropdownId = button.getAttribute('data-dropdown-id');
             this.menu = document.getElementById(this.dropdownId);
             this.isOpen = false;
-            
             this.init();
         }
-        
         init() {
-            // Click event untuk toggle dropdown
             this.button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggle();
+                e.preventDefault(); e.stopPropagation(); this.toggle();
             });
-            
-            // Close ketika klik di luar
             document.addEventListener('click', (e) => {
-                if (!this.button.contains(e.target) && !this.menu.contains(e.target)) {
-                    this.close();
-                }
+                if (!this.button.contains(e.target) && !this.menu.contains(e.target)) this.close();
             });
-            
-            // Close ketika tekan Escape
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && this.isOpen) {
-                    this.close();
-                }
-            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && this.isOpen) this.close(); });
         }
-        
-        toggle() {
-            if (this.isOpen) {
-                this.close();
-            } else {
-                this.open();
-            }
-        }
-        
-        open() {
-            // Close semua dropdown lain
-            document.querySelectorAll('.custom-dropdown-menu').forEach(menu => {
-                menu.classList.remove('show');
-            });
-            
-            // Position dropdown
+        toggle(){ this.isOpen ? this.close() : this.open(); }
+        open(){
+            document.querySelectorAll('.custom-dropdown-menu').forEach(m => m.classList.remove('show'));
             this.positionDropdown();
-            
-            // Show current dropdown
-            this.menu.classList.add('show');
-            this.isOpen = true;
+            this.menu.classList.add('show'); this.isOpen = true;
         }
-        
-        close() {
-            this.menu.classList.remove('show');
-            this.isOpen = false;
-        }
-        
-        positionDropdown() {
-            const buttonRect = this.button.getBoundingClientRect();
-            const menuRect = this.menu.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Default: tampilkan di bawah
-            let top = buttonRect.bottom + scrollTop;
-            let left = buttonRect.left + (buttonRect.width / 2) - (menuRect.width / 2);
-            
-            // Jika tidak cukup space di bawah, tampilkan di atas
-            const spaceBelow = viewportHeight - buttonRect.bottom;
-            const spaceAbove = buttonRect.top;
-            
-            if (spaceBelow < menuRect.height && spaceAbove > menuRect.height) {
-                top = buttonRect.top + scrollTop - menuRect.height;
-            }
-            
-            // Pastikan tidak keluar dari viewport horizontal
+        close(){ this.menu.classList.remove('show'); this.isOpen = false; }
+        positionDropdown(){
+            const b = this.button.getBoundingClientRect();
+            const m = this.menu.getBoundingClientRect();
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+
+            let top = b.bottom + st + 8;                 // default di bawah tombol
+            let left = b.left + (b.width/2) - (m.width/2);
+
+            const vw = window.innerWidth;
             if (left < 10) left = 10;
-            if (left + menuRect.width > window.innerWidth - 10) {
-                left = window.innerWidth - menuRect.width - 10;
-            }
-            
-            // Apply position
-            this.menu.style.top = top + 'px';
+            if (left + m.width > vw - 10) left = vw - m.width - 10;
+
+            this.menu.style.top  = top + 'px';
             this.menu.style.left = left + 'px';
         }
     }
-    
-    // Initialize semua custom dropdown
-    document.querySelectorAll('.custom-dropdown .dropdown-toggle').forEach(button => {
-        new CustomDropdown(button);
-    });
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
+
+    document.querySelectorAll('.custom-dropdown .dropdown-toggle').forEach(btn => new CustomDropdown(btn));
+    window.addEventListener('resize', () => {
         document.querySelectorAll('.custom-dropdown-menu.show').forEach(menu => {
-            const dropdownId = menu.id;
-            const button = document.querySelector(`[data-dropdown-id="${dropdownId}"]`);
-            if (button) {
-                const buttonRect = button.getBoundingClientRect();
-                const menuRect = menu.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                let top = buttonRect.bottom + scrollTop;
-                let left = buttonRect.left + (buttonRect.width / 2) - (menuRect.width / 2);
-                
-                // Pastikan tidak keluar dari viewport
-                if (left < 10) left = 10;
-                if (left + menuRect.width > window.innerWidth - 10) {
-                    left = window.innerWidth - menuRect.width - 10;
-                }
-                
-                menu.style.top = top + 'px';
-                menu.style.left = left + 'px';
-            }
+            const id = menu.id;
+            const btn = document.querySelector(`[data-dropdown-id="${id}"]`);
+            if (!btn) return;
+            const b = btn.getBoundingClientRect();
+            const m = menu.getBoundingClientRect();
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+
+            let top = b.bottom + st + 8;
+            let left = b.left + (b.width/2) - (m.width/2);
+            const vw = window.innerWidth;
+            if (left < 10) left = 10;
+            if (left + m.width > vw - 10) left = vw - m.width - 10;
+
+            menu.style.top  = top + 'px';
+            menu.style.left = left + 'px';
         });
     });
 });

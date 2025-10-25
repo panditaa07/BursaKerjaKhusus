@@ -1,1084 +1,461 @@
-/* ==============================
-   KELOLA PELAMAR - COMPANY - FIXED
-   ============================== */
-
-/* ===== TITLE ===== */
-h2.h4{
-  font-size:28px!important;
-  font-weight:700!important;
-  color:#1f3a95!important;
-  border-bottom:4px solid #1f3a95;
-  padding-bottom:10px;
-  margin-bottom:20px;
-}
-
-/* ===== SEARCH ===== */
-.input-group{
-  display:flex;
-  align-items:center;
-}
-
-.input-group .form-control{
-  border-radius:10px 0 0 10px!important;
-  border:2px solid #d0e1ff!important;
-  padding:10px 16px!important;
-  flex:1;
-}
-
-.input-group .btn-primary{
-  background:#1f3a95!important;
-  border:none!important;
-  border-radius:0 10px 10px 0!important;
-  font-weight:700!important;
-  padding:10px 20px!important;
-  color:#fff!important;
-  transition:all 0.2s ease-in-out!important;
-}
-
-.input-group .btn-primary:hover{
-  background:#1a2f7a!important;
-  transform:translateY(-2px);
-}
-
-.input-group .btn-outline-secondary{
-  background:#1f3a95!important;
-  color:#fff!important;
-  border:none!important;
-  border-radius:10px!important;
-  margin-left:8px!important;
-  font-weight:700!important;
-  padding:10px 16px!important;
-  box-shadow:0 4px 12px rgba(31,58,149,0.3)!important;
-  transition:all 0.2s ease-in-out!important;
-}
-
-.input-group .btn-outline-secondary:hover{
-  background:#1a2f7a!important;
-  color:#fff!important;
-  transform:translateY(-2px);
-}
-
-.input-group .btn-outline-secondary:active{
-  transform:scale(0.98);
-}
-
-/* Hilangkan focus ring pada input */
-.input-group .form-control:focus{
-  border-color:#d0e1ff!important;
-  box-shadow:none!important;
-  outline:none!important;
-}
-
-/* =========================
-   TABLE WRAPPER - FIXED DROPDOWN
-   ========================= */
-.company-applications-table{
-  --tbl-border:#cfe1ff;
-  background:#fff!important;
-  border-radius:16px!important;
-  border:2px solid #d0e1ff!important;
-  box-shadow:0 8px 20px rgba(0,0,0,.08)!important;
-  overflow:visible!important;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.company-applications-table .table-responsive{
-  width:100%!important;
-  max-width:100%!important;
-  overflow-x:auto!important;
-  overflow-y:visible!important;
-  border-radius: 16px;
+/* ====== HEADER / TITLE ====== */
+.page-title {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #1E3A8A !important;
+  margin-bottom: 0 !important;
   position: relative;
 }
+.page-title::after {
+  content: "";
+  display: block;
+  width: 180px;
+  height: 4px;
+  background: #1E3A8A;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.btn-month {
+  border-radius: 12px;
+}
 
-/* ===================
-   TABLE (general)
-   =================== */
-.company-applications-table table{
-  width:100%!important;
-  table-layout:auto!important;
-  border-collapse:separate!important;
-  border-spacing:0!important;
-  margin:0!important;
+/* ====== SEARCH ====== */
+.search-group .form-control {
+  border-radius: 10px 0 0 10px !important;
+  border: 2px solid #d0e1ff !important;
+  padding: 10px 16px !important;
+}
+.btn-search {
+  border-radius: 0 10px 10px 0 !important;
+  background: #1E3A8A !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 10px 18px !important;
+}
+.btn-reset {
+  border-radius: 10px !important;
+  margin-left: 8px !important;
+  background: #1E3A8A !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 700 !important;
+}
+
+/* ====== TABLE WRAPPER ====== */
+.company-applications-table {
+  border: 2px solid #d0e1ff;
   border-radius: 16px;
-}
-
-/* ===== HEADER ===== */
-.company-applications-table .table thead th{
-  background:#1f3a95!important;
-  color:#fff!important;
-  border:0!important;
-  padding:12px 14px!important;
-  font-size:14px!important;
-  font-weight:800!important;
-  letter-spacing:.3px!important;
-  white-space:nowrap!important;
-  vertical-align:middle!important;
-  text-transform:uppercase!important;
-  box-shadow:none!important;
-}
-
-.company-applications-table .table thead th:first-child{
-  border-top-left-radius:14px!important;
-}
-
-.company-applications-table .table thead th:last-child{
-  border-top-right-radius:14px!important;
-}
-
-/* ===== BODY ===== */
-.company-applications-table .table tbody td{
-  border-top:0!important;
-  border-bottom:1px solid var(--tbl-border)!important;
-  border-right:1px solid var(--tbl-border)!important;
-  padding:8px 12px!important;
-  vertical-align:middle!important;
-  font-size:13px!important;
-  color:#1f2937!important;
-}
-
-.company-applications-table .table tbody td:first-child{
-  border-left:1px solid var(--tbl-border)!important;
-}
-
-.company-applications-table .table tbody tr:last-child td:first-child{
-  border-bottom-left-radius:14px!important;
-}
-
-.company-applications-table .table tbody tr:last-child td:last-child{
-  border-bottom-right-radius:14px!important;
-}
-
-/* TD AKSI - FIX UNTUK DROPDOWN */
-.company-applications-table .table tbody td:last-child {
-  position: relative !important;
   overflow: visible !important;
+  position: relative;
   z-index: auto !important;
 }
-
-.table-hover tbody tr:hover{
-  background:#f8fbff!important;
-}
-
-/* Alignment kolom */
-.company-applications-table .table thead th:nth-child(1),
-.company-applications-table .table thead th:nth-last-child(2),
-.company-applications-table .table thead th:last-child,
-.company-applications-table .table tbody td:nth-child(1),
-.company-applications-table .table tbody td:nth-last-child(2),
-.company-applications-table .table tbody td:last-child{
-  text-align:center!important;
-}
-
-.company-applications-table .table thead th:nth-child(2),
-.company-applications-table .table thead th:nth-child(3),
-.company-applications-table .table thead th:nth-child(4),
-.company-applications-table .table thead th:nth-child(5),
-.company-applications-table .table tbody td:nth-child(2),
-.company-applications-table .table tbody td:nth-child(3),
-.company-applications-table .table tbody td:nth-child(4),
-.company-applications-table .table tbody td:nth-child(5){
-  text-align:left!important;
-}
-
-/* Kolom NO */
-.table tbody td:first-child{
-  font-weight:700;
-  color:#64748b;
-}
-
-/* ===== IKON ===== */
-.company-applications-table i,
-.company-applications-table .fa,
-.company-applications-table .fas,
-.company-applications-table .far,
-.company-applications-table .fal,
-.company-applications-table .fab,
-.company-applications-table .svg-inline--fa{
-  display:inline-block!important;
-  line-height:1!important;
-  vertical-align:middle!important;
-  transform:none!important;
-  margin:0!important;
-  font-style:normal!important;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
-.company-applications-table td i.text-muted{
-  margin-right:8px!important;
-}
-
-/* ===== AVATAR ===== */
-.avatar-wrapper img{
-  width:36px!important;
-  height:36px!important;
-  border:2px solid #d0e1ff!important;
-  object-fit:cover!important;
-  border-radius:50%!important;
-}
-
-/* ===== BADGE STATUS ===== */
-.badge{
-  border-radius:999px!important;
-  font-weight:800!important;
-  padding:8px 12px!important;
-  font-size:12.5px!important;
-}
-
-.badge i{
-  font-size:8px;
-}
-
-.status-accepted{
-  background:#22c55e!important;
-  color:#fff!important;
-}
-
-.status-rejected{
-  background:#ef4444!important;
-  color:#fff!important;
-}
-
-.status-interview{
-  background:#0ea5e9!important;
-  color:#fff!important;
-}
-
-.status-test{
-  background:#7c3aed!important;
-  color:#fff!important;
-}
-
-.status-pending{
-  background:#E2E8F0!important;
-  color:#1E3A8A!important;
-}
-
-.status-reviewed{
-  background:#FDE68A!important;
-  color:#78350F!important;
-}
-
-.status-test2{
-  background:#A5F3FC!important;
-  color:#0E7490!important;
-}
-
-/* =========================================
-   AKSI (ikon kotak rounded)
-   ========================================= */
-.company-applications-table .aksi-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: nowrap;
-    position: relative;
-}
-
-.company-applications-table .table thead th:last-child,
-.company-applications-table .table tbody td:last-child{
-  padding-right:18px!important;
-  padding-left:18px!important;
-}
-
-/* Tombol aksi */
-.company-applications-table .action-text {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px;
-    height: 44px;
-    padding: 0 16px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none !important;
-    border: none;
-    box-shadow: 0 8px 20px rgba(0,0,0,.12);
-    transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
-    white-space: nowrap;
-    cursor: pointer;
-}
-
-.company-applications-table .action-text:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.06);
-}
-
-.company-applications-table .action-text:active {
-    transform: scale(.98);
-    box-shadow: none;
-}
-
-/* Warna tombol */
-.company-applications-table .action-text.view {
-    background: linear-gradient(180deg, #2E5BD8, #1E3A8A);
-}
-
-.company-applications-table .action-text.edit {
-    background: linear-gradient(180deg, #F1C40F, #D4A107);
-    color: #fff;
-}
-
-.company-applications-table .action-text.delete {
-    background: linear-gradient(180deg, #F05252, #DC2626);
-}
-
-/* =========================================
-   DROPDOWN STATUS - FIXED!
-   ========================================= */
-
-/* PERBAIKAN UTAMA: dropdown positioning */
-.company-applications-table .dropdown{
-  position: static !important;
-  display: inline-block !important;
-}
-
-.company-applications-table .dropdown.active {
-  z-index: 10000 !important;
-}
-
-/* PERBAIKAN POSITIONING DROPDOWN MENU */
-.company-applications-table .dropdown-menu{
-  position: absolute !important;
-  z-index: 1060 !important;
-  min-width: 240px !important;
-  max-height: none !important;
+.table-wrapper {
+  overflow-x: auto !important;
   overflow-y: visible !important;
-  white-space: nowrap !important;
-  padding: 8px !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 12px !important;
-  box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+  position: relative !important;
+}
+
+/* Saat dropdown aktif */
+.company-applications-table.dropdown-active {
+  z-index: 2147483645 !important;
+}
+
+/* ====== TABLE HEAD ====== */
+.company-applications-table thead tr {
+  background: linear-gradient(90deg, #1E3A8A, #1d3b9d);
+}
+.company-applications-table thead th {
+  color: #fff;
+  border: 0 !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  padding: 12px 14px !important;
+  text-align: center;
+}
+.company-applications-table thead th:first-child {
+  border-top-left-radius: 14px;
+}
+.company-applications-table thead th:last-child {
+  border-top-right-radius: 14px;
+}
+
+/* ====== TABLE BODY ====== */
+.company-applications-table tbody tr {
   background: #fff !important;
-  
-  /* POSITIONING FIX */
-  top: 100% !important;
-  left: 50% !important;
-  transform: translateX(-50%) translateY(8px) !important;
-  right: auto !important;
-  margin: 0 !important;
+  transition: none !important;
+  position: relative !important;
+  z-index: 0 !important;
+}
+.company-applications-table tbody tr:hover {
+  background: #fff !important;
+  box-shadow: none !important;
+  filter: none !important;
+  z-index: 0 !important;
+}
+.company-applications-table tbody td {
+  font-size: 14px !important;
+  color: #1f2937 !important;
+  vertical-align: middle !important;
+  text-align: center;
+  padding: 10px 12px !important;
+  border-top: 1.6px solid #d6e6ff !important;
+  border-right: 1px solid #e3edff !important;
+  background: #fff !important;
+  position: relative !important;
+  z-index: 0 !important;
+}
+.company-applications-table tbody td:last-child {
+  border-right: none !important;
 }
 
-/* Untuk baris terakhir - dropdown ke atas */
-.company-applications-table .dropdown.last-row .dropdown-menu {
-  top: auto !important;
-  bottom: 100% !important;
-  transform: translateX(-50%) translateY(-8px) !important;
+/* Saat dropdown terbuka */
+.company-applications-table tbody td.dropdown-open {
+  z-index: 2147483646 !important;
 }
 
-/* Dropdown item */
-.company-applications-table .dropdown-menu .dropdown-item{
-  display:flex!important;
-  align-items:center!important;
-  gap:10px!important;
-  padding:12px 14px!important;
-  border-radius:10px!important;
-  font-weight:700!important;
-  color:#111827!important;
-  background:transparent!important;
-  transition:none!important;
-  box-shadow:none!important;
-  transform:none!important;
-  position:relative;
-  cursor: pointer !important;
-  border: none !important;
-  width: 100%;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item:hover{
-  background:#e8f0ff!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item:hover::before{
-  content:"";
-  position:absolute;
-  left:8px;
-  top:8px;
-  bottom:8px;
-  width:3px;
-  border-radius:3px;
-  background:#2563eb;
-  opacity:1;
-}
-
-.company-applications-table .dropdown-menu .dropdown-divider{
-  margin:8px 10px!important;
-  border-top:1px solid #e5e7eb!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .status-icon{
-  width:18px!important;
-  text-align:center!important;
-  font-size:16px!important;
-  line-height:1!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .icon-submitted{
-  color:#334155!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .icon-test{
-  color:#8b5cf6!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .icon-interview{
-  color:#0ea5e9!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .icon-accepted{
-  color:#16a34a!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .icon-rejected{
-  color:#dc2626!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item.text-success{
-  color:#16a34a!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item.text-danger{
-  color:#dc2626!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item.text-success:hover{
-  background:#dcfce7!important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item.text-danger:hover{
-  background:#fee2e2!important;
-}
-
-/* Status aktif */
-.company-applications-table .dropdown-menu .dropdown-item.is-active {
-    background: #ECFDF5 !important;
-    color: #065F46 !important;
-    cursor: default;
-    pointer-events: none;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item.is-active .status-icon {
-    color: #10B981 !important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item .tick {
-    font-size: 14px;
-    margin-left: auto;
-    color: #10B981;
-}
-
-/* ===== PAGINATION ===== */
-.pagination{
-  justify-content:center!important;
-}
-
-.pagination .page-link{
-  color:#1f3a95!important;
-  font-weight:700!important;
-  border-radius:6px!important;
-}
-
-.pagination .page-item.active .page-link{
-  background:#1f3a95!important;
-  border-color:#1f3a95!important;
-  color:#fff!important;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px){
-  .company-applications-table .table thead th{
-    font-size:13px!important;
-  }
-  
-  .company-applications-table .table tbody td{
-    font-size:13.5px!important;
-  }
-  
-  .company-applications-table .action-text {
-      min-width: 90px;
-      height: 40px;
-      font-size: 14px;
-      padding: 0 14px;
-  }
-  
-  .company-applications-table .aksi-wrapper {
-      gap: 10px;
-      flex-wrap: wrap;
-  }
-  
-  .company-applications-table th:last-child,
-  .company-applications-table td:last-child {
-      min-width: 180px;
-  }
-  
-  /* FIX DROPDOWN MOBILE */
-  .company-applications-table .dropdown-menu {
-      position: fixed !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      top: 50% !important;
-      margin-top: 0 !important;
-      z-index: 100000 !important;
-  }
-}
-
-/* === LAYERING FIX === */
-.company-applications-table,
-.company-applications-table .table-responsive,
-.company-applications-table .card-body {
-  overflow:visible!important;
-}
-
-.company-applications-table td{
-  position:relative!important;
-  z-index:0!important;
-}
-
-.company-applications-table td.dropdown-open{
-  z-index:100000!important;
-}
-
-/* =========================
-   HILANGKAN OUTLINE/FOCUS BIRU
-   ========================= */
-.btn:focus, .btn:active, .btn:focus-visible{
-  outline:none!important;
-  box-shadow:none!important;
-  border-color:transparent!important;
-}
-
-.btn{
-  transition:all .15s ease-in-out!important;
-}
-
-/* ===============================
-   BUTTON FILTER (state & active)
-   =============================== */
-.btn-outline-primary{
-  background:#ffffff!important;
-  color:#1f3a95!important;
-  border:none!important;
-  font-weight:600!important;
-  border-radius:10px!important;
-  transition:all .2s ease-in-out!important;
-  box-shadow:0 0 0 rgba(0,0,0,0)!important;
-}
-
-.btn-outline-primary:hover{
-  background:#eef2ff!important;
-  color:#1f3a95!important;
-  box-shadow:0 2px 6px rgba(31,58,149,.15)!important;
-}
-
-.btn-outline-primary.active,
-.btn-outline-primary:focus,
-.btn-outline-primary:active,
-.btn-primary{
-  background:#1f3a95!important;
-  color:#fff!important;
-  border:none!important;
-  box-shadow:0 4px 12px rgba(31,58,149,.3)!important;
-  font-weight:700!important;
-}
-
-/* Force warna teks tetap hitam untuk semua state autofill */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-text-fill-color: #000000 !important;
-    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
-    transition: background-color 5000s ease-in-out 0s !important;
-    color: #000000 !important;
-}
-
-/* Untuk placeholder/text yang terlihat memudar */
-input::placeholder {
-    color: #666666 !important;
-    opacity: 1 !important;
-}
-
-/* Untuk teks yang sedang dipilih/autofill */
-input:-webkit-autofill::first-line {
-    color: #000000 !important;
-    font-size: inherit !important;
-}
-
-/* HILANGKAN PANAH DROPDOWN PADA TOMBOL EDIT TAPI DROPDOWN MASIH BERFUNGSI */
-.action-text.edit.dropdown-toggle::after {
-    display: none !important;
-}
-
-/* Tombol Edit tetap berfungsi normal */
-.action-text.edit {
-    background: linear-gradient(135deg, #d4a107, #EAB308) !important;
-    color: #fff !important;
-    cursor: pointer;
-    position: relative;
-}
-
-/* =========================================================
-   KELOLA PELAMAR — Tabel & Aksi (Sama dengan Kelola Lowongan)
-   ========================================================= */
-
-/* ---------- Tabel ---------- */
-.company-applications-table{
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 2px 10px rgba(0,0,0,.1);
-  background:#fff;
-  font-family:"Inter",sans-serif;
-}
-
-/* Header */
-.company-applications-table thead tr{ background:#1E3A8A; }
-.company-applications-table thead th{
-  padding:14px 16px;
-  font-weight:600;
-  font-size:14px;
-  color:#fff;
-  text-align:center;
-  border:none;
-  background:#1E3A8A;
-}
-
-/* Body - SEMUA CELL JADI CENTER */
-.company-applications-table tbody td{
-  padding:12px 16px;
-  font-size:14px;
-  color:#374151;
-  text-align:center; /* SEMUA JADI CENTER */
-  border-top:1.8px solid #93c5fd;
-  border-right:1.2px solid #c7ddff;
-  vertical-align:middle;
-}
-.company-applications-table tbody td:last-child{ border-right:none; }
-
-/* Matikan hover baris - SAMA DENGAN LOWONGAN */
-.company-applications-table tbody tr{ 
-  transition:none !important; 
-  cursor:default !important; 
-}
-.company-applications-table tbody tr:hover{
-  background:transparent !important;
-  box-shadow:none !important;
-  transform:none !important;
-  border-radius:0 !important;
-  z-index:auto !important;
-  position:static !important;
-}
-
-/* ---------- Status Badges ---------- */
-.badge-status{
-  display:inline-block;
-  padding:6px 14px;
-  border-radius:20px;
-  font-weight:600;
-  font-size:13px;
-  transition:.25s;
-}
-.badge-success{  background:#22c55e; color:#fff; }
-.badge-secondary{ background:#6b7280; color:#fff; }
-.badge-warning{  background:#facc15; color:#000; }
-.badge-danger{   background:#ef4444; color:#fff; }
-.badge-info{     background:#0ea5e9; color:#fff; }
-.badge-primary{  background:#3b82f6; color:#fff; }
-
-/* ---------- Aksi: pill text buttons ---------- */
-.aksi-wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  flex-wrap:nowrap;
-}
-
-.table-responsive .action-text,
-.company-applications-table .action-text{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  min-width:90px;          /* biar seragam */
-  height:40px;             /* tinggi konsisten */
-  padding:0 18px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:1rem;
-  letter-spacing:.3px;
-  border:none;
-  color:#fff;
-  text-decoration:none !important;
-  transition:all .25s ease-in-out;
-  box-shadow:0 4px 12px rgba(0,0,0,.12);
-  white-space:nowrap;
-}
-
-/* Warna tombol */
-.action-text.view{
-  background:linear-gradient(135deg,#1E3A8A,#2563EB);
-}
-.action-text.edit{
-  background:linear-gradient(135deg,#d4a107,#EAB308);
-  color:#fff !important;              /* teks edit putih */
-}
-.action-text.delete{
-  background:linear-gradient(135deg,#dc2626,#EF4444);
-}
-
-/* Hover/active/focus */
-.action-text:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
-  box-shadow:0 6px 20px rgba(0,0,0,.2);
-}
-.action-text:active{ transform:scale(.96); box-shadow:none; }
-.action-text:focus{ outline:none; box-shadow:0 0 0 3px rgba(37,99,235,.25); }
-
-/* ---------- Search bar & tombol atas ---------- */
-.search-bar .input-group{ 
-  display:flex; 
-  align-items:center; 
-  max-width:600px; 
-}
-.search-bar .form-control{
-  border-radius:8px 0 0 8px !important;
-  border:2px solid #d0e1ff !important;
-  padding:10px 16px !important;
-  flex:1;
-}
-.search-bar .btn-secondary{
-  border-radius:0 8px 8px 0 !important;
-  margin:0 !important;
-  background:#1E3A8A !important;
-  border:none !important;
-  color:#fff !important;
-  font-weight:600;
-  padding:10px 20px !important;
-  transition:.25s;
-  box-shadow:0 3px 10px rgba(30,58,138,.25) !important;
-}
-.search-bar .btn-secondary:hover{
-  background:#1E3A8A !important;
-  transform:translateY(-2px);
-  box-shadow:0 6px 18px rgba(30,58,138,.4) !important;
-}
-.search-bar .btn-outline-secondary{
-  background:#1E3A8A !important; 
-  color:#fff !important; 
-  border:none !important;
-  border-radius:8px !important; 
-  margin-left:8px !important; 
-  font-weight:600 !important;
-  padding:10px 16px !important; 
-  box-shadow:0 3px 10px rgba(30,58,138,.25) !important;
-  transition:.25s; 
-  display:flex !important; 
-  align-items:center !important; 
-  justify-content:center !important;
-}
-.search-bar .btn-outline-secondary:hover{
-  background:#1a2f7a !important; 
-  transform:translateY(-2px);
-  box-shadow:0 6px 16px rgba(30,58,138,.4) !important;
-}
-.search-bar .btn i{ margin-right:6px; }
-
-/* Tombol di header */
-.btn-primary{
-  background:#1E3A8A !important; 
-  border:none !important; 
-  color:#fff !important;
-  font-weight:600; 
-  border-radius:8px; 
-  padding:8px 18px; 
-  transition:.25s;
-  box-shadow:0 3px 10px rgba(30,58,138,.25);
-}
-.btn-primary:hover{ 
-  transform:translateY(-2px); 
-  box-shadow:0 6px 18px rgba(30,58,138,.4); 
-}
-
-/* Tombol filter outline */
-.btn-outline-primary{
-  background:#ffffff !important;
-  color:#1E3A8A !important;
-  border:2px solid #1E3A8A !important;
-  font-weight:600;
-  border-radius:8px;
-  padding:8px 16px;
-  transition:.25s;
-}
-.btn-outline-primary:hover,
-.btn-outline-primary.active{
-  background:#1E3A8A !important;
-  color:#fff !important;
-  transform:translateY(-2px);
-  box-shadow:0 4px 12px rgba(30,58,138,.3);
-}
-
-/* ---------- Avatar ---------- */
-.avatar-wrapper img{
-  width:36px !important;
-  height:36px !important;
-  border:2px solid #d0e1ff !important;
-  object-fit:cover !important;
-  border-radius:50% !important;
-}
-
-/* ---------- Focus cleanup ---------- */
-.kelola-pelamar *:focus{ outline:none !important; box-shadow:none !important; }
-.form-control:focus{ border-color:#2563EB !important; box-shadow:0 0 0 4px rgba(37,99,235,.25) !important; }
-
-/* ---------- Alert ---------- */
-.alert-success{
-  border:none;
-  border-radius:8px;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#fff;
-  font-weight:600;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width:768px){
-  .aksi-wrapper{ gap:8px; flex-wrap:wrap; }
-  .company-applications-table .action-text{ min-width:78px; height:36px; font-size:.9rem; padding:0 14px; }
-  .search-bar .input-group{ flex-direction:column; gap:10px; }
-  .search-bar .form-control{ border-radius:8px !important; width:100%; }
-  .search-bar .btn-secondary,
-  .search-bar .btn-outline-secondary{ border-radius:8px !important; width:100%; margin-left:0 !important; }
-  
-  /* Hide some columns on mobile */
-  .company-applications-table tbody td:nth-child(4), /* No HP */
-  .company-applications-table thead th:nth-child(4) {
-    display:none;
-  }
-}
-
-/* Hilangkan panah dropdown pada tombol Edit */
-.action-text.edit.dropdown-toggle::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* =========================
-   DROPDOWN STATUS - FIXED Z-INDEX
-   ========================= */
-
-/* RESET Z-INDEX UNTUK SEMUA ELEMENT PARENT */
+/* Izinkan dropdown keluar */
 .company-applications-table,
 .company-applications-table .card-body,
 .company-applications-table .table-responsive,
-.company-applications-table .table,
 .company-applications-table table,
 .company-applications-table tbody,
 .company-applications-table tr,
 .company-applications-table td {
-  position: relative !important;
-  z-index: auto !important;
   overflow: visible !important;
-}
-
-/* PERBAIKAN UTAMA: DROPDOWN CONTAINER */
-.company-applications-table .dropdown {
-  position: static !important;
-  display: inline-block !important;
-}
-
-/* CLASS ACTIVE UNTUK DROPDOWN YANG SEDANG TERBUKA */
-.company-applications-table .dropdown.active {
-  z-index: 10050 !important;
   position: relative !important;
 }
 
-/* FIX UTAMA: DROPDOWN MENU - Z-INDEX TERTINGGI */
+/* ====== AVATAR ====== */
+.avatar-wrapper img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #d0e1ff;
+  object-fit: cover;
+}
+.avatar-fallback {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2f6bff;
+  color: #fff;
+  font-weight: 800;
+  border: 2px solid #d0e1ff;
+}
+
+/* ====== STATUS BADGES ====== */
+.badge {
+  border-radius: 999px;
+  font-weight: 800;
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+.status-accepted {
+  background: #22c55e;
+  color: #fff;
+}
+.status-rejected {
+  background: #ef4444;
+  color: #fff;
+}
+.status-interview {
+  background: #0ea5e9;
+  color: #fff;
+}
+.status-test {
+  background: #7c3aed;
+  color: #fff;
+}
+.status-pending {
+  background: #E2E8F0;
+  color: #1E3A8A;
+}
+.status-reviewed {
+  background: #FDE68A;
+  color: #78350F;
+}
+
+/* ====== AKSI BUTTONS ====== */
+.aksi-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.action-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none !important;
+  border: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  cursor: pointer;
+  transition: none !important;
+  position: relative;
+  z-index: 1;
+}
+.action-text.view {
+  background: linear-gradient(180deg, #2E5BD8, #1E3A8A);
+}
+.action-text.edit {
+  background: linear-gradient(180deg, #F1C40F, #D4A107);
+}
+.action-text.delete {
+  background: linear-gradient(180deg, #F05252, #DC2626);
+}
+.action-text.edit.dropdown-toggle::after {
+  display: none !important;
+}
+.aksi-wrapper .dropdown {
+  position: relative;
+  z-index: 2;
+}
+
+/* ====== DROPDOWN ====== */
 .company-applications-table .dropdown-menu {
   position: absolute !important;
-  z-index: 99999 !important; /* Z-INDEX PALING TINGGI */
-  min-width: 240px !important;
-  max-height: none !important;
-  overflow-y: visible !important;
-  white-space: nowrap !important;
-  padding: 8px !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 12px !important;
-  box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+  z-index: 2147483647 !important;
+  min-width: 260px !important;
+  padding: 12px !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 16px !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18) !important;
   background: #fff !important;
-  
-  /* POSITIONING FIX - TURUNKAN POSISI DROPDOWN */
-  top: 100% !important;
-  left: 50% !important;
-  transform: translateX(-50%) translateY(8px) !important;
-  right: auto !important;
-  margin: 0 !important;
-  
-  /* PASTIKAN TIDAK ADA CLIPPING */
-  clip: auto !important;
-  clip-path: none !important;
-  -webkit-clip-path: none !important;
+}
+.company-applications-table tbody td.dropdown-open .action-text {
+  pointer-events: none;
+}
+.company-applications-table tbody td.dropdown-open .dropdown,
+.company-applications-table tbody td.dropdown-open .dropdown * {
+  pointer-events: auto;
 }
 
-/* Untuk baris terakhir - dropdown ke atas */
-.company-applications-table .dropdown.last-row .dropdown-menu {
-  top: auto !important;
-  bottom: 100% !important;
-  transform: translateX(-50%) translateY(-8px) !important;
+/* ====== DROPDOWN ITEM ====== */
+.status-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: #111827;
+  transition: background-color .15s ease;
+}
+.status-menu .dropdown-item:hover {
+  background: #F3F4F6;
+}
+.status-menu .dropdown-divider {
+  margin: 10px 6px;
+  border-top: 1px solid #E5E7EB;
+}
+.status-menu .dropdown-item.is-active {
+  background: #E8FAEF;
+  color: #0F5132;
+  border: 1px solid #CDEFD8;
+  cursor: default;
+  pointer-events: none;
+}
+.status-menu .dropdown-item .tick {
+  margin-left: auto;
+  color: #16A34A;
+  font-weight: 800;
 }
 
-/* FIX KHUSUS UNTUK TD TERAKHIR */
-.company-applications-table .table tbody td:last-child {
-  position: relative !important;
-  overflow: visible !important;
-  z-index: 1 !important;
+/* ====== WARNA IKON ====== */
+.status-menu .status-icon {
+  width: 22px;
+  text-align: center;
+  font-size: 18px;
 }
+.status-menu .dropdown-item.opt-submitted .status-icon { color: #16A34A; }
+.status-menu .dropdown-item.opt-test1 .status-icon,
+.status-menu .dropdown-item.opt-test2 .status-icon { color: #7C3AED; }
+.status-menu .dropdown-item.opt-interview .status-icon { color: #0EA5E9; }
+.status-menu .dropdown-item.opt-accepted .status-icon { color: #16A34A; }
+.status-menu .dropdown-item.opt-rejected .status-icon { color: #DC2626; }
+.status-menu .dropdown-item.opt-accepted { color: #15803D; }
+.status-menu .dropdown-item.opt-rejected { color: #B91C1C; }
 
-/* TD YANG SEDANG DROPDOWN OPEN - TINGKATKAN Z-INDEX */
-.company-applications-table td.dropdown-open {
-  z-index: 10000 !important;
-  position: relative !important;
-}
-
-/* FIX UNTUK TABLE RESPONSIVE - JANGAN POTONG DROPDOWN */
-.company-applications-table .table-responsive {
-  position: relative !important;
-  z-index: 1 !important;
-  overflow-x: auto !important; /* Hanya horizontal scroll */
-  overflow-y: visible !important;
-}
-
-/* FIX UNTUK CARD BODY */
-.company-applications-table .card-body {
-  position: relative !important;
-  overflow: visible !important;
-  z-index: 1 !important;
-}
-
-/* FIX UNTUK TABLE */
-.company-applications-table .table {
-  position: relative !important;
-  z-index: 1 !important;
-  margin-bottom: 0 !important;
-}
-
-/* FIX UNTUK ROW YANG SEDANG ACTIVE */
-.company-applications-table tr.dropdown-active {
-  z-index: 10000 !important;
-  position: relative !important;
-}
-
-/* DROPDOWN ITEM STYLING */
-.company-applications-table .dropdown-menu .dropdown-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  padding: 12px 14px !important;
-  border-radius: 10px !important;
-  font-weight: 700 !important;
-  color: #111827 !important;
-  background: transparent !important;
-  transition: none !important;
-  box-shadow: none !important;
-  transform: none !important;
-  position: relative;
-  cursor: pointer !important;
-  border: none !important;
-  width: 100%;
-  text-align: left !important;
-  z-index: inherit !important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item:hover {
-  background: #e8f0ff !important;
-  z-index: inherit !important;
-}
-
-.company-applications-table .dropdown-menu .dropdown-item:hover::before {
-  content: "";
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  bottom: 8px;
-  width: 3px;
-  border-radius: 3px;
-  background: #2563eb;
-  opacity: 1;
-}
-
-/* FIX UNTUK MOBILE - DROPDOWN DI TENGAH LAYAR */
+/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  /* DROPDOWN MOBILE - POSITION FIXED DI TENGAH DENGAN Z-INDEX TERTINGGI */
+  .action-text {
+    min-width: 88px;
+    height: 38px;
+    font-size: 14px;
+  }
+  .company-applications-table thead th {
+    font-size: 12px !important;
+  }
   .company-applications-table .dropdown-menu {
     position: fixed !important;
+    width: 90vw !important;
+    max-width: 320px !important;
     left: 50% !important;
-    transform: translateX(-50%) translateY(-50%) !important;
     top: 50% !important;
-    margin-top: 0 !important;
-    z-index: 999999 !important; /* Z-INDEX PALING TINGGI DI MOBILE */
-    width: 90% !important;
-    max-width: 280px !important;
-    max-height: 80vh !important;
-    overflow-y: auto !important;
-  }
-  
-  /* OVERLAY BACKGROUND UNTUK MOBILE */
-  .dropdown-backdrop {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: rgba(0, 0, 0, 0.5) !important;
-    z-index: 999998 !important;
-  }
-  
-  /* Untuk baris terakhir di mobile */
-  .company-applications-table .dropdown.last-row .dropdown-menu {
-    top: 50% !important;
-    bottom: auto !important;
-    transform: translateX(-50%) translateY(-50%) !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2147483647 !important;
   }
 }
 
-/* LAYERING FIX - PASTIKAN SEMUA PARENT TIDAK MEMOTONG */
-.company-applications-table,
-.company-applications-table .card,
-.company-applications-table .card-body,
-.company-applications-table .table-responsive,
-.company-applications-table .table,
-.company-applications-table tbody,
-.company-applications-table tr {
-  overflow: visible !important;
+/* ====== NON-HOVER FIX (menghapus semua efek hover tabel) ====== */
+.table-hover > tbody > tr:hover,
+.table-hover > tbody > tr:hover > * {
+  background: #fff !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  z-index: 0 !important;
+}
+.table tbody tr {
+  --bs-table-accent-bg: transparent !important;
+}
+.table tbody tr:hover > * {
+  background-color: transparent !important;
+}
+.no-row-hover > tbody > tr:hover,
+.no-row-hover > tbody > tr:hover > td,
+.no-row-hover > tbody > tr:hover > th {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+.company-applications-table tbody tr {
+  transition: none !important;
+  filter: none !important;
+}
+.company-applications-table tbody tr:hover {
+  filter: none !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+.action-text:hover {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12) !important;
+}
+/* 1) Matikan semua hover & transisi bawaan Bootstrap di tabel */
+.table-hover > tbody > tr:hover,
+.table-hover > tbody > tr:hover > * {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+/* Bootstrap memberi transition di semua sel: nonaktifkan */
+.table > :not(caption) > * > * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 2) Hapus posisi relatif default yang bisa bikin stacking context */
+.company-applications-table tbody tr,
+.company-applications-table tbody td {
+  position: static !important;
+  z-index: auto !important;
+  filter: none !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* 3) Saat dropdown terbuka, hanya sel aksi yang diangkat */
+.company-applications-table tbody td.dropdown-open {
   position: relative !important;
+  z-index: 2147483646 !important;
 }
 
-/* HACK UNTUK MEMASTIKAN DROPDOWN SELALU DI ATAS */
-.company-applications-table .dropdown-menu.show {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: all !important;
+/* 4) Pastikan menu selalu di atas semua kolom/baris */
+.company-applications-table .dropdown-menu {
+  position: absolute !important;            /* Popper tetap bisa hitung posisi */
+  z-index: 2147483647 !important;
+  will-change: auto !important;
+  transform: none !important;               /* cegah stacking context tambahan */
 }
 
-/* FIX UNTUK BOOTSTRAP DROPDOWN BACKDROP JIKA ADA */
-.dropdown-backdrop {
-  z-index: 99990 !important;
+/* 5) Kunci interaksi baris lain ketika dropdown terbuka */
+.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
+  pointer-events: none !important;
 }
 
-/* FIX UNTUK MODAL JIKA ADA */
-.modal {
-  z-index: 999999 !important;
+/* 6) Matikan efek hover apa pun yang tersisa */
+.table tbody tr { --bs-table-accent-bg: transparent !important; }
+.table tbody tr:hover > * { background-color: transparent !important; }
+.company-applications-table tbody tr:hover {
+  background: #fff !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
-.modal-backdrop {
-  z-index: 999998 !important;
+/* 7) Tombol aksi tidak membuat stacking context baru saat hover */
+.action-text,
+.action-text:hover {
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+/* Pastikan tombol aksi tidak membuat stacking context yang mengalahkan menu */
+.action-text,
+.action-text:hover {
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  z-index: 1;
 }
 
+/* Menu yang dipindah ke body selalu paling atas */
+.dropdown-menu-portal {
+  min-width: 260px !important;
+  padding: 12px !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 16px !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18) !important;
+  background: #fff !important;
+}
+
+/* Saat dropdown terbuka, sel aksi diangkat untuk fokus */
+.company-applications-table tbody td.dropdown-open {
+  position: relative !important;
+  z-index: 2147483646 !important;
+}
+
+/* Nonaktifkan hover/klik baris lain ketika dropdown aktif */
+.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
+  pointer-events: none !important;
+}
+/* Turunkan lapisan tombol & wrapper aksi */
+.aksi-wrapper { position: static !important; z-index: auto !important; }
+.action-text { position: static !important; z-index: auto !important; }
+.action-text:hover { transform: none !important; filter: none !important; }
+
+/* Pastikan tidak ada stacking context yang memerangkap menu */
+.company-applications-table,
+.company-applications-table * {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Menu yang dipindah (atau tetap) harus selalu paling atas */
+.dropdown-menu,
+.dropdown-menu.dropdown-menu-portal {
+  z-index: 2147483647 !important;
+  position: fixed !important;   /* lepas dari konteks z-index parent */
+  transform: none !important;   /* hindari popper membuat konteks baru */
+  will-change: auto !important;
+}
+
+/* Saat dropdown terbuka: hanya sel aksi yang boleh menerima klik */
+.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
+  pointer-events: none !important;
+}
