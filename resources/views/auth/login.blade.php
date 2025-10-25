@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Masuk</title>
     <link rel="icon" href="{{ asset('images/smkn4.png') }}" type="image/png">
 
     <!-- CSS -->
@@ -43,16 +43,16 @@
 
                 <div>
                     <label>
-                        <input type="checkbox" name="remember"> Remember me
+                        <input type="checkbox" name="remember"> Ingat Saya
                     </label>
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit">Masuk</button>
             </form>
 
             <div class="register-link">
-                <p>Don't have an account yet? 
-                    <a href="{{ route('register') }}">Register Here</a>
+                <p>Belum Punya Akun? 
+                    <a href="{{ route('register') }}">Mendaftar di sini</a>
                 </p>
             </div>
 

@@ -20,8 +20,8 @@ table {
 
 /* Header */
 th {
-    background-color: #1E3A8A; /* Warna sidebar kamu */
-    color: #ffffff;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    color: #fff;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;

@@ -7,7 +7,14 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+background: linear-gradient(
+  135deg,
+  #0F172A 0%,   /* biru-hitam tua */
+  #1E3A8A 40%,  /* navy (senada sidebar) */
+  #312E81 75%,  /* indigo tua */
+  #4C1D95 100%  /* ungu gelap elegan */
+);
+
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -74,7 +81,14 @@ body {
     font-weight: 750;
     margin-bottom: 10px;
     letter-spacing: 0.5px; /* lebih kecil biar mirip */
-    background: linear-gradient(135deg, #3b82f6);
+background: linear-gradient(
+  135deg,
+  #0F172A 0%,   /* biru-hitam tua */
+  #1E3A8A 40%,  /* navy (senada sidebar) */
+  #312E81 75%,  /* indigo tua */
+  #4C1D95 100%  /* ungu gelap elegan */
+);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -231,7 +245,13 @@ input.invalid {
     letter-spacing: 1px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+background: linear-gradient(
+  135deg,
+  #0F172A 0%,   /* biru-hitam tua */
+  #1E3A8A 40%,  /* navy (senada sidebar) */
+  #312E81 75%,  /* indigo tua */
+  #4C1D95 100%  /* ungu gelap elegan */
+);
     color: white;
     display: flex;
     align-items: center;
@@ -292,6 +312,12 @@ input.invalid {
     margin-top: 25px;
     color: #6c757d;
     font-size: 14px;
+}
+
+.signin-link {
+  color: #4C1D95 !important;  /* ungu senada dengan tema */
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .login-link a {

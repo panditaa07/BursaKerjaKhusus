@@ -8,7 +8,7 @@
 }
 
 body {
-    background: var(--primary-gradient);
+    background: linear-gradient( 135deg, #0F172A 0%, /* biru-hitam tua */ #1E3A8A 40%, /* navy (senada sidebar) */ #312E81 75%, /* indigo tua */ #4C1D95 100% /* ungu gelap elegan */ );
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -70,7 +70,7 @@ body {
 .main-title {
     font-size: 2.5rem;
     font-weight: 700;
-    background: var(--primary-gradient);
+background: linear-gradient( 135deg, #0F172A 0%, /* biru-hitam tua */ #1E3A8A 40%, /* navy (senada sidebar) */ #312E81 75%, /* indigo tua */ #4C1D95 100% /* ungu gelap elegan */ );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -120,7 +120,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: inherit;
+background: linear-gradient(
+  135deg,
+  #0F172A 0%,     /* biru-hitam tua */
+  #1E3A8A 30%,    /* navy */
+  #2563EB 55%,    /* biru cerah (nyambung ke hijau toska) */
+  #3BBCA7 75%,    /* hijau toska - senada tombol Company */
+  #4C1D95 100%    /* ungu gelap elegan */
+);
     transition: transform 0.4s ease;
     z-index: 1;
 }

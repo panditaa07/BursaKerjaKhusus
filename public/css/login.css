@@ -6,7 +6,13 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+    background: linear-gradient(
+    135deg,
+    #0F172A 0%,   /* biru-hitam tua */
+    #1E3A8A 40%,  /* navy (senada sidebar) */
+    #312E81 75%,  /* indigo tua */
+    #4C1D95 100%  /* ungu gelap elegan */
+    );
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -113,7 +119,13 @@ h2 {
 button[type="submit"] {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    background: linear-gradient(
+    135deg,
+    #0F172A 0%,   /* biru-hitam tua */
+    #1E3A8A 40%,  /* navy (senada sidebar) */
+    #312E81 75%,  /* indigo tua */
+    #4C1D95 100%  /* ungu gelap elegan */
+    );
     color: white;
     border: none;
     border-radius: 10px;
@@ -137,7 +149,7 @@ button[type="submit"]:hover {
 }
 
 .register-link a {
-    color: #3b82f6;
+    color: linear-gradient( 135deg, #0F172A 0%, /* biru-hitam tua */ #1E3A8A 40%, /* navy (senada sidebar) */ #312E81 75%, /* indigo tua */ #4C1D95 100% /* ungu gelap elegan */ );
     text-decoration: none;
     font-weight: 600;
 }

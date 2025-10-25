@@ -198,7 +198,8 @@ body {
     left: 0;
     right: 0;
     height: 14px;
-    background: linear-gradient(45deg, #1e3a8a, #1e40af);
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+
 }
 
 .stat-card.card-primary::before {
@@ -356,7 +357,7 @@ body {
 }
 
 .table-section h3 {
-    color: rgb(30, 58, 138);
+    color: #4C1D95;
     font-weight: 700;
     margin: -2rem -2rem 2rem -2rem; /* biar full lebar, nyatu sama card */
     padding: 1rem 0 1.5rem 0; /* tambahin padding bawah */
@@ -375,7 +376,7 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
     border-radius: 2px;
 }
 

@@ -13,22 +13,22 @@
 <div class="register-container">
     <div class="container">
         <div class="register-card mx-auto">
-            <h1 class="main-title">Choose Your Role</h1>
-            <p class="subtitle">Select the type of account you'd like to create</p>
+            <h1 class="main-title">Pilih Peran Anda</h1>
+            <p class="subtitle">Pilih jenis akun yang ingin Anda buat</p>
             
             <div class="role-buttons">
 
                 
                 <a href="{{ url('/register/company') }}" class="role-btn company-btn" data-role="company">
                     <i class="fas fa-building role-icon"></i>
-                    <div class="role-title">Company</div>
-                    <div class="role-description">Create and manage business profiles</div>
+                    <div class="role-title">Perusahaan</div>
+                    <div class="role-description">Buat dan kelola profil bisnis</div>
                 </a>
                 
                 <a href="{{ url('/register/user') }}" class="role-btn user-btn" data-role="user">
                     <i class="fas fa-user role-icon"></i>
-                    <div class="role-title">User</div>
-                    <div class="role-description">Access services and features</div>
+                    <div class="role-title">Pengguna</div>
+                    <div class="role-description">Akses layanan dan fitur</div>
                 </a>
             </div>
         </div>

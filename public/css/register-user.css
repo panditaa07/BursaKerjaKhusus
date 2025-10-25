@@ -7,7 +7,14 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+background: linear-gradient(
+  135deg,
+  #0F172A 0%,   /* biru-hitam tua */
+  #1E3A8A 40%,  /* navy (senada sidebar) */
+  #312E81 75%,  /* indigo tua */
+  #4C1D95 100%  /* ungu gelap elegan */
+);
+
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -49,7 +56,7 @@ body {
     overflow: hidden;
 
     /* Gradient text */
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+background: linear-gradient( 135deg, #0F172A 0%, /* biru-hitam tua */ #1E3A8A 40%, /* navy (senada sidebar) */ #312E81 75%, /* indigo tua */ #4C1D95 100% /* ungu gelap elegan */ );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -178,14 +185,20 @@ label {
 }
 
 .btn-info {
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,   /* biru-hitam tua */
+        #1E3A8A 40%,  /* navy (senada sidebar) */
+        #312E81 75%,  /* indigo tua */
+        #4C1D95 100%  /* ungu gelap elegan */
+        );
     color: white;
 }
 
 .btn-info:hover,
 .btn-info:focus {
     color: white; /* Pastikan tetap putih saat hover/focus */
-    background: linear-gradient(135deg, #2563eb, #3b82f6); /* opsional: gelapkan sedikit saat hover */
+background: linear-gradient( 135deg, #0F172A 0%, /* biru-hitam tua */ #1E3A8A 40%, /* navy (senada sidebar) */ #312E81 75%, /* indigo tua */ #4C1D95 100% /* ungu gelap elegan */ );
 }
 
 .btn:active {
@@ -286,6 +299,12 @@ label {
 .success-message.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.signin-link {
+  color: #4C1D95 !important;  /* ungu senada dengan tema */
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /* Special styling for NIK/NISN field */

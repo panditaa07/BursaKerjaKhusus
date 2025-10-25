@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Register as User</div>
+                <div class="card-header">Daftar Sebagai Pengguna</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -32,12 +32,12 @@
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="name">Full Name</label>
+                            <label for="name">Nama Lengkap</label>
                             <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
                         </div>
                         
                         <div class="mb-3">
-                            <label for="email">Email Address</label>
+                            <label for="email">Alamat Email</label>
                             <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
                         </div>
                         
@@ -47,7 +47,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="password">Password</label>
+                            <label for="password">Kata Sandi</label>
                             <div class="password-field">
                                 <input type="password" id="password" name="password" class="form-control" required>
                                 <span class="password-toggle" title="Show password">
@@ -57,7 +57,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="password_confirmation">Confirm Password</label>
+                            <label for="password_confirmation">Konfirmasi Kata Sandi</label>
                             <div class="password-field">
                                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
                                 <span class="password-toggle" title="Show password">
@@ -67,13 +67,13 @@
                         </div>
                         
                         <button type="submit" class="btn btn-info">
-                            <span class="btn-text">Register</span>
+                            <span class="btn-text">Daftar</span>
                             <div class="loading-spinner"></div>
                         </button>
                     </form>
 
                     <div class="login-link">
-                        Already have an account? <a href="{{ route('login') }}">Sign in here</a>
+                        Sudah punya akun? <a href="{{ route('login') }}" class="signin-link">Masuk di sini</a>
                     </div>
                 </div>
             </div>

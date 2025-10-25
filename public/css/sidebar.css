@@ -26,7 +26,7 @@ body {
     z-index: 1030;
     display: flex;
     flex-direction: column;
-    background: rgb(30, 58, 138);; /* PUTIH */
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
     color: #fff; /* text default */
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
     transition: width var(--transition-speed) ease;
