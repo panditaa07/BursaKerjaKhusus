@@ -10,6 +10,8 @@ use App\Models\JobPost;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Mail\StatusLamaranMail;
+use App\Notifications\ApplicationReceivedNotification;
+use App\Notifications\ApplicationStatusUpdatedNotification;
 
 class ApplicationController extends Controller
 {
@@ -329,7 +331,7 @@ class ApplicationController extends Controller
         $companyName = $job->company ? $job->company->name : 'Unknown Company';
         $jobTitle = $job->title ?? 'Unknown Position';
 
-        // Kirim email notifikasi Apply
+        // Kirim email notifikasi Apply ke user
         try {
             Mail::to($user->email)->send(new StatusLamaranMail(
                 $user->name,
@@ -340,7 +342,17 @@ class ApplicationController extends Controller
             ));
         } catch (\Exception $e) {
             // Log error but don't break the application
-            \Log::error('Failed to send email notification: ' . $e->getMessage());
+            \Log::error('Failed to send email notification to user: ' . $e->getMessage());
+        }
+
+        // Kirim email notifikasi lamaran baru ke perusahaan
+        try {
+            $companyUser = $job->company->user; // Assuming company model has a user relationship
+            if ($companyUser) {
+                $companyUser->notify(new ApplicationReceivedNotification($application, $job));
+            }
+        } catch (\Exception $e) {
+            \Log::error('Failed to send application received notification to company: ' . $e->getMessage());
         }
 
         return back()->with('success', 'Application submitted successfully.');
@@ -370,13 +382,7 @@ class ApplicationController extends Controller
         $application->update(['status' => $request->status]);
 
         // Kirim email notifikasi status diterima/ditolak
-        Mail::to($application->user->email)->send(new StatusLamaranMail(
-            $application->user->name,
-            $application->jobPost->title,
-            $application->jobPost->company->name,
-            $application->status,
-            route('user.applications.show', $application->id)
-        ));
+        $application->user->notify(new ApplicationStatusUpdatedNotification($application, $request->status));
 
         return redirect()->back()
             ->with('success', 'Application status updated successfully & email notification sent.');

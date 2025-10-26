@@ -15,7 +15,8 @@
         <!-- FORM LOGIN -->
         <div class="form-box">
             <div class="logo-box">
-            <img src="{{ asset('images/smkn4.png') }}" alt="logo">
+                <img src="{{ asset('images/smkn4.png') }}" alt="logo">
+                <h4 style="font-weight: bold; margin-top: 10px;">Login</h4>
             </div>
             @if ($errors->any())
                 <div class="alert-error">
@@ -24,6 +25,12 @@
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                </div>
+            @endif
+
+            @if (session('status'))
+                <div class="alert-success">
+                    {{ session('status') }}
                 </div>
             @endif
 
@@ -41,10 +48,11 @@
                     <i class="fa fa-eye-slash" id="togglePassword"></i>
                 </div>
 
-                <div>
+                <div class="d-flex justify-content-between align-items-center" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; margin-bottom: 1rem;">
                     <label>
                         <input type="checkbox" name="remember"> Ingat Saya
                     </label>
+                    <a href="{{ route('password.request') }}" style="color: #6C4F3D; text-decoration: none;">Lupa Password?</a>
                 </div>
 
                 <button type="submit">Masuk</button>
@@ -52,15 +60,10 @@
 
             <div class="register-link">
                 <p>Belum Punya Akun? 
-                    <a href="{{ route('register') }}">Mendaftar di sini</a>
+                    <a href="{{ route('register.role', ['role' => 'user']) }}">Daftar sebagai Pelamar</a> atau 
+                    <a href="{{ route('register.role', ['role' => 'company']) }}">Daftar sebagai Perusahaan</a>
                 </p>
             </div>
-
-            @if(session('success'))
-                <div class="alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
         </div>
 
         <!-- ANIMASI LOTTIE -->

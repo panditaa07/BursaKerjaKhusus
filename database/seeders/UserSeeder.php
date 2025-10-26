@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
                 'address' => 'Jl. Admin No.1',
                 'birth_date' => '1990-01-01',
                 'short_profile' => 'Default admin account',
+                'status' => 'approved',
             ]
         );
 

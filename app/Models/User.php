@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use App\Models\JobPost;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
-
-/**
- * @method \Illuminate\Database\Eloquent\Relations\MorphMany notifications()
- */
 class User extends Authenticatable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, CanResetPassword;
 
     protected $fillable = [
         'name',
@@ -37,6 +35,7 @@ class User extends Authenticatable
         'twitter',
         'tiktok',
         'profile_photo_path',
+        'status',
     ];
 
     /**
@@ -104,9 +103,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function notifications()
-{
-    return $this->hasMany(UserNotification::class);
-}
-
-}
+        public function notifications()
+        {
+            return $this->hasMany(UserNotification::class);
+        }
+    
+        /**
+         * Send the password reset notification.
+         *
+         * @param  string  $token
+         * @return void
+         */
+        public function sendPasswordResetNotification($token)
+        {
+            $this->notify(new \App\Notifications\UserResetPasswordNotification($token));
+        }
+    }

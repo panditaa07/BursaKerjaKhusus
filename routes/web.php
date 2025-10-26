@@ -10,18 +10,30 @@ use App\Http\Controllers\CompanyDashboardController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\AdminJobPostController;
-use App\Http\Controllers\NotifikasiUser;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
+
 
 // ================== PUBLIC ROUTES ==================
+
+// Password Reset Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ✅ Login & Logout pakai LoginController
 Route::get('/login', [LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 // ✅ Register with role-based forms
 Route::get('/register', [RegisteredUserController::class, 'create'])->middleware('guest')->name('register');
@@ -82,6 +94,13 @@ Route::middleware(['auth'])->group(function () {
 
         // File serving for secure accessz
         Route::get('files/{path}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'serveFile'])->name('files')->where('path', '.*');
+
+        // Account Verification
+        Route::get('/verifications', [\App\Http\Controllers\Admin\VerificationController::class, 'index'])->name('verifications.index');
+        Route::post('/verifications/users/{user}/approve', [\App\Http\Controllers\Admin\VerificationController::class, 'approveUser'])->name('verifications.users.approve');
+        Route::post('/verifications/users/{user}/reject', [\App\Http\Controllers\Admin\VerificationController::class, 'rejectUser'])->name('verifications.users.reject');
+        Route::post('/verifications/companies/{company}/approve', [\App\Http\Controllers\Admin\VerificationController::class, 'approveCompany'])->name('verifications.companies.approve');
+        Route::post('/verifications/companies/{company}/reject', [\App\Http\Controllers\Admin\VerificationController::class, 'rejectCompany'])->name('verifications.companies.reject');
     });
 
     // ===== Company Routes =====

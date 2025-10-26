@@ -28,6 +28,10 @@
                 <i class="icon bi bi-briefcase"></i>
                 <span>Kelola Lowongan Kerja</span>
             </a></li>
+            <li class="nav-item"><a href="{{ route('admin.verifications.index') }}" class="nav-link">
+                <i class="icon bi bi-patch-check"></i>
+                <span>Verifikasi Akun</span>
+            </a></li>
         @elseif($role === 'company')
             <!-- Company Menu -->
             <li class="nav-item"><a href="{{ route('company.dashboard.index') }}" class="nav-link">

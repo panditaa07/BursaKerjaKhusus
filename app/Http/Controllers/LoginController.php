@@ -30,6 +30,24 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $user = Auth::user();
+
+            if ($user->role->name !== 'admin') {
+                if ($user->status === 'pending') {
+                    Auth::logout();
+                    return back()->withErrors([
+                        'email' => 'Akun Anda sedang menunggu persetujuan admin.',
+                    ]);
+                }
+    
+                if ($user->status === 'rejected') {
+                    Auth::logout();
+                    return back()->withErrors([
+                        'email' => 'Akun Anda telah ditolak.',
+                    ]);
+                }
+            }
+
             $request->session()->regenerate();
 
             // clear cache biar ga ada redirection lama
@@ -40,7 +58,7 @@ class LoginController extends Controller
             // buang url intended lama
             $request->session()->forget('url.intended');
 
-            return $this->authenticated($request, Auth::user());
+            return $this->authenticated($request, $user);
         }
 
         return back()->withErrors([

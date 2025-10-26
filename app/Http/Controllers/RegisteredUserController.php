@@ -61,6 +61,7 @@ class RegisteredUserController extends Controller
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
             'role_id'   => $roleModel->id,
+            'status'    => 'pending',
         ];
 
         if ($role === 'user') {
@@ -76,33 +77,12 @@ class RegisteredUserController extends Controller
             $company = \App\Models\Company::create([
                 'user_id' => $user->id,
                 'name' => $request->company_name,
-                'is_verified' => false, // Default to unverified
+                'status' => 'pending',
             ]);
             $user->company_id = $company->id;
             $user->save();
         }
 
-        // Auto-login after registration
-        auth()->login($user);
-
-        // Clear cached route, config, and views to prevent redirection issues
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
-
-        // Remove any stale intended url to avoid fallback to /home
-        session()->forget('url.intended');
-
-        // Role-based redirect after login
-        if ($role === 'admin') {
-            return redirect()->route('admin.dashboard.index');
-        } elseif ($role === 'company') {
-            return redirect()->route('company.dashboard.index');
-        } elseif ($role === 'user') {
-            return redirect()->route('user.dashboard.index');
-        } else {
-            auth()->logout();
-            return redirect('/login')->withErrors(['role' => 'Role tidak valid.']);
-        }
+        return redirect('/login')->with('status', 'Akun Anda telah berhasil dibuat dan sedang menunggu persetujuan admin.');
     }
 }
