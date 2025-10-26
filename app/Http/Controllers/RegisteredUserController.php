@@ -7,6 +7,8 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewUserNotification;
 
 class RegisteredUserController extends Controller
 {
@@ -81,6 +83,15 @@ class RegisteredUserController extends Controller
             ]);
             $user->company_id = $company->id;
             $user->save();
+        }
+
+        // Notify admin about new user registration
+        $admin = User::whereHas('role', function ($query) {
+            $query->where('name', 'admin');
+        })->first();
+
+        if ($admin) {
+            Notification::send($admin, new NewUserNotification($user));
         }
 
         return redirect('/login')->with('status', 'Akun Anda telah berhasil dibuat dan sedang menunggu persetujuan admin.');
