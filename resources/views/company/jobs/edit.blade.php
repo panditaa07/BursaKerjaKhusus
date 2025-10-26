@@ -86,12 +86,11 @@
                             <div class="col-md-6 mb-3">
                                 <label for="employment_type" class="form-label fw-bold">Jenis Pekerjaan <span class="text-danger">*</span></label>
                                 <select class="form-select @error('employment_type') is-invalid @enderror" id="employment_type" name="employment_type" required>
-                                    <option value="">Pilih Jenis Pekerjaan</option>
-                                    <option value="full-time" {{ strtolower(old('employment_type', $job->employment_type)) == 'full-time' ? 'selected' : '' }}>Full-time</option>
-                                    <option value="part-time" {{ strtolower(old('employment_type', $job->employment_type)) == 'part-time' ? 'selected' : '' }}>Part-time</option>
-                                    <option value="contract" {{ strtolower(old('employment_type', $job->employment_type)) == 'contract' ? 'selected' : '' }}>Contract</option>
-                                    <option value="internship" {{ strtolower(old('employment_type', $job->employment_type)) == 'internship' ? 'selected' : '' }}>Internship</option>
-                                    <option value="freelance" {{ strtolower(old('employment_type', $job->employment_type)) == 'freelance' ? 'selected' : '' }}>Freelance</option>
+                                    <option value="">-- Pilih Tipe Pekerjaan --</option>
+                                    <option value="full_time" {{ old('employment_type', $job->employment_type) == 'full_time' ? 'selected' : '' }}>Full-time</option>
+                                    <option value="part_time" {{ old('employment_type', $job->employment_type) == 'part_time' ? 'selected' : '' }}>Part-time</option>
+                                    <option value="internship" {{ old('employment_type', $job->employment_type) == 'internship' ? 'selected' : '' }}>Internship</option>
+                                    <option value="freelance" {{ old('employment_type', $job->employment_type) == 'freelance' ? 'selected' : '' }}>Freelance</option>
                                 </select>
                                 @error('employment_type')
                                     <div class="invalid-feedback">{{ $message }}</div>

@@ -178,6 +178,23 @@ class AdminApplicationController extends Controller
         }
     }
 
+    public function updateStatus(Request $request, Application $application)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:submitted,reviewed,interview,test1,test2,accepted,rejected',
+        ]);
+
+        // Update status aplikasi
+        $application->update(['status' => $validated['status']]);
+
+        // Kirim notifikasi ke user jika ada
+        if ($application->user) {
+            $application->user->notify(new \App\Notifications\ApplicationStatusUpdatedNotification($application, $validated['status']));
+        }
+
+        return redirect()->back()->with('success', 'Status pelamar berhasil diperbarui.');
+    }
+
     public function serveFile($path)
     {
         // Ensure user is admin

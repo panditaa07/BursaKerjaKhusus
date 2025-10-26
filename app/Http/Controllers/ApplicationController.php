@@ -584,6 +584,91 @@ class ApplicationController extends Controller
     }
 
     /**
+     * View CV file for user's own application
+     */
+    public function viewCV($id)
+    {
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        // Only allow USER role to access this page
+        if ($user->role->name !== 'user') {
+            abort(403, 'Halaman ini hanya untuk role USER.');
+        }
+
+        $application = Application::findOrFail($id);
+
+        // Cek hak akses: pelamar bisa lihat CV aplikasinya sendiri
+        if ($user->id !== $application->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $cvPath = null;
+        if (!empty($application->cv_path)) {
+            $cvPath = $application->cv_path;
+        } elseif ($application->user && !empty($application->user->cv_path)) {
+            $cvPath = $application->user->cv_path;
+        }
+
+        if (empty($cvPath)) {
+            abort(404, 'CV not found.');
+        }
+
+        $filePath = storage_path('app/public/' . $cvPath);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found at: ' . $filePath);
+        }
+
+        return response()->file($filePath);
+    }
+
+    /**
+     * View Cover Letter file for user's own application
+     */
+    public function viewLetter($id)
+    {
+        $user = Auth::user();
+
+        // Load relationships to avoid N+1 queries
+        $user->load(['role', 'company']);
+
+        // Only allow USER role to access this page
+        if ($user->role->name !== 'user') {
+            abort(403, 'Halaman ini hanya untuk role USER.');
+        }
+
+        $application = Application::findOrFail($id);
+
+        // Cek hak akses: pelamar bisa lihat surat lamaran aplikasinya sendiri
+        if ($user->id !== $application->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $coverLetterPath = null;
+        if (!empty($application->cover_letter_path)) {
+            $coverLetterPath = $application->cover_letter_path;
+        } elseif ($application->user && !empty($application->user->cover_letter_path)) {
+            $coverLetterPath = $application->user->cover_letter_path;
+        }
+
+        if (empty($coverLetterPath)) {
+            abort(404, 'Cover letter not found.');
+        }
+
+        // Both application->cover_letter_path and user->cover_letter_path store just the filename
+        $filePath = storage_path('app/public/cover_letter_files/' . $coverLetterPath);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found at: ' . $filePath);
+        }
+
+        return response()->file($filePath);
+    }
+
+    /**
      * Show a specific application (for link in email)
      */
     public function show(Application $application)

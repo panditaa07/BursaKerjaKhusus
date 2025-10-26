@@ -4,6 +4,11 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/profilcompany.css') }}">
+<style>
+.social-icon:hover {
+  color: #5a3f2d !important; /* Slightly darker shade for hover */
+}
+</style>
 @endpush
 
 @section('content')
@@ -31,7 +36,7 @@
   $photoUrl = method_exists($user, 'profile_photo_url') ? $user->profile_photo_url : null;
   $photoUrl = $photoUrl ?: $mkUrl($photoRaw);
 
-  $website  = $company->website ?? null;
+  $socialMedia = $company->social_media ?? null;
 @endphp
 
 <div class="container">
@@ -51,22 +56,6 @@
       <div class="hero-title">
         <h1>{{ $company->name ?? 'Nama Perusahaan' }}</h1>
         <div class="hero-meta">
-          {{-- Chip Website / Website belum diisi --}}
-          @if($website)
-            @php
-              $host = parse_url($website, PHP_URL_HOST) ?? $website;
-            @endphp
-            <a class="chip" href="{{ $website }}" target="_blank" rel="noopener">
-              <i class="fas fa-globe"></i>{{ $host }}
-            </a>
-          @else
-            <span class="chip"><i class="fas fa-globe"></i> Website belum diisi</span>
-          @endif
-
-          {{-- Chip URL profil perusahaan --}}
-          <a class="chip" href="{{ $companyUrl }}" target="_blank" rel="noopener">
-            <i class="fas fa-link"></i>{{ $companyUrl }}
-          </a>
         </div>
       </div>
     </div>
@@ -121,6 +110,44 @@
         <p><strong>Alamat Perusahaan:</strong> {{ $company->address ?? '-' }}</p>
         <p><strong>No. Telp Perusahaan:</strong> {{ $company->phone ?? '-' }}</p>
         <p><strong>Email Kontak:</strong> {{ $company->email ?? '-' }}</p>
+
+        {{-- Sosial Media Perusahaan --}}
+        <div class="social-media-links" style="margin-top: 15px;">
+          <strong>Sosial Media Perusahaan:</strong><br>
+          @if($company->linkedin)
+            <a href="{{ $company->linkedin }}" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
+              <i class="fab fa-linkedin-in fa-lg"></i> LinkedIn
+            </a>
+          @endif
+          @if($company->facebook)
+            <a href="{{ $company->facebook }}" target="_blank" rel="noopener" class="social-icon" title="Facebook" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
+              <i class="fab fa-facebook-f fa-lg"></i> Facebook
+            </a>
+          @endif
+          @if($company->twitter)
+            <a href="{{ $company->twitter }}" target="_blank" rel="noopener" class="social-icon" title="Twitter" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
+              <i class="fab fa-twitter fa-lg"></i> Twitter
+            </a>
+          @endif
+          @if($company->tiktok)
+            <a href="{{ $company->tiktok }}" target="_blank" rel="noopener" class="social-icon" title="TikTok" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
+              <i class="fab fa-tiktok fa-lg"></i> TikTok
+            </a>
+          @endif
+          @if($socialMedia)
+            <a href="{{ $socialMedia }}" target="_blank" rel="noopener" class="social-icon" title="Instagram" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
+              <i class="fab fa-instagram fa-lg"></i> Instagram
+            </a>
+          @endif
+          @if($company->youtube)
+            <a href="{{ $company->youtube }}" target="_blank" rel="noopener" class="social-icon" title="YouTube" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
+              <i class="fab fa-youtube fa-lg"></i> YouTube
+            </a>
+          @endif
+          @if(!$company->linkedin && !$company->facebook && !$company->twitter && !$company->tiktok && !$socialMedia && !$company->youtube)
+            Belum ada sosial media
+          @endif
+        </div>
       </div>
     </div>
 

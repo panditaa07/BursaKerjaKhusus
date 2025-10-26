@@ -79,6 +79,55 @@
                             <label for="company_address" class="form-label">Alamat Perusahaan</label>
                             <textarea class="form-control" id="company_address" name="company_address" rows="3">{{ old('company_address', Auth::user()->company->address ?? '') }}</textarea>
                         </div>
+                        {{-- Social Media Fields --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="linkedin" class="form-label">LinkedIn</label>
+                                    <input type="url" class="form-control" id="linkedin" name="linkedin"
+                                           value="{{ old('linkedin', Auth::user()->company->linkedin ?? '') }}"
+                                           placeholder="https://linkedin.com/in/username">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="facebook" class="form-label">Facebook</label>
+                                    <input type="url" class="form-control" id="facebook" name="facebook"
+                                           value="{{ old('facebook', Auth::user()->company->facebook ?? '') }}"
+                                           placeholder="https://facebook.com/username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="twitter" class="form-label">Twitter</label>
+                                    <input type="url" class="form-control" id="twitter" name="twitter"
+                                           value="{{ old('twitter', Auth::user()->company->twitter ?? '') }}"
+                                           placeholder="https://twitter.com/username">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="tiktok" class="form-label">TikTok</label>
+                                    <input type="url" class="form-control" id="tiktok" name="tiktok"
+                                           value="{{ old('tiktok', Auth::user()->company->tiktok ?? '') }}"
+                                           placeholder="https://tiktok.com/@username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="social_media" class="form-label">Instagram</label>
+                            <input type="url" class="form-control" id="social_media" name="social_media"
+                                   value="{{ old('social_media', Auth::user()->company->social_media ?? '') }}"
+                                   placeholder="https://instagram.com/username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="youtube" class="form-label">YouTube</label>
+                            <input type="url" class="form-control" id="youtube" name="youtube"
+                                   value="{{ old('youtube', Auth::user()->company->youtube ?? '') }}"
+                                   placeholder="https://youtube.com/channel/username">
+                        </div>
                         <div class="mb-3">
                             <label for="logo" class="form-label">Logo Perusahaan</label>
                             <input type="file" class="form-control" id="logo" name="logo" accept="image/*">

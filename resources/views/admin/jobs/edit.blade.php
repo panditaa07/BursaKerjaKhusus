@@ -87,11 +87,11 @@
                             <div class="col-md-6 mb-3">
                                 <label for="employment_type" class="form-label fw-bold">Jenis Pekerjaan <span class="text-danger">*</span></label>
                                 <select class="form-select @error('employment_type') is-invalid @enderror" id="employment_type" name="employment_type" required>
-                                    <option value="">Pilih Jenis Pekerjaan</option>
-                                    <option value="Full-time" {{ old('employment_type', $jobPost->employment_type) == 'Full-time' ? 'selected' : '' }}>Full-time</option>
-                                    <option value="Part-time" {{ old('employment_type', $jobPost->employment_type) == 'Part-time' ? 'selected' : '' }}>Part-time</option>
-                                    <option value="Contract" {{ old('employment_type', $jobPost->employment_type) == 'Contract' ? 'selected' : '' }}>Contract</option>
-                                    <option value="Internship" {{ old('employment_type', $jobPost->employment_type) == 'Internship' ? 'selected' : '' }}>Internship</option>
+                                    <option value="">-- Pilih Tipe Pekerjaan --</option>
+                                    <option value="full_time" {{ old('employment_type', $jobPost->employment_type) == 'full_time' ? 'selected' : '' }}>Full-time</option>
+                                    <option value="part_time" {{ old('employment_type', $jobPost->employment_type) == 'part_time' ? 'selected' : '' }}>Part-time</option>
+                                    <option value="internship" {{ old('employment_type', $jobPost->employment_type) == 'internship' ? 'selected' : '' }}>Internship</option>
+                                    <option value="freelance" {{ old('employment_type', $jobPost->employment_type) == 'freelance' ? 'selected' : '' }}>Freelance</option>
                                 </select>
                                 @error('employment_type')
                                     <div class="invalid-feedback">{{ $message }}</div>

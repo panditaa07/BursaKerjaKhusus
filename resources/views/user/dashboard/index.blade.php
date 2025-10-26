@@ -11,7 +11,7 @@
         @forelse($latestJobs as $job)
         @if($job && $job->id && $job->company)
         <div class="lowongan-card">
-            <img src="{{ $job->company->user && $job->company->user->profile_photo_path ? asset('storage/' . $job->company->user->profile_photo_path) : asset('images/logo-smk.png') }}" alt="Company Logo" class="lowongan-image">
+            <img src="{{ $job->company->logo ? asset('storage/' . $job->company->logo) : asset('images/default-company.png') }}" alt="Company Logo" class="lowongan-image">
             <div class="lowongan-content">
                 <div class="lowongan-company">{{ $job->company->name ?? 'N/A' }}</div>
                 <div class="lowongan-title">{{ $job->title ?? '-' }}</div>

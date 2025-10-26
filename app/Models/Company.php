@@ -21,9 +21,14 @@ class Company extends Authenticatable
         'phone',
         'is_verified',
         'logo',
-        'website',
         'industry_id',
         'status',
+        'social_media',
+        'linkedin',
+        'facebook',
+        'twitter',
+        'tiktok',
+        'youtube',
     ];
 
     protected $hidden = [

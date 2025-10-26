@@ -81,7 +81,7 @@
 
                     {{-- TIPE --}}
                    <td>
-  @php $type = trim($job->type ?? ''); @endphp
+  @php $type = trim($job->employment_type ?? ''); @endphp
   @if($type !== '')
     <span class="badge badge-type">{{ $type }}</span>
   @else

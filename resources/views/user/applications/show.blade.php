@@ -51,13 +51,43 @@
                                     <td>{{ $application->jobPost->industry->name ?? '-' }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Website:</td>
+                                    <td class="fw-bold">Sosial Media:</td>
                                     <td>
-                                        @if($application->jobPost->company->website)
-                                            <a href="{{ $application->jobPost->company->website }}" target="_blank">{{ $application->jobPost->company->website }}</a>
-                                        @else
-                                            -
-                                        @endif
+                                        <div class="d-flex flex-wrap gap-2">
+                                            @if($application->jobPost->company->linkedin)
+                                                <a href="{{ $application->jobPost->company->linkedin }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
+                                                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                                </a>
+                                            @endif
+                                            @if($application->jobPost->company->social_media)
+                                                <a href="{{ $application->jobPost->company->social_media }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
+                                                    <i class="fa-brands fa-instagram"></i> Instagram
+                                                </a>
+                                            @endif
+                                            @if($application->jobPost->company->facebook)
+                                                <a href="{{ $application->jobPost->company->facebook }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
+                                                    <i class="fa-brands fa-facebook"></i> Facebook
+                                                </a>
+                                            @endif
+                                            @if($application->jobPost->company->twitter)
+                                                <a href="{{ $application->jobPost->company->twitter }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
+                                                    <i class="fa-brands fa-twitter"></i> Twitter
+                                                </a>
+                                            @endif
+                                            @if($application->jobPost->company->tiktok)
+                                                <a href="{{ $application->jobPost->company->tiktok }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
+                                                    <i class="fa-brands fa-tiktok"></i> TikTok
+                                                </a>
+                                            @endif
+                                            @if($application->jobPost->company->youtube)
+                                                <a href="{{ $application->jobPost->company->youtube }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
+                                                    <i class="fa-brands fa-youtube"></i> YouTube
+                                                </a>
+                                            @endif
+                                            @if(!$application->jobPost->company->linkedin && !$application->jobPost->company->social_media && !$application->jobPost->company->facebook && !$application->jobPost->company->twitter && !$application->jobPost->company->tiktok && !$application->jobPost->company->youtube)
+                                                Belum ada sosial media
+                                            @endif
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
@@ -151,7 +181,7 @@
                 </div>
                 <div class="card-body">
                     @if($application->cover_letter_path)
-                        <a href="{{ asset('storage/' . $application->cover_letter_path) }}" target="_blank" class="btn-doc primary mb-2 w-100">
+                        <a href="{{ route('user.applications.letter', $application->id) }}" target="_blank" class="btn-doc primary mb-2 w-100">
                             <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
                         </a>
                     @else
@@ -161,7 +191,7 @@
                     @endif
 
                     @if($application->cv_path)
-                        <a href="{{ asset('storage/' . $application->cv_path) }}" target="_blank" class="btn-doc soft w-100">
+                        <a href="{{ route('user.applications.cv', $application->id) }}" target="_blank" class="btn-doc soft w-100">
                             <i class="fas fa-eye"></i> Lihat CV
                         </a>
                     @else

@@ -103,10 +103,15 @@ class ProfileController extends Controller
             'company_email' => 'nullable|email|max:255',
             'company_phone' => 'nullable|string|max:20',
             'company_address' => 'nullable|string|max:500',
-            'company_website' => 'nullable|url',
             'industry_id' => 'nullable|exists:industries,id',
             'description' => 'nullable|string|max:1000',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'social_media' => 'nullable|url|max:255',
+            'linkedin' => 'nullable|url|max:255',
+            'facebook' => 'nullable|url|max:255',
+            'twitter' => 'nullable|url|max:255',
+            'tiktok' => 'nullable|url|max:255',
+            'youtube' => 'nullable|url|max:255',
         ]);
 
         // Update user data
@@ -136,9 +141,14 @@ class ProfileController extends Controller
             'email' => $request->company_email,
             'address' => $request->company_address,
             'phone' => $request->company_phone,
-            'website' => $request->company_website,
             'industry_id' => $request->industry_id,
             'description' => $request->description,
+            'social_media' => $request->social_media,
+            'linkedin' => $request->linkedin,
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'tiktok' => $request->tiktok,
+            'youtube' => $request->youtube,
         ];
 
         if ($request->hasFile('logo')) {

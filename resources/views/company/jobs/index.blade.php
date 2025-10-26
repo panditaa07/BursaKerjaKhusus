@@ -52,7 +52,7 @@
                         <small class="text-muted">{{ Str::limit($job->description, 50) }}</small>
                     </td>
                     <td>{{ $job->location ?? '-' }}</td>
-                    <td><span class="badge-status badge-info">{{ $job->type ?? 'N/A' }}</span></td>
+                    <td><span class="badge-status badge-info">{{ $job->employment_type ?? 'N/A' }}</span></td>
                     <td>{{ $job->salary ?? '-' }}</td>
                     <td>
                         @if($job->status == 'active')

@@ -113,16 +113,16 @@
 
                     <div>
                         <label for="employment_type" class="block text-gray-700 text-sm font-bold mb-2 flex items-center">
-                            <i class="fas fa-clock  mr-2 text-blue-500"></i> Tipe Pekerjaan 
+                            <i class="fas fa-clock  mr-2 text-blue-500"></i> Tipe Pekerjaan
                         </label>
                         <select id="employment_type" name="employment_type"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('employment_type') border-red-500 @enderror"
                             required>
-                            <option value="">Pilih Tipe</option>
-                            <option value="Full-time" {{ old('employment_type') == 'Full-time' ? 'selected' : '' }}>Full-time</option>
-                            <option value="Part-time" {{ old('employment_type') == 'Part-time' ? 'selected' : '' }}>Part-time</option>
-                            <option value="Contract" {{ old('employment_type') == 'Contract' ? 'selected' : '' }}>Contract</option>
-                            <option value="Internship" {{ old('employment_type') == 'Internship' ? 'selected' : '' }}>Internship</option>
+                            <option value="">-- Pilih Tipe Pekerjaan --</option>
+                            <option value="full_time" {{ old('employment_type') == 'full_time' ? 'selected' : '' }}>Full-time</option>
+                            <option value="part_time" {{ old('employment_type') == 'part_time' ? 'selected' : '' }}>Part-time</option>
+                            <option value="internship" {{ old('employment_type') == 'internship' ? 'selected' : '' }}>Internship</option>
+                            <option value="freelance" {{ old('employment_type') == 'freelance' ? 'selected' : '' }}>Freelance</option>
                         </select>
                         @error('employment_type')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>

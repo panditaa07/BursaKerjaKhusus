@@ -90,6 +90,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'show'])->name('applications.show');
         Route::get('applications/{application}/edit', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'edit'])->name('applications.edit');
         Route::patch('applications/{application}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'update'])->name('applications.update');
+        Route::patch('applications/{application}/status', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
         Route::delete('applications/{id}', [\App\Http\Controllers\Admin\AdminApplicationController::class, 'destroy'])->name('applications.destroy');
 
         // File serving for secure accessz
@@ -161,6 +162,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
         Route::get('/applications/{application}', [ApplicationController::class, 'show'])->name('applications.show');
+        Route::get('/applications/{id}/cv', [ApplicationController::class, 'viewCV'])->name('applications.cv');
+        Route::get('/applications/{id}/letter', [ApplicationController::class, 'viewLetter'])->name('applications.letter');
     });
 
     // ===== Jobs (umum) =====
@@ -193,8 +196,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::middleware(['auth'])->group(function () {
-    Route::get('/notifications', [NotifikasiUser::class, 'index'])->name('notifications.index');
-    Route::get('/notifications/{id}/read', [NotifikasiUser::class, 'markAsRead'])->name('notifications.read');
+    Route::get('/notifications', [\App\Http\Controllers\NotifikasiUser::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/{id}/read', [\App\Http\Controllers\NotifikasiUser::class, 'markAsRead'])->name('notifications.read');
 });
 
 });
