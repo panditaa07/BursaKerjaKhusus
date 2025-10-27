@@ -1,8 +1,35 @@
-// Modern Blue Theme - JavaScript Animations
+// ===================================================
+// 🩵 Modern Blue Theme + Clear Search Button Feature
+// ===================================================
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Smooth Scroll Animation
+    // === 🧹 Search Input Clear Button ===
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+
+    if (searchInput && clearBtn) {
+        function toggleClearButton() {
+            if (searchInput.value.trim() !== '') {
+                clearBtn.classList.remove('d-none');
+            } else {
+                clearBtn.classList.add('d-none');
+            }
+        }
+
+        searchInput.addEventListener('input', toggleClearButton);
+
+        clearBtn.addEventListener('click', function () {
+            searchInput.value = '';
+            toggleClearButton();
+            searchInput.focus();
+        });
+
+        // Show button if search value already filled (after reload)
+        toggleClearButton();
+    }
+
+    // === ✨ Smooth Scroll Animation ===
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -39,17 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
             ripple.classList.add('ripple');
 
             this.appendChild(ripple);
-
             setTimeout(() => ripple.remove(), 600);
         });
     });
 
-    // Add hover effect for job cards
+    // Hover effect for job cards
     jobCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-4px) scale(1.01)';
         });
-
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
@@ -58,36 +83,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animate job title on hover
     const jobTitles = document.querySelectorAll('.job-title');
     jobTitles.forEach(title => {
-        const text = title.textContent;
         title.addEventListener('mouseenter', function() {
             this.style.letterSpacing = '0.5px';
         });
-        
         title.addEventListener('mouseleave', function() {
             this.style.letterSpacing = '0px';
         });
     });
 
-    // Add parallax effect to job images
+    // Parallax effect for job images
     jobCards.forEach(card => {
         const img = card.querySelector('.job-image');
-        
         card.addEventListener('mousemove', function(e) {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
             const deltaX = (x - centerX) / centerX;
             const deltaY = (y - centerY) / centerY;
-            
             if (img) {
                 img.style.transform = `scale(1.05) translate(${deltaX * 5}px, ${deltaY * 5}px)`;
             }
         });
-        
         card.addEventListener('mouseleave', function() {
             if (img) {
                 img.style.transform = 'scale(1) translate(0, 0)';
@@ -109,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         badgeObserver.observe(badge);
     });
 
-    // Add loading animation
+    // === 💫 Style Animations ===
     const style = document.createElement('style');
     style.textContent = `
         .ripple {
@@ -129,20 +147,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         @keyframes bounceIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .job-title {
@@ -158,71 +166,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scroll for pagination
     const paginationLinks = document.querySelectorAll('.pagination a');
     paginationLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        link.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
-    // Add skeleton loading effect (optional - for initial load)
-    function addSkeletonLoading() {
-        const jobList = document.querySelector('.job-list');
-        if (jobList && jobCards.length === 0) {
-            for (let i = 0; i < 3; i++) {
-                const skeleton = document.createElement('div');
-                skeleton.className = 'job-card skeleton';
-                skeleton.innerHTML = `
-                    <div class="skeleton-image"></div>
-                    <div class="skeleton-content">
-                        <div class="skeleton-line"></div>
-                        <div class="skeleton-line short"></div>
-                        <div class="skeleton-line medium"></div>
-                    </div>
-                `;
-                jobList.appendChild(skeleton);
-            }
-        }
-    }
-
-    // Fade in animation for empty message
+    // Empty message animation
     const emptyMessage = document.querySelector('.empty-message');
     if (emptyMessage) {
         emptyMessage.style.animation = 'fadeIn 0.8s ease-out';
     }
 
-    // Add focus effect for accessibility
+    // Focus outline for accessibility
     infoButtons.forEach(button => {
         button.addEventListener('focus', function() {
             this.style.outline = '3px solid rgba(59, 130, 246, 0.5)';
             this.style.outlineOffset = '2px';
         });
-
         button.addEventListener('blur', function() {
             this.style.outline = 'none';
         });
     });
 
-    // Counter animation for salary
+    // Salary fade-in
     const salaryElements = document.querySelectorAll('.salary');
     salaryElements.forEach(salary => {
-        const text = salary.textContent;
         salary.style.opacity = '0';
-        
         setTimeout(() => {
             salary.style.transition = 'opacity 0.5s ease-in';
             salary.style.opacity = '1';
         }, 300);
     });
 
-    // Add stagger animation to job details
+    // Stagger animation for job details
     jobCards.forEach((card, cardIndex) => {
         const details = card.querySelectorAll('.job-location, .job-deadline, .salary');
         details.forEach((detail, index) => {
             detail.style.opacity = '0';
             detail.style.transform = 'translateX(-10px)';
-            
             setTimeout(() => {
                 detail.style.transition = 'all 0.4s ease-out';
                 detail.style.opacity = '1';
@@ -231,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('✨ Modern Blue Theme loaded successfully!');
+    console.log('✨ Modern Blue Theme + Clear Search loaded successfully!');
 });
 
 // Performance optimization

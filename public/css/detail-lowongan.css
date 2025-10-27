@@ -508,6 +508,19 @@ a:hover {
     border: none;
 }
 
+.btn-outline-secondary {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #1e3a8a;
+    color: #fff;
+    border-color: #1e3a8a;
+}
+
+
 .btn-secondary:hover,
 .btn-secondary:focus,
 .btn-secondary:active {

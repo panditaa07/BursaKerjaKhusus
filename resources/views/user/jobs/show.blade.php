@@ -31,6 +31,8 @@
                                         <span>Diposting {{ $job->created_at->diffForHumans() }}</span>
                                     </div>
                                 </div>
+                                {{-- ...lanjutan kode kamu tetap sama --}}
+
 
                                 <div class="company-info mb-4">
                                     <h5>Informasi Perusahaan</h5>
@@ -267,6 +269,13 @@
                                         </button>
                                     </div>
                                 </div>
+
+                                <div class="mt-4 text-center">
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-arrow-left me-2"></i> Kembali
+                                    </a>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
