@@ -146,7 +146,7 @@
                                 @elseif($app->status == 'submitted')
                                     <span class="badge" style="background-color:#EAB308; color:#000;">Menunggu</span> {{-- Kuning keemasan --}}
                                 @else
-                                    <span class="badge bg-light text-dark">{{ $p->status }}</span>
+                                    <span class="badge bg-light text-dark">{{ $app->status }}</span>
                                 @endif
                             </td>
                         <td class="aksi">
