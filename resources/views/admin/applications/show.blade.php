@@ -3,37 +3,23 @@
 @section('title', 'Detail Pelamar')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/detailpelamarcom.css') }}">
+<link rel="stylesheet" href="{{ asset('css/detailpelamaradmin.css') }}">
 @endpush
 
 @section('content')
 <div class="container mx-auto px-4 py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
         <h1 class="h3 mb-0">Detail Pelamar</h1>
-        
-        @if(request('from') == 'total')
-            <a href="{{ route('admin.dashboard.pelamar') }}" class="btn-kembali">
-                <i class="fas fa-arrow-left me-2"></i> Kembali ke daftar pelamar
-            </a>
-        @elseif(request('from') == 'bulanini')
-            <a href="{{ route('admin.dashboard.pelamar.bulanini') }}" class="btn-kembali">
-                <i class="fas fa-arrow-left me-2"></i> Kembali ke pelamar bulan ini
-            </a>
-        @else
-            <a href="{{ route('admin.dashboard.index') }}" class="btn-kembali">
-                <i class="fas fa-arrow-left me-2"></i> Kembali ke dashboard
-            </a>
-        @endif
     </div>
 
-                    <div class="row g-3">  
-                        <!-- Personal Information -->
-                        <div class="col-lg-8">
-                            <div class="card shadow-sm mb-3">
-                                <div class="card-header bg-primary">
-                                    <h5 class="mb-0"><i class="fas fa-user"></i> Informasi Pribadi</h5>
-                                </div>
-                                <div class="card-body">
+    <div class="row g-3">  
+        <!-- Personal Information -->
+        <div class="col-12">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-primary">
+                    <h5 class="mb-0"><i class="fas fa-user"></i> Informasi Pribadi</h5>
+                </div>
+                <div class="card-body">
                     <div class="d-flex align-items-start">
                         <!-- Foto Profil di Kiri -->
                         <div class="me-4">
@@ -94,7 +80,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- Row for Informasi Lamaran and Update Status -->
+        <div class="col-lg-6">
             <!-- Application Information -->
             <div class="card shadow-sm mb-3">
                 <div class="card-header bg-info">
@@ -102,7 +91,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <table class="table table-borderless">
                                 <tr>
                                     <td class="fw-bold" width="140">Lowongan:</td>
@@ -116,12 +105,8 @@
                                     <td class="fw-bold">Tanggal Lamar:</td>
                                     <td>{{ $application->created_at->format('d F Y H:i') }}</td>
                                 </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-borderless">
                                 <tr>
-                                    <td class="fw-bold" width="140">Status:</td>
+                                    <td class="fw-bold">Status:</td>
                                     <td>
                                         @php
                                             $status = $application->status;
@@ -159,87 +144,9 @@
             </div>
         </div>
 
-        <!-- Sidebar -->
-        <div class="col-lg-4">
-            <!-- Documents -->
-            <div class="card shadow-sm mb-3">
-                <div class="card-header bg-success">
-                    <h5 class="mb-0"><i class="fas fa-file-download"></i> Dokumen</h5>
-                </div>
-                <div class="card-body">
-                    @if($application->cover_letter_path || ($application->user && $application->user->cover_letter_path))
-                        <div class="d-flex gap-2 mb-2">
-                            <button type="button" class="btn-doc primary flex-fill"
-                                    onclick="window.open('{{ route('admin.users.preview_cover_letter', $application->user) }}', '_blank')">
-                                <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
-                            </button>
-                            <a href="{{ route('admin.users.download_cover_letter', $application->user) }}"
-                               class="btn-doc secondary" target="_blank" download>
-                                <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    @else
-                        <button type="button" class="btn-doc soft mb-2" onclick="showNoCoverLetterAlert()">
-                            <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
-                        </button>
-                    @endif
-
-                    @if($application->cv_path || ($application->user && $application->user->cv_path))
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn-doc soft flex-fill"
-                                    onclick="window.open('{{ route('admin.users.preview_cv', $application->user) }}', '_blank')">
-                                <i class="fas fa-eye"></i> Preview CV
-                            </button>
-                        </div>
-                    @endif
-                </div>
-            </div>
-
-            <!-- Social Media & Portfolio -->
-            @if($application->user)
-            <div class="card shadow-sm mb-3">
-                <div class="card-header bg-primary">
-                    <h5 class="mb-0"><i class="fas fa-share-alt"></i> Sosial Media & Portfolio</h5>
-                </div>
-                <div class="card-body text-center">
-                    @if($application->user->portfolio_link || $application->user->facebook || $application->user->instagram || $application->user->linkedin || $application->user->twitter || $application->user->tiktok)
-                        <div class="d-flex justify-content-center flex-wrap gap-2">
-                            @if($application->user->portfolio_link)
-                                <a href="{{ $application->user->portfolio_link }}" target="_blank"
-                                   class="btn btn-outline-secondary btn-sm">
-                                    <i class="fas fa-globe me-1"></i> Portfolio
-                                </a>
-                            @endif
-                            @if($application->user->facebook)
-                                <a href="{{ $application->user->facebook }}" target="_blank"
-                                   class="btn btn-outline-primary btn-sm"><i class="fab fa-facebook"></i></a>
-                            @endif
-                            @if($application->user->instagram)
-                                <a href="{{ $application->user->instagram }}" target="_blank"
-                                   class="btn btn-outline-danger btn-sm"><i class="fab fa-instagram"></i></a>
-                            @endif
-                            @if($application->user->linkedin)
-                                <a href="{{ $application->user->linkedin }}" target="_blank"
-                                   class="btn btn-outline-primary btn-sm"><i class="fab fa-linkedin"></i></a>
-                            @endif
-                            @if($application->user->twitter)
-                                <a href="{{ $application->user->twitter }}" target="_blank"
-                                   class="btn btn-outline-info btn-sm"><i class="fab fa-twitter"></i></a>
-                            @endif
-                            @if($application->user->tiktok)
-                                <a href="{{ $application->user->tiktok }}" target="_blank"
-                                   class="btn btn-outline-dark btn-sm"><i class="fab fa-tiktok"></i></a>
-                            @endif
-                        </div>
-                    @else
-                        <p class="text-muted mb-0">Tidak ada sosial media atau portfolio</p>
-                    @endif
-                </div>
-            </div>
-            @endif
-
+        <div class="col-lg-6">
             <!-- Status Update -->
-            <div class="card shadow-sm">
+            <div class="card shadow-sm mb-3">
                 <div class="card-header bg-warning text-dark">
                     <h5 class="mb-0"><i class="fas fa-edit"></i> Update Status</h5>
                 </div>
@@ -278,7 +185,103 @@
                     </form>
                 </div>
             </div>
+        </div>
 
+        <!-- Documents & Social Media - Full Width -->
+     <div class="col-12">
+    <div class="card shadow-sm mb-3">
+        <div class="card-header bg-success">
+            <h5 class="mb-0"><i class="fas fa-folder-open"></i> Dokumen & Sosial Media</h5>
+        </div>
+
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <h6 class="fw-bold mb-3 text-dark">
+                        <i class="fas fa-file-download me-2"></i>Dokumen
+                    </h6>
+
+                    <div class="d-flex align-items-center flex-wrap gap-3 justify-content-between">
+                        <div class="d-flex flex-wrap gap-2">
+                            {{-- Tombol Surat Lamaran --}}
+                            @if($application->cover_letter_path || ($application->user && $application->user->cover_letter_path))
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn-doc primary"
+                                            onclick="window.open('{{ route('admin.users.preview_cover_letter', $application->user) }}', '_blank')">
+                                        <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
+                                    </button>
+                                    <a href="{{ route('admin.users.download_cover_letter', $application->user) }}"
+                                       class="btn-doc secondary" target="_blank" download>
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                </div>
+                            @else
+                                <button type="button" class="btn-doc soft" onclick="showNoCoverLetterAlert()">
+                                    <i class="fas fa-file-alt"></i> Lihat Surat Lamaran
+                                </button>
+                            @endif
+
+                            {{-- Tombol CV --}}
+                            @if($application->cv_path || ($application->user && $application->user->cv_path))
+                                <button type="button" class="btn-doc soft"
+                                        onclick="window.open('{{ route('admin.users.preview_cv', $application->user) }}', '_blank')">
+                                    <i class="fas fa-eye"></i> Preview CV
+                                </button>
+                            @endif
+                        </div>
+
+                        {{-- Sosial Media --}}
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            @if($application->user->portfolio_link)
+                                <a href="{{ $application->user->portfolio_link }}" target="_blank"
+                                   class="btn btn-outline-secondary social-btn">
+                                   <i class="fas fa-globe"></i>
+                                </a>
+                            @endif
+                            @if($application->user->facebook)
+                                <a href="{{ $application->user->facebook }}" target="_blank"
+                                   class="btn btn-outline-primary social-btn"><i class="fab fa-facebook"></i></a>
+                            @endif
+                            @if($application->user->instagram)
+                                <a href="{{ $application->user->instagram }}" target="_blank"
+                                   class="btn btn-outline-danger social-btn"><i class="fab fa-instagram"></i></a>
+                            @endif
+                            @if($application->user->linkedin)
+                                <a href="{{ $application->user->linkedin }}" target="_blank"
+                                   class="btn btn-outline-primary social-btn"><i class="fab fa-linkedin"></i></a>
+                            @endif
+                            @if($application->user->twitter)
+                                <a href="{{ $application->user->twitter }}" target="_blank"
+                                   class="btn btn-outline-info social-btn"><i class="fab fa-twitter"></i></a>
+                            @endif
+                            @if($application->user->tiktok)
+                                <a href="{{ $application->user->tiktok }}" target="_blank"
+                                   class="btn btn-outline-dark social-btn"><i class="fab fa-tiktok"></i></a>
+                            @endif
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Back Button - Below Everything -->
+        <div class="col-12">
+            @if(request('from') == 'total')
+                <a href="{{ route('admin.dashboard.pelamar') }}" class="btn-kembali">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali ke daftar pelamar
+                </a>
+            @elseif(request('from') == 'bulanini')
+                <a href="{{ route('admin.dashboard.pelamar.bulanini') }}" class="btn-kembali">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali ke pelamar bulan ini
+                </a>
+            @else
+                <a href="{{ route('admin.dashboard.index') }}" class="btn-kembali">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali ke dashboard
+                </a>
+            @endif
         </div>
     </div>
 </div>

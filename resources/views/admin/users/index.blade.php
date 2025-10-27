@@ -121,11 +121,6 @@
                                 <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
                                     <i class=""></i><span>Edit</span>
                                 </a>
-                                @if ($user->role->name == 'user' && $user->cover_letter_path)
-                                        <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="table-btn download">
-                                            <i class="bi bi-download"></i>
-                                        </a>
-                                    @endif
                                 <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
