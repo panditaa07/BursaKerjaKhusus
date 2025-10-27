@@ -135,20 +135,20 @@
                         <td>{{ $app->jobPost->company->name ?? '-' }}</td>
                         <td>{{ $app->jobPost->title ?? '-' }}</td>
                         <td>
-                           @if($app->status == 'accepted')
-                                    <span class="badge bg-success">Terima</span>
+                                @if($app->status == 'accepted')
+                                    <span class="badge" style="background-color:#0c632f;">Terima</span> {{-- Hijau terang --}}
                                 @elseif($app->status == 'rejected')
-                                    <span class="badge bg-danger">Tolak</span>
+                                    <span class="badge" style="background-color:#bb1425;">Tolak</span> {{-- Merah tua --}}
                                 @elseif($app->status == 'interview')
-                                    <span class="badge bg-dark">Wawancara</span>
+                                    <span class="badge" style="background-color:#4B2E05;">Wawancara</span> {{-- Ungu gelap --}}
                                 @elseif(in_array($app->status, ['test1','test2']))
-                                    <span class="badge bg-primary">Proses</span>
+                                    <span class="badge" style="background-color:#0d469d; color:#fff;">Proses</span> {{-- Biru cyan --}}
                                 @elseif($app->status == 'submitted')
-                                    <span class="badge bg-secondary">Menunggu</span>
+                                    <span class="badge" style="background-color:#EAB308; color:#000;">Menunggu</span> {{-- Kuning keemasan --}}
                                 @else
-                                    <span class="badge bg-light text-dark">{{ $app->status }}</span>
+                                    <span class="badge bg-light text-dark">{{ $p->status }}</span>
                                 @endif
-                        </td>
+                            </td>
                         <td class="aksi">
                             <!-- Tombol Lihat -->
                             <a href="{{ route('admin.applications.show', $app->id) }}"

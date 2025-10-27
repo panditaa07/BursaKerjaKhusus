@@ -3,7 +3,7 @@
 @section('title', 'Verifikasi Akun')
 
 @section('content')
-<div class="container-fluid">
+<div class="container mx-auto px-4 py-4">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}

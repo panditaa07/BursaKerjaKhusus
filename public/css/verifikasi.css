@@ -1,0 +1,12 @@
+/* Biar teks header & isi tabel di tengah */
+.table th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Tambahan opsional buat gaya header */
+.table thead th {
+    background-color: #15357a; /* biru gelap */
+    color: white;
+    font-weight: 600;
+}

@@ -131,7 +131,7 @@
                                                 'interview' => ['label' => 'Wawancara', 'class' => 'status-chip chip--interview'],
                                                 'test1'     => ['label' => 'Test 1',    'class' => 'status-chip chip--test1'],
                                                 'test2'     => ['label' => 'Test 2',    'class' => 'status-chip chip--test2'],
-                                                'submitted' => ['label' => 'Menunggu',  'class' => 'status-chip chip--submitted'],
+                                                'submitted' => ['label' => 'Proses',  'class' => 'status-chip chip--proses'],
                                                 'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-chip chip--review'],
                                             ];
                                             $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'status-chip chip--submitted'];
