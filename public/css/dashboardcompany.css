@@ -774,3 +774,113 @@ textarea:focus,
     color: #4C1D95 !important;
   }
 }
+/* ===== Status badge: seragam dengan Admin ===== */
+.table-custom .badge{
+  display:inline-block;
+  padding:.45rem .9rem;
+  font-size:.85rem;
+  font-weight:700;
+  border-radius:999px;
+  letter-spacing:.3px;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+  border:0;
+}
+
+/* Terima (hijau) */
+.status-accepted{
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:#fff;
+}
+
+/* Tolak (merah) */
+.status-rejected{
+  background:linear-gradient(135deg,#dc2626,#ef4444);
+  color:#fff;
+}
+
+/* Wawancara (coklat gelap seperti di Admin) */
+.status-interview{
+  background:linear-gradient(135deg,#4B2E05,#92400E);
+  color:#fff;
+}
+
+/* Proses/Test 1/2 (biru) */
+.status-test,
+.status-test2{
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  color:#fff;
+}
+
+/* Menunggu (kuning) */
+.status-pending{
+  background:linear-gradient(135deg,#ffc107,#ffda5c);
+  color:#212529;
+}
+
+/* Ditinjau (abu-abu) */
+.status-reviewed{
+  background:linear-gradient(135deg,#6c757d,#8a9099);
+  color:#fff;
+}
+/* ===== STATUS COMPANY = ADMIN STYLE ===== */
+
+/* basis badge */
+.table-custom .badge{
+  display:inline-block;
+  padding:.55rem 1.1rem;         /* ukuran kapsul */
+  border-radius:999px;            /* pil penuh */
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.3px;
+  border:0;
+  background-image:none !important;  /* matikan gradasi lama */
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  line-height:1;
+}
+
+/* sembunyikan titik ikon di depan label (biar bersih seperti admin) */
+.table-custom .badge i{ display:none !important; }
+
+/* TERIMA (hijau tua solid) */
+.status-accepted{
+  background:#0c632f;  /* sama nuansa admin */
+  color:#fff;
+}
+
+/* TOLAK (merah tua solid) */
+.status-rejected{
+  background:#bb1425;
+  color:#fff;
+}
+
+/* WAWANCARA (coklat tua solid) */
+.status-interview{
+  background:#4B2E05;
+  color:#fff;
+}
+
+/* PROSES / TEST (biru tua solid) */
+.status-test,
+.status-test2{
+  background:#0d469d;
+  color:#fff;
+}
+
+/* MENUNGGU (kuning solid, teks hitam tebal) */
+.status-pending{
+  background:#EAB308;
+  color:#000;
+  font-weight:800;
+}
+
+/* REVIEWED (chip putih-abu dengan outline halus) */
+.status-reviewed{
+  background:#F3F4F6;             /* abu sangat muda */
+  color:#111827;                   /* abu gelap */
+  box-shadow:
+    inset 0 0 0 1px #e5e7eb,       /* garis luar tipis */
+    0 8px 14px rgba(0,0,0,.06);    /* bayangan lembut seperti screenshot */
+}
+
+/* opsional: nonaktifkan efek hover apa pun pada badge */
+.table-custom .badge:hover{ transform:none; filter:none; }

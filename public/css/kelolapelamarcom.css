@@ -1079,3 +1079,71 @@ a.btn-primary:not([href*="search"]) {
         font-size: 1.7rem !important;
     }
 }
+/* =========================
+   STATUS KELola PELAMAR — SAMA DENGAN DASHBOARD COMPANY
+   ========================= */
+
+/* Basis badge: bentuk kapsul, tebal, tanpa efek hover */
+.company-applications-table .badge{
+  display:inline-block;
+  padding:.55rem 1.1rem;
+  border-radius:999px;
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.3px;
+  line-height:1;
+  border:0;
+  background-image:none !important;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+/* Sembunyikan titik ikon di depan label agar bersih seperti di dashboard company */
+.company-applications-table .badge i{ display:none !important; }
+
+/* TERIMA (hijau tua solid) */
+.company-applications-table .status-accepted{
+  background:#0c632f;
+  color:#fff;
+}
+
+/* TOLAK (merah tua solid) */
+.company-applications-table .status-rejected{
+  background:#bb1425;
+  color:#fff;
+}
+
+/* WAWANCARA (coklat tua solid) */
+.company-applications-table .status-interview{
+  background:#4B2E05;
+  color:#fff;
+}
+
+/* PROSES / TEST 1-2 (biru tua solid) */
+.company-applications-table .status-test,
+.company-applications-table .status-test2{
+  background:#0d469d;
+  color:#fff;
+}
+
+/* MENUNGGU (kuning solid, teks hitam tebal) */
+.company-applications-table .status-pending{
+  background:#EAB308;
+  color:#000;
+  font-weight:800;
+}
+
+/* DITINJAU / REVIEWED (chip putih-abu, outline halus, teks hitam) */
+.company-applications-table .status-reviewed{
+  background:#F9FAFB;                            /* putih keabu */
+  color:#000;                                    /* teks hitam */
+  font-weight:800;
+  box-shadow:
+    inset 0 0 0 1px #E5E7EB,                     /* outline tipis */
+    0 8px 14px rgba(0,0,0,.06);                  /* bayangan lembut */
+}
+
+/* Nonaktifkan transform/filter hover pada badge agar konsisten */
+.company-applications-table .badge:hover{
+  transform:none !important;
+  filter:none !important;
+}

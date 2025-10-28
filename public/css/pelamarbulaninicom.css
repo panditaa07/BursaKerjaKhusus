@@ -784,3 +784,73 @@
     margin-left: 0 !important; 
   }
 }
+/* ===========================================
+   PELAMAR BULAN INI — STATUS SAMA DENGAN DASHBOARD COMPANY
+   =========================================== */
+
+/* Basis badge: kapsul tebal, tanpa efek hover */
+.pelamar-bulan-ini .company-applications-table .badge{
+  display:inline-block;
+  padding:.55rem 1.1rem;
+  border-radius:999px;
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.3px;
+  line-height:1;
+  border:0;
+  background-image:none !important;     /* matikan gradasi lama */
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+/* Sembunyikan titik ikon di depan label */
+.pelamar-bulan-ini .company-applications-table .badge i{
+  display:none !important;
+}
+
+/* TERIMA (hijau tua) */
+.pelamar-bulan-ini .company-applications-table .status-accepted{
+  background:#0c632f !important;
+  color:#fff !important;
+}
+
+/* TOLAK (merah tua) */
+.pelamar-bulan-ini .company-applications-table .status-rejected{
+  background:#bb1425 !important;
+  color:#fff !important;
+}
+
+/* WAWANCARA (coklat tua) */
+.pelamar-bulan-ini .company-applications-table .status-interview{
+  background:#4B2E05 !important;
+  color:#fff !important;
+}
+
+/* PROSES / TEST 1–2 (biru tua) */
+.pelamar-bulan-ini .company-applications-table .status-test,
+.pelamar-bulan-ini .company-applications-table .status-test2{
+  background:#0d469d !important;
+  color:#fff !important;
+}
+
+/* MENUNGGU (kuning, teks hitam tebal) */
+.pelamar-bulan-ini .company-applications-table .status-pending{
+  background:#EAB308 !important;
+  color:#000 !important;
+  font-weight:800 !important;
+}
+
+/* DITINJAU/REVIEWED (chip putih-abu dengan outline, teks hitam) */
+.pelamar-bulan-ini .company-applications-table .status-reviewed{
+  background:#F9FAFB !important;                 /* putih keabu */
+  color:#000 !important;                         /* teks hitam */
+  font-weight:800 !important;
+  box-shadow:
+    inset 0 0 0 1px #E5E7EB,                     /* outline tipis */
+    0 8px 14px rgba(0,0,0,.06) !important;       /* bayangan lembut */
+}
+
+/* Nonaktifkan efek hover pada badge */
+.pelamar-bulan-ini .company-applications-table .badge:hover{
+  transform:none !important;
+  filter:none !important;
+}

@@ -1,5 +1,5 @@
 /* =========================================
-   EDIT PROFIL PERUSAHAAN — Deluxe + Animations
+   EDIT PROFIL PERUSAHAAN — Deluxe + Animations (Fixed v9)
    ========================================= */
 
 /* Theme */
@@ -15,62 +15,70 @@
   --red:#dc2626;
   --shadow:0 12px 32px rgba(2,6,23,.10);
   --shadow-lg:0 18px 44px rgba(2,6,23,.16);
+
+  /* aksen judul */
+  --grad-start:#1E2A78;
+  --grad-mid:#2E2BA2;
+  --grad-end:#3D23B2;
+  --ring:#e7ecff;
 }
 
-html { scroll-behavior:smooth; }
-body{ background:var(--bg); color:var(--ink) }
+html{ scroll-behavior:smooth }
+body{ background:var(--bg); color:var(--ink); font-family:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif }
 
 /* ============ Animations ============ */
-@keyframes fadeInUp { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
-@keyframes pulseRing { 0%{box-shadow:0 0 0 0 #e7ecff} 100%{box-shadow:0 0 0 6px rgba(231,236,255,0)} }
-@keyframes shimmer {
-  0%{background-position:-200% 0}
-  100%{background-position:200% 0}
-}
+@keyframes fadeInUp{ from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+@keyframes pulseRing{ 0%{box-shadow:0 0 0 0 var(--ring)} 100%{box-shadow:0 0 0 6px rgba(231,236,255,0)} }
+@keyframes shimmer{ 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 
 /* ============ Title ============ */
 .container > h1{
-  font-weight:900; font-size:36px; letter-spacing:.2px;
-  margin:18px 0 14px;
-  animation:fadeInUp .35s ease-out both;
+  font-weight:900; font-size:36px; letter-spacing:.2px; margin:18px 0 14px; animation:fadeInUp .35s ease-out both;
+  background:linear-gradient(90deg,var(--grad-start),var(--grad-mid),var(--grad-end));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 3px 8px rgba(29,39,125,.18);
+  position:relative; display:inline-block; padding-bottom:10px;
 }
+.container > h1::after {
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:4px;
+  border-radius:3px;
+  background:linear-gradient(90deg, var(--grad-start) 0%, var(--grad-mid) 50%, var(--grad-end) 100%);
+  box-shadow:0 0 8px rgba(61,35,178,0.45);
+  animation:slideLine 1.5s ease-in-out forwards;
+}
+
+@keyframes slideLine{ 0%{width:0; opacity:0; transform:translateX(-20px)} 100%{width:100%; opacity:1; transform:translateX(0)} }
 
 /* ============ Card ============ */
 .card{
-  border:1px solid var(--line) !important;
-  border-radius:16px !important;
-  background:var(--card) !important;
-  box-shadow:var(--shadow) !important;
-  overflow:hidden;
-  animation:fadeInUp .45s ease-out both;
+  border:1px solid var(--line) !important; border-radius:16px !important; background:var(--card) !important;
+  box-shadow:var(--shadow) !important; overflow:hidden; animation:fadeInUp .45s ease-out both;
 }
 .card-header{
-  background:#f9fbff !important;
-  border-bottom:1px solid var(--line) !important;
-  padding:14px 16px !important;
-  position:relative;
+  background:linear-gradient(135deg,var(--grad-start),var(--grad-mid) 50%,var(--grad-end)) !important;
+  border-bottom:1px solid transparent !important; padding:18px 20px !important; position:relative; color:#fff;
 }
 .card-header h3{
-  margin:0; font-weight:800; font-size:18px; color:#16223a;
+  margin:0; font-weight:800; font-size:18px; color:#fff; display:flex; align-items:center; gap:10px;
 }
+.card-header h3::before{ content:"🏢"; font-size:22px; opacity:.95 }
 .card-header::after{
-  content:"";
-  position:absolute; left:16px; right:16px; bottom:-1px; height:2px;
-  background-image:linear-gradient(90deg, transparent, #cfe0ff, transparent);
-  background-size:200% 100%;
-  animation:shimmer 2.2s linear infinite;
+  content:""; position:absolute; left:16px; right:16px; bottom:-1px; height:2px;
+  background-image:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+  background-size:200% 100%; animation:shimmer 2.2s linear infinite;
 }
 
-/* ============ Grid 2 kolom (tanpa ubah Blade) ============ */
-.card-body .row{
-  display:grid; grid-template-columns:1fr 1fr; gap:22px 24px;
-}
-@media (max-width: 992px){
-  .card-body .row{ grid-template-columns:1fr; }
-}
+/* ============ Grid 2 kolom ============ */
+.card-body{ padding:22px 22px 8px }
+.card-body .row{ display:grid; grid-template-columns:1fr 1fr; gap:22px 24px }
+@media (max-width:992px){ .card-body .row{ grid-template-columns:1fr } }
 
-/* Staggered entrance untuk tiap control */
-.card-body .col-md-6 > *{ animation:fadeInUp .35s ease-out both; }
+/* Staggered entrance */
+.card-body .col-md-6 > *{ animation:fadeInUp .35s ease-out both }
 .card-body .col-md-6 > *:nth-child(1){ animation-delay:.02s }
 .card-body .col-md-6 > *:nth-child(2){ animation-delay:.05s }
 .card-body .col-md-6 > *:nth-child(3){ animation-delay:.08s }
@@ -78,108 +86,105 @@ body{ background:var(--bg); color:var(--ink) }
 .card-body .col-md-6 > *:nth-child(5){ animation-delay:.14s }
 .card-body .col-md-6 > *:nth-child(6){ animation-delay:.17s }
 
-/* ============ Subsection label (Data PIC / Data Perusahaan) ============ */
+/* ============ Subsection label ============ */
 .card-body h5{
-  font-weight:800; font-size:15px; color:#1f2a44;
-  margin:4px 0 10px;
-  padding:6px 12px;
-  border:1px solid #e6ebff; background:#f5f8ff;
-  border-radius:12px;
-  position:relative; overflow:hidden;
+  font-weight:800; font-size:15px; color:#1f2a44; margin:4px 0 10px; padding:8px 12px;
+  border:1px solid #e6ebff; background:linear-gradient(90deg,#f5f8ff,#ffffff); border-radius:12px;
+  position:relative; overflow:hidden; box-shadow:0 6px 14px rgba(2,6,23,.04);
 }
 .card-body h5::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg,transparent,rgba(47,87,239,.08),transparent);
-  background-size:200% 100%;
-  animation:shimmer 3s linear infinite;
-  pointer-events:none;
+  content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(47,87,239,.08),transparent);
+  background-size:200% 100%; animation:shimmer 3s linear infinite; pointer-events:none;
 }
 
 /* ============ Form controls ============ */
 .form-label{ font-weight:700; font-size:12px; color:#64748b; margin-bottom:6px }
-
 .form-control, .form-select, textarea.form-control{
-  border:1px solid #d6dae3; border-radius:12px; background:#fff;
-  padding:.65rem .9rem; line-height:1.45;
-  transition: box-shadow .25s ease, border-color .25s ease, transform .06s ease;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-  will-change: transform, box-shadow, border-color;
+  position:relative; z-index:1;
+  border:1px solid #d6dae3; border-radius:12px; background:#fff; padding:.7rem 1rem; line-height:1.45;
+  transition: box-shadow .25s ease, border-color .25s ease, transform .06s ease, background-color .25s ease;
+  box-shadow:0 0 0 rgba(0,0,0,0);
 }
-.form-control:hover, .form-select:hover, textarea.form-control:hover{
-  border-color:#c7cfeb;
-}
+.form-control:hover, .form-select:hover, textarea.form-control:hover{ border-color:#c7cfeb; background:#fcfdff }
 .form-control:focus, .form-select:focus, textarea.form-control:focus{
-  border-color:#b8c4ff;
-  box-shadow:0 0 0 4px #e7ecff;
-  transform:translateY(-1px);
-  animation:pulseRing .9s ease-out 1;
-  outline: none;
+  border-color:#b8c4ff; box-shadow:0 0 0 4px #e7ecff, 0 8px 24px rgba(2,6,23,.06);
+  transform:translateY(-1px); animation:pulseRing .9s ease-out 1; outline:none;
 }
+textarea.form-control{ resize:vertical; min-height:104px }
 
-/* Valid / invalid states (subtle) */
-.form-control.is-valid, .form-select.is-valid, textarea.is-valid{
-  border-color:rgba(22,163,74,.65);
-  box-shadow:0 0 0 4px rgba(22,163,74,.12);
-}
-.form-control.is-invalid, .form-select.is-invalid, textarea.is-invalid{
-  border-color:rgba(220,38,38,.7);
-  box-shadow:0 0 0 4px rgba(220,38,38,.10);
-}
+/* Valid / invalid */
+.form-control.is-valid, .form-select.is-valid, textarea.is-valid{ border-color:rgba(22,163,74,.65); box-shadow:0 0 0 4px rgba(22,163,74,.12) }
+.form-control.is-invalid, .form-select.is-invalid, textarea.is-invalid{ border-color:rgba(220,38,38,.7); box-shadow:0 0 0 4px rgba(220,38,38,.10) }
 
-/* Textarea */
-textarea.form-control{
-  resize: vertical;
-  min-height: 96px;
-}
-
-/* File input — feel like drop zone */
+/* File input */
 .form-control[type=file]{
-  padding:.55rem .9rem; cursor:pointer;
-  border-style:dashed;
-  background:
-    linear-gradient(#fff,#fff) padding-box,
-    repeating-linear-gradient(45deg,#eef2ff 0 8px,#f6f8ff 8px 16px) border-box;
+  padding:.6rem 1rem; cursor:pointer; border-style:dashed;
+  background:linear-gradient(#fff,#fff) padding-box, repeating-linear-gradient(45deg,#eef2ff 0 8px,#f6f8ff 8px 16px) border-box;
 }
 .form-control[type=file]:hover{ border-color:#b8c4ff }
 
 /* Helper text */
-.form-text{ color:var(--muted) !important }
+.form-text{ color:var(--muted) !important; font-size:12.5px }
 
 /* Preview thumbs */
 .card-body .mt-2 img[alt="Foto Profil"],
 .card-body .mt-2 img[alt="Logo"]{
-  width:96px; height:96px; object-fit:cover;
-  border-radius:14px; background:#f6f8ff;
-  border:1px dashed #cbd5ff; padding:8px;
-  filter:drop-shadow(0 6px 12px rgba(2,6,23,.1));
+  width:96px; height:96px; object-fit:cover; border-radius:14px; background:#f6f8ff;
+  border:1px dashed #cbd5ff; padding:8px; filter:drop-shadow(0 6px 12px rgba(2,6,23,.1));
   transition:transform .18s ease, box-shadow .18s ease;
 }
 .card-body .mt-2 img:hover{ transform:translateY(-2px) scale(1.02); box-shadow:var(--shadow-lg) }
 
+/* ============ Social Media — ikon aman (wrapper) ============ */
+/* Pastikan tidak ada icon/background lama di input */
+#linkedin,#facebook,#twitter,#tiktok,#social_media,#youtube{ background:none !important }
+
+/* Bungkus input dengan .input-icon */
+.input-icon{ position:relative }
+.input-icon .form-control{ padding-left:48px } /* ruang untuk ikon kiri */
+.input-icon .brand-icon{
+  position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; pointer-events:none; opacity:.95;
+  background-repeat:no-repeat; background-position:center; background-size:contain;
+  z-index:0; /* berada di bawah area ketik */
+}
+
+/* SVG data-URI transparan (tidak menutupi input) */
+.brand-icon.linkedin{  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230a66c2'><path d='M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.07C13.54 9 15.18 7.73 17.61 7.73c5.06 0 6 3.33 6 7.67V24h-5v-7.1c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.75 1.86-2.75 3.78V24H8z'/></svg>") }
+.brand-icon.facebook{  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231877f2'><path d='M22.675 0H1.325A1.33 1.33 0 000 1.326V22.67C0 23.406.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.894-4.787 4.66-4.787 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.764v2.314h3.588l-.467 3.622h-3.121V24h6.116z'/></svg>") }
+.brand-icon.twitter{   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23111'><path d='M18.244 2H21.5l-7.5 8.566L22.5 22h-6.213l-4.86-6.053L5.7 22H2.44l8.06-9.2L1.5 2h6.32l4.39 5.58L18.244 2Zm-1.09 18h1.7L7.02 3.94H5.22L17.154 20Z'/></svg>") }
+.brand-icon.tiktok{    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'><path d='M21.5 8.5c-3.3 0-6-2.7-6-6h-3.4v13.4a3.6 3.6 0 1 1-3-3.5V8.8a7 7 0 1 0 6.3 6.95v-6.2c1.2 1 2.8 1.6 4.5 1.6v-2.65Z'/></svg>") }
+.brand-icon.instagram{ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%23f58529'/><stop offset='.5' stop-color='%23dd2a7b'/><stop offset='1' stop-color='%235153d4'/></linearGradient></defs><path fill='url(%23g)' d='M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 4a6 6 0 1 0 .001 12.001A6 6 0 0 0 12 6Zm6.5-.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z'/></svg>") }
+.brand-icon.youtube{   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'><path d='M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z'/></svg>") }
+
+/* Hover & Focus medsos */
+.input-icon .form-control:hover{ border-color:#c7cfeb; background:#fff }
+.input-icon .form-control:focus{
+  border-color:#b8c4ff; box-shadow:0 0 0 4px #e7ecff, 0 8px 20px rgba(2,6,23,.06); transform:translateY(-1px);
+}
+
 /* ============ Actions bar (sticky) ============ */
 .card-body .d-flex{
-  position: sticky; bottom:0; z-index:2;
-  margin-top:18px; padding:10px 12px;
+  position:sticky; bottom:0; z-index:2; margin-top:18px; padding:12px 12px;
   background:linear-gradient(180deg, rgba(255,255,255,0) 0, rgba(255,255,255,.9) 30%, rgba(255,255,255,.98) 100%);
-  backdrop-filter: blur(2px);
-  border-top:1px solid var(--line);
+  backdrop-filter: blur(2px); border-top:1px solid var(--line);
   border-bottom-left-radius:12px; border-bottom-right-radius:12px;
 }
 
 /* Buttons */
 .btn-primary{
-  background:var(--blue) !important; border-color:var(--blue) !important;
-  border-radius:12px !important; padding:.65rem 1rem !important;
-  font-weight:700 !important; box-shadow:0 8px 16px rgba(47,87,239,.25) !important;
-  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  background:linear-gradient(90deg,var(--blue),#4b6bff) !important; border-color:transparent !important;
+  border-radius:12px !important; padding:.65rem 1rem !important; font-weight:700 !important;
+  box-shadow:0 8px 16px rgba(47,87,239,.25) !important; transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
 }
-.btn-primary:hover{
-  background:var(--blue-dark) !important; border-color:var(--blue-dark) !important;
-  transform:translateY(-2px); box-shadow:0 12px 22px rgba(47,87,239,.35) !important;
-}
+.btn-primary:hover{ background:linear-gradient(90deg,var(--blue-dark),#304fe3) !important; transform:translateY(-2px); box-shadow:0 12px 22px rgba(47,87,239,.35) !important }
 .btn-secondary{
-  border-radius:12px !important; padding:.65rem 1rem !important;
+  background:#dc2626 !important; border:1px solid #dc2626 !important; color:#fff !important;
+  border-radius:12px !important; padding:.65rem 1rem !important; font-weight:700 !important;
+  box-shadow:0 8px 16px rgba(220,38,38,.25) !important; transition: all .18s ease-in-out;
 }
+.btn-secondary:hover{ background:#b91c1c !important; border-color:#b91c1c !important; transform:translateY(-2px); box-shadow:0 12px 22px rgba(220,38,38,.35) !important }
+.btn-secondary:active{ transform:scale(.97); box-shadow:0 4px 12px rgba(220,38,38,.25) !important }
 
 /* Spacing for buttons */
 .card-body .d-flex .btn{ min-width:140px }
@@ -189,47 +194,3 @@ textarea.form-control{
 
 /* Focus cleanup */
 .container *:focus{ outline:none }
-/* ===== Garis di bawah judul utama ===== */
-.container > h1 {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px;
-  margin-bottom: 18px;
-}
-.container > h1::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 4px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
-  animation: slideLine 1.5s ease-in-out forwards;
-}
-@keyframes slideLine {
-  0% { width: 0; opacity: 0; transform: translateX(-20px); }
-  100% { width: 100%; opacity: 1; transform: translateX(0); }
-}
-
-/* ===== Tombol Batal — warna merah ===== */
-.btn-secondary {
-  background: #dc2626 !important;
-  border: 1px solid #dc2626 !important;
-  color: #fff !important;
-  border-radius: 12px !important;
-  padding: .65rem 1rem !important;
-  font-weight: 700 !important;
-  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.25) !important;
-  transition: all 0.18s ease-in-out;
-}
-.btn-secondary:hover {
-  background: #b91c1c !important;
-  border-color: #b91c1c !important;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 22px rgba(220, 38, 38, 0.35) !important;
-}
-.btn-secondary:active {
-  transform: scale(.97);
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25) !important;
-}
