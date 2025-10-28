@@ -7,16 +7,16 @@
 @section('content')
 <div class="container-fluid kelola-pelamar">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="h4 mb-0">Semua Pelamar</h2>
-        <div class="d-flex align-items-center gap-2">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h2 class="page-title mb-0">Semua Pelamar</h2>
+        <div class="d-flex align-items-center flex-wrap gap-2">
+            {{-- Total Pelamar SAMA PERSIS seperti di Kelola Lowongan Kerja --}}
+            <span class="btn-total">
+                <i class="fas fa-users me-1"></i> Total Pelamar : {{ $applications->total() }}
+            </span>
             <a href="{{ route('company.applications.this_month') }}" class="btn btn-primary">
                 <i class="fas fa-calendar-alt me-2"></i> Pelamar Bulan Ini
             </a>
-            <div class="text-muted fw-semibold">
-                <i class="fas fa-users me-2"></i>
-                Total Pelamar: <strong>{{ $applications->total() }}</strong>
-            </div>
         </div>
     </div>
 
@@ -216,6 +216,7 @@
     @endif
 </div>
 
+<!-- Script tetap sama -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const tableCard = document.querySelector('.company-applications-table');
@@ -259,6 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('resize', removeBackdrop);
 });
 </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const tableCard = document.querySelector('.company-applications-table');
@@ -350,6 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const dropdowns = document.querySelectorAll('.company-applications-table .dropdown');
@@ -404,6 +407,5 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-
 
 @endsection

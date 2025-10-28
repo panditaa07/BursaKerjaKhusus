@@ -558,3 +558,219 @@ textarea:focus,
   font-weight: 800;
   font-size: 1.15rem;          /* sedikit lebih besar agar seimbang */
 }
+
+/* ========== SECTION WRAPPER + TITLE ========== */
+.table-section {
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+  border-top: 5px solid #1E3A8A;
+  text-align: center;
+  overflow: visible !important;
+  position: relative;
+}
+
+/* JUDUL SECTION - SERAGAM DENGAN UKURAN YANG PAS */
+.section-title {
+  font-weight: 800;
+  font-size: 1.6rem; /* Ukuran lebih proporsional untuk Pelamar Terbaru */
+  color: #1E3A8A;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+}
+
+/* JUDUL LOWONGAN TERBARU - UKURAN SAMA DENGAN PELAMAR TERBARU */
+.jobs-latest .section-title {
+  font-weight: 800;
+  font-size: 1.6rem !important; /* Pastikan sama dengan .section-title */
+  color: #1E3A8A !important; /* Pastikan warna berubah */
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px !important;
+  margin-bottom: 22px !important;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+}
+
+/* GARIS BAWAH - SERAGAM UNTUK SEMUA */
+.section-title::after,
+.jobs-latest .section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  width: 130px; /* Lebar seragam */
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95); /* Gradient sama */
+  box-shadow: 0 2px 8px rgba(30, 58, 138, .3);
+}
+
+/* ========== TABLE ========== */
+.table-custom {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: visible !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+  font-family: "Inter", sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+/* HEADER TABEL - GRADIENT SAMA */
+.table-custom thead tr {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+.table-custom thead th {
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  background: transparent !important;
+}
+
+/* ========== LOWONGAN TERBARU - WARNA SERAGAM ========== */
+.jobs-latest {
+  --b600: #1E3A8A;
+  --b700: #1d4ed8;
+  --ink: #1E3A8A;
+  --muted: #6b7280;
+}
+
+/* PASTIKAN WARNA TEXT DI CARD LOWONGAN SERAGAM */
+.jobs-latest .jl-company { 
+  font-weight: 700; 
+  color: #1E3A8A !important;
+  font-size: 1rem;
+}
+
+.jobs-latest .jl-title {
+  display: inline-block;
+  margin-top: 2px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #1E3A8A !important;
+  text-decoration: none;
+}
+
+.jobs-latest .jl-title:hover { 
+  text-decoration: underline; 
+  color: #4C1D95 !important;
+}
+
+/* Gradient accent card lowongan */
+.jobs-latest .jl-accent {
+  height: 86px;
+  background: linear-gradient(135deg, #1E3A8A 0%, #4C1D95 100%);
+  box-shadow: inset 0 -2px 6px rgba(0, 0, 0, .2);
+}
+
+/* ========== OVERRIDE SPECIFIC UNTUK PASTIKAN WARNA BERUBAH ========== */
+.jobs-header .section-title {
+  color: #1E3A8A !important;
+  font-size: 1.6rem !important;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .section-title,
+  .jobs-latest .section-title {
+    font-size: 1.4rem !important;
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  
+  .section-title::after,
+  .jobs-latest .section-title::after {
+    width: 110px;
+    bottom: -4px;
+  }
+  
+  .jobs-latest .jl-company { 
+    font-size: 0.9rem;
+  }
+  
+  .jobs-latest .jl-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* JUDUL SECTION - HANYA UKURAN SAJA */
+.section-title {
+  font-weight: 800;
+  font-size: 2.2rem !important; /* Hanya ubah ukuran */
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-bottom: 16px;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+  line-height: 1.1;
+  /* Warna tetap seperti semula */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem !important; /* Hanya ukuran di mobile */
+    padding-bottom: 1px;
+    margin-bottom: 14px;
+    line-height: 1.1;
+    /* Warna tetap */
+  }
+}
+
+/* JUDUL SECTION - SESUAIKAN DENGAN LOWONGAN TERBARU */
+.section-title {
+  font-weight: 800;
+  font-size: 1.75rem !important; /* Kembali ke ukuran semula */
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-bottom: 16px;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+  line-height: 1.1;
+  /* Warna tetap */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem !important; /* Kembali ke ukuran mobile semula */
+    padding-bottom: 1px;
+    margin-bottom: 14px;
+    line-height: 1.1;
+    /* Warna tetap */
+  }
+} 
+
+/* HANYA UBAH WARNA TEXT LOWONGAN TERBARU */
+.jobs-header .section-title,
+.jobs-latest .section-title,
+.jobs-latest h3.section-title,
+.jobs-latest .jobs-header h3.section-title {
+  color: #4C1D95 !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .jobs-header .section-title,
+  .jobs-latest .section-title,
+  .jobs-latest h3.section-title,
+  .jobs-latest .jobs-header h3.section-title {
+    color: #4C1D95 !important;
+  }
+}

@@ -7,16 +7,16 @@
 @section('content')
 <div class="container-fluid pelamar-bulan-ini">
     <!-- Header Title -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="h4 mb-0">Pelamar Bulan Ini</h2>
-        <div class="d-flex align-items-center">
-            <a href="{{ route('company.pelamar.all') }}" class="btn btn-primary me-3">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h2 class="page-title mb-0">Pelamar Bulan Ini</h2>
+        <div class="d-flex align-items-center flex-wrap gap-2">
+            {{-- Total Pelamar SAMA PERSIS seperti di Kelola Lowongan Kerja --}}
+            <span class="btn-total">
+                <i class="fas fa-users me-1"></i> Pelamar Bulan Ini : {{ $applications->total() }}
+            </span>
+            <a href="{{ route('company.pelamar.all') }}" class="btn btn-primary">
                 <i class="fas fa-list me-2"></i> Lihat Semua Pelamar
             </a>
-            <div class="text-muted fw-semibold">
-                <i class="fas fa-users me-2 text-primary"></i>
-                Total Pelamar: <strong>{{ $applications->total() }}</strong>
-            </div>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
     <form method="GET" action="{{ route('company.applications.this_month') }}" class="mb-4">
         <div class="row">
             <div class="col-md-6">
-                <div class="input-group">
+                <div class="input-group search-hero">
                     <input
                         type="text"
                         name="search"
@@ -220,6 +220,7 @@
     @endif
 </div>
 
+<!-- Script tetap sama -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     class CustomDropdown {

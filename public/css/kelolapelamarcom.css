@@ -464,3 +464,618 @@
     color: rgb(30, 58, 138);
     font-weight: 600;
 }
+
+
+/* ====== HEADER TABEL ====== */
+.company-applications-table thead tr {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+/* ====== BUTTON PELAMAR BULAN INI ====== */
+.btn-primary {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* ====== BUTTON CARI ====== */
+.btn-search {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+.btn-search:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+}
+
+/* ====== BUTTON FILTER (Total Pelamar, Pelamar Baru, Pelamar Dalam Proses) ====== */
+.btn-outline-primary {
+  background: transparent !important;
+  border: 2px solid #1E3A8A !important;
+  color: #1E3A8A !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border-color: transparent !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* Button filter aktif */
+.btn-primary[class*="btn"]:not(.btn-search) {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+/* ====== BUTTON RESET ====== */
+.btn-reset {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+.btn-reset:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+}
+
+/* ====== CONSISTENT STYLING FOR ALL BUTTONS ====== */
+.btn-month,
+.btn-search,
+.btn-reset,
+.btn-outline-primary,
+.btn-primary {
+  transition: all 0.3s ease !important;
+}
+
+.btn-month:hover,
+.btn-search:hover,
+.btn-reset:hover,
+.btn-outline-primary:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* ====== HEADER TITLE CONSISTENCY ====== */
+.page-title {
+  color: #1E3A8A !important;
+}
+
+.page-title::after {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+/* ====== SEARCH BOX BORDER ====== */
+.search-group .form-control {
+  border: 2px solid #d0e1ff !important;
+}
+
+/* ====== TABLE BORDER CONSISTENCY ====== */
+.company-applications-table {
+  border: 2px solid #d0e1ff;
+}
+
+/* ====== STATUS BADGES CONSISTENCY ====== */
+.status-pending {
+  background: #E2E8F0;
+  color: #1E3A8A;
+}
+
+/* ====== SEARCH BAR ====== */
+.search-hero .input-group {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+}
+
+.search-hero .form-control {
+  border-radius: 8px 0 0 8px !important;
+  border: 2px solid #d0e1ff !important;
+  padding: 10px 16px !important;
+  flex: 1;
+}
+
+.search-hero .btn-primary[type="submit"] {
+  border-radius: 0 8px 8px 0 !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 10px 20px !important;
+  transition: .25s;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  /* Biarkan bentuk seperti di kelola lowongan */
+}
+
+.search-hero .btn-primary[type="submit"]:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+.search-hero .btn-outline-secondary {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  margin-left: 8px !important;
+  font-weight: 600 !important;
+  padding: 10px 16px !important;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  transition: .25s;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.search-hero .btn-outline-secondary:hover {
+  background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, .4) !important;
+}
+
+.search-hero .btn i {
+  margin-right: 6px;
+}
+
+/* ====== HEADER TABEL ====== */
+.company-applications-table thead tr {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+/* ====== TEXT "SEMUA PELAMAR" ====== */
+.kelola-pelamar h2.h4 {
+  color: #1E3A8A !important;
+  font-weight: 700 !important;
+}
+
+/* ====== BUTTON PELAMAR BULAN INI ====== */
+a.btn-primary {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  transition: .25s;
+}
+
+a.btn-primary:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+/* ====== BUTTON FILTER ====== */
+.btn-outline-primary {
+  background: transparent !important;
+  border: 2px solid #1E3A8A !important;
+  color: #1E3A8A !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border-color: transparent !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* Button filter aktif */
+a.btn-primary:not([href*="search"]) {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* ====== BUTTON RESET ====== */
+.btn-reset {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+}
+
+.btn-reset:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .search-hero .input-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-hero .form-control {
+    border-radius: 8px !important;
+    width: 100%;
+  }
+  
+  .search-hero .btn-primary[type="submit"],
+  .search-hero .btn-outline-secondary {
+    border-radius: 8px !important;
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}
+
+/* ====== HEADER TABEL - SPECIFIC ====== */
+.kelola-pelamar .company-applications-table thead tr {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+.kelola-pelamar .company-applications-table thead th {
+  background: transparent !important;
+  color: #fff !important;
+  border: none !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  padding: 12px 14px !important;
+  text-align: center;
+}
+
+/* ====== TEXT "SEMUA PELAMAR" - UKURAN BESAR & WARNA #4C1D95 ====== */
+.kelola-pelamar h2.h4 {
+    color: #4C1D95 !important; /* Warna ungu */
+    font-weight: 600 !important;
+    font-size: 2rem !important; /* Ukuran lebih besar */
+    letter-spacing: 0.3px;
+}
+
+/* ====== HEADER TABEL ====== */
+.kelola-pelamar .company-applications-table thead tr {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+.kelola-pelamar .company-applications-table thead th {
+  background: transparent !important;
+  color: #fff !important;
+  border: none !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  padding: 12px 14px !important;
+  text-align: center;
+}
+
+.kelola-pelamar .company-applications-table thead th:first-child {
+  border-top-left-radius: 14px;
+}
+
+.kelola-pelamar .company-applications-table thead th:last-child {
+  border-top-right-radius: 14px;
+}
+
+/* ====== SEARCH BAR ====== */
+.search-hero .input-group {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+}
+
+.search-hero .form-control {
+  border-radius: 8px 0 0 8px !important;
+  border: 2px solid #d0e1ff !important;
+  padding: 10px 16px !important;
+  flex: 1;
+}
+
+.search-hero .btn-primary[type="submit"] {
+  border-radius: 0 8px 8px 0 !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 10px 20px !important;
+  transition: .25s;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+}
+
+.search-hero .btn-primary[type="submit"]:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+.search-hero .btn-outline-secondary {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  margin-left: 8px !important;
+  font-weight: 600 !important;
+  padding: 10px 16px !important;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  transition: .25s;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.search-hero .btn-outline-secondary:hover {
+  background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, .4) !important;
+}
+
+/* ====== BUTTON PELAMAR BULAN INI ====== */
+.kelola-pelamar a.btn-primary {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  transition: .25s;
+}
+
+.kelola-pelamar a.btn-primary:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+/* ====== BUTTON FILTER ====== */
+.kelola-pelamar .btn-outline-primary {
+  background: transparent !important;
+  border: 2px solid #1E3A8A !important;
+  color: #1E3A8A !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.kelola-pelamar .btn-outline-primary:hover,
+.kelola-pelamar .btn-outline-primary:focus {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border-color: transparent !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* Button filter aktif */
+.kelola-pelamar a.btn-primary:not([href*="search"]) {
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .search-hero .input-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-hero .form-control {
+    border-radius: 8px !important;
+    width: 100%;
+  }
+  
+  .search-hero .btn-primary[type="submit"],
+  .search-hero .btn-outline-secondary {
+    border-radius: 8px !important;
+    width: 100%;
+    margin-left: 0 !important;
+  }
+  
+  /* Text Semua Pelamar di mobile */
+  .kelola-pelamar h2.h4 {
+    font-size: 1.7rem !important; /* Sedikit lebih kecil di mobile */
+  }
+}
+
+/* =========================================================
+   TOTAL PELAMAR - SAMA PERSIS seperti di Kelola Lowongan Kerja
+   ========================================================= */
+.btn-total {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    color: #fff !important;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+    text-decoration: none !important;
+    border: none;
+}
+
+.btn-total:hover {
+    background: linear-gradient(135deg, #1E40A5, #5B21B6);
+    transform: translateY(-2px);
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.btn-total i {
+    font-size: 14px;
+}
+
+/* Hapus style total pelamar yang lama */
+.text-muted.fw-semibold {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-total {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-total i {
+        font-size: 12px;
+    }
+}
+
+/* ====== HEADER HALAMAN ====== */
+.kelola-pelamar .d-flex.justify-content-between.align-items-center.mb-4 {
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.kelola-pelamar .page-title {
+    margin-bottom: 0 !important;
+    color: #1E3A8A !important;
+    font-weight: 700 !important;
+    font-size: 28px !important;
+}
+
+/* ====== CONSISTENT BUTTON STYLING ====== */
+.kelola-pelamar .btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+    transition: .25s;
+}
+
+.kelola-pelamar .btn-primary:hover {
+    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+/* ====== SEARCH BAR ====== */
+.search-hero .input-group {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+}
+
+.search-hero .form-control {
+    border-radius: 8px 0 0 8px !important;
+    border: 2px solid #d0e1ff !important;
+    padding: 10px 16px !important;
+    flex: 1;
+}
+
+.search-hero .btn-primary[type="submit"] {
+    border-radius: 0 8px 8px 0 !important;
+    margin: 0 !important;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 10px 20px !important;
+    transition: .25s;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+}
+
+.search-hero .btn-primary[type="submit"]:hover {
+    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+}
+
+.search-hero .btn-outline-secondary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-left: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+    transition: .25s;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.search-hero .btn-outline-secondary:hover {
+    background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30, 58, 138, .4) !important;
+}
+
+/* ====== BUTTON FILTER ====== */
+.kelola-pelamar .btn-outline-primary {
+    background: transparent !important;
+    border: 2px solid #1E3A8A !important;
+    color: #1E3A8A !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.kelola-pelamar .btn-outline-primary:hover,
+.kelola-pelamar .btn-outline-primary:focus {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    border-color: transparent !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+/* Button filter aktif */
+.kelola-pelamar a.btn-primary:not([href*="search"]) {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .search-hero .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-hero .form-control {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+    
+    .search-hero .btn-primary[type="submit"],
+    .search-hero .btn-outline-secondary {
+        border-radius: 8px !important;
+        width: 100%;
+        margin-left: 0 !important;
+    }
+    
+    .kelola-pelamar .page-title {
+        font-size: 1.7rem !important;
+    }
+}

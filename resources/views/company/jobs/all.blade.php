@@ -11,7 +11,10 @@
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
         <h2 class="page-title mb-0">Semua Lowongan</h2>
         <div class="d-flex align-items-center flex-wrap gap-2">
-            <span class="me-3 total-lowongan">Total Lowongan: {{ $jobs->total() }}</span>
+            {{-- Total Lowongan SAMA PERSIS seperti di Kelola Pelamar --}}
+            <span class="btn-total">
+                <i class="fas fa-briefcase me-1"></i> Total : {{ $jobs->total() }}
+            </span>
             <a href="{{ route('company.jobs.create') }}?from=all" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Tambah Lowongan
             </a>
