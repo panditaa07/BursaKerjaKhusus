@@ -2213,4 +2213,240 @@ body.job-detail .card {
 .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0 {
   color: rgb(30, 58, 138) !important; /* same as underline */
 }
+/* ==========================================================
+   THEME: BLUE → PURPLE (sesuai screenshot)
+   Tempel di PALING BAWAH file CSS agar menang dari rule lama
+   ========================================================== */
+:root{
+  /* gradasi utama: biru → ungu (tone seperti gambar) */
+  --brand-start: #1e3a8a; /* indigo-800 */
+  --brand-end:   #7c3aed; /* violet-600 */
+  --brand-mid:   #5b6fff;
+  --gradient: linear-gradient(135deg, var(--brand-start) 0%, var(--brand-end) 100%);
+  --primary: var(--brand-start);
+  --primary-dark: #4338ca;
+  --accent: var(--brand-end);
+}
+
+/* -----------------------------
+   TEKS & IKON BIRU → GRADASI
+   ----------------------------- */
+.text-primary,
+h2.mb-0,
+h2.mb-0 i,
+.company-name,
+.job-title-enhanced h4,
+.job-title-text,
+.contact-item i,
+.info-card-enhanced .table-borderless i,
+.icon-container i,
+nav[aria-label="breadcrumb"] .breadcrumb a {
+  background: var(--gradient) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* fallback mesin lama (jaga tetap biru keunguan) */
+@supports not (-webkit-background-clip:text) {
+  .text-primary,
+  h2.mb-0,
+  h2.mb-0 i,
+  .company-name,
+  .job-title-enhanced h4,
+  .job-title-text,
+  .contact-item i,
+  .info-card-enhanced .table-borderless i,
+  .icon-container i,
+  nav[aria-label="breadcrumb"] .breadcrumb a {
+    color: var(--brand-mid) !important;
+  }
+}
+
+/* batalkan rule lama yang memaksa .company-name hitam */
+.company-name{
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* -----------------------------
+   GARIS AKSEN & BORDER ATAS KARTU
+   ----------------------------- */
+.d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0::after,
+.info-card-enhanced::before,
+.alert-light-enhanced::before,
+.enhanced-header::before,
+.company-info-enhanced::before,
+.section-divider{
+  background: var(--gradient) !important;
+}
+
+/* -----------------------------
+   KONTENER IKON & AVATAR PILL
+   ----------------------------- */
+.icon-container{
+  background: var(--gradient) !important;
+  color:#fff !important;
+  box-shadow: 0 4px 14px rgba(124,58,237,.28) !important;
+}
+.avatar-pill{ background: var(--gradient) !important; color:#fff !important; }
+
+/* -----------------------------
+   HEADER TABEL PELAMAR & BAR PELAMAR
+   ----------------------------- */
+.table-applicants thead tr,
+.applicant-header-enhanced{
+  background: var(--gradient) !important;
+  color:#fff !important;
+}
+
+/* -----------------------------
+   BREADCRUMB HOVER
+   ----------------------------- */
+nav[aria-label="breadcrumb"] .breadcrumb a:hover{ filter: brightness(1.05); text-decoration: underline; }
+
+/* -----------------------------
+   TOMBOL BIRU → GRADASI
+   ----------------------------- */
+.btn,
+.btn-primary,
+.btn-dark-back,
+.btn-dark-toggle,
+.jd-actions .btn-back,
+.jd-actions .btn-outline-primary,
+.jd-actions .btn-secondary {
+  background: var(--gradient) !important;
+  color:#fff !important;
+  border:none !important;
+}
+.btn:hover,
+.btn-primary:hover,
+.btn-dark-back:hover,
+.btn-dark-toggle:hover,
+.jd-actions .btn-back:hover,
+.jd-actions .btn-outline-primary:hover,
+.jd-actions .btn-secondary:hover {
+  filter: brightness(.97);
+}
+
+/* tombol “Lihat” tetap cyan outline (sesuai desain awal) */
+.btn-view{
+  background:#fff !important;
+  border-color:#06b6d4 !important;
+  color:#06b6d4 !important;
+}
+
+/* -----------------------------
+   CARD STRIP, AVATAR BORDER RING
+   ----------------------------- */
+.card.enhanced-card::before{ background: var(--gradient) !important; display:block !important; }
+.profile-avatar{
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    var(--gradient) border-box !important;
+}
+
+/* -----------------------------
+   IKON INFO UMUM & DETAIL TAMBAHAN
+   ----------------------------- */
+.info-card-enhanced .table-borderless tr i,
+.contact-item i{
+  background: var(--gradient) !important;
+  -webkit-background-clip:text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* -----------------------------
+   SELECTION
+   ----------------------------- */
+::selection{ background: rgba(124,58,237,.20); color:#0b1220; }
+/* ==========================================================
+   ICON & LOGOUT COLOR ADJUSTMENTS
+   ========================================================== */
+
+/* ikon selain ikon di dekat judul (briefcase) jadi putih */
+.icon-container:not(:has(.fa-briefcase)) i,
+.info-card-enhanced i,
+.contact-item i,
+.table-applicants i,
+.company-logo-main i,
+.chip i {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+}
+
+/* pastikan latar belakang icon-container (selain briefcase) tetap gradient biru–ungu */
+.icon-container:not(:has(.fa-briefcase)) {
+  background: linear-gradient(135deg, #1e3a8a, #7c3aed) !important;
+  color: #fff !important;
+}
+
+/* ikon di dekat judul tetap gradasi biru–ungu */
+h2.mb-0 i.fa-briefcase {
+  background: linear-gradient(135deg, #1e3a8a, #7c3aed) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ==========================================================
+   LOGOUT BUTTON (sidebar bawah) — merah solid
+   ========================================================== */
+.sidebar .btn,
+.sidebar .btn-logout,
+.sidebar .logout,
+.sidebar a[href*="logout"] {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 700;
+  letter-spacing: .3px;
+  box-shadow: 0 6px 14px rgba(220,38,38,.35);
+  transition: all .25s ease;
+}
+
+.sidebar .btn:hover,
+.sidebar a[href*="logout"]:hover {
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d) !important;
+  box-shadow: 0 8px 18px rgba(185,28,28,.45);
+  transform: translateY(-2px);
+}
+
+.sidebar .btn:active,
+.sidebar a[href*="logout"]:active {
+  transform: scale(.97);
+  box-shadow: inset 0 3px 8px rgba(0,0,0,.2);
+}
+/* ==========================================================
+   BUTTON HAPUS — MERAH GRADIENT (senada dengan Logout)
+   ========================================================== */
+.btn-dark-delete,
+.jd-actions .btn-danger {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important; /* merah → merah gelap */
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.35) !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-dark-delete:hover,
+.jd-actions .btn-danger:hover {
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d) !important; /* gelap saat hover */
+  box-shadow: 0 8px 18px rgba(185, 28, 28, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+.btn-dark-delete:active,
+.jd-actions .btn-danger:active {
+  transform: scale(0.97);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ikon di dalam tombol hapus tetap putih */
+.btn-dark-delete i,
+.jd-actions .btn-danger i {
+  color: #ffffff !important;
+}
 
