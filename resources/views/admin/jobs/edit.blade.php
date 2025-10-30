@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/editlowongancom.css') }}">
+<link rel="stylesheet" href="{{ asset('css/editlowonganadmin.css') }}">
 @endpush
 
 @section('content')
@@ -47,7 +47,7 @@
                         <div class="row mb-4">
                             <div class="col-12">
                                 <h5 class="border-bottom pb-2 mb-3">
-                                    <i class="fas fa-info-circle text-primary me-2"></i>Informasi Dasar
+                                    <i class="fas fa-info-circle me-2"></i>Informasi Dasar
                                 </h5>
                             </div>
                         </div>
@@ -187,7 +187,7 @@
                         <div class="row mb-4">
                             <div class="col-12">
                                 <h5 class="border-bottom pb-2 mb-3">
-                                    <i class="fas fa-file-alt text-primary me-2"></i>Deskripsi Pekerjaan
+                                    <i class="fas fa-file-alt me-2"></i>Deskripsi Pekerjaan
                                 </h5>
                             </div>
                         </div>

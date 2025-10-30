@@ -55,7 +55,7 @@ body {
 .page-title {
     font-weight: 700;
     font-size: 1.8rem;
-    color: #4C1D95 ; /* Biru tua */
+    color: #4C1D95; /* Biru tua */
 }
 
 @keyframes fadeInDown {
@@ -638,7 +638,7 @@ td.aksi .table-btn {
 
 /* Tombol kembali */
 .btn-kembali {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
     border: none;
     color: #fff !important;
     font-weight: 600;

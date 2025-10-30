@@ -3,7 +3,7 @@
 @section('title', 'Detail Lowongan Kerja')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/detaillowongancomp.css') }}?v={{ time() }}">
+<link rel="stylesheet" href="{{ asset('css/detaillowonganadmin.css') }}?v={{ time() }}">
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@
     <!-- Header dengan Tombol Aksi -->
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <h2 class="mb-0">
-            <i class="fas fa-briefcase text-primary"></i>
+            <i class="fas fa-briefcase"></i>
             Detail Lowongan Kerja
         </h2>
     </div>
@@ -194,7 +194,7 @@
                                             @if(in_array($jobPost->status, ['active'])) bg-success
                                             @elseif(in_array($jobPost->status, ['inactive'])) bg-danger
                                             @else bg-warning @endif">
-                                            <i class="fas fa-{{ in_array($jobPost->status, ['active']) ? 'check' : 'pause' }} me-1"></i>
+                                            <i {{ in_array($jobPost->status, ['active']) ? 'check' : 'pause' }} me-1"></i>
                                             {{ ucfirst($jobPost->status) }}
                                         </span>
                                     </td>

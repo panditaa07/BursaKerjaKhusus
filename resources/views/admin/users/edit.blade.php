@@ -23,7 +23,7 @@
 
         <div class="card mb-4">
             <div class="card-header">
-                <h3>Data Umum</h3>
+                <h3><i class="fas fa-user-shield"></i> Informasi Personal</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -118,7 +118,7 @@
 
         <div class="card mb-4">
             <div class="card-header">
-                <h3><i class="fas fa-share-alt"></i> Berkas & Sosial Media</h3>
+                <h3><i class="fas fa-file-alt"></i> Berkas & Sosial Media</h3>
             </div>
             <div class="card-body">
                 <div class="row">

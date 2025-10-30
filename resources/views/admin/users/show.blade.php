@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/detailpengguna.css') }}">
 
 {{-- Tombol Kembali --}}
-<div class="mb-3">
+<div class="container">
     <a href="{{ route('admin.users.index') }}" class="btn btn-custom back">
         <i class="fas fa-arrow-left"></i> Kembali
     </a>
@@ -99,7 +99,7 @@
                 <dd>
                     @if($user->cv_path)
                         <a href="{{ route('admin.users.preview_cv', $user) }}" target="_blank" class="btn btn-sm btn-info">Lihat</a>
-                        <a href="{{ route('admin.users.download_cv', $user) }}" class="btn btn-sm btn-primary" download>Download</a>
+                        <a href="{{ route('admin.users.download_cv', $user) }}" class="btn btn-sm btn-info" download>Download</a>
                     @else
                         Tidak ada CV
                     @endif
@@ -108,7 +108,7 @@
                 <dd>
                     @if($user->cover_letter_path)
                         <a href="{{ route('admin.users.preview_cover_letter', $user) }}" target="_blank" class="btn btn-sm btn-info">Lihat</a>
-                        <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="btn btn-sm btn-primary" download>Download</a>
+                        <a href="{{ route('admin.users.download_cover_letter', $user) }}" class="btn btn-sm btn-info" download>Download</a>
                     @else
                         Tidak ada surat lamaran
                     @endif

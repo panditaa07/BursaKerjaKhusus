@@ -1,0 +1,409 @@
+/* =========================================
+   EDIT LOWONGAN - MODERN GRADIENT THEME
+   ========================================= */
+
+/* ===== GLOBAL STYLING ===== */
+body {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== CARD ===== */
+.card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(76, 29, 149, 0.12);
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 50px rgba(76, 29, 149, 0.18);
+}
+
+/* ===== CARD HEADER ===== */
+.card-header {
+    border: none;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(76, 29, 149, 0.3);
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-header i {
+    color: #ffffff !important;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* ===== CARD BODY ===== */
+.card-body {
+    background: #ffffff;
+    padding: 2.5rem 2.5rem;
+}
+
+/* ===== SECTION TITLES ===== */
+h5.border-bottom {
+    font-weight: 700;
+    color: #000000;
+    border-color: #e9d5ff !important;
+    border-width: 2px !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+h5.border-bottom i {
+    color: #4C1D95;
+    font-size: 1.1rem;
+}
+
+/* ===== FORM LABELS ===== */
+.form-label {
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.form-label .text-danger {
+    color: #dc2626 !important;
+}
+
+/* ===== FORM INPUTS ===== */
+.form-control,
+.form-select {
+    border-radius: 12px;
+    border: 2px solid #e9d5ff;
+    background: #faf5ff;
+    transition: all 0.3s ease;
+    box-shadow: none !important;
+    padding: 0.65rem 0.95rem;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+/* Fokus input dengan warna gradient */
+.form-control:focus,
+.form-select:focus {
+    border-color: #4C1D95;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.1) !important;
+    outline: none;
+}
+
+/* Placeholder */
+.form-control::placeholder {
+    color: #a78bfa !important;
+    opacity: 0.7;
+}
+
+/* Textarea */
+textarea.form-control {
+    min-height: 140px;
+    resize: vertical;
+    padding: 0.85rem;
+    line-height: 1.6;
+}
+
+/* ===== FORM TEXT & ALERTS ===== */
+.form-text {
+    color: #000000;
+    font-size: 0.875rem;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+.alert {
+    border-radius: 12px;
+    font-size: 0.95rem;
+    border: none;
+    padding: 1rem 1.25rem;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border-left: 4px solid #10b981;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    border-left: 4px solid #dc2626;
+}
+
+.alert i {
+    font-size: 1.1rem;
+}
+
+hr {
+    border: none;
+    border-top: 2px dashed #e9d5ff;
+    opacity: 0.6;
+    margin: 2rem 0;
+}
+
+/* ===== INVALID FEEDBACK ===== */
+.invalid-feedback {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 6px;
+}
+
+.is-invalid {
+    border-color: #dc2626 !important;
+}
+
+/* ===== BUTTON WRAPPER ===== */
+.d-flex.justify-content-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+/* ========================================================= */
+/* ==================== BUTTON STYLES ====================== */
+/* ========================================================= */
+
+/* Tombol Kembali - Abu-abu Modern */
+.btn-secondary {
+    border: none;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 140px;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 29, 149, 0.4);
+}
+
+/* Tombol Simpan - Gradient Purple */
+.btn-warning {
+    border: none;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 180px;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 29, 149, 0.5);
+}
+
+/* Ikon di tombol */
+.btn-warning i,
+.btn-secondary i {
+    font-size: 1rem;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+/* Saat ditekan */
+.btn-warning:active,
+.btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ==============================
+   FOCUS STATES - MODERN
+============================== */
+
+/* Hilangkan focus ring default */
+.container *:focus {
+    outline: none !important;
+}
+
+/* Tombol focus state */
+.btn:focus,
+.btn-warning:focus,
+.btn-secondary:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.25) !important;
+}
+
+/* Form elements - focus state */
+.form-control:focus,
+.form-select:focus,
+.gaji-input:focus {
+    border-color: #4C1D95 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.1) !important;
+}
+
+/* Alert close button */
+.btn-close:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.2) !important;
+}
+
+/* ==============================
+   ADDITIONAL ENHANCEMENTS
+============================== */
+
+/* Gaji Input Custom */
+.gaji-input {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Status Badge Style */
+.form-select[name="status"] option {
+    padding: 8px;
+}
+
+/* Date Input Enhancement */
+input[type="date"] {
+    position: relative;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(38%) sepia(92%) saturate(2066%) hue-rotate(241deg);
+}
+
+/* Number Input Enhancement */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.6;
+}
+
+/* Required Asterisk */
+.text-danger {
+    color: #dc2626 !important;
+    font-weight: 700;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem 1.25rem;
+    }
+    
+    .card-header {
+        padding: 1.5rem 1.25rem;
+    }
+    
+    .card-header h4 {
+        font-size: 1.25rem;
+    }
+    
+    .btn-warning, 
+    .btn-secondary {
+        min-width: 100%;
+        padding: 12px 20px;
+    }
+    
+    .d-flex.justify-content-between {
+        flex-direction: column;
+    }
+    
+    h5.border-bottom {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        border-radius: 16px;
+    }
+    
+    .card-header {
+        border-radius: 16px 16px 0 0 !important;
+    }
+}
+
+/* ==============================
+   ANIMATION ENHANCEMENTS
+============================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Hover effect for form groups */
+.mb-3:hover .form-label {
+    color: #000000;
+    transition: color 0.2s ease;
+}
+
+/* Smooth transitions for all inputs */
+* {
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}

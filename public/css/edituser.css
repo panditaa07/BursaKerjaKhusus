@@ -26,12 +26,11 @@
 .detail-pengguna-page h1 {
     font-size: 2rem;
     font-weight: 700;
-    color: rgb(30, 58, 138);
+    color: #4c1d95;
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.5rem;
 }
-
 
 /* Button Styles */
 .btn-custom {
@@ -49,24 +48,24 @@
 }
 
 .btn-custom.back {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg, #1e3a8a, #4c1d95);
     color: white;
     border: 1px solid #e5e7eb;
 }
 
 .btn-custom.back:hover {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg, #1e3a8a, #4c1d95);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-custom.edit {
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg, #1e3a8a, #4c1d95);
     color: white;
 }
 
 .btn-custom.edit:hover {
-    background: rgb(25, 48, 118);
+    background: linear-gradient(135deg, #1e3a8a, #4c1d95);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
 }
@@ -97,7 +96,7 @@
 }
 
 .card-header {
-    background: linear-gradient(135deg, rgb(30, 58, 138) 0%, rgb(40, 70, 160) 100%);
+    background: linear-gradient(135deg, #1e3a8a, #4c1d95);
     color: white;
     padding: 1.25rem 1.5rem;
     border: none;
@@ -117,7 +116,7 @@
 .form-label {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #374151;
+    color: #4c1d95;
     margin-bottom: 0.5rem;
     display: block;
 }
@@ -135,20 +134,35 @@
 
 .form-control:focus,
 .form-select:focus {
-    outline: none;
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    outline: 2px solid #4c1d95;
+    border-color: #4c1d95;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
     transform: translateY(-1px);
+}
+
+.mb-3:focus-within .form-label {
+    color: #4c1d95;
 }
 
 .form-control:hover,
 .form-select:hover {
-    border-color: rgb(30, 58, 138);
+    border-color: #4c1d95;
 }
 
 textarea.form-control {
     resize: vertical;
     min-height: 100px;
+}
+
+textarea.form-control:focus {
+    outline: 2px solid #4c1d95;
+    border-color: #4c1d95;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
+    transform: translateY(-1px);
+}
+
+.mb-3:has(textarea:focus) .form-label {
+    color: #4c1d95;
 }
 
 /* Error States */
@@ -170,14 +184,15 @@ textarea.form-control {
 /* Info Section */
 .card-body p {
     margin-bottom: 0.75rem;
-    color: #4b5563;
+    color: #000000;
     font-size: 0.95rem;
     line-height: 1.6;
 }
 
 .card-body p strong {
-    color: rgb(30, 58, 138);
+    color: #000000;
     font-weight: 600;
+
     margin-right: 0.5rem;
 }
 
@@ -252,7 +267,7 @@ textarea.form-control {
 }
 
 .card-body p:hover {
-    color: rgb(30, 58, 138);
+    color: rgb(0, 0, 0);
     padding-left: 5px;
 }
 
@@ -331,11 +346,22 @@ html {
 
 .mb-3 label {
     font-weight: 600;
-    color: #1e3a8a;
+    color: #000000;
 }
 
 input[type="file"] {
     border: 1px solid #ccc;
     padding: 6px;
     border-radius: 6px;
+}
+
+input[type="file"]:focus {
+    outline: 2px solid #4c1d95;
+    border-color: #4c1d95;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
+    transform: translateY(-1px);
+}
+
+.mb-3:has(input[type="file"]:focus) .form-label {
+    color: #4c1d95;
 }
