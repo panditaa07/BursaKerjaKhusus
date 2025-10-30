@@ -854,3 +854,98 @@
   transform:none !important;
   filter:none !important;
 }
+
+/* ====== TEXT "PELAMAR BULAN INI" - WARNA UNGU #4C1D95 ====== */
+.pelamar-bulan-ini h2.page-title {
+    color: #4C1D95 !important; /* Warna ungu */
+    font-weight: 700 !important;
+    font-size: 28px !important;
+    letter-spacing: 0.3px;
+    margin-bottom: 0 !important;
+}
+
+/* Hapus garis bawah */
+.pelamar-bulan-ini h2.page-title::after {
+    display: none !important;
+}
+
+/* ====== HEADER TABEL - GRADIEN UNGU ====== */
+.pelamar-bulan-ini .company-applications-table thead tr {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+}
+
+/* ====== BUTTON LIHAT SEMUA PELAMAR - GRADIEN UNGU ====== */
+.pelamar-bulan-ini a.btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
+    transition: .25s;
+}
+
+.pelamar-bulan-ini a.btn-primary:hover {
+    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
+}
+
+/* ====== TOTAL PELAMAR BULAN INI - GRADIEN UNGU ====== */
+.pelamar-bulan-ini .btn-total {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(76, 29, 149, 0.2) !important;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none !important;
+    border: none;
+}
+
+.pelamar-bulan-ini .btn-total:hover {
+    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+    transform: translateY(-2px);
+    color: #fff !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
+}
+
+/* ====== SEARCH BUTTON - GRADIEN UNGU ====== */
+.pelamar-bulan-ini .search-hero .btn-secondary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    border: none !important;
+    color: #fff !important;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
+}
+
+.pelamar-bulan-ini .search-hero .btn-secondary:hover {
+    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
+}
+
+/* ====== RESET BUTTON - GRADIEN UNGU ====== */
+.pelamar-bulan-ini .search-hero .btn-outline-secondary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
+}
+
+.pelamar-bulan-ini .search-hero .btn-outline-secondary:hover {
+    background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
+    box-shadow: 0 6px 16px rgba(76, 29, 149, .4) !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .pelamar-bulan-ini h2.page-title {
+        font-size: 1.7rem !important;
+        color: #4C1D95 !important;
+    }
+}
+

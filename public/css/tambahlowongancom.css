@@ -1,9 +1,13 @@
 /* ==============================
-   Container Utama - SAMA PERSIS ADMIN
+   Container Utama - HEADER GRADIEN TIPIS
 ============================== */
 .job-form-container {
     background: #ffffff !important;
-    border-top: 5px solid rgb(30, 58, 138) !important;
+    border-top: 5px solid transparent !important;
+    background-image: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background-origin: border-box !important;
+    background-size: 100% 5px !important;
+    background-repeat: no-repeat !important;
     border-radius: 16px !important;
     padding: 32px !important;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
@@ -25,12 +29,15 @@
 }
 
 /* ==============================
-   Judul Form - SAMA PERSIS ADMIN
+   Judul Form - GRADIEN UNGU (tetap)
 ============================== */
 .page-title {
     font-size: 40px;
     font-weight: 700;
-    color: rgb(30, 58, 138);
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -48,7 +55,7 @@
     transform: translateY(0);
 }
 
-/* Garis bawah */
+/* Garis bawah dengan gradien ungu */
 .page-title::after {
     content: "";
     position: absolute;
@@ -58,12 +65,16 @@
     margin: auto;
     width: 60%;
     height: 4px;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     border-radius: 3px;
 }
 
-/* Ikon judul hover */
+/* Ikon judul dengan gradien ungu */
 .page-title i {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
     transition: transform 0.3s ease;
 }
 .page-title i:hover {
@@ -71,18 +82,26 @@
 }
 
 /* ==============================
-   Label - SAMA PERSIS ADMIN
+   Label - WARNA ABU (tetap)
 ============================== */
 .job-form-container label {
     display: block !important;
     margin-bottom: 4px !important;
     margin-top: 12px !important;
     font-weight: 600 !important;
-    color: #374151 !important;
+    color: #6b7280 !important; /* Abu */
 }
 
 /* ==============================
-   Input, Select, Textarea - SAMA PERSIS ADMIN
+   Ikon di Label - WARNA ABU (tetap)
+============================== */
+.job-form-container label i {
+    color: #6b7280 !important; /* Abu */
+    margin-right: 0.5rem !important;
+}
+
+/* ==============================
+   Input, Select, Textarea - FOCUS GRADIEN UNGU (tetap)
 ============================== */
 .job-form-container input,
 .job-form-container select,
@@ -97,14 +116,15 @@
     margin-bottom: 6px !important;
     caret-color: auto !important;
     user-select: text !important;
+    color: #4C1D95 !important; /* Text ungu */
 }
 
 .job-form-container input:focus,
 .job-form-container select:focus,
 .job-form-container textarea:focus {
-    border-color: rgb(30, 58, 138) !important;
+    border-color: #4C1D95 !important;
     background: #fff !important;
-    box-shadow: 0 0 6px rgba(30, 58, 138, 0.5) !important;
+    box-shadow: 0 0 6px rgba(76, 29, 149, 0.5) !important;
     outline: none !important;
     transform: scale(1.03);
 }
@@ -113,12 +133,12 @@
 .job-form-container select:hover,
 .job-form-container textarea:hover {
     transform: scale(1.02);
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    border-color: #4C1D95 !important;
+    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.2);
 }
 
 /* ==============================
-   Wrapper Tombol - SAMA PERSIS ADMIN
+   Wrapper Tombol - GRADIEN UNGU (tetap)
 ============================== */
 .form-actions {
     display: flex !important;
@@ -128,10 +148,10 @@
 }
 
 /* ==============================
-   Tombol Submit (Simpan) - SAMA PERSIS ADMIN
+   Tombol Submit (Simpan) - GRADIEN UNGU (tetap)
 ============================== */
 .job-form-container button[type="submit"] {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     color: #fff !important;
     font-weight: bold !important;
     padding: 12px 24px !important;
@@ -142,16 +162,16 @@
     margin: 0 !important;
 }
 .job-form-container button[type="submit"]:hover {
-    background: rgb(23, 43, 110) !important;
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 18px rgba(76, 29, 149, 0.3);
 }
 
 /* ==============================
-   Tombol Kembali - SAMA PERSIS ADMIN
+   Tombol Kembali - GRADIEN UNGU (tetap)
 ============================== */
 .btn-back {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     color: #fff !important;
     font-weight: bold !important;
     padding: 12px 24px !important;
@@ -165,15 +185,15 @@
     gap: 6px !important;
 }
 .btn-back:hover {
-    background: rgb(23, 43, 110) !important;
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
     color: #fff !important;
     text-decoration: none !important;
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 18px rgba(76, 29, 149, 0.3);
 }
 
 /* ==============================
-   Alert Styling
+   Alert Styling - GRADIEN UNGU (tetap)
 ============================== */
 .alert {
     border: none !important;
@@ -184,8 +204,8 @@
 
 .alert-success {
     background-color: #f0f9ff !important;
-    color: #0369a1 !important;
-    border-left-color: rgb(30, 58, 138) !important;
+    color: #4C1D95 !important; /* Ungu */
+    border-left-color: #4C1D95 !important;
 }
 
 .alert-danger {
@@ -200,10 +220,10 @@
 }
 
 /* ==============================
-   Text Styling
+   Text Styling - UNGU (tetap)
 ============================== */
 .text-gray-600 {
-    color: #6b7280 !important;
+    color: #6b7280 !important; /* Tetap abu untuk text secondary */
 }
 
 .text-xs {
@@ -222,8 +242,13 @@
     border-color: #dc2626 !important;
 }
 
+/* Text error tetap merah */
+.text-red-500.text-xs.italic {
+    color: #dc2626 !important;
+}
+
 /* ==============================
-   Grid System
+   Grid System (tetap)
 ============================== */
 .grid {
     display: grid !important;
@@ -244,7 +269,7 @@
 }
 
 /* ==============================
-   Utility Classes
+   Utility Classes (tetap)
 ============================== */
 .mb-4 {
     margin-bottom: 1rem !important;
@@ -302,14 +327,22 @@
 }
 
 /* ==============================
-   Ikon di Label
+   Placeholder Text - ABU (tetap)
 ============================== */
-.text-blue-500 {
-    color: rgb(30, 58, 138) !important;
+.job-form-container input::placeholder,
+.job-form-container textarea::placeholder {
+    color: #9ca3af !important; /* Abu lebih terang */
 }
 
-.mr-2 {
-    margin-right: 0.5rem !important;
+/* ==============================
+   Select Arrow - UNGU (tetap)
+============================== */
+.job-form-container select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234C1D95' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.5rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 1.5em 1.5em !important;
+    padding-right: 2.5rem !important;
 }
 
 /* Responsive */
@@ -328,4 +361,119 @@
         width: 100% !important;
         justify-content: center !important;
     }
+    
+    .page-title {
+        font-size: 32px !important;
+    }
+}
+
+/* ==============================
+   Focus States - UNGU (tetap)
+============================== */
+.job-form-container input:focus,
+.job-form-container select:focus,
+.job-form-container textarea:focus {
+    border-color: #4C1D95 !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1) !important;
+}
+
+/* ==============================
+   Text Color untuk Input Values - UNGU (tetap)
+============================== */
+.job-form-container input,
+.job-form-container select,
+.job-form-container textarea {
+    color: #4C1D95 !important;
+}
+
+.job-form-container option {
+    color: #4C1D95 !important;
+}
+
+/* ==============================
+   Select Box - GUNAKAN BROWSER DEFAULT
+============================== */
+.job-form-container select {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    border: 2px solid #d1d5db !important;
+    border-radius: 8px !important;
+    background: #f9fafb !important;
+    transition: all 0.3s ease-in-out !important;
+    margin-bottom: 6px !important;
+    caret-color: auto !important;
+    user-select: text !important;
+    color: #4C1D95 !important;
+    
+    /* HAPUS SEMUA CUSTOM ARROW */
+    background-image: none !important;
+    padding-right: 16px !important;
+    
+    /* Biarkan appearance default */
+    -webkit-appearance: menulist !important;
+    -moz-appearance: menulist !important;
+    appearance: menulist !important;
+}
+
+.job-form-container select:focus {
+    border-color: #4C1D95 !important;
+    background: #fff !important;
+    box-shadow: 0 0 6px rgba(76, 29, 149, 0.5) !important;
+    outline: none !important;
+    transform: scale(1.03);
+}
+
+.job-form-container select:hover {
+    transform: scale(1.02);
+    border-color: #4C1D95 !important;
+    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.2);
+}
+
+/* ==============================
+   Tombol Submit (Simpan) - GRADIEN UNGU (tetap)
+============================== */
+.job-form-container button[type="submit"] {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important; /* Jarak antara icon dan text */
+}
+.job-form-container button[type="submit"]:hover {
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(76, 29, 149, 0.3);
+}
+
+/* ==============================
+   Tombol Kembali - GRADIEN UNGU (tetap)
+============================== */
+.btn-back {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+.btn-back:hover {
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(76, 29, 149, 0.3);
 }

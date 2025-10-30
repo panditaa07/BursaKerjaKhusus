@@ -1,5 +1,5 @@
 /* =========================================
-   EDIT LOWONGAN - FINAL BLUE THEME (WHITE TEXT)
+   EDIT LOWONGAN - GRADIEN UNGU THEME
    ========================================= */
 
 /* ===== CARD ===== */
@@ -10,10 +10,10 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== CARD HEADER ===== */
+/* ===== CARD HEADER - GRADIEN UNGU ===== */
 .card-header {
     border: none;
-    background: #1E3A8A !important; /* BIRU TUA SOLID */
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     color: #ffffff !important;
     font-weight: 600;
     border-top-left-radius: 16px !important;
@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 3px 10px rgba(30, 58, 138, 0.25);
+    box-shadow: 0 3px 10px rgba(76, 29, 149, 0.25);
     letter-spacing: 0.3px;
 }
 
@@ -37,10 +37,10 @@
     padding: 2rem 2.2rem;
 }
 
-/* ===== SECTION TITLES ===== */
+/* ===== SECTION TITLES - ICON UNGU ===== */
 h5.border-bottom {
     font-weight: 700;
-    color: #1f2937;
+    color: #1f2937; /* Text tetap hitam */
     border-color: #e5e7eb !important;
     display: flex;
     align-items: center;
@@ -49,18 +49,19 @@ h5.border-bottom {
     margin-bottom: 1.2rem;
 }
 
+/* Hanya icon yang warna ungu */
 h5.border-bottom i {
-    color: #2563eb;
+    color: #4C1D95 !important; /* Ungu solid */
 }
 
-/* ===== FORM LABELS ===== */
+/* ===== FORM LABELS - TETAP ABU ===== */
 .form-label {
     font-weight: 600;
-    color: #374151;
+    color: #6b7280 !important; /* Abu */
     margin-bottom: 6px;
 }
 
-/* ===== FORM INPUTS ===== */
+/* ===== FORM INPUTS - TEXT TETAP HITAM ===== */
 .form-control,
 .form-select {
     border-radius: 10px;
@@ -70,14 +71,15 @@ h5.border-bottom i {
     box-shadow: none !important;
     padding: .56rem .75rem;
     font-size: .95rem;
+    color: #1f2937 !important; /* Text hitam, bukan ungu */
 }
 
-/* Fokus input tetap abu lembut */
+/* Fokus input dengan warna ungu */
 .form-control:focus,
 .form-select:focus {
-    border-color: #9ca3af;
+    border-color: #4C1D95 !important;
     background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15);
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.15) !important;
     outline: none;
 }
 
@@ -105,6 +107,12 @@ textarea.form-control {
     font-size: 0.95rem;
 }
 
+.alert-success {
+    background-color: #f0f9ff !important;
+    color: #4C1D95 !important;
+    border-left-color: #4C1D95 !important;
+}
+
 hr {
     border-top: 1px dashed #d1d5db;
     opacity: 0.85;
@@ -121,7 +129,7 @@ hr {
 }
 
 /* ========================================================= */
-/* ==================== BUTTON STYLES ====================== */
+/* ==================== BUTTON STYLES - GRADIEN UNGU ====================== */
 /* ========================================================= */
 
 /* Ukuran tombol seragam */
@@ -141,21 +149,22 @@ hr {
     min-width: 130px;
     height: 38px;
     font-size: 0.95rem;
-    background: #1E3A8A !important; /* BIRU TUA SOLID */
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
 }
 
-/* Hover efek */
+/* Hover efek - gradien terbalik */
 .btn-warning:hover,
 .btn-secondary:hover {
-    background: #1D4ED8 !important; /* Biru lebih terang saat hover */
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
     transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(30, 58, 138, 0.28);
+    box-shadow: 0 6px 12px rgba(76, 29, 149, 0.28);
 }
 
 /* Ikon di tombol */
 .btn-warning i,
 .btn-secondary i {
     font-size: 0.95rem;
+    color: #ffffff !important;
 }
 
 /* Saat ditekan */
@@ -165,60 +174,113 @@ hr {
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .card-body {
-        padding: 1.25rem;
-    }
-    .btn-warning, .btn-secondary {
-        min-width: 100%;
-    }
+/* ===== SELECT DROPDOWN - TANPA DOUBLE ARROW ===== */
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234C1D95' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 12px center !important;
+    background-repeat: no-repeat !important;
+    background-size: 16px 16px !important;
+    padding-right: 40px !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
-/* ==============================
-   HILANGKAN FOCUS RING - EDIT LOWONGAN
-============================== */
+.form-select::-ms-expand {
+    display: none !important;
+}
 
-/* Hilangkan focus ring untuk semua elemen di halaman ini */
+/* ===== FOCUS STATES - UNGU ===== */
 .container-fluid *:focus {
     outline: none !important;
-    box-shadow: none !important;
 }
 
-/* Khusus untuk tombol utama */
 .btn:focus,
 .btn-warning:focus,
 .btn-secondary:focus {
     outline: none !important;
-    box-shadow: none !important;
-    border-color: inherit !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.3) !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+.gaji-input:focus {
+    border-color: #4C1D95 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.15) !important;
 }
 
 /* Tombol Simpan Perubahan - focus state */
 .btn-warning:focus {
-    background: #1E3A8A !important; /* BIRU TUA SOLID */
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     border: none !important;
     color: #fff !important;
     transform: none !important;
-    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.18) !important;
+    box-shadow: 0 4px 10px rgba(76, 29, 149, 0.18) !important;
 }
 
 /* Tombol Kembali - focus state */
 .btn-secondary:focus {
-    background: #1E3A8A !important; /* BIRU TUA SOLID */
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     border: none !important;
     color: #fff !important;
     transform: none !important;
-    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.18) !important;
+    box-shadow: 0 4px 10px rgba(76, 29, 149, 0.18) !important;
 }
 
-/* Form elements - focus state */
-.form-control:focus,
-.form-select:focus,
+/* ===== TEXT COLORS ===== */
+.text-primary {
+    color: #4C1D95 !important;
+}
+
+.text-danger {
+    color: #dc2626 !important;
+}
+
+/* ===== INVALID FEEDBACK ===== */
+.invalid-feedback {
+    color: #dc2626;
+    font-size: 0.875rem;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* ===== Gaji Input Styling ===== */
 .gaji-input:focus {
-    border-color: #9ca3af !important;
-    background: #ffffff !important;
-    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+    border-color: #4C1D95 !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.15) !important;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    .btn-warning, 
+    .btn-secondary {
+        min-width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* ===== Additional Utilities ===== */
+.border-bottom {
+    border-color: #dee2e6 !important;
 }
 
 /* Alert close button */
@@ -227,115 +289,23 @@ hr {
     box-shadow: none !important;
 }
 
-/* Textarea focus */
-textarea.form-control:focus {
-    border-color: #9ca3af !important;
-    background: #ffffff !important;
-    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
-}
-
-/* Select dropdown focus */
-.form-select:focus {
-    border-color: #9ca3af !important;
-    background: #ffffff !important;
-    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
-}
-
 /* Input number focus */
 input[type="number"]:focus {
-    border-color: #9ca3af !important;
+    border-color: #4C1D95 !important;
     background: #ffffff !important;
-    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.15) !important;
 }
 
 /* Input date focus */
 input[type="date"]:focus {
-    border-color: #9ca3af !important;
+    border-color: #4C1D95 !important;
     background: #ffffff !important;
-    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.15) !important;
 }
 
-/* editlowongancom.css */
-
-/* Tombol Kembali - warna abu-abu dengan hover biru tua */
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    color: white;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-secondary:hover {
-    background-color: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-    color: white !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
-}
-
-/* Tombol Simpan Perubahan - warna kuning dengan hover biru tua */
-.btn-warning {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: #212529;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-warning:hover {
-    background-color: rgb(30, 58, 138) !important;
-    border-color: rgb(30, 58, 138) !important;
-    color: white !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
-}
-
-/* Styling tambahan untuk form */
-.card {
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.card-header.bg-warning {
-    background: rgb(30, 58, 138) !important;
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
-}
-
-.border-bottom {
-    border-color: #dee2e6 !important;
-}
-
-.text-primary {
-    color: rgb(30, 58, 138) !important;
-}
-
-/* Styling untuk alert */
-.alert-success {
-    border-left: 4px solid #198754;
-}
-
-.alert-danger {
-    border-left: 4px solid #dc3545;
-}
-
-/* Styling untuk gaji input */
-.gaji-input:focus {
-    border-color: rgb(30, 58, 138);
-    box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .btn-lg {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-    }
-    
-    .card-body {
-        padding: 1rem;
-    }
+/* Textarea focus */
+textarea.form-control:focus {
+    border-color: #4C1D95 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.15) !important;
 }

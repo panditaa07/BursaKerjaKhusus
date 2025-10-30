@@ -1,5 +1,5 @@
 /* =========================================
-   EDIT PROFIL PERUSAHAAN — Deluxe + Animations (Fixed v9)
+   EDIT PROFIL PERUSAHAAN — Gradien Ungu Theme
    ========================================= */
 
 /* Theme */
@@ -14,12 +14,12 @@
   --green:#16a34a;
   --red:#dc2626;
   --shadow:0 12px 32px rgba(2,6,23,.10);
-  --shadow-lg:0 18px 44px rgba(2,6,23,.16);
+  --shadow-lg:0 18px 44px rgba(76, 29, 149, 0.16);
 
-  /* aksen judul */
-  --grad-start:#1E2A78;
-  --grad-mid:#2E2BA2;
-  --grad-end:#3D23B2;
+  /* aksen judul - GRADIEN UNGU */
+  --grad-start:#1E3A8A;
+  --grad-mid:#4C1D95;
+  --grad-end:#4C1D95;
   --ring:#e7ecff;
 }
 
@@ -31,11 +31,11 @@ body{ background:var(--bg); color:var(--ink); font-family:Inter,"Segoe UI",syste
 @keyframes pulseRing{ 0%{box-shadow:0 0 0 0 var(--ring)} 100%{box-shadow:0 0 0 6px rgba(231,236,255,0)} }
 @keyframes shimmer{ 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 
-/* ============ Title ============ */
+/* ============ Title - WARNA UNGU ============ */
 .container > h1{
   font-weight:900; font-size:36px; letter-spacing:.2px; margin:18px 0 14px; animation:fadeInUp .35s ease-out both;
-  background:linear-gradient(90deg,var(--grad-start),var(--grad-mid),var(--grad-end));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 3px 8px rgba(29,39,125,.18);
+  color: #4C1D95 !important; /* Ungu solid */
+  text-shadow:0 3px 8px rgba(76, 29, 149, 0.18);
   position:relative; display:inline-block; padding-bottom:10px;
 }
 .container > h1::after {
@@ -46,8 +46,8 @@ body{ background:var(--bg); color:var(--ink); font-family:Inter,"Segoe UI",syste
   width:100%;
   height:4px;
   border-radius:3px;
-  background:linear-gradient(90deg, var(--grad-start) 0%, var(--grad-mid) 50%, var(--grad-end) 100%);
-  box-shadow:0 0 8px rgba(61,35,178,0.45);
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+  box-shadow:0 0 8px rgba(76, 29, 149, 0.45);
   animation:slideLine 1.5s ease-in-out forwards;
 }
 
@@ -58,8 +58,10 @@ body{ background:var(--bg); color:var(--ink); font-family:Inter,"Segoe UI",syste
   border:1px solid var(--line) !important; border-radius:16px !important; background:var(--card) !important;
   box-shadow:var(--shadow) !important; overflow:hidden; animation:fadeInUp .45s ease-out both;
 }
+
+/* ============ CARD HEADER - GRADIEN UNGU ============ */
 .card-header{
-  background:linear-gradient(135deg,var(--grad-start),var(--grad-mid) 50%,var(--grad-end)) !important;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
   border-bottom:1px solid transparent !important; padding:18px 20px !important; position:relative; color:#fff;
 }
 .card-header h3{
@@ -93,7 +95,7 @@ body{ background:var(--bg); color:var(--ink); font-family:Inter,"Segoe UI",syste
   position:relative; overflow:hidden; box-shadow:0 6px 14px rgba(2,6,23,.04);
 }
 .card-body h5::after{
-  content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(47,87,239,.08),transparent);
+  content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(76, 29, 149,.08),transparent);
   background-size:200% 100%; animation:shimmer 3s linear infinite; pointer-events:none;
 }
 
@@ -107,7 +109,7 @@ body{ background:var(--bg); color:var(--ink); font-family:Inter,"Segoe UI",syste
 }
 .form-control:hover, .form-select:hover, textarea.form-control:hover{ border-color:#c7cfeb; background:#fcfdff }
 .form-control:focus, .form-select:focus, textarea.form-control:focus{
-  border-color:#b8c4ff; box-shadow:0 0 0 4px #e7ecff, 0 8px 24px rgba(2,6,23,.06);
+  border-color:#4C1D95; box-shadow:0 0 0 4px rgba(76, 29, 149, 0.15), 0 8px 24px rgba(2,6,23,.06);
   transform:translateY(-1px); animation:pulseRing .9s ease-out 1; outline:none;
 }
 textarea.form-control{ resize:vertical; min-height:104px }
@@ -121,7 +123,7 @@ textarea.form-control{ resize:vertical; min-height:104px }
   padding:.6rem 1rem; cursor:pointer; border-style:dashed;
   background:linear-gradient(#fff,#fff) padding-box, repeating-linear-gradient(45deg,#eef2ff 0 8px,#f6f8ff 8px 16px) border-box;
 }
-.form-control[type=file]:hover{ border-color:#b8c4ff }
+.form-control[type=file]:hover{ border-color:#4C1D95 }
 
 /* Helper text */
 .form-text{ color:var(--muted) !important; font-size:12.5px }
@@ -160,7 +162,7 @@ textarea.form-control{ resize:vertical; min-height:104px }
 /* Hover & Focus medsos */
 .input-icon .form-control:hover{ border-color:#c7cfeb; background:#fff }
 .input-icon .form-control:focus{
-  border-color:#b8c4ff; box-shadow:0 0 0 4px #e7ecff, 0 8px 20px rgba(2,6,23,.06); transform:translateY(-1px);
+  border-color:#4C1D95; box-shadow:0 0 0 4px rgba(76, 29, 149, 0.15), 0 8px 20px rgba(2,6,23,.06); transform:translateY(-1px);
 }
 
 /* ============ Actions bar (sticky) ============ */
@@ -171,20 +173,41 @@ textarea.form-control{ resize:vertical; min-height:104px }
   border-bottom-left-radius:12px; border-bottom-right-radius:12px;
 }
 
-/* Buttons */
+/* ============ BUTTONS - GRADIEN UNGU ============ */
 .btn-primary{
-  background:linear-gradient(90deg,var(--blue),#4b6bff) !important; border-color:transparent !important;
-  border-radius:12px !important; padding:.65rem 1rem !important; font-weight:700 !important;
-  box-shadow:0 8px 16px rgba(47,87,239,.25) !important; transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important; 
+  border-color:transparent !important;
+  border-radius:12px !important; 
+  padding:.65rem 1rem !important; 
+  font-weight:700 !important;
+  box-shadow:0 8px 16px rgba(76, 29, 149, 0.25) !important; 
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
 }
-.btn-primary:hover{ background:linear-gradient(90deg,var(--blue-dark),#304fe3) !important; transform:translateY(-2px); box-shadow:0 12px 22px rgba(47,87,239,.35) !important }
+.btn-primary:hover{ 
+  background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important; 
+  transform:translateY(-2px); 
+  box-shadow:0 12px 22px rgba(76, 29, 149, 0.35) !important;
+}
+
 .btn-secondary{
-  background:#dc2626 !important; border:1px solid #dc2626 !important; color:#fff !important;
-  border-radius:12px !important; padding:.65rem 1rem !important; font-weight:700 !important;
-  box-shadow:0 8px 16px rgba(220,38,38,.25) !important; transition: all .18s ease-in-out;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important; 
+  border:1px solid transparent !important; 
+  color:#fff !important;
+  border-radius:12px !important; 
+  padding:.65rem 1rem !important; 
+  font-weight:700 !important;
+  box-shadow:0 8px 16px rgba(76, 29, 149, 0.25) !important; 
+  transition: all .18s ease-in-out;
 }
-.btn-secondary:hover{ background:#b91c1c !important; border-color:#b91c1c !important; transform:translateY(-2px); box-shadow:0 12px 22px rgba(220,38,38,.35) !important }
-.btn-secondary:active{ transform:scale(.97); box-shadow:0 4px 12px rgba(220,38,38,.25) !important }
+.btn-secondary:hover{ 
+  background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important; 
+  transform:translateY(-2px); 
+  box-shadow:0 12px 22px rgba(76, 29, 149, 0.35) !important;
+}
+.btn-secondary:active{ 
+  transform:scale(.97); 
+  box-shadow:0 4px 12px rgba(76, 29, 149, 0.25) !important;
+}
 
 /* Spacing for buttons */
 .card-body .d-flex .btn{ min-width:140px }
@@ -194,3 +217,101 @@ textarea.form-control{ resize:vertical; min-height:104px }
 
 /* Focus cleanup */
 .container *:focus{ outline:none }
+
+/* ============ Title - WARNA UNGU & CENTER ============ */
+.container > h1{
+  font-weight:900; font-size:36px; letter-spacing:.2px; margin:18px 0 14px; 
+  animation:fadeInUp .35s ease-out both;
+  color: #4C1D95 !important; /* Ungu solid */
+  text-shadow:0 3px 8px rgba(76, 29, 149, 0.18);
+  position:relative; 
+  display:block; /* Ubah dari inline-block ke block untuk center */
+  text-align: center; /* Center text */
+  padding-bottom:10px;
+  width: 100%; /* Pastikan full width untuk center */
+}
+.container > h1::after {
+  content:"";
+  position:absolute;
+  left: 50%; /* Center garis bawah */
+  bottom:0;
+  width: 30%; /* Lebar garis lebih pendek (dari 60% jadi 30%) */
+  height:4px;
+  border-radius:3px;
+  background: #4C1D95 !important; /* Ungu solid, bukan gradient */
+  box-shadow:0 0 8px rgba(76, 29, 149, 0.45);
+  animation:slideLine 1.5s ease-in-out forwards;
+  transform: translateX(-50%); /* Center garis */
+}
+
+@keyframes slideLine{ 
+  0%{width:0; opacity:0; transform:translateX(-50%)} 
+  100%{width:30%; opacity:1; transform:translateX(-50%)} 
+}
+
+/* ============ Form controls - FOCUS UNGU ============ */
+.form-control, .form-select, textarea.form-control{
+  position:relative; z-index:1;
+  border:1px solid #d6dae3; border-radius:12px; background:#fff; padding:.7rem 1rem; line-height:1.45;
+  transition: box-shadow .25s ease, border-color .25s ease, transform .06s ease, background-color .25s ease;
+  box-shadow:0 0 0 rgba(0,0,0,0);
+}
+.form-control:hover, .form-select:hover, textarea.form-control:hover{ border-color:#c7cfeb; background:#fcfdff }
+.form-control:focus, .form-select:focus, textarea.form-control:focus{
+  border-color:#4C1D95 !important; /* Ungu saat focus */
+  box-shadow:0 0 0 4px rgba(76, 29, 149, 0.15), 0 8px 24px rgba(2,6,23,.06) !important;
+  transform:translateY(-1px); 
+  animation:pulseRing .9s ease-out 1; 
+  outline:none;
+}
+
+/* Pulse ring animation dengan warna ungu */
+@keyframes pulseRing{ 
+  0%{box-shadow:0 0 0 0 rgba(76, 29, 149, 0.4)} 
+  100%{box-shadow:0 0 0 4px rgba(76, 29, 149, 0.15)} 
+}
+
+/* File input focus ungu */
+.form-control[type=file]:focus{
+  border-color:#4C1D95 !important;
+  box-shadow:0 0 0 4px rgba(76, 29, 149, 0.15), 0 8px 24px rgba(2,6,23,.06) !important;
+}
+
+/* Social media input focus ungu */
+.input-icon .form-control:focus{
+  border-color:#4C1D95 !important;
+  box-shadow:0 0 0 4px rgba(76, 29, 149, 0.15), 0 8px 20px rgba(2,6,23,.06) !important;
+  transform:translateY(-1px);
+}
+
+/* ============ BUTTONS - TETAP GRADIEN UNGU ============ */
+.btn-primary{
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important; 
+  border-color:transparent !important;
+  border-radius:12px !important; 
+  padding:.65rem 1rem !important; 
+  font-weight:700 !important;
+  box-shadow:0 8px 16px rgba(76, 29, 149, 0.25) !important; 
+  transition: all 0.3s ease !important;
+}
+.btn-primary:hover{ 
+  background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important; /* Tetap gradien */
+  transform:translateY(-2px); 
+  box-shadow:0 12px 22px rgba(76, 29, 149, 0.35) !important;
+}
+
+.btn-secondary{
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important; 
+  border:1px solid transparent !important; 
+  color:#fff !important;
+  border-radius:12px !important; 
+  padding:.65rem 1rem !important; 
+  font-weight:700 !important;
+  box-shadow:0 8px 16px rgba(76, 29, 149, 0.25) !important; 
+  transition: all 0.3s ease !important;
+}
+.btn-secondary:hover{ 
+  background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important; /* Tetap gradien */
+  transform:translateY(-2px); 
+  box-shadow:0 12px 22px rgba(76, 29, 149, 0.35) !important;
+}
