@@ -949,3 +949,31 @@
     }
 }
 
+/* ——— FIX 1: biar sudut tombol tidak terpotong oleh container ——— */
+.pelamar-bulan-ini .input-group{
+  overflow: visible !important; /* sebelumnya hidden */
+  border-radius: 12px;          /* tetap rounded untuk kontainer */
+}
+
+/* ——— FIX 2: tombol CARI kotak tumpul di semua state ——— */
+.pelamar-bulan-ini .input-group .btn-secondary,
+.pelamar-bulan-ini .input-group .btn-secondary:hover,
+.pelamar-bulan-ini .input-group .btn-secondary:focus,
+.pelamar-bulan-ini .input-group .btn-secondary:active,
+.pelamar-bulan-ini .input-group .btn-secondary:focus:active,
+.pelamar-bulan-ini .input-group .btn-secondary.show,
+.pelamar-bulan-ini .input-group .show > .btn-secondary.dropdown-toggle,
+.pelamar-bulan-ini .input-group .btn-check:focus + .btn-secondary,
+.pelamar-bulan-ini .input-group .btn-check:active + .btn-secondary{
+  border-radius: 10px !important;   /* kotak tumpul */
+  outline: none !important;
+  box-shadow: none !important;      /* opsional: hilangkan glow Bootstrap */
+}
+
+/* ——— (opsional) jika ingin tombol mengikuti tepi kanan input-group ——— */
+.search-bar .form-control{
+  border-radius: 8px !important;              /* input tetap tumpul */
+}
+.search-bar .btn-secondary{
+  margin-left: 8px;                           /* beri jarak dari input */
+}
