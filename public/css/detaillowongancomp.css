@@ -2450,3 +2450,99 @@ h2.mb-0 i.fa-briefcase {
   color: #ffffff !important;
 }
 
+/* ==========================================================
+   SIDEBAR WARNA SESUAI DESAIN (BIRU → UNGU)
+   ========================================================== */
+.sidebar,
+[class*="sidebar"] {
+  background: linear-gradient(180deg, #1e3a8a 0%, #4c1d95 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Brand / Logo */
+.sidebar .sidebar-brand,
+.sidebar .navbar-brand,
+.sidebar .app-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0 16px !important;
+}
+
+.sidebar .sidebar-brand img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.sidebar .sidebar-brand span {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Menu Items */
+.sidebar a,
+.sidebar .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.sidebar a:hover,
+.sidebar .nav-link:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(4px);
+}
+
+/* Active link highlight */
+.sidebar .nav-link.active {
+  background: rgba(255,255,255,0.18);
+  font-weight: 700;
+}
+
+/* Icon */
+.sidebar i {
+  width: 18px;
+  text-align: center;
+  color: #ffffff !important;
+}
+
+/* Tombol Logout */
+.sidebar .btn,
+.sidebar .btn-logout,
+.sidebar a[href*="logout"] {
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  color: #fff !important;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border-radius: 12px;
+  padding: 10px 18px;
+  width: 85%;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 14px rgba(220,38,38,0.35);
+  transition: all 0.25s ease;
+}
+
+.sidebar .btn:hover,
+.sidebar a[href*="logout"]:hover {
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d) !important;
+  transform: translateY(-2px);
+}

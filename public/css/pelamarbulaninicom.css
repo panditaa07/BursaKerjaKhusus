@@ -949,31 +949,175 @@
     }
 }
 
-/* ——— FIX 1: biar sudut tombol tidak terpotong oleh container ——— */
-.pelamar-bulan-ini .input-group{
-  overflow: visible !important; /* sebelumnya hidden */
-  border-radius: 12px;          /* tetap rounded untuk kontainer */
+/* Container */
+.search-hero .input-group.search-pill{
+  max-width: 720px;
+  margin: 0;
+  overflow: visible !important;          /* jangan potong sudut tombol */
+  box-shadow: none;
 }
 
-/* ——— FIX 2: tombol CARI kotak tumpul di semua state ——— */
-.pelamar-bulan-ini .input-group .btn-secondary,
-.pelamar-bulan-ini .input-group .btn-secondary:hover,
-.pelamar-bulan-ini .input-group .btn-secondary:focus,
-.pelamar-bulan-ini .input-group .btn-secondary:active,
-.pelamar-bulan-ini .input-group .btn-secondary:focus:active,
-.pelamar-bulan-ini .input-group .btn-secondary.show,
-.pelamar-bulan-ini .input-group .show > .btn-secondary.dropdown-toggle,
-.pelamar-bulan-ini .input-group .btn-check:focus + .btn-secondary,
-.pelamar-bulan-ini .input-group .btn-check:active + .btn-secondary{
-  border-radius: 10px !important;   /* kotak tumpul */
+/* Input putih dengan border lembut */
+.search-hero .search-input{
+  height: 48px;
+  border: 2px solid #d6e6ff !important;
+  border-right: 0 !important;
+  border-radius: 12px 0 0 12px !important;
+  background: #fff !important;
+  padding: 12px 16px !important;
+  font-size: 15px;
+  color: #1f2937;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+.search-hero .search-input::placeholder{
+  color: #9bb4d9;
+}
+
+.search-hero .search-input:focus{
+  border-color: #9cc0ff !important;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15) !important; /* glow tipis */
+}
+
+/* Tombol CARI: gradasi ungu + sudut kanan tumpul */
+.search-hero .btn-search{
+  height: 48px;
+  padding: 0 18px !important;
+  font-weight: 700;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 0 12px 12px 0 !important;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  display: inline-flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 22px rgba(76,29,149,.25);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+/* Ikon */
+.search-hero .btn-search i{
+  font-size: 1.05rem; line-height: 0;
+}
+
+/* Hover/focus/active konsisten */
+.search-hero .btn-search:hover{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(76,29,149,.32);
+}
+.search-hero .btn-search:focus,
+.search-hero .btn-search:active{
+  transform: none;
+  box-shadow: 0 6px 16px rgba(76,29,149,.28);
   outline: none !important;
-  box-shadow: none !important;      /* opsional: hilangkan glow Bootstrap */
 }
 
-/* ——— (opsional) jika ingin tombol mengikuti tepi kanan input-group ——— */
-.search-bar .form-control{
-  border-radius: 8px !important;              /* input tetap tumpul */
+/* Responsif */
+@media (max-width: 576px){
+  .search-hero .input-group.search-pill{ max-width: 100%; }
+  .search-hero .search-input{ border-radius: 12px !important; border-right: 2px solid #d6e6ff !important; margin-bottom: 8px; }
+  .search-hero .btn-search{ width: 100%; border-radius: 12px !important; }
 }
-.search-bar .btn-secondary{
-  margin-left: 8px;                           /* beri jarak dari input */
+/* --- FIX: Tombol Cari tetap tumpul di semua state --- */
+.pelamar-bulan-ini .btn-secondary,
+.pelamar-bulan-ini .btn-secondary:hover,
+.pelamar-bulan-ini .btn-secondary:focus,
+.pelamar-bulan-ini .btn-secondary:active,
+.pelamar-bulan-ini .btn-secondary:focus:active,
+.pelamar-bulan-ini .btn-secondary.show,
+.pelamar-bulan-ini .btn-check:checked + .btn-secondary,
+.pelamar-bulan-ini .btn-check:focus + .btn-secondary {
+  border-radius: 0 10px 10px 0 !important; /* sudut kanan tumpul */
+  outline: none !important;
+  box-shadow: none !important; /* hilangkan efek border glow */
+}
+/* 1) Matikan bayangan kontainer saat fokus/hover agar tidak menambah garis */
+.pelamar-bulan-ini .input-group {
+  overflow: visible !important;
+  box-shadow: none !important;
+}
+
+/* 2) Samakan border input dan matikan ring default Bootstrap */
+.pelamar-bulan-ini .input-group .form-control,
+.search-bar .form-control,
+.search-hero .search-input{
+  border: 2px solid #d6e6ff !important;
+  border-right: 0 !important;                 /* menempel ke tombol */
+  border-radius: 12px 0 0 12px !important;
+  outline: 0 !important;
+  box-shadow: none !important;                 /* hilangkan shadow default */
+  background-clip: padding-box;                /* cegah garis ganda di WebKit */
+}
+
+/* 3) Jika tetap ingin glow saat fokus, pakai SATU bayangan saja */
+.pelamar-bulan-ini .input-group .form-control:focus{
+  border-color: #9cc0ff !important;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15) !important; /* satu ring halus */
+  outline: 0 !important;
+}
+
+/* 4) Pastikan tombol tetap tumpul saat aktif */
+.pelamar-bulan-ini .input-group .btn-secondary,
+.pelamar-bulan-ini .input-group .btn-secondary:focus,
+.pelamar-bulan-ini .input-group .btn-secondary:active{
+  border-radius: 0 12px 12px 0 !important;
+  box-shadow: none !important;
+}
+/* === RAPIKAN SEARCH BAR === */
+.pelamar-bulan-ini .input-group {
+  align-items: stretch !important;
+  height: 50px; /* pastikan tinggi seragam */
+  overflow: visible !important;
+}
+
+/* Input field */
+.pelamar-bulan-ini .input-group .form-control {
+  height: 50px !important;
+  padding: 12px 16px !important;
+  border: 2px solid #d6e6ff !important;
+  border-right: none !important;
+  border-radius: 12px 0 0 12px !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Tombol Cari */
+.pelamar-bulan-ini .input-group .btn-secondary {
+  height: 50px !important;
+  padding: 0 22px !important;
+  border-radius: 0 12px 12px 0 !important;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.pelamar-bulan-ini .input-group .btn-secondary:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-1px);
+}
+
+/* Tombol Reset agar sejajar */
+.pelamar-bulan-ini .btn-outline-secondary {
+  height: 50px !important;
+  padding: 0 22px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: none !important;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.pelamar-bulan-ini .btn-outline-secondary:hover {
+  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  transform: translateY(-1px);
 }
