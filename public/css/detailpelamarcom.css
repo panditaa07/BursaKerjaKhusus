@@ -1325,7 +1325,7 @@ html {
 
 /* WAWANCARA (coklat tua solid) */
 .bg-info {
-    background: #4B2E05 !important;
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */ #1E3A8A 40%,  /* navy (senada sidebar) */ #312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
     color: #fff;
 }
 
@@ -1337,7 +1337,7 @@ html {
 
 /* TEST 2 (biru tua solid) */
 .bg-primary {
-    background: #0d469d !important;
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */ #1E3A8A 40%,  /* navy (senada sidebar) */ #312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
     color: #fff;
 }
 

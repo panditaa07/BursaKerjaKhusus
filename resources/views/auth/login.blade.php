@@ -16,7 +16,7 @@
         <div class="form-box">
             <div class="logo-box">
                 <img src="{{ asset('images/smkn4.png') }}" alt="logo">
-                <h4 style="font-weight: bold; margin-top: 10px;">Login</h4>
+                <h4 style="font-weight: bold; margin-top: 10px;">BKK Opat</h4>
             </div>
             @if ($errors->any())
                 <div class="alert-error">
