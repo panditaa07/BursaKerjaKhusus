@@ -884,3 +884,56 @@ textarea:focus,
 
 /* opsional: nonaktifkan efek hover apa pun pada badge */
 .table-custom .badge:hover{ transform:none; filter:none; }
+/* ==========================================================
+   TOMBOL INFO - WARNA BIRU GELAP PREMIUM
+   ========================================================== */
+.jobs-latest .jl-actions .btn-info {
+  background: linear-gradient(135deg, #1E3A8A, #233EAB) !important; /* biru gelap gradasi */
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+}
+
+/* Hover - tanpa ubah warna dasar, hanya efek halus */
+.jobs-latest .jl-actions .btn-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.35);
+  filter: brightness(1.03);
+}
+
+/* Efek kilau glossy */
+.jobs-latest .jl-actions .btn-info::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.85s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+.jobs-latest .jl-actions .btn-info:hover::after {
+  transform: translateX(130%);
+}
+
+/* Tekan */
+.jobs-latest .jl-actions .btn-info:active {
+  transform: scale(0.97);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+  filter: none;
+}
+
+/* Fokus - aksesibilitas */
+.jobs-latest .jl-actions .btn-info:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
