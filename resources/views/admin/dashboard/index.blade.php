@@ -149,31 +149,33 @@
                                     <span class="badge bg-light text-dark">{{ $app->status }}</span>
                                 @endif
                             </td>
-                        <td class="aksi">
-                            <!-- Tombol Lihat -->
-                            <a href="{{ route('admin.applications.show', $app->id) }}"
-                            class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                <i class=""></i><span>Lihat</span>
-                            </a>
+                       <td class="aksi text-center align-middle">
+    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+        <!-- Tombol Lihat -->
+        <a href="{{ route('admin.applications.show', $app->id) }}"
+           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+            Lihat
+        </a>
 
-                            <!-- Tombol Edit -->
-                            <a href="{{ route('admin.applications.edit', $app->id) }}"
-                            class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                <i class=""></i><span>Edit</span>
-                            </a>
+        <!-- Tombol Edit -->
+        <a href="{{ route('admin.applications.edit', $app->id) }}"
+           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+            Edit
+        </a>
 
-                            <!-- Tombol Hapus -->
-                            <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold"
-                                    onclick="return confirm('Yakin ingin menghapus?')">
-                                    <i class=""></i><span>Hapus</span>
-                                </button>
-                            </form>
+        <!-- Tombol Hapus -->
+        <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                    onclick="return confirm('Yakin ingin menghapus?')">
+                Hapus
+            </button>
+        </form>
+    </div>
+</td>
 
-                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -209,21 +211,33 @@
                                     <span class="badge bg-danger">Tidak Aktif</span>
                                 @endif
                             </td>
-                            <td class="aksi">
-                                <a href="{{ route('admin.job-posts.show', $job->id) }}" class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                    <i class=""></i><span>Lihat</span>
-                                </a>
-                                <a href="{{ route('admin.job-posts.edit', $job->id) }}" class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold">
-                                    <i class=""></i><span>Edit</span>
-                                </a>
-                                <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold" onclick="return confirm('Yakin hapus loker ini?')">
-                                        <i class=""></i><span>Hapus</span>
-                                    </button>
-                                </form>
-                            </td>
+                            <td class="aksi text-center align-middle">
+    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+        <!-- Tombol Lihat -->
+        <a href="{{ route('admin.job-posts.show', $job->id) }}"
+           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+            Lihat
+        </a>
+
+        <!-- Tombol Edit -->
+        <a href="{{ route('admin.job-posts.edit', $job->id) }}"
+           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+            Edit
+        </a>
+
+        <!-- Tombol Hapus -->
+        <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                    onclick="return confirm('Yakin ingin menghapus?')">
+                Hapus
+            </button>
+        </form>
+    </div>
+</td>
+
                         </tr>
                     @empty
                         <tr><td colspan="6" class="text-center text-muted">Belum ada loker aktif</td></tr>

@@ -4,7 +4,6 @@
     $user = $user ?? Auth::user();
     $role = $user ? ($user->role->name ?? null) : null;
 @endphp
-
 <!-- Logo Section -->
 <div class="sidebar-header">
     <img src="{{ asset('images/smkn4.png') }}" alt="BKK OPAT Logo" class="mx-auto mb-2 rounded-circle" style="width: 64px; height: 64px;">

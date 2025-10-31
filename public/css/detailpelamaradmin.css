@@ -863,68 +863,122 @@ body {
     background: var(--primary-navy-lighter);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
+/* ===============================
+   RESPONSIVE FIX - DETAIL PELAMAR
+   =============================== */
 
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
-
-    .profile-section {
+/* --- Tampilan Tablet --- */
+@media (max-width: 992px) {
+    .card-body .d-flex.align-items-start {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr;
+    .card-body .d-flex.align-items-start .me-4 {
+        margin-right: 0 !important;
+        margin-bottom: 1rem;
     }
 
-    .hero-inner {
-        flex-direction: column;
+    .card-body img.rounded-circle {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .card .table td {
+        font-size: 0.95rem;
+    }
+
+    .btn-update {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}
+
+/* --- Tampilan Mobile --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    h1.h3 {
+        font-size: 1.25rem;
         text-align: center;
-        padding: 2rem 1.5rem;
     }
 
-    .hero-title h1 {
-        font-size: 1.5rem;
-    }
-
-    .branding,
-    .pic {
-        flex-direction: column;
+    .card-header h5 {
+        font-size: 1rem;
         text-align: center;
     }
 
-    .job-post-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+    .card {
+        margin-bottom: 1.25rem;
     }
 
-    .job-post-status {
-        align-items: flex-start;
+    .card-body {
+        padding: 1rem;
+    }
+
+    .col-md-6 {
         width: 100%;
     }
 
-    .document-buttons-inline .d-flex {
-        flex-direction: column;
+    .table td {
+        display: block;
+        width: 100%;
+        padding: 0.3rem 0;
+    }
+
+    .table td.fw-bold {
+        color: #1E3A8A;
+        font-weight: 600;
+    }
+
+    .btn-update {
+        width: 100%;
+        font-size: 0.9rem;
     }
 
     .btn-doc {
         width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .social-btn {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-kembali {
+        display: block;
+        text-align: center;
+        width: 100%;
     }
 }
 
+/* --- Tampilan Extra Kecil (HP mini) --- */
+@media (max-width: 480px) {
+    .card-body img.rounded-circle {
+        width: 90px !important;
+        height: 90px !important;
+    }
+
+    .btn-update {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-doc {
+        font-size: 0.85rem;
+    }
+
+    .table td {
+        font-size: 0.85rem;
+    }
+}
 /* Animations */
 @keyframes pulse {
     0%,

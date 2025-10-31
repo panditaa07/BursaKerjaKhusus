@@ -87,29 +87,33 @@
                                     <span class="badge bg-light text-dark">{{ $p->status }}</span>
                                 @endif
                             </td>
-                            <td class="aksi">
-                                    <a href="{{ route('admin.applications.show', $p->id) }}"
-                            class="btn btn-primary d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-detail">
-                                <i class=""></i><span>Lihat</span>
-                            </a>
+                           <td class="aksi text-center align-middle">
+    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+        <!-- Tombol Lihat -->
+        <a href="{{ route('admin.applications.show', $p->id) }}"
+           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+            Lihat
+        </a>
 
-                            <!-- Tombol Edit -->
-                            <a href="{{ route('admin.applications.edit', $p->id) }}"
-                            class="btn btn-warning d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-edit">
-                                <i class=""></i><span>Edit</span>
-                            </a>
+        <!-- Tombol Edit -->
+        <a href="{{ route('admin.applications.edit', $p->id) }}"
+           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+            Edit
+        </a>
 
-                            <!-- Tombol Hapus -->
-                            <form action="{{ route('admin.applications.destroy', $p->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="btn btn-danger d-flex align-items-center justify-content-center gap-1 rounded-pill px-2 py-1 fw-bold btn-delete"
-                                    onclick="return confirm('Yakin ingin menghapus?')">
-                                    <i class=""></i><span>Hapus</span>
-                                </button>
-                            </form>
-                            </td>
+        <!-- Tombol Hapus -->
+        <form action="{{ route('admin.applications.destroy', $p->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                    onclick="return confirm('Yakin ingin menghapus?')">
+                Hapus
+            </button>
+        </form>
+    </div>
+</td>
+
                         </tr>
                         @empty
                             <tr>

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard-fix.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
     {{-- CSS tambahan untuk setiap halaman --}}
     @yield('css')
@@ -37,7 +38,7 @@
         <div id="mainContent" class="main-content flex-grow-1">
             <header class="top-header">
                 <button id="menuToggle" class="btn btn-light d-lg-none">
-                    <i class="bi bi-list"></i>
+                    <i class="bi bi-list" style="font-size: 1.5rem;"></i>
                 </button>
                 <!-- You can add other header content here, like user dropdown -->
             </header>

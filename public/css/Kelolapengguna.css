@@ -538,6 +538,42 @@ td.aksi .table-btn {
         border-radius: 8px !important;
         margin-bottom: 0.25rem;
     }
+
+     .search-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .search-box .input-group {
+        width: 100% !important;
+    }
+
+    .search-box .btn-cari,
+    .search-box .btn-total {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 0.75rem;
+        font-weight: 600;
+        border-radius: 10px;
+    }
+
+    .search-box .btn-cari {
+        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+        color: white;
+    }
+
+    .search-box .btn-total {
+        background: linear-gradient(135deg, #4C1D95, #1E3A8A);
+        color: white;
+    }
+
+    .search-box .input-group-text {
+        background-color: #f3f4f6;
+        border: 1px solid #ddd;
+    }
 }
 
 /* Smooth Scrollbar */

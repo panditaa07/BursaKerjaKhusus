@@ -21,6 +21,7 @@ body {
     width: var(--sidebar-width);
     height: 100vh;
     position: fixed;
+    justify-content: space-between;
     top: 0;
     left: 0;
     z-index: 1030;
@@ -58,6 +59,14 @@ body {
     .sidebar-backdrop.show {
         opacity: 1;
         visibility: visible;
+    }
+
+    .bottom-list {
+        position: sticky;
+        bottom: 0;
+        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+        padding: 10px;
+        z-index: 999;
     }
 }
 
@@ -234,5 +243,26 @@ body {
         width: 100%;
         margin-left: 0;
     }
+}
+
+.menu-toggle {
+    background-color: #0b0c64; /* biru tua */
+    color: white;
+    border: none;
+    border-radius: 16px; /* rounded lembut */
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1030;
+}
+
+.menu-toggle:hover {
+    background-color: #1E3A8A; /* sedikit lebih terang */
 }
 
