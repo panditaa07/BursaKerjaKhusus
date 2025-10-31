@@ -1121,3 +1121,470 @@
   background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
   transform: translateY(-1px);
 }
+
+/* =========================================================
+   PELAMAR BULAN INI — Tabel & Aksi dengan Gradient Baru
+   ========================================================= */
+
+/* ====== HEADER HALAMAN ====== */
+.pelamar-bulan-ini h2.page-title {
+    color: #000000 !important; /* Warna hitam */
+    font-weight: 700 !important;
+    font-size: 28px !important;
+    letter-spacing: 0.3px;
+    margin-bottom: 0 !important;
+}
+
+/* HAPUS garis bawah judul */
+.pelamar-bulan-ini h2.page-title::after {
+    display: none !important;
+}
+
+/* ====== HEADER TABEL ====== */
+.pelamar-bulan-ini .company-applications-table thead tr {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+}
+
+.pelamar-bulan-ini .company-applications-table thead th {
+    background: transparent !important;
+    color: #fff !important;
+    border: none !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    padding: 12px 14px !important;
+    text-align: center;
+}
+
+.pelamar-bulan-ini .company-applications-table thead th:first-child {
+    border-top-left-radius: 14px;
+}
+
+.pelamar-bulan-ini .company-applications-table thead th:last-child {
+    border-top-right-radius: 14px;
+}
+
+/* ====== TOTAL PELAMAR BULAN INI ====== */
+.pelamar-bulan-ini .btn-total {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(76, 29, 149, 0.2) !important;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none !important;
+    border: none;
+}
+
+.pelamar-bulan-ini .btn-total:hover {
+    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
+    transform: translateY(-2px);
+    color: #fff !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
+}
+
+.pelamar-bulan-ini .btn-total i {
+    font-size: 14px;
+}
+
+/* ====== BUTTON LIHAT SEMUA PELAMAR ====== */
+.pelamar-bulan-ini a.btn-primary {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
+    transition: .25s;
+}
+
+.pelamar-bulan-ini a.btn-primary:hover {
+    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
+}
+
+/* ====== SEARCH BAR ====== */
+.pelamar-bulan-ini .search-hero .input-group {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+}
+
+.pelamar-bulan-ini .search-hero .form-control {
+    border-radius: 8px 0 0 8px !important;
+    border: 2px solid #d0e1ff !important;
+    padding: 10px 16px !important;
+    flex: 1;
+}
+
+.pelamar-bulan-ini .search-hero .btn-secondary {
+    border-radius: 0 8px 8px 0 !important;
+    margin: 0 !important;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 10px 20px !important;
+    transition: .25s;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
+}
+
+.pelamar-bulan-ini .search-hero .btn-secondary:hover {
+    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
+}
+
+.pelamar-bulan-ini .search-hero .btn-outline-secondary {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-left: 8px !important;
+    font-weight: 600 !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
+    transition: .25s;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pelamar-bulan-ini .search-hero .btn-outline-secondary:hover {
+    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 29, 149, .4) !important;
+}
+
+/* ====== TOMBOL AKSI ====== */
+.aksi-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.action-text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 96px;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none !important;
+    border: 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    cursor: pointer;
+    transition: none !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Tombol Lihat dengan Gradient Baru */
+.action-text.view {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
+}
+
+.action-text.edit {
+    background: linear-gradient(135deg, #d4a107, #EAB308);
+    color: #fff !important;
+}
+
+.action-text.delete {
+    background: linear-gradient(135deg, #dc2626, #EF4444);
+}
+
+.action-text:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
+.action-text.edit.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* ====== STATUS BADGES ====== */
+.pelamar-bulan-ini .company-applications-table .badge {
+    display: inline-block;
+    padding: .55rem 1.1rem;
+    border-radius: 999px;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: .3px;
+    line-height: 1;
+    border: 0;
+    background-image: none !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+/* Sembunyikan titik ikon */
+.pelamar-bulan-ini .company-applications-table .badge i { 
+    display: none !important; 
+}
+
+/* Warna status */
+.pelamar-bulan-ini .company-applications-table .status-accepted {
+    background: #0c632f !important;
+    color: #fff !important;
+}
+
+.pelamar-bulan-ini .company-applications-table .status-rejected {
+    background: #bb1425 !important;
+    color: #fff !important;
+}
+
+.pelamar-bulan-ini .company-applications-table .status-interview {
+    background: #4B2E05 !important;
+    color: #fff !important;
+}
+
+.pelamar-bulan-ini .company-applications-table .status-test,
+.pelamar-bulan-ini .company-applications-table .status-test2 {
+    background: #0d469d !important;
+    color: #fff !important;
+}
+
+.pelamar-bulan-ini .company-applications-table .status-pending {
+    background: #EAB308 !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+}
+
+.pelamar-bulan-ini .company-applications-table .status-reviewed {
+    background: #F9FAFB !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+    box-shadow: inset 0 0 0 1px #E5E7EB, 0 8px 14px rgba(0,0,0,.06) !important;
+}
+
+/* Nonaktifkan hover pada badge */
+.pelamar-bulan-ini .company-applications-table .badge:hover {
+    transform: none !important;
+    filter: none !important;
+}
+
+/* ====== TABLE STYLING ====== */
+.company-applications-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    background: #fff;
+    font-family: "Inter", sans-serif;
+    border: 2px solid #d0e1ff;
+}
+
+.company-applications-table tbody td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #374151;
+    text-align: center;
+    border-top: 1.8px solid #93c5fd;
+    border-right: 1.2px solid #c7ddff;
+    background: #fff !important;
+}
+
+.company-applications-table tbody td:last-child {
+    border-right: none !important;
+}
+
+/* Matikan hover baris */
+.company-applications-table tbody tr {
+    transition: none !important;
+    cursor: default !important;
+    background: #fff !important;
+}
+
+.company-applications-table tbody tr:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* ====== DROPDOWN MENU ====== */
+.custom-dropdown { 
+    position: relative; 
+}
+
+.custom-dropdown .dropdown-toggle::after { 
+    content: none !important; 
+}
+
+.custom-dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(8px) !important;
+    min-width: 260px;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 22px 46px rgba(2,6,23,.22);
+    z-index: 3001;
+}
+
+/* Hapus bullet/indent bawaan <ul>/<li> */
+.custom-dropdown-menu,
+.custom-dropdown-menu li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Item */
+.custom-dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    color: #111827;
+    background: transparent;
+    position: relative;
+    transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    text-align: left;
+}
+
+.custom-dropdown-menu .dropdown-item:hover {
+    background: #e8f0ff;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(59,130,246,.15);
+}
+
+.custom-dropdown-menu .dropdown-divider {
+    margin: 10px 6px;
+    border-top: 1px solid #eef2ff;
+    opacity: 1;
+}
+
+/* Ikon warna */
+.custom-dropdown-menu .status-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #64748b;
+}
+
+.custom-dropdown-menu .icon-submitted { color: #6b7280; }
+.custom-dropdown-menu .icon-test { color: #7c3aed; }
+.custom-dropdown-menu .icon-interview { color: #0ea5e9; }
+.custom-dropdown-menu .icon-accepted { color: #16A34A; }
+.custom-dropdown-menu .icon-rejected { color: #DC2626; }
+
+/* Item aktif + centang kanan */
+.custom-dropdown-menu .dropdown-item.is-active {
+    background: #eafaf1;
+    color: #065f46;
+    cursor: default;
+    pointer-events: none;
+}
+
+.custom-dropdown-menu .dropdown-item.is-active .status-icon {
+    color: #10B981 !important;
+}
+
+.custom-dropdown-menu .dropdown-item .tick {
+    position: absolute;
+    right: 14px;
+    font-size: 14px;
+    color: #10B981;
+    visibility: hidden;
+}
+
+.custom-dropdown-menu .dropdown-item.is-active .tick {
+    visibility: visible;
+}
+
+.custom-dropdown-menu .dropdown-item.text-danger.is-active {
+    color: #dc2626;
+}
+
+.custom-dropdown-menu .dropdown-item.text-danger.is-active .status-icon {
+    color: #dc2626 !important;
+}
+
+/* Pastikan dropdown tidak terpotong */
+.table-responsive, .card, .card-body, .company-applications-table,
+.company-applications-table tbody, .company-applications-table tr,
+.company-applications-table td {
+    overflow: visible !important;
+}
+
+/* Tampilkan semua opsi (tanpa scroll) */
+.custom-dropdown-menu {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* ====== AVATAR ====== */
+.avatar-wrapper img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #d0e1ff;
+    object-fit: cover;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .pelamar-bulan-ini .search-hero .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pelamar-bulan-ini .search-hero .form-control {
+        border-radius: 8px !important;
+        width: 100%;
+    }
+    
+    .pelamar-bulan-ini .search-hero .btn-secondary,
+    .pelamar-bulan-ini .search-hero .btn-outline-secondary {
+        border-radius: 8px !important;
+        width: 100%;
+        margin-left: 0 !important;
+    }
+    
+    .pelamar-bulan-ini h2.page-title {
+        font-size: 1.7rem !important;
+        color: #000000 !important; /* Tetap hitam di mobile */
+    }
+    
+    .aksi-wrapper {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .action-text {
+        min-width: 78px;
+        height: 36px;
+        font-size: .9rem;
+        padding: 0 14px;
+    }
+    
+    .pelamar-bulan-ini .btn-total {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .pelamar-bulan-ini .btn-total i {
+        font-size: 12px
+    }
