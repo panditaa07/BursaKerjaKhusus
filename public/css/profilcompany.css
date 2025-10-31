@@ -33,13 +33,11 @@ body {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  /* layer dasar: gradient ungu */
   background: linear-gradient(135deg, #1E3A8A 0%, #4C1D95 100%);
   box-shadow: 0 18px 40px rgba(76, 29, 149, 0.25);
   margin-bottom: 28px;
 }
 .hero::before{
-  /* layer pola garis diagonal */
   content:"";
   position:absolute; inset:0;
   background:
@@ -52,14 +50,13 @@ body {
   pointer-events:none;
 }
 .hero::after{
-  /* garis glow tipis di bawah */
   content:"";
   position:absolute; left:0; right:0; bottom:0; height:6px;
   background: linear-gradient(90deg, #1E3A8A, #4C1D95, #8B5CF6);
   opacity:.8;
 }
 
-.hero-cover{ display:none; } /* tidak perlu cover terpisah */
+.hero-cover{ display:none; }
 
 .hero-inner{
   display:grid;
@@ -69,18 +66,29 @@ body {
   padding: 28px 32px;
 }
 
-/* LOGO bulat dengan ring */
+/* LOGO bulat dengan ring — FIX: isi penuh & tidak “letterbox” */
 .hero-logo{
-  width: 180px; height: 180px;
+  width: 180px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: #fff;
+  overflow: hidden;
   display:grid; place-items:center;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  background: #fff;
   border: 6px solid rgba(255,255,255,.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
 }
-.hero-logo img{ width: 92%; height: 92%; object-fit: contain; border-radius:50%; }
-.hero-logo-fallback{ 
-  font-size:56px; 
+.hero-logo img{
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  object-fit: cover !important;   /* kunci perbaikan */
+  border-radius: 50%;
+}
+.hero-logo-fallback{
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  font-size:56px;
   background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -92,7 +100,7 @@ body {
   margin: 0 0 14px;
   color:#fff;
   font-weight: 800;
-  font-size: clamp(28px, 4.2vw, 48px); /* responsif besar seperti contoh */
+  font-size: clamp(28px, 4.2vw, 48px);
   line-height: 1.1;
   text-shadow: 0 6px 18px rgba(0,0,0,.25);
 }
@@ -113,7 +121,7 @@ body {
 }
 .chip i{ opacity:.95; }
 
-/* ====== GRID CARD (dua kolom, rapi, tinggi seragam) ====== */
+/* ====== GRID CARD ====== */
 .cards-grid{
   display:grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
@@ -129,7 +137,7 @@ body {
   display:flex; flex-direction:column; min-height: 280px;
 }
 
-/* Header card gradien ungu + ikon judul */
+/* Header card */
 .card-header{
   display:flex; align-items:center; gap:10px;
   background: linear-gradient(135deg, #1E3A8A, #4C1D95);
@@ -148,12 +156,12 @@ body {
 
 .card-body{ padding: 20px 22px; display:flex; flex-direction:column; gap:8px; }
 .card-body p{ margin:0; font-size:15px; color:#1f2937; }
-.card-body p strong{ color:#4C1D95; } /* Ungu untuk text strong */
+.card-body p strong{ color:#4C1D95; }
 
-/* HRD – bagian foto & label tengah */
+/* HRD – foto & label tengah */
 .pic-header{ 
   justify-content:center; 
-  color:#4C1D95 !important; /* Ungu */
+  color:#4C1D95 !important;
   font-weight:700; 
 }
 .pic-avatar{ display:flex; justify-content:center; margin: 6px 0 14px; }
@@ -164,18 +172,18 @@ body {
 }
 
 .avatar-fallback {
-  width: 100%;
-  height: 100%;
+  width: 130px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #1E3A8A, #4C1D95);
   font-size: 3rem;
-  color: var(--white);
+  color: #fff;
   border-radius: 50%;
 }
 
-/* Tombol edit gradien ungu */
+/* Tombol edit */
 .company-edit{ display:flex; justify-content:flex-end; margin-top: 8px; padding-right: 6px; }
 .btn-edit{
   display:inline-flex; align-items:center; gap:8px;
@@ -191,21 +199,15 @@ body {
   box-shadow: 0 12px 28px rgba(76, 29, 149, 0.4);
 }
 
-/* Social Media Links - Warna Ungu */
-.social-media-links strong {
-  color: #4C1D95 !important;
-}
-
+/* Social Media */
+.social-media-links strong { color: #4C1D95 !important; }
 .social-icon {
   color: #4C1D95 !important;
   margin-right: 10px;
   text-decoration: none;
   transition: color 0.3s;
 }
-
-.social-icon:hover {
-  color: #1E3A8A !important; /* Ungu lebih tua saat hover */
-}
+.social-icon:hover { color: #1E3A8A !important; }
 
 /* ====== Modal Foto ====== */
 .ph-modal {
@@ -217,10 +219,7 @@ body {
   place-items: center;
 }
 
-.ph-backdrop {
-  position: absolute;
-  inset: 0;
-}
+.ph-backdrop { position: absolute; inset: 0; }
 
 .ph-toolbar {
   position: absolute;
@@ -232,7 +231,7 @@ body {
   border-radius: 8px;
   display: flex;
   gap: 8px;
-  z-index: 1;
+  z-index: 2; /* di atas gambar */
 }
 
 .ph-btn {
@@ -244,10 +243,7 @@ body {
   cursor: pointer;
   transition: background 0.3s;
 }
-
-.ph-btn:hover {
-  background: rgba(255,255,255,0.2);
-}
+.ph-btn:hover { background: rgba(255,255,255,0.2); }
 
 .ph-close {
   position: absolute;
@@ -262,32 +258,32 @@ body {
   display: grid;
   place-items: center;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   transition: background 0.3s;
 }
+.ph-close:hover { background: rgba(76, 29, 149, 0.9); }
 
-.ph-close:hover {
-  background: rgba(76, 29, 149, 0.9);
-}
-
+/* FIX: panggung modal & gambar proporsional */
 .ph-stage {
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: min(92vw, 1100px);
+  max-height: min(86vh, 720px);
   overflow: hidden;
+  display: grid;
+  place-items: center;
   cursor: grab;
 }
-
-.ph-stage:active {
-  cursor: grabbing;
-}
+.ph-stage:active { cursor: grabbing; }
 
 #phImg {
   max-width: 100%;
   max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
   transition: transform 0.3s;
   cursor: grab;
+  transform-origin: center center !important; /* kunci pusat transform */
 }
 
 .ph-loader {
@@ -303,14 +299,36 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 @keyframes spin {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
-
-.ph-sep {
-  width: 1px;
-  background: rgba(255,255,255,0.3);
-  margin: 0 5px;
+.ph-sep { width: 1px; background: rgba(255,255,255,0.3); margin: 0 5px; }
+/* Modal selalu di depan dan terpusat */
+.ph-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index: 9999;           /* di atas sidebar/toolbar lain */
+  background:rgba(0,0,0,.9);
+  place-items:center;
 }
+.ph-stage{
+  position:relative;
+  max-width:min(92vw, 1100px);
+  max-height:min(86vh, 720px);
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  cursor:grab;
+}
+#phImg{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  transform-origin:center center !important;
+}
+.ph-toolbar{ z-index:2; }
+.ph-close  { z-index:2; }

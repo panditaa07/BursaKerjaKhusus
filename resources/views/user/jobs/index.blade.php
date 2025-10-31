@@ -44,7 +44,7 @@
                     <div class="job-card">
                         <div class="row g-0 w-100">
                             <div class="col-md-2 d-flex justify-content-center align-items-center">
-                                <img src="{{ $job->company && $job->company->user && $job->company->user->profile_photo_path ? asset('storage/' . $job->company->user->profile_photo_path) : asset('images/logo-smk.png') }}"
+                                <img src="{{ $job->company->logo ? asset('storage/' . $job->company->logo) : asset('images/default-company.png') }}"
                                     alt="Company Logo" class="job-image">
                             </div>
                             <div class="col-md-10">

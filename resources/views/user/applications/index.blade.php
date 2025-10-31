@@ -92,7 +92,7 @@
                                                 <td>
                                                     <a href="{{ route('user.applications.show', $application) }}"
                                                        class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
-                                                        <i class="fas fa-eye"></i><span>Lihat</span>
+                                                        <span>Lihat</span>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -100,23 +100,31 @@
                                     </tbody>
                                 </table>
                             </div>
+<!-- Pagination -->
+@if ($applications->total() > 10)
+    <div class="pagination-custom">
+        <ul class="pagination">
+            {{-- Tombol Previous --}}
+            @if ($applications->onFirstPage())
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a>
+                </li>
+            @endif
 
-                            <!-- Pagination -->
-                            <div class="pagination-custom">
-                                <ul class="pagination">
-                                    @if ($applications->onFirstPage())
-                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                                    @else
-                                        <li class="page-item"><a class="page-link" href="{{ $applications->previousPageUrl() }}" rel="prev">Previous</a></li>
-                                    @endif
+            {{-- Tombol Next --}}
+            @if ($applications->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a>
+                </li>
+            @else
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+            @endif
+        </ul>
+    </div>
+@endif
 
-                                    @if ($applications->hasMorePages())
-                                        <li class="page-item"><a class="page-link active" href="{{ $applications->nextPageUrl() }}" rel="next">Next</a></li>
-                                    @else
-                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
-                                    @endif
-                                </ul>
-                            </div>
                         @else
                             <div class="text-center py-5">
                                 <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>

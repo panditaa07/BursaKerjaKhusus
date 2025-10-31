@@ -577,6 +577,7 @@ a:hover {
 }
 .apply-section .btn-primary:hover {
     background: #f3f4f6 !important;
+    color: #4C1D95;
     transform: translateY(-2px);
 }
 
@@ -676,4 +677,8 @@ a:hover {
         transform: none;
         margin-right: 4px;
     }
+}
+
+.btn-primary i, .btn-secondary i {
+    color: #4C1D95 !important;
 }

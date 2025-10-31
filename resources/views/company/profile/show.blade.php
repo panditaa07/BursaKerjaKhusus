@@ -184,69 +184,108 @@
   </div>
 </div>
 
-{{-- ===== JS Modal Foto ===== --}}
 <script>
-  let phState = { scale: 1, rotate: 0, dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 };
+  // State zoom/drag
+  let phState = {
+    scale: 1, rotate: 0,
+    dragging: false, startX: 0, startY: 0,
+    originX: 0, originY: 0
+  };
 
+  // Elemen yang dipakai berulang
+  const modal   = document.getElementById('photoModal');
+  const stage   = document.getElementById('phStage');
+  const img     = document.getElementById('phImg');
+  const loader  = document.getElementById('phLoader');
+  const dl      = document.getElementById('phDownload');
+  const toolbar = document.querySelector('.ph-toolbar');
+  const closeBtn= document.querySelector('.ph-close');
+  const backdrop= document.querySelector('#photoModal .ph-backdrop');
+
+  // Buka modal
   function openPhotoModal(url) {
-    const modal = document.getElementById('photoModal');
-    const img   = document.getElementById('phImg');
-    const loader= document.getElementById('phLoader');
-    const dl    = document.getElementById('phDownload');
-
+    // reset state
     phState = { scale: 1, rotate: 0, dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 };
     img.style.transform = 'translate(0px,0px) scale(1) rotate(0deg)';
-    img.src = ''; loader.style.display = 'block'; dl.href = url;
+    img.style.maxWidth  = '100%';
+    img.style.maxHeight = '100%';
+    img.src = '';
+    dl.href = url;
 
+    // tampilkan
+    loader.style.display = 'block';
     modal.style.display = 'grid';
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    img.onload  = () => loader.style.display = 'none';
+    // muat gambar
+    img.onload  = () => { loader.style.display = 'none'; };
     img.onerror = () => { loader.style.display = 'none'; closePhotoModal(); };
     img.src = url;
   }
 
+  // Tutup modal (dipakai di beberapa handler)
   function closePhotoModal() {
-    document.getElementById('photoModal').style.display = 'none';
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    loader.style.display = 'none';
+    img.src = '';              // hentikan gambar agar tidak “keep alive”
+    // reset transform
+    phState = { scale: 1, rotate: 0, dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 };
+    img.style.transform = 'translate(0px,0px) scale(1) rotate(0deg)';
   }
 
-  document.querySelector('#photoModal .ph-backdrop').addEventListener('click', closePhotoModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePhotoModal(); });
+  // ==== Event: tutup dengan ESC ====
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display !== 'none') closePhotoModal();
+  });
 
+  // ==== Event: hanya backdrop yang menutup ====
+  backdrop.addEventListener('click', closePhotoModal);
+  // cegah bubbling dari area konten modal
+  stage.addEventListener('click', (e) => e.stopPropagation());
+  toolbar.addEventListener('click', (e) => e.stopPropagation());
+  closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closePhotoModal(); });
+
+  // ==== Zoom/rotate ====
   function phZoom(dir){
-    const img = document.getElementById('phImg');
-    phState.scale = Math.max(0.2, Math.min(6, phState.scale + (dir>0?0.2:-0.2)));
+    phState.scale = Math.max(0.2, Math.min(6, phState.scale + (dir>0 ? 0.2 : -0.2)));
     img.style.transform = `translate(${phState.originX}px,${phState.originY}px) scale(${phState.scale}) rotate(${phState.rotate}deg)`;
   }
-
   function phRotate(){
-    const img = document.getElementById('phImg');
     phState.rotate = (phState.rotate + 90) % 360;
     img.style.transform = `translate(${phState.originX}px,${phState.originY}px) scale(${phState.scale}) rotate(${phState.rotate}deg)`;
   }
+  window.phZoom = phZoom;     // biar tombol di HTML tetap kerja
+  window.phRotate = phRotate;
 
-  document.getElementById('phStage').addEventListener('dblclick',()=>phZoom(phState.scale<2?1:-1));
-
-  const phImgEl=document.getElementById('phImg');
-  phImgEl.addEventListener('mousedown',e=>{
-    phState.dragging=true;
-    phState.startX=e.clientX-phState.originX;
-    phState.startY=e.clientY-phState.originY;
-    phImgEl.style.cursor='grabbing';
+  // ==== Drag panning ====
+  img.addEventListener('mousedown', (e) => {
+    phState.dragging = true;
+    phState.startX = e.clientX - phState.originX;
+    phState.startY = e.clientY - phState.originY;
+    img.style.cursor = 'grabbing';
   });
-  window.addEventListener('mousemove',e=>{
-    if(!phState.dragging) return;
-    phState.originX=e.clientX-phState.startX;
-    phState.originY=e.clientY-phState.startY;
-    phImgEl.style.transform=
-      `translate(${phState.originX}px,${phState.originY}px) scale(${phState.scale}) rotate(${phState.rotate}deg)`;
+  window.addEventListener('mousemove', (e) => {
+    if (!phState.dragging) return;
+    phState.originX = e.clientX - phState.startX;
+    phState.originY = e.clientY - phState.startY;
+    img.style.transform = `translate(${phState.originX}px,${phState.originY}px) scale(${phState.scale}) rotate(${phState.rotate}deg)`;
   });
-  window.addEventListener('mouseup',()=>{phState.dragging=false;phImgEl.style.cursor='grab';});
+  window.addEventListener('mouseup', () => {
+    phState.dragging = false;
+    img.style.cursor = 'grab';
+  });
 
-  document.getElementById('phStage').addEventListener('wheel',e=>{
-    e.preventDefault(); phZoom(e.deltaY<0?1:-1)
-  },{passive:false});
+  // ==== Scroll to zoom (hanya di stage) ====
+  stage.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    phZoom(e.deltaY < 0 ? 1 : -1);
+  }, { passive: false });
+
+  // Double click toggle zoom
+  stage.addEventListener('dblclick', () => phZoom(phState.scale < 2 ? 1 : -1));
 </script>
 @endsection
 
