@@ -115,7 +115,7 @@
                                             'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
                                             'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
                                             'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
-                                            'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed'],
+                                            'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed text-dark'],
                                         ];
                                         $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
                                     @endphp
