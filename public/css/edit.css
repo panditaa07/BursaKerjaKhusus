@@ -19,13 +19,13 @@
     --bg-input: rgba(249, 250, 251, 0.8);
 
     /* Texts */
-    --text-primary: #4C1D95;   /* abu gelap */
-    --text-secondary: #4C1D95; /* abu medium */
+    --text-primary: #707070;   /* abu gelap */
+    --text-secondary: #303030; /* abu medium */
     --text-muted: #9ca3af;     /* abu terang */
 
     /* Border & Shadow */
     --border-color: rgba(229, 231, 235, 0.9);
-    --border-focus: #4C1D95;;  /* biru fokus */
+    --border-focus: #303030;  /* biru fokus */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 12px 20px rgba(0, 0, 0, 0.08);
@@ -50,7 +50,7 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--gray-300);
-            color: #4C1D95;
+            color: rgba(0, 0, 0, 0.1);
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -91,7 +91,7 @@
             background-clip: text;
             margin: 0;
             position: relative;
-            text-shadow: 0 2px 6px rgba(37, 99, 235, 0.15);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             letter-spacing: -0.5px;
             animation: fadeInUp 0.8s ease-out;
             display: inline-flex;
@@ -273,7 +273,7 @@
         }
 
         .form-control:hover:not(:focus) {
-            border-color: #4C1D95;
+            border-color: rgba(102, 126, 234, 0.1);
             background: var(--bg-secondary);
         }
 
@@ -402,11 +402,11 @@
         }
 
         .file-info i {
-            color: #4C1D95;
+            color: #303030;
         }
 
         .file-info a {
-            color: #4C1D95;
+            color: #303030;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition-fast);

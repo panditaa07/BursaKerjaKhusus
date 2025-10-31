@@ -125,11 +125,16 @@ body {
     gap: 10px;
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+    background: #ffffff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: logoGlow 2s ease-in-out infinite alternate;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+    100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(102, 126, 234, 0.5); }
 }
 
 .logo-img {
