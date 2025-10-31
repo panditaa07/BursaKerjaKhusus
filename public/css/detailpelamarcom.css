@@ -653,8 +653,12 @@ body::before {
     color: var(--white);
 }
 
-/* Buttons */
-.btn {
+/* ============================
+   BUTTON STYLES - SPECIFIC TO DETAIL PELAMAR PAGE ONLY
+============================ */
+
+/* Scope semua button styles dalam container detail pelamar */
+.container .btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -671,7 +675,7 @@ body::before {
     color: var(--white) !important;
 }
 
-.btn::before {
+.container .btn::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -684,52 +688,79 @@ body::before {
     transition: width 0.6s, height 0.6s;
 }
 
-.btn:hover::before {
+.container .btn:hover::before {
     width: 300px;
     height: 300px;
 }
 
-.btn-sm {
+.container .btn-sm {
     padding: 0.4rem 0.8rem;
     font-size: 0.85rem;
 }
 
-.btn-info {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+.container .btn-info,
+.container .btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
     color: var(--white) !important;
     box-shadow: var(--shadow-sm);
 }
 
-.btn-info:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A);
+.container .btn-info:hover,
+.container .btn-primary:hover {
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
     color: var(--white) !important;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
-    color: var(--white) !important;
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    color: var(--white) !important;
-}
-
-.btn-outline-primary {
+.container .btn-outline-primary {
     background: transparent;
     color: #4C1D95 !important;
     border-color: #4C1D95;
 }
 
-.btn-outline-primary:hover {
+.container .btn-outline-primary:hover {
     background: #4C1D95;
     color: var(--white) !important;
     transform: translateY(-2px);
+}
+
+/* Button Download dan Lihat di section Dokumen & Berkas */
+.card-body .btn-info,
+.card-body .btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: var(--white) !important;
+}
+
+.card-body .btn-info:hover,
+.card-body .btn-primary:hover {
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+}
+
+/* Button Update Status */
+.card-body .btn-primary[type="submit"] {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: var(--white) !important;
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.card-body .btn-primary[type="submit"]:hover {
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+}
+
+/* Khusus untuk button di form update status */
+.container form .btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    color: var(--white) !important;
+}
+
+.container form .btn-primary:hover {
+    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    color: var(--white) !important;
 }
 
 /* Table */
@@ -815,6 +846,23 @@ body::before {
     border-color: #4C1D95 !important;
     box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
     outline: none;
+}
+
+/* ============================
+   RESET NAVBAR BUTTONS - Pastikan tombol logout tidak terpengaruh
+============================ */
+
+.navbar .btn:hover,
+.navbar .btn-danger:hover,
+.navbar .btn-logout:hover,
+[data-navbar] .btn:hover,
+header .btn:hover,
+.dashboard-navbar .btn:hover {
+    background: #c82333 !important;
+    border-color: #bd2130 !important;
+    color: white !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* Responsive Design */
@@ -1225,7 +1273,7 @@ html {
     color: var(--white) !important;
 }
 
-.btn * {
+.container .btn * {
     color: var(--white) !important;
 }
 
@@ -1334,81 +1382,4 @@ html {
 .bg-secondary,
 .status-reviewed {
     color: inherit !important;
-}
-
-/* Button Styles dengan Gradien Ungu */
-.btn-info,
-.btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: var(--white) !important;
-    box-shadow: var(--shadow-sm);
-    border: none;
-    border-radius: var(--border-radius-sm);
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-}
-
-.btn-info:hover,
-.btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    color: var(--white) !important;
-}
-
-/* Button Download dan Lihat di section Dokumen & Berkas */
-.card-body .btn-info,
-.card-body .btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: var(--white) !important;
-}
-
-.card-body .btn-info:hover,
-.card-body .btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
-}
-
-/* Button Update Status */
-.card-body .btn-primary[type="submit"] {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: var(--white) !important;
-    width: 100%;
-    justify-content: center;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-.card-body .btn-primary[type="submit"]:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
-}
-
-/* Pastikan semua button menggunakan gradien ungu */
-.btn:not(.btn-custom):not(.badge-enhanced) {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: var(--white) !important;
-    border: none;
-}
-
-.btn:not(.btn-custom):not(.badge-enhanced):hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
-    color: var(--white) !important;
-}
-
-/* Khusus untuk button di form update status */
-form .btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: var(--white) !important;
-}
-
-form .btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
-    color: var(--white) !important;
 }
