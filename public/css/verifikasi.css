@@ -6,7 +6,16 @@
 
 /* Tambahan opsional buat gaya header */
 .table thead th {
-    background-color: #15357a; /* biru gelap */
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: white;
     font-weight: 600;
+}
+
+/* Gaya untuk judul Verifikasi Akun */
+.verifikasi-title {
+    color: #4c1d95 !important;
+}
+
+.text-primary {
+    color: #4c1d95 !important;
 }

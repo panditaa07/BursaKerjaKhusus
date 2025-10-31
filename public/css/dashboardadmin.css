@@ -198,7 +198,7 @@ body {
     left: 0;
     right: 0;
     height: 14px;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
 
 }
 

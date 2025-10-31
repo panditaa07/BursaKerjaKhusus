@@ -55,7 +55,7 @@ body {
 .page-title {
     font-weight: 700;
     font-size: 1.8rem;
-    color: #4C1D95; /* Biru tua */
+    color: #000000; /* Biru tua */
 }
 
 @keyframes fadeInDown {
@@ -638,7 +638,7 @@ td.aksi .table-btn {
 
 /* Tombol kembali */
 .btn-kembali {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     border: none;
     color: #fff !important;
     font-weight: 600;
@@ -652,7 +652,7 @@ td.aksi .table-btn {
 }
 
 .btn-kembali:hover {
-    background-color: linear-gradient(135deg, #1E3A8A, #4C1D95);;
+    background-color: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     transform: translateY(-2px);
 }
 
@@ -670,7 +670,7 @@ td.aksi .table-btn {
 }
 
 .input-group .btn-filter:hover {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95); /* sedikit lebih terang */
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
 }
 
 .input-group .btn-filter:focus,
@@ -683,7 +683,7 @@ td.aksi .table-btn {
 
 
 .input-group .btn-filter {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: #fff;
     font-weight: 600;
     border: none;
@@ -740,7 +740,7 @@ td.aksi .table-btn {
 
 /* Tombol Cari */
 .btn-cari {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95); ; /* biru tua */
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: #fff !important;
     font-weight: 600;
     padding: 8px 18px;
@@ -772,7 +772,7 @@ td.aksi .table-btn {
 
 /* Total jadi badge tombol */
 .btn-total {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95); /* biru */
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: #fff !important;
     font-weight: 600;
     padding: 8px 18px;

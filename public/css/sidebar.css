@@ -26,7 +26,7 @@ body {
     z-index: 1030;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: #fff; /* text default */
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
     transition: width var(--transition-speed) ease;

@@ -3,7 +3,7 @@
 ============================== */
 .job-form-container {
     background: #ffffff !important;
-    border-top: 5px solid rgb(30, 58, 138) !important;
+    border-top: 5px solid #4C1D95 !important;
     border-radius: 16px !important;
     padding: 32px !important;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
@@ -30,7 +30,7 @@
 .page-title {
    font-size: 40px;
     font-weight: 700;
-    color: rgb(30, 58, 138);
+    color: #fff;
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -58,7 +58,7 @@
     margin: auto;
     width: 60%;
     height: 4px;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     border-radius: 3px;
 }
 
@@ -133,7 +133,7 @@
    Tombol Submit (Simpan)
 ============================== */
 .job-form-container button[type="submit"] {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
     color: #fff !important;
     font-weight: bold !important;
     padding: 12px 24px !important;
@@ -144,7 +144,7 @@
     margin: 0 !important;
 }
 .job-form-container button[type="submit"]:hover {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
@@ -153,7 +153,7 @@
    Tombol Kembali
 ============================== */
 .btn-back {
-    background: rgb(30, 58, 138)!important;
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
     color: #fff !important;
     font-weight: bold !important;
     padding: 12px 24px !important;
@@ -167,7 +167,7 @@
     gap: 6px !important;
 }
 .btn-back:hover {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
     color: #fff !important;
     text-decoration: none !important;
     transform: translateY(-2px) scale(1.05);

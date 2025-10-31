@@ -3,13 +3,16 @@
 @section('title', 'Verifikasi Akun')
 
 @section('content')
+
+<link rel="stylesheet" href="{{ asset('css/verifikasi.css') }}">
+
 <div class="container mx-auto px-4 py-4">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-    <h1 class="h3 mb-4 text-gray-800">Verifikasi Akun</h1>
+    <h1 class="h1 mb-4 verifikasi-title">Verifikasi Akun</h1>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">

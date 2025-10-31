@@ -70,7 +70,7 @@ body::before {
 /* Hero Section */
 .hero {
     position: relative;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     margin-bottom: 3rem;
@@ -98,7 +98,7 @@ body::before {
     left: 0;
     right: 0;
     height: 200px;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     overflow: hidden;
 }
 
@@ -156,7 +156,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     border-radius: 50%;
     font-size: 3.5rem;
     color: var(--white);
@@ -221,7 +221,7 @@ body::before {
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: #fff !important; /* warna teks default putih */
     text-decoration: none;
     border-radius: var(--border-radius-sm);
@@ -240,13 +240,13 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     transition: var(--transition);
     z-index: -1;
 }
 
 .btn-custom.back:hover {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: #fff !important; /* pastikan tidak berubah */
     z-index: 1;
 }
@@ -314,7 +314,7 @@ body::before {
 }
 
 .card-head {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: var(--white);
     padding: 1.25rem 1.75rem;
     position: relative;
@@ -387,7 +387,7 @@ body::before {
     content: '';
     width: 4px;
     height: 16px;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     border-radius: 2px;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -675,7 +675,7 @@ body::before {
 }
 
 .btn-info {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     color: var(--white);
     box-shadow: 0 0 6px rgba(30, 58, 138, 0.3);
     transition: all 0.3s ease;
@@ -734,7 +734,7 @@ body::before {
 }
 
 .table thead th {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
 }
 
 .table th,
