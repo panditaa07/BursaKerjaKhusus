@@ -81,31 +81,35 @@
     @endif
 </div>
 
-<div class="pagination-custom">
-    <ul class="pagination">
-        {{-- Tombol Previous --}}
-        @if ($jobs->onFirstPage())
-            <li class="page-item disabled">
-                <span class="page-link">Previous</span>
-            </li>
-        @else
-            <li class="page-item">
-                <a class="page-link" href="{{ $jobs->previousPageUrl() }}" rel="prev">Previous</a>
-            </li>
-        @endif
+{{-- Pagination Section --}}
+@if ($jobs->total() > 5)
+    <div class="pagination-custom">
+        <ul class="pagination">
+            {{-- Tombol Previous --}}
+            @if ($jobs->onFirstPage())
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $jobs->previousPageUrl() }}" rel="prev">Previous</a>
+                </li>
+            @endif
 
-        {{-- Tombol Next --}}
-        @if ($jobs->hasMorePages())
-            <li class="page-item">
-                <a class="page-link active" href="{{ $jobs->nextPageUrl() }}" rel="next">Next</a>
-            </li>
-        @else
-            <li class="page-item disabled">
-                <span class="page-link">Next</span>
-            </li>
-        @endif
-    </ul>
-</div>
+            {{-- Tombol Next --}}
+            @if ($jobs->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link active" href="{{ $jobs->nextPageUrl() }}" rel="next">Next</a>
+                </li>
+            @else
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            @endif
+        </ul>
+    </div>
+@endif
+
 
 <script>
     const input = document.getElementById('searchInput');
