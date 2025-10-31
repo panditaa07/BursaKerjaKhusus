@@ -70,7 +70,7 @@ body::before {
 /* Hero Section */
 .hero {
     position: relative;
-    background: linear-gradient(135deg, #1E3A8A 0%, #4C1D95 100%);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     margin-bottom: 3rem;
@@ -98,7 +98,7 @@ body::before {
     left: 0;
     right: 0;
     height: 200px;
-    background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(76, 29, 149, 0.7) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(76, 29, 149, 0.7) 100%);
     overflow: hidden;
 }
 
@@ -156,7 +156,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     border-radius: 50%;
     font-size: 3.5rem;
     color: var(--white);
@@ -221,7 +221,7 @@ body::before {
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: #ffffff !important;
     text-decoration: none;
     border-radius: 12px;
@@ -247,7 +247,7 @@ body::before {
 }
 
 .btn-custom.back:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: #ffffff !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(76, 29, 149, 0.4);
@@ -293,7 +293,7 @@ body::before {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     transform: scaleX(0);
     transform-origin: left;
     transition: var(--transition);
@@ -310,7 +310,7 @@ body::before {
 }
 
 .card-head {
-    background: linear-gradient(135deg, #1E3A8A 0%, #4C1D95 100%);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     color: var(--white);
     padding: 1.25rem 1.75rem;
     position: relative;
@@ -385,7 +385,7 @@ body::before {
     content: '';
     width: 4px;
     height: 16px;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     border-radius: 2px;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -426,7 +426,7 @@ body::before {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     transition: var(--transition);
 }
 
@@ -540,7 +540,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     font-size: 3rem;
     color: var(--white);
 }
@@ -575,7 +575,7 @@ body::before {
     left: 0;
     width: 4px;
     height: 0;
-    background: linear-gradient(180deg, #1E3A8A, #4C1D95);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     transition: var(--transition);
 }
 
@@ -608,49 +608,96 @@ body::before {
     gap: 0.5rem;
 }
 
-/* Badge Enhanced - KEMBALIKAN KE WARNA ASLI */
+/* ===== STATUS BADGES - COMPANY STYLE ===== */
+
+/* basis badge */
 .badge-enhanced {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: var(--shadow-sm);
-    animation: fadeIn 0.5s ease-out;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    border: 0;
+    background-image: none !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    line-height: 1;
 }
 
-/* WARNA ASLI UNTUK STATUS BADGES - JANGAN DIUBAH */
+/* sembunyikan titik ikon di depan label */
+.badge-enhanced i { 
+    display: none !important; 
+}
+
+/* TERIMA (hijau tua solid) */
+.status-accepted,
 .bg-success {
-    background: #10b981 !important;
-    color: var(--white);
+    background: #0c632f !important;
+    color: #fff;
 }
 
+/* TOLAK (merah tua solid) */
+.status-rejected,
 .bg-danger {
-    background: #ef4444 !important;
-    color: var(--white);
+    background: #bb1425 !important;
+    color: #fff;
 }
 
-.bg-warning {
-    background: #f59e0b !important;
-    color: var(--white);
-}
-
+/* WAWANCARA (coklat tua solid) */
+.status-interview,
 .bg-info {
-    background: #3b82f6 !important;
-    color: var(--white);
+    background: #4B2E05 !important;
+    color: #fff;
 }
 
+/* PROSES / TEST (biru tua solid) */
+.status-test,
+.status-test2,
+.bg-warning {
+    background: #0d469d !important;
+    color: #fff;
+}
+
+/* TEST 2 (navy solid) */
 .bg-primary {
     background: #1E3A8A !important;
-    color: var(--white);
+    color: #fff;
 }
 
+/* MENUNGGU (kuning solid, teks hitam tebal) */
+.status-pending,
 .bg-secondary {
-    background: #64748b !important;
-    color: var(--white);
+    background: #EAB308 !important;
+    color: #000 !important;
+    font-weight: 800;
+}
+
+/* REVIEWED (chip putih-abu dengan outline halus) */
+.status-reviewed {
+    background: #F3F4F6 !important;
+    color: #111827 !important;
+    box-shadow: 
+        inset 0 0 0 1px #e5e7eb,
+        0 8px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* nonaktifkan efek hover pada badge */
+.badge-enhanced:hover { 
+    transform: none !important; 
+    filter: none !important; 
+}
+
+/* Pastikan warna text tetap sesuai */
+.badge-enhanced,
+.bg-success,
+.bg-danger,
+.bg-info,
+.bg-warning,
+.bg-primary,
+.bg-secondary,
+.status-reviewed {
+    color: inherit !important;
 }
 
 /* ============================
@@ -700,14 +747,14 @@ body::before {
 
 .container .btn-info,
 .container .btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white) !important;
     box-shadow: var(--shadow-sm);
 }
 
 .container .btn-info:hover,
 .container .btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
     color: var(--white) !important;
@@ -728,18 +775,18 @@ body::before {
 /* Button Download dan Lihat di section Dokumen & Berkas */
 .card-body .btn-info,
 .card-body .btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white) !important;
 }
 
 .card-body .btn-info:hover,
 .card-body .btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* Button Update Status */
 .card-body .btn-primary[type="submit"] {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white) !important;
     width: 100%;
     justify-content: center;
@@ -749,17 +796,17 @@ body::before {
 }
 
 .card-body .btn-primary[type="submit"]:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* Khusus untuk button di form update status */
 .container form .btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white) !important;
 }
 
 .container form .btn-primary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white) !important;
 }
 
@@ -775,7 +822,7 @@ body::before {
 }
 
 .table thead {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white);
 }
 
@@ -1204,7 +1251,7 @@ html {
 }
 
 .riwayat-table th {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: var(--white);
     white-space: nowrap;
 }
@@ -1287,99 +1334,4 @@ html {
 
 .riwayat-table th {
     color: var(--white) !important;
-}
-
-/* ===== STATUS BADGES - MATCHING DASHBOARD STYLE ===== */
-
-/* basis badge */
-.badge-enhanced {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.55rem 1.1rem;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: 0.3px;
-    border: 0;
-    background-image: none !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    line-height: 1;
-}
-
-/* sembunyikan titik ikon di depan label */
-.badge-enhanced i { 
-    display: none !important; 
-}
-
-/* TERIMA (hijau tua solid) */
-.bg-success {
-    background: #0c632f !important;
-    color: #fff;
-}
-
-/* TOLAK (merah tua solid) */
-.bg-danger {
-    background: #bb1425 !important;
-    color: #fff;
-}
-
-/* WAWANCARA (coklat tua solid) */
-.bg-info {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */ #1E3A8A 40%,  /* navy (senada sidebar) */ #312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
-    color: #fff;
-}
-
-/* TEST 1 (biru tua solid) */
-.bg-warning {
-    background: #0d469d !important;
-    color: #fff;
-}
-
-/* TEST 2 (biru tua solid) */
-.bg-primary {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */ #1E3A8A 40%,  /* navy (senada sidebar) */ #312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important;
-    color: #fff;
-}
-
-/* MENUNGGU / SUBMITTED (kuning solid, teks hitam tebal) */
-.bg-secondary {
-    background: #EAB308 !important;
-    color: #000 !important;
-    font-weight: 800;
-}
-
-/* REVIEWED (chip putih-abu dengan outline halus) */
-.status-reviewed {
-    background: #F3F4F6 !important;
-    color: #111827 !important;
-    box-shadow: 
-        inset 0 0 0 1px #e5e7eb,
-        0 8px 14px rgba(0, 0, 0, 0.06);
-}
-
-/* Untuk status reviewed yang menggunakan class bg-info (jika ada) */
-.bg-info.status-reviewed {
-    background: #F3F4F6 !important;
-    color: #111827 !important;
-    box-shadow: 
-        inset 0 0 0 1px #e5e7eb,
-        0 8px 14px rgba(0, 0, 0, 0.06);
-}
-
-/* nonaktifkan efek hover pada badge */
-.badge-enhanced:hover { 
-    transform: none !important; 
-    filter: none !important; 
-}
-
-/* Pastikan warna text tetap sesuai */
-.badge-enhanced,
-.bg-success,
-.bg-danger,
-.bg-info,
-.bg-warning,
-.bg-primary,
-.bg-secondary,
-.status-reviewed {
-    color: inherit !important;
 }

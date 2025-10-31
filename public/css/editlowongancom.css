@@ -13,7 +13,7 @@
 /* ===== CARD HEADER - GRADIEN UNGU ===== */
 .card-header {
     border: none;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     color: #ffffff !important;
     font-weight: 600;
     border-top-left-radius: 16px !important;
@@ -149,13 +149,13 @@ hr {
     min-width: 130px;
     height: 38px;
     font-size: 0.95rem;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* Hover efek - gradien terbalik */
 .btn-warning:hover,
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #4C1D95, #1E3A8A) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(76, 29, 149, 0.28);
 }
@@ -212,7 +212,7 @@ hr {
 
 /* Tombol Simpan Perubahan - focus state */
 .btn-warning:focus {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     border: none !important;
     color: #fff !important;
     transform: none !important;
@@ -221,7 +221,7 @@ hr {
 
 /* Tombol Kembali - focus state */
 .btn-secondary:focus {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     border: none !important;
     color: #fff !important;
     transform: none !important;
