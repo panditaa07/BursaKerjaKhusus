@@ -78,137 +78,141 @@
   <div class="container table-section">
     <h3 class="section-title mb-3">Pelamar Terbaru</h3>
 
-    <table class="table-custom">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Email</th>
-          <th>No Hp</th>
-          <th>Lowongan</th>
-          <th>Status</th>
-          <th>Tanggal</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse($recentApplications as $index => $app)
+    {{-- HANYA TAMBAHKAN INI - wrapper responsive untuk tabel --}}
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
           <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $app->user->name ?? '-' }}</td>
-            <td>{{ $app->user->email ?? '-' }}</td>
-            <td>{{ $app->user->phone ?? '-' }}</td>
-            <td>{{ $app->jobPost->title ?? '-' }}</td>
-            <td>
-              @php
-                $status = $app->status;
-                $statusConfig = [
-                  'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
-                  'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
-                  'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-                  'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
-                  'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
-                  'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
-                  'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed text-dark'],
-                ];
-                $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
-              @endphp
-              <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
-                <i class="fas fa-circle me-1" style="font-size:8px;"></i>{{ $currentStatus['label'] }}
-              </span>
-            </td>
-            <td>{{ $app->created_at->format('d-m-Y') }}</td>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>No Hp</th>
+            <th>Lowongan</th>
+            <th>Status</th>
+            <th>Tanggal</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse($recentApplications as $index => $app)
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ $app->user->name ?? '-' }}</td>
+              <td>{{ $app->user->email ?? '-' }}</td>
+              <td>{{ $app->user->phone ?? '-' }}</td>
+              <td>{{ $app->jobPost->title ?? '-' }}</td>
+              <td>
+                @php
+                  $status = $app->status;
+                  $statusConfig = [
+                    'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+                    'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+                    'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+                    'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+                    'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
+                    'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
+                    'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed text-dark'],
+                  ];
+                  $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
+                @endphp
+                <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
+                  <i class="fas fa-circle me-1" style="font-size:8px;"></i>{{ $currentStatus['label'] }}
+                </span>
+              </td>
+              <td>{{ $app->created_at->format('d-m-Y') }}</td>
 
-    {{-- AKSI --}}
-<td class="text-center">
-  <div class="aksi-wrapper d-flex justify-content-center align-items-center">
+              {{-- AKSI --}}
+              <td class="text-center">
+                <div class="aksi-wrapper d-flex justify-content-center align-items-center">
 
-    {{-- Lihat --}}
-    <a href="{{ route('company.applicants.show', $app->id) }}" class="action-text view">Lihat</a>
+                  {{-- Lihat --}}
+                  <a href="{{ route('company.applicants.show', $app->id) }}" class="action-text view">Lihat</a>
 
-    {{-- Edit (dropdown buka ke kiri) --}}
-    <div class="dropdown dropstart position-static">
-      <button
-        class="action-text edit"
-        type="button"
-        id="dropdownMenuButton{{ $app->id }}"
-        data-bs-toggle="dropdown"
-        data-bs-display="static"
-        data-bs-boundary="viewport"
-        data-bs-reference="parent"
-        aria-expanded="false">
-        Edit
-      </button>
+                  {{-- Edit (dropdown buka ke kiri) --}}
+                  <div class="dropdown dropstart position-static">
+                    <button
+                      class="action-text edit"
+                      type="button"
+                      id="dropdownMenuButton{{ $app->id }}"
+                      data-bs-toggle="dropdown"
+                      data-bs-display="static"
+                      data-bs-boundary="viewport"
+                      data-bs-reference="parent"
+                      aria-expanded="false">
+                      Edit
+                    </button>
 
-      @php
-        $statusMenu = [
-          'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
-          'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
-          'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
-          'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
-          'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
-          'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
-        ];
-      @endphp
+                    @php
+                      $statusMenu = [
+                        'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
+                        'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
+                        'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
+                        'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
+                        'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
+                        'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
+                      ];
+                    @endphp
 
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $app->id }}">
-        @foreach ($statusMenu as $value => $opt)
-          @php
-            $isActive = ($value === $status);
-            $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
-          @endphp
-          <li>
-            @if($isActive)
-              {{-- Status aktif --}}
-              <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
-                <i class="status-icon {{ $opt['icon'] }}"></i>
-                {{ $opt['label'] }}
-                <span class="tick"><i class="fas fa-check"></i></span>
-              </div>
-            @else
-              {{-- Status lain --}}
-              <form action="{{ route('company.applications.updateStatus', $app->id) }}"
-                    method="POST" class="d-inline">
-                @csrf
-                @method('PUT')
-                <input type="hidden" name="status" value="{{ $value }}">
-                <button type="submit" class="dropdown-item {{ $btnClasses }}">
-                  <i class="status-icon {{ $opt['icon'] }}"></i>
-                  {{ $opt['label'] }}
-                  <span class="tick"><i class="fas fa-check"></i></span>
-                </button>
-              </form>
-            @endif
-          </li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $app->id }}">
+                      @foreach ($statusMenu as $value => $opt)
+                        @php
+                          $isActive = ($value === $status);
+                          $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
+                        @endphp
+                        <li>
+                          @if($isActive)
+                            {{-- Status aktif --}}
+                            <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
+                              <i class="status-icon {{ $opt['icon'] }}"></i>
+                              {{ $opt['label'] }}
+                              <span class="tick"><i class="fas fa-check"></i></span>
+                            </div>
+                          @else
+                            {{-- Status lain --}}
+                            <form action="{{ route('company.applications.updateStatus', $app->id) }}"
+                                  method="POST" class="d-inline">
+                              @csrf
+                              @method('PUT')
+                              <input type="hidden" name="status" value="{{ $value }}">
+                              <button type="submit" class="dropdown-item {{ $btnClasses }}">
+                                <i class="status-icon {{ $opt['icon'] }}"></i>
+                                {{ $opt['label'] }}
+                                <span class="tick"><i class="fas fa-check"></i></span>
+                              </button>
+                            </form>
+                          @endif
+                        </li>
 
-          @if(!empty($opt['divider_after']))
-            <li><hr class="dropdown-divider"></li>
-          @endif
-        @endforeach
-      </ul>
+                        @if(!empty($opt['divider_after']))
+                          <li><hr class="dropdown-divider"></li>
+                        @endif
+                      @endforeach
+                    </ul>
+                  </div>
+
+                  {{-- Hapus --}}
+                  <form action="{{ route('company.applicants.destroy', $app->id) }}"
+                        method="POST" class="d-inline"
+                        onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="action-text delete">Hapus</button>
+                  </form>
+
+                </div>
+              </td>
+            </tr>
+          @empty
+            <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
+          @endforelse
+        </tbody>
+      </table>
     </div>
-
-    {{-- Hapus --}}
-    <form action="{{ route('company.applicants.destroy', $app->id) }}"
-          method="POST" class="d-inline"
-          onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
-      @csrf
-      @method('DELETE')
-      <button type="submit" class="action-text delete">Hapus</button>
-    </form>
-
-  </div>
-</td>
-
-        @empty
-          <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
-        @endforelse
-      </tbody>
-    </table>
+    {{-- END wrapper responsive --}}
   </div>
 
   {{-- === Lowongan Terbaru Cards === --}}
-  <div class="container jobs-latest mt-4">  {{-- sebelumnya: <div class="container jobs-latest"> --}}
+  <div class="container jobs-latest mt-4">
 
     <div class="jobs-header mb-4 text-center">
       <h3 class="section-title mb-0">Lowongan Terbaru</h3>

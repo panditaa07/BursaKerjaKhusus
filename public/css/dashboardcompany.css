@@ -939,3 +939,41 @@ textarea:focus,
   outline-offset: 2px;
 }
 
+/* ========== TABLE RESPONSIVE ONLY ========== */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 992px) {
+  .table-custom {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-custom {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-custom {
+    min-width: 600px;
+  }
+}
+
+/* Optional: Adjust table font size on mobile */
+@media (max-width: 768px) {
+  .table-custom {
+    font-size: 0.875rem;
+  }
+  
+  .table-custom thead th {
+    padding: 10px 12px !important;
+  }
+  
+  .table-custom tbody td {
+    padding: 8px 10px !important;
+  }
+}
