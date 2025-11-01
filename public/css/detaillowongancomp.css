@@ -16,7 +16,7 @@
   --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.05);
   --radius: 14px;
   --transition: all 0.25s ease;
-  --gradient: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  --gradient: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
 
   /* Smooth anim timing & easing */
   --t-fast:   .45s;
@@ -108,7 +108,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   width: 140px;
   height: 4px;
   border-radius: 4px;
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   margin: 10px auto 0;
   transform-origin: center;
   transform: scaleX(1);   /* <-- visible by default */
@@ -137,7 +137,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   box-shadow: 0 8px 24px rgba(15,23,42,.1) !important;
 }
 .btn-back {
-  background: linear-gradient(135deg, #2156e0, #1a43b4) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
 }
 
@@ -179,7 +179,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   content:"";
   position:absolute; inset:0 0 auto 0;
   height: 92px;
-  background: linear-gradient(135deg, rgba(33,86,224,.10), rgba(26,67,180,.06));
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   border-bottom: 1px solid #edf2fb;
   pointer-events:none;
 }
@@ -212,7 +212,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   box-shadow: 0 8px 22px rgba(2,6,23,.06);
 }
 
-/* nama perusahaan lebih “brand” */
+/* nama perusahaan lebih "brand" */
 .company-card h5{
   margin: 0 0 6px !important;
   font-weight: 800;
@@ -223,7 +223,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
 .company-card h5::after{
   content:"";
   display:block; width: 56px; height: 3px; border-radius: 3px;
-  background: var(--gradient);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   margin-top: 6px; opacity:.18;
 }
 
@@ -271,7 +271,7 @@ nav[aria-label="breadcrumb"] .breadcrumb .active { color: #334155; font-weight: 
   border: 6px solid transparent !important;
   background:
     linear-gradient(#fff,#fff) padding-box,
-    linear-gradient(135deg,#9ec5ff,#2156e0) border-box;
+    linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) border-box;
   border-radius: 50% !important;
   box-shadow: 0 14px 30px rgba(2,6,23,.10);
   transition: transform .35s var(--ease-soft), box-shadow .35s var(--ease-soft);
@@ -397,7 +397,7 @@ body.job-detail .card {
   font-size:.95rem;
 }
 .table-applicants thead tr{
-  background:linear-gradient(90deg,#1e3a8a 0%,#1a2f73 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   color:#fff;
 }
 .table-applicants thead th{
@@ -428,7 +428,7 @@ body.job-detail .card {
 .avatar-pill{
   width:32px;height:32px;border-radius:999px;
   display:flex;align-items:center;justify-content:center;
-  background:#2156e0;color:#fff;font-weight:800;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%); color:#fff;font-weight:800;
 }
 
 /* Tombol Aksi */
@@ -499,7 +499,7 @@ body.job-detail .card {
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
 }
 
-/* ===== TOMBOL ICON “LIHAT” (outline ➜ solid cyan) ===== */
+/* ===== TOMBOL ICON "LIHAT" (outline ➜ solid cyan) ===== */
 .btn-icon{
   width: 42px;
   height: 42px;
@@ -593,13 +593,14 @@ body.job-detail .card {
 /* Tombol Kembali (biru gradasi) */
 .jd-actions .btn-outline-secondary,
 .jd-actions .btn-back {
-  background: linear-gradient(135deg, #2156e0, #1a43b4) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
 }
 .jd-actions .btn-outline-secondary:hover,
 .jd-actions .btn-back:hover {
-  background: linear-gradient(135deg, #1a43b4, #15378e) !important;
-  box-shadow: 0 6px 18px rgba(26,67,180,.35) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
+  box-shadow: 0 6px 18px rgba(30,58,138,.35) !important;
 }
 
 /* Tombol Edit (kuning emas) */
@@ -615,13 +616,14 @@ body.job-detail .card {
 /* Tombol Nonaktifkan/Aktifkan (biru premium) */
 .jd-actions .btn-outline-primary,
 .jd-actions .btn-secondary {
-  background: linear-gradient(135deg, #3b82f6, #2156e0) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
 }
 .jd-actions .btn-outline-primary:hover,
 .jd-actions .btn-secondary:hover {
-  background: linear-gradient(135deg, #1d4ed8, #1a43b4) !important;
-  box-shadow: 0 6px 18px rgba(33,86,224,.35) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
+  box-shadow: 0 6px 18px rgba(30,58,138,.35) !important;
 }
 
 /* Tombol Hapus (merah vivid) */
@@ -684,48 +686,46 @@ body.job-detail .card {
 
 /* Warna tombol Kembali */
 .jd-actions .btn-outline-secondary {
-  background-color: #2f57ef;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
-  border: 1px solid #2f57ef;
+  border: none !important;
 }
 .jd-actions .btn-outline-secondary:hover {
-  background-color: #1e40af;
-  border-color: #1e40af;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
   transform: translateY(-2px);
 }
 
 /* Warna tombol Edit Lowongan (ubah text jadi putih, hover biru lebih tua) */
 .jd-actions .btn-warning {
-  background-color: #f1c40f;
-  color: #fff !important;
-  border: 1px solid #f1c40f;
+  background: linear-gradient(135deg, #facc15, #eab308) !important;
+  color: #1a1a1a !important;
+  border: none !important;
 }
 .jd-actions .btn-warning:hover {
-  background-color: #d4ac0d;
-  border-color: #d4ac0d;
+  background: linear-gradient(135deg, #fde047, #facc15) !important;
   transform: translateY(-2px);
 }
 
 /* Tombol Nonaktifkan dan Hapus */
 .jd-actions .btn-outline-primary {
-  background-color: #2f57ef;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
-  border: 1px solid #2f57ef;
+  border: none !important;
 }
 .jd-actions .btn-outline-primary:hover {
-  background-color: #1e40af;
-  border-color: #1e40af;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
   transform: translateY(-2px);
 }
 
 .jd-actions .btn-danger {
-  background-color: #e63946;
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
   color: #fff !important;
-  border: 1px solid #e63946;
+  border: none !important;
 }
 .jd-actions .btn-danger:hover {
-  background-color: #c92a34;
-  border-color: #c92a34;
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
   transform: translateY(-2px);
 }
 
@@ -821,7 +821,7 @@ body.job-detail .card {
 
 /* Tombol Kembali - focus state */
 .jd-actions .btn-outline-secondary:focus {
-    background: linear-gradient(135deg, #2156e0, #1a43b4) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     border: none !important;
     color: #fff !important;
     transform: none !important;
@@ -839,7 +839,7 @@ body.job-detail .card {
 
 /* Tombol Nonaktifkan - focus state */
 .jd-actions .btn-outline-primary:focus {
-    background: linear-gradient(135deg, #3b82f6, #2156e0) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     border: none !important;
     color: #fff !important;
     transform: none !important;
@@ -869,9 +869,7 @@ body.job-detail .card {
 .btn-view:focus {
     outline: none !important;
     box-shadow: none !important;
-    background: rgb(30, 58, 138) !important;
     background: #fff !important;
-    background: rgb(30, 58, 138) !important;
     transform: none !important;
 }
 
@@ -1027,7 +1025,7 @@ body.job-detail .card {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   border-radius: 20px 20px 0 0;
 }
 
@@ -1047,7 +1045,7 @@ body.job-detail .card {
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   border-radius: 3px;
 }
 
@@ -1069,7 +1067,7 @@ body.job-detail .card {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
 }
 
 .company-logo-enhanced {
@@ -1103,7 +1101,7 @@ body.job-detail .card {
 .job-title-enhanced h4 {
   font-size: 1.8rem;
   font-weight: 800;
-  background: rgb(30, 58, 138) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
@@ -1134,7 +1132,7 @@ body.job-detail .card {
   left: 0;
   right: 0;
   height: 4px;
-  background: rgb(30, 58, 138);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
 }
 
 .info-card-enhanced:hover {
@@ -1175,7 +1173,7 @@ body.job-detail .card {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   border-radius: 4px 0 0 4px;
 }
 
@@ -1215,7 +1213,7 @@ body.job-detail .card {
 }
 
 .applicant-header-enhanced {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   color: white;
   padding: 20px;
 }
@@ -1236,7 +1234,7 @@ body.job-detail .card {
 
 .empty-state-enhanced i {
   font-size: 4rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
@@ -1250,15 +1248,15 @@ body.job-detail .card {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(30, 58, 138);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   color: white;
   margin-right: 15px;
-  box-shadow: 0 4px 12px rgba(33, 86, 224, 0.3);
+  box-shadow: 0 4px 14px rgba(30,58,138,.3);
 }
 
 /* Text Gradient */
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
@@ -1317,7 +1315,7 @@ body.job-detail .card {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
 }
 
 /* Company Info Grid Layout */
@@ -1356,7 +1354,7 @@ body.job-detail .card {
 .company-name {
     font-size: 1.8rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 15px;
@@ -1401,7 +1399,7 @@ body.job-detail .card {
 }
 
 .job-title-text {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     font-size: 2rem;
     font-weight: 800;
     color: var(--text);
@@ -1436,7 +1434,7 @@ body.job-detail .card {
 }
 
 .job-tag i {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
 }
 
 /* Profile Photo Section */
@@ -1466,7 +1464,7 @@ body.job-detail .card {
     border: 4px solid transparent;
     background: 
         linear-gradient(#fff, #fff) padding-box,
-        linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%) border-box;
+        linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1577,7 +1575,7 @@ body.job-detail .card {
 .card.enhanced-card .enhanced-header::before {
     /* JANGAN DIUBAH - biarkan seperti semula */
     display: block !important;
-    background: rgb(30, 58, 138);
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     height: 4px !important;
 }
 
@@ -1640,24 +1638,24 @@ body.job-detail .card {
 
 /* 1. Background header Pelamar */
 .applicant-table-enhanced .applicant-header-enhanced {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* 2. Border kiri Jobdesk/Tugas Pekerjaan */
 .info-card-enhanced:has(.fa-tasks) .alert-light-enhanced::before,
 .info-card-enhanced:first-of-type .alert-light-enhanced::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* 3. Border kiri Persyaratan */
 .info-card-enhanced:has(.fa-clipboard-list) .alert-light-enhanced::before,
 .info-card-enhanced:nth-of-type(2) .alert-light-enhanced::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* Alternative untuk browser yang tidak support :has() */
 .info-card-enhanced .alert-light-enhanced::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* ==========================================================
@@ -1782,75 +1780,77 @@ body.job-detail .card {
 
 /* Background header tabel pelamar */
 .applicant-header-enhanced {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 /* Background header tabel */
 .table-applicants thead tr {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 /* Garis aksen di bawah judul utama */
 .d-flex.justify-content-between.align-items-center.mb-4 h2.mb-0::after {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 /* Border di info cards */
 .info-card-enhanced::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* Border di alert boxes */
 .alert-light-enhanced::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 /* Background tombol biru */
 .jd-actions .btn-outline-secondary,
 .jd-actions .btn-back {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 .jd-actions .btn-outline-secondary:hover,
 .jd-actions .btn-back:hover {
-    background: rgb(23, 43, 110) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+    filter: brightness(0.9);
     background-image: none !important;
 }
 
 /* Tombol nonaktifkan/aktifkan */
 .jd-actions .btn-outline-primary,
 .jd-actions .btn-secondary {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 .jd-actions .btn-outline-primary:hover,
 .jd-actions .btn-secondary:hover {
-    background: rgb(23, 43, 110) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+    filter: brightness(0.9);
     background-image: none !important;
 }
 
 /* Border di enhanced header (jika masih ada) */
 .enhanced-header::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 /* Border di company info (jika masih ada) */
 .company-info-enhanced::before {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 
 /* Override semua gradient menjadi solid color */
 [style*="gradient"],
 [class*="gradient"] {
-    background: rgb(30, 58, 138) !important;
+    background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
     background-image: none !important;
 }
 /* ============================================================
@@ -1900,7 +1900,7 @@ body.job-detail .card {
   padding: 10px 16px;
   border: none;
   border-radius: var(--btn-radius);
-  background: var(--_bg);
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
   color: var(--_fg);
   font-weight: 700;
   letter-spacing: .2px;
@@ -1972,13 +1972,14 @@ body.job-detail .card {
   --_bg: var(--btn-blue);
   --_bg-hover: var(--btn-blue-dark);
   --_fg: var(--btn-white);
-  background: var(--_bg) !important; color: var(--_fg) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; color: var(--_fg) !important;
 }
 .btn-primary:hover, .btn-back:hover, .btn-outline-secondary:hover,
 .jd-actions .btn-back:hover, .jd-actions .btn-outline-secondary:hover,
 .jd-actions .btn-outline-primary:hover, .jd-actions .btn-secondary:hover,
 .btn-dark-back:hover, .btn-dark-toggle:hover {
-  background: var(--_bg-hover) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
 }
 
 /* Warning (gold) */
@@ -2077,15 +2078,15 @@ body.job-detail .card {
 /* ============================================================
    OPTIONAL — dark variants used in Bottom Action bar
    ============================================================ */
-.btn-dark-back { background: var(--btn-blue) !important; color: #fff !important; }
-.btn-dark-edit { background: var(--btn-yellow) !important; color: #111 !important; }
-.btn-dark-toggle { background: var(--btn-blue) !important; color: #fff !important; }
-.btn-dark-delete { background: var(--btn-red) !important; color: #fff !important; }
+.btn-dark-back { background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; color: #fff !important; }
+.btn-dark-edit { background: linear-gradient(135deg, #facc15, #eab308) !important; color: #111 !important; }
+.btn-dark-toggle { background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; color: #fff !important; }
+.btn-dark-delete { background: linear-gradient(135deg, #ef4444, #dc2626) !important; color: #fff !important; }
 
-.btn-dark-back:hover { background: var(--btn-blue-dark) !important; }
-.btn-dark-edit:hover { background: var(--btn-yellow-dark) !important; }
-.btn-dark-toggle:hover { background: var(--btn-blue-dark) !important; }
-.btn-dark-delete:hover { background: var(--btn-red-dark) !important; }
+.btn-dark-back:hover { background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; filter: brightness(0.9); }
+.btn-dark-edit:hover { background: linear-gradient(135deg, #fde047, #facc15) !important; }
+.btn-dark-toggle:hover { background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; filter: brightness(0.9); }
+.btn-dark-delete:hover { background: linear-gradient(135deg, #dc2626, #b91c1c) !important; }
 
 
 /* ============================================================
@@ -2103,27 +2104,29 @@ body.job-detail .card {
 .btn-dark-back,
 .btn-dark-edit,
 .btn-dark-toggle {
-  background: linear-gradient(135deg, var(--grad-dark-start), var(--grad-dark-end)) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
 }
 .btn-dark-back:hover,
 .btn-dark-edit:hover,
 .btn-dark-toggle:hover {
-  background: linear-gradient(135deg, var(--grad-dark-hover-start), var(--grad-dark-hover-end)) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
 }
 
 /* Top action bar equivalents */
 .jd-actions .btn-back,
 .jd-actions .btn-warning,      /* Edit Lowongan */
 .jd-actions .btn-outline-primary { /* Nonaktif */
-  background: linear-gradient(135deg, var(--grad-dark-start), var(--grad-dark-end)) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
   border: none !important;
 }
 .jd-actions .btn-back:hover,
 .jd-actions .btn-warning:hover,
 .jd-actions .btn-outline-primary:hover {
-  background: linear-gradient(135deg, var(--grad-dark-hover-start), var(--grad-dark-hover-end)) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
+  filter: brightness(0.9);
 }
 
 /* Keep icons white inside these buttons */
@@ -2241,7 +2244,7 @@ h2.mb-0 i,
 .info-card-enhanced .table-borderless i,
 .icon-container i,
 nav[aria-label="breadcrumb"] .breadcrumb a {
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -2279,25 +2282,25 @@ nav[aria-label="breadcrumb"] .breadcrumb a {
 .enhanced-header::before,
 .company-info-enhanced::before,
 .section-divider{
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
 }
 
 /* -----------------------------
    KONTENER IKON & AVATAR PILL
    ----------------------------- */
 .icon-container{
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color:#fff !important;
   box-shadow: 0 4px 14px rgba(124,58,237,.28) !important;
 }
-.avatar-pill{ background: var(--gradient) !important; color:#fff !important; }
+.avatar-pill{ background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; color:#fff !important; }
 
 /* -----------------------------
    HEADER TABEL PELAMAR & BAR PELAMAR
    ----------------------------- */
 .table-applicants thead tr,
 .applicant-header-enhanced{
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color:#fff !important;
 }
 
@@ -2316,7 +2319,7 @@ nav[aria-label="breadcrumb"] .breadcrumb a:hover{ filter: brightness(1.05); text
 .jd-actions .btn-back,
 .jd-actions .btn-outline-primary,
 .jd-actions .btn-secondary {
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color:#fff !important;
   border:none !important;
 }
@@ -2330,7 +2333,7 @@ nav[aria-label="breadcrumb"] .breadcrumb a:hover{ filter: brightness(1.05); text
   filter: brightness(.97);
 }
 
-/* tombol “Lihat” tetap cyan outline (sesuai desain awal) */
+/* tombol "Lihat" tetap cyan outline (sesuai desain awal) */
 .btn-view{
   background:#fff !important;
   border-color:#06b6d4 !important;
@@ -2340,11 +2343,11 @@ nav[aria-label="breadcrumb"] .breadcrumb a:hover{ filter: brightness(1.05); text
 /* -----------------------------
    CARD STRIP, AVATAR BORDER RING
    ----------------------------- */
-.card.enhanced-card::before{ background: var(--gradient) !important; display:block !important; }
+.card.enhanced-card::before{ background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important; display:block !important; }
 .profile-avatar{
   background:
     linear-gradient(#fff,#fff) padding-box,
-    var(--gradient) border-box !important;
+    linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) border-box !important;
 }
 
 /* -----------------------------
@@ -2352,7 +2355,7 @@ nav[aria-label="breadcrumb"] .breadcrumb a:hover{ filter: brightness(1.05); text
    ----------------------------- */
 .info-card-enhanced .table-borderless tr i,
 .contact-item i{
-  background: var(--gradient) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   -webkit-background-clip:text !important;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
@@ -2380,13 +2383,13 @@ nav[aria-label="breadcrumb"] .breadcrumb a:hover{ filter: brightness(1.05); text
 
 /* pastikan latar belakang icon-container (selain briefcase) tetap gradient biru–ungu */
 .icon-container:not(:has(.fa-briefcase)) {
-  background: linear-gradient(135deg, #1e3a8a, #7c3aed) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   color: #fff !important;
 }
 
 /* ikon di dekat judul tetap gradasi biru–ungu */
 h2.mb-0 i.fa-briefcase {
-  background: linear-gradient(135deg, #1e3a8a, #7c3aed) !important;
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
