@@ -232,10 +232,10 @@
     </article>
   </section>
 
-  {{-- Tombol Kembali (bawah kiri) --}}
+  {{-- TOMBOL KEMBALI YANG SUDAH DIPERBAIKI --}}
   <div class="text-start mt-4 mb-4">
-    <a href="{{ route('company.pelamar.all') }}" class="btn btn-custom back">
-      <i class="fas fa-arrow-left me-2"></i> Kembali ke Dashboard
+    <a href="{{ url()->previous() }}" class="btn btn-custom back">
+      <i class="fas fa-arrow-left me-2"></i> Kembali
     </a>
   </div>
 

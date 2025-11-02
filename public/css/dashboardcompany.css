@@ -977,3 +977,126 @@ textarea:focus,
     padding: 8px 10px !important;
   }
 }
+
+/* ========== MODAL UBAH STATUS ========== */
+.status-modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.status-modal-content .modal-header {
+  background: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
+  color: white;
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.status-modal-content .modal-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.status-modal-content .modal-body {
+  padding: 1.5rem;
+}
+
+.status-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status-option {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.status-option:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+}
+
+.status-option.selected {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.status-icon {
+  width: 20px;
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.status-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.status-check {
+  color: #10b981;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.status-option.selected .status-check {
+  opacity: 1;
+}
+
+.status-modal-content .modal-footer {
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem 1.5rem;
+}
+
+/* ========== TOMBOL EDIT ========== */
+.action-text.edit {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  min-width: 85px;
+  height: 40px;
+  padding: 0 18px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none !important;
+  transition: all .25s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+  letter-spacing: .3px;
+  border: none;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #d4a107, #eab308);
+  cursor: pointer;
+}
+
+.action-text.edit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .action-text.edit {
+    min-width: 75px;
+    height: 36px;
+    font-size: .9rem;
+    padding: 0 14px;
+  }
+  
+  .status-modal-content .modal-body {
+    padding: 1rem;
+  }
+  
+  .status-option {
+    padding: 0.6rem 0.8rem;
+  }
+}
