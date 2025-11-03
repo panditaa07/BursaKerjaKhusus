@@ -1100,3 +1100,324 @@ textarea:focus,
     padding: 0.6rem 0.8rem;
   }
 }
+/* === 1) Hilangkan scroll di dropdown Edit === */
+.table-custom td:last-child .dropdown-menu{
+  max-height: none !important;   /* buang batas tinggi */
+  overflow: visible !important;  /* biarkan konten tumpah tanpa scroll */
+}
+
+/* === 2) Jangan pakai posisi fixed di mobile (supaya halaman yang scroll, bukan menu) === */
+@media (max-width: 768px){
+  .table-custom td:last-child .dropdown-menu{
+    position: absolute !important;   /* semula fixed */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: min(320px, 92vw) !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+/* === 3) Cegah scrollbar horizontal saat menu keluar area tabel === */
+.table-section,
+.container.table-section,
+.table-responsive,
+.table-custom{
+  overflow: visible !important;      /* jangan buat scroll baris bawah */
+}
+
+html, body{
+  overflow-x: hidden;                /* amankan overflow horizontal global */
+}
+
+/* === 4) Pastikan dropdown merapat ke sel Aksi, tidak melebar ke kanan layar === */
+.table-custom td:last-child{ position: relative !important; }
+.table-custom td:last-child .dropdown-menu{
+  right: 0 !important;               /* jangkar ke kanan sel */
+  left: auto !important;
+  margin: .125rem 0 0 0 !important;
+}
+/* ===========================
+   DASHBOARD COMPANY -> MOBILE = KELola PELAMAR
+   =========================== */
+
+/* Perbaiki header agar tidak memecah huruf */
+.table-custom thead th{ white-space: nowrap !important; word-break: normal !important; }
+
+/* ----- Mode kartu untuk < 768px ----- */
+@media (max-width: 767.98px){
+
+  /* Sembunyikan thead, biar tidak makan tempat */
+  .table-custom thead{
+    position:absolute; height:1px; width:1px; overflow:hidden;
+    clip:rect(0 0 0 0); border:0; padding:0; margin:-1px;
+  }
+
+  /* Jadikan tabel sebagai kumpulan kartu */
+  .table-custom,
+  .table-responsive{ display:block !important; overflow:visible !important; }
+  .table-custom tbody{ display:grid !important; grid-template-columns:1fr; gap:12px; }
+  .table-custom tbody tr{
+    display:grid !important; grid-template-columns:1fr;
+    background:#fff; border:1px solid #e5e7eb; border-radius:14px;
+    box-shadow:0 4px 10px rgba(0,0,0,.06); padding:8px 10px; position:relative;
+  }
+
+  /* Setiap sel = grid: Label | Nilai */
+  .table-custom tbody td{
+    display:grid !important; grid-template-columns:120px 1fr;
+    align-items:center; text-align:left !important; gap:10px;
+    padding:10px 6px !important; border:0 !important;
+    border-bottom:1px solid #eef2ff !important;
+    white-space:normal !important; word-break:break-word;
+  }
+  .table-custom tbody td:last-child{ border-bottom:0 !important; }
+
+  /* Label otomatis—sesuaikan urutan kolom Dashboard Company:
+     No | Nama | Email | No HP | Lowongan | Status | Tanggal | Aksi */
+  .table-custom tbody td:nth-child(1)::before{ content:"No"; }
+  .table-custom tbody td:nth-child(2)::before{ content:"Nama"; }
+  .table-custom tbody td:nth-child(3)::before{ content:"Email"; }
+  .table-custom tbody td:nth-child(4)::before{ content:"No. HP"; }
+  .table-custom tbody td:nth-child(5)::before{ content:"Lowongan"; }
+  .table-custom tbody td:nth-child(6)::before{ content:"Status"; }
+  .table-custom tbody td:nth-child(7)::before{ content:"Tanggal"; }
+  .table-custom tbody td:nth-child(8)::before{ content:"Aksi"; }
+  .table-custom tbody td::before{
+    font-weight:700; color:#1E3A8A; text-transform:none;
+  }
+
+  /* Nomor jadi badge kecil di pojok kanan atas (seperti versi yang rapi) */
+  .table-custom tbody tr{ padding-top:14px; }
+  .table-custom tbody td:nth-child(1){
+    position:absolute !important; top:10px; right:12px;
+    background:#1E3A8A !important; color:#fff !important;
+    width:28px; height:28px; border-radius:50% !important;
+    display:flex !important; align-items:center; justify-content:center;
+    font-weight:700 !important; font-size:14px !important;
+    box-shadow:0 2px 6px rgba(0,0,0,.15); grid-template-columns:1fr !important;
+  }
+  .table-custom tbody td:nth-child(1)::before{ content:"" !important; } /* hilangkan label "No" */
+
+  /* Badge status & tombol lebih kompak */
+  .table-custom .badge{ padding:.45rem .9rem; font-size:.85rem; line-height:1.1; justify-self:start; }
+  .aksi-wrapper{ display:grid !important; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px !important; }
+  .table-custom .action-text{ width:100% !important; height:36px !important; padding:0 12px !important; font-size:14px !important; justify-content:center; }
+
+  /* Dropdown Edit muncul di tengah layar tanpa scroll internal */
+  .table-custom td:last-child .dropdown-menu{
+    position:fixed !important; left:50% !important; top:50% !important;
+    transform:translate(-50%, -50%) !important;
+    width:calc(100vw - 32px) !important; max-width:380px !important;
+    max-height:none !important; overflow:visible !important;
+    z-index:2147483647 !important;
+  }
+}
+
+/* ----- Tambahan very-small screens ----- */
+@media (max-width: 575.98px){
+  .table-custom tbody td{ grid-template-columns:100px 1fr; }
+  .table-custom .action-text{ height:34px !important; font-size:.85rem !important; }
+}
+/* ====== PERBAIKAN AKSI (Mobile & Tablet) ====== */
+@media (max-width: 991.98px){
+  /* pastikan sel aksi tidak memotong isi */
+  .table-custom td:last-child{
+    overflow: visible !important;
+    padding-top: 8px !important;
+  }
+
+  /* jadikan grid agar semua tombol terlihat */
+  .aksi-wrapper{
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important; /* Lihat | Edit | Hapus */
+    gap: 10px !important;
+    width: 100% !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+  }
+
+  /* hapus lebar minimum yang membuat tombol meluber */
+  .aksi-wrapper .action-text,
+  .aksi-wrapper .dropdown,
+  .aksi-wrapper .dropdown > .action-text{
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    justify-content: center !important;
+  }
+
+  /* dropdown Edit tetap center, tidak mendorong tata letak */
+  .action-text.edit.dropdown-toggle::after{ display:none !important; }
+  .table-custom td:last-child .dropdown{ width: 100% !important; }
+}
+
+/* ====== Layar sangat kecil: bungkus 2 kolom lalu 1 kolom ====== */
+@media (max-width: 575.98px){
+  .aksi-wrapper{
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important; /* 2 kolom */
+  }
+}
+@media (max-width: 420px){
+  .aksi-wrapper{
+    grid-template-columns: 1fr !important;  /* 1 kolom stack */
+  }
+}
+/* ===== PERBAIKAN: Tombol Aksi agar tidak terpotong ===== */
+@media (max-width: 991.98px){
+  /* Sel aksi jangan memotong konten */
+  .table-custom td:last-child{
+    overflow: visible !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    white-space: normal !important;
+  }
+
+  /* Grid yang fleksibel: 3→2→1 kolom sesuai ruang */
+  .aksi-wrapper{
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+  }
+
+  /* Tombol isi kolom penuh, hilangkan min-width lama */
+  .aksi-wrapper .action-text,
+  .aksi-wrapper .dropdown,
+  .aksi-wrapper .dropdown > .action-text{
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    justify-content: center !important;
+  }
+}
+
+/* Layar kecil: paksa 2 kolom supaya longgar */
+@media (max-width: 575.98px){
+  .aksi-wrapper{
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+}
+
+/* Sangat kecil: 1 kolom (stack) */
+@media (max-width: 420px){
+  .aksi-wrapper{
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ===== FIX: selector typo & layout aksi ===== */
+
+/* Pastikan parsing CSS aman */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Mobile card layout yang rapi */
+@media (max-width: 767.98px){
+  /* Label kolom jangan terlalu lebar agar area tombol longgar */
+  .table-custom tbody td{
+    grid-template-columns: 96px 1fr !important; /* label 96px, konten fleksibel */
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* Kolom Aksi tidak memaksa min-width besar */
+  .table-custom th:last-child,
+  .table-custom td:last-child{
+    min-width: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  /* Kontainer tombol jadi grid agar tidak terpotong */
+  .aksi-wrapper{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 2 kolom default: Lihat | Edit */
+    gap: 10px !important;
+    width: 100% !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+  }
+
+  /* Jika ada 3 tombol (mis. +Hapus), otomatis jadi 3 kolom */
+  .aksi-wrapper.has-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Tombol memenuhi kolom tanpa overflow */
+  .aksi-wrapper .action-text,
+  .aksi-wrapper .dropdown,                 /* ← ini yang tadi typo */
+  .aksi-wrapper .dropdown > .action-text{
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    justify-content: center !important;
+  }
+}
+
+/* Layar sangat kecil: 1 kolom jika ruang makin sempit */
+@media (max-width: 420px){
+  .aksi-wrapper{
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ===== TOMBOL AKSI: pastikan 3 tombol muncul rapi ===== */
+
+/* Umum – jangan potong isi kolom aksi */
+.table-custom td:last-child{
+  overflow: visible !important;
+  white-space: normal !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Mobile & tablet */
+@media (max-width: 991.98px){
+  /* Kontainer aksi menjadi grid fleksibel */
+  .aksi-wrapper{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important; /* default: 2 kolom */
+    gap: 10px !important;
+    width: 100% !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+  }
+
+  /* Jika ada tombol Hapus, paksa 3 kolom */
+  .aksi-wrapper:has(.action-text.delete),
+  .aksi-wrapper:has(.btn-danger),
+  .aksi-wrapper:has(.btn-delete){
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  }
+
+  /* Semua tombol memenuhi kolom tanpa min-width yang mengganggu */
+  .aksi-wrapper .action-text,
+  .aksi-wrapper .btn,
+  .aksi-wrapper .dropdown,
+  .aksi-wrapper .dropdown > .action-text{
+    display: inline-flex !important;          /* pastikan terlihat */
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    justify-content: center !important;
+  }
+}
+
+/* Layar sangat kecil: susun vertikal bila ruang sempit */
+@media (max-width: 420px){
+  .aksi-wrapper{
+    grid-template-columns: 1fr !important;
+  }
+}
