@@ -21,42 +21,8 @@
             </form>
         </div>
 
-        <!-- 🧩 Main Layout -->
-        <div class="row g-4 responsive-layout">
-
-            <!-- 📢 Sidebar Notifications -->
-            <div class="col-lg-3 notification-card">
-                <div class="card shadow-sm border-0 rounded-lg">
-                    <div class="card-header border-0">
-                        <h5 class="mb-0 fw-bold">Notifikasi</h5>
-                    </div>
-                    <div class="card-body p-3">
-                        <div class="overflow-auto" style="max-height: 400px;">
-                            @if($notifications->count() > 0)
-                                @foreach($notifications as $notification)
-                                    <div class="border border-secondary-subtle rounded-lg p-3 mb-3 shadow-sm">
-                                        <p class="mb-1 small">{{ $notification->data['message'] ?? 'New notification' }}</p>
-                                        <p class="text-muted small mb-2">{{ optional($notification->created_at)->diffForHumans() }}</p>
-                                        @if(is_null($notification->read_at))
-                                            <a href="{{ route('notifications.read', $notification->id) }}" class="btn btn-sm btn-primary">Tandai Sudah Dibaca</a>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            @else
-                                <p class="text-muted small">Tidak ada notifikasi baru.</p>
-                            @endif
-                            <div class="text-center mt-2">
-                                <a href="{{ route('notifications.index') }}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
-                                    Lihat Semua Notifikasi
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- 📋 Tabel Lamaran -->
-            <div class="col-lg-9 table-card">
+            <div class="col-lg-12 table-card">
                 <div class="card shadow-sm border-0 rounded-lg">
                         @if($applications->count() > 0)
                             <div class="table-responsive">
@@ -73,9 +39,9 @@
                                     <tbody>
                                         @foreach($applications as $application)
                                             <tr>
-                                                <td>{{ $application->jobPost->company->name ?? 'Unknown Company' }}</td>
-                                                <td>{{ $application->jobPost->title }}</td>
-                                                <td>
+                                                <td data-label="Perusahaan">{{ $application->jobPost->company->name ?? 'Unknown Company' }}</td>
+                                                <td data-label="Posisi">{{ $application->jobPost->title }}</td>
+                                                <td data-label="Status">
                                                     @if(in_array($application->status, ['submitted', 'test1', 'test2']))
                                                         <span class="badge bg-primary fw-bold rounded-pill px-3 py-2">Proses</span>
                                                     @elseif($application->status === 'interview')
@@ -88,8 +54,8 @@
                                                         <span class="badge bg-secondary fw-bold rounded-pill px-3 py-2">{{ ucfirst($application->status) }}</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $application->created_at->format('d M Y') }}</td>
-                                                <td>
+                                                <td data-label="Tanggal Melamar">{{ $application->created_at->format('d M Y') }}</td>
+                                                <td data-label="Detail">
                                                     <a href="{{ route('user.applications.show', $application) }}"
                                                        class="btn btn-primary d-flex align-items-center justify-content-center gap-2 rounded-pill px-3 py-2 fw-bold btn-detail">
                                                         <span>Lihat</span>
@@ -100,6 +66,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
 <!-- Pagination -->
 @if ($applications->total() > 10)
     <div class="pagination-custom">

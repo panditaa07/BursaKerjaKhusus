@@ -7,6 +7,13 @@
     min-height: 100vh;
 }
 
+/* ===== CONTAINER CENTER ===== */
+.container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
 /* ===== SEARCH BAR STYLES ===== */
 .form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
@@ -19,25 +26,13 @@
 }
 
 .btn-primary {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    ) !important;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
     border: none;
     transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    );
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
@@ -47,12 +42,14 @@
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
+
 .card-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -62,13 +59,21 @@
 }
 
 /* ===== TABLE STYLES ===== */
+.table-card {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 .table-responsive {
     border-radius: 10px;
-    overflow: visible;
+    overflow-x: auto;
+    overflow-y: visible;
 }
 
 .table {
     margin-bottom: 0;
+    width: 100%;
+    min-width: 800px;
 }
 
 .table thead {
@@ -76,70 +81,50 @@
 }
 
 .table thead th {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    );
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
+    color: white;
     font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: none;
-}
-
-.text-blue {
-    color: rgb(30, 58, 138) !important;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .table tbody tr {
     transition: all 0.3s ease;
-    cursor: pointer;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
 }
 
 .table tbody td {
     vertical-align: middle;
     font-size: 0.95rem;
     padding: 1rem 1.2rem;
-}
-
-.table td:last-child {
-    width: 90px;
-    white-space: nowrap;
     text-align: center;
-    padding-right: 0.75rem;
 }
 
 .btn-detail {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    );
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 0.8rem;
-    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
     transition: all 0.25s ease;
+    white-space: nowrap;
 }
 
 .btn-detail:hover {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    );
+    background: linear-gradient(135deg, #1E3A8A 0%, #312E81 40%, #4C1D95 75%, #6D28D9 100%);
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0, 64, 128, 0.25);
 }
@@ -149,17 +134,13 @@
     content: none !important;
 }
 
-.company-name-cell {
-    font-weight: 600;
-    color: #212529;
-}
-
 /* ===== BADGE STYLES ===== */
 .badge {
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
     letter-spacing: 0.3px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
 }
 
 .bg-primary {
@@ -178,33 +159,12 @@
     background-color: #6c757d !important;
 }
 
-/* ===== BUTTON STYLES ===== */
-.btn {
-    font-size: 0.9rem;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-primary {
-    color: white;
-}
-
-.btn-sm {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
-}
-
-.rounded-pill {
-    border-radius: 50rem !important;
-}
-
 /* ===== PAGINATION STYLES ===== */
 .pagination-custom {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    padding-top: 1rem;
+    padding: 1rem 0;
 }
 
 .pagination {
@@ -215,7 +175,6 @@
     margin: 0;
 }
 
-/* ===== Pagination halus tanpa efek glow ===== */
 .pagination .page-link {
     border-radius: 50rem !important;
     border: none !important;
@@ -224,17 +183,11 @@
     font-weight: 600 !important;
     padding: 0.55rem 1.5rem !important;
     transition: all 0.25s ease !important;
-    box-shadow: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 .pagination .page-link:hover {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    ) !important;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3) !important;
     transform: translateY(-1px);
@@ -242,35 +195,15 @@
 
 .pagination .page-link.active,
 .pagination .page-item.active .page-link {
-     background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    ) !important;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
     color: white !important;
     border: none !important;
-    box-shadow: none !important;
 }
 
 .pagination .page-item.disabled .page-link {
     background-color: #f1f3f5 !important;
     color: #adb5bd !important;
     box-shadow: none !important;
-}
-
-.pagination .page-link:focus,
-.pagination .page-link:active,
-.pagination .page-link:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    background-color: inherit !important;
-}
-
-.pagination .page-link {
-    -webkit-tap-highlight-color: transparent !important;
 }
 
 /* ===== EMPTY STATE STYLES ===== */
@@ -291,61 +224,6 @@
 .text-center.py-5 p {
     font-size: 1rem;
     margin-bottom: 1.5rem;
-}
-
-/* ===== NOTIFICATION SIDEBAR STYLES ===== */
-.overflow-auto {
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #007bff #f8f9fa;
-}
-
-.overflow-auto::-webkit-scrollbar {
-    width: 6px;
-}
-
-.overflow-auto::-webkit-scrollbar-track {
-    background: #f8f9fa;
-    border-radius: 10px;
-}
-
-.overflow-auto::-webkit-scrollbar-thumb {
-    background: #007bff;
-    border-radius: 10px;
-}
-
-.overflow-auto::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
-}
-
-.border.border-secondary-subtle {
-    border-color: #dee2e6 !important;
-    transition: all 0.3s ease;
-}
-
-.border.border-secondary-subtle:hover {
-    border-color: #007bff !important;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.table tbody tr {
-    animation: fadeIn 0.3s ease-in-out;
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -373,101 +251,192 @@
     border-radius: 15px !important;
 }
 
-.mb-0 {
-    margin-bottom: 0 !important;
-}
-
-/* ===== RESPONSIVE STYLES ===== */
-@media (max-width: 576px) {
+/* ===== RESPONSIVE STYLES - TABLET ===== */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .container-fluid {
+        padding: 1rem;
+    }
+    
     .table {
-        table-layout: fixed !important;
-        width: 100% !important;
-        font-size: 0.28rem !important;
+        min-width: 700px;
     }
-
-    .table thead th {
-        font-size: 0.28rem !important;
-        white-space: nowrap !important;
-        text-overflow: ellipsis !important;
-        overflow: hidden !important;
-        padding: 0.12rem 0.2rem !important;
-        letter-spacing: 0 !important;
-    }
-
+    
+    .table thead th,
     .table tbody td {
-        font-size: 0.26rem !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
-        vertical-align: middle !important;
-        padding: 0.12rem 0.2rem !important;
+        font-size: 0.85rem;
+        padding: 0.8rem 0.8rem;
     }
-
-    .table th:nth-child(1), .table td:nth-child(1) { max-width: 70px !important; }
-    .table th:nth-child(2), .table td:nth-child(2) { max-width: 65px !important; }
-    .table th:nth-child(3), .table td:nth-child(3) { max-width: 55px !important; text-align: center !important; }
-    .table th:nth-child(4), .table td:nth-child(4) { max-width: 60px !important; text-align: center !important; }
-    .table th:nth-child(5), .table td:nth-child(5) { max-width: 55px !important; text-align: center !important; }
-
-    .btn-detail, .btn-primary {
-         background: linear-gradient(
-        135deg,
-        #0F172A 0%,    /* biru-hitam tua */
-        #1E3A8A 40%,   /* navy */
-        #312E81 75%,   /* indigo tua */
-        #4C1D95 100%   /* ungu gelap elegan */
-    ) !important;
-        font-size: 0.26rem !important;
-        padding: 0.08rem 0.18rem !important;
-        border-radius: 3px !important;
+    
+    .btn-detail {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
     }
-
+    
     .badge {
-        font-size: 0.25rem !important;
-        padding: 0.08rem 0.18rem !important;
-        border-radius: 4px !important;
-    }
-
-    .table td:hover {
-        white-space: normal !important;
-        overflow: visible !important;
-        background-color: #fff !important;
-        z-index: 10 !important;
-        position: relative;
-    }
-
-    .page-link {
-        font-size: 0.25rem !important;
-        padding: 0.1rem 0.25rem !important;
-    }
-
-    .pagination {
-        gap: 0.1rem !important;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
     }
 }
 
-/* ===== RESPONSIVE POSISI NOTIFIKASI ===== */
+/* ===== RESPONSIVE STYLES - MOBILE ===== */
 @media (max-width: 768px) {
-    .responsive-section {
-        display: flex;
+    .container-fluid {
+        padding: 0.5rem;
+    }
+    
+    /* Search Bar Mobile */
+    .mb-4 form {
         flex-direction: column;
+        gap: 0.5rem !important;
     }
-
-    .notification-card {
-        order: 1;
+    
+    .mb-4 .position-relative {
+        width: 100% !important;
     }
-
-    .table-card {
-        order: 2;
+    
+    .mb-4 .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Table Mobile - Card Style */
+    .table-responsive {
+        border-radius: 0;
+    }
+    
+    .table {
+        display: block;
+        min-width: 100%;
+    }
+    
+    .table thead {
+        display: none;
+    }
+    
+    .table tbody {
+        display: block;
+    }
+    
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 1rem;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border: none;
+        text-align: right;
+    }
+    
+    .table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #1e3a8a;
+        text-align: left;
+        flex: 0 0 40%;
+    }
+    
+    .btn-detail {
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Pagination Mobile */
+    .pagination .page-link {
+        padding: 0.4rem 1rem !important;
+        font-size: 0.85rem !important;
     }
 }
 
-@media (min-width: 769px) {
-    .notification-card {
-        order: 2;
+/* ===== RESPONSIVE STYLES - SMALL MOBILE ===== */
+@media (max-width: 480px) {
+    .container-fluid {
+        padding: 0.25rem;
     }
+    
+    .card {
+        border-radius: 10px;
+    }
+    
+    .table tbody tr {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .table tbody td {
+        padding: 0.4rem 0;
+        font-size: 0.85rem;
+    }
+    
+    .table tbody td::before {
+        font-size: 0.7rem;
+        flex: 0 0 45%;
+    }
+    
+    .btn-detail {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+    }
+    
+    .pagination {
+        gap: 0.25rem;
+    }
+    
+    .pagination .page-link {
+        padding: 0.35rem 0.8rem !important;
+        font-size: 0.8rem !important;
+    }
+}
 
-    .table-card {
-        order: 1;
+/* ===== RESPONSIVE STYLES - LARGE DESKTOP ===== */
+@media (min-width: 1400px) {
+    .container-fluid {
+        max-width: 1600px;
     }
+    
+    .table-card {
+        max-width: 90%;
+    }
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.table tbody tr {
+    animation: fadeIn 0.3s ease-in-out;
 }

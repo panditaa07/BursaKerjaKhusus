@@ -29,10 +29,6 @@
 /* =========================
    SIDEBAR (warna sebelumnya)
    ========================= */
-.sidebar,
-[class*="sidebar"] {
-  background: linear-gradient(180deg, #1e3b8a 0%, #1a2f73 100%) !important;
-}
 .sidebar .sidebar-brand,
 .sidebar .navbar-brand,
 .sidebar .app-brand {
@@ -2456,14 +2452,7 @@ h2.mb-0 i.fa-briefcase {
 /* ==========================================================
    SIDEBAR WARNA SESUAI DESAIN (BIRU → UNGU)
    ========================================================== */
-.sidebar,
-[class*="sidebar"] {
-  background: linear-gradient(180deg, #1e3a8a 0%, #4c1d95 100%) !important;
-  color: #ffffff !important;
-  border: none !important;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
+   
 /* Brand / Logo */
 .sidebar .sidebar-brand,
 .sidebar .navbar-brand,
