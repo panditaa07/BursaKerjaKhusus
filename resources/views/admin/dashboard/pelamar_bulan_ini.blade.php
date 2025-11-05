@@ -9,46 +9,47 @@
 
 <div class="container mx-auto px-4 py-4">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
+    <div class="header-pelamar d-flex flex-wrap justify-content-between align-items-start mb-3 gap-3">
+        <div class="judul-section">
             <h4 class="fw-bold mb-2 page-title">DAFTAR PELAMAR BULAN INI</h4>
             <br>
-            {{-- Tombol kembali --}}
-            <a href="{{ url('/admin/dashboard') }}" class="btn btn-kembali btn-sm">
+            <a href="{{ url('/admin/dashboard') }}" class="btn btn-kembali btn-sm mt-2">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
         
-{{-- Search + tombol cari + total --}}
-<form method="GET" action="{{ route('admin.dashboard.pelamar.bulanini') }}">
-    <div class="search-box d-flex justify-content-end gap-2 align-items-center">
+        {{-- Search + tombol cari + total --}}
+        <form method="GET" action="{{ route('admin.dashboard.pelamar.bulanini') }}" class="flex-grow-1">
+            <div class="search-box d-flex justify-content-end align-items-center gap-2 flex-wrap">
 
-        {{-- Input Search --}}
-        <div class="input-group" style="width: 300px;">
-            <span class="input-group-text">
-                <i class="bi bi-search"></i>
-            </span>
-            <input 
-                type="text" 
-                name="search"
-                class="form-control" 
-                placeholder="Cari Pelamar..." 
-                value="{{ request('search') }}"
-            >
-        </div>
+                {{-- Input Search --}}
+                <div class="input-group" style="max-width: 300px; flex: 1 1 auto;">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        name="search"
+                        class="form-control" 
+                        placeholder="Cari Pelamar..." 
+                        value="{{ request('search') }}"
+                    >
+                </div>
 
-        {{-- Tombol Cari --}}
-        <button class="btn-cari" type="submit">
-            <i class="bi bi-search"></i> Cari
-        </button>
+                {{-- Tombol Cari --}}
+                <button class="btn-cari" type="submit">
+                    <i class="bi bi-search"></i> Cari
+                </button>
 
-        {{-- Total --}}
-        <span class="btn-total">
-            <i class="bi bi-list-ul"></i> Total: {{ $pelamar->total() }}
-        </span>
+                {{-- Total --}}
+                <span class="btn-total">
+                    <i class="bi bi-list-ul"></i> Total: {{ $pelamar->total() }}
+                </span>
+            </div>
+        </form>
     </div>
-</form>
-    </div>
+</div>
+
 
     <!-- Table -->
     <div class="container table-section table-responsive table-responsive1">

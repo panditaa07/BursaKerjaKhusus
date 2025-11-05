@@ -514,40 +514,40 @@ td.aksi .table-btn {
     }
 }
 
-/* Responsive Design */
+/* ===============================
+   RESPONSIVE HEADER LOWONGAN & PELAMAR
+   =============================== */
 @media (max-width: 768px) {
-    .container-fluid {
-        margin: 0.5rem;
-        padding: 1rem;
-        border-radius: 16px;
-    }
-
-    h1.h3 {
-        font-size: 2rem;
-    }
-
-    .modern-search-form {
-        padding: 1rem;
-    }
-
-    .table-responsive {
-        border-radius: 12px;
-    }
-
-    .btn-group {
+    .header-lowongan,
+    .header-pelamar {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
     }
 
-    .btn-group .btn {
-        border-radius: 8px !important;
-        margin-bottom: 0.25rem;
+    .judul-section {
+        width: 100%;
+        text-align: left;
     }
 
-     .search-box {
+    .judul-section h4 {
+        font-size: 1.4rem;
+    }
+
+    .btn-kembali {
+        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+    }
+
+    .search-box {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
         width: 100%;
+        gap: 0.75rem;
     }
 
     .search-box .input-group {
@@ -579,6 +579,8 @@ td.aksi .table-btn {
         border: 1px solid #ddd;
     }
 }
+
+
 
 /* Smooth Scrollbar */
 ::-webkit-scrollbar {

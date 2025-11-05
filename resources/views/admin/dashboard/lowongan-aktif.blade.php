@@ -5,48 +5,48 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
+
 <div class="container mx-auto px-4 py-4">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
+    <div class="header-lowongan d-flex flex-wrap justify-content-between align-items-start mb-3 gap-3">
+        <div class="judul-section">
             <h4 class="fw-bold mb-2 page-title">LOWONGAN AKTIF</h4>
-            <br>
-            {{-- Tombol kembali --}}
-            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-kembali btn-sm">
+            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-kembali btn-sm mt-2">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
-        
-       {{-- Search + tombol cari + total lowongan --}}
-<form method="GET" action="{{ route('admin.dashboard.lowongan-aktif') }}">
-    <div class="search-box d-flex justify-content-end gap-2 align-items-center">
 
-        {{-- Input Search --}}
-        <div class="input-group" style="width: 300px;">
-            <span class="input-group-text">
-                <i class="bi bi-search"></i>
-            </span>
-            <input 
-                type="text" 
-                name="search"
-                class="form-control" 
-                placeholder="Cari Lowongan..." 
-                value="{{ request('search') }}"
-            >
-        </div>
+        {{-- Search + tombol cari + total lowongan --}}
+        <form method="GET" action="{{ route('admin.dashboard.lowongan-aktif') }}" class="flex-grow-1">
+            <div class="search-box d-flex justify-content-end align-items-center gap-2 flex-wrap">
 
-        {{-- Tombol Cari --}}
-        <button class="btn-cari" type="submit">
-            <i class="bi bi-search"></i> Cari
-        </button>
+                {{-- Input Search --}}
+                <div class="input-group" style="max-width: 300px; flex: 1 1 auto;">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        name="search"
+                        class="form-control" 
+                        placeholder="Cari Lowongan..." 
+                        value="{{ request('search') }}"
+                    >
+                </div>
 
-        {{-- Total --}}
-        <span class="btn-total">
-            <i class="bi bi-list-ul"></i> Total: {{ $lowongan->total() }}
-        </span>
+                {{-- Tombol Cari --}}
+                <button class="btn-cari" type="submit">
+                    <i class="bi bi-search"></i> Cari
+                </button>
+
+                {{-- Total --}}
+                <span class="btn-total">
+                    <i class="bi bi-list-ul"></i> Total: {{ $lowongan->total() }}
+                </span>
+            </div>
+        </form>
     </div>
-</form>
-    </div>
+</div>
     <!-- Table -->
     <div class="container table-section table-responsive table-responsive1">
         
