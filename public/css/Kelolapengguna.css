@@ -1,5 +1,5 @@
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-gradient: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
@@ -53,9 +53,13 @@ body {
 }
 
 .page-title {
+    display: inline-block;
     font-weight: 700;
     font-size: 1.8rem;
-    color: #000000; /* Biru tua */
+    background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 @keyframes fadeInDown {
@@ -70,7 +74,7 @@ body {
 }
 
 h1.h3 {
-    background: linear-gradient(135deg, #1e3a8a, #1e40af);
+    background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

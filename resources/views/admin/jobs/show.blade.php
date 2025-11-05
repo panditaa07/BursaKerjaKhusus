@@ -22,20 +22,36 @@
         </div>
     @endif
 
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
+   <!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ route('admin.dashboard.index') }}">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </li>
+
+        @if (request('from') == 'aktif')
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.dashboard.index') }}">
-                    <i class="fas fa-home"></i> Dashboard
-                </a>
+                <a href="{{ route('admin.dashboard.lowongan-aktif') }}">Lowongan Aktif</a>
             </li>
+        @elseif (request('from') == 'tidakaktif')
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}">Lowongan Tidak Aktif</a>
+            </li>
+        @elseif (request('from') == 'kelola')
             <li class="breadcrumb-item">
                 <a href="{{ route('admin.job-posts.index') }}">Kelola Lowongan</a>
             </li>
-            <li class="breadcrumb-item active">Detail Lowongan</li>
-        </ol>
-    </nav>
+        @else
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+            </li>
+        @endif
+
+        <li class="breadcrumb-item active">Detail Lowongan</li>
+    </ol>
+</nav>
 
     <!-- Header dengan Tombol Aksi -->
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
@@ -333,11 +349,26 @@
             </div>
             <br>
             <div class="jd-actions d-flex flex-wrap align-items-center justify-content-start">
-                {{-- Kembali --}}
-                <a href="javascript:history.back()" class="btn btn-outline-secondary jd-btn">
-                    <i class="fas fa-arrow-left me-2"></i> Kembali
-                </a>
-            </div>
+    {{-- Tombol Kembali Dinamis --}}
+    @if (request('from') == 'aktif')
+        <a href="{{ route('admin.dashboard.lowongan-aktif') }}" class="btn btn-outline-secondary jd-btn">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke Lowongan Aktif
+        </a>
+    @elseif (request('from') == 'tidakaktif')
+        <a href="{{ route('admin.dashboard.lowongan-tidak-aktif') }}" class="btn btn-outline-secondary jd-btn">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke Lowongan Tidak Aktif
+        </a>
+    @elseif (request('from') == 'kelola')
+        <a href="{{ route('admin.job-posts.index') }}" class="btn btn-outline-secondary jd-btn">
+            <i class="fas fa-arrow-left me-2"></i> Kembali ke Kelola Lowongan
+        </a>
+    @else
+        <a href="{{ route('admin.dashboard.index') }}" class="btn btn-outline-secondary jd-btn">
+            <i class="fas fa-arrow-left me-2"></i> Kembali
+        </a>
+    @endif
+</div>
+
         </div>
         
     </div>

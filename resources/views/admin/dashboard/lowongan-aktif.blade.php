@@ -10,12 +10,13 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h4 class="fw-bold mb-2 page-title">LOWONGAN AKTIF</h4>
-            
+            <br>
             {{-- Tombol kembali --}}
             <a href="{{ route('admin.dashboard.index') }}" class="btn btn-kembali btn-sm">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
+        
        {{-- Search + tombol cari + total lowongan --}}
 <form method="GET" action="{{ route('admin.dashboard.lowongan-aktif') }}">
     <div class="search-box d-flex justify-content-end gap-2 align-items-center">
@@ -45,7 +46,6 @@
         </span>
     </div>
 </form>
-        </div>
     </div>
     <!-- Table -->
     <div class="container table-section table-responsive table-responsive1">
@@ -74,7 +74,7 @@
                             <td class="aksi text-center align-middle">
     <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
         <!-- Tombol Lihat -->
-        <a href="{{ route('admin.job-posts.show', $l->id) }}"
+        <a href="{{ route('admin.job-posts.show', $l->id) }}?from=aktif"
            class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
             Lihat
         </a>

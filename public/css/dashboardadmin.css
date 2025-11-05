@@ -22,6 +22,8 @@
     --gray-700: #4a5568;
     --gray-800: #2d3748;
     --gray-900: #1a202c;
+    --bg: #f8f9fa;
+    --primary-gradient: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
 
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -357,7 +359,10 @@ body {
 }
 
 .table-section h3 {
-    color: #4C1D95;
+    background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 700;
     margin: -2rem -2rem 2rem -2rem; /* biar full lebar, nyatu sama card */
     padding: 1rem 0 1.5rem 0; /* tambahin padding bawah */
@@ -378,6 +383,57 @@ body {
     height: 3px;
     background: linear-gradient(135deg, #1E3A8A, #4C1D95);
     border-radius: 2px;
+}
+
+/* ============================================================
+   BUTTONS — Modern Style
+   ============================================================ */
+:root {
+  --btn-blue: #4C1D95;
+  --btn-blue-dark: #1E3A8A;
+  --btn-cyan: #4C1D95;
+  --btn-yellow: #f59e0b;
+  --btn-yellow-dark: #d97706;
+  --btn-red: #ef4444;
+  --btn-red-dark: #dc2626;
+  --btn-green: #22c55e;
+  --btn-green-dark: #15803d;
+  --btn-text: #1E1E1E;
+  --btn-white: #ffffff;
+  --btn-muted: #94a3b8;
+  --btn-radius: 12px;
+  --btn-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  --btn-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --btn-shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.18);
+  --btn-ease: ease-in-out;
+  --btn-t: .3s;
+}
+
+.btn {
+  --_bg: #00055c;
+  --_bg-hover: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
+  --_fg: #fff;
+  --_ring: rgba(76, 29, 149, .35);
+  border: none;
+  border-radius: var(--btn-radius);
+  background: var(--_bg);
+  color: var(--_fg);
+  box-shadow: var(--btn-shadow-sm);
+  transition: transform var(--btn-t) var(--btn-ease),
+              box-shadow var(--btn-t) var(--btn-ease),
+              background var(--btn-t) var(--btn-ease),
+              filter var(--btn-t) var(--btn-ease);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--btn-shadow-sm);
+  filter: brightness(0.98);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--_ring);
+  outline-offset: 2px;
 }
 
 /* ================================================

@@ -12,6 +12,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h4 class="fw-bold mb-2 page-title">DAFTAR PELAMAR BULAN INI</h4>
+            <br>
             {{-- Tombol kembali --}}
             <a href="{{ url('/admin/dashboard') }}" class="btn btn-kembali btn-sm">
                 <i class="bi bi-arrow-left"></i> Kembali
@@ -90,7 +91,7 @@
                            <td class="aksi text-center align-middle">
     <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
         <!-- Tombol Lihat -->
-        <a href="{{ route('admin.applications.show', $p->id) }}"
+        <a href="{{ route('admin.applications.show', $p->id) }}?from=bulanini"
            class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
             Lihat
         </a>

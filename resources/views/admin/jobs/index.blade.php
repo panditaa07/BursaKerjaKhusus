@@ -111,7 +111,7 @@
                                 <td class="aksi text-center align-middle">
     <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
         <!-- Tombol Lihat -->
-        <a href="{{ route('admin.job-posts.show', $job->id) }}"
+        <a href="{{ route('admin.job-posts.show', $job->id) }}?from=kelola"
            class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
             Lihat
         </a>

@@ -1,8 +1,15 @@
-# TODO: Change Status Label Text to White
+# TODO: Change Approve Button Colors
 
 ## Tasks
 
--   [x] Add rule for `.badge-enhanced.bg-success` to set `color: #fff !important; font-weight: 600;`
--   [x] Ensure text stays white on hover/focus/click
--   [x] Verify "ACTIVE" text is white on green background (server running at http://127.0.0.1:8000)
--   [x] Add hover/focus/click states to ensure text remains white
+-   [x] Override .btn-success class in public/css/verifikasi.css
+    -   Set background color to #198754 (Bootstrap success green)
+    -   Set text color to #ffffff (white)
+    -   Set hover background to #157347 (slightly darker green)
+    -   Keep button shape, size, and text unchanged
+-   [x] Test the changes in the browser to verify the button colors
+
+## Notes
+
+-   Only modify the verifikasi.css file since the Approve buttons are on the verifications page
+-   Ensure the changes don't affect other btn-success buttons on different pages

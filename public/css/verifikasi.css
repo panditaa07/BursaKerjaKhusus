@@ -6,16 +6,41 @@
 
 /* Tambahan opsional buat gaya header */
 .table thead th {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
+    background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        /* biru-hitam tua */ #1e3a8a 40%,
+        /* navy (senada sidebar) */ #312e81 75%,
+        /* indigo tua */ #4c1d95 100% /* ungu gelap elegan */
+    );
     color: white;
     font-weight: 600;
 }
 
 /* Gaya untuk judul Verifikasi Akun */
 .verifikasi-title {
-    color: #303030 !important;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .text-primary {
-    color: #303030 !important;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Override btn-success for Approve buttons */
+.btn-success {
+    background-color: #198754 !important;
+    color: #ffffff !important;
+    border-color: #198754 !important;
+}
+
+.btn-success:hover {
+    background-color: #157347 !important;
+    border-color: #157347 !important;
+    color: #ffffff !important;
 }
