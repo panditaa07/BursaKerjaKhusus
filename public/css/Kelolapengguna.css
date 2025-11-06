@@ -1,5 +1,6 @@
+/* ===== GENERAL STYLES ===== */
 :root {
-    --primary-gradient: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
+    --primary-gradient: linear-gradient(135deg,#0F172A 0%,#1E3A8A 40%,#312E81 75%,#4C1D95 100%);
     --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
@@ -32,81 +33,19 @@ body {
     border: none !important;
 }
 
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Header Styles */
-.page-header {
-    display: flex;
-    justify-content: between;
-    align-items: center;
-    margin-bottom: 2rem;
-    animation: fadeInDown 0.8s ease-out;
-}
-
+/* ===== HEADER STYLES ===== */
 .page-title {
     display: inline-block;
     font-weight: 700;
     font-size: 1.8rem;
     background: var(--primary-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-h1.h3 {
-    background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 700;
-    font-size: 2.5rem;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Modern Form Styles */
-.modern-search-form {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    animation: slideInLeft 0.7s ease-out;
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
+/* ===== FORM STYLES ===== */
 .form-control,
 .form-select {
     background: rgba(255, 255, 255, 0.9);
@@ -115,7 +54,6 @@ h1.h3 {
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
 }
 
 .form-control:focus,
@@ -127,12 +65,7 @@ h1.h3 {
     outline: none;
 }
 
-.form-control::placeholder {
-    color: #94a3b8;
-    font-weight: 400;
-}
-
-/* Modern Button Styles */
+/* ===== BUTTON STYLES ===== */
 .btn {
     border-radius: 12px;
     padding: 0.75rem 1.5rem;
@@ -145,542 +78,8 @@ h1.h3 {
     overflow: hidden;
 }
 
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: left 0.5s;
-}
-
-.btn:hover::before {
-    left: 100%;
-}
-
-.btn-filter {
-    background-color: #1E3A8A;
-    color: #fff;
-    border-radius: 6px;
-    padding: 6px 16px;
-}
-.btn-filter:hover {
-    background-color: #1E3A8A; /* Biru lebih terang */
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #2563EB);
-    color: white;
-    box-shadow: 0 4px 15px rgb(30, 58, 138);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-.btn-info {
-    background: var(--info-gradient);
-    color: white;
-    box-shadow: 0 4px 15px rgb(30, 58, 138);
-}
-
-.btn-info:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgb(30, 58, 138);
-}
-
-.btn-danger {
-    background: linear-gradient(135deg, #dc2626, #ef4444); color: #fff !important;
-    color: white;
-    border: none;
-}
-
-.btn-danger:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-.btn-warning {
-    background: linear-gradient(135deg, #d4a107, #eab308); color: #fff !important;
-    color: white;
-    border: none;
-}
-
-.btn-warning:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-.btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 8px;
-}
-
-.btn-secondary {
-    background: rgb(30, 58, 138);
-    box-shadow: 0 4px 15px rgb(30, 58, 138);
-}
-
-/* Hover efek baris tabel */
-.table-dashboard tbody tr {
-    transition: background-color 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.table-dashboard tbody tr:hover {
-    background-color: #f1f5f9; /* warna abu soft */
-}
-
-/* ===============================
-   FORCE PERSEGI PADA TOMBOL AKSI
-   =============================== */
-
-/* Target semua ikon dalam tombol aksi */
-td.aksi a.table-btn i,
-td.aksi button.table-btn i {
-    width: 36px !important;
-    height: 36px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    /* INI YANG PENTING */
-    border-radius: 0 !important; /* kotak penuh */
-    padding: 0 !important; /* hapus padding inline */
-    margin: 0 !important; /* hilangkan margin inline */
-}
-
-/* Jaga posisi tombol tetap sejajar */
-td.aksi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-}
-
-/* Hilangkan efek hover */
-td.aksi a.table-btn:hover i,
-td.aksi button.table-btn:hover i {
-    transform: none !important;
-    opacity: 1 !important;
-}
-
-/* Hilangkan shadow khusus kolom Aksi */
-td.aksi .table-btn i {
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-/* Pastikan tombolnya juga gak punya efek shadow */
-td.aksi .table-btn {
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-/* Modern Table Styles */
-.table-responsive1 {
-    background: none !important;        /* hilangkan warna putih di belakang */
-    border-radius: 12px;                /* biar tetap lembut di sudut */
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);        /* hilangin efek bayangan putih */
-    border: none !important;            /* hilangin garis putih di pinggir */
-    transition: all 0.3s ease;
-}
-
-.table-responsive table {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.table-section:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.table th,
-.table td {
-    border: 1px solid #ccc !important;
-}
-
-.table {
-    margin: 0;
-    background: transparent;
-    border-collapse: collapse !important;
-}
-
-.table thead th {
-    background: #1e3a8a;
-    color: white;
-    border: none;
-    padding: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.85rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.table tbody tr {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.table tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.95);
-    transform: scale(1.01);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.table tbody td {
-    padding: 1rem;
-    border: none;
-    vertical-align: middle;
-    font-weight: 500;
-}
-
-/* Modern Badge Styles */
-.badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-    position: relative;
-    overflow: hidden;
-}
-
-.bg-warning {
-    background: var(--warning-gradient) !important;
-    color: white;
-    box-shadow: 0 2px 10px rgba(247, 151, 30, 0.4);
-}
-
-.bg-info {
-    background: var(--info-gradient) !important;
-    color: white;
-    box-shadow: 0 2px 10px rgba(54, 209, 220, 0.4);
-}
-
-/* Modern Alert Styles */
-.alert {
-    border-radius: 16px;
-    border: none;
-    padding: 1rem 1.5rem;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
-    animation: slideInDown 0.5s ease-out;
-}
-
-.alert-success {
-    background: linear-gradient(
-        135deg,
-        rgba(86, 171, 47, 0.9),
-        rgba(168, 230, 207, 0.9)
-    );
-    color: white;
-    box-shadow: 0 4px 20px rgba(86, 171, 47, 0.3);
-}
-
-.alert-danger {
-    background: linear-gradient(
-        135deg,
-        rgba(255, 65, 108, 0.9),
-        rgba(255, 75, 43, 0.9)
-    );
-    color: white;
-    box-shadow: 0 4px 20px rgba(255, 65, 108, 0.3);
-}
-
-.alert-info {
-    background: linear-gradient(
-        135deg,
-        rgba(54, 209, 220, 0.9),
-        rgba(91, 134, 229, 0.9)
-    );
-    color: white;
-    box-shadow: 0 4px 20px rgba(54, 209, 220, 0.3);
- 
-}
-
-/* Button Group Styles */
-.btn-group {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn-group .btn {
-    border-radius: 0;
-    margin: 0;
-}
-
-.btn-group .btn:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-}
-
-.btn-group .btn:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-
-/* Animation Classes */
-.fade-in {
-    animation: fadeIn 0.6s ease-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.slide-up {
-    animation: slideUp 0.4s ease-out;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Loading Animation */
-.loading {
-    position: relative;
-    color: transparent;
-}
-
-.loading::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #667eea;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* ===============================
-   RESPONSIVE HEADER LOWONGAN & PELAMAR
-   =============================== */
-@media (max-width: 768px) {
-    .header-lowongan,
-    .header-pelamar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .judul-section {
-        width: 100%;
-        text-align: left;
-    }
-
-    .judul-section h4 {
-        font-size: 1.4rem;
-    }
-
-    .btn-kembali {
-        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        font-weight: 600;
-        padding: 0.5rem 1rem;
-    }
-
-    .search-box {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        gap: 0.75rem;
-    }
-
-    .search-box .input-group {
-        width: 100% !important;
-    }
-
-    .search-box .btn-cari,
-    .search-box .btn-total {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-        padding: 0.75rem;
-        font-weight: 600;
-        border-radius: 10px;
-    }
-
-    .search-box .btn-cari {
-        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
-        color: white;
-    }
-
-    .search-box .btn-total {
-        background: linear-gradient(135deg, #4C1D95, #1E3A8A);
-        color: white;
-    }
-
-    .search-box .input-group-text {
-        background-color: #f3f4f6;
-        border: 1px solid #ddd;
-    }
-}
-
-
-
-/* Smooth Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary-gradient);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-gradient);
-}
-
-.table-container {
-    overflow-x: auto;
-}
-
-.modern-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-/* Header tabel warna biru tua */
-.modern-table thead {
-    background-color: #1e3a8a;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-.modern-table th,
-.modern-table td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.modern-table tbody tr:hover {
-    background-color: #f9fafb;
-}
-
-/* Badge Role */
-.status-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #fff;
-}
-.status-info {
-    background: #3b82f6;
-} /* Biru */
-.status-warning {
-    background: #f59e0b;
-} /* Kuning */
-
-/* Pagination */
-.pagination {
-    margin: 0;
-}
-
-/* === Custom Style untuk Filter & Search === */
-
-/* Tombol utama */
-.btn-primary,
-.btn-secondary {
-    background-color: #1E3A8A; /* biru sama kaya User */
-    border: none;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: 0.2s;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Hover & Active biar kontras */
-.btn-primary:hover,
-.btn-secondary:hover,
-.btn-primary:active,
-.btn-secondary:active {
-    background-color: #1E3A8A; /* biru lebih gelap */
-    color: #fff;
-}
-
-/* Tombol kembali */
 .btn-kembali {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
+    background: var(--primary-gradient);
     border: none;
     color: #fff !important;
     font-weight: 600;
@@ -694,379 +93,478 @@ td.aksi .table-btn {
 }
 
 .btn-kembali:hover {
-    background-color: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
     transform: translateY(-2px);
 }
 
-/* Search input biar lebih jelas */
-.input-group .form-control {
-    border: 1px solid #d1d5db; /* abu muda */
-    border-left: none;
-    box-shadow: none;
-    transition: 0.2s;
+.btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+    color: white;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
 }
 
-.input-group .btn-cari,
-.input-group .form-control {
-    height: 45px; /* samain tinggi manual */
-}
-
-.input-group .btn-filter:hover {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
-}
-
-.input-group .btn-filter:focus,
-.input-group .btn-filter:active {
-    background: #1E3A8A !important; /* tetap biru, ga berubah abu-abu */
-    color: #fff !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-
-.input-group .btn-filter {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
-    color: #fff;
-    font-weight: 600;
+.btn-warning {
+    background: linear-gradient(135deg, #d4a107, #eab308);
+    color: white;
     border: none;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    padding: 0 18px;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: white;
+    border: none;
+}
+
+/* ===== TABLE STYLES ===== */
+.table-section {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-dashboard {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-dashboard thead th {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table-dashboard tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-dashboard tbody tr:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: scale(1.01);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-dashboard tbody td {
+    padding: 1rem;
+    border: none;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+/* ===== MOBILE CARD STYLES ===== */
+.user-card {
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.user-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1rem;
+}
+
+.user-email {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.user-category,
+.user-date {
+    font-size: 0.8rem;
+    color: #374151;
+}
+
+.mobile-badge {
+    font-size: 0.7rem !important;
+    padding: 0.3rem 0.6rem !important;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.aksi-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: none !important;
-    cursor: pointer;
+    gap: 0.5rem;
 }
 
-.input-group .form-control:focus {
-    border-color: rgb(30, 64, 175); /* border biru saat fokus */
-    box-shadow: 0 0 4px rgba(66, 133, 244, 0.4);
+.btn-action {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    min-width: 70px;
 }
 
+.btn-action-mobile {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    min-width: 60px;
+}
+
+/* ===== BADGE STYLES ===== */
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-info {
+    background: #3b82f6;
+}
+
+.status-warning {
+    background: #f59e0b;
+}
+
+/* ===== PAGINATION STYLES ===== */
+.pagination-btn {
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* ===== FORM COMPONENTS ===== */
 .input-group-text {
-    border: 1px solid #d1d5db;
-    border-right: none;
     background-color: #fff;
+    border: 1px solid #d1d5db;
     color: #6b7280;
 }
 
-.input-group .form-select {
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 6px 10px;
-}
-
-.back-button {
-    background-color: rgb(30, 58, 138); /* sama kayak filter */
-    border: none;
-    color: #fff !important;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 8px 16px;
-    transition: 0.2s ease-in-out;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.back-button:hover {
-    background-color: #3367d6; /* hover biar kontras */
-    transform: translateY(-1px);
-}
-
-.back-button i {
-    font-size: 14px;
-}
-
-/* Tombol Cari */
-.btn-cari {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
-    color: #fff !important;
-    font-weight: 600;
-    padding: 8px 18px;
-    border: none;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-.btn-cari:hover {
-    background-color: #1E3A8A;
-    transform: translateY(-2px);
-}
-
-.btn-cari:focus,
-.btn-cari:active {
-    outline: none;
-    box-shadow: none !important;
-}
-
-.btn,
-.btn-cari {
-    box-shadow: none !important;
-}
-
-
-
-/* Total jadi badge tombol */
-.btn-total {
-    background: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
-    color: #fff !important;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease-in-out;
-}
-.btn-total:hover {
-    background-color: #1E3A8A;
-    transform: translateY(-2px);
-}
-/* Optional – samakan gaya tombol reset seperti di Kelola Pelamar */
-.input-group .btn-outline-secondary{
-  background:#1E3A8A;
-  color:#fff!important;
-  border:none!important;
-  border-radius:10px!important;
-  margin-left:8px!important;
-  font-weight:700!important;
-  padding:10px 16px!important;
-  box-shadow:0 4px 12px rgba(31,58,149,0.3)!important;
-  transition:all 0.2s ease-in-out!important;
-}
-.input-group .btn-outline-secondary:hover{
-  background:#1E3A8A;
-  transform:translateY(-2px);
-}
-/* === Tombol CARI (biar seragam) === */
-.btn-cari {
-  height: 44px !important;
-  min-width: 90px !important;
-  font-weight: 700 !important;
-  border-radius: 0 8px 8px 0 !important;
-  font-size: 14px !important;
-  letter-spacing: 0.3px !important;
-}
-
-/* === Tombol RESET — ukuran dan tinggi sama dengan tombol CARI === */
-.btn-reset {
-  background: #1f3a95 !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-weight: 700 !important;
-  font-size: 14px !important;
-  height: 44px !important;
-  min-width: 90px !important;
-  padding: 0 18px !important;
-  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25) !important;
-  transition: all 0.2s ease-in-out !important;
-  margin-left: 8px !important; /* beri jarak dari tombol cari */
-}
-
-.btn-reset i {
-  font-size: 14px;
-}
-
-.btn-reset:hover {
-  background: #183081 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(31, 58, 149, 0.3) !important;
-}
-
-.btn-reset:active {
-  transform: scale(0.97);
-  box-shadow: none !important;
-}
-
-/* Responsif */
-@media (max-width: 576px) {
-  .btn-cari,
-  .btn-reset {
-    height: 40px !important;
-    min-width: 80px !important;
-    font-size: 13px !important;
-    padding: 0 14px !important;
-  }
-}
-/* Pusatkan isi tombol (Cari/Filter/Reset) */
 .btn-cari,
 .btn-filter,
-.btn-reset{
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: .5rem;                 /* jarak ikon-teks */
-  line-height: 1 !important;  /* cegah teks naik turun */
-  height: 44px !important;
-  padding: 0 18px !important; /* sudah tanpa padding atas/bawah */
-}
-
-/* Pastikan ikon tidak mendorong teks */
-.btn-reset i,
-.btn-cari i,
-.btn-filter i{
-  font-size: 16px;
-  line-height: 1;
-}
-
-/* Khusus tombol filter yang nempel di input-group */
-.filter-group .btn-filter{
-  border-radius: 0 8px 8px 0 !important;
-}
-/* Tombol "Reset Semua" – ukuran sedang */
-.btn-reset-all{
-  display:inline-flex;
-  align-items:center;
-  gap:.5rem;
-  height:38px;                 /* sedang */
-  padding:0 .9rem;             /* sedang */
-  font-size:.92rem;            /* sedang */
-  font-weight:700;
-  color:#1e40af;               /* biru */
-  background:#fff;
-  border:1px solid #dbeafe;    /* biru muda */
-  border-radius:10px;
-  box-shadow:0 2px 6px rgba(30,58,138,.08);
-  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
-}
-
-.btn-reset-all:hover{
-  background:#eff6ff;          /* hover lembut */
-  transform:translateY(-1px);
-  box-shadow:0 6px 14px rgba(30,58,138,.12);
-}
-
-.btn-reset-all:active{
-  transform:scale(.98);
-  box-shadow:none;
-}
-
-.btn-reset-all i{
-  font-size:14px;              /* ikon proporsional */
-  line-height:1;
-}
-/* Samakan ukuran dan gaya dengan tombol Filter */
-.btn-reset-all {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: #ffffff;
-  color: #1e3a8a;
-  border: 1px solid #1e3a8a;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  height: 44px;             /* sama dengan tombol Filter */
-  min-width: 100px;
-  padding: 0 18px;
-  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.12);
-  transition: all 0.2s ease-in-out;
-}
-
-.btn-reset-all:hover {
-  background: #1e3a8a;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(31, 58, 149, 0.25);
-}
-
-.btn-reset-all:active {
-  transform: scale(0.97);
-  box-shadow: none;
-}
-
-.btn-reset-all i {
-  font-size: 16px;
-  line-height: 1;
-}
-/* === Tombol Filter, Reset, Reset Semua — Ukuran & Style Sama === */
-.btn-filter,
-.btn-reset,
-.btn-reset-all {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 44px;                 /* Semua sama tinggi */
-  min-width: 110px;             /* Ukuran seragam */
-  padding: 0 18px;
-  font-weight: 700;
-  font-size: 14px;
-  border-radius: 8px;
-  transition: all 0.2s ease-in-out;
-}
-
-/* === Tombol Filter, Reset, dan Reset Semua (ukuran sama) === */
-.btn-filter,
-.btn-reset,
-.btn-reset-all {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  height: 44px;                 /* tinggi seragam */
-  min-width: 110px;             /* lebar minimum sama */
-  padding: 0 18px;
-  font-weight: 700;
-  font-size: 14px;
-  border-radius: 8px;
-  transition: all 0.2s ease-in-out;
-  line-height: 1;
-}
-
-/* === Filter === */
-.btn-filter {
-  background: #1E3A8A;
-  color: #fff;
-  border: none;
-  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25);
-}
-.btn-filter:hover {
-  background: #1E3A8A;
-  transform: translateY(-2px);
-}
-
-/* === Reset === */
 .btn-reset {
-  background: #1e3a8a;          /* warna sama seperti Filter */
-  color: #fff;
-  border: none;
-  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.25);
-  height: 44px;                 /* pastikan sama tinggi */
-  min-width: 110px;             /* pastikan sama lebar */
-  padding: 0 18px;              /* spacing sama */
-}
-.btn-reset:hover {
-  background: #1a307a;
-  transform: translateY(-2px);
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem;
+    height: 44px !important;
+    min-width: 90px;
+    padding: 0 18px !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease-in-out;
 }
 
-/* === Reset Semua === */
+.btn-cari,
+.btn-filter {
+    background: var(--primary-gradient);
+    color: #fff !important;
+    border: none;
+}
+
+.btn-reset {
+    background: #1e3a8a;
+    color: #fff !important;
+    border: none;
+}
+
 .btn-reset-all {
-  background: #ffffff;
-  color: #1e3a8a;
-  border: 1.8px solid #1e3a8a;
-  box-shadow: 0 4px 12px rgba(31, 58, 149, 0.12);
-}
-.btn-reset-all:hover {
-  background: #1e3a8a;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(31, 58, 149, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 44px;
+    min-width: 110px;
+    padding: 0 18px;
+    background: #ffffff;
+    color: #1e3a8a;
+    border: 1.8px solid #1e3a8a;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(31, 58, 149, 0.12);
+    transition: all 0.2s ease-in-out;
 }
 
-.btn-reset i,
-.btn-filter i,
-.btn-reset-all i {
-  font-size: 14px;
-  line-height: 1;
+.btn-reset-all:hover {
+    background: #1e3a8a;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Desktop (≥ 992px) */
+@media (min-width: 992px) {
+    .table-dashboard thead th {
+        font-size: 0.9rem;
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .table-dashboard tbody td {
+        font-size: 0.95rem;
+        padding: 1rem 0.8rem;
+    }
+    
+    .btn-action {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .page-title {
+        font-size: 1.6rem;
+    }
+    
+    .table-dashboard thead th {
+        font-size: 0.8rem;
+        padding: 1rem 0.6rem;
+    }
+    
+    .table-dashboard tbody td {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .btn-action {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        min-width: 65px;
+    }
+}
+
+/* Mobile (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    .page-title {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    
+    .search-group,
+    .filter-group {
+        width: 100%;
+    }
+    
+    .input-group {
+        flex-wrap: nowrap;
+    }
+    
+    .btn-cari,
+    .btn-filter,
+    .btn-reset {
+        height: 42px !important;
+        min-width: 80px;
+        font-size: 0.85rem;
+        padding: 0 16px !important;
+    }
+    
+    .btn-reset-all {
+        height: 42px;
+        min-width: 100px;
+        font-size: 0.85rem;
+        padding: 0 16px;
+    }
+    
+    .user-name {
+        font-size: 0.95rem;
+    }
+    
+    .user-email {
+        font-size: 0.8rem;
+    }
+    
+    .btn-action-mobile {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+        min-width: 55px;
+    }
+}
+
+/* Small Mobile (< 576px) */
+@media (max-width: 575px) {
+    .container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    
+    .page-title {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+    
+    .btn-kembali {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .search-group,
+    .filter-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .input-group {
+        flex-wrap: wrap;
+    }
+    
+    .input-group .form-control {
+        border-radius: 8px !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .btn-cari,
+    .btn-filter,
+    .btn-reset {
+        height: 40px !important;
+        min-width: 70px;
+        font-size: 0.8rem;
+        padding: 0 14px !important;
+        border-radius: 6px !important;
+    }
+    
+    .btn-reset-all {
+        height: 40px;
+        min-width: 90px;
+        font-size: 0.8rem;
+        padding: 0 14px;
+        border-radius: 6px;
+    }
+    
+    .user-card .card-body {
+        padding: 1rem !important;
+    }
+    
+    .user-name {
+        font-size: 0.9rem;
+    }
+    
+    .user-email {
+        font-size: 0.75rem;
+    }
+    
+    .mobile-badge {
+        font-size: 0.65rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    .btn-action-mobile {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.4rem;
+        min-width: 50px;
+    }
+    
+    .aksi-wrapper {
+        gap: 0.3rem;
+    }
+    
+    .pagination-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Very Small Mobile (< 400px) */
+@media (max-width: 400px) {
+    .container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    .page-title {
+        font-size: 1.2rem;
+    }
+    
+    .btn-cari,
+    .btn-filter,
+    .btn-reset {
+        height: 38px !important;
+        min-width: 60px;
+        font-size: 0.75rem;
+        padding: 0 12px !important;
+    }
+    
+    .btn-reset-all {
+        height: 38px;
+        min-width: 80px;
+        font-size: 0.75rem;
+        padding: 0 12px;
+    }
+    
+    .user-name {
+        font-size: 0.85rem;
+    }
+    
+    .btn-action-mobile {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.3rem;
+        min-width: 45px;
+    }
+    
+    .aksi-wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.table-dashboard tbody tr {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.border-0 {
+    border: 0 !important;
+}
+
+.rounded-lg {
+    border-radius: 15px !important;
 }

@@ -7,13 +7,6 @@
     min-height: 100vh;
 }
 
-/* ===== CONTAINER CENTER ===== */
-.container-fluid {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-}
-
 /* ===== SEARCH BAR STYLES ===== */
 .form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
@@ -26,13 +19,18 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     border: none;
     transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
@@ -42,7 +40,6 @@
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 0 auto;
 }
 
 .card:hover {
@@ -50,30 +47,48 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
 
-.card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+/* ===== MOBILE CARD STYLES ===== */
+.mobile-card {
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
+}
+
+.mobile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.company-name {
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.position-text {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.mobile-badge {
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.6rem !important;
+}
+
+.btn-detail-mobile {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
 }
 
 /* ===== TABLE STYLES ===== */
-.table-card {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
 .table-responsive {
     border-radius: 10px;
-    overflow-x: auto;
-    overflow-y: visible;
+    overflow: visible;
 }
 
 .table {
     margin-bottom: 0;
-    width: 100%;
-    min-width: 800px;
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .table thead {
@@ -81,24 +96,26 @@
 }
 
 .table thead th {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
-    color: white;
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    );
     font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: none;
-    padding: 1rem 1.2rem;
+    color: white;
     text-align: center;
-    vertical-align: middle;
+    padding: 1rem 1.2rem;
 }
 
 .table tbody tr {
     transition: all 0.3s ease;
-}
-
-.table tbody tr:hover {
-    background-color: #f8f9fa;
+    cursor: pointer;
 }
 
 .table tbody td {
@@ -108,30 +125,41 @@
     text-align: center;
 }
 
+.table td:last-child {
+    width: 120px;
+    white-space: nowrap;
+    text-align: center;
+}
+
 .btn-detail {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    );
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 0.85rem;
-    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
     transition: all 0.25s ease;
-    white-space: nowrap;
+    min-width: 80px;
 }
 
 .btn-detail:hover {
-    background: linear-gradient(135deg, #1E3A8A 0%, #312E81 40%, #4C1D95 75%, #6D28D9 100%);
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0, 64, 128, 0.25);
 }
 
-.btn-detail::after,
-.btn-primary::after {
-    content: none !important;
+.company-name-cell {
+    font-weight: 600;
+    color: #212529;
 }
 
 /* ===== BADGE STYLES ===== */
@@ -140,7 +168,6 @@
     padding: 0.5rem 1rem;
     letter-spacing: 0.3px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    white-space: nowrap;
 }
 
 .bg-primary {
@@ -164,7 +191,7 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    padding: 1rem 0;
+    padding-top: 1rem;
 }
 
 .pagination {
@@ -183,11 +210,17 @@
     font-weight: 600 !important;
     padding: 0.55rem 1.5rem !important;
     transition: all 0.25s ease !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
 .pagination .page-link:hover {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3) !important;
     transform: translateY(-1px);
@@ -195,9 +228,16 @@
 
 .pagination .page-link.active,
 .pagination .page-item.active .page-link {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E3A8A 40%,
+        #312E81 75%,
+        #4C1D95 100%
+    ) !important;
     color: white !important;
     border: none !important;
+    box-shadow: none !important;
 }
 
 .pagination .page-item.disabled .page-link {
@@ -206,24 +246,102 @@
     box-shadow: none !important;
 }
 
-/* ===== EMPTY STATE STYLES ===== */
-.text-center.py-5 {
-    padding: 3rem 1rem;
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    .mobile-search {
+        height: 44px !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+    
+    .search-btn {
+        padding: 0.5rem 1rem !important;
+        min-width: 60px;
+    }
+    
+    .table-card {
+        padding: 0 0.5rem;
+    }
+    
+    .mobile-card .card-body {
+        padding: 1rem !important;
+    }
+    
+    .company-name {
+        font-size: 1.1rem !important;
+    }
+    
+    .position-text {
+        font-size: 0.9rem !important;
+    }
+    
+    .btn-detail-mobile {
+        font-size: 0.9rem !important;
+        padding: 0.6rem 1rem !important;
+    }
 }
 
-.text-center.py-5 i {
-    color: #6c757d;
-    margin-bottom: 1rem;
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    .mobile-search {
+        font-size: 14px !important;
+        padding-left: 2.5rem !important;
+    }
+    
+    .search-btn {
+        padding: 0.4rem 0.8rem !important;
+    }
+    
+    .mobile-card {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .mobile-card .card-body {
+        padding: 0.75rem !important;
+    }
+    
+    .company-name {
+        font-size: 1rem !important;
+    }
+    
+    .mobile-badge {
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
 }
 
-.text-center.py-5 h5 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+@media (min-width: 1200px) {
+    .table {
+        width: 90% !important;
+    }
 }
 
-.text-center.py-5 p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.table tbody tr {
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -249,194 +367,4 @@
 
 .rounded-lg {
     border-radius: 15px !important;
-}
-
-/* ===== RESPONSIVE STYLES - TABLET ===== */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .container-fluid {
-        padding: 1rem;
-    }
-    
-    .table {
-        min-width: 700px;
-    }
-    
-    .table thead th,
-    .table tbody td {
-        font-size: 0.85rem;
-        padding: 0.8rem 0.8rem;
-    }
-    
-    .btn-detail {
-        font-size: 0.8rem;
-        padding: 0.4rem 1rem;
-    }
-    
-    .badge {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-    }
-}
-
-/* ===== RESPONSIVE STYLES - MOBILE ===== */
-@media (max-width: 768px) {
-    .container-fluid {
-        padding: 0.5rem;
-    }
-    
-    /* Search Bar Mobile */
-    .mb-4 form {
-        flex-direction: column;
-        gap: 0.5rem !important;
-    }
-    
-    .mb-4 .position-relative {
-        width: 100% !important;
-    }
-    
-    .mb-4 .btn-primary {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    /* Table Mobile - Card Style */
-    .table-responsive {
-        border-radius: 0;
-    }
-    
-    .table {
-        display: block;
-        min-width: 100%;
-    }
-    
-    .table thead {
-        display: none;
-    }
-    
-    .table tbody {
-        display: block;
-    }
-    
-    .table tbody tr {
-        display: block;
-        margin-bottom: 1rem;
-        border: 1px solid #dee2e6;
-        border-radius: 10px;
-        padding: 1rem;
-        background: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    
-    .table tbody td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 0;
-        border: none;
-        text-align: right;
-    }
-    
-    .table tbody td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        color: #1e3a8a;
-        text-align: left;
-        flex: 0 0 40%;
-    }
-    
-    .btn-detail {
-        width: 100%;
-        margin-top: 0.5rem;
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .badge {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-    }
-    
-    /* Pagination Mobile */
-    .pagination .page-link {
-        padding: 0.4rem 1rem !important;
-        font-size: 0.85rem !important;
-    }
-}
-
-/* ===== RESPONSIVE STYLES - SMALL MOBILE ===== */
-@media (max-width: 480px) {
-    .container-fluid {
-        padding: 0.25rem;
-    }
-    
-    .card {
-        border-radius: 10px;
-    }
-    
-    .table tbody tr {
-        padding: 0.8rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .table tbody td {
-        padding: 0.4rem 0;
-        font-size: 0.85rem;
-    }
-    
-    .table tbody td::before {
-        font-size: 0.7rem;
-        flex: 0 0 45%;
-    }
-    
-    .btn-detail {
-        font-size: 0.85rem;
-        padding: 0.5rem 0.8rem;
-    }
-    
-    .badge {
-        font-size: 0.75rem;
-        padding: 0.35rem 0.7rem;
-    }
-    
-    .pagination {
-        gap: 0.25rem;
-    }
-    
-    .pagination .page-link {
-        padding: 0.35rem 0.8rem !important;
-        font-size: 0.8rem !important;
-    }
-}
-
-/* ===== RESPONSIVE STYLES - LARGE DESKTOP ===== */
-@media (min-width: 1400px) {
-    .container-fluid {
-        max-width: 1600px;
-    }
-    
-    .table-card {
-        max-width: 90%;
-    }
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.table tbody tr {
-    animation: fadeIn 0.3s ease-in-out;
 }
