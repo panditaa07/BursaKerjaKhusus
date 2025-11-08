@@ -6,9 +6,10 @@
     <title>Bursa Kerja Khusus</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="icon" href="images/smkn4.png" type="image/png">
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Lottie Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-
 </head>
 <body class="overflow-hidden">
 
@@ -20,136 +21,134 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">
-            <img src="{{ asset('images/smkn4.png') }}" class="logo-img">
-            <span>BKK Opat</span>
-          </div>
+                <img src="{{ asset('images/smkn4.png') }}" class="logo-img">
+                <span>BKK Opat</span>
+            </div>
 
             <div class="auth-buttons">
                 <a href="{{ route('login') }}" class="btn btn-login" id="loginBtn">Masuk</a>
                 <a href="{{ route('register') }}" class="btn btn-register" id="registerBtn">Daftar</a>
             </div>
-
         </nav>
     </header>
 
     <div id="main-content" style="opacity: 0; transform: translateY(50px); transition: opacity 1s ease-out, transform 1s ease-out;">
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
-        <div class="hero-content" id="hero-content">
-            <h1>Bursa Kerja Khusus</h1>
-            <p>Bursa Kerja Khusus (BKK) SMKN 4 Bandung merupakan layanan resmi sekolah 
-      yang berfungsi sebagai jembatan antara dunia pendidikan dan dunia kerja. 
-      Dalam website ini menyediakan informasi terkini seputar lowongan pekerjaan, 
-      magang, rekrutmen, serta pelatihan karir yang ditujukan bagi siswa dan alumni.</p>
-        </div>
-
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content" id="hero-content">
+                    <h1>Bursa Kerja Khusus</h1>
+                    <p>Bursa Kerja Khusus (BKK) SMKN 4 Bandung merupakan layanan resmi sekolah 
+                        yang berfungsi sebagai jembatan antara dunia pendidikan dan dunia kerja. 
+                        Dalam website ini menyediakan informasi terkini seputar lowongan pekerjaan, 
+                        magang, rekrutmen, serta pelatihan karir yang ditujukan bagi siswa dan alumni.</p>
+                </div>
                 <div class="hero-animation" id="hero-animation"></div>
-    </div>
-    </section>
+            </div>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="features-container">
-            <h2>Tim BKK</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="foto">
-                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-container">
+                <h2>Tim BKK</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="foto">
+                            <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                        </div>
+                        <h3>Nama Staff</h3>
+                        <p>Staff BKK</p>
                     </div>
-                    <h3>Nama Staff</h3>
-                    <p>Staff BKK</p>
-                </div>
-                <div class="feature-card">
-                    <div class="foto">
-                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    <div class="feature-card">
+                        <div class="foto">
+                            <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                        </div>
+                        <h3>Nama Staff</h3>
+                        <p>Staff BKK</p>
                     </div>
-                    <h3>Nama Staff</h3>
-                    <p>Staff BKK</p>
-                </div>
-                <div class="feature-card">
-                  <div class="foto">
-                    <img src="{{ asset('images/foto-default.png') }}" alt="Default">
-                </div>
-                <h3>Nama Staff</h3>
-                <p>Staff BKK</p>
-                </div>
-                <div class="feature-card">
-                    <div class="foto">
-                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    <div class="feature-card">
+                        <div class="foto">
+                            <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                        </div>
+                        <h3>Nama Staff</h3>
+                        <p>Staff BKK</p>
                     </div>
-                    <h3>Nama Staff</h3>
-                    <p>Staff BKK</p>
-                </div>
-                <div class="feature-card">
-                    <div class="foto">
-                        <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                    <div class="feature-card">
+                        <div class="foto">
+                            <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                        </div>
+                        <h3>Nama Staff</h3>
+                        <p>Staff BKK</p>
                     </div>
-                    <h3>Nama Staff</h3>
-                    <p>Staff BKK</p>
+                    <div class="feature-card">
+                        <div class="foto">
+                            <img src="{{ asset('images/foto-default.png') }}" alt="Default">
+                        </div>
+                        <h3>Nama Staff</h3>
+                        <p>Staff BKK</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+    </div>
 
+    <script src="{{ asset('js/home.js') }}"></script>
 
-</div>
+    <!-- LOADING SCRIPT -->
+    <script>
+        // Load Lottie Animation
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-logo'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: "https://lottie.host/ed4366ef-6af4-41ba-b36c-9c880d611414/UiJzA4O4Gj.json"
+        });
 
-         <script src="{{ asset('js/home.js') }}"></script>
+        function hideLoader() {
+            const loader = document.getElementById("loading-screen");
+            loader.classList.add("opacity-0");
+            setTimeout(() => {
+                loader.remove();
+                document.body.classList.remove("overflow-hidden");
+            }, 500);
+        }
 
-<!-- LOADING SCRIPT -->
-<script>
-  // Load Lottie Animation
-  lottie.loadAnimation({
-    container: document.getElementById('lottie-logo'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: "https://lottie.host/ed4366ef-6af4-41ba-b36c-9c880d611414/UiJzA4O4Gj.json "  // ganti dengan lokasi file animasi logo kamu
-  });
+        // Minimal delay 3s
+        const minDelay = 3000;
 
-  function hideLoader() {
-    const loader = document.getElementById("loading-screen");
-    loader.classList.add("opacity-0");
-    setTimeout(() => {
-      loader.remove();
-      document.body.classList.remove("overflow-hidden");
-    }, 500);
-  }
-
-  // Minimal delay 3s
-  const minDelay = 3000;
-
-  window.addEventListener("load", function () {
-    setTimeout(hideLoader, minDelay);
-    // Add animation to main-content after loading screen hides
-    setTimeout(() => {
-      const mainContent = document.getElementById('main-content');
-      if (mainContent) {
-        mainContent.style.opacity = '1';
-        mainContent.style.transform = 'translateY(0)';
-      }
-   // Hapus overflow-hidden setelah animasi main-content selesai
-    document.body.classList.remove("overflow-hidden");
-   }, minDelay + 300);
-  });
-</script>
-<script>
-  // Lottie Hero Animation
-  lottie.loadAnimation({
-    container: document.getElementById('hero-animation'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: "https://lottie.host/45d7b582-ea44-449c-81ce-ff502ee221e2/S4SS7hEn40.json"
-  });
-</script>
+        window.addEventListener("load", function () {
+            setTimeout(hideLoader, minDelay);
+            // Add animation to main-content after loading screen hides
+            setTimeout(() => {
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'translateY(0)';
+                }
+                // Hapus overflow-hidden setelah animasi main-content selesai
+                document.body.classList.remove("overflow-hidden");
+            }, minDelay + 300);
+        });
+    </script>
+    
+    <script>
+        // Lottie Hero Animation
+        lottie.loadAnimation({
+            container: document.getElementById('hero-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: "https://lottie.host/45d7b582-ea44-449c-81ce-ff502ee221e2/S4SS7hEn40.json"
+        });
+    </script>
 </body>
 </html>

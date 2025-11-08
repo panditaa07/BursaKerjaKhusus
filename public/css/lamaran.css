@@ -65,7 +65,7 @@
 
 .position-text {
     font-size: 0.85rem;
-    color: #6c757d;
+    color: black;
 }
 
 .mobile-badge {
@@ -358,7 +358,7 @@
 }
 
 .text-muted {
-    color: #6c757d !important;
+    color: black !important;
 }
 
 .border-0 {
@@ -367,4 +367,8 @@
 
 .rounded-lg {
     border-radius: 15px !important;
+}
+
+.text-primary {
+    color: black !important;
 }

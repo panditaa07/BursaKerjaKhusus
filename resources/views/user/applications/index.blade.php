@@ -23,7 +23,6 @@
     <!-- 📋 Tabel Lamaran -->
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10 table-card">
-            <div class="card shadow-sm border-0 rounded-lg">
                 @if($applications->count() > 0)
                 <!-- Mobile View -->
                 <div class="d-block d-lg-none">
