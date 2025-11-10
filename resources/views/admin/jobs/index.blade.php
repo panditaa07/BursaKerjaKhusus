@@ -95,47 +95,57 @@
                 </thead>
                 <tbody>
                      @forelse($jobPosts as $index => $job)
-                            <tr>
-                                <td>{{ $jobPosts->firstItem() + $index }}</td>
-                                <td>{{ $job->title }}</td>
-                                <td>{{ $job->company->name ?? '-' }}</td>
-                                <td>{{ $job->location }}</td>
-                                <td>{{ $job->employment_type }}</td>
-                                <td>
-                                    @if($job->status == 'active')
-                                        <span class="badge bg-success">Aktif</span>
-                                    @else
-                                        <span class="badge bg-danger">Tidak Aktif</span>
-                                    @endif
-                                </td>
-                                <td class="aksi text-center align-middle">
-    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
-        <!-- Tombol Lihat -->
-        <a href="{{ route('admin.job-posts.show', $job->id) }}?from=kelola"
-           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
-            Lihat
-        </a>
+<tr>
+    <td data-label="No">
+        {{ $jobPosts->firstItem() + $index }}
+    </td>
+    <td data-label="Judul Pekerjaan">
+        {{ $job->title }}
+    </td>
+    <td data-label="Perusahaan">
+        {{ $job->company->name ?? '-' }}
+    </td>
+    <td data-label="Lokasi">
+        {{ $job->location }}
+    </td>
+    <td data-label="Tipe">
+        {{ $job->employment_type }}
+    </td>
+    <td data-label="Status">
+        @if($job->status == 'active')
+            <span class="badge bg-success">Aktif</span>
+        @else
+            <span class="badge bg-danger">Tidak Aktif</span>
+        @endif
+    </td>
+    <td class="aksi text-center align-middle" data-label="Aksi">
+        <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+            <!-- Tombol Lihat -->
+            <a href="{{ route('admin.job-posts.show', $job->id) }}?from=kelola"
+               class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+                Lihat
+            </a>
 
-        <!-- Tombol Edit -->
-        <a href="{{ route('admin.job-posts.edit', $job->id) }}"
-           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
-            Edit
-        </a>
+            <!-- Tombol Edit -->
+            <a href="{{ route('admin.job-posts.edit', $job->id) }}"
+               class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+                Edit
+            </a>
 
-        <!-- Tombol Hapus -->
-        <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
-                    onclick="return confirm('Yakin ingin menghapus?')">
-                Hapus
-            </button>
-        </form>
-    </div>
-</td>
+            <!-- Tombol Hapus -->
+            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                        onclick="return confirm('Yakin ingin menghapus?')">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
 
-                            </tr>
                         @empty
                             <tr>
                                 <td colspan="7" class="text-center">Belum ada lowongan kerja</td>

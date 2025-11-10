@@ -26,7 +26,10 @@
 .detail-pengguna-page h1 {
     font-size: 2rem;
     font-weight: 700;
-    color: #000000;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    background-clip: text; /* fallback untuk browser modern */
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.5rem;

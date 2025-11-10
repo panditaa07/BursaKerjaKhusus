@@ -60,7 +60,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th>No. HP</th>
+                        <th>No HP</th>
                         <th>Perusahaan</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -69,57 +69,57 @@
                 <tbody>
                     @forelse($pelamar as $p)
                         <tr>
-                            <td>{{ ($pelamar->currentPage() - 1) * $pelamar->perPage() + $loop->iteration }}</td>
-                            <td>{{ $p->user->name ?? 'N/A' }}</td>
-                            <td>{{ $p->user->email ?? 'N/A' }}</td>
-                            <td>{{ $p->user->phone ?? '-' }}</td>
-                            <td>{{ $p->jobPost->company->name ?? 'N/A' }}</td>
-                            <td>
-                                @if($p->status == 'accepted')
-                                    <span class="badge" style="background-color:#0c632f;">Terima</span> {{-- Hijau terang --}}
-                                @elseif($p->status == 'rejected')
-                                    <span class="badge" style="background-color:#bb1425;">Tolak</span> {{-- Merah tua --}}
-                                @elseif($p->status == 'interview')
-                                    <span class="badge" style="background-color:#4B2E05;">Wawancara</span> {{-- Ungu gelap --}}
-                                @elseif(in_array($p->status, ['test1','test2']))
-                                    <span class="badge" style="background-color:#0d469d; color:#fff;">Proses</span> {{-- Biru cyan --}}
-                                @elseif($p->status == 'submitted')
-                                    <span class="badge" style="background-color:#EAB308; color:#000;">Menunggu</span> {{-- Kuning keemasan --}}
-                                @else
-                                    <span class="badge bg-light text-dark">{{ $p->status }}</span>
-                                @endif
-                            </td>
-                           <td class="aksi text-center align-middle">
-    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
-        <!-- Tombol Lihat -->
-        <a href="{{ route('admin.applications.show', $p->id) }}?from=bulanini"
-           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
-            Lihat
-        </a>
+    <td data-label="No">{{ ($pelamar->currentPage() - 1) * $pelamar->perPage() + $loop->iteration }}</td>
+    <td data-label="Nama">{{ $p->user->name ?? 'N/A' }}</td>
+    <td data-label="Email">{{ $p->user->email ?? 'N/A' }}</td>
+    <td data-label="No HP">{{ $p->user->phone ?? '-' }}</td>
+    <td data-label="Perusahaan">{{ $p->jobPost->company->name ?? 'N/A' }}</td>
+    <td data-label="Status">
+        @if($p->status == 'accepted')
+            <span class="badge" style="background-color:#0c632f;">Terima</span> {{-- Hijau terang --}}
+        @elseif($p->status == 'rejected')
+            <span class="badge" style="background-color:#bb1425;">Tolak</span> {{-- Merah tua --}}
+        @elseif($p->status == 'interview')
+            <span class="badge" style="background-color:#4B2E05;">Wawancara</span> {{-- Ungu gelap --}}
+        @elseif(in_array($p->status, ['test1','test2']))
+            <span class="badge" style="background-color:#0d469d; color:#fff;">Proses</span> {{-- Biru cyan --}}
+        @elseif($p->status == 'submitted')
+            <span class="badge" style="background-color:#EAB308; color:#000;">Menunggu</span> {{-- Kuning keemasan --}}
+        @else
+            <span class="badge bg-light text-dark">{{ $p->status }}</span>
+        @endif
+    </td>
+    <td data-label="Aksi" class="aksi text-center align-middle">
+        <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+            <!-- Tombol Lihat -->
+            <a href="{{ route('admin.applications.show', $p->id) }}?from=bulanini"
+               class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+                Lihat
+            </a>
 
-        <!-- Tombol Edit -->
-        <a href="{{ route('admin.applications.edit', $p->id) }}"
-           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
-            Edit
-        </a>
+            <!-- Tombol Edit -->
+            <a href="{{ route('admin.applications.edit', $p->id) }}"
+               class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+                Edit
+            </a>
 
-        <!-- Tombol Hapus -->
-        <form action="{{ route('admin.applications.destroy', $p->id) }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
-                    onclick="return confirm('Yakin ingin menghapus?')">
-                Hapus
-            </button>
-        </form>
-    </div>
-</td>
+            <!-- Tombol Hapus -->
+            <form action="{{ route('admin.applications.destroy', $p->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                        onclick="return confirm('Yakin ingin menghapus?')">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
 
-                        </tr>
                         @empty
                             <tr>
-                                <td colspan="10" class="text-center">Belum ada pelamar</td>
+                                <td data-label="Pelamar?" colspan="10" class="text-center">Belum ada pelamar</td>
                             </tr>
                     @endforelse
                 </tbody>

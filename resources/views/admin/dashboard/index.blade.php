@@ -128,13 +128,13 @@
             <tbody>
                 @forelse($daftar_pelamar_terbaru as $index => $app)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $app->user->name ?? '-' }}</td>
-                        <td>{{ $app->user->email ?? '-' }}</td>
-                        <td>{{ $app->user->phone ?? '-' }}</td>
-                        <td>{{ $app->jobPost->company->name ?? '-' }}</td>
-                        <td>{{ $app->jobPost->title ?? '-' }}</td>
-                        <td>
+  <td data-label="No">{{ $index + 1 }}</td>
+  <td data-label="Nama">{{ $app->user->name ?? '-' }}</td>
+  <td data-label="Email">{{ $app->user->email ?? '-' }}</td>
+  <td data-label="No Hp">{{ $app->user->phone ?? '-' }}</td>
+  <td data-label="Perusahaan">{{ $app->jobPost->company->name ?? '-' }}</td>
+  <td data-label="Lowongan">{{ $app->jobPost->title ?? '-' }}</td>
+<td data-label="Status">
                                 @if($app->status == 'accepted')
                                     <span class="badge" style="background-color:#0c632f;">Terima</span> {{-- Hijau terang --}}
                                 @elseif($app->status == 'rejected')
@@ -149,21 +149,19 @@
                                     <span class="badge bg-light text-dark">{{ $app->status }}</span>
                                 @endif
                             </td>
-                       <td class="aksi text-center align-middle">
-    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+  <td data-label="Aksi" class="aksi text-center align-middle">
+    <div class="aksi-wrapper">
         <!-- Tombol Lihat -->
         <a href="{{ route('admin.applications.show', $app->id) }}"
            class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
             Lihat
         </a>
-
         <!-- Tombol Edit -->
         <a href="{{ route('admin.applications.edit', $app->id) }}"
            class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
             Edit
         </a>
-
-        <!-- Tombol Hapus -->
+      <!-- Tombol Hapus -->
         <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
@@ -174,9 +172,8 @@
             </button>
         </form>
     </div>
-</td>
-
-                    </tr>
+  </td>
+</tr>
                 @empty
                     <tr>
                         <td colspan="8" class="text-center text-muted">Belum ada pelamar</td>
@@ -199,46 +196,46 @@
                 </thead>
                 <tbody>
                     @forelse($loker_terbaru as $index => $job)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $job->company->name ?? '-' }}</td>
-                            <td>{{ $job->no_hrd ?? '-' }}</td>
-                            <td>{{ $job->alamat ?? $job->location ?? '-' }}</td>
-                            <td>
-                                @if($job->status === 'active')
-                                    <span class="badge bg-success">Aktif</span>
-                                @else
-                                    <span class="badge bg-danger">Tidak Aktif</span>
-                                @endif
-                            </td>
-                            <td class="aksi text-center align-middle">
-    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
-        <!-- Tombol Lihat -->
-        <a href="{{ route('admin.job-posts.show', $job->id) }}"
-           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
-            Lihat
-        </a>
+<tr>
+    <td data-label="No">{{ $index + 1 }}</td>
+    <td data-label="Perusahaan">{{ $job->company->name ?? '-' }}</td>
+    <td data-label="No HRD">{{ $job->no_hrd ?? '-' }}</td>
+    <td data-label="Alamat">{{ $job->alamat ?? $job->location ?? '-' }}</td>
+    <td data-label="Status">
+        @if($job->status === 'active')
+            <span class="badge bg-success">Aktif</span>
+        @else
+            <span class="badge bg-danger">Tidak Aktif</span>
+        @endif
+    </td>
+    <td data-label="Aksi" class="aksi text-center align-middle">
+        <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+            <!-- Tombol Lihat -->
+            <a href="{{ route('admin.job-posts.show', $job->id) }}"
+               class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+                Lihat
+            </a>
 
-        <!-- Tombol Edit -->
-        <a href="{{ route('admin.job-posts.edit', $job->id) }}"
-           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
-            Edit
-        </a>
+            <!-- Tombol Edit -->
+            <a href="{{ route('admin.job-posts.edit', $job->id) }}"
+               class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+                Edit
+            </a>
 
-        <!-- Tombol Hapus -->
-        <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
-                    onclick="return confirm('Yakin ingin menghapus?')">
-                Hapus
-            </button>
-        </form>
-    </div>
-</td>
+            <!-- Tombol Hapus -->
+            <form action="{{ route('admin.job-posts.destroy', $job->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                        onclick="return confirm('Yakin ingin menghapus?')">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
 
-                        </tr>
                     @empty
                         <tr><td colspan="6" class="text-center text-muted">Belum ada loker aktif</td></tr>
                     @endforelse

@@ -67,44 +67,51 @@
                 <tbody>
                     @forelse($lowongan as $index => $l)
                         <tr>
-                            <td>{{ $lowongan->firstItem() + $index }}</td>
-                            <td>{{ $l->company->name ?? 'N/A' }}</td>
-                            <td>N/A</td>
-                            <td>{{ $l->location ?? 'N/A' }}</td>
-                            <td>
-                                <span class="badge bg-danger">Tidak Aktif</span>
-                            </td>
-                           <td class="aksi text-center align-middle">
-    <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
-        <!-- Tombol Lihat -->
-        <a href="{{ route('admin.job-posts.show', $l->id) }}?from=tidakaktif"
-           class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
-            Lihat
-        </a>
+    <td data-label="No">
+        {{ $lowongan->firstItem() + $index }}
+    </td>
+    <td data-label="Perusahaan">
+        {{ $l->company->name ?? 'N/A' }}
+    </td>
+    <td data-label="No HRD">
+        N/A
+    </td>
+    <td data-label="Alamat">
+        {{ $l->location ?? 'N/A' }}
+    </td>
+    <td data-label="Status">
+       <span class="badge bg-danger">Tidak Aktif</span>
+    </td>
+    <td class="aksi text-center align-middle" data-label="Aksi">
+        <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+            <!-- Tombol Lihat -->
+            <a href="{{ route('admin.job-posts.show', $l->id) }}?from=aktif"
+               class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+                Lihat
+            </a>
 
-        <!-- Tombol Edit -->
-        <a href="{{ route('admin.job-posts.edit', $l->id) }}"
-           class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
-            Edit
-        </a>
+            <!-- Tombol Edit -->
+            <a href="{{ route('admin.job-posts.edit', $l->id) }}"
+               class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+                Edit
+            </a>
 
-        <!-- Tombol Hapus -->
-        <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
-                    onclick="return confirm('Yakin ingin menghapus?')">
-                Hapus
-            </button>
-        </form>
-    </div>
-</td>
-
-                        </tr>
+            <!-- Tombol Hapus -->
+            <form action="{{ route('admin.job-posts.destroy', $l->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                        onclick="return confirm('Yakin ingin menghapus?')">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Belum ada lowongan</td>
+                            <td data-label="Lowongan?" colspan="6" class="text-center">Belum ada lowongan</td>
                         </tr>
                     @endforelse
                 </tbody>

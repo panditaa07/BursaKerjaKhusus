@@ -535,7 +535,7 @@ td.aksi .table-btn {
     }
 
     .btn-kembali {
-        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+        background:  linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
         color: white;
         border: none;
         border-radius: 10px;
@@ -565,12 +565,12 @@ td.aksi .table-btn {
     }
 
     .search-box .btn-cari {
-        background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+        background:  linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
         color: white;
     }
 
     .search-box .btn-total {
-        background: linear-gradient(135deg, #4C1D95, #1E3A8A);
+        background:  linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */);
         color: white;
     }
 
@@ -580,6 +580,182 @@ td.aksi .table-btn {
     }
 }
 
+
+/* ============================================================
+   RESPONSIVE TABLE ADMIN TANPA SCROLL — BOS MUDA STYLE 😎
+   ============================================================ */
+
+@media (max-width: 991px) {
+
+  /* Hilangkan scroll horizontal */
+  .table-section {
+    overflow-x: hidden !important;
+  }
+
+  /* Biar tabel muat penuh dan rapi */
+  .table-dashboard {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+    display: block;
+  }
+
+  /* Sembunyikan header tabel */
+  .table-dashboard thead {
+    display: none;
+  }
+
+  /* Setiap baris jadi “kartu” */
+  .table-dashboard tbody tr {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Setiap kolom jadi baris */
+  .table-dashboard tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 13px;
+    border: none !important;
+    text-align: left !important;
+    word-break: break-word;
+  }
+
+  /* Tambahkan label otomatis sesuai kolom */
+  .table-dashboard tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #1E3A8A;
+    text-transform: capitalize;
+  }
+
+  /* Biar tombol di kolom Aksi tetap rapi */
+  .table-dashboard .aksi-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .table-dashboard .aksi-wrapper .btn {
+    width: 90%;
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
+  /* Tambah sedikit spacing antar tabel */
+  .table-section1 {
+    margin-bottom: 2rem;
+  }
+
+  .table-dashboard tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    font-size: 14px;
+    border: none !important;
+    text-align: left !important;
+    gap: 6px;
+  }
+
+  /* Label kiri tetap */
+  .table-dashboard tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #1E3A8A;
+    text-transform: capitalize;
+    flex: 0 0 35%;
+    text-align: left;
+  }
+
+  /* Isi kanan tetap sejajar & turun rapi */
+  .table-dashboard tbody td span,
+  .table-dashboard tbody td a,
+  .table-dashboard tbody td div {
+    flex: 1 1 60%;
+    word-break: break-word;
+    white-space: normal;
+    text-align: right; /* 👉 ubah ini */
+  }
+
+  /* ✅ hilangkan efek card */
+  .table-dashboard tbody tr {
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    padding-bottom: 8px;
+  }
+
+  /* Badge Role (User / Company) — disamain kayak tombol aksi */
+.table-dashboard .status-badge {
+  display: inline-block !important;
+  width: 65px !important;
+  min-width: 65px !important;
+  max-width: 65px !important;
+  text-align: center !important;
+  font-size: 11.5px !important;
+  padding: 4px 0 !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  color: #fff !important;
+}
+
+
+  /* Style badge status lebih compact */
+  .table-dashboard .badge {
+    display: inline-block !important;
+    width: 85px !important;
+    min-width: 85px !important;
+    max-width: 85px !important;
+    text-align: center !important;
+    font-size: 11px !important;
+    padding: 4px 0 !important;
+    border-radius: 18px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Tombol aksi fix biar gak melar */
+  .aksi-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .aksi-wrapper .btn {
+    display: inline-block !important;
+    width: 65px !important;      /* 🔥 fix ukuran kecil */
+    min-width: 65px !important;  /* 🔥 paksa biar gak melar */
+    max-width: 65px !important;
+    font-size: 11.5px !important;
+    padding: 4px 0 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    border-radius: 20px !important;
+    white-space: nowrap !important;
+  }
+
+
+  .btn-primary { background-color: #1E3A8A; color: #fff; border: none; }
+  .btn-warning { background-color: #FACC15; color: #000; border: none; }
+  .btn-danger  { background-color: #DC2626; color: #fff; border: none; }
+}
 
 
 /* Smooth Scrollbar */
@@ -717,7 +893,7 @@ td.aksi .table-btn {
 
 .input-group .btn-filter:focus,
 .input-group .btn-filter:active {
-    background: #1E3A8A !important; /* tetap biru, ga berubah abu-abu */
+    background-color: linear-gradient(135deg,#0F172A 0%,   /* biru-hitam tua */#1E3A8A 40%,  /* navy (senada sidebar) */#312E81 75%,  /* indigo tua */ #4C1D95 100%  /* ungu gelap elegan */) !important; /* tetap biru, ga berubah abu-abu */
     color: #fff !important;
     outline: none !important;
     box-shadow: none !important;

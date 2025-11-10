@@ -49,14 +49,6 @@
                 </select>
                 <button type="submit" class="btn btn-filter">Filter</button>
             </div>
-
-             {{-- Button Total --}}
-        <button type="button" class="btn btn-total">
-              <span class="btn-total">
-                    <i class="bi bi-list-ul"></i> Total: {{  $users->total() }}
-                </span>
-        </button>
-
             {{-- Reset semua filter --}}
             @if(request('search') || request('role'))
                 <a href="{{ route('admin.users.index') }}" class="btn-reset-all text-decoration-none">
@@ -96,51 +88,60 @@
                 <tbody>
                     @foreach($users as $index => $user)
                         <tr>
-                            <td>{{ $users->firstItem() + $index }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                <span class="status-badge {{ $user->role->name == 'company' ? 'status-warning' : 'status-info' }}">
-                                    {{ ucfirst($user->role->name) }}
-                                </span>
-                            </td>
-                            <td>
-                                @if($user->role->name == 'company')
-                                    {{ $user->job_posts_count > 0 ? 'Sudah Membuat Lowongan' : 'Belum Membuat Lowongan' }}
-                                @elseif($user->role->name == 'user')
-                                    {{ $user->applications_count > 0 ? 'Sudah Melamar' : 'Belum Melamar' }}
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td>{{ $user->created_at->format('d-m-Y') }}</td>
-                            <td class="aksi text-center align-middle">
-                                <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
-                                    <!-- Tombol Lihat -->
-                                    <a href="{{ route('admin.users.show', $user->id) }}"
-                                       class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
-                                        Lihat
-                                    </a>
+    <td data-label="No">
+        {{ $users->firstItem() + $index }}
+    </td>
+    <td data-label="Nama">
+        {{ $user->name }}
+    </td>
+    <td data-label="Email">
+        {{ $user->email }}
+    </td>
+    <td data-label="Role">
+        <span class="status-badge {{ $user->role->name == 'company' ? 'status-warning' : 'status-info' }}">
+            {{ ucfirst($user->role->name) }}
+        </span>
+    </td>
+    <td data-label="Kategori">
+        @if($user->role->name == 'company')
+            {{ $user->job_posts_count > 0 ? 'Sudah Membuat Lowongan' : 'Belum Membuat Lowongan' }}
+        @elseif($user->role->name == 'user')
+            {{ $user->applications_count > 0 ? 'Sudah Melamar' : 'Belum Melamar' }}
+        @else
+            -
+        @endif
+    </td>
+    <td data-label="Tanggal Daftar">
+        {{ $user->created_at->format('d-m-Y') }}
+    </td>
+    <td class="aksi text-center align-middle" data-label="Aksi">
+        <div class="aksi-wrapper d-flex flex-wrap justify-content-center gap-2">
+            <!-- Tombol Lihat -->
+            <a href="{{ route('admin.users.show', $user->id) }}"
+               class="btn btn-primary rounded-pill px-3 py-1 fw-bold">
+                Lihat
+            </a>
 
-                                    <!-- Tombol Edit -->
-                                    <a href="{{ route('admin.users.edit', $user->id) }}"
-                                       class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
-                                        Edit
-                                    </a>
+            <!-- Tombol Edit -->
+            <a href="{{ route('admin.users.edit', $user->id) }}"
+               class="btn btn-warning rounded-pill px-3 py-1 fw-bold">
+                Edit
+            </a>
 
-                                    <!-- Tombol Hapus -->
-                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
-                                                onclick="return confirm('Yakin ingin menghapus?')">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+            <!-- Tombol Hapus -->
+            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="btn btn-danger rounded-pill px-3 py-1 fw-bold"
+                        onclick="return confirm('Yakin ingin menghapus?')">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
+
                     @endforeach
                 </tbody>
             </table>
