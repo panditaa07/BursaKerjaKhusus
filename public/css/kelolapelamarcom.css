@@ -2463,3 +2463,341 @@ a.btn-primary:not([href*="search"]) {
     transform: translateY(0.5px);
   }
 }
+
+/* =========================================================
+   RESPONSIVE ENHANCEMENTS - HORIZONTAL SCROLL FIX
+   ========================================================= */
+
+/* ====== TABEL WRAPPER - HORIZONTAL SCROLL ====== */
+.company-applications-table .table-responsive {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    position: relative !important;
+    width: 100%;
+}
+
+/* Custom scrollbar styling */
+.company-applications-table .table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.company-applications-table .table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.company-applications-table .table-responsive::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
+    border-radius: 10px;
+}
+
+.company-applications-table .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #1E40AF, #5B21B6);
+}
+
+/* ====== TABEL STYLE DASAR ====== */
+.company-applications-table table {
+    width: 100%;
+    min-width: 900px; /* Minimum width sebelum scroll muncul */
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* ====== BREAKPOINT: DESKTOP NORMAL (min-width 1200px) ====== */
+@media (min-width: 1200px) {
+    .company-applications-table table {
+        min-width: 100%;
+    }
+}
+
+/* ====== BREAKPOINT: TABLET (768px - 1199px) ====== */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .company-applications-table table {
+        min-width: 800px;
+    }
+    
+    .company-applications-table thead th,
+    .company-applications-table tbody td {
+        padding: 10px 12px !important;
+        font-size: 13px !important;
+    }
+    
+    .company-applications-table tbody td:nth-child(3), /* Email */
+    .company-applications-table tbody td:nth-child(4)  /* No. HP */ {
+        max-width: 200px;
+        word-break: break-word;
+    }
+    
+    .action-text {
+        min-width: 80px;
+        height: 36px;
+        font-size: 13px;
+        padding: 0 12px;
+    }
+    
+    .aksi-wrapper {
+        gap: 8px;
+    }
+}
+
+/* ====== BREAKPOINT: MOBILE (<768px) ====== */
+@media (max-width: 767.98px) {
+    /* Pastikan scroll horizontal aktif */
+    .company-applications-table .table-responsive {
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+    }
+    
+    .company-applications-table table {
+        min-width: 750px; /* Lebar minimal untuk scroll */
+        width: 100%;
+    }
+    
+    /* Perbaiki padding agar tidak terlalu padat */
+    .company-applications-table thead th,
+    .company-applications-table tbody td {
+        padding: 10px 12px !important;
+        font-size: 12.5px !important;
+        white-space: normal;
+        word-break: break-word;
+    }
+    
+    /* Kolom Nama - lebih lebar */
+    .company-applications-table tbody td:nth-child(2) {
+        min-width: 180px;
+    }
+    
+    /* Kolom Email & HP - bisa wrap */
+    .company-applications-table tbody td:nth-child(3),
+    .company-applications-table tbody td:nth-child(4) {
+        min-width: 160px;
+        word-break: break-all;
+    }
+    
+    /* Kolom Lowongan */
+    .company-applications-table tbody td:nth-child(5) {
+        min-width: 150px;
+    }
+    
+    /* Kolom Status */
+    .company-applications-table tbody td:nth-child(6) {
+        min-width: 110px;
+    }
+    
+    /* Kolom Aksi */
+    .company-applications-table tbody td:nth-child(7) {
+        min-width: 180px;
+    }
+    
+    /* Avatar di mobile - lebih kecil */
+    .avatar-wrapper img,
+    .avatar-wrapper .bg-primary {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+    }
+    
+    /* Badge status */
+    .company-applications-table .badge {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+        white-space: nowrap;
+    }
+    
+    /* Tombol aksi */
+    .aksi-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        justify-content: center !important;
+    }
+    
+    .action-text,
+    .btn-group .btn-sm {
+        min-width: 70px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+        padding: 0 10px !important;
+    }
+    
+    .btn-group {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 6px !important;
+    }
+    
+    /* Dropdown menu di mobile */
+    .company-applications-table .dropdown-menu {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90vw !important;
+        max-width: 320px !important;
+        z-index: 2147483647 !important;
+    }
+}
+
+/* ====== BREAKPOINT: VERY SMALL (<480px) ====== */
+@media (max-width: 480px) {
+    .company-applications-table table {
+        min-width: 700px;
+    }
+    
+    .company-applications-table thead th,
+    .company-applications-table tbody td {
+        padding: 8px 10px !important;
+        font-size: 11px !important;
+    }
+    
+    .action-text,
+    .btn-group .btn-sm {
+        min-width: 60px !important;
+        height: 30px !important;
+        font-size: 11px !important;
+        padding: 0 8px !important;
+    }
+    
+    .company-applications-table .badge {
+        padding: 4px 10px !important;
+        font-size: 10px !important;
+    }
+}
+
+/* ====== PERBAIKAN UNTUK DROPDOWN DI MOBILE ====== */
+@media (max-width: 767.98px) {
+    .dropdown-menu.show {
+        display: block !important;
+        animation: dropdownFadeIn 0.2s ease;
+    }
+    
+    @keyframes dropdownFadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -48%);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    /* Backdrop untuk dropdown di mobile */
+    .dropdown-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2147483646;
+    }
+}
+
+/* ====== PERBAIKAN HOVER DAN INTERAKSI ====== */
+/* Matikan hover efek yang tidak perlu di mobile */
+@media (max-width: 767.98px) {
+    .company-applications-table tbody tr:hover {
+        background: #fff !important;
+    }
+    
+    .action-text:hover {
+        transform: none !important;
+    }
+    
+    .btn-group .btn-sm:hover {
+        transform: none !important;
+    }
+}
+
+/* ====== INDIKATOR SCROLL ====== */
+/* Menampilkan indikator bahwa tabel bisa di-scroll */
+@media (max-width: 1199.98px) {
+    .company-applications-table .table-responsive {
+        position: relative;
+    }
+    
+    .company-applications-table .table-responsive::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        background: linear-gradient(to left, rgba(0,0,0,0.05), transparent);
+        pointer-events: none;
+        border-radius: 0 12px 12px 0;
+    }
+}
+
+/* ====== PERBAIKAN PAGINATION DI MOBILE ====== */
+@media (max-width: 767.98px) {
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .page-link {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .page-item .page-link {
+        margin: 0 2px;
+    }
+}
+
+/* ====== PERBAIKAN ALERT MESSAGE ====== */
+@media (max-width: 767.98px) {
+    .alert {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    
+    .alert .btn-close {
+        padding: 8px;
+        font-size: 10px;
+    }
+}
+
+/* ====== HEADER SECTION MOBILE ====== */
+@media (max-width: 767.98px) {
+    .kelola-pelamar .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 12px;
+    }
+    
+    .kelola-pelamar .d-flex.align-items-center {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .kelola-pelamar .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .kelola-pelamar .text-muted {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+    }
+}
+
+/* ====== PERBAIKAN CARD BODY ====== */
+@media (max-width: 767.98px) {
+    .card-body.p-0 {
+        padding: 0 !important;
+    }
+    
+    .company-applications-table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+}

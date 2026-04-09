@@ -78,6 +78,7 @@
   <div class="container table-section">
     <h3 class="section-title mb-3">Pelamar Terbaru</h3>
 
+    <div class="table-responsive">
     <table class="table-custom">
       <thead>
         <tr>
@@ -206,6 +207,7 @@
       </tbody>
     </table>
   </div>
+</div>
 
   {{-- === Lowongan Terbaru Cards === --}}
   <div class="container jobs-latest mt-4">  {{-- sebelumnya: <div class="container jobs-latest"> --}}
