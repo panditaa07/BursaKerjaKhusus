@@ -1,72 +1,31 @@
-/* ====== HEADER / TITLE ====== */
-.page-title {
+/* ============================================================
+   KELOLA PELAMAR — CSS BERSIH (tanpa duplikat)
+   ============================================================ */
+
+/* ====== VARIABEL GRADIENT UTAMA ====== */
+/* dark-navy → biru → indigo → ungu */
+/* linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) */
+
+/* ====== HEADER HALAMAN ====== */
+.kelola-pelamar h2.page-title {
+  color: #000000 !important;
+  font-weight: 700 !important;
   font-size: 28px !important;
-  font-weight: 800 !important;
-  color: #1E3A8A !important;
+  letter-spacing: 0.3px;
   margin-bottom: 0 !important;
-  position: relative;
 }
-.page-title::after {
-  content: "";
-  display: block;
-  width: 180px;
-  height: 4px;
-  background: #1E3A8A;
-  border-radius: 4px;
-  margin-top: 10px;
-}
-.btn-month {
-  border-radius: 12px;
+.kelola-pelamar h2.page-title::after {
+  display: none !important;
 }
 
-/* ====== SEARCH ====== */
-.search-group .form-control {
-  border-radius: 10px 0 0 10px !important;
-  border: 2px solid #d0e1ff !important;
-  padding: 10px 16px !important;
+/* ====== HEADER TABEL ====== */
+.kelola-pelamar .company-applications-table thead tr {
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
 }
-.btn-search {
-  border-radius: 0 10px 10px 0 !important;
-  background: #1E3A8A !important;
-  border: none !important;
-  font-weight: 700 !important;
-  padding: 10px 18px !important;
-}
-.btn-reset {
-  border-radius: 10px !important;
-  margin-left: 8px !important;
-  background: #1E3A8A !important;
+.kelola-pelamar .company-applications-table thead th {
+  background: transparent !important;
   color: #fff !important;
   border: none !important;
-  font-weight: 700 !important;
-}
-
-/* ====== TABLE WRAPPER ====== */
-.company-applications-table {
-  border: 2px solid #d0e1ff;
-  border-radius: 16px;
-  overflow: visible !important;
-  position: relative;
-  z-index: auto !important;
-}
-.table-wrapper {
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-  position: relative !important;
-}
-
-/* Saat dropdown aktif */
-.company-applications-table.dropdown-active {
-  z-index: 2147483645 !important;
-}
-
-/* ====== TABLE HEAD ====== */
-.company-applications-table thead tr {
-  background: linear-gradient(90deg, #1E3A8A, #1d3b9d);
-}
-.company-applications-table thead th {
-  color: #fff;
-  border: 0 !important;
   font-size: 13px !important;
   font-weight: 800 !important;
   text-transform: uppercase;
@@ -74,158 +33,82 @@
   padding: 12px 14px !important;
   text-align: center;
 }
-.company-applications-table thead th:first-child {
-  border-top-left-radius: 14px;
+.kelola-pelamar .company-applications-table thead th:first-child { border-top-left-radius: 14px; }
+.kelola-pelamar .company-applications-table thead th:last-child  { border-top-right-radius: 14px; }
+
+/* ====== TABLE WRAPPER ====== */
+.company-applications-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+  background: #fff;
+  border: 2px solid #d0e1ff;
 }
-.company-applications-table thead th:last-child {
-  border-top-right-radius: 14px;
+.company-applications-table .table-responsive {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch;
+  position: relative !important;
+  width: 100%;
 }
+.company-applications-table table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Custom scrollbar */
+.company-applications-table .table-responsive::-webkit-scrollbar        { height: 8px; }
+.company-applications-table .table-responsive::-webkit-scrollbar-track  { background: #f1f1f1; border-radius: 10px; }
+.company-applications-table .table-responsive::-webkit-scrollbar-thumb  { background: linear-gradient(135deg, #1E3A8A, #4C1D95); border-radius: 10px; }
+.company-applications-table .table-responsive::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #1E40AF, #5B21B6); }
 
 /* ====== TABLE BODY ====== */
 .company-applications-table tbody tr {
   background: #fff !important;
   transition: none !important;
-  position: relative !important;
-  z-index: 0 !important;
+  cursor: default !important;
 }
 .company-applications-table tbody tr:hover {
   background: #fff !important;
   box-shadow: none !important;
   filter: none !important;
-  z-index: 0 !important;
 }
 .company-applications-table tbody td {
+  padding: 12px 16px;
   font-size: 14px !important;
-  color: #1f2937 !important;
-  vertical-align: middle !important;
+  color: #374151 !important;
   text-align: center;
-  padding: 10px 12px !important;
-  border-top: 1.6px solid #d6e6ff !important;
-  border-right: 1px solid #e3edff !important;
+  vertical-align: middle !important;
+  border-top: 1.8px solid #93c5fd;
+  border-right: 1.2px solid #c7ddff;
   background: #fff !important;
-  position: relative !important;
-  z-index: 0 !important;
 }
-.company-applications-table tbody td:last-child {
-  border-right: none !important;
-}
+.company-applications-table tbody td:last-child { border-right: none !important; }
 
-/* Saat dropdown terbuka */
+/* Nonaktifkan semua hover Bootstrap */
+.table-hover > tbody > tr:hover,
+.table-hover > tbody > tr:hover > * {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+.table > :not(caption) > * > * { transition: none !important; animation: none !important; }
+.table tbody tr { --bs-table-accent-bg: transparent !important; }
+.table tbody tr:hover > * { background-color: transparent !important; }
+
+/* ====== DROPDOWN (z-index management) ====== */
 .company-applications-table tbody td.dropdown-open {
+  position: relative !important;
   z-index: 2147483646 !important;
 }
-
-/* Izinkan dropdown keluar */
-.company-applications-table,
-.company-applications-table .card-body,
-.company-applications-table .table-responsive,
-.company-applications-table table,
-.company-applications-table tbody,
-.company-applications-table tr,
-.company-applications-table td {
-  overflow: visible !important;
-  position: relative !important;
+.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
+  pointer-events: none !important;
 }
-
-/* ====== AVATAR ====== */
-.avatar-wrapper img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid #d0e1ff;
-  object-fit: cover;
-}
-.avatar-fallback {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #2f6bff;
-  color: #fff;
-  font-weight: 800;
-  border: 2px solid #d0e1ff;
-}
-
-/* ====== STATUS BADGES ====== */
-.badge {
-  border-radius: 999px;
-  font-weight: 800;
-  padding: 8px 12px;
-  font-size: 12.5px;
-}
-.status-accepted {
-  background: #22c55e;
-  color: #fff;
-}
-.status-rejected {
-  background: #ef4444;
-  color: #fff;
-}
-.status-interview {
-  background: #0ea5e9;
-  color: #fff;
-}
-.status-test {
-  background: #7c3aed;
-  color: #fff;
-}
-.status-pending {
-  background: #E2E8F0;
-  color: #1E3A8A;
-}
-.status-reviewed {
-  background: #FDE68A;
-  color: #78350F;
-}
-
-/* ====== AKSI BUTTONS ====== */
-.aksi-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  position: relative;
-  z-index: 1;
-}
-.action-text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 96px;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 16px;
-  color: #fff;
-  text-decoration: none !important;
-  border: 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,.12);
-  cursor: pointer;
-  transition: none !important;
-  position: relative;
-  z-index: 1;
-}
-.action-text.view {
-  background: linear-gradient(180deg, #2E5BD8, #1E3A8A);
-}
-.action-text.edit {
-  background: linear-gradient(180deg, #F1C40F, #D4A107);
-}
-.action-text.delete {
-  background: linear-gradient(180deg, #F05252, #DC2626);
-}
-.action-text.edit.dropdown-toggle::after {
-  display: none !important;
-}
-.aksi-wrapper .dropdown {
-  position: relative;
-  z-index: 2;
-}
-
-/* ====== DROPDOWN ====== */
 .company-applications-table .dropdown-menu {
   position: absolute !important;
   z-index: 2147483647 !important;
@@ -236,15 +119,6 @@
   box-shadow: 0 18px 40px rgba(0,0,0,.18) !important;
   background: #fff !important;
 }
-.company-applications-table tbody td.dropdown-open .action-text {
-  pointer-events: none;
-}
-.company-applications-table tbody td.dropdown-open .dropdown,
-.company-applications-table tbody td.dropdown-open .dropdown * {
-  pointer-events: auto;
-}
-
-/* ====== DROPDOWN ITEM ====== */
 .status-menu .dropdown-item {
   display: flex;
   align-items: center;
@@ -255,13 +129,8 @@
   color: #111827;
   transition: background-color .15s ease;
 }
-.status-menu .dropdown-item:hover {
-  background: #F3F4F6;
-}
-.status-menu .dropdown-divider {
-  margin: 10px 6px;
-  border-top: 1px solid #E5E7EB;
-}
+.status-menu .dropdown-item:hover { background: #F3F4F6; }
+.status-menu .dropdown-divider { margin: 10px 6px; border-top: 1px solid #E5E7EB; }
 .status-menu .dropdown-item.is-active {
   background: #E8FAEF;
   color: #0F5132;
@@ -269,583 +138,118 @@
   cursor: default;
   pointer-events: none;
 }
-.status-menu .dropdown-item .tick {
-  margin-left: auto;
-  color: #16A34A;
-  font-weight: 800;
-}
+.status-menu .dropdown-item .tick { margin-left: auto; color: #16A34A; font-weight: 800; }
 
-/* ====== WARNA IKON ====== */
-.status-menu .status-icon {
-  width: 22px;
-  text-align: center;
-  font-size: 18px;
-}
+/* Warna ikon dropdown */
+.status-menu .status-icon                            { width: 22px; text-align: center; font-size: 18px; }
 .status-menu .dropdown-item.opt-submitted .status-icon { color: #16A34A; }
 .status-menu .dropdown-item.opt-test1 .status-icon,
-.status-menu .dropdown-item.opt-test2 .status-icon { color: #7C3AED; }
+.status-menu .dropdown-item.opt-test2 .status-icon   { color: #7C3AED; }
 .status-menu .dropdown-item.opt-interview .status-icon { color: #0EA5E9; }
-.status-menu .dropdown-item.opt-accepted .status-icon { color: #16A34A; }
-.status-menu .dropdown-item.opt-rejected .status-icon { color: #DC2626; }
+.status-menu .dropdown-item.opt-accepted .status-icon  { color: #16A34A; }
+.status-menu .dropdown-item.opt-rejected .status-icon  { color: #DC2626; }
 .status-menu .dropdown-item.opt-accepted { color: #15803D; }
 .status-menu .dropdown-item.opt-rejected { color: #B91C1C; }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-  .action-text {
-    min-width: 88px;
-    height: 38px;
-    font-size: 14px;
-  }
-  .company-applications-table thead th {
-    font-size: 12px !important;
-  }
-  .company-applications-table .dropdown-menu {
-    position: fixed !important;
-    width: 90vw !important;
-    max-width: 320px !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 2147483647 !important;
-  }
+/* ====== AVATAR ====== */
+.avatar-wrapper img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #d0e1ff;
+  object-fit: cover;
 }
-
-/* ====== NON-HOVER FIX (menghapus semua efek hover tabel) ====== */
-.table-hover > tbody > tr:hover,
-.table-hover > tbody > tr:hover > * {
-  background: #fff !important;
-  color: inherit !important;
-  box-shadow: none !important;
-  z-index: 0 !important;
-}
-.table tbody tr {
-  --bs-table-accent-bg: transparent !important;
-}
-.table tbody tr:hover > * {
-  background-color: transparent !important;
-}
-.no-row-hover > tbody > tr:hover,
-.no-row-hover > tbody > tr:hover > td,
-.no-row-hover > tbody > tr:hover > th {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: inherit !important;
-}
-.company-applications-table tbody tr {
-  transition: none !important;
-  filter: none !important;
-}
-.company-applications-table tbody tr:hover {
-  filter: none !important;
-  box-shadow: none !important;
-  background: #fff !important;
-}
-.action-text:hover {
-  transform: none !important;
-  filter: none !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,.12) !important;
-}
-/* 1) Matikan semua hover & transisi bawaan Bootstrap di tabel */
-.table-hover > tbody > tr:hover,
-.table-hover > tbody > tr:hover > * {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: inherit !important;
-}
-
-/* Bootstrap memberi transition di semua sel: nonaktifkan */
-.table > :not(caption) > * > * {
-  transition: none !important;
-  animation: none !important;
-}
-
-/* 2) Hapus posisi relatif default yang bisa bikin stacking context */
-.company-applications-table tbody tr,
-.company-applications-table tbody td {
-  position: static !important;
-  z-index: auto !important;
-  filter: none !important;
-  transform: none !important;
-  will-change: auto !important;
-}
-
-/* 3) Saat dropdown terbuka, hanya sel aksi yang diangkat */
-.company-applications-table tbody td.dropdown-open {
-  position: relative !important;
-  z-index: 2147483646 !important;
-}
-
-/* 4) Pastikan menu selalu di atas semua kolom/baris */
-.company-applications-table .dropdown-menu {
-  position: absolute !important;            /* Popper tetap bisa hitung posisi */
-  z-index: 2147483647 !important;
-  will-change: auto !important;
-  transform: none !important;               /* cegah stacking context tambahan */
-}
-
-/* 5) Kunci interaksi baris lain ketika dropdown terbuka */
-.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
-  pointer-events: none !important;
-}
-
-/* 6) Matikan efek hover apa pun yang tersisa */
-.table tbody tr { --bs-table-accent-bg: transparent !important; }
-.table tbody tr:hover > * { background-color: transparent !important; }
-.company-applications-table tbody tr:hover {
-  background: #fff !important;
-  box-shadow: none !important;
-  filter: none !important;
-}
-
-/* 7) Tombol aksi tidak membuat stacking context baru saat hover */
-.action-text,
-.action-text:hover {
-  transition: none !important;
-  transform: none !important;
-  filter: none !important;
-}
-/* Pastikan tombol aksi tidak membuat stacking context yang mengalahkan menu */
-.action-text,
-.action-text:hover {
-  transition: none !important;
-  transform: none !important;
-  filter: none !important;
-  z-index: 1;
-}
-
-/* Menu yang dipindah ke body selalu paling atas */
-.dropdown-menu-portal {
-  min-width: 260px !important;
-  padding: 12px !important;
-  border: 1px solid #E5E7EB !important;
-  border-radius: 16px !important;
-  box-shadow: 0 18px 40px rgba(0,0,0,.18) !important;
-  background: #fff !important;
-}
-
-/* Saat dropdown terbuka, sel aksi diangkat untuk fokus */
-.company-applications-table tbody td.dropdown-open {
-  position: relative !important;
-  z-index: 2147483646 !important;
-}
-
-/* Nonaktifkan hover/klik baris lain ketika dropdown aktif */
-.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
-  pointer-events: none !important;
-}
-/* Turunkan lapisan tombol & wrapper aksi */
-.aksi-wrapper { position: static !important; z-index: auto !important; }
-.action-text { position: static !important; z-index: auto !important; }
-.action-text:hover { transform: none !important; filter: none !important; }
-
-/* Pastikan tidak ada stacking context yang memerangkap menu */
-.company-applications-table,
-.company-applications-table * {
-  transform: none !important;
-  filter: none !important;
-}
-
-/* Menu yang dipindah (atau tetap) harus selalu paling atas */
-.dropdown-menu,
-.dropdown-menu.dropdown-menu-portal {
-  z-index: 2147483647 !important;
-  position: fixed !important;   /* lepas dari konteks z-index parent */
-  transform: none !important;   /* hindari popper membuat konteks baru */
-  will-change: auto !important;
-}
-
-/* Saat dropdown terbuka: hanya sel aksi yang boleh menerima klik */
-.company-applications-table tbody tr.row-locked > td:not(.dropdown-open) {
-  pointer-events: none !important;
-}
-
-.kelola-pelamar h2.h4 {
-    color: rgb(30, 58, 138);
-    font-weight: 600;
-}
-
-
-/* ====== HEADER TABEL ====== */
-.company-applications-table thead tr {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-}
-
-/* ====== BUTTON PELAMAR BULAN INI ====== */
-.btn-primary {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
-  padding: 10px 20px !important;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
-}
-
-/* ====== BUTTON CARI ====== */
-.btn-search {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  font-weight: 600 !important;
-}
-
-.btn-search:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-}
-
-/* ====== BUTTON FILTER (Total Pelamar, Pelamar Baru, Pelamar Dalam Proses) ====== */
-.btn-outline-primary {
-  background: transparent !important;
-  border: 2px solid #1E3A8A !important;
-  color: #1E3A8A !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease !important;
-}
-
-.btn-outline-primary:hover,
-.btn-outline-primary:focus {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border-color: transparent !important;
-  color: white !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
-}
-
-/* Button filter aktif */
-.btn-primary[class*="btn"]:not(.btn-search) {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
-}
-
-/* ====== BUTTON RESET ====== */
-.btn-reset {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  color: #fff !important;
-  border: none !important;
-  font-weight: 600 !important;
-}
-
-.btn-reset:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-}
-
-/* ====== CONSISTENT STYLING FOR ALL BUTTONS ====== */
-.btn-month,
-.btn-search,
-.btn-reset,
-.btn-outline-primary,
-.btn-primary {
-  transition: all 0.3s ease !important;
-}
-
-.btn-month:hover,
-.btn-search:hover,
-.btn-reset:hover,
-.btn-outline-primary:hover,
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
-}
-
-/* ====== HEADER TITLE CONSISTENCY ====== */
-.page-title {
-  color: #1E3A8A !important;
-}
-
-.page-title::after {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-}
-
-/* ====== SEARCH BOX BORDER ====== */
-.search-group .form-control {
-  border: 2px solid #d0e1ff !important;
-}
-
-/* ====== TABLE BORDER CONSISTENCY ====== */
-.company-applications-table {
+.avatar-fallback {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: #2f6bff; color: #fff; font-weight: 800;
   border: 2px solid #d0e1ff;
 }
 
-/* ====== STATUS BADGES CONSISTENCY ====== */
-.status-pending {
-  background: #E2E8F0;
-  color: #1E3A8A;
+/* ====== STATUS BADGES ====== */
+.company-applications-table .badge {
+  display: inline-block;
+  padding: .55rem 1.1rem;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .3px;
+  line-height: 1;
+  border: 0;
+  background-image: none !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+.company-applications-table .badge i       { display: none !important; }
+.company-applications-table .badge:hover   { transform: none !important; filter: none !important; }
+
+.company-applications-table .status-accepted  { background: #0c632f; color: #fff; }
+.company-applications-table .status-rejected  { background: #bb1425; color: #fff; }
+.company-applications-table .status-interview { background: #4B2E05; color: #fff; }
+.company-applications-table .status-test,
+.company-applications-table .status-test2    { background: #0d469d; color: #fff; }
+.company-applications-table .status-pending  { background: #EAB308; color: #000; font-weight: 800; }
+.company-applications-table .status-reviewed {
+  background: #F9FAFB; color: #000; font-weight: 800;
+  box-shadow: inset 0 0 0 1px #E5E7EB, 0 8px 14px rgba(0,0,0,.06);
 }
 
-/* ====== SEARCH BAR ====== */
-.search-hero .input-group {
-  display: flex;
-  align-items: center;
-  max-width: 600px;
+/* ====== TOMBOL AKSI ====== */
+.aksi-wrapper {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px;
 }
-
-.search-hero .form-control {
-  border-radius: 8px 0 0 8px !important;
-  border: 2px solid #d0e1ff !important;
-  padding: 10px 16px !important;
-  flex: 1;
+.action-text {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 96px; height: 40px; padding: 0 16px;
+  border-radius: 999px; font-weight: 800; font-size: 16px;
+  color: #fff; text-decoration: none !important;
+  border: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  cursor: pointer;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
 }
+.action-text.view   { background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%); }
+.action-text.edit   { background: linear-gradient(135deg, #d4a107, #EAB308); color: #fff !important; }
+.action-text.delete { background: linear-gradient(135deg, #dc2626, #EF4444); }
+.action-text.edit.dropdown-toggle::after { display: none !important; }
 
-.search-hero .btn-primary[type="submit"] {
-  border-radius: 0 8px 8px 0 !important;
-  margin: 0 !important;
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
+/* ====== TOTAL PELAMAR ====== */
+.btn-total {
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
   color: #fff !important;
   font-weight: 600;
-  padding: 10px 20px !important;
-  transition: .25s;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-  /* Biarkan bentuk seperti di kelola lowongan */
+  padding: 8px 18px;
+  border-radius: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  box-shadow: 0 2px 6px rgba(76,29,149,.2) !important;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none !important;
+  border: none;
 }
-
-.search-hero .btn-primary[type="submit"]:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+.btn-total:hover {
+  background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
-}
-
-.search-hero .btn-outline-secondary {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
   color: #fff !important;
-  border: none !important;
-  border-radius: 8px !important;
-  margin-left: 8px !important;
-  font-weight: 600 !important;
-  padding: 10px 16px !important;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-  transition: .25s;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(76,29,149,.3) !important;
 }
-
-.search-hero .btn-outline-secondary:hover {
-  background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(30, 58, 138, .4) !important;
-}
-
-.search-hero .btn i {
-  margin-right: 6px;
-}
-
-/* ====== HEADER TABEL ====== */
-.company-applications-table thead tr {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-}
-
-/* ====== TEXT "SEMUA PELAMAR" ====== */
-.kelola-pelamar h2.h4 {
-  color: #1E3A8A !important;
-  font-weight: 700 !important;
-}
-
-/* ====== BUTTON PELAMAR BULAN INI ====== */
-a.btn-primary {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  padding: 10px 20px !important;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-  transition: .25s;
-}
-
-a.btn-primary:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
-}
-
-/* ====== BUTTON FILTER ====== */
-.btn-outline-primary {
-  background: transparent !important;
-  border: 2px solid #1E3A8A !important;
-  color: #1E3A8A !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease !important;
-}
-
-.btn-outline-primary:hover,
-.btn-outline-primary:focus {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border-color: transparent !important;
-  color: white !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
-}
-
-/* Button filter aktif */
-a.btn-primary:not([href*="search"]) {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-}
-
-/* ====== BUTTON RESET ====== */
-.btn-reset {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  color: #fff !important;
-  border: none !important;
-  font-weight: 600 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-}
-
-.btn-reset:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-  .search-hero .input-group {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .search-hero .form-control {
-    border-radius: 8px !important;
-    width: 100%;
-  }
-  
-  .search-hero .btn-primary[type="submit"],
-  .search-hero .btn-outline-secondary {
-    border-radius: 8px !important;
-    width: 100%;
-    margin-left: 0 !important;
-  }
-}
-
-/* ====== HEADER TABEL - SPECIFIC ====== */
-.kelola-pelamar .company-applications-table thead tr {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-}
-
-.kelola-pelamar .company-applications-table thead th {
-  background: transparent !important;
-  color: #fff !important;
-  border: none !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase;
-  letter-spacing: .3px;
-  padding: 12px 14px !important;
-  text-align: center;
-}
-
-/* ====== TEXT "SEMUA PELAMAR" - UKURAN BESAR & WARNA #4C1D95 ====== */
-.kelola-pelamar h2.h4 {
-    color: #4C1D95 !important; /* Warna ungu */
-    font-weight: 600 !important;
-    font-size: 2rem !important; /* Ukuran lebih besar */
-    letter-spacing: 0.3px;
-}
-
-/* ====== HEADER TABEL ====== */
-.kelola-pelamar .company-applications-table thead tr {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-}
-
-.kelola-pelamar .company-applications-table thead th {
-  background: transparent !important;
-  color: #fff !important;
-  border: none !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase;
-  letter-spacing: .3px;
-  padding: 12px 14px !important;
-  text-align: center;
-}
-
-.kelola-pelamar .company-applications-table thead th:first-child {
-  border-top-left-radius: 14px;
-}
-
-.kelola-pelamar .company-applications-table thead th:last-child {
-  border-top-right-radius: 14px;
-}
-
-/* ====== SEARCH BAR ====== */
-.search-hero .input-group {
-  display: flex;
-  align-items: center;
-  max-width: 600px;
-}
-
-.search-hero .form-control {
-  border-radius: 8px 0 0 8px !important;
-  border: 2px solid #d0e1ff !important;
-  padding: 10px 16px !important;
-  flex: 1;
-}
-
-.search-hero .btn-primary[type="submit"] {
-  border-radius: 0 8px 8px 0 !important;
-  margin: 0 !important;
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  color: #fff !important;
-  font-weight: 600;
-  padding: 10px 20px !important;
-  transition: .25s;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-}
-
-.search-hero .btn-primary[type="submit"]:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
-}
-
-.search-hero .btn-outline-secondary {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 8px !important;
-  margin-left: 8px !important;
-  font-weight: 600 !important;
-  padding: 10px 16px !important;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-  transition: .25s;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.search-hero .btn-outline-secondary:hover {
-  background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(30, 58, 138, .4) !important;
-}
+.btn-total i { font-size: 14px; }
 
 /* ====== BUTTON PELAMAR BULAN INI ====== */
 .kelola-pelamar a.btn-primary {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  padding: 10px 20px !important;
-  box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+  border: none !important; border-radius: 8px !important;
+  font-weight: 600 !important; padding: 10px 20px !important;
+  box-shadow: 0 3px 10px rgba(76,29,149,.25) !important;
   transition: .25s;
 }
-
 .kelola-pelamar a.btn-primary:hover {
-  background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
+  background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+  box-shadow: 0 6px 18px rgba(76,29,149,.4) !important;
 }
 
 /* ====== BUTTON FILTER ====== */
@@ -857,1947 +261,143 @@ a.btn-primary:not([href*="search"]) {
   font-weight: 600 !important;
   transition: all 0.3s ease !important;
 }
-
 .kelola-pelamar .btn-outline-primary:hover,
 .kelola-pelamar .btn-outline-primary:focus {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
   border-color: transparent !important;
   color: white !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
-}
-
-/* Button filter aktif */
-.kelola-pelamar a.btn-primary:not([href*="search"]) {
-  background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-  .search-hero .input-group {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .search-hero .form-control {
-    border-radius: 8px !important;
-    width: 100%;
-  }
-  
-  .search-hero .btn-primary[type="submit"],
-  .search-hero .btn-outline-secondary {
-    border-radius: 8px !important;
-    width: 100%;
-    margin-left: 0 !important;
-  }
-  
-  /* Text Semua Pelamar di mobile */
-  .kelola-pelamar h2.h4 {
-    font-size: 1.7rem !important; /* Sedikit lebih kecil di mobile */
-  }
-}
-
-/* =========================================================
-   TOTAL PELAMAR - SAMA PERSIS seperti di Kelola Lowongan Kerja
-   ========================================================= */
-.btn-total {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
-    color: #fff !important;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease-in-out;
-    text-decoration: none !important;
-    border: none;
-}
-
-.btn-total:hover {
-    background: linear-gradient(135deg, #1E40A5, #5B21B6);
-    transform: translateY(-2px);
-    color: #fff !important;
-    text-decoration: none !important;
-}
-
-.btn-total i {
-    font-size: 14px;
-}
-
-/* Hapus style total pelamar yang lama */
-.text-muted.fw-semibold {
-    display: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .btn-total {
-        padding: 6px 14px;
-        font-size: 0.9rem;
-    }
-    
-    .btn-total i {
-        font-size: 12px;
-    }
-}
-
-/* ====== HEADER HALAMAN ====== */
-.kelola-pelamar .d-flex.justify-content-between.align-items-center.mb-4 {
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.kelola-pelamar .page-title {
-    margin-bottom: 0 !important;
-    color: #1E3A8A !important;
-    font-weight: 700 !important;
-    font-size: 28px !important;
-}
-
-/* ====== CONSISTENT BUTTON STYLING ====== */
-.kelola-pelamar .btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 20px !important;
-    box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-    transition: .25s;
-}
-
-.kelola-pelamar .btn-primary:hover {
-    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+  box-shadow: 0 4px 12px rgba(76,29,149,.3) !important;
 }
 
 /* ====== SEARCH BAR ====== */
 .search-hero .input-group {
-    display: flex;
-    align-items: center;
-    max-width: 600px;
+  display: flex; align-items: center; max-width: 600px;
 }
-
 .search-hero .form-control {
-    border-radius: 8px 0 0 8px !important;
-    border: 2px solid #d0e1ff !important;
-    padding: 10px 16px !important;
-    flex: 1;
+  border-radius: 8px 0 0 8px !important;
+  border: 2px solid #d0e1ff !important;
+  padding: 10px 16px !important;
+  flex: 1;
 }
-
 .search-hero .btn-primary[type="submit"] {
-    border-radius: 0 8px 8px 0 !important;
-    margin: 0 !important;
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border: none !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 10px 20px !important;
-    transition: .25s;
-    box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
+  border-radius: 0 8px 8px 0 !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+  border: none !important; color: #fff !important; font-weight: 600;
+  padding: 10px 20px !important; transition: .25s;
+  box-shadow: 0 3px 10px rgba(76,29,149,.25) !important;
 }
-
 .search-hero .btn-primary[type="submit"]:hover {
-    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(30, 58, 138, .4) !important;
+  background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(76,29,149,.4) !important;
 }
-
 .search-hero .btn-outline-secondary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 8px !important;
-    margin-left: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 16px !important;
-    box-shadow: 0 3px 10px rgba(30, 58, 138, .25) !important;
-    transition: .25s;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
+  color: #fff !important; border: none !important; border-radius: 8px !important;
+  margin-left: 8px !important; font-weight: 600 !important; padding: 10px 16px !important;
+  box-shadow: 0 3px 10px rgba(76,29,149,.25) !important; transition: .25s;
+  display: flex !important; align-items: center !important; justify-content: center !important;
 }
-
 .search-hero .btn-outline-secondary:hover {
-    background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(30, 58, 138, .4) !important;
+  background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76,29,149,.4) !important;
 }
 
-/* ====== BUTTON FILTER ====== */
-.kelola-pelamar .btn-outline-primary {
-    background: transparent !important;
-    border: 2px solid #1E3A8A !important;
-    color: #1E3A8A !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-}
-
-.kelola-pelamar .btn-outline-primary:hover,
-.kelola-pelamar .btn-outline-primary:focus {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border-color: transparent !important;
-    color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
-}
-
-/* Button filter aktif */
-.kelola-pelamar a.btn-primary:not([href*="search"]) {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-    .search-hero .input-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .search-hero .form-control {
-        border-radius: 8px !important;
-        width: 100%;
-    }
-    
-    .search-hero .btn-primary[type="submit"],
-    .search-hero .btn-outline-secondary {
-        border-radius: 8px !important;
-        width: 100%;
-        margin-left: 0 !important;
-    }
-    
-    .kelola-pelamar .page-title {
-        font-size: 1.7rem !important;
-    }
-}
-/* =========================
-   STATUS KELola PELAMAR — SAMA DENGAN DASHBOARD COMPANY
-   ========================= */
-
-/* Basis badge: bentuk kapsul, tebal, tanpa efek hover */
-.company-applications-table .badge{
-  display:inline-block;
-  padding:.55rem 1.1rem;
-  border-radius:999px;
-  font-size:.9rem;
-  font-weight:800;
-  letter-spacing:.3px;
-  line-height:1;
-  border:0;
-  background-image:none !important;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-
-/* Sembunyikan titik ikon di depan label agar bersih seperti di dashboard company */
-.company-applications-table .badge i{ display:none !important; }
-
-/* TERIMA (hijau tua solid) */
-.company-applications-table .status-accepted{
-  background:#0c632f;
-  color:#fff;
-}
-
-/* TOLAK (merah tua solid) */
-.company-applications-table .status-rejected{
-  background:#bb1425;
-  color:#fff;
-}
-
-/* WAWANCARA (coklat tua solid) */
-.company-applications-table .status-interview{
-  background:#4B2E05;
-  color:#fff;
-}
-
-/* PROSES / TEST 1-2 (biru tua solid) */
-.company-applications-table .status-test,
-.company-applications-table .status-test2{
-  background:#0d469d;
-  color:#fff;
-}
-
-/* MENUNGGU (kuning solid, teks hitam tebal) */
-.company-applications-table .status-pending{
-  background:#EAB308;
-  color:#000;
-  font-weight:800;
-}
-
-/* DITINJAU / REVIEWED (chip putih-abu, outline halus, teks hitam) */
-.company-applications-table .status-reviewed{
-  background:#F9FAFB;                            /* putih keabu */
-  color:#000;                                    /* teks hitam */
-  font-weight:800;
-  box-shadow:
-    inset 0 0 0 1px #E5E7EB,                     /* outline tipis */
-    0 8px 14px rgba(0,0,0,.06);                  /* bayangan lembut */
-}
-
-/* Nonaktifkan transform/filter hover pada badge agar konsisten */
-.company-applications-table .badge:hover{
-  transform:none !important;
-  filter:none !important;
-}
-
-/* ====== TEXT "SEMUA PELAMAR" - WARNA UNGU #4C1D95 ====== */
-.kelola-pelamar h2.page-title {
-    color: #4C1D95 !important; /* Warna ungu */
-    font-weight: 700 !important;
-    font-size: 28px !important;
-    letter-spacing: 0.3px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 14px; /* Tambah padding untuk garis bawah */
-    margin-bottom: 0 !important;
-}
-
-/* ====== GARIS BAWAH JUDUL - SESUAI PANJANG TEXT ====== */
-.kelola-pelamar h2.page-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%; /* Sesuai panjang text */
-    height: 4px;
-    background: #4C1D95 !important; /* Warna ungu */
-    border-radius: 4px;
-    display: block !important; /* Pastikan ditampilkan */
-}
-
-/* Hapus style garis bawah yang lama jika ada */
-.page-title::after {
-    display: none !important;
-}
-
-/* ====== HEADER TABEL - GRADIEN UNGU ====== */
-.kelola-pelamar .company-applications-table thead tr {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-}
-
-/* ====== BUTTON PELAMAR BULAN INI - GRADIEN UNGU ====== */
-.kelola-pelamar a.btn-primary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 20px !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-    transition: .25s;
-}
-
-.kelola-pelamar a.btn-primary:hover {
-    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== BUTTON FILTER - GRADIEN UNGU ====== */
-.kelola-pelamar .btn-outline-primary:hover,
-.kelola-pelamar .btn-outline-primary:focus {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border-color: transparent !important;
-    color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
-}
-
-/* Button filter aktif */
-.kelola-pelamar a.btn-primary:not([href*="search"]) {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-/* ====== TOTAL PELAMAR - GRADIEN UNGU ====== */
-.btn-total {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 6px rgba(76, 29, 149, 0.2) !important;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none !important;
-    border: none;
-}
-
-.btn-total:hover {
-    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-    transform: translateY(-2px);
-    color: #fff !important;
-    text-decoration: none !important;
-    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
-}
-
-/* ====== SEARCH BUTTON - GRADIEN UNGU ====== */
-.search-hero .btn-primary[type="submit"] {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    border: none !important;
-    color: #fff !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-}
-
-.search-hero .btn-primary[type="submit"]:hover {
-    background: linear-gradient(135deg, #1E40A5, #5B21B6) !important;
-    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== RESET BUTTON - GRADIEN UNGU ====== */
-.search-hero .btn-outline-secondary {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95) !important;
-    color: #fff !important;
-    border: none !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-}
-
-.search-hero .btn-outline-secondary:hover {
-    background: linear-gradient(135deg, #1a2f7a, #4C1D95) !important;
-    box-shadow: 0 6px 16px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-    .kelola-pelamar h2.page-title {
-        font-size: 1.7rem !important;
-        color: #4C1D95 !important;
-    }
-    
-    .kelola-pelamar h2.page-title::after {
-        height: 3px; /* Lebih tipis di mobile */
-    }
-}
-
-/* =========================================================
-   KELOLA PELAMAR — Tabel & Aksi dengan Gradient Baru
-   ========================================================= */
-
-/* ====== HEADER HALAMAN ====== */
-.kelola-pelamar h2.page-title {
-    color: #4C1D95 !important; /* Warna ungu */
-    font-weight: 700 !important;
-    font-size: 28px !important;
-    letter-spacing: 0.3px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 14px;
-    margin-bottom: 0 !important;
-}
-
-/* Garis bawah judul */
-.kelola-pelamar h2.page-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border-radius: 4px;
-    display: block !important;
-}
-
-/* ====== HEADER TABEL ====== */
-.kelola-pelamar .company-applications-table thead tr {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-}
-
-.kelola-pelamar .company-applications-table thead th {
-    background: transparent !important;
-    color: #fff !important;
-    border: none !important;
-    font-size: 13px !important;
-    font-weight: 800 !important;
-    text-transform: uppercase;
-    letter-spacing: .3px;
-    padding: 12px 14px !important;
-    text-align: center;
-}
-
-.kelola-pelamar .company-applications-table thead th:first-child {
-    border-top-left-radius: 14px;
-}
-
-.kelola-pelamar .company-applications-table thead th:last-child {
-    border-top-right-radius: 14px;
-}
-
-/* ====== TOTAL PELAMAR ====== */
-.btn-total {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 6px rgba(76, 29, 149, 0.2) !important;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none !important;
-    border: none;
-}
-
-.btn-total:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    color: #fff !important;
-    text-decoration: none !important;
-    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
-}
-
-.btn-total i {
-    font-size: 14px;
-}
-
-/* ====== BUTTON PELAMAR BULAN INI ====== */
-.kelola-pelamar a.btn-primary {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 20px !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-    transition: .25s;
-}
-
-.kelola-pelamar a.btn-primary:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== SEARCH BAR ====== */
-.search-hero .input-group {
-    display: flex;
-    align-items: center;
-    max-width: 600px;
-}
-
-.search-hero .form-control {
-    border-radius: 8px 0 0 8px !important;
-    border: 2px solid #d0e1ff !important;
-    padding: 10px 16px !important;
-    flex: 1;
-}
-
-.search-hero .btn-primary[type="submit"] {
-    border-radius: 0 8px 8px 0 !important;
-    margin: 0 !important;
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border: none !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 10px 20px !important;
-    transition: .25s;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-}
-
-.search-hero .btn-primary[type="submit"]:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
-}
-
-.search-hero .btn-outline-secondary {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 8px !important;
-    margin-left: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 16px !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-    transition: .25s;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.search-hero .btn-outline-secondary:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== BUTTON FILTER ====== */
-.kelola-pelamar .btn-outline-primary {
-    background: transparent !important;
-    border: 2px solid #1E3A8A !important;
-    color: #1E3A8A !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-}
-
-.kelola-pelamar .btn-outline-primary:hover,
-.kelola-pelamar .btn-outline-primary:focus {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border-color: transparent !important;
-    color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
-}
-
-/* Button filter aktif */
-.kelola-pelamar a.btn-primary:not([href*="search"]) {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-/* ====== TOMBOL AKSI ====== */
-.aksi-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
-}
-
-.action-text {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 96px;
-    height: 40px;
-    padding: 0 16px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none !important;
-    border: 0;
-    box-shadow: 0 8px 20px rgba(0,0,0,.12);
-    cursor: pointer;
-    transition: none !important;
-    position: relative;
-    z-index: 1;
-}
-
-/* Tombol Lihat dengan Gradient Baru */
-.action-text.view {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
-}
-
-.action-text.edit {
-    background: linear-gradient(135deg, #d4a107, #EAB308);
-    color: #fff !important;
-}
-
-.action-text.delete {
-    background: linear-gradient(135deg, #dc2626, #EF4444);
-}
-
-.action-text:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-    box-shadow: 0 6px 20px rgba(0,0,0,.2);
-}
-
-.action-text.edit.dropdown-toggle::after {
-    display: none !important;
-}
-
-/* ====== STATUS BADGES ====== */
-.company-applications-table .badge {
-    display: inline-block;
-    padding: .55rem 1.1rem;
-    border-radius: 999px;
-    font-size: .9rem;
-    font-weight: 800;
-    letter-spacing: .3px;
-    line-height: 1;
-    border: 0;
-    background-image: none !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,.08);
-}
-
-/* Sembunyikan titik ikon */
-.company-applications-table .badge i { 
-    display: none !important; 
-}
-
-/* Warna status */
-.company-applications-table .status-accepted {
-    background: #0c632f;
-    color: #fff;
-}
-
-.company-applications-table .status-rejected {
-    background: #bb1425;
-    color: #fff;
-}
-
-.company-applications-table .status-interview {
-    background: #4B2E05;
-    color: #fff;
-}
-
-.company-applications-table .status-test,
-.company-applications-table .status-test2 {
-    background: #0d469d;
-    color: #fff;
-}
-
-.company-applications-table .status-pending {
-    background: #EAB308;
-    color: #000;
-    font-weight: 800;
-}
-
-.company-applications-table .status-reviewed {
-    background: #F9FAFB;
-    color: #000;
-    font-weight: 800;
-    box-shadow: inset 0 0 0 1px #E5E7EB, 0 8px 14px rgba(0,0,0,.06);
-}
-
-/* Nonaktifkan hover pada badge */
-.company-applications-table .badge:hover {
-    transform: none !important;
-    filter: none !important;
-}
-
-/* ====== TABLE STYLING ====== */
-.company-applications-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,.1);
-    background: #fff;
-    font-family: "Inter", sans-serif;
-    border: 2px solid #d0e1ff;
-}
-
-.company-applications-table tbody td {
-    padding: 12px 16px;
-    font-size: 14px;
-    color: #374151;
-    text-align: center;
-    border-top: 1.8px solid #93c5fd;
-    border-right: 1.2px solid #c7ddff;
-    background: #fff !important;
-}
-
-.company-applications-table tbody td:last-child {
-    border-right: none !important;
-}
-
-/* Matikan hover baris */
-.company-applications-table tbody tr {
-    transition: none !important;
-    cursor: default !important;
-    background: #fff !important;
-}
-
-.company-applications-table tbody tr:hover {
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
-}
-
-/* ====== DROPDOWN MENU ====== */
-.company-applications-table .dropdown-menu {
-    position: absolute !important;
-    z-index: 2147483647 !important;
-    min-width: 260px !important;
-    padding: 12px !important;
-    border: 1px solid #E5E7EB !important;
-    border-radius: 16px !important;
-    box-shadow: 0 18px 40px rgba(0,0,0,.18) !important;
-    background: #fff !important;
-}
-
-.status-menu .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    border-radius: 12px;
-    font-weight: 700;
-    color: #111827;
-    transition: background-color .15s ease;
-}
-
-.status-menu .dropdown-item:hover {
-    background: #F3F4F6;
-}
-
-.status-menu .dropdown-item.is-active {
-    background: #E8FAEF;
-    color: #0F5132;
-    border: 1px solid #CDEFD8;
-    cursor: default;
-    pointer-events: none;
-}
-
-/* ====== AVATAR ====== */
-.avatar-wrapper img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid #d0e1ff;
-    object-fit: cover;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-    .search-hero .input-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .search-hero .form-control {
-        border-radius: 8px !important;
-        width: 100%;
-    }
-    
-    .search-hero .btn-primary[type="submit"],
-    .search-hero .btn-outline-secondary {
-        border-radius: 8px !important;
-        width: 100%;
-        margin-left: 0 !important;
-    }
-    
-    .kelola-pelamar h2.page-title {
-        font-size: 1.7rem !important;
-    }
-    
-    .action-text {
-        min-width: 88px;
-        height: 38px;
-        font-size: 14px;
-    }
-    
-    .btn-total {
-        padding: 6px 14px;
-        font-size: 0.9rem;
-    }
-    
-    .btn-total i {
-        font-size: 12px;
-    }
-}
-
-/* Hapus style lama */
-.total-lowongan,
-.total-lowongan-section,
-.text-muted.fw-semibold {
-    display: none;
-}
-
-/* Nonaktifkan hover Bootstrap */
-.table-hover > tbody > tr:hover,
-.table-hover > tbody > tr:hover > * {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    color: inherit !important;
-}
-
-/* =========================================================
-   KELOLA PELAMAR — Tabel & Aksi dengan Gradient Baru
-   ========================================================= */
-
-/* ====== HEADER HALAMAN ====== */
-.kelola-pelamar h2.page-title {
-    color: #000000 !important; /* Warna hitam */
-    font-weight: 700 !important;
-    font-size: 28px !important;
-    letter-spacing: 0.3px;
-    margin-bottom: 0 !important;
-}
-
-/* HAPUS garis bawah judul */
-.kelola-pelamar h2.page-title::after {
-    display: none !important;
-}
-
-/* ====== HEADER TABEL ====== */
-.kelola-pelamar .company-applications-table thead tr {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-}
-
-.kelola-pelamar .company-applications-table thead th {
-    background: transparent !important;
-    color: #fff !important;
-    border: none !important;
-    font-size: 13px !important;
-    font-weight: 800 !important;
-    text-transform: uppercase;
-    letter-spacing: .3px;
-    padding: 12px 14px !important;
-    text-align: center;
-}
-
-.kelola-pelamar .company-applications-table thead th:first-child {
-    border-top-left-radius: 14px;
-}
-
-.kelola-pelamar .company-applications-table thead th:last-child {
-    border-top-right-radius: 14px;
-}
-
-/* ====== TOTAL PELAMAR ====== */
-.btn-total {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 6px rgba(76, 29, 149, 0.2) !important;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none !important;
-    border: none;
-}
-
-.btn-total:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    color: #fff !important;
-    text-decoration: none !important;
-    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
-}
-
-.btn-total i {
-    font-size: 14px;
-}
-
-/* ====== BUTTON PELAMAR BULAN INI ====== */
-.kelola-pelamar a.btn-primary {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 20px !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-    transition: .25s;
-}
-
-.kelola-pelamar a.btn-primary:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== SEARCH BAR ====== */
-.search-hero .input-group {
-    display: flex;
-    align-items: center;
-    max-width: 600px;
-}
-
-.search-hero .form-control {
-    border-radius: 8px 0 0 8px !important;
-    border: 2px solid #d0e1ff !important;
-    padding: 10px 16px !important;
-    flex: 1;
-}
-
-.search-hero .btn-primary[type="submit"] {
-    border-radius: 0 8px 8px 0 !important;
-    margin: 0 !important;
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border: none !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 10px 20px !important;
-    transition: .25s;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-}
-
-.search-hero .btn-primary[type="submit"]:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(76, 29, 149, .4) !important;
-}
-
-.search-hero .btn-outline-secondary {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 8px !important;
-    margin-left: 8px !important;
-    font-weight: 600 !important;
-    padding: 10px 16px !important;
-    box-shadow: 0 3px 10px rgba(76, 29, 149, .25) !important;
-    transition: .25s;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.search-hero .btn-outline-secondary:hover {
-    background: linear-gradient(135deg, #1E293B 0%, #1E40AF 40%, #3730A3 75%, #5B21B6 100%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(76, 29, 149, .4) !important;
-}
-
-/* ====== BUTTON FILTER ====== */
-.kelola-pelamar .btn-outline-primary {
-    background: transparent !important;
-    border: 2px solid #1E3A8A !important;
-    color: #1E3A8A !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-}
-
-.kelola-pelamar .btn-outline-primary:hover,
-.kelola-pelamar .btn-outline-primary:focus {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border-color: transparent !important;
-    color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3) !important;
-}
-
-/* Button filter aktif */
-.kelola-pelamar a.btn-primary:not([href*="search"]) {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-
-/* ====== TOMBOL AKSI ====== */
-.aksi-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
-}
-
-.action-text {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 96px;
-    height: 40px;
-    padding: 0 16px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none !important;
-    border: 0;
-    box-shadow: 0 8px 20px rgba(0,0,0,.12);
-    cursor: pointer;
-    transition: none !important;
-    position: relative;
-    z-index: 1;
-}
-
-/* Tombol Lihat dengan Gradient Baru */
-.action-text.view {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #312E81 75%, #4C1D95 100%);
-}
-
-.action-text.edit {
-    background: linear-gradient(135deg, #d4a107, #EAB308);
-    color: #fff !important;
-}
-
-.action-text.delete {
-    background: linear-gradient(135deg, #dc2626, #EF4444);
-}
-
-.action-text:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-    box-shadow: 0 6px 20px rgba(0,0,0,.2);
-}
-
-.action-text.edit.dropdown-toggle::after {
-    display: none !important;
-}
-
-/* ====== STATUS BADGES ====== */
-.company-applications-table .badge {
-    display: inline-block;
-    padding: .55rem 1.1rem;
-    border-radius: 999px;
-    font-size: .9rem;
-    font-weight: 800;
-    letter-spacing: .3px;
-    line-height: 1;
-    border: 0;
-    background-image: none !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,.08);
-}
-
-/* Sembunyikan titik ikon */
-.company-applications-table .badge i { 
-    display: none !important; 
-}
-
-/* Warna status */
-.company-applications-table .status-accepted {
-    background: #0c632f;
-    color: #fff;
-}
-
-.company-applications-table .status-rejected {
-    background: #bb1425;
-    color: #fff;
-}
-
-.company-applications-table .status-interview {
-    background: #4B2E05;
-    color: #fff;
-}
-
-.company-applications-table .status-test,
-.company-applications-table .status-test2 {
-    background: #0d469d;
-    color: #fff;
-}
-
-.company-applications-table .status-pending {
-    background: #EAB308;
-    color: #000;
-    font-weight: 800;
-}
-
-.company-applications-table .status-reviewed {
-    background: #F9FAFB;
-    color: #000;
-    font-weight: 800;
-    box-shadow: inset 0 0 0 1px #E5E7EB, 0 8px 14px rgba(0,0,0,.06);
-}
-
-/* Nonaktifkan hover pada badge */
-.company-applications-table .badge:hover {
-    transform: none !important;
-    filter: none !important;
-}
-
-/* ====== TABLE STYLING ====== */
-.company-applications-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,.1);
-    background: #fff;
-    font-family: "Inter", sans-serif;
-    border: 2px solid #d0e1ff;
-}
-
-.company-applications-table tbody td {
-    padding: 12px 16px;
-    font-size: 14px;
-    color: #374151;
-    text-align: center;
-    border-top: 1.8px solid #93c5fd;
-    border-right: 1.2px solid #c7ddff;
-    background: #fff !important;
-}
-
-.company-applications-table tbody td:last-child {
-    border-right: none !important;
-}
-
-/* Matikan hover baris */
-.company-applications-table tbody tr {
-    transition: none !important;
-    cursor: default !important;
-    background: #fff !important;
-}
-
-.company-applications-table tbody tr:hover {
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
-}
-
-/* ====== DROPDOWN MENU ====== */
-.company-applications-table .dropdown-menu {
-    position: absolute !important;
-    z-index: 2147483647 !important;
-    min-width: 260px !important;
-    padding: 12px !important;
-    border: 1px solid #E5E7EB !important;
-    border-radius: 16px !important;
-    box-shadow: 0 18px 40px rgba(0,0,0,.18) !important;
-    background: #fff !important;
-}
-
-.status-menu .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    border-radius: 12px;
-    font-weight: 700;
-    color: #111827;
-    transition: background-color .15s ease;
-}
-
-.status-menu .dropdown-item:hover {
-    background: #F3F4F6;
-}
-
-.status-menu .dropdown-item.is-active {
-    background: #E8FAEF;
-    color: #0F5132;
-    border: 1px solid #CDEFD8;
-    cursor: default;
-    pointer-events: none;
-}
-
-/* ====== AVATAR ====== */
-.avatar-wrapper img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid #d0e1ff;
-    object-fit: cover;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-    .search-hero .input-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .search-hero .form-control {
-        border-radius: 8px !important;
-        width: 100%;
-    }
-    
-    .search-hero .btn-primary[type="submit"],
-    .search-hero .btn-outline-secondary {
-        border-radius: 8px !important;
-        width: 100%;
-        margin-left: 0 !important;
-    }
-    
-    .kelola-pelamar h2.page-title {
-        font-size: 1.7rem !important;
-        color: #000000 !important; /* Tetap hitam di mobile */
-    }
-    
-    .action-text {
-        min-width: 88px;
-        height: 38px;
-        font-size: 14px;
-    }
-    
-    .btn-total {
-        padding: 6px 14px;
-        font-size: 0.9rem;
-    }
-    
-    .btn-total i {
-        font-size: 12px;
-    }
-}
-
-/* Hapus style lama */
-.total-lowongan,
-.total-lowongan-section,
-.text-muted.fw-semibold {
-    display: none;
-}
-
-/* Nonaktifkan hover Bootstrap */
-.table-hover > tbody > tr:hover,
-.table-hover > tbody > tr:hover > * {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    color: inherit !important;
-}
-/* ===========================
-   RESPONSIVE ENHANCEMENTS
-   Tempel di PALING BAWAH CSS
-   =========================== */
-
-/* ---------- Utilitas kecil ---------- */
-.truncate-1 {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  max-width: 100% !important;
-}
-.nowrap { white-space: nowrap !important; }
-
-/* ---------- Breakpoint: Desktop lebar (≥1200px) ---------- */
-@media (min-width: 1200px) {
-  .search-hero .input-group { max-width: 720px; }
-  .company-applications-table tbody td:nth-child(3), /* Email */
-  .company-applications-table tbody td:nth-child(4)  /* No. HP */ {
-    max-width: 280px;
-  }
-}
+/* ====== SEMBUNYIKAN ELEMEN LAMA ====== */
+.total-lowongan, .total-lowongan-section, .text-muted.fw-semibold { display: none; }
 
-/* ---------- Breakpoint: Tablet (992px–1199px) ---------- */
+/* ====== INDIKATOR SCROLL (tablet ke bawah) ====== */
 @media (max-width: 1199.98px) {
-  .search-hero .input-group { max-width: 620px; }
-  .company-applications-table tbody td:nth-child(3),
-  .company-applications-table tbody td:nth-child(4) {
-    max-width: 220px;
+  .company-applications-table .table-responsive::after {
+    content: '';
+    position: absolute; right: 0; top: 0; bottom: 0; width: 30px;
+    background: linear-gradient(to left, rgba(0,0,0,.05), transparent);
+    pointer-events: none;
+    border-radius: 0 12px 12px 0;
   }
-  .aksi-wrapper { gap: 10px; }
-  .action-text { min-width: 90px; height: 38px; font-size: 14px; }
 }
 
-/* ---------- Breakpoint: Tablet Potrait (768px–991px) ---------- */
-@media (max-width: 991.98px) {
-  /* baris header halaman */
-  .kelola-pelamar .d-flex.justify-content-between.align-items-center.mb-4 {
-    gap: .75rem;
-  }
-  .btn-total, .btn-primary, .btn-outline-primary { padding: 8px 14px !important; }
-  .search-hero .input-group { max-width: 100%; }
-
-  /* Tabel masih tabel, tetapi rapikan spacing */
+/* ====== TABLET (768px – 1199px) ====== */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .company-applications-table table { min-width: 800px; }
   .company-applications-table thead th,
-  .company-applications-table tbody td { padding: 10px 12px !important; }
+  .company-applications-table tbody td { padding: 10px 12px !important; font-size: 13px !important; }
   .company-applications-table tbody td:nth-child(3),
-  .company-applications-table tbody td:nth-child(4) {
-    max-width: 190px;
-  }
+  .company-applications-table tbody td:nth-child(4) { max-width: 200px; word-break: break-word; }
+  .action-text { min-width: 80px; height: 36px; font-size: 13px; padding: 0 12px; }
+  .aksi-wrapper { gap: 8px; }
+  .search-hero .input-group { max-width: 100%; }
+  .btn-total, .btn-primary, .btn-outline-primary { padding: 8px 14px !important; }
 }
 
-/* ---------- Breakpoint: Mobile (<768px) → Mode "Kartu" ---------- */
+/* ====== MOBILE (<768px) ====== */
 @media (max-width: 767.98px) {
-
-  /* Sembunyikan thead agar tidak makan tempat */
-  .company-applications-table thead {
-    border: 0 !important;
-    clip: rect(0 0 0 0);
-    height: 1px; width: 1px;
-    margin: -1px; overflow: hidden; padding: 0; position: absolute;
+  /* Header */
+  .kelola-pelamar h2.page-title { font-size: 1.5rem !important; color: #000000 !important; }
+  .kelola-pelamar .d-flex.justify-content-between.align-items-center.mb-4 {
+    flex-direction: column; align-items: flex-start !important; gap: 12px;
   }
+  .kelola-pelamar .btn-primary { width: 100%; text-align: center; }
+  .btn-total { width: 100%; justify-content: center; }
 
-  /* Tabel → blok kartu */
-  .company-applications-table,
-  .company-applications-table table {
-    display: block !important;
-    width: 100% !important;
-    border: 0 !important;
-  }
+  /* Search */
+  .search-hero .input-group { flex-direction: column; gap: 10px; max-width: 100%; }
+  .search-hero .form-control { border-radius: 8px !important; width: 100%; }
+  .search-hero .btn-primary[type="submit"],
+  .search-hero .btn-outline-secondary { border-radius: 8px !important; width: 100%; margin-left: 0 !important; }
 
-  .table-wrapper,
-  .company-applications-table .table-responsive { overflow: visible !important; }
+  /* Tabel: horizontal scroll */
+  .company-applications-table .table-responsive { overflow-x: auto !important; overflow-y: visible !important; }
+  .company-applications-table table { min-width: 750px; width: 100%; }
+  .company-applications-table thead th,
+  .company-applications-table tbody td { padding: 10px 12px !important; font-size: 12.5px !important; }
 
-  .company-applications-table tbody {
-    display: grid !important;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
+  /* Min-width kolom agar isi tidak patah aneh */
+  .company-applications-table tbody td:nth-child(2) { min-width: 180px; }
+  .company-applications-table tbody td:nth-child(3),
+  .company-applications-table tbody td:nth-child(4) { min-width: 160px; word-break: break-all; }
+  .company-applications-table tbody td:nth-child(5) { min-width: 150px; }
+  .company-applications-table tbody td:nth-child(6) { min-width: 110px; }
+  .company-applications-table tbody td:nth-child(7) { min-width: 180px; }
 
-  .company-applications-table tbody tr {
-    display: grid !important;
-    grid-template-columns: 1fr;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.06);
-    padding: 8px 10px;
-    background: #fff !important;
-  }
+  /* Avatar */
+  .avatar-wrapper img { width: 32px !important; height: 32px !important; }
 
-  .company-applications-table tbody td {
-    display: grid !important;
-    grid-template-columns: 120px 1fr; /* label | nilai */
-    align-items: center;
-    text-align: left !important;
-    border: 0 !important;
-    border-bottom: 1px solid #eef2ff !important;
-    padding: 10px 6px !important;
-    gap: 10px;
-  }
-  .company-applications-table tbody td:last-child {
-    border-bottom: 0 !important;
-  }
+  /* Badge */
+  .company-applications-table .badge { padding: 6px 12px !important; font-size: 11px !important; white-space: nowrap; }
 
-  /* Label otomatis per kolom (ubah sesuai urutan kolom) */
-  .company-applications-table tbody td:nth-child(1)::before { content: "No"; }
-  .company-applications-table tbody td:nth-child(2)::before { content: "Nama"; }
-  .company-applications-table tbody td:nth-child(3)::before { content: "Email"; }
-  .company-applications-table tbody td:nth-child(4)::before { content: "No. HP"; }
-  .company-applications-table tbody td:nth-child(5)::before { content: "Lowongan"; }
-  .company-applications-table tbody td:nth-child(6)::before { content: "Status"; }
-  .company-applications-table tbody td:nth-child(7)::before { content: "Aksi"; }
+  /* Tombol aksi */
+  .aksi-wrapper { flex-wrap: wrap !important; gap: 6px !important; justify-content: center !important; }
+  .action-text { min-width: 70px !important; height: 32px !important; font-size: 12px !important; padding: 0 10px !important; }
 
-  .company-applications-table tbody td::before {
-    font-weight: 700;
-    color: #1E3A8A;
-    text-transform: none;
-  }
-
-  /* Sederhanakan kolom "No" di mobile */
-  .company-applications-table tbody td:nth-child(1) {
-    grid-template-columns: 80px 1fr;
-  }
-
-  /* Nama + avatar rapi */
-  .company-applications-table tbody td:nth-child(2) .avatar-wrapper,
-  .company-applications-table tbody td:nth-child(2) .avatar-fallback {
-    margin-right: 6px;
-  }
-
-  /* Email & HP dibungkus agar tidak overflow */
-  .company-applications-table tbody td:nth-child(3) span,
-  .company-applications-table tbody td:nth-child(4) span {
-    display: inline-block;
-    max-width: 100%;
-    word-break: break-word;
-  }
-
-  /* Badge status tidak pecah baris aneh */
-  .company-applications-table .badge {
-    justify-self: start;
-    line-height: 1.1;
-  }
-
-  /* Aksi: tombol stack vertikal di mobile */
-  .aksi-wrapper {
-    justify-content: flex-start;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .action-text { min-width: 0; height: 36px; padding: 0 14px; font-size: 14px; }
-
-  /* Dropdown selalu di atas konten lain */
+  /* Dropdown di tengah layar */
   .company-applications-table .dropdown-menu {
     position: fixed !important;
-    left: 50% !important; top: auto !important;
-    bottom: 24px !important; transform: translateX(-50%) !important;
-    width: calc(100vw - 32px) !important; max-width: 380px !important;
+    top: 50% !important; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important; max-width: 320px !important;
     z-index: 2147483647 !important;
   }
 
-  /* Header halaman & tombol */
-  .kelola-pelamar .page-title { font-size: 1.5rem !important; }
-  .btn-total { width: 100%; justify-content: center; }
-  .search-hero .input-group { flex-direction: column; gap: 10px; max-width: 100%; }
-  .search-hero .btn-primary[type="submit"],
-  .search-hero .btn-outline-secondary { width: 100%; margin-left: 0 !important; }
+  /* Pagination */
+  .pagination { flex-wrap: wrap; justify-content: center; gap: 5px; }
+  .page-link  { padding: 6px 12px; font-size: 12px; }
 }
 
-/* ---------- Breakpoint: Very small (<576px) ---------- */
-@media (max-width: 575.98px) {
-  .company-applications-table tbody td {
-    grid-template-columns: 100px 1fr;
-    padding: 9px 6px !important;
-  }
-  .action-text { width: 100%; justify-content: center; }
-}
-/* --- MOBILE COMPACT CARD --- */
-@media (max-width: 767.98px) {
-  /* Header baris: nomor jadi badge di pojok kanan */
-  .company-applications-table tbody tr { position: relative; padding-top: 8px; }
-  .company-applications-table tbody td:nth-child(1) {
-    position: absolute !important;
-    top: 10px; right: 12px;
-    border: 0 !important;
-    background: #eef2ff !important;
-    color: #1E3A8A !important;
-    padding: 4px 10px !important;
-    border-radius: 999px !important;
-    font-weight: 800 !important;
-    grid-template-columns: 1fr !important;
-  }
-  .company-applications-table tbody td:nth-child(1)::before { content: "" !important; }
-
-  /* Jarak & garis antarbaris lebih halus */
-  .company-applications-table tbody tr { gap: 6px; }
-  .company-applications-table tbody td { padding: 8px 6px !important; border-bottom-color:#edf2ff !important; }
-
-  /* Email & HP tidak patah jelek */
-  .company-applications-table tbody td:nth-child(3) span,
-  .company-applications-table tbody td:nth-child(4) span {
-    word-break: break-word; white-space: normal;
-  }
-
-  /* Aksi: grid 3 kolom agar tombol tidak jadi 1 bar panjang */
-  .aksi-wrapper { 
-    display: grid !important; 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px !important; 
-    justify-items: stretch;
-  }
-  .action-text { 
-    width: 100% !important; 
-    height: 36px !important; 
-    padding: 0 12px !important; 
-    font-size: 14px !important; 
-    justify-content: center;
-  }
-
-  /* Jika hanya 2 tombol, otomatis jadi 2 kolom */
-  .aksi-wrapper > .action-text:nth-last-child(-n+2) { grid-column: span 1; }
-
-  /* Badge status tidak terlalu besar */
-  .company-applications-table .badge { padding: .45rem .9rem; font-size: .85rem; }
-}
-/* === PERBAIKAN POSISI NOMOR DI MOBILE === */
-@media (max-width: 767.98px) {
-  .company-applications-table tbody tr {
-    position: relative;
-  }
-
-  /* Nomor jadi badge kecil rapi di pojok kanan atas */
-  .company-applications-table tbody td:nth-child(1) {
-    position: absolute !important;
-    top: 10px;
-    right: 12px;
-    background: #1E3A8A !important;
-    color: #fff !important;
-    border-radius: 50% !important;
-    width: 28px;
-    height: 28px;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
-    z-index: 5;
-    border: none !important;
-  }
-
-  .company-applications-table tbody td:nth-child(1)::before {
-    content: "" !important; /* hilangkan label "No" */
-  }
-
-  /* Beri ruang atas agar tidak menutupi nama */
-  .company-applications-table tbody td:nth-child(2) {
-    margin-top: 8px;
-  }
-}
-/* ===== FIX POSISI NOMOR DI MOBILE ===== */
-@media (max-width: 767.98px) {
-  /* Kartu baris aman buat badge */
-  .company-applications-table tbody tr {
-    position: relative;
-    padding-top: 18px;                /* beri ruang agar tidak menimpa Nama */
-    overflow: visible !important;
-  }
-
-  /* Badge nomor: pas di dalam radius, rapi, ada outline putih */
-  .company-applications-table tbody td:nth-child(1) {
-    position: absolute !important;
-    top: 14px;                        /* tidak terlalu nempel ke tepi */
-    right: 14px;                      /* aman dari border-radius */
-    width: 30px;
-    height: 30px;
-    border-radius: 999px !important;
-    background: #1E3A8A !important;   /* boleh diganti gradien */
-    color: #fff !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    border: 2px solid #fff;           /* memberi jarak optik dari tepi kartu */
-    box-shadow: 0 4px 10px rgba(0,0,0,.12);
-    z-index: 3;
-    border-inline: 2px solid #fff;    /* dukung RTL jika perlu */
-  }
-
-  /* Hilangkan label "No" yang otomatis muncul */
-  .company-applications-table tbody td:nth-child(1)::before { content: "" !important; }
-
-  /* Pastikan konten nama tidak ketiban badge */
-  .company-applications-table tbody td:nth-child(2) {
-    padding-right: 56px !important;   /* ruang untuk badge di kanan atas */
-  }
-}
-/* ganti background badge bila ingin gradien */
-@media (max-width: 767.98px) {
-  .company-applications-table tbody td:nth-child(1){
-    background: linear-gradient(135deg,#1E3A8A,#4C1D95) !important;
-  }
-}
-/* === PUSATKAN ANGKA BADGE NOMOR DI MOBILE === */
-@media (max-width: 767.98px) {
-  .company-applications-table tbody td:nth-child(1) {
-    /* ukuran genap + reset semua spacing */
-    width: 32px;
-    height: 32px;
-    padding: 0 !important;
-
-    /* cara paling stabil untuk center */
-    display: grid !important;
-    place-items: center !important;
-
-    /* cegah metrik font menggeser ke atas */
-    line-height: 1 !important;
-    text-align: center !important;
-    letter-spacing: 0 !important;
-    box-sizing: border-box;
-
-    /* opsional: kecilkan sedikit agar proporsional */
-    font-size: 15px !important;
-    font-weight: 700 !important;
-  }
-
-  /* Safari/Android tertentu masih agak naik ~0.5px, beri micro tweak */
-  .company-applications-table tbody td:nth-child(1) > * {
-    transform: translateY(0.5px);
-  }
-}
-
-/* =========================================================
-   RESPONSIVE ENHANCEMENTS - HORIZONTAL SCROLL FIX
-   ========================================================= */
-
-/* ====== TABEL WRAPPER - HORIZONTAL SCROLL ====== */
-.company-applications-table .table-responsive {
-    overflow-x: auto !important;
-    overflow-y: visible !important;
-    -webkit-overflow-scrolling: touch;
-    position: relative !important;
-    width: 100%;
-}
-
-/* Custom scrollbar styling */
-.company-applications-table .table-responsive::-webkit-scrollbar {
-    height: 8px;
-}
-
-.company-applications-table .table-responsive::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.company-applications-table .table-responsive::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #1E3A8A, #4C1D95);
-    border-radius: 10px;
-}
-
-.company-applications-table .table-responsive::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #1E40AF, #5B21B6);
-}
-
-/* ====== TABEL STYLE DASAR ====== */
-.company-applications-table table {
-    width: 100%;
-    min-width: 900px; /* Minimum width sebelum scroll muncul */
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-/* ====== BREAKPOINT: DESKTOP NORMAL (min-width 1200px) ====== */
-@media (min-width: 1200px) {
-    .company-applications-table table {
-        min-width: 100%;
-    }
-}
-
-/* ====== BREAKPOINT: TABLET (768px - 1199px) ====== */
-@media (min-width: 768px) and (max-width: 1199.98px) {
-    .company-applications-table table {
-        min-width: 800px;
-    }
-    
-    .company-applications-table thead th,
-    .company-applications-table tbody td {
-        padding: 10px 12px !important;
-        font-size: 13px !important;
-    }
-    
-    .company-applications-table tbody td:nth-child(3), /* Email */
-    .company-applications-table tbody td:nth-child(4)  /* No. HP */ {
-        max-width: 200px;
-        word-break: break-word;
-    }
-    
-    .action-text {
-        min-width: 80px;
-        height: 36px;
-        font-size: 13px;
-        padding: 0 12px;
-    }
-    
-    .aksi-wrapper {
-        gap: 8px;
-    }
-}
-
-/* ====== BREAKPOINT: MOBILE (<768px) ====== */
-@media (max-width: 767.98px) {
-    /* Pastikan scroll horizontal aktif */
-    .company-applications-table .table-responsive {
-        overflow-x: auto !important;
-        overflow-y: visible !important;
-    }
-    
-    .company-applications-table table {
-        min-width: 750px; /* Lebar minimal untuk scroll */
-        width: 100%;
-    }
-    
-    /* Perbaiki padding agar tidak terlalu padat */
-    .company-applications-table thead th,
-    .company-applications-table tbody td {
-        padding: 10px 12px !important;
-        font-size: 12.5px !important;
-        white-space: normal;
-        word-break: break-word;
-    }
-    
-    /* Kolom Nama - lebih lebar */
-    .company-applications-table tbody td:nth-child(2) {
-        min-width: 180px;
-    }
-    
-    /* Kolom Email & HP - bisa wrap */
-    .company-applications-table tbody td:nth-child(3),
-    .company-applications-table tbody td:nth-child(4) {
-        min-width: 160px;
-        word-break: break-all;
-    }
-    
-    /* Kolom Lowongan */
-    .company-applications-table tbody td:nth-child(5) {
-        min-width: 150px;
-    }
-    
-    /* Kolom Status */
-    .company-applications-table tbody td:nth-child(6) {
-        min-width: 110px;
-    }
-    
-    /* Kolom Aksi */
-    .company-applications-table tbody td:nth-child(7) {
-        min-width: 180px;
-    }
-    
-    /* Avatar di mobile - lebih kecil */
-    .avatar-wrapper img,
-    .avatar-wrapper .bg-primary {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 12px !important;
-    }
-    
-    /* Badge status */
-    .company-applications-table .badge {
-        padding: 6px 12px !important;
-        font-size: 11px !important;
-        white-space: nowrap;
-    }
-    
-    /* Tombol aksi */
-    .aksi-wrapper {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-        justify-content: center !important;
-    }
-    
-    .action-text,
-    .btn-group .btn-sm {
-        min-width: 70px !important;
-        height: 32px !important;
-        font-size: 12px !important;
-        padding: 0 10px !important;
-    }
-    
-    .btn-group {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 6px !important;
-    }
-    
-    /* Dropdown menu di mobile */
-    .company-applications-table .dropdown-menu {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 90vw !important;
-        max-width: 320px !important;
-        z-index: 2147483647 !important;
-    }
-}
-
-/* ====== BREAKPOINT: VERY SMALL (<480px) ====== */
+/* ====== VERY SMALL (<480px) ====== */
 @media (max-width: 480px) {
-    .company-applications-table table {
-        min-width: 700px;
-    }
-    
-    .company-applications-table thead th,
-    .company-applications-table tbody td {
-        padding: 8px 10px !important;
-        font-size: 11px !important;
-    }
-    
-    .action-text,
-    .btn-group .btn-sm {
-        min-width: 60px !important;
-        height: 30px !important;
-        font-size: 11px !important;
-        padding: 0 8px !important;
-    }
-    
-    .company-applications-table .badge {
-        padding: 4px 10px !important;
-        font-size: 10px !important;
-    }
+  .company-applications-table table { min-width: 700px; }
+  .company-applications-table thead th,
+  .company-applications-table tbody td { padding: 8px 10px !important; font-size: 11px !important; }
+  .action-text { min-width: 60px !important; height: 30px !important; font-size: 11px !important; padding: 0 8px !important; }
+  .company-applications-table .badge { padding: 4px 10px !important; font-size: 10px !important; }
+  .btn-total { padding: 6px 14px; font-size: .9rem; }
 }
 
-/* ====== PERBAIKAN UNTUK DROPDOWN DI MOBILE ====== */
-@media (max-width: 767.98px) {
-    .dropdown-menu.show {
-        display: block !important;
-        animation: dropdownFadeIn 0.2s ease;
-    }
-    
-    @keyframes dropdownFadeIn {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -48%);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-    }
-    
-    /* Backdrop untuk dropdown di mobile */
-    .dropdown-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 2147483646;
-    }
-}
-
-/* ====== PERBAIKAN HOVER DAN INTERAKSI ====== */
-/* Matikan hover efek yang tidak perlu di mobile */
-@media (max-width: 767.98px) {
-    .company-applications-table tbody tr:hover {
-        background: #fff !important;
-    }
-    
-    .action-text:hover {
-        transform: none !important;
-    }
-    
-    .btn-group .btn-sm:hover {
-        transform: none !important;
-    }
-}
-
-/* ====== INDIKATOR SCROLL ====== */
-/* Menampilkan indikator bahwa tabel bisa di-scroll */
-@media (max-width: 1199.98px) {
-    .company-applications-table .table-responsive {
-        position: relative;
-    }
-    
-    .company-applications-table .table-responsive::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 30px;
-        background: linear-gradient(to left, rgba(0,0,0,0.05), transparent);
-        pointer-events: none;
-        border-radius: 0 12px 12px 0;
-    }
-}
-
-/* ====== PERBAIKAN PAGINATION DI MOBILE ====== */
-@media (max-width: 767.98px) {
-    .pagination {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-    }
-    
-    .page-link {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-    
-    .page-item .page-link {
-        margin: 0 2px;
-    }
-}
-
-/* ====== PERBAIKAN ALERT MESSAGE ====== */
-@media (max-width: 767.98px) {
-    .alert {
-        font-size: 13px;
-        padding: 10px 12px;
-    }
-    
-    .alert .btn-close {
-        padding: 8px;
-        font-size: 10px;
-    }
-}
-
-/* ====== HEADER SECTION MOBILE ====== */
-@media (max-width: 767.98px) {
-    .kelola-pelamar .d-flex.justify-content-between.align-items-center.mb-4 {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 12px;
-    }
-    
-    .kelola-pelamar .d-flex.align-items-center {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 10px;
-        width: 100%;
-    }
-    
-    .kelola-pelamar .btn-primary {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .kelola-pelamar .text-muted {
-        width: 100%;
-        text-align: left;
-        font-size: 14px;
-    }
-}
-
-/* ====== PERBAIKAN CARD BODY ====== */
-@media (max-width: 767.98px) {
-    .card-body.p-0 {
-        padding: 0 !important;
-    }
-    
-    .company-applications-table {
-        border-radius: 12px;
-        overflow: hidden;
-    }
+/* Dropdown yang sudah dipindah ke body */
+body > .dropdown-menu {
+    z-index: 99999 !important;
 }

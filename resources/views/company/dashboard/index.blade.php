@@ -5,7 +5,6 @@
 @section('content')
   {{-- === Statistics Cards === --}}
   <div class="row">
-    {{-- Total Pelamar --}}
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="{{ route('company.pelamar.all') }}" class="stat-link">
         <div class="card stat-card border-left-primary shadow h-100 py-2">
@@ -22,7 +21,6 @@
       </a>
     </div>
 
-    {{-- Pelamar Bulan Ini --}}
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="{{ route('company.applications.this_month') }}" class="stat-link">
         <div class="card stat-card border-left-success shadow h-100 py-2">
@@ -39,7 +37,6 @@
       </a>
     </div>
 
-    {{-- Lowongan Aktif --}}
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="{{ route('company.jobs.active') }}" class="stat-link">
         <div class="card stat-card border-left-info shadow h-100 py-2">
@@ -56,7 +53,6 @@
       </a>
     </div>
 
-    {{-- Lowongan Tidak Aktif --}}
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="{{ route('company.jobs.inactive') }}" class="stat-link">
         <div class="card stat-card border-left-warning shadow h-100 py-2">
@@ -79,139 +75,120 @@
     <h3 class="section-title mb-3">Pelamar Terbaru</h3>
 
     <div class="table-responsive">
-    <table class="table-custom">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Email</th>
-          <th>No Hp</th>
-          <th>Lowongan</th>
-          <th>Status</th>
-          <th>Tanggal</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse($recentApplications as $index => $app)
+      <table class="table-custom">
+        <thead>
           <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $app->user->name ?? '-' }}</td>
-            <td>{{ $app->user->email ?? '-' }}</td>
-            <td>{{ $app->user->phone ?? '-' }}</td>
-            <td>{{ $app->jobPost->title ?? '-' }}</td>
-            <td>
-              @php
-                $status = $app->status;
-                $statusConfig = [
-                  'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
-                  'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
-                  'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
-                  'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
-                  'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
-                  'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
-                  'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed text-dark'],
-                ];
-                $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
-              @endphp
-              <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
-                <i class="fas fa-circle me-1" style="font-size:8px;"></i>{{ $currentStatus['label'] }}
-              </span>
-            </td>
-            <td>{{ $app->created_at->format('d-m-Y') }}</td>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>No Hp</th>
+            <th>Lowongan</th>
+            <th>Status</th>
+            <th>Tanggal</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse($recentApplications as $index => $app)
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ $app->user->name ?? '-' }}</td>
+              <td>{{ $app->user->email ?? '-' }}</td>
+              <td>{{ $app->user->phone ?? '-' }}</td>
+              <td>{{ $app->jobPost->title ?? '-' }}</td>
+              <td>
+                @php
+                  $status = $app->status;
+                  $statusConfig = [
+                    'accepted'  => ['label' => 'Terima',    'class' => 'status-accepted'],
+                    'rejected'  => ['label' => 'Tolak',     'class' => 'status-rejected'],
+                    'interview' => ['label' => 'Wawancara', 'class' => 'status-interview'],
+                    'test1'     => ['label' => 'Test 1',    'class' => 'status-test'],
+                    'test2'     => ['label' => 'Test 2',    'class' => 'status-test2'],
+                    'submitted' => ['label' => 'Menunggu',  'class' => 'status-pending'],
+                    'reviewed'  => ['label' => 'Ditinjau',  'class' => 'status-reviewed text-dark'],
+                  ];
+                  $currentStatus = $statusConfig[$status] ?? ['label' => ucfirst($status), 'class' => 'bg-light text-dark'];
+                @endphp
+                <span class="badge {{ $currentStatus['class'] }} px-3 py-2">
+                  <i class="fas fa-circle me-1" style="font-size:8px;"></i>{{ $currentStatus['label'] }}
+                </span>
+              </td>
+              <td>{{ $app->created_at->format('d-m-Y') }}</td>
+              <td class="text-center">
+                <div class="aksi-wrapper d-flex justify-content-center align-items-center">
+                  {{-- Lihat --}}
+                  <a href="{{ route('company.applicants.show', $app->id) }}" class="action-text view">Lihat</a>
 
-    {{-- AKSI --}}
-<td class="text-center">
-  <div class="aksi-wrapper d-flex justify-content-center align-items-center">
+                  {{-- Edit Dropdown --}}
+                  <div class="dropdown dropstart">
+                    <button class="action-text edit dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                      Edit
+                    </button>
 
-    {{-- Lihat --}}
-    <a href="{{ route('company.applicants.show', $app->id) }}" class="action-text view">Lihat</a>
+                    @php
+                      $statusMenu = [
+                        'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
+                        'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
+                        'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
+                        'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
+                        'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
+                        'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
+                      ];
+                    @endphp
 
-    {{-- Edit (dropdown buka ke kiri) --}}
-    <div class="dropdown dropstart position-static">
-      <button
-        class="action-text edit"
-        type="button"
-        id="dropdownMenuButton{{ $app->id }}"
-        data-bs-toggle="dropdown"
-        data-bs-display="static"
-        data-bs-boundary="viewport"
-        data-bs-reference="parent"
-        aria-expanded="false">
-        Edit
-      </button>
+                    <ul class="dropdown-menu">
+                      @foreach ($statusMenu as $value => $opt)
+                        @php
+                          $isActive = ($value === $status);
+                          $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
+                        @endphp
+                        <li>
+                          @if($isActive)
+                            <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
+                              <i class="status-icon {{ $opt['icon'] }}"></i>
+                              {{ $opt['label'] }}
+                              <span class="tick"><i class="fas fa-check"></i></span>
+                            </div>
+                          @else
+                            <form action="{{ route('company.applications.updateStatus', $app->id) }}" method="POST" class="d-inline w-100">
+                              @csrf
+                              @method('PUT')
+                              <input type="hidden" name="status" value="{{ $value }}">
+                              <button type="submit" class="dropdown-item {{ $btnClasses }}">
+                                <i class="status-icon {{ $opt['icon'] }}"></i>
+                                {{ $opt['label'] }}
+                                <span class="tick"><i class="fas fa-check"></i></span>
+                              </button>
+                            </form>
+                          @endif
+                        </li>
+                        @if(!empty($opt['divider_after']))
+                          <li><hr class="dropdown-divider"></li>
+                        @endif
+                      @endforeach
+                    </ul>
+                  </div>
 
-      @php
-        $statusMenu = [
-          'submitted' => ['label' => 'Submitted', 'icon' => 'far fa-clock icon-submitted'],
-          'test1'     => ['label' => 'Test 1',    'icon' => 'fas fa-flask icon-test'],
-          'test2'     => ['label' => 'Test 2',    'icon' => 'fas fa-flask icon-test', 'divider_after' => true],
-          'interview' => ['label' => 'Interview', 'icon' => 'fas fa-user-tie icon-interview', 'divider_after' => true],
-          'accepted'  => ['label' => 'Terima',    'icon' => 'fas fa-check icon-accepted',  'btn_class' => 'text-success'],
-          'rejected'  => ['label' => 'Tolak',     'icon' => 'fas fa-times icon-rejected',   'btn_class' => 'text-danger'],
-        ];
-      @endphp
-
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $app->id }}">
-        @foreach ($statusMenu as $value => $opt)
-          @php
-            $isActive = ($value === $status);
-            $btnClasses = trim(($opt['btn_class'] ?? '') . ' ' . ($isActive ? 'is-active' : ''));
-          @endphp
-          <li>
-            @if($isActive)
-              {{-- Status aktif --}}
-              <div class="dropdown-item {{ $btnClasses }}" aria-current="true">
-                <i class="status-icon {{ $opt['icon'] }}"></i>
-                {{ $opt['label'] }}
-                <span class="tick"><i class="fas fa-check"></i></span>
-              </div>
-            @else
-              {{-- Status lain --}}
-              <form action="{{ route('company.applications.updateStatus', $app->id) }}"
-                    method="POST" class="d-inline">
-                @csrf
-                @method('PUT')
-                <input type="hidden" name="status" value="{{ $value }}">
-                <button type="submit" class="dropdown-item {{ $btnClasses }}">
-                  <i class="status-icon {{ $opt['icon'] }}"></i>
-                  {{ $opt['label'] }}
-                  <span class="tick"><i class="fas fa-check"></i></span>
-                </button>
-              </form>
-            @endif
-          </li>
-
-          @if(!empty($opt['divider_after']))
-            <li><hr class="dropdown-divider"></li>
-          @endif
-        @endforeach
-      </ul>
+                  {{-- Hapus --}}
+                  <form action="{{ route('company.applicants.destroy', $app->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="action-text delete">Hapus</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          @empty
+            <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
+          @endforelse
+        </tbody>
+      </table>
     </div>
-
-    {{-- Hapus --}}
-    <form action="{{ route('company.applicants.destroy', $app->id) }}"
-          method="POST" class="d-inline"
-          onsubmit="return confirm('Yakin ingin menghapus pelamar ini?')">
-      @csrf
-      @method('DELETE')
-      <button type="submit" class="action-text delete">Hapus</button>
-    </form>
-
   </div>
-</td>
-
-        @empty
-          <tr><td colspan="8" class="text-center text-muted">Belum ada pelamar</td></tr>
-        @endforelse
-      </tbody>
-    </table>
-  </div>
-</div>
 
   {{-- === Lowongan Terbaru Cards === --}}
-  <div class="container jobs-latest mt-4">  {{-- sebelumnya: <div class="container jobs-latest"> --}}
-
+  <div class="container jobs-latest mt-4">
     <div class="jobs-header mb-4 text-center">
       <h3 class="section-title mb-0">Lowongan Terbaru</h3>
     </div>
@@ -226,44 +203,26 @@
         <div class="col-md-6 col-lg-4">
           <div class="jl-card">
             <div class="jl-accent"></div>
-
-            <div class="jl-avatar js-preview"
-                 data-image="{{ $avatar }}"
-                 data-title="{{ $job->company->name ?? 'Logo Perusahaan' }}">
-              <img src="{{ $avatar }}" alt="{{ $job->company->name ?? 'Company' }}"
-                   class="img-thumbnail rounded-circle shadow-sm jl-avatar-img"
-                   loading="lazy" decoding="async" fetchpriority="low">
+            <div class="jl-avatar js-preview" data-image="{{ $avatar }}" data-title="{{ $job->company->name ?? 'Logo Perusahaan' }}">
+              <img src="{{ $avatar }}" alt="{{ $job->company->name ?? 'Company' }}" class="img-thumbnail rounded-circle shadow-sm jl-avatar-img" loading="lazy">
             </div>
-
             <div class="jl-body">
               @if($job->created_at && $job->created_at->gt(now()->subDays(7)))
                 <span class="jl-ribbon">Baru</span>
               @endif
-
               <div class="jl-company">{{ $job->company->name ?? 'N/A' }}</div>
-              <a href="{{ route('company.jobs.show', $job->id) }}" class="jl-title">
-                {{ $job->title ?? '-' }}
-              </a>
-
+              <a href="{{ route('company.jobs.show', $job->id) }}" class="jl-title">{{ $job->title ?? '-' }}</a>
               <div class="jl-meta">
                 <span class="jl-salary"><i class="fas fa-wallet"></i>{{ $job->salary ?? 'Gaji tidak tersedia' }}</span>
                 <span class="jl-time"><i class="fas fa-clock"></i>{{ $job->created_at->diffForHumans(null, true) }}</span>
               </div>
-
               <div class="jl-actions">
-                <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-info btn-sm">
-                  <i class="fas fa-info-circle me-1"></i> Info
-                </a>
-                <a href="{{ route('company.jobs.edit', $job->id) }}" class="btn btn-warning btn-sm">
-                  <i class="fas fa-pen-to-square me-1"></i> Edit
-                </a>
-                <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST"
-                      class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
+                <a href="{{ route('company.jobs.show', $job->id) }}" class="btn btn-info btn-sm"><i class="fas fa-info-circle me-1"></i> Info</a>
+                <a href="{{ route('company.jobs.edit', $job->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen-to-square me-1"></i> Edit</a>
+                <form action="{{ route('company.jobs.destroy', $job->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
                   @csrf @method('DELETE')
                   <input type="hidden" name="from" value="dashboard">
-                  <button type="submit" class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash-alt me-1"></i> Hapus
-                  </button>
+                  <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt me-1"></i> Hapus</button>
                 </form>
               </div>
             </div>
@@ -296,7 +255,7 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // angka naik pada kartu statistik
+  // Animasi angka statistik
   document.querySelectorAll('.stat-number').forEach(function (el) {
     var finalNumber = parseInt(el.textContent, 10);
     if (isNaN(finalNumber)) return;
@@ -308,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 20);
   });
 
-  // modal preview logo
+  // Modal preview logo
   var modalEl = document.getElementById('jobImageModal');
   var modalImg = document.getElementById('jobImageModalImg');
   var modalTit = document.getElementById('jobImageModalLabel');
@@ -323,7 +282,53 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // efek reveal sederhana
+  // ========== FIX DROPDOWN TERPOTONG ==========
+  // Menggunakan position: fixed pada dropdown menu saat terbuka
+  document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+    var btn = dropdown.querySelector('.dropdown-toggle');
+    var menu = dropdown.querySelector('.dropdown-menu');
+    if (!btn || !menu) return;
+
+    // Saat dropdown akan ditampilkan
+    btn.addEventListener('show.bs.dropdown', function () {
+      // Hitung posisi tombol relatif terhadap viewport
+      var rect = btn.getBoundingClientRect();
+      var menuHeight = menu.offsetHeight;
+      var viewportHeight = window.innerHeight;
+      var spaceBelow = viewportHeight - rect.bottom;
+      var spaceAbove = rect.top;
+
+      // Tentukan posisi vertikal
+      var topPos;
+      if (spaceBelow >= menuHeight || spaceBelow > spaceAbove) {
+        // Tampilkan di bawah
+        topPos = rect.bottom + 5;
+      } else {
+        // Tampilkan di atas
+        topPos = rect.top - menuHeight - 5;
+      }
+
+      // Set style fixed
+      menu.style.position = 'fixed';
+      menu.style.top = topPos + 'px';
+      menu.style.left = rect.left + 'px';
+      menu.style.transform = 'none';
+      menu.style.margin = '0';
+      menu.style.width = menu.offsetWidth + 'px';
+    });
+
+    // Kembalikan style saat dropdown ditutup (opsional)
+    btn.addEventListener('hide.bs.dropdown', function () {
+      menu.style.position = '';
+      menu.style.top = '';
+      menu.style.left = '';
+      menu.style.transform = '';
+      menu.style.margin = '';
+      menu.style.width = '';
+    });
+  });
+
+  // Efek reveal
   var targets = document.querySelectorAll('.stat-card, .table-section, .jl-card');
   targets.forEach(function (el, i) { el.classList.add('reveal'); el.style.setProperty('--delay', (Math.min(i * 0.06, .36)) + 's'); });
   if ('IntersectionObserver' in window) {
