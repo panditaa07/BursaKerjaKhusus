@@ -302,7 +302,7 @@ class ApplicationController extends Controller
         if (Application::where('user_id', $user->id)
             ->where('job_post_id', $job->id)
             ->exists()) {
-            return back()->with('error', 'You already applied to this job.');
+            return back()->with('error', 'Anda sudah melamar lowongan ini sebelumnya.');
         }
 
         $cvPath = $request->hasFile('cv')

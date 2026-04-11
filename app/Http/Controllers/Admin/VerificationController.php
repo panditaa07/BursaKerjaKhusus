@@ -15,7 +15,9 @@ class VerificationController extends Controller
 {
     public function index()
     {
-        $pendingUsers = User::where('status', 'pending')->get();
+        $pendingUsers = User::where('status', 'pending')->whereHas('role', function($q) {
+            $q->where('name', 'user');
+        })->get();
         $pendingCompanies = Company::where('status', 'pending')->get();
 
         return view('admin.verifications.index', compact('pendingUsers', 'pendingCompanies'));
@@ -41,6 +43,7 @@ class VerificationController extends Controller
 
     public function approveCompany(Company $company)
     {
+        $company->user->update(['status' => 'approved']);
         $company->update(['status' => 'approved']);
 
         $company->notify(new CompanyApproved());

@@ -32,20 +32,18 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $user = Auth::user();
 
-            if ($user->role->name !== 'admin') {
-                if ($user->status === 'pending') {
-                    Auth::logout();
-                    return back()->withErrors([
-                        'email' => 'Akun Anda sedang menunggu persetujuan admin.',
-                    ]);
-                }
+            if ($user->status === 'pending') {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Akun Anda sedang menunggu persetujuan admin.',
+                ]);
+            }
     
-                if ($user->status === 'rejected') {
-                    Auth::logout();
-                    return back()->withErrors([
-                        'email' => 'Akun Anda telah ditolak.',
-                    ]);
-                }
+            if ($user->status === 'rejected') {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Akun Anda telah ditolak.',
+                ]);
             }
 
             $request->session()->regenerate();
