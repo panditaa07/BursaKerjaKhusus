@@ -16,17 +16,22 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                $user = Auth::user();
+                $user = Auth::guard($guard)->user();
                 $roleName = $this->resolveRoleName($user);
 
                 if (in_array($roleName, ['admin', 'company', 'user'])) {
                     $request->session()->forget('url.intended');
-                    return redirect()->route(RouteServiceProvider::dashboardRouteForRole($roleName));
+                    $targetRoute = RouteServiceProvider::dashboardRouteForRole($roleName);
+                    
+                    if ($targetRoute !== 'login') {
+                        return redirect()->route($targetRoute);
+                    }
                 }
 
-                Auth::logout();
-                $request->session()->invalidate();
-                return redirect()->route('login')->withErrors(['role' => 'Unknown role']);
+                // Jika role tidak dikenali padahal sudah login, jangan paksa logout di sini 
+                // karena bisa menyebabkan loop jika dipanggil dari login page.
+                // Cukup biarkan lanjut atau arahkan ke home.
+                return $next($request);
             }
         }
 
@@ -36,12 +41,21 @@ class RedirectIfAuthenticated
     private function resolveRoleName($user)
     {
         if (!$user) return null;
-        if (is_string($user->role) && in_array($user->role, ['admin', 'company', 'user'])) return $user->role;
+        
+        // Pastikan relasi role dimuat
+        if (!$user->relationLoaded('role') && isset($user->role_id)) {
+            $user->load('role');
+        }
+
         if (isset($user->role->name)) return $user->role->name;
+        
+        if (is_string($user->role) && in_array($user->role, ['admin', 'company', 'user'])) return $user->role;
+        
         if (isset($user->role_id)) {
             $r = Role::find($user->role_id);
             return $r ? $r->name : null;
         }
+        
         return null;
     }
 }

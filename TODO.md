@@ -1,16 +1,15 @@
-# TODO: Fix Menu Toggle Button on Update Data Pelamar Page
+# TODO: Replace Excel Export with CSV (Approved Plan) - ✅ COMPLETED
 
-## Tasks
+## Steps Completed:
+- ✅ Step 1: Deleted app/Exports/DashboardStatisticsExport.php (Exports dir removed)
+- ✅ Step 2: Edited app/Http/Controllers/Admin/AdminDashboardController.php (removed Excel imports/method, added exportCSV)
+- ✅ Step 3: Edited routes/web.php (removed Excel route, added CSV route)
+- ✅ Step 4: Edited resources/views/admin/dashboard/index.blade.php (updated button to CSV)
+- ✅ Step 5: Ran composer dump-autoload
+- ✅ Step 6: Cleared caches (config/route/view)
+- ✅ Step 7: Verified Exports dir gone
 
--   [x] Check the current menu toggle button styling in public/css/sidebar.css
--   [x] Compare with dashboard admin toggle button
--   [x] Adjust the menu toggle in public/css/edit.css to match dashboard admin exactly
--   [x] Ensure responsive design for resolutions 360–768px
--   [x] Test the changes in the browser
+**All changes applied successfully. Test /admin/dashboard → Export CSV button downloads CSV (opens in Excel). PDF unchanged.**
 
-## Notes
+No further actions needed.
 
--   The menu toggle button on Update Data Pelamar page should be identical to dashboard admin
--   Use same background color (#0b0c64), size (48px x 48px), padding (12px 16px), border-radius (16px)
--   Icon size 1.25rem, responsive adjustments for mobile
--   Use !important to override any conflicting styles

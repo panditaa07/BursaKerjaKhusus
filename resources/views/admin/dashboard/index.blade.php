@@ -5,6 +5,16 @@
 <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
 
 <div class="container mx-auto px-4 py-4">
+    {{-- Export Buttons --}}
+    <div class="d-flex justify-content-end mb-4 gap-2">
+        <a href="{{ route('admin.dashboard.export.csv') }}" class="btn btn-success">
+            <i class="fas fa-file-csv me-2"></i>Export CSV
+        </a>
+        <a href="{{ route('admin.dashboard.export.pdf') }}" class="btn btn-danger">
+            <i class="fas fa-file-pdf me-2"></i>Export PDF
+        </a>
+    </div>
+    
     {{-- === Statistics Cards === --}}
     <div class="row g-4">
         {{-- Total Pelamar --}}
@@ -271,12 +281,12 @@
         }
         animateNumbers();
 
-        // Sample data - replace with real data from controller
+        // Real data from controller
         const pelamarData = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
             datasets: [{
                 label: 'Pelamar',
-                data: [12, 19, 3, 5, 2, 3, {{ $statistics['pelamar_bulan_ini'] ?? 0 }}],
+                data: @json($pelamar_monthly ?? array_fill(0, 12, 0)),
                 borderColor: 'rgb(75, 192, 192)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 tension: 0.1
@@ -295,7 +305,7 @@
         const statusData = {
             labels: ['Menunggu', 'Diterima', 'Ditolak'],
             datasets: [{
-                data: [{{ $statistics['submitted'] ?? 10 }}, {{ $statistics['accepted'] ?? 5 }}, {{ $statistics['rejected'] ?? 3 }}],
+                data: [{{ $statistics['submitted'] ?? 0 }}, {{ $statistics['accepted'] ?? 0 }}, {{ $statistics['rejected'] ?? 0 }}],
                 backgroundColor: ['rgba(255, 206, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)']
             }]
         };

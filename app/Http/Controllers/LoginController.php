@@ -16,10 +16,30 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        // Pastikan role dimuat
+        $user->loadMissing('role');
         $roleName = $user->role->name ?? null;
 
-        // arahkan sesuai role
-        return redirect()->route(\App\Providers\RouteServiceProvider::dashboardRouteForRole($roleName));
+        $targetRoute = \App\Providers\RouteServiceProvider::dashboardRouteForRole($roleName);
+
+        \Log::info('Login Success', [
+            'user_id' => $user->id,
+            'email' => $user->email,
+            'role' => $roleName,
+            'target_route' => $targetRoute
+        ]);
+
+        if ($targetRoute === 'login') {
+             \Log::warning('Login Redirect Fallback to Login', [
+                'user_id' => $user->id,
+                'role' => $roleName
+            ]);
+            // Jika role tidak dikenal, logout dan kembalikan ke login dengan error
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['email' => 'Role user tidak dikenali atau tidak memiliki akses dashboard.']);
+        }
+
+        return redirect()->route($targetRoute);
     }
 
     public function login(Request $request)
@@ -48,11 +68,6 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            // clear cache biar ga ada redirection lama
-            Artisan::call('route:clear');
-            Artisan::call('config:clear');
-            Artisan::call('view:clear');
-
             // buang url intended lama
             $request->session()->forget('url.intended');
 
@@ -67,10 +82,6 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

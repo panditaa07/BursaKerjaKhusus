@@ -9,6 +9,8 @@ use App\Models\Company;
 use App\Models\Application;
 use App\Models\PelamarBulanIni;
 use App\Models\UserNotification;
+
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +51,24 @@ class AdminDashboardController extends Controller
                                                    ->count(),
             'lowongan_aktif'        => JobPost::where('status', 'active')->count(),
             'lowongan_tidak_aktif'  => JobPost::where('status', 'inactive')->count(),
+            // Tambahkan statistik status lamaran
+            'submitted'             => Application::where('status', 'submitted')->count(),
+            'accepted'              => Application::where('status', 'accepted')->count(),
+            'rejected'              => Application::where('status', 'rejected')->count(),
         ];
+
+        // Data untuk Line Chart: Pelamar Setiap Bulan
+        $monthly_data = Application::selectRaw('MONTH(created_at) as month, count(*) as count')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('count', 'month')
+            ->toArray();
+
+        $pelamar_monthly = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $pelamar_monthly[] = $monthly_data[$i] ?? 0;
+        }
 
         // Data untuk tabel
         $daftar_pelamar_terbaru = Application::with([
@@ -71,6 +90,7 @@ class AdminDashboardController extends Controller
         return view('admin.dashboard.index', compact(
             'user',
             'statistics',
+            'pelamar_monthly',
             'daftar_pelamar_terbaru',
             'loker_terbaru',
             'loker_tidak_aktif'
@@ -242,11 +262,12 @@ class AdminDashboardController extends Controller
 
         // For company role, load jobPosts including soft deleted companies
         if ($user->role->name === 'company') {
-            $user->load(['jobPosts' => function($query) {
-                $query->withoutGlobalScopes()->latest()->take(5);
-            }]);
-            // Also load company relation
-            $user->load('company');
+            $user->load([
+                'jobPosts' => function($query) {
+                    $query->withoutGlobalScopes()->latest()->take(5);
+                },
+                'company.industry'
+            ]);
         } elseif ($user->role->name === 'user') {
             $user->load(['applications' => function($query) {
                 $query->with('jobPost.company')->latest()->take(10);
@@ -443,4 +464,80 @@ class AdminDashboardController extends Controller
         $company->delete();
         return redirect()->route('admin.users.index')->with('success', 'Data company berhasil dihapus');
     }
+
+    /**
+     * Export statistik dashboard ke CSV
+     */
+    public function exportCSV()
+    {
+        $statistics = [
+            'total_pelamar'         => Application::count(),
+            'pelamar_bulan_ini'     => Application::whereMonth('created_at', now()->month)
+                                                   ->whereYear('created_at', now()->year)
+                                                   ->count(),
+            'lowongan_aktif'        => JobPost::where('status', 'active')->count(),
+            'lowongan_tidak_aktif'  => JobPost::where('status', 'inactive')->count(),
+            'submitted'             => Application::where('status', 'submitted')->count(),
+            'accepted'              => Application::where('status', 'accepted')->count(),
+            'rejected'              => Application::where('status', 'rejected')->count(),
+        ];
+
+        $data = [
+            ['Keterangan', 'Jumlah'],
+            ['Total Pelamar', $statistics['total_pelamar']],
+            ['Pelamar Bulan Ini', $statistics['pelamar_bulan_ini']],
+            ['Lowongan Aktif', $statistics['lowongan_aktif']],
+            ['Lowongan Tidak Aktif', $statistics['lowongan_tidak_aktif']],
+            ['Menunggu', $statistics['submitted']],
+            ['Diterima', $statistics['accepted']],
+            ['Ditolak', $statistics['rejected']],
+        ];
+
+        $filename = 'statistik-dashboard-' . now()->format('Y-m-d') . '.csv';
+        $handle = fopen('php://temp', 'w+');
+        foreach ($data as $row) {
+            fputcsv($handle, $row);
+        }
+        rewind($handle);
+        $csv_content = stream_get_contents($handle);
+        fclose($handle);
+
+        return response($csv_content, 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\""
+        ]);
+    }
+
+    /**
+     * Export statistik dashboard ke PDF
+     */
+    public function exportPdf()
+    {
+        $user = Auth::user();
+
+        $statistics = [
+            'total_pelamar'         => Application::count(),
+            'pelamar_bulan_ini'     => Application::whereMonth('created_at', now()->month)
+                                                   ->whereYear('created_at', now()->year)
+                                                   ->count(),
+            'lowongan_aktif'        => JobPost::where('status', 'active')->count(),
+            'lowongan_tidak_aktif'  => JobPost::where('status', 'inactive')->count(),
+        ];
+
+        $daftar_pelamar_terbaru = Application::with([
+            'user' => function($q) { $q->withTrashed(); },
+            'jobPost.company'
+        ])->latest()->take(5)->get();
+
+        $loker_terbaru = JobPost::with('company')->latest()->take(5)->get();
+
+        $date = now()->format('d F Y H:i');
+
+        $pdf = PDF::loadView('admin.export.pdf-dashboard', compact(
+            'statistics', 'daftar_pelamar_terbaru', 'loker_terbaru', 'date', 'user'
+        ));
+
+        return $pdf->download('statistik-dashboard-' . now()->format('Y-m-d') . '.pdf');
+    }
 }
+

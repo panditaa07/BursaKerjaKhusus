@@ -58,6 +58,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard/lowongan-aktif', [AdminDashboardController::class, 'lowonganAktif'])->name('dashboard.lowongan-aktif');
         Route::get('/dashboard/lowongan-tidak-aktif', [AdminDashboardController::class, 'lowonganTidakAktif'])->name('dashboard.lowongan-tidak-aktif');
         Route::get('/companies/pending', [AdminDashboardController::class, 'pendingCompanies'])->name('companies.pending');
+        
+        // Export routes
+        Route::get('/export/csv', [AdminDashboardController::class, 'exportCSV'])->name('dashboard.export.csv');
+        Route::get('/export/pdf', [AdminDashboardController::class, 'exportPdf'])->name('dashboard.export.pdf');
 
         // User Management
         Route::get('/users', [AdminDashboardController::class, 'users'])->name('users.index');
