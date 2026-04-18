@@ -114,39 +114,41 @@
         {{-- Sosial Media Perusahaan --}}
         <div class="social-media-links" style="margin-top: 15px;">
           <strong>Sosial Media Perusahaan:</strong><br>
-          @if($company->linkedin)
-            <a href="{{ $company->linkedin }}" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
-              <i class="fab fa-linkedin-in fa-lg"></i> LinkedIn
-            </a>
-          @endif
-          @if($company->facebook)
-            <a href="{{ $company->facebook }}" target="_blank" rel="noopener" class="social-icon" title="Facebook" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
-              <i class="fab fa-facebook-f fa-lg"></i> Facebook
-            </a>
-          @endif
-          @if($company->twitter)
-            <a href="{{ $company->twitter }}" target="_blank" rel="noopener" class="social-icon" title="Twitter" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
-              <i class="fab fa-twitter fa-lg"></i> Twitter
-            </a>
-          @endif
-          @if($company->tiktok)
-            <a href="{{ $company->tiktok }}" target="_blank" rel="noopener" class="social-icon" title="TikTok" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
-              <i class="fab fa-tiktok fa-lg"></i> TikTok
-            </a>
-          @endif
-          @if($socialMedia)
-            <a href="{{ $socialMedia }}" target="_blank" rel="noopener" class="social-icon" title="Instagram" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
-              <i class="fab fa-instagram fa-lg"></i> Instagram
-            </a>
-          @endif
-          @if($company->youtube)
-            <a href="{{ $company->youtube }}" target="_blank" rel="noopener" class="social-icon" title="YouTube" style="color: #6C4F3D; margin-right: 10px; text-decoration: none; transition: color 0.3s;">
-              <i class="fab fa-youtube fa-lg"></i> YouTube
-            </a>
-          @endif
-          @if(!$company->linkedin && !$company->facebook && !$company->twitter && !$company->tiktok && !$socialMedia && !$company->youtube)
-            Belum ada sosial media
-          @endif
+          <div class="social-container mt-2">
+            @if($company->linkedin)
+              <a href="{{ $company->linkedin }}" target="_blank" rel="noopener" class="social-icon linkedin" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            @endif
+            @if($company->facebook)
+              <a href="{{ $company->facebook }}" target="_blank" rel="noopener" class="social-icon facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            @endif
+            @if($company->twitter)
+              <a href="{{ $company->twitter }}" target="_blank" rel="noopener" class="social-icon twitter" title="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+            @endif
+            @if($company->tiktok)
+              <a href="{{ $company->tiktok }}" target="_blank" rel="noopener" class="social-icon tiktok" title="TikTok">
+                <i class="fab fa-tiktok"></i>
+              </a>
+            @endif
+            @if($socialMedia)
+              <a href="{{ $socialMedia }}" target="_blank" rel="noopener" class="social-icon instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            @endif
+            @if($company->youtube)
+              <a href="{{ $company->youtube }}" target="_blank" rel="noopener" class="social-icon youtube" title="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+            @endif
+            @if(!$company->linkedin && !$company->facebook && !$company->twitter && !$company->tiktok && !$socialMedia && !$company->youtube)
+              <span class="text-muted italic small">Belum ada sosial media</span>
+            @endif
+          </div>
         </div>
       </div>
     </div>

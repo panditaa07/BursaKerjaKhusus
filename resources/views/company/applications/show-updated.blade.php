@@ -173,40 +173,40 @@
                 </div>
                 <div class="card-body text-center">
                     @if($application->user->portfolio_link || $application->user->facebook || $application->user->instagram || $application->user->linkedin || $application->user->twitter || $application->user->tiktok)
-                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                        <div class="social-container justify-content-center">
                             @if($application->user->portfolio_link)
                                 <a href="{{ $application->user->portfolio_link }}" target="_blank"
-                                   class="btn btn-outline-secondary btn-sm" title="Portfolio">
-                                    <i class="fas fa-globe"></i> Portfolio
+                                   class="social-icon portfolio" title="Portfolio">
+                                    <i class="fas fa-globe"></i>
                                 </a>
                             @endif
                             @if($application->user->facebook)
                                 <a href="{{ $application->user->facebook }}" target="_blank"
-                                   class="btn btn-outline-primary btn-sm" title="Facebook">
-                                    <i class="fab fa-facebook"></i>
+                                   class="social-icon facebook" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
                                 </a>
                             @endif
                             @if($application->user->instagram)
                                 <a href="{{ $application->user->instagram }}" target="_blank"
-                                   class="btn btn-outline-danger btn-sm" title="Instagram">
+                                   class="social-icon instagram" title="Instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             @endif
                             @if($application->user->linkedin)
                                 <a href="{{ $application->user->linkedin }}" target="_blank"
-                                   class="btn btn-outline-primary btn-sm" title="LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
+                                   class="social-icon linkedin" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
                                 </a>
                             @endif
                             @if($application->user->twitter)
                                 <a href="{{ $application->user->twitter }}" target="_blank"
-                                   class="btn btn-outline-info btn-sm" title="Twitter">
+                                   class="social-icon twitter" title="Twitter">
                                     <i class="fab fa-twitter"></i>
                                 </a>
                             @endif
                             @if($application->user->tiktok)
                                 <a href="{{ $application->user->tiktok }}" target="_blank"
-                                   class="btn btn-outline-dark btn-sm" title="TikTok">
+                                   class="social-icon tiktok" title="TikTok">
                                     <i class="fab fa-tiktok"></i>
                                 </a>
                             @endif

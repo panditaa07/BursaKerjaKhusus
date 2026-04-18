@@ -104,38 +104,36 @@
             <h3><i class="fas fa-share-alt"></i> Sosial Media Perusahaan</h3>
           </header>
           <div class="card-body">
-            <dl class="kv">
-                <dt>LinkedIn</dt>
-                <dd>
-                    @if($company->linkedin)
-                        <a href="{{ $company->linkedin }}" target="_blank" class="link"><i class="fab fa-linkedin"></i> {{ $company->linkedin }}</a>
-                    @else - @endif
-                </dd>
-                <dt>Facebook</dt>
-                <dd>
-                    @if($company->facebook)
-                        <a href="{{ $company->facebook }}" target="_blank" class="link"><i class="fab fa-facebook"></i> {{ $company->facebook }}</a>
-                    @else - @endif
-                </dd>
-                <dt>Twitter / X</dt>
-                <dd>
-                    @if($company->twitter)
-                        <a href="{{ $company->twitter }}" target="_blank" class="link"><i class="fab fa-twitter"></i> {{ $company->twitter }}</a>
-                    @else - @endif
-                </dd>
-                <dt>TikTok</dt>
-                <dd>
-                    @if($company->tiktok)
-                        <a href="{{ $company->tiktok }}" target="_blank" class="link"><i class="fab fa-tiktok"></i> {{ $company->tiktok }}</a>
-                    @else - @endif
-                </dd>
-                <dt>YouTube</dt>
-                <dd>
-                    @if($company->youtube)
-                        <a href="{{ $company->youtube }}" target="_blank" class="link"><i class="fab fa-youtube"></i> {{ $company->youtube }}</a>
-                    @else - @endif
-                </dd>
-            </dl>
+            <div class="social-container">
+                @if($company->linkedin)
+                    <a href="{{ $company->linkedin }}" target="_blank" class="social-icon linkedin" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                @endif
+                @if($company->facebook)
+                    <a href="{{ $company->facebook }}" target="_blank" class="social-icon facebook" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                @endif
+                @if($company->twitter)
+                    <a href="{{ $company->twitter }}" target="_blank" class="social-icon twitter" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                @endif
+                @if($company->tiktok)
+                    <a href="{{ $company->tiktok }}" target="_blank" class="social-icon tiktok" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                @endif
+                @if($company->youtube)
+                    <a href="{{ $company->youtube }}" target="_blank" class="social-icon youtube" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                @endif
+                @if(!$company->linkedin && !$company->facebook && !$company->twitter && !$company->tiktok && !$company->youtube)
+                    <span class="text-muted italic small">Belum ada sosial media</span>
+                @endif
+            </div>
           </div>
         </article>
 
@@ -251,41 +249,31 @@
                         Tidak ada surat lamaran
                     @endif
                 </dd>
-                <dt>Portfolio</dt>
+                <dt>Sosial Media & Portfolio</dt>
                 <dd>
-                    @if($user->portfolio_link)
-                        <a href="{{ $user->portfolio_link }}" target="_blank"><i class="fas fa-link"></i> {{ $user->portfolio_link }}</a>
-                    @else - @endif
-                </dd>
-                <dt>LinkedIn</dt>
-                <dd>
-                    @if($user->linkedin)
-                        <a href="{{ $user->linkedin }}" target="_blank"><i class="fab fa-linkedin"></i> {{ $user->linkedin }}</a>
-                    @else - @endif
-                </dd>
-                <dt>Instagram</dt>
-                <dd>
-                    @if($user->instagram)
-                        <a href="{{ $user->instagram }}" target="_blank"><i class="fab fa-instagram"></i> {{ $user->instagram }}</a>
-                    @else - @endif
-                </dd>
-                <dt>Facebook</dt>
-                <dd>
-                    @if($user->facebook)
-                        <a href="{{ $user->facebook }}" target="_blank"><i class="fab fa-facebook"></i> {{ $user->facebook }}</a>
-                    @else - @endif
-                </dd>
-                <dt>Twitter</dt>
-                <dd>
-                    @if($user->twitter)
-                        <a href="{{ $user->twitter }}" target="_blank"><i class="fab fa-twitter"></i> {{ $user->twitter }}</a>
-                    @else - @endif
-                </dd>
-                <dt>TikTok</dt>
-                <dd>
-                    @if($user->tiktok)
-                        <a href="{{ $user->tiktok }}" target="_blank"><i class="fab fa-tiktok"></i> {{ $user->tiktok }}</a>
-                    @else - @endif
+                    <div class="social-container mt-2">
+                        @if($user->portfolio_link)
+                            <a href="{{ $user->portfolio_link }}" target="_blank" class="social-icon portfolio" title="Portfolio"><i class="fas fa-globe"></i></a>
+                        @endif
+                        @if($user->linkedin)
+                            <a href="{{ $user->linkedin }}" target="_blank" class="social-icon linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        @endif
+                        @if($user->instagram)
+                            <a href="{{ $user->instagram }}" target="_blank" class="social-icon instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        @endif
+                        @if($user->facebook)
+                            <a href="{{ $user->facebook }}" target="_blank" class="social-icon facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if($user->twitter)
+                            <a href="{{ $user->twitter }}" target="_blank" class="social-icon twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if($user->tiktok)
+                            <a href="{{ $user->tiktok }}" target="_blank" class="social-icon tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        @endif
+                        @if(!$user->portfolio_link && !$user->linkedin && !$user->instagram && !$user->facebook && !$user->twitter && !$user->tiktok)
+                            -
+                        @endif
+                    </div>
                 </dd>
             </dl>
           </div>

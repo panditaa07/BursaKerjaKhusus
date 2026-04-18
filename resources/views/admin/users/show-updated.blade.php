@@ -107,7 +107,7 @@
                         <ul>
                             @foreach($user->applications as $application)
                                 @if($application->cover_letter_path)
-                                    <li><a href="{{ asset('storage/cover_letter_files/' . $application->cover_letter_path) }}" target="_blank" download>Surat Lamaran untuk {{ $application->jobPost->title }}</a></li>
+                                    <li><a href="{{ asset('storage/cover_letter_files/' . $application->cover_letter_path) }}" target="_blank" download>Surat Lamaran for {{ $application->jobPost->title }}</a></li>
                                 @endif
                             @endforeach
                         </ul>
@@ -115,48 +115,32 @@
                         Tidak ada surat lamaran
                     @endif
                 </p>
-                <p><strong>Portfolio:</strong>
-                    @if($user->portfolio_link)
-                        <a href="{{ $user->portfolio_link }}" target="_blank">{{ $user->portfolio_link }}</a>
-                    @else
-                        -
-                    @endif
-                </p>
-                <p><strong>LinkedIn:</strong>
-                    @if($user->linkedin)
-                        <a href="{{ $user->linkedin }}" target="_blank">{{ $user->linkedin }}</a>
-                    @else
-                        -
-                    @endif
-                </p>
-                <p><strong>Instagram:</strong>
-                    @if($user->instagram)
-                        <a href="{{ $user->instagram }}" target="_blank">{{ $user->instagram }}</a>
-                    @else
-                        -
-                    @endif
-                </p>
-                <p><strong>Facebook:</strong>
-                    @if($user->facebook)
-                        <a href="{{ $user->facebook }}" target="_blank">{{ $user->facebook }}</a>
-                    @else
-                        -
-                    @endif
-                </p>
-                <p><strong>Twitter:</strong>
-                    @if($user->twitter)
-                        <a href="{{ $user->twitter }}" target="_blank">{{ $user->twitter }}</a>
-                    @else
-                        -
-                    @endif
-                </p>
-                <p><strong>TikTok:</strong>
-                    @if($user->tiktok)
-                        <a href="{{ $user->tiktok }}" target="_blank">{{ $user->tiktok }}</a>
-                    @else
-                        -
-                    @endif
-                </p>
+                <div class="mt-3">
+                    <strong>Sosial Media & Portfolio:</strong>
+                    <div class="social-container mt-2">
+                        @if($user->portfolio_link)
+                            <a href="{{ $user->portfolio_link }}" target="_blank" class="social-icon portfolio" title="Portfolio"><i class="fas fa-globe"></i></a>
+                        @endif
+                        @if($user->linkedin)
+                            <a href="{{ $user->linkedin }}" target="_blank" class="social-icon linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        @endif
+                        @if($user->instagram)
+                            <a href="{{ $user->instagram }}" target="_blank" class="social-icon instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        @endif
+                        @if($user->facebook)
+                            <a href="{{ $user->facebook }}" target="_blank" class="social-icon facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if($user->twitter)
+                            <a href="{{ $user->twitter }}" target="_blank" class="social-icon twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if($user->tiktok)
+                            <a href="{{ $user->tiktok }}" target="_blank" class="social-icon tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        @endif
+                        @if(!$user->portfolio_link && !$user->linkedin && !$user->instagram && !$user->facebook && !$user->twitter && !$user->tiktok)
+                            -
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -186,39 +186,39 @@
                                 <!-- Sosial Media Perusahaan -->
                                 <div class="company-social-media mb-4">
                                     <h5>Sosial Media Perusahaan</h5>
-                                    <div class="d-flex flex-wrap gap-2">
+                                    <div class="social-container mt-3">
                                         @if($job->company->linkedin)
-                                            <a href="{{ $job->company->linkedin }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                            <a href="{{ $job->company->linkedin }}" target="_blank" class="social-icon linkedin" title="LinkedIn">
+                                                <i class="fab fa-linkedin-in"></i>
                                             </a>
                                         @endif
                                         @if($job->company->social_media)
-                                            <a href="{{ $job->company->social_media }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                <i class="fa-brands fa-instagram"></i> Instagram
+                                            <a href="{{ $job->company->social_media }}" target="_blank" class="social-icon instagram" title="Instagram">
+                                                <i class="fab fa-instagram"></i>
                                             </a>
                                         @endif
                                         @if($job->company->facebook)
-                                            <a href="{{ $job->company->facebook }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                <i class="fa-brands fa-facebook"></i> Facebook
+                                            <a href="{{ $job->company->facebook }}" target="_blank" class="social-icon facebook" title="Facebook">
+                                                <i class="fab fa-facebook-f"></i>
                                             </a>
                                         @endif
                                         @if($job->company->twitter)
-                                            <a href="{{ $job->company->twitter }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                <i class="fa-brands fa-twitter"></i> Twitter
+                                            <a href="{{ $job->company->twitter }}" target="_blank" class="social-icon twitter" title="Twitter">
+                                                <i class="fab fa-twitter"></i>
                                             </a>
                                         @endif
                                         @if($job->company->tiktok)
-                                            <a href="{{ $job->company->tiktok }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                <i class="fa-brands fa-tiktok"></i> TikTok
+                                            <a href="{{ $job->company->tiktok }}" target="_blank" class="social-icon tiktok" title="TikTok">
+                                                <i class="fab fa-tiktok"></i>
                                             </a>
                                         @endif
                                         @if($job->company->youtube)
-                                            <a href="{{ $job->company->youtube }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                <i class="fa-brands fa-youtube"></i> YouTube
+                                            <a href="{{ $job->company->youtube }}" target="_blank" class="social-icon youtube" title="YouTube">
+                                                <i class="fab fa-youtube"></i>
                                             </a>
                                         @endif
                                         @if(!$job->company->linkedin && !$job->company->social_media && !$job->company->facebook && !$job->company->twitter && !$job->company->tiktok && !$job->company->youtube)
-                                            Belum ada sosial media
+                                            <span class="text-muted italic small">Belum ada sosial media</span>
                                         @endif
                                     </div>
                                 </div>

@@ -70,39 +70,39 @@
                                 <tr>
                                     <td class="fw-bold">Sosial Media:</td>
                                     <td>
-                                        <div class="d-flex flex-wrap gap-2">
+                                        <div class="social-container">
                                             @if($application->jobPost->company->linkedin)
-                                                <a href="{{ $application->jobPost->company->linkedin }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                                <a href="{{ $application->jobPost->company->linkedin }}" target="_blank" class="social-icon linkedin" title="LinkedIn">
+                                                    <i class="fab fa-linkedin-in"></i>
                                                 </a>
                                             @endif
                                             @if($application->jobPost->company->social_media)
-                                                <a href="{{ $application->jobPost->company->social_media }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                    <i class="fa-brands fa-instagram"></i> Instagram
+                                                <a href="{{ $application->jobPost->company->social_media }}" target="_blank" class="social-icon instagram" title="Instagram">
+                                                    <i class="fab fa-instagram"></i>
                                                 </a>
                                             @endif
                                             @if($application->jobPost->company->facebook)
-                                                <a href="{{ $application->jobPost->company->facebook }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                    <i class="fa-brands fa-facebook"></i> Facebook
+                                                <a href="{{ $application->jobPost->company->facebook }}" target="_blank" class="social-icon facebook" title="Facebook">
+                                                    <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             @endif
                                             @if($application->jobPost->company->twitter)
-                                                <a href="{{ $application->jobPost->company->twitter }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                    <i class="fa-brands fa-twitter"></i> Twitter
+                                                <a href="{{ $application->jobPost->company->twitter }}" target="_blank" class="social-icon twitter" title="Twitter">
+                                                    <i class="fab fa-twitter"></i>
                                                 </a>
                                             @endif
                                             @if($application->jobPost->company->tiktok)
-                                                <a href="{{ $application->jobPost->company->tiktok }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                    <i class="fa-brands fa-tiktok"></i> TikTok
+                                                <a href="{{ $application->jobPost->company->tiktok }}" target="_blank" class="social-icon tiktok" title="TikTok">
+                                                    <i class="fab fa-tiktok"></i>
                                                 </a>
                                             @endif
                                             @if($application->jobPost->company->youtube)
-                                                <a href="{{ $application->jobPost->company->youtube }}" target="_blank" style="color: #6C4F3D; text-decoration: none;">
-                                                    <i class="fa-brands fa-youtube"></i> YouTube
+                                                <a href="{{ $application->jobPost->company->youtube }}" target="_blank" class="social-icon youtube" title="YouTube">
+                                                    <i class="fab fa-youtube"></i>
                                                 </a>
                                             @endif
                                             @if(!$application->jobPost->company->linkedin && !$application->jobPost->company->social_media && !$application->jobPost->company->facebook && !$application->jobPost->company->twitter && !$application->jobPost->company->tiktok && !$application->jobPost->company->youtube)
-                                                Belum ada sosial media
+                                                <span class="text-muted italic small">Belum ada sosial media</span>
                                             @endif
                                         </div>
                                     </td>

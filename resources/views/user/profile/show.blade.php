@@ -56,29 +56,29 @@
 
         <div class="info-item">
             <span>Sosial Media:</span>
-            <div class="social-buttons">
+            <div class="social-container">
                 @if(Auth::user()->facebook)
-                    <a href="{{ Auth::user()->facebook }}" class="social-btn social-btn-facebook" target="_blank" title="Facebook">
+                    <a href="{{ Auth::user()->facebook }}" class="social-icon facebook" target="_blank" title="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 @endif
                 @if(Auth::user()->instagram)
-                    <a href="{{ Auth::user()->instagram }}" class="social-btn social-btn-instagram" target="_blank" title="Instagram">
+                    <a href="{{ Auth::user()->instagram }}" class="social-icon instagram" target="_blank" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 @endif
                 @if(Auth::user()->linkedin)
-                    <a href="{{ Auth::user()->linkedin }}" class="social-btn social-btn-linkedin" target="_blank" title="LinkedIn">
+                    <a href="{{ Auth::user()->linkedin }}" class="social-icon linkedin" target="_blank" title="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 @endif
                 @if(Auth::user()->twitter)
-                    <a href="{{ Auth::user()->twitter }}" class="social-btn social-btn-twitter" target="_blank" title="Twitter">
+                    <a href="{{ Auth::user()->twitter }}" class="social-icon twitter" target="_blank" title="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
                 @endif
                 @if(Auth::user()->tiktok)
-                    <a href="{{ Auth::user()->tiktok }}" class="social-btn social-btn-tiktok" target="_blank" title="TikTok">
+                    <a href="{{ Auth::user()->tiktok }}" class="social-icon tiktok" target="_blank" title="TikTok">
                         <i class="fab fa-tiktok"></i>
                     </a>
                 @endif
@@ -86,14 +86,15 @@
         </div>
 
         @if(Auth::user()->portfolio_link)
-    <div class="info-item">
-        <span>Portofolio:</span> 
-      <a href="{{ Auth::user()->portfolio_link }}" target="_blank" class="portfolio-text-link">
-    {{ Auth::user()->portfolio_link }}
-</a>
-
-    </div>
-@endif
+            <div class="info-item">
+                <span>Portofolio:</span> 
+                <div class="social-container">
+                    <a href="{{ Auth::user()->portfolio_link }}" target="_blank" class="social-icon portfolio" title="Portfolio">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+            </div>
+        @endif
 
 {{-- DOKUMEN LANGSUNG DI SINI --}}
 <div class="info-item full-width no-gap-top">

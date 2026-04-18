@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/table-admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Kelolapengguna.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/social-icons.css') }}">
 
     {{-- CSS tambahan untuk setiap halaman --}}
     @yield('css')

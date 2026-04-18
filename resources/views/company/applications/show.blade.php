@@ -167,35 +167,35 @@
           <h3><i class="fas fa-share-alt"></i> Sosial Media & Portfolio</h3>
         </header>
         <div class="card-body">
-          <div class="d-flex flex-wrap gap-3">
+          <div class="social-container">
             @if($application->user->portfolio_link)
-              <a href="{{ $application->user->portfolio_link }}" target="_blank" class="link">
-                <i class="fas fa-globe me-2"></i>Portfolio
+              <a href="{{ $application->user->portfolio_link }}" target="_blank" class="social-icon portfolio" title="Portfolio">
+                <i class="fas fa-globe"></i>
               </a>
             @endif
             @if($application->user->facebook)
-              <a href="{{ $application->user->facebook }}" target="_blank" class="link">
-                <i class="fab fa-facebook me-2"></i>Facebook
+              <a href="{{ $application->user->facebook }}" target="_blank" class="social-icon facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
               </a>
             @endif
             @if($application->user->instagram)
-              <a href="{{ $application->user->instagram }}" target="_blank" class="link">
-                <i class="fab fa-instagram me-2"></i>Instagram
+              <a href="{{ $application->user->instagram }}" target="_blank" class="social-icon instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
               </a>
             @endif
             @if($application->user->linkedin)
-              <a href="{{ $application->user->linkedin }}" target="_blank" class="link">
-                <i class="fab fa-linkedin me-2"></i>LinkedIn
+              <a href="{{ $application->user->linkedin }}" target="_blank" class="social-icon linkedin" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
               </a>
             @endif
             @if($application->user->twitter)
-              <a href="{{ $application->user->twitter }}" target="_blank" class="link">
-                <i class="fab fa-twitter me-2"></i>Twitter
+              <a href="{{ $application->user->twitter }}" target="_blank" class="social-icon twitter" title="Twitter">
+                <i class="fab fa-twitter"></i>
               </a>
             @endif
             @if($application->user->tiktok)
-              <a href="{{ $application->user->tiktok }}" target="_blank" class="link">
-                <i class="fab fa-tiktok me-2"></i>TikTok
+              <a href="{{ $application->user->tiktok }}" target="_blank" class="social-icon tiktok" title="TikTok">
+                <i class="fab fa-tiktok"></i>
               </a>
             @endif
           </div>
